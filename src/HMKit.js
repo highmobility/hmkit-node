@@ -20,48 +20,65 @@ export default class HMKit {
   }
 
   setupSdkNodeBindings() {
-    SdkNodeBindings.onGetSerialNumber(
-      () => base64ToUint8(this.deviceSerial).slice(16, 25).buffer
-    );
+    SdkNodeBindings.onGetSerialNumber(() => {
+      console.log('onGetSerialNumber');
+      return hexToUint8Array(this.getDeviceSerial()).buffer;
+    });
 
-    SdkNodeBindings.onGetLocalPublicKey(
-      () => this.parseDeviceCertificate()
-    );
+    SdkNodeBindings.onGetLocalPublicKey(() => {
+      console.log('onGetLocalPublicKey');
+      return hexToUint8Array(this.parseDeviceCertificate().publicKey).buffer;
+    });
 
-    SdkNodeBindings.onGetLocalPrivateKey(
-      () => base64ToUint8(this.devicePrivateKey).buffer
-    );
-    SdkNodeBindings.onGetDeviceCertificate(
-      () => null
-    );
+    SdkNodeBindings.onGetLocalPrivateKey(() => {
+      console.log('onGetLocalPrivateKey');
+      return base64ToUint8(this.devicePrivateKey).buffer;
+    });
+    SdkNodeBindings.onGetDeviceCertificate(() => {
+      console.log('onGetDeviceCertificate');
+      return base64ToUint8(this.deviceCertificate).buffer;
+    });
 
-    SdkNodeBindings.onGetCAPublicKey(
-      () => null
-    );
+    SdkNodeBindings.onGetCAPublicKey(() => {
+      console.log('onGetCAPublicKey');
+      return base64ToUint8(this.issuerPublicKey).buffer;
+    });
 
-    SdkNodeBindings.onGetNonce(
-      () => null
-    );
+    SdkNodeBindings.onGetAccessCertificate(serial => {
+      console.log('onGetAccessCertificate', serial);
+      const base64AccessCertificate = this.getAccessCertificate(serial);
+      if (!base64AccessCertificate) {
+        return null;
+      }
 
-    SdkNodeBindings.onGetAccessCertificate(
-      () => null
-    );
+      const accessCertificate = this.parseAccessCertificate(
+        base64AccessCertificate
+      );
 
-    SdkNodeBindings.onTelematicsSendData(
-      () => null
-    );
+      return {
+        public_key: hexToUint8Array(accessCertificate.accessGainingPublicKey).buffer,
+        start_date: hexToUint8Array(accessCertificate.validityStartDate).buffer,
+        end_date: hexToUint8Array(accessCertificate.validityEndDate).buffer,
+        permissions: hexToUint8Array(accessCertificate.permissions).buffer,
+      };
+    });
 
-    SdkNodeBindings.onTelematicsCommandIncoming(
-      () => null
-    );
+    SdkNodeBindings.onTelematicsSendData((issuer, serial, data) => {
+      console.log('onTelematicsSendData', issuer, serial, data);
+    });
 
+    SdkNodeBindings.onTelematicsCommandIncoming((serial, id, data) => {
+      console.log('onTelematicsCommandIncoming', serial, id, data);
+    });
+  }
+
+  getAccessCertificate(serial) {
+    console.log('getAccessCertificate', serial);
+    return 'NWZ10Mx2qP/1Cyor14dHY2EpjKLpLUAEJjgGwQeA0yy3/tsSvKLFKSfrK/5YnEvrhxj9gCDbrodBcwIoJxVIc6nv/571FDWjAcX/U8uWPy3SVhEICwwAEQkLDAAHEAf//f/v/0kaWqwyti6brrWzLdDXBVq+nF5E3VXTnovwCHrw8rWekqFvgqruIR2+wWqmZc/Y2X4iE2lmWksZQEExR4Kj/2Y=';
   }
 
   getDeviceSerial() {
-    const deviceSerial = this.deviceCertificate;
-    return uint8ArrayToHex(
-      base64ToUint8(deviceSerial).slice(16, 25)
-    ).toUpperCase();
+    return this.parseDeviceCertificate(this.deviceCertificate).deviceSerial;
   }
 
   parseAccessCertificate(certificate) {
@@ -145,7 +162,7 @@ export default class HMKit {
       'https://developers.h-m.space/hm_cloud/api/v1/nonces',
       {
         body: JSON.stringify({
-          serial_number:  this.getDeviceSerial(),
+          serial_number: this.getDeviceSerial(),
         }),
       }
     );
@@ -155,8 +172,12 @@ export default class HMKit {
 
   async sendTelematicsCommand(serial, data) {
     const nonce = await this.getNonce(serial);
-    console.log('nonce', nonce);
-    console.log(hexToUint8Array(serial), base64ToUint8(nonce), hexToUint8Array('ABAA'));
-    // const result = SdkNodeBindings.sendTelematicsCommand(hexToUint8Array(serial).buffer, base64ToUint8(nonce).buffer, hexToUint8Array('ABAA').buffer);
+    console.log('sendTelematicsCommand', serial, nonce);
+    const result = SdkNodeBindings.sendTelematicsCommand(
+      hexToUint8Array(serial).buffer,
+      base64ToUint8(nonce).buffer,
+      hexToUint8Array('001000').buffer
+    );
+    console.log('result', result);
   }
 }

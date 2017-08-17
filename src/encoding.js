@@ -15,7 +15,7 @@ export function asciiToUint8(string) {
 }
 
 export function uint8ArrayToHex(uint8Array) {
-  return uint8Array.reduce((memo, i) => memo + i.toString(16), '');
+  return uint8Array.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
 }
 
 export function hexToInt(hex) {
@@ -46,11 +46,13 @@ export function hexToByteArrays(hexString) {
 
   uint8Array.forEach(uint8 => {
     byteArrays.push(
-      pad(uint8.toString(2), 8).split('').map(byte => (
-        Number(byte)
-      ))
+      pad(uint8.toString(2), 8).split('').map(byte => Number(byte))
     );
   });
 
   return byteArrays;
+}
+
+export function pad(string:string, width:number) {
+  return string.length >= width ? string : new Array(width - string.length + 1).join('0') + string;
 }
