@@ -65,7 +65,26 @@ export default class HMKit {
     });
 
     SdkNodeBindings.onTelematicsSendData((issuer, serial, data) => {
-      console.log('onTelematicsSendData', issuer, serial, data);
+      console.log('onTelematicsSendData');
+
+      const payload = {
+        serial_number: uint8ArrayToHex(new Uint8Array(serial)).toUpperCase(),
+        issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
+        data: byteArrayToBase64(data),
+      };
+
+      console.log(payload);
+
+      client.post(
+        'https://developers.h-m.space/hm_cloud/api/v1/telematics_commands',
+        {
+          body: JSON.stringify(payload),
+        }
+      ).then((res) => {
+        console.log('result', res.body, res);
+      }).catch((err) => {
+        console.log('error', err);
+      });
     });
 
     SdkNodeBindings.onTelematicsCommandIncoming((serial, id, data) => {
