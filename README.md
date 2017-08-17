@@ -1,1 +1,0 @@
-# High Mobility NodeJS SDK

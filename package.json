@@ -1,21 +1,63 @@
 {
-  "name": "hm-node-sdk",
-  "version": "1.0.0",
+  "name": "hmkit",
+  "version": "0.1.0",
   "description": "High Mobility SDK for Node.js",
-  "main": "index.js",
+  "main": "build/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node --napi-modules ./build/bundle.js",
+    "dev": "NODE_ENV=development NODE_PATH=. webpack --hide-modules --config ./webpack/webpack.config.js",
+    "build": "NODE_ENV=production NODE_PATH=. node webpack/build.js",
+    "build:debug": "NODE_ENV=production APP_DEBUG=true NODE_PATH=. node webpack/build.js",
+    "test": "node --napi-modules node_modules/.bin/jest",
+    "test:watch": "node --napi-modules node_modules/.bin/jest --watch",
+    "test:coverage": "node --napi-modules node_modules/.bin/jest --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
+    "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" ",
+    "postinstall": "cd sdk-node-bindings && npm install"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/highmobility/hm-node-sdk.git"
+  "entry": "./build/bundle.js",
+  "jest": {
+    "coverageDirectory": "coverage",
+    "moduleFileExtensions": ["js", "jsx", "node"],
+    "moduleDirectories": [
+      ".",
+      "node_modules"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/testutils/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   },
-  "keywords": [
-    "node.js",
-    "sdk"
-  ],
-  "author": "Francesco Donadon",
-  "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/highmobility/hm-node-sdk#readme"
+  "dependencies": {
+    "atob": "^2.0.3",
+    "btoa": "^1.1.2",
+    "eslint-plugin-react": "^7.2.1",
+    "node-fetch": "^1.7.2"
+  },
+  "devDependencies": {
+    "@optimistdigital/eslint-config-rules": "^1.7.1",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.4.1",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^20.0.4",
+    "json-loader": "^0.5.7",
+    "node-loader": "^0.6.0",
+    "prettier": "^1.5.3",
+    "webpack": "^3.5.4",
+    "webpack-node-externals": "^1.6.0"
+  }
 }
