@@ -56,7 +56,8 @@ export default class HMKit {
       );
 
       return {
-        public_key: hexToUint8Array(accessCertificate.accessGainingPublicKey).buffer,
+        public_key: hexToUint8Array(accessCertificate.accessGainingPublicKey)
+          .buffer,
         start_date: hexToUint8Array(accessCertificate.validityStartDate).buffer,
         end_date: hexToUint8Array(accessCertificate.validityEndDate).buffer,
         permissions: hexToUint8Array(accessCertificate.permissions).buffer,

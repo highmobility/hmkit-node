@@ -53,6 +53,8 @@ export function hexToByteArrays(hexString) {
   return byteArrays;
 }
 
-export function pad(string:string, width:number) {
-  return string.length >= width ? string : new Array(width - string.length + 1).join('0') + string;
+export function pad(string: string, width: number) {
+  return string.length >= width
+    ? string
+    : new Array(width - string.length + 1).join('0') + string;
 }
