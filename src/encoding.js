@@ -58,3 +58,7 @@ export function pad(string: string, width: number) {
     ? string
     : new Array(width - string.length + 1).join('0') + string;
 }
+
+export function hexArrayToHex(hexArray: Array<number>) {
+  return hexArray.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
+}
