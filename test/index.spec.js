@@ -1,12 +1,13 @@
-import hmkit from 'test/testutils/getHmkit';
-import HMKit from 'src/HMKit';
+import getHmkit from 'test/testutils/getHmkit';
+const hmkit = getHmkit();
 import { uint8ArrayToHex, hexToUint8Array } from 'src/encoding';
+import Capabilities from 'src/Commands/Capabilities';
+import VehicleStatus from 'src/Commands/VehicleStatus';
 
 describe(`sdk`, () => {
-  it(`should have a default export`, () => {
-    expect(hmkit).toBeInstanceOf(HMKit);
+  it(`should do nothing`, () => {
+    expect(1).toBe(1);
   });
-
   it(`should convert uint to hex and back to uint`, () => {
     const data = new Uint8Array([
       11,
