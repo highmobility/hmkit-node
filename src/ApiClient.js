@@ -29,12 +29,17 @@ export default class ApiClient {
     new Promise((resolve, reject) => {
       const opts = { ...DEFAULT_OPTS, ...customOpts };
 
+      console.info('API request:', opts.method, url);
+
       nodeFetch(url, opts)
         .then(res => {
           if (!res.ok) return Promise.reject(res);
 
           const contentType = res.headers.get('content-type');
-          if (contentType && contentType.indexOf('application/json') !== -1) {
+          if (
+            true ||
+            (contentType && contentType.indexOf('application/json') !== -1)
+          ) {
             return res.json().then(json => ({ response: res, body: json }));
           }
           return res.text().then(text => ({ response: res, body: text }));
