@@ -8,7 +8,6 @@ describe(`VehicleLocationCommand`, () => {
       '356675D0CC76A8FFF5',
       VehicleLocationCommand.get()
     );
-    console.log(result.get());
 
     expect(result.get()).toEqual(
       expect.objectContaining({
