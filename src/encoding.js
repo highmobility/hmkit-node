@@ -1,5 +1,6 @@
 import atob from 'atob';
 import btoa from 'btoa';
+import ieee754 from 'ieee754';
 
 export function base64ToUint8(base64String) {
   return new Uint8Array(atob(base64String).split('').map(c => c.charCodeAt(0)));
@@ -61,4 +62,8 @@ export function pad(string: string, width: number) {
 
 export function hexArrayToHex(hexArray: Array<number>) {
   return hexArray.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
+}
+
+export function ieee754ToBase10(array:Array<number>, bytes:number = 4) {
+  return ieee754.read(array, 0, false, 23, bytes);
 }
