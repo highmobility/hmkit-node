@@ -1,33 +1,44 @@
 import getHmkit from 'test/testutils/getHmkit';
 const hmkit = getHmkit();
 import { uint8ArrayToHex } from 'src/encoding';
-import EngineCommand from 'src/Commands/EngineCommand';
 
 describe(`EngineCommand`, () => {
   it(`should get ignition state`, async () => {
-    const result = await hmkit.telematics.sendCommand(
+    const response = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
-      EngineCommand.getIgnitionState()
+      hmkit.commands.EngineCommand.getIgnitionState()
     );
-    expect(result).toBeTruthy();
-    // expect(uint8ArrayToHex(result.data)).toBeTruthy();
+
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        engine: expect.any(Number),
+      })
+    );
   });
 
   it(`should turn engine on`, async () => {
-    const result = await hmkit.telematics.sendCommand(
+    const response = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
-      EngineCommand.turnOn()
+      hmkit.commands.EngineCommand.turnOn()
     );
-    expect(result).toBeTruthy();
-    // expect(uint8ArrayToHex(result.data)).toBe('00350101');
+
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        engine: 1,
+      })
+    );
   });
 
   it(`should turn engine off`, async () => {
-    const result = await hmkit.telematics.sendCommand(
+    const response = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
-      EngineCommand.turnOff()
+      hmkit.commands.EngineCommand.turnOff()
     );
-    expect(result).toBeTruthy();
-    // expect(uint8ArrayToHex(result.data)).toBe('00350100');
+
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        engine: 0,
+      })
+    );
   });
 });

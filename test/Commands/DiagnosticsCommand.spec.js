@@ -1,15 +1,14 @@
 import getHmkit from 'test/testutils/getHmkit';
 const hmkit = getHmkit();
-import DiagnosticsCommand from 'src/Commands/DiagnosticsCommand';
 
 describe(`DiagnosticsCommand`, () => {
   it(`should get diagnostics state`, async () => {
-    const result = await hmkit.telematics.sendCommand(
+    const response = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
-      DiagnosticsCommand.getState()
+      hmkit.commands.DiagnosticsCommand.getState()
     );
 
-    expect(result.get()).toEqual(
+    expect(response.parse()).toEqual(
       expect.objectContaining({
         mileage: expect.any(Number),
         engineOilTemperature: expect.any(Number),

@@ -34,7 +34,7 @@ export default class Telematics {
     });
   }
 
-  async getNonce() {
+  getNonce = async () => {
     const result = await client.post(`${this.hmkit.apiUrl}nonces`, {
       body: JSON.stringify({
         serial_number: this.hmkit.getDeviceSerial(),
@@ -42,7 +42,7 @@ export default class Telematics {
     });
 
     return result.body.nonce;
-  }
+  };
 
   onTelematicsSendData = async (issuer, serial, data) => {
     const payload = {
@@ -66,7 +66,7 @@ export default class Telematics {
     };
   };
 
-  async sendCommand(serial, data) {
+  sendCommand = async (serial, data) => {
     const nonce = await this.getNonce(serial);
 
     SdkNodeBindings.sendTelematicsCommand(
@@ -87,5 +87,5 @@ export default class Telematics {
     );
 
     return new Response(this.response.incomingCommandData);
-  }
+  };
 }

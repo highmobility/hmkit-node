@@ -19,8 +19,8 @@ describe(`Response`, () => {
 
   it(`should return EngineResponse`, () => {
     const response = new Response([0, 53, 1, 1]);
-    expect(response.get()).toBeInstanceOf(EngineResponse);
-    expect(response.get()).toEqual({
+    expect(response.parse()).toBeInstanceOf(EngineResponse);
+    expect(response.parse()).toEqual({
       engine: 1,
     });
   });

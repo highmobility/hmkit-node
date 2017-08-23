@@ -75,8 +75,9 @@ module.exports.output = {
   path: OUTPUT_DIR,
   filename: '[name].js',
   chunkFilename: '[name]-[id].js',
-  library: 'hm-node-sdk',
-  libraryTarget: 'commonjs-module'
+  library: 'hmkit',
+  libraryExport: 'default',
+  libraryTarget: 'commonjs-module',
 };
 
 /**

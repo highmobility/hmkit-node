@@ -26,7 +26,7 @@ export default class Response {
     return this.rawData;
   }
 
-  get() {
+  parse() {
     const bytes = this.bytes();
     const parser = this.findParser(bytes);
 

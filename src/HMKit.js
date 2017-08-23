@@ -5,6 +5,7 @@ import {
   hexToInt,
   hexToUint8Array,
 } from './encoding';
+import Commands from 'src/Commands';
 import Telematics from 'src/Telematics';
 
 export default class HMKit {
@@ -16,6 +17,7 @@ export default class HMKit {
     this.apiUrl = 'https://developers.h-m.space/hm_cloud/api/v1/';
 
     this.telematics = new Telematics(this);
+    this.commands = new Commands(this);
 
     this.setupSdkNodeBindings();
   }

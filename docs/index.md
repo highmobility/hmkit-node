@@ -14,7 +14,7 @@ const hmkit = new HMKit(
 async function app() {
   const response = await hmkit.telematics.sendCommand(
     'XXXXXXXXXXXXXXXXXX', // car serial
-    EngineCommand.turnOn()
+    hmkit.commands.EngineCommand.turnOn()
   );
   
   console.log(response.raw()); // "00350101"
