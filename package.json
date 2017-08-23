@@ -11,8 +11,7 @@
     "test": "node --napi-modules node_modules/.bin/jest --runInBand",
     "test:watch": "node --napi-modules node_modules/.bin/jest --runInBand --watch",
     "test:coverage": "node --napi-modules node_modules/.bin/jest --runInBand --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
-    "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" ",
-    "postinstall": "cd sdk-node-bindings && npm install"
+    "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" "
   },
   "entry": "./build/bundle.js",
   "jest": {

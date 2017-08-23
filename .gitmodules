@@ -1,3 +1,0 @@
-[submodule "sdk-node-bindings"]
-	path = sdk-node-bindings
-	url = git@bitbucket.org:highmobility/sdk-node-bindings.git
