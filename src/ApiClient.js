@@ -29,8 +29,6 @@ export default class ApiClient {
     new Promise((resolve, reject) => {
       const opts = { ...DEFAULT_OPTS, ...customOpts };
 
-      console.info('API request:', opts.method, url);
-
       nodeFetch(url, opts)
         .then(res => {
           if (!res.ok) return Promise.reject(res);

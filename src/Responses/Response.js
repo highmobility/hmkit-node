@@ -1,12 +1,17 @@
 import DiagnosticsResponse from 'src/Responses/DiagnosticsResponse';
 import EngineResponse from 'src/Responses/EngineResponse';
+import VehicleLocationResponse from 'src/Responses/VehicleLocationResponse';
 
 export default class Response {
   constructor(data: string) {
     this.rawData = data;
     this.checkRawDataLength();
 
-    this.parsers = [DiagnosticsResponse, EngineResponse];
+    this.parsers = [
+      DiagnosticsResponse,
+      EngineResponse,
+      VehicleLocationResponse,
+    ];
   }
 
   checkRawDataLength() {
