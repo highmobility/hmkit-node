@@ -6,7 +6,8 @@ import {
   hexToInt,
   hexToUint8Array,
 } from './encoding';
-import ApiClient from './ApiClient';
+import ApiClient from 'src/ApiClient';
+import Response from 'src/Responses/Response';
 const client = new ApiClient();
 
 export default class HMKit {
@@ -206,11 +207,6 @@ export default class HMKit {
       base64ToUint8(result.body.response_data).buffer
     );
 
-    const { incomingCommandSerial, incomingCommandData } = this.response;
-
-    return {
-      serial: incomingCommandSerial,
-      data: incomingCommandData,
-    };
+    return new Response(this.response.incomingCommandData);
   }
 }

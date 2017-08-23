@@ -1,6 +1,6 @@
 import Command from 'src/Commands/Command';
 
-export default class Engine {
+export default class EngineCommand {
   static getIgnitionState() {
     return new Command([0x00, 0x35, 0x00]);
   }
