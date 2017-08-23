@@ -11,5 +11,5 @@ export default function hmkit(
   devicePrivateKey = defaultDevicePrivateKey,
   issuerPublicKey = defaultIssuerPublicKey
 ) {
-  return new HMKit(deviceCertificate, devicePrivateKey, issuerPublicKey);
+  return (new HMKit(deviceCertificate, devicePrivateKey, issuerPublicKey)).staging();
 }

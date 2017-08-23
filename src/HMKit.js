@@ -1,14 +1,11 @@
 import SdkNodeBindings from './../sdk-node-bindings/lib/binding.js';
 import {
   base64ToUint8,
-  byteArrayToBase64,
   uint8ArrayToHex,
   hexToInt,
   hexToUint8Array,
 } from './encoding';
-import ApiClient from 'src/ApiClient';
-import Response from 'src/Responses/Response';
-const client = new ApiClient();
+import Telematics from 'src/Telematics';
 
 export default class HMKit {
   constructor(deviceCertificate, devicePrivateKey, issuerPublicKey) {
@@ -16,8 +13,21 @@ export default class HMKit {
     this.devicePrivateKey = devicePrivateKey;
     this.issuerPublicKey = issuerPublicKey;
     this.issuer = 'tmcs';
+    this.apiUrl = 'https://developers.h-m.space/hm_cloud/api/v1/';
+
+    this.telematics = new Telematics(this);
 
     this.setupSdkNodeBindings();
+  }
+
+  staging() {
+    return this.api('https://developers.h-m.space/hm_cloud/api/v1/');
+  }
+
+  api(url) {
+    this.apiUrl = url;
+
+    return this;
   }
 
   setupSdkNodeBindings() {
@@ -59,9 +69,9 @@ export default class HMKit {
       };
     });
 
-    SdkNodeBindings.onTelematicsSendData(this.onTelematicsSendData);
+    SdkNodeBindings.onTelematicsSendData(this.telematics.onTelematicsSendData);
     SdkNodeBindings.onTelematicsCommandIncoming(
-      this.onTelematicsCommandIncoming
+      this.telematics.onTelematicsCommandIncoming
     );
   }
 
@@ -124,89 +134,5 @@ export default class HMKit {
         base64ToUint8(certificate).slice(89, 153)
       ).toUpperCase(),
     };
-  }
-
-  downloadAccessCertificate(accessToken) {
-    const byteSignature = SdkNodeBindings.generateSignature(
-      new Uint8Array(Buffer.from(accessToken)).buffer
-    );
-    const signature = byteArrayToBase64(byteSignature);
-
-    console.log({
-      serial_number: this.getDeviceSerial(),
-      access_token: accessToken,
-      signature,
-    });
-    return client.post(
-      'https://developers.h-m.space/hm_cloud/api/v1/access_certificates',
-      {
-        body: JSON.stringify({
-          serial_number: this.getDeviceSerial(),
-          access_token: accessToken,
-          signature,
-        }),
-      }
-    );
-  }
-
-  async getNonce() {
-    const result = await client.post(
-      'https://developers.h-m.space/hm_cloud/api/v1/nonces',
-      {
-        body: JSON.stringify({
-          serial_number: this.getDeviceSerial(),
-        }),
-      }
-    );
-
-    return result.body.nonce;
-  }
-
-  onTelematicsSendData = async (issuer, serial, data) => {
-    const payload = {
-      serial_number: uint8ArrayToHex(new Uint8Array(serial)).toUpperCase(),
-      issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
-      data: byteArrayToBase64(data),
-    };
-
-    this.promise = client.post(
-      'https://developers.h-m.space/hm_cloud/api/v1/telematics_commands',
-      {
-        body: JSON.stringify(payload),
-      }
-    );
-  };
-
-  onTelematicsCommandIncoming = async (serial, id, data) => {
-    this.response = {
-      incomingCommandSerial: uint8ArrayToHex(
-        new Uint8Array(serial)
-      ).toUpperCase(),
-      incomingCommandId: uint8ArrayToHex(new Uint8Array(id)).toUpperCase(),
-      incomingCommandData: new Uint8Array(data),
-    };
-  };
-
-  async sendTelematicsCommand(serial, data) {
-    const nonce = await this.getNonce(serial);
-
-    SdkNodeBindings.sendTelematicsCommand(
-      hexToUint8Array(serial).buffer,
-      base64ToUint8(nonce).buffer,
-      hexToUint8Array(data.toString()).buffer
-    );
-
-    let result;
-    try {
-      result = await this.promise;
-    } catch (e) {
-      console.log('caught exception', e);
-    }
-
-    SdkNodeBindings.telematicsDataReceived(
-      base64ToUint8(result.body.response_data).buffer
-    );
-
-    return new Response(this.response.incomingCommandData);
   }
 }

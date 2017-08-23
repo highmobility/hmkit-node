@@ -5,7 +5,7 @@ import EngineCommand from 'src/Commands/EngineCommand';
 
 describe(`EngineCommand`, () => {
   it(`should get ignition state`, async () => {
-    const result = await hmkit.sendTelematicsCommand(
+    const result = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
       EngineCommand.getIgnitionState()
     );
@@ -14,7 +14,7 @@ describe(`EngineCommand`, () => {
   });
 
   it(`should turn engine on`, async () => {
-    const result = await hmkit.sendTelematicsCommand(
+    const result = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
       EngineCommand.turnOn()
     );
@@ -23,7 +23,7 @@ describe(`EngineCommand`, () => {
   });
 
   it(`should turn engine off`, async () => {
-    const result = await hmkit.sendTelematicsCommand(
+    const result = await hmkit.telematics.sendCommand(
       '356675D0CC76A8FFF5',
       EngineCommand.turnOff()
     );
