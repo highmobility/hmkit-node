@@ -25,27 +25,21 @@ export default class Telematics {
       access_token: accessToken,
       signature,
     });
-    return client.post(
-      `${this.hmkit.apiUrl}access_certificates`,
-      {
-        body: JSON.stringify({
-          serial_number: this.hmkit.getDeviceSerial(),
-          access_token: accessToken,
-          signature,
-        }),
-      }
-    );
+    return client.post(`${this.hmkit.apiUrl}access_certificates`, {
+      body: JSON.stringify({
+        serial_number: this.hmkit.getDeviceSerial(),
+        access_token: accessToken,
+        signature,
+      }),
+    });
   }
 
   async getNonce() {
-    const result = await client.post(
-      `${this.hmkit.apiUrl}nonces`,
-      {
-        body: JSON.stringify({
-          serial_number: this.hmkit.getDeviceSerial(),
-        }),
-      }
-    );
+    const result = await client.post(`${this.hmkit.apiUrl}nonces`, {
+      body: JSON.stringify({
+        serial_number: this.hmkit.getDeviceSerial(),
+      }),
+    });
 
     return result.body.nonce;
   }
@@ -57,12 +51,9 @@ export default class Telematics {
       data: byteArrayToBase64(data),
     };
 
-    this.promise = client.post(
-      `${this.hmkit.apiUrl}telematics_commands`,
-      {
-        body: JSON.stringify(payload),
-      }
-    );
+    this.promise = client.post(`${this.hmkit.apiUrl}telematics_commands`, {
+      body: JSON.stringify(payload),
+    });
   };
 
   onTelematicsCommandIncoming = async (serial, id, data) => {

@@ -6,15 +6,14 @@ export default class Response {
     this.rawData = data;
     this.checkRawDataLength();
 
-    this.parsers = [
-      DiagnosticsResponse,
-      EngineResponse,
-    ];
+    this.parsers = [DiagnosticsResponse, EngineResponse];
   }
 
   checkRawDataLength() {
     if (this.rawData.length < 2) {
-      throw new Error(`Response string length invalid (length: ${this.rawData.length} chars).`);
+      throw new Error(
+        `Response string length invalid (length: ${this.rawData.length} chars).`
+      );
     }
   }
 
@@ -35,7 +34,10 @@ export default class Response {
 
   findParser(bytes) {
     for (const parser of this.parsers) {
-      if (parser.identifier[0] === bytes[0] && parser.identifier[1] === bytes[1]) {
+      if (
+        parser.identifier[0] === bytes[0] &&
+        parser.identifier[1] === bytes[1]
+      ) {
         return parser;
       }
     }

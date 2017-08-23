@@ -64,6 +64,6 @@ export function hexArrayToHex(hexArray: Array<number>) {
   return hexArray.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
 }
 
-export function ieee754ToBase10(array:Array<number>, bytes:number = 4) {
+export function ieee754ToBase10(array: Array<number>, bytes: number = 4) {
   return ieee754.read(array, 0, false, 23, bytes);
 }

@@ -63,7 +63,12 @@ export default class DiagnosticsResponse {
 
     for (let i = 0; i < tiresCount; i++) {
       const pos = 15 + 5 * i;
-      tires[positions[bytes[pos]]] = ieee754ToBase10([bytes[pos + 1], bytes[pos + 2], bytes[pos + 3], bytes[pos + 4]]);
+      tires[positions[bytes[pos]]] = ieee754ToBase10([
+        bytes[pos + 1],
+        bytes[pos + 2],
+        bytes[pos + 3],
+        bytes[pos + 4],
+      ]);
     }
 
     return tires;
