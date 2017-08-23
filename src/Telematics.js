@@ -1,4 +1,3 @@
-import SdkNodeBindings from './../sdk-node-bindings/lib/binding.js';
 import ApiClient from 'src/ApiClient';
 import Response from 'src/Responses/Response';
 const client = new ApiClient();
@@ -10,12 +9,13 @@ import {
 } from './encoding';
 
 export default class Telematics {
-  constructor(hmkit) {
+  constructor(hmkit, SdkNodeBindings) {
     this.hmkit = hmkit;
+    this.SdkNodeBindings = SdkNodeBindings;
   }
 
   downloadAccessCertificate(accessToken) {
-    const byteSignature = SdkNodeBindings.generateSignature(
+    const byteSignature = this.SdkNodeBindings.generateSignature(
       new Uint8Array(Buffer.from(accessToken)).buffer
     );
     const signature = byteArrayToBase64(byteSignature);
@@ -69,7 +69,7 @@ export default class Telematics {
   sendCommand = async (serial, data) => {
     const nonce = await this.getNonce(serial);
 
-    SdkNodeBindings.sendTelematicsCommand(
+    this.SdkNodeBindings.sendTelematicsCommand(
       hexToUint8Array(serial).buffer,
       base64ToUint8(nonce).buffer,
       hexToUint8Array(data.toString()).buffer
@@ -82,7 +82,7 @@ export default class Telematics {
       console.log('caught exception', e);
     }
 
-    SdkNodeBindings.telematicsDataReceived(
+    this.SdkNodeBindings.telematicsDataReceived(
       base64ToUint8(result.body.response_data).buffer
     );
 

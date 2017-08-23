@@ -1,4 +1,5 @@
-import SdkNodeBindings from './../sdk-node-bindings/lib/binding.js';
+import getSdkNodeBindings from 'src/SdkNodeBindings';
+const SdkNodeBindings = getSdkNodeBindings();
 import {
   base64ToUint8,
   uint8ArrayToHex,
@@ -16,7 +17,7 @@ export default class HMKit {
     this.issuer = 'tmcs';
     this.apiUrl = 'https://developers.h-m.space/hm_cloud/api/v1/';
 
-    this.telematics = new Telematics(this);
+    this.telematics = new Telematics(this, SdkNodeBindings);
     this.commands = new Commands(this);
 
     this.setupSdkNodeBindings();
