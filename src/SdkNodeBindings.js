@@ -7,6 +7,9 @@ export default function getSdkNodeBindings() {
 
   } else if (process.platform === 'darwin') {
     return require('../bindings/macos');
+
+  } else if (process.platform === 'linux') {
+    return require('../bindings/ubuntu');
   }
 
   throw new Error('Native "hmkit" addon missing for your platform.');
