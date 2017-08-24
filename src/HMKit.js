@@ -8,6 +8,7 @@ import {
 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
+import Storage from './Storage';
 
 export default class HMKit {
   constructor(deviceCertificate, devicePrivateKey) {
@@ -18,6 +19,7 @@ export default class HMKit {
 
     this.telematics = new Telematics(this, SdkNodeBindings);
     this.commands = new Commands(this);
+    this.storage = new Storage(this);
 
     this.setupSdkNodeBindings();
   }
@@ -50,7 +52,9 @@ export default class HMKit {
     });
 
     SdkNodeBindings.onGetAccessCertificate(serial => {
-      const base64AccessCertificate = this.getAccessCertificate(serial);
+      const base64AccessCertificate = this.getAccessCertificate(
+        uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
+      );
       if (!base64AccessCertificate) {
         return null;
       }
@@ -75,7 +79,7 @@ export default class HMKit {
   }
 
   getAccessCertificate(serial) {
-    return 'NWZ10Mx2qP/1Cyor14dHY2EpjKLpLUAEJjgGwQeA0yy3/tsSvKLFKSfrK/5YnEvrhxj9gCDbrodBcwIoJxVIc6nv/571FDWjAcX/U8uWPy3SVhEICwwAEQkLDAAHEAf//f/v/0kaWqwyti6brrWzLdDXBVq+nF5E3VXTnovwCHrw8rWekqFvgqruIR2+wWqmZc/Y2X4iE2lmWksZQEExR4Kj/2Y=';
+    return this.storage.get('access_certificates', serial);
   }
 
   getDeviceSerial() {

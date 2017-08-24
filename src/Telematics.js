@@ -14,25 +14,31 @@ export default class Telematics {
     this.SdkNodeBindings = SdkNodeBindings;
   }
 
-  downloadAccessCertificate(accessToken) {
+  downloadAccessCertificate = async accessToken => {
     const byteSignature = this.SdkNodeBindings.generateSignature(
       new Uint8Array(Buffer.from(accessToken)).buffer
     );
     const signature = byteArrayToBase64(byteSignature);
 
-    console.log({
-      serial_number: this.hmkit.getDeviceSerial(),
-      access_token: accessToken,
-      signature,
-    });
-    return client.post(`${this.hmkit.apiUrl}access_certificates`, {
+    const {
+      body: { device_access_certificate: accessCertificate },
+    } = await client.post(`${this.hmkit.apiUrl}access_certificates`, {
       body: JSON.stringify({
         serial_number: this.hmkit.getDeviceSerial(),
         access_token: accessToken,
         signature,
       }),
     });
-  }
+
+    this.hmkit.storage.add(
+      'access_certificates',
+      this.hmkit.parseAccessCertificate(accessCertificate)
+        .accessGainingSerialNumber,
+      accessCertificate
+    );
+
+    return accessCertificate;
+  };
 
   getNonce = async () => {
     const result = await client.post(`${this.hmkit.apiUrl}nonces`, {

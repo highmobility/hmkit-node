@@ -8,8 +8,5 @@ export default function hmkit(
   deviceCertificate = defaultDeviceCertificate,
   devicePrivateKey = defaultDevicePrivateKey
 ) {
-  return new HMKit(
-    deviceCertificate,
-    devicePrivateKey
-  ).staging();
+  return new HMKit(deviceCertificate, devicePrivateKey).staging();
 }

@@ -7,6 +7,7 @@ var SdkNodeBindings = getSdkNodeBindings();
 import { base64ToUint8, uint8ArrayToHex, hexToInt, hexToUint8Array } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
+import Storage from './Storage';
 
 var HMKit = function () {
   function HMKit(deviceCertificate, devicePrivateKey) {
@@ -19,6 +20,7 @@ var HMKit = function () {
 
     this.telematics = new Telematics(this, SdkNodeBindings);
     this.commands = new Commands(this);
+    this.storage = new Storage(this);
 
     this.setupSdkNodeBindings();
   }
@@ -57,7 +59,7 @@ var HMKit = function () {
       });
 
       SdkNodeBindings.onGetAccessCertificate(function (serial) {
-        var base64AccessCertificate = _this.getAccessCertificate(serial);
+        var base64AccessCertificate = _this.getAccessCertificate(uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
         if (!base64AccessCertificate) {
           return null;
         }
@@ -78,7 +80,7 @@ var HMKit = function () {
   }, {
     key: 'getAccessCertificate',
     value: function getAccessCertificate(serial) {
-      return 'NWZ10Mx2qP/1Cyor14dHY2EpjKLpLUAEJjgGwQeA0yy3/tsSvKLFKSfrK/5YnEvrhxj9gCDbrodBcwIoJxVIc6nv/571FDWjAcX/U8uWPy3SVhEICwwAEQkLDAAHEAf//f/v/0kaWqwyti6brrWzLdDXBVq+nF5E3VXTnovwCHrw8rWekqFvgqruIR2+wWqmZc/Y2X4iE2lmWksZQEExR4Kj/2Y=';
+      return this.storage.get('access_certificates', serial);
     }
   }, {
     key: 'getDeviceSerial',
