@@ -1,4 +1,4 @@
-import { ieee754ToBase10 } from 'src/encoding';
+import { ieee754ToBase10 } from '../encoding';
 
 export default class VehicleLocationResponse {
   static identifier = [0x00, 0x30];

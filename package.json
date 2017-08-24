@@ -22,10 +22,6 @@
       "jsx",
       "node"
     ],
-    "moduleDirectories": [
-      ".",
-      "node_modules"
-    ],
     "setupFiles": [
       "<rootDir>/test/testutils/setupTests.js"
     ],

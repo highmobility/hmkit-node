@@ -1,6 +1,6 @@
-import DiagnosticsResponse from 'src/Responses/DiagnosticsResponse';
-import EngineResponse from 'src/Responses/EngineResponse';
-import VehicleLocationResponse from 'src/Responses/VehicleLocationResponse';
+import DiagnosticsResponse from './DiagnosticsResponse';
+import EngineResponse from './EngineResponse';
+import VehicleLocationResponse from './VehicleLocationResponse';
 
 export default class Response {
   constructor(data: string) {

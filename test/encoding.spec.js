@@ -1,4 +1,4 @@
-import { hexArrayToHex } from 'src/encoding';
+import { hexArrayToHex } from '../src/encoding';
 
 describe(`encoding`, () => {
   it(`should convert hex array to hex string`, () => {

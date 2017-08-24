@@ -1,4 +1,4 @@
-import getSdkNodeBindings from 'src/SdkNodeBindings';
+import getSdkNodeBindings from './SdkNodeBindings';
 const SdkNodeBindings = getSdkNodeBindings();
 import {
   base64ToUint8,
@@ -6,8 +6,8 @@ import {
   hexToInt,
   hexToUint8Array,
 } from './encoding';
-import Commands from 'src/Commands';
-import Telematics from 'src/Telematics';
+import Commands from './Commands';
+import Telematics from './Telematics';
 
 export default class HMKit {
   constructor(deviceCertificate, devicePrivateKey, issuerPublicKey) {

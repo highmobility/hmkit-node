@@ -1,13 +1,12 @@
-import getHmkit from 'test/testutils/getHmkit';
+import getHmkit from './testutils/getHmkit';
 const hmkit = getHmkit();
-import { uint8ArrayToHex, hexToUint8Array, base64ToUint8 } from 'src/encoding';
-import CapabilitiesCommand from 'src/Commands/CapabilitiesCommand';
-import VehicleStatusCommand from 'src/Commands/VehicleStatusCommand';
+import { uint8ArrayToHex, hexToUint8Array } from '../src/encoding';
 
 describe(`sdk`, () => {
   it(`should do nothing`, () => {
     expect(1).toBe(1);
   });
+
   it(`should convert uint to hex and back to uint`, () => {
     const data = new Uint8Array([
       11,
@@ -118,22 +117,4 @@ describe(`sdk`, () => {
       'ACE96962652AB0558ECA3AEE525D2058D4F53CA2985124A9BB5FEAF6EAAB2909AC2FD52E3765BA051A8C82C48A51530B22D33B15DC36AC931D39512211E745F9'
     );
   });
-
-  // it(`should send telematics command: get capabilities`, async () => {
-  //   const result = await hmkit.sendTelematicsCommand(
-  //     '356675D0CC76A8FFF5',
-  //     CapabilitiesCommand.get()
-  //   );
-  //   console.log('result', uint8ArrayToHex(result.data));
-  // });
-
-  it(`should send telematics command: get vehicle status`, async () => {
-    // console.log('get vehicle status');
-    // const result = await hmkit.sendTelematicsCommand('356675D0CC76A8FFF5', VehicleStatusCommand.get());
-    // console.log('result', result);
-  });
-
-  // it.only(`asd`, () => {
-  //   console.log('aa', uint8ArrayToHex(base64ToUint8('ABABGAAjAQEAJAIBAQAzAQEAIAEBAEEBAQA1AQEAQAEBACkBAQAmAwEBAQA2AwEBAQA0AQEANwIBAQAxAQEAOAIBAQAnAQEAJQIBAQBEAQEAIQIBAQAoAQEAMAEBAEMBAQAiAQEARQEBAEICAQE')).split('').reduce((memo, value, index) => (memo + value + (index % 2 === 1 ? ' ' : '')), '').toUpperCase());
-  // })
 });

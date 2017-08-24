@@ -1,4 +1,4 @@
-import getHmkit from 'test/testutils/getHmkit';
+import getHmkit from '../testutils/getHmkit';
 const hmkit = getHmkit();
 
 describe(`DiagnosticsCommand`, () => {

@@ -1,4 +1,4 @@
-import { pad } from 'src/encoding';
+import { pad } from './encoding';
 
 export function bytesSum(bytes) {
   const hex = bytes

@@ -1,5 +1,5 @@
-import Response from 'src/Responses/Response';
-import EngineResponse from 'src/Responses/EngineResponse';
+import Response from '../../src/Responses/Response';
+import EngineResponse from '../../src/Responses/EngineResponse';
 
 describe(`Response`, () => {
   it(`should throw response length invalid exception`, () => {

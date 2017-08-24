@@ -1,8 +1,8 @@
-import CapabilitiesCommand from 'src/Commands/CapabilitiesCommand';
-import DiagnosticsCommand from 'src/Commands/DiagnosticsCommand';
-import EngineCommand from 'src/Commands/EngineCommand';
-import VehicleLocationCommand from 'src/Commands/VehicleLocationCommand';
-import VehicleStatusCommand from 'src/Commands/VehicleStatusCommand';
+import CapabilitiesCommand from './Commands/CapabilitiesCommand';
+import DiagnosticsCommand from './Commands/DiagnosticsCommand';
+import EngineCommand from './Commands/EngineCommand';
+import VehicleLocationCommand from './Commands/VehicleLocationCommand';
+import VehicleStatusCommand from './Commands/VehicleStatusCommand';
 
 export default class Commands {
   constructor() {

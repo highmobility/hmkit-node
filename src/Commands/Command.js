@@ -1,4 +1,4 @@
-import { hexArrayToHex } from 'src/encoding';
+import { hexArrayToHex } from '../encoding';
 
 export default class Command {
   constructor(command) {

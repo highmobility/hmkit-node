@@ -1,5 +1,5 @@
-import getHmkit from 'test/testutils/getHmkit';
-import HMKit from 'src/HMKit';
+import getHmkit from './testutils/getHmkit';
+import HMKit from '../src/HMKit';
 
 describe(`SDK initialization`, () => {
   it(`should initialize`, () => {

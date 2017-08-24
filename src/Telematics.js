@@ -1,5 +1,5 @@
-import ApiClient from 'src/ApiClient';
-import Response from 'src/Responses/Response';
+import ApiClient from './ApiClient';
+import Response from './Responses/Response';
 const client = new ApiClient();
 import {
   base64ToUint8,

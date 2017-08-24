@@ -1,6 +1,5 @@
-import getHmkit from 'test/testutils/getHmkit';
+import getHmkit from '../testutils/getHmkit';
 const hmkit = getHmkit();
-import { uint8ArrayToHex } from 'src/encoding';
 
 describe(`EngineCommand`, () => {
   it(`should get ignition state`, async () => {

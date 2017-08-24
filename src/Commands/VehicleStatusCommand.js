@@ -1,4 +1,4 @@
-import Command from 'src/Commands/Command';
+import Command from './Command';
 
 export default class VehicleStatusCommand {
   static get() {

@@ -1,5 +1,5 @@
-import { bytesSum } from 'src/helpers';
-import { ieee754ToBase10 } from 'src/encoding';
+import { bytesSum } from '../helpers';
+import { ieee754ToBase10 } from '../encoding';
 
 export default class DiagnosticsResponse {
   static identifier = [0x00, 0x33];
