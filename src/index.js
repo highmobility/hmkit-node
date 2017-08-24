@@ -1,4 +1,4 @@
 import 'babel-polyfill';
 import HMKit from './HMKit';
 
-export default HMKit;
+module.exports = HMKit;
