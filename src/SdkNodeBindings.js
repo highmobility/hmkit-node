@@ -1,11 +1,11 @@
 import fs from 'fs';
+import path from 'path';
 
 export default function getSdkNodeBindings() {
-  if (fs.existsSync('../sdk-node-bindings/lib/binding.js')) {
+  if (fs.existsSync(path.resolve(__dirname, 'sdk-node-bindings', 'lib', 'binding.js'))) {
     return require('../sdk-node-bindings/lib/binding.js');
-  }
 
-  if (process.platform === 'darwin') {
+  } else if (process.platform === 'darwin') {
     return require('bindings/macos');
   }
 

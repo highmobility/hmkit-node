@@ -2,15 +2,16 @@
   "name": "hmkit",
   "version": "0.1.0",
   "description": "High Mobility SDK for Node.js",
-  "main": "build/bundle.js",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "node --napi-modules ./build/bundle.js",
-    "dev": "NODE_ENV=development NODE_PATH=. webpack --hide-modules --config ./webpack/webpack.config.js",
-    "build": "NODE_ENV=production NODE_PATH=. node webpack/build.js",
-    "build:debug": "NODE_ENV=production APP_DEBUG=true NODE_PATH=. node webpack/build.js",
-    "test": "node --napi-modules node_modules/.bin/jest --runInBand",
-    "test:watch": "node --napi-modules node_modules/.bin/jest --runInBand --watch",
-    "test:coverage": "node --napi-modules node_modules/.bin/jest --runInBand --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
+    "clean": "rimraf lib dist es coverage",
+    "lint": "eslint src test",
+    "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/.bin/jest --runInBand",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build": "npm run build:commonjs",
+    "prepare": "npm run clean && npm test && npm run build",
     "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" "
   },
   "entry": "./build/bundle.js",
@@ -30,15 +31,20 @@
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+    },
+    "testRegex": "(/test/.*\\.spec.js)$"
   },
   "dependencies": {
     "atob": "^2.0.3",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^20.0.3",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
     "btoa": "^1.1.2",
-    "eslint-plugin-react": "^7.2.1",
+    "cross-env": "^5.0.5",
     "ieee754": "^1.1.8",
-    "node-fetch": "^1.7.2"
+    "node-fetch": "^1.7.2",
+    "rimraf": "^2.6.1"
   },
   "devDependencies": {
     "@optimistdigital/eslint-config-rules": "^1.7.1",
@@ -50,7 +56,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
     "dotenv": "^4.0.0",
     "eslint": "^4.4.1",
@@ -61,8 +66,6 @@
     "jest": "^20.0.4",
     "json-loader": "^0.5.7",
     "node-loader": "^0.6.0",
-    "prettier": "^1.5.3",
-    "webpack": "^3.5.4",
-    "webpack-node-externals": "^1.6.0"
+    "prettier": "^1.5.3"
   }
 }
