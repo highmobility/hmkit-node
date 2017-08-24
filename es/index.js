@@ -88,4 +88,4 @@ import 'regenerator-runtime/runtime';
 
 import HMKit from './HMKit';
 
-export default HMKit;
+module.exports = HMKit;
