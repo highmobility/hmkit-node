@@ -9,12 +9,11 @@ import Commands from './Commands';
 import Telematics from './Telematics';
 
 var HMKit = function () {
-  function HMKit(deviceCertificate, devicePrivateKey, issuerPublicKey) {
+  function HMKit(deviceCertificate, devicePrivateKey) {
     _classCallCheck(this, HMKit);
 
     this.deviceCertificate = deviceCertificate;
     this.devicePrivateKey = devicePrivateKey;
-    this.issuerPublicKey = issuerPublicKey;
     this.issuer = 'tmcs';
     this.apiUrl = 'https://developers.h-m.space/hm_cloud/api/v1/';
 
@@ -52,12 +51,9 @@ var HMKit = function () {
       SdkNodeBindings.onGetLocalPrivateKey(function () {
         return base64ToUint8(_this.devicePrivateKey).buffer;
       });
+
       SdkNodeBindings.onGetDeviceCertificate(function () {
         return base64ToUint8(_this.deviceCertificate).buffer;
-      });
-
-      SdkNodeBindings.onGetCAPublicKey(function () {
-        return base64ToUint8(_this.issuerPublicKey).buffer;
       });
 
       SdkNodeBindings.onGetAccessCertificate(function (serial) {

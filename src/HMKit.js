@@ -10,10 +10,9 @@ import Commands from './Commands';
 import Telematics from './Telematics';
 
 export default class HMKit {
-  constructor(deviceCertificate, devicePrivateKey, issuerPublicKey) {
+  constructor(deviceCertificate, devicePrivateKey) {
     this.deviceCertificate = deviceCertificate;
     this.devicePrivateKey = devicePrivateKey;
-    this.issuerPublicKey = issuerPublicKey;
     this.issuer = 'tmcs';
     this.apiUrl = 'https://developers.h-m.space/hm_cloud/api/v1/';
 
@@ -45,12 +44,9 @@ export default class HMKit {
     SdkNodeBindings.onGetLocalPrivateKey(() => {
       return base64ToUint8(this.devicePrivateKey).buffer;
     });
+
     SdkNodeBindings.onGetDeviceCertificate(() => {
       return base64ToUint8(this.deviceCertificate).buffer;
-    });
-
-    SdkNodeBindings.onGetCAPublicKey(() => {
-      return base64ToUint8(this.issuerPublicKey).buffer;
     });
 
     SdkNodeBindings.onGetAccessCertificate(serial => {
