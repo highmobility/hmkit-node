@@ -1,6 +1,5 @@
 .DS_Store
 /node_modules
 /coverage
-/es
 /dist
 npm-debug.log
