@@ -26,7 +26,7 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
               _context.next = 4;
               return client.post(_this.hmkit.apiUrl + 'access_certificates', {
                 body: JSON.stringify({
-                  serial_number: _this.hmkit.getDeviceSerial(),
+                  serial_number: _this.hmkit.deviceCertificate.getSerial(),
                   access_token: accessToken,
                   signature: signature
                 })
@@ -64,7 +64,7 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
             _context2.next = 2;
             return client.post(_this.hmkit.apiUrl + 'nonces', {
               body: JSON.stringify({
-                serial_number: _this.hmkit.getDeviceSerial()
+                serial_number: _this.hmkit.deviceCertificate.getSerial()
               })
             });
 

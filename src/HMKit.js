@@ -9,10 +9,11 @@ import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
 import AccessCertificate from './AccessCertificate';
+import DeviceCertificate from './DeviceCertificate';
 
 export default class HMKit {
   constructor(deviceCertificate, devicePrivateKey) {
-    this.deviceCertificate = deviceCertificate;
+    this.deviceCertificate = new DeviceCertificate(base64ToUint8(deviceCertificate));
     this.devicePrivateKey = devicePrivateKey;
     this.issuer = 'tmcs';
     this.apiUrl = 'https://developers.high-mobility.com/hm_cloud/api/v1/';
@@ -36,11 +37,11 @@ export default class HMKit {
 
   setupSdkNodeBindings() {
     SdkNodeBindings.onGetSerialNumber(() => {
-      return hexToUint8Array(this.getDeviceSerial()).buffer;
+      return hexToUint8Array(this.deviceCertificate.getSerial()).buffer;
     });
 
     SdkNodeBindings.onGetLocalPublicKey(() => {
-      return hexToUint8Array(this.parseDeviceCertificate().publicKey).buffer;
+      return hexToUint8Array(this.deviceCertificate.get().publicKey).buffer;
     });
 
     SdkNodeBindings.onGetLocalPrivateKey(() => {
@@ -74,35 +75,11 @@ export default class HMKit {
     );
   }
 
-  getAccessCertificate(serial) {
+  getAccessCertificate(serial: string) {
     const base64AccessCertificate = this.storage.get('access_certificates', serial);
 
     if (! base64AccessCertificate) return null;
 
     return new AccessCertificate(base64ToUint8(base64AccessCertificate));
-  }
-
-  getDeviceSerial() {
-    return this.parseDeviceCertificate(this.deviceCertificate).deviceSerial;
-  }
-
-  parseDeviceCertificate(certificate) {
-    return {
-      issuer: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(0, 4)
-      ).toUpperCase(),
-      appIdentifier: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(4, 16)
-      ).toUpperCase(),
-      deviceSerial: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(16, 25)
-      ).toUpperCase(),
-      publicKey: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(25, 89)
-      ).toUpperCase(),
-      signature: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(89, 153)
-      ).toUpperCase(),
-    };
   }
 }

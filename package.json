@@ -40,6 +40,7 @@
     "babel-preset-flow": "^6.23.0",
     "btoa": "^1.1.2",
     "cross-env": "^5.0.5",
+    "eslint-plugin-react": "^7.3.0",
     "ieee754": "^1.1.8",
     "node-fetch": "^1.7.2",
     "rimraf": "^2.6.1"

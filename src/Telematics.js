@@ -25,7 +25,7 @@ export default class Telematics {
       body: { device_access_certificate: rawAccessCertificate },
     } = await client.post(`${this.hmkit.apiUrl}access_certificates`, {
       body: JSON.stringify({
-        serial_number: this.hmkit.getDeviceSerial(),
+        serial_number: this.hmkit.deviceCertificate.getSerial(),
         access_token: accessToken,
         signature,
       }),
@@ -45,7 +45,7 @@ export default class Telematics {
   getNonce = async () => {
     const result = await client.post(`${this.hmkit.apiUrl}nonces`, {
       body: JSON.stringify({
-        serial_number: this.hmkit.getDeviceSerial(),
+        serial_number: this.hmkit.deviceCertificate.getSerial(),
       }),
     });
 

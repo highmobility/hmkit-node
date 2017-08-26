@@ -1,7 +1,81 @@
-import { hexArrayToHex } from '../src/encoding';
+import {
+  hexArrayToHex,
+  hexToUint8Array,
+  uint8ArrayToHex,
+} from '../src/encoding';
 
 describe(`encoding`, () => {
   it(`should convert hex array to hex string`, () => {
     expect(hexArrayToHex([0x00, 0x10, 0x00])).toBe('001000');
+  });
+
+  it(`should convert uint to hex and back to uint`, () => {
+    const data = new Uint8Array([
+      11,
+      42,
+      43,
+      215,
+      135,
+      71,
+      99,
+      97,
+      41,
+      140,
+      162,
+      233,
+      45,
+      64,
+      4,
+      38,
+      56,
+      6,
+      193,
+      7,
+      128,
+      211,
+      44,
+      183,
+      254,
+      219,
+      18,
+      188,
+      162,
+      197,
+      41,
+      39,
+      235,
+      43,
+      254,
+      88,
+      156,
+      75,
+      235,
+      135,
+      24,
+      253,
+      128,
+      32,
+      219,
+      174,
+      135,
+      65,
+      115,
+      2,
+      40,
+      39,
+      21,
+      72,
+      115,
+      169,
+      239,
+      255,
+      158,
+      245,
+      20,
+      53,
+      163,
+      1,
+    ]);
+    expect(hexToUint8Array(uint8ArrayToHex(data))).toEqual(data);
   });
 });

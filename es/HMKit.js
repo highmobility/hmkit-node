@@ -9,12 +9,13 @@ import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
 import AccessCertificate from './AccessCertificate';
+import DeviceCertificate from './DeviceCertificate';
 
 var HMKit = function () {
   function HMKit(deviceCertificate, devicePrivateKey) {
     _classCallCheck(this, HMKit);
 
-    this.deviceCertificate = deviceCertificate;
+    this.deviceCertificate = new DeviceCertificate(base64ToUint8(deviceCertificate));
     this.devicePrivateKey = devicePrivateKey;
     this.issuer = 'tmcs';
     this.apiUrl = 'https://developers.high-mobility.com/hm_cloud/api/v1/';
@@ -44,11 +45,11 @@ var HMKit = function () {
       var _this = this;
 
       SdkNodeBindings.onGetSerialNumber(function () {
-        return hexToUint8Array(_this.getDeviceSerial()).buffer;
+        return hexToUint8Array(_this.deviceCertificate.getSerial()).buffer;
       });
 
       SdkNodeBindings.onGetLocalPublicKey(function () {
-        return hexToUint8Array(_this.parseDeviceCertificate().publicKey).buffer;
+        return hexToUint8Array(_this.deviceCertificate.get().publicKey).buffer;
       });
 
       SdkNodeBindings.onGetLocalPrivateKey(function () {
@@ -84,22 +85,6 @@ var HMKit = function () {
       if (!base64AccessCertificate) return null;
 
       return new AccessCertificate(base64ToUint8(base64AccessCertificate));
-    }
-  }, {
-    key: 'getDeviceSerial',
-    value: function getDeviceSerial() {
-      return this.parseDeviceCertificate(this.deviceCertificate).deviceSerial;
-    }
-  }, {
-    key: 'parseDeviceCertificate',
-    value: function parseDeviceCertificate(certificate) {
-      return {
-        issuer: uint8ArrayToHex(base64ToUint8(certificate).slice(0, 4)).toUpperCase(),
-        appIdentifier: uint8ArrayToHex(base64ToUint8(certificate).slice(4, 16)).toUpperCase(),
-        deviceSerial: uint8ArrayToHex(base64ToUint8(certificate).slice(16, 25)).toUpperCase(),
-        publicKey: uint8ArrayToHex(base64ToUint8(certificate).slice(25, 89)).toUpperCase(),
-        signature: uint8ArrayToHex(base64ToUint8(certificate).slice(89, 153)).toUpperCase()
-      };
     }
   }]);
 
