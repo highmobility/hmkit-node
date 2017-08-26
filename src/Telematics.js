@@ -22,7 +22,7 @@ export default class Telematics {
 
     const {
       body: { device_access_certificate: rawAccessCertificate },
-    } = await client.post(`${this.hmkit.apiUrl}access_certificates`, {
+    } = await client.post(`${this.hmkit.api.getUrl()}access_certificates`, {
       body: JSON.stringify({
         serial_number: this.hmkit.deviceCertificate.getSerial(),
         access_token: accessToken,
@@ -44,7 +44,7 @@ export default class Telematics {
   };
 
   getNonce = async () => {
-    const result = await client.post(`${this.hmkit.apiUrl}nonces`, {
+    const result = await client.post(`${this.hmkit.api.getUrl()}nonces`, {
       body: JSON.stringify({
         serial_number: this.hmkit.deviceCertificate.getSerial(),
       }),
@@ -60,9 +60,12 @@ export default class Telematics {
       data: byteArrayToBase64(data),
     };
 
-    this.promise = client.post(`${this.hmkit.apiUrl}telematics_commands`, {
-      body: JSON.stringify(payload),
-    });
+    this.promise = client.post(
+      `${this.hmkit.api.getUrl()}telematics_commands`,
+      {
+        body: JSON.stringify(payload),
+      }
+    );
   };
 
   onTelematicsCommandIncoming = async (serial, id, data) => {
@@ -84,12 +87,7 @@ export default class Telematics {
       hexToUint8Array(data.toString()).buffer
     );
 
-    let result;
-    try {
-      result = await this.promise;
-    } catch (e) {
-      console.log('caught exception', e);
-    }
+    const result = await this.promise;
 
     this.hmkit.crypto.telematicsDataReceived(
       base64ToUint8(result.body.response_data).buffer

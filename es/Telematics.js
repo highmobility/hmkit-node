@@ -24,7 +24,7 @@ var Telematics = function Telematics(hmkit) {
               byteSignature = _this.hmkit.crypto.generateSignature(new Uint8Array(Buffer.from(accessToken)).buffer);
               signature = byteArrayToBase64(byteSignature);
               _context.next = 4;
-              return client.post(_this.hmkit.apiUrl + 'access_certificates', {
+              return client.post(_this.hmkit.api.getUrl() + 'access_certificates', {
                 body: JSON.stringify({
                   serial_number: _this.hmkit.deviceCertificate.getSerial(),
                   access_token: accessToken,
@@ -62,7 +62,7 @@ var Telematics = function Telematics(hmkit) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return client.post(_this.hmkit.apiUrl + 'nonces', {
+            return client.post(_this.hmkit.api.getUrl() + 'nonces', {
               body: JSON.stringify({
                 serial_number: _this.hmkit.deviceCertificate.getSerial()
               })
@@ -94,7 +94,7 @@ var Telematics = function Telematics(hmkit) {
               };
 
 
-              _this.promise = client.post(_this.hmkit.apiUrl + 'telematics_commands', {
+              _this.promise = client.post(_this.hmkit.api.getUrl() + 'telematics_commands', {
                 body: JSON.stringify(payload)
               });
 
@@ -152,34 +152,23 @@ var Telematics = function Telematics(hmkit) {
 
               _this.hmkit.crypto.sendTelematicsCommand(hexToUint8Array(serial).buffer, base64ToUint8(nonce).buffer, hexToUint8Array(data.toString()).buffer);
 
-              result = void 0;
-              _context5.prev = 5;
-              _context5.next = 8;
+              _context5.next = 6;
               return _this.promise;
 
-            case 8:
+            case 6:
               result = _context5.sent;
-              _context5.next = 14;
-              break;
 
-            case 11:
-              _context5.prev = 11;
-              _context5.t0 = _context5['catch'](5);
-
-              console.log('caught exception', _context5.t0);
-
-            case 14:
 
               _this.hmkit.crypto.telematicsDataReceived(base64ToUint8(result.body.response_data).buffer);
 
               return _context5.abrupt('return', new Response(_this.response.incomingCommandData));
 
-            case 16:
+            case 9:
             case 'end':
               return _context5.stop();
           }
         }
-      }, _callee5, _this, [[5, 11]]);
+      }, _callee5, _this);
     }));
 
     return function (_x8, _x9) {

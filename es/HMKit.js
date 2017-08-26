@@ -9,6 +9,7 @@ import Telematics from './Telematics';
 import Storage from './Storage';
 import AccessCertificate from './AccessCertificate';
 import DeviceCertificate from './DeviceCertificate';
+import Api from './Api';
 
 var HMKit = function () {
   function HMKit(deviceCertificate, devicePrivateKey) {
@@ -17,8 +18,8 @@ var HMKit = function () {
     this.deviceCertificate = new DeviceCertificate(base64ToUint8(deviceCertificate));
     this.devicePrivateKey = devicePrivateKey;
     this.issuer = 'tmcs';
-    this.apiUrl = 'https://developers.high-mobility.com/hm_cloud/api/v1/';
 
+    this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
     this.storage = new Storage(this);
@@ -28,13 +29,7 @@ var HMKit = function () {
   _createClass(HMKit, [{
     key: 'staging',
     value: function staging() {
-      return this.api('https://developers.h-m.space/hm_cloud/api/v1/');
-    }
-  }, {
-    key: 'api',
-    value: function api(url) {
-      this.apiUrl = url;
-
+      this.api = new Api('https://developers.h-m.space/hm_cloud/api/v1/');
       return this;
     }
   }, {
