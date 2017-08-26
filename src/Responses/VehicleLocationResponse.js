@@ -16,7 +16,7 @@ export default class VehicleLocationResponse {
     this.longitude = this.getLongitude(bytes);
   }
 
-  vehicleState(bytes) {
+  vehicleState() {
     throw new Error('Get vehicle state not handled');
   }
 

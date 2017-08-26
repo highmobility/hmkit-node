@@ -28,13 +28,13 @@ export default class Response {
 
   parse() {
     const bytes = this.bytes();
-    const parser = this.findParser(bytes);
+    const Parser = this.findParser(bytes);
 
-    if (!parser) {
+    if (!Parser) {
       return bytes;
     }
 
-    return new parser(bytes);
+    return new Parser(bytes);
   }
 
   findParser(bytes) {

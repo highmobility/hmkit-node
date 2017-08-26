@@ -32,13 +32,13 @@ var Response = function () {
     key: 'parse',
     value: function parse() {
       var bytes = this.bytes();
-      var parser = this.findParser(bytes);
+      var Parser = this.findParser(bytes);
 
-      if (!parser) {
+      if (!Parser) {
         return bytes;
       }
 
-      return new parser(bytes);
+      return new Parser(bytes);
     }
   }, {
     key: 'findParser',

@@ -47,15 +47,12 @@ var HMKit = function () {
       SdkNodeBindings.onGetSerialNumber(function () {
         return hexToUint8Array(_this.deviceCertificate.getSerial()).buffer;
       });
-
       SdkNodeBindings.onGetLocalPublicKey(function () {
         return hexToUint8Array(_this.deviceCertificate.get().publicKey).buffer;
       });
-
       SdkNodeBindings.onGetLocalPrivateKey(function () {
         return base64ToUint8(_this.devicePrivateKey).buffer;
       });
-
       SdkNodeBindings.onGetDeviceCertificate(function () {
         return base64ToUint8(_this.deviceCertificate).buffer;
       });

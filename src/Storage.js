@@ -25,7 +25,7 @@ export default class Storage {
   }
 
   getStoreFilePath(storeName) {
-    return path.resolve(this.storageDirPath, storeName) + '.json';
+    return `${path.resolve(this.storageDirPath, storeName)}.json`;
   }
 
   getStore(storeName) {

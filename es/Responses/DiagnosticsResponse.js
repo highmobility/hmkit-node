@@ -29,7 +29,7 @@ var DiagnosticsResponse = function () {
     }
   }, {
     key: 'vehicleState',
-    value: function vehicleState(bytes) {
+    value: function vehicleState() {
       throw new Error('Get vehicle state not handled');
     }
   }, {

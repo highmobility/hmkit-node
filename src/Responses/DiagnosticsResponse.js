@@ -22,7 +22,7 @@ export default class DiagnosticsResponse {
     this.tires = this.getTires(bytes);
   }
 
-  vehicleState(bytes) {
+  vehicleState() {
     throw new Error('Get vehicle state not handled');
   }
 

@@ -31,7 +31,9 @@ export default class Telematics {
       }),
     });
 
-    const accessCertificate = new AccessCertificate(base64ToUint8(rawAccessCertificate));
+    const accessCertificate = new AccessCertificate(
+      base64ToUint8(rawAccessCertificate)
+    );
 
     this.hmkit.storage.add(
       'access_certificates',

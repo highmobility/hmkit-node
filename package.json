@@ -13,7 +13,7 @@
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
-    "prepare-beta": "npm run clean && npm test && npm run build",
+    "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
     "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" "
   },
   "entry": "./build/bundle.js",

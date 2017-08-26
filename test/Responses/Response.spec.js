@@ -2,13 +2,13 @@ import Response from '../../src/Responses/Response';
 import EngineResponse from '../../src/Responses/EngineResponse';
 
 describe(`Response`, () => {
-  it(`should throw response length invalid exception`, () => {
+  it(`should throw response length invalid exception`, async () => {
     expect(() => {
-      new Response([0]);
+      new Response([0]); // eslint-disable-line no-new
     }).toThrow();
 
     expect(() => {
-      new Response([0, 0]);
+      new Response([0, 0]); // eslint-disable-line no-new
     }).not.toThrow();
   });
 

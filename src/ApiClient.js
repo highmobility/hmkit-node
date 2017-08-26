@@ -34,13 +34,12 @@ export default class ApiClient {
           if (!res.ok) return Promise.reject(res);
 
           const contentType = res.headers.get('content-type');
-          if (
-            true ||
-            (contentType && contentType.indexOf('application/json') !== -1)
-          ) {
+          if (contentType && contentType.indexOf('application/json') !== -1) {
             return res.json().then(json => ({ response: res, body: json }));
           }
-          return res.text().then(text => ({ response: res, body: text }));
+          // TODO: When application/json fixed in API response, change back
+          return res.json().then(json => ({ response: res, body: json }));
+          // return res.text().then(text => ({ response: res, body: text }));
         })
         .then(resolve)
         .catch(async err => {
