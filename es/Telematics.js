@@ -8,7 +8,7 @@ var client = new ApiClient();
 import { base64ToUint8, byteArrayToBase64, uint8ArrayToHex, hexToUint8Array } from './encoding';
 import AccessCertificate from './AccessCertificate';
 
-var Telematics = function Telematics(hmkit, SdkNodeBindings) {
+var Telematics = function Telematics(hmkit) {
   var _this = this;
 
   _classCallCheck(this, Telematics);
@@ -21,7 +21,7 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              byteSignature = _this.SdkNodeBindings.generateSignature(new Uint8Array(Buffer.from(accessToken)).buffer);
+              byteSignature = _this.hmkit.crypto.generateSignature(new Uint8Array(Buffer.from(accessToken)).buffer);
               signature = byteArrayToBase64(byteSignature);
               _context.next = 4;
               return client.post(_this.hmkit.apiUrl + 'access_certificates', {
@@ -150,7 +150,7 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
               nonce = _context5.sent;
 
 
-              _this.SdkNodeBindings.sendTelematicsCommand(hexToUint8Array(serial).buffer, base64ToUint8(nonce).buffer, hexToUint8Array(data.toString()).buffer);
+              _this.hmkit.crypto.sendTelematicsCommand(hexToUint8Array(serial).buffer, base64ToUint8(nonce).buffer, hexToUint8Array(data.toString()).buffer);
 
               result = void 0;
               _context5.prev = 5;
@@ -170,7 +170,7 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
 
             case 14:
 
-              _this.SdkNodeBindings.telematicsDataReceived(base64ToUint8(result.body.response_data).buffer);
+              _this.hmkit.crypto.telematicsDataReceived(base64ToUint8(result.body.response_data).buffer);
 
               return _context5.abrupt('return', new Response(_this.response.incomingCommandData));
 
@@ -188,7 +188,6 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
   }();
 
   this.hmkit = hmkit;
-  this.SdkNodeBindings = SdkNodeBindings;
 };
 
 export default Telematics;

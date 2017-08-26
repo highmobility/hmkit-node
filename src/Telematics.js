@@ -10,13 +10,12 @@ import {
 import AccessCertificate from './AccessCertificate';
 
 export default class Telematics {
-  constructor(hmkit, SdkNodeBindings) {
+  constructor(hmkit) {
     this.hmkit = hmkit;
-    this.SdkNodeBindings = SdkNodeBindings;
   }
 
   downloadAccessCertificate = async accessToken => {
-    const byteSignature = this.SdkNodeBindings.generateSignature(
+    const byteSignature = this.hmkit.crypto.generateSignature(
       new Uint8Array(Buffer.from(accessToken)).buffer
     );
     const signature = byteArrayToBase64(byteSignature);
@@ -79,7 +78,7 @@ export default class Telematics {
   sendCommand = async (serial, data) => {
     const nonce = await this.getNonce(serial);
 
-    this.SdkNodeBindings.sendTelematicsCommand(
+    this.hmkit.crypto.sendTelematicsCommand(
       hexToUint8Array(serial).buffer,
       base64ToUint8(nonce).buffer,
       hexToUint8Array(data.toString()).buffer
@@ -92,7 +91,7 @@ export default class Telematics {
       console.log('caught exception', e);
     }
 
-    this.SdkNodeBindings.telematicsDataReceived(
+    this.hmkit.crypto.telematicsDataReceived(
       base64ToUint8(result.body.response_data).buffer
     );
 

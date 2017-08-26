@@ -2,9 +2,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-import getSdkNodeBindings from './SdkNodeBindings';
-var SdkNodeBindings = getSdkNodeBindings();
-import { base64ToUint8, uint8ArrayToHex, hexToUint8Array } from './encoding';
+import SdkNodeBindings from './SdkNodeBindings';
+import { base64ToUint8 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
@@ -20,11 +19,10 @@ var HMKit = function () {
     this.issuer = 'tmcs';
     this.apiUrl = 'https://developers.high-mobility.com/hm_cloud/api/v1/';
 
-    this.telematics = new Telematics(this, SdkNodeBindings);
+    this.telematics = new Telematics(this);
     this.commands = new Commands(this);
     this.storage = new Storage(this);
-
-    this.setupSdkNodeBindings();
+    this.crypto = new SdkNodeBindings(this);
   }
 
   _createClass(HMKit, [{
@@ -38,41 +36,6 @@ var HMKit = function () {
       this.apiUrl = url;
 
       return this;
-    }
-  }, {
-    key: 'setupSdkNodeBindings',
-    value: function setupSdkNodeBindings() {
-      var _this = this;
-
-      SdkNodeBindings.onGetSerialNumber(function () {
-        return hexToUint8Array(_this.deviceCertificate.getSerial()).buffer;
-      });
-      SdkNodeBindings.onGetLocalPublicKey(function () {
-        return hexToUint8Array(_this.deviceCertificate.get().publicKey).buffer;
-      });
-      SdkNodeBindings.onGetLocalPrivateKey(function () {
-        return base64ToUint8(_this.devicePrivateKey).buffer;
-      });
-      SdkNodeBindings.onGetDeviceCertificate(function () {
-        return base64ToUint8(_this.deviceCertificate).buffer;
-      });
-
-      SdkNodeBindings.onGetAccessCertificate(function (serial) {
-        var accesCertificate = _this.getAccessCertificate(uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
-        if (!accesCertificate) {
-          return null;
-        }
-
-        return {
-          public_key: hexToUint8Array(accesCertificate.rawAccessCertificate.accessGainingPublicKey).buffer,
-          start_date: hexToUint8Array(accesCertificate.rawAccessCertificate.validityStartDate).buffer,
-          end_date: hexToUint8Array(accesCertificate.rawAccessCertificate.validityEndDate).buffer,
-          permissions: hexToUint8Array(accesCertificate.rawAccessCertificate.permissions).buffer
-        };
-      });
-
-      SdkNodeBindings.onTelematicsSendData(this.telematics.onTelematicsSendData);
-      SdkNodeBindings.onTelematicsCommandIncoming(this.telematics.onTelematicsCommandIncoming);
     }
   }, {
     key: 'getAccessCertificate',
