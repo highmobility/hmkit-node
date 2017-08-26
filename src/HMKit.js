@@ -3,19 +3,19 @@ const SdkNodeBindings = getSdkNodeBindings();
 import {
   base64ToUint8,
   uint8ArrayToHex,
-  hexToInt,
   hexToUint8Array,
 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
+import AccessCertificate from './AccessCertificate';
 
 export default class HMKit {
   constructor(deviceCertificate, devicePrivateKey) {
     this.deviceCertificate = deviceCertificate;
     this.devicePrivateKey = devicePrivateKey;
     this.issuer = 'tmcs';
-    this.apiUrl = 'https://developers.h-m.space/hm_cloud/api/v1/';
+    this.apiUrl = 'https://developers.high-mobility.com/hm_cloud/api/v1/';
 
     this.telematics = new Telematics(this, SdkNodeBindings);
     this.commands = new Commands(this);
@@ -52,23 +52,19 @@ export default class HMKit {
     });
 
     SdkNodeBindings.onGetAccessCertificate(serial => {
-      const base64AccessCertificate = this.getAccessCertificate(
+      const accesCertificate = this.getAccessCertificate(
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
       );
-      if (!base64AccessCertificate) {
+      if (! accesCertificate) {
         return null;
       }
 
-      const accessCertificate = this.parseAccessCertificate(
-        base64AccessCertificate
-      );
-
       return {
-        public_key: hexToUint8Array(accessCertificate.accessGainingPublicKey)
+        public_key: hexToUint8Array(accesCertificate.rawAccessCertificate.accessGainingPublicKey)
           .buffer,
-        start_date: hexToUint8Array(accessCertificate.validityStartDate).buffer,
-        end_date: hexToUint8Array(accessCertificate.validityEndDate).buffer,
-        permissions: hexToUint8Array(accessCertificate.permissions).buffer,
+        start_date: hexToUint8Array(accesCertificate.rawAccessCertificate.validityStartDate).buffer,
+        end_date: hexToUint8Array(accesCertificate.rawAccessCertificate.validityEndDate).buffer,
+        permissions: hexToUint8Array(accesCertificate.rawAccessCertificate.permissions).buffer,
       };
     });
 
@@ -79,44 +75,15 @@ export default class HMKit {
   }
 
   getAccessCertificate(serial) {
-    return this.storage.get('access_certificates', serial);
+    const base64AccessCertificate = this.storage.get('access_certificates', serial);
+
+    if (! base64AccessCertificate) return null;
+
+    return new AccessCertificate(base64ToUint8(base64AccessCertificate));
   }
 
   getDeviceSerial() {
     return this.parseDeviceCertificate(this.deviceCertificate).deviceSerial;
-  }
-
-  parseAccessCertificate(certificate) {
-    const permissionsSize = uint8ArrayToHex(
-      base64ToUint8(certificate).slice(92, 93)
-    ).toUpperCase();
-    return {
-      accessGainingSerialNumber: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(0, 9)
-      ).toUpperCase(),
-      accessGainingPublicKey: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(9, 73)
-      ).toUpperCase(),
-      accessProvidingSerialNumber: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(73, 82)
-      ).toUpperCase(),
-      validityStartDate: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(82, 87)
-      ).toUpperCase(),
-      validityEndDate: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(87, 92)
-      ).toUpperCase(),
-      permissionsSize,
-      permissions: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(93, 93 + hexToInt(permissionsSize))
-      ).toUpperCase(),
-      signature: uint8ArrayToHex(
-        base64ToUint8(certificate).slice(
-          93 + hexToInt(permissionsSize),
-          93 + hexToInt(permissionsSize) + 64
-        )
-      ).toUpperCase(),
-    };
   }
 
   parseDeviceCertificate(certificate) {

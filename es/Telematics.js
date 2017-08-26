@@ -6,6 +6,7 @@ import ApiClient from './ApiClient';
 import Response from './Responses/Response';
 var client = new ApiClient();
 import { base64ToUint8, byteArrayToBase64, uint8ArrayToHex, hexToUint8Array } from './encoding';
+import AccessCertificate from './AccessCertificate';
 
 var Telematics = function Telematics(hmkit, SdkNodeBindings) {
   var _this = this;
@@ -14,7 +15,7 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
 
   this.downloadAccessCertificate = function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(accessToken) {
-      var byteSignature, signature, _ref2, accessCertificate;
+      var byteSignature, signature, _ref2, rawAccessCertificate, accessCertificate;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -33,14 +34,15 @@ var Telematics = function Telematics(hmkit, SdkNodeBindings) {
 
             case 4:
               _ref2 = _context.sent;
-              accessCertificate = _ref2.body.device_access_certificate;
+              rawAccessCertificate = _ref2.body.device_access_certificate;
+              accessCertificate = new AccessCertificate(base64ToUint8(rawAccessCertificate));
 
 
-              _this.hmkit.storage.add('access_certificates', _this.hmkit.parseAccessCertificate(accessCertificate).accessGainingSerialNumber, accessCertificate);
+              _this.hmkit.storage.add('access_certificates', accessCertificate.getVehicleSerial(), rawAccessCertificate);
 
               return _context.abrupt('return', accessCertificate);
 
-            case 8:
+            case 9:
             case 'end':
               return _context.stop();
           }

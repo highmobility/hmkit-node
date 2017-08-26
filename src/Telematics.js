@@ -7,6 +7,7 @@ import {
   uint8ArrayToHex,
   hexToUint8Array,
 } from './encoding';
+import AccessCertificate from './AccessCertificate';
 
 export default class Telematics {
   constructor(hmkit, SdkNodeBindings) {
@@ -21,7 +22,7 @@ export default class Telematics {
     const signature = byteArrayToBase64(byteSignature);
 
     const {
-      body: { device_access_certificate: accessCertificate },
+      body: { device_access_certificate: rawAccessCertificate },
     } = await client.post(`${this.hmkit.apiUrl}access_certificates`, {
       body: JSON.stringify({
         serial_number: this.hmkit.getDeviceSerial(),
@@ -30,11 +31,12 @@ export default class Telematics {
       }),
     });
 
+    const accessCertificate = new AccessCertificate(base64ToUint8(rawAccessCertificate));
+
     this.hmkit.storage.add(
       'access_certificates',
-      this.hmkit.parseAccessCertificate(accessCertificate)
-        .accessGainingSerialNumber,
-      accessCertificate
+      accessCertificate.getVehicleSerial(),
+      rawAccessCertificate
     );
 
     return accessCertificate;

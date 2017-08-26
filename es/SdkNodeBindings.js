@@ -11,4 +11,4 @@ export default function getSdkNodeBindings() {
   }
 
   throw new Error('Native "hmkit" addon missing for your platform.');
-};
+}
