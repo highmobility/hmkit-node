@@ -3,8 +3,8 @@ import { base64ToUint8 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
-import AccessCertificate from './AccessCertificate';
 import DeviceCertificate from './DeviceCertificate';
+import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
 
 export default class HMKit {
@@ -20,21 +20,11 @@ export default class HMKit {
     this.commands = new Commands(this);
     this.storage = new Storage(this);
     this.crypto = new SdkNodeBindings(this);
+    this.certificates = new AccessCertificatesManager(this);
   }
 
   staging() {
     this.api = new Api('https://developers.h-m.space/hm_cloud/api/v1/');
     return this;
-  }
-
-  getAccessCertificate(serial: string) {
-    const base64AccessCertificate = this.storage.get(
-      'access_certificates',
-      serial
-    );
-
-    if (!base64AccessCertificate) return null;
-
-    return new AccessCertificate(base64ToUint8(base64AccessCertificate));
   }
 }

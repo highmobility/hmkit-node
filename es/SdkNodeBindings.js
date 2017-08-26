@@ -56,7 +56,7 @@ var SdkNodeBindings = function () {
       });
 
       this.onGetAccessCertificate(function (serial) {
-        var accesCertificate = _this2.hmkit.getAccessCertificate(uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
+        var accesCertificate = _this2.hmkit.certificates.get(uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
         if (!accesCertificate) {
           return null;
         }

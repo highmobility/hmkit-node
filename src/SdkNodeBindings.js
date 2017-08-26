@@ -46,7 +46,7 @@ export default class SdkNodeBindings {
     );
 
     this.onGetAccessCertificate(serial => {
-      const accesCertificate = this.hmkit.getAccessCertificate(
+      const accesCertificate = this.hmkit.certificates.get(
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
       );
       if (!accesCertificate) {
