@@ -1,4 +1,5 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
+import DiagnosticsResponse from '../../src/Responses/DiagnosticsResponse';
 const hmkit = getHmkit();
 
 describe(`DiagnosticsCommand`, () => {
@@ -8,16 +9,6 @@ describe(`DiagnosticsCommand`, () => {
       hmkit.commands.DiagnosticsCommand.getState()
     );
 
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        mileage: expect.any(Number),
-        engineOilTemperature: expect.any(Number),
-        speed: expect.any(Number),
-        engineRPM: expect.any(Number),
-        fuelLevel: expect.any(Number),
-        washerFluidLevel: expect.stringMatching(/(low|filled)/),
-        tires: expect.anything(),
-      })
-    );
+    expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
   });
 });
