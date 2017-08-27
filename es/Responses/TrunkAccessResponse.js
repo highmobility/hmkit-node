@@ -2,31 +2,28 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-import Command from './Command';
+var TrunkAccessResponse = function () {
+  function TrunkAccessResponse(bytes) {
+    _classCallCheck(this, TrunkAccessResponse);
 
-var DoorLocksCommand = function () {
-  function DoorLocksCommand() {
-    _classCallCheck(this, DoorLocksCommand);
+    this.lock = this.getLockState(bytes);
+    this.position = this.getPositionState(bytes);
   }
 
-  _createClass(DoorLocksCommand, null, [{
-    key: 'getState',
-    value: function getState() {
-      return new Command([0x00, 0x20, 0x00]);
+  _createClass(TrunkAccessResponse, [{
+    key: 'getLockState',
+    value: function getLockState(bytes) {
+      return bytes[3] === 0 ? 'unlocked' : 'locked';
     }
   }, {
-    key: 'unlock',
-    value: function unlock() {
-      return new Command([0x00, 0x20, 0x02, 0x00]);
-    }
-  }, {
-    key: 'lock',
-    value: function lock() {
-      return new Command([0x00, 0x20, 0x02, 0x01]);
+    key: 'getPositionState',
+    value: function getPositionState(bytes) {
+      return bytes[4] === 0 ? 'closed' : 'open';
     }
   }]);
 
-  return DoorLocksCommand;
+  return TrunkAccessResponse;
 }();
 
-export default DoorLocksCommand;
+TrunkAccessResponse.identifier = [0x00, 0x21];
+export default TrunkAccessResponse;

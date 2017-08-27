@@ -1,7 +1,7 @@
 import Command from './Command';
 
 export default class DoorLocksCommand {
-  static getLockState() {
+  static getState() {
     return new Command([0x00, 0x20, 0x00]);
   }
 

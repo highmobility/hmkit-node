@@ -6,7 +6,7 @@ describe(`DoorLocksCommand`, () => {
   it(`should get door locks state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.DoorLocksCommand.getLockState()
+      hmkit.commands.DoorLocksCommand.getState()
     );
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
   });

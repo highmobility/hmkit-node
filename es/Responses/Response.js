@@ -5,6 +5,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
+import TrunkAccessResponse from './TrunkAccessResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 
 var Response = function () {
@@ -14,7 +15,7 @@ var Response = function () {
     this.rawData = data;
     this.checkRawDataLength();
 
-    this.parsers = [DiagnosticsResponse, DoorLocksResponse, EngineResponse, VehicleLocationResponse];
+    this.parsers = [DiagnosticsResponse, DoorLocksResponse, EngineResponse, TrunkAccessResponse, VehicleLocationResponse];
   }
 
   _createClass(Response, [{
