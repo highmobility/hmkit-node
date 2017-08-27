@@ -75,6 +75,20 @@ var Storage = function () {
       var storePath = this.getStoreFilePath(storeName);
       fs.writeFileSync(storePath, JSON.stringify(data, null, 2));
     }
+  }, {
+    key: 'destroy',
+    value: function destroy(storeName) {
+      var storePath = this.getStoreFilePath(storeName);
+      if (!fs.existsSync(storePath)) return;
+
+      fs.unlinkSync(storePath);
+    }
+  }, {
+    key: 'putRaw',
+    value: function putRaw(storeName, contents) {
+      var storePath = this.getStoreFilePath(storeName);
+      fs.writeFileSync(storePath, contents);
+    }
   }]);
 
   return Storage;

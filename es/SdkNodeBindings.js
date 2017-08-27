@@ -27,6 +27,7 @@ var SdkNodeBindings = function () {
   }, {
     key: 'loadNativeAddOn',
     value: function loadNativeAddOn() {
+      /* istanbul ignore next */
       if (fs.existsSync(path.resolve(__dirname, '..', 'sdk-node-bindings', 'lib', 'binding.js'))) {
         return require('../sdk-node-bindings/lib/binding.js');
       } else if (process.platform === 'darwin') {
@@ -35,6 +36,7 @@ var SdkNodeBindings = function () {
         return require('../bindings/ubuntu');
       }
 
+      /* istanbul ignore next */
       throw new Error('Native "hmkit" addon missing for your platform.');
     }
   }, {
@@ -45,14 +47,8 @@ var SdkNodeBindings = function () {
       this.onGetSerialNumber(function () {
         return hexToUint8Array(_this2.hmkit.clientCertificate.getSerial()).buffer;
       });
-      this.onGetLocalPublicKey(function () {
-        return hexToUint8Array(_this2.hmkit.clientCertificate.get().publicKey).buffer;
-      });
       this.onGetLocalPrivateKey(function () {
         return base64ToUint8(_this2.hmkit.clientPrivateKey).buffer;
-      });
-      this.onGetDeviceCertificate(function () {
-        return base64ToUint8(_this2.hmkit.clientCertificate).buffer;
       });
 
       this.onGetAccessCertificate(function (serial) {

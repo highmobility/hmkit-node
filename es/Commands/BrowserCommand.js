@@ -15,7 +15,7 @@ var BrowserCommand = function () {
   _createClass(BrowserCommand, null, [{
     key: 'loadUrl',
     value: function loadUrl(url) {
-      var command = [0x00, 0x35, 0x00];
+      var command = [0x00, 0x49, 0x00];
       var urlInBytes = hexToUint8Array(stringToHex(url));
       command = [].concat(_toConsumableArray(command), [urlInBytes.length], _toConsumableArray(Array.from(urlInBytes)));
       return new Command(command);

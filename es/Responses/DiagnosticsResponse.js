@@ -12,7 +12,7 @@ var DiagnosticsResponse = function () {
     if (bytes[2] === 0x01) {
       this.diagnosticsState(bytes);
     } else {
-      this.vehicleState(bytes);
+      this.getVehicleState(bytes);
     }
   }
 
@@ -26,11 +26,6 @@ var DiagnosticsResponse = function () {
       this.fuelLevel = this.getFuelLevel(bytes);
       this.washerFluidLevel = this.getWasherFluidLevel(bytes);
       this.tires = this.getTires(bytes);
-    }
-  }, {
-    key: 'vehicleState',
-    value: function vehicleState() {
-      throw new Error('Get vehicle state not handled');
     }
   }, {
     key: 'getMileage',
@@ -81,6 +76,16 @@ var DiagnosticsResponse = function () {
       }
 
       return tires;
+    }
+  }, {
+    key: 'getVehicleState',
+    value: function getVehicleState(bytes) {
+      this.mileage = this.getMileage(bytes);
+      this.engineOilTemperature = this.getEngineOilTemperature(bytes);
+      this.speed = this.getSpeed(bytes);
+      this.engineRPM = this.getEngineRPM(bytes);
+      this.fuelLevel = this.getFuelLevel(bytes);
+      this.washerFluidLevel = this.getWasherFluidLevel(bytes);
     }
   }]);
 

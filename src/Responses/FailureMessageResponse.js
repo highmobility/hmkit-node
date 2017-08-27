@@ -4,7 +4,7 @@ export default class FailureMessageResponse {
   static identifier = [0x00, 0x02];
 
   constructor(bytes) {
-    this.api = this.getApi(bytes);
+    this.autoApi = this.getApi(bytes);
     this.type = this.getType(bytes);
     this.reason = this.getReason(bytes);
   }
@@ -15,7 +15,6 @@ export default class FailureMessageResponse {
         return api;
       }
     }
-
     return null;
   }
 

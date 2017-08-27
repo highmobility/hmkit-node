@@ -60,4 +60,16 @@ export default class Storage {
     const storePath = this.getStoreFilePath(storeName);
     fs.writeFileSync(storePath, JSON.stringify(data, null, 2));
   }
+
+  destroy(storeName) {
+    const storePath = this.getStoreFilePath(storeName);
+    if (!fs.existsSync(storePath)) return;
+
+    fs.unlinkSync(storePath);
+  }
+
+  putRaw(storeName, contents) {
+    const storePath = this.getStoreFilePath(storeName);
+    fs.writeFileSync(storePath, contents);
+  }
 }

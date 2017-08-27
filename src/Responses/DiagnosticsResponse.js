@@ -8,7 +8,7 @@ export default class DiagnosticsResponse {
     if (bytes[2] === 0x01) {
       this.diagnosticsState(bytes);
     } else {
-      this.vehicleState(bytes);
+      this.getVehicleState(bytes);
     }
   }
 
@@ -20,10 +20,6 @@ export default class DiagnosticsResponse {
     this.fuelLevel = this.getFuelLevel(bytes);
     this.washerFluidLevel = this.getWasherFluidLevel(bytes);
     this.tires = this.getTires(bytes);
-  }
-
-  vehicleState() {
-    throw new Error('Get vehicle state not handled');
   }
 
   getMileage(bytes) {
@@ -72,5 +68,14 @@ export default class DiagnosticsResponse {
     }
 
     return tires;
+  }
+
+  getVehicleState(bytes) {
+    this.mileage = this.getMileage(bytes);
+    this.engineOilTemperature = this.getEngineOilTemperature(bytes);
+    this.speed = this.getSpeed(bytes);
+    this.engineRPM = this.getEngineRPM(bytes);
+    this.fuelLevel = this.getFuelLevel(bytes);
+    this.washerFluidLevel = this.getWasherFluidLevel(bytes);
   }
 }

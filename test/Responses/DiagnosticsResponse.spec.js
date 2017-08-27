@@ -25,4 +25,20 @@ describe(`DiagnosticsResponse`, () => {
       },
     });
   });
+
+  it(`should return DiagnosticsResponse`, () => {
+    const response = new Response(
+      hexToUint8Array(
+        '0033010249F00063003C09C45A0004004013D70A014013D70A02401666660340166666'
+      )
+    );
+    expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
+  });
+
+  it(`should get diagnostics state when fetching vehicle state`, () => {
+    const response = new Response(
+      hexToUint8Array('00330B0249F00063003C09C45A01')
+    );
+    expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
+  });
 });

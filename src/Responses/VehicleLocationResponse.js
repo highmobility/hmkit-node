@@ -4,20 +4,12 @@ export default class VehicleLocationResponse {
   static identifier = [0x00, 0x30];
 
   constructor(bytes) {
-    if (bytes[2] === 0x01) {
-      this.vehicleLocation(bytes);
-    } else {
-      this.vehicleState(bytes);
-    }
+    this.vehicleLocation(bytes);
   }
 
   vehicleLocation(bytes) {
     this.latitude = this.getLatitude(bytes);
     this.longitude = this.getLongitude(bytes);
-  }
-
-  vehicleState() {
-    throw new Error('Get vehicle state not handled');
   }
 
   getLatitude(bytes) {

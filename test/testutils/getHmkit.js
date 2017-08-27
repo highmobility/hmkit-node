@@ -12,3 +12,5 @@ export default function hmkit(
 }
 
 export const vehicleSerial = '356675D0CC76A8FFF5';
+export const accessToken =
+  'sFy5sjP_AX_EKfumK3cM2rX4RBinEavnidzwgUsSZOM5JwaXvnKIC37CyNRc1Rdb04o33EwsvNSzdjBnBXK0RjHhdFukonlJqczVZjl7B4EGlK1vFNhU9LA7vDgzn3ctGQ';

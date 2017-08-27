@@ -30,7 +30,7 @@ export default class HMKit {
     return this;
   }
 
-  downloadAccessCertificate(...args) {
-    return this.certificates.download.apply(this, args);
+  async downloadAccessCertificate(...args) {
+    return await this.certificates.download.apply(this, args);
   }
 }

@@ -7,7 +7,7 @@ describe(`FailureMessageResponse`, () => {
     const response = new Response(hexToUint8Array('00020100210001'));
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
     expect(response.parse()).toEqual({
-      api: {
+      autoApi: {
         label: 'Trunk Access',
         lsb: 33,
         namespace: 'trunkAccess',
@@ -19,5 +19,11 @@ describe(`FailureMessageResponse`, () => {
           'Unauthorised - User has not been authenticated or lacks permissions',
       },
     });
+  });
+
+  it(`should return FailureMessageResponse with no Auto API info`, () => {
+    const response = new Response(hexToUint8Array('00020100FF0001'));
+    expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
+    expect(response.parse().autoApi).toBe(null);
   });
 });

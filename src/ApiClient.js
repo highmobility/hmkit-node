@@ -14,16 +14,8 @@ export const DEFAULT_OPTS = {
 };
 
 export default class ApiClient {
-  get = (url: string, opts: Object = {}) =>
-    this.fetch(url, { ...opts, method: 'GET' });
   post = (url: string, opts: Object = {}) =>
     this.fetch(url, { ...opts, method: 'POST' });
-  put = (url: string, opts: Object = {}) =>
-    this.fetch(url, { ...opts, method: 'PUT' });
-  patch = (url: string, opts: Object = {}) =>
-    this.fetch(url, { ...opts, method: 'PATCH' });
-  del = (url: string, opts: Object = {}) =>
-    this.fetch(url, { ...opts, method: 'DELETE' });
 
   fetch = (url: string, customOpts: Object = {}) =>
     new Promise((resolve, reject) => {

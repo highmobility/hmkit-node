@@ -2,6 +2,9 @@ import {
   hexArrayToHex,
   hexToUint8Array,
   uint8ArrayToHex,
+  hexToByteArrays,
+  intToHex,
+  asciiToUint8,
 } from '../src/encoding';
 
 describe(`encoding`, () => {
@@ -77,5 +80,43 @@ describe(`encoding`, () => {
       1,
     ]);
     expect(hexToUint8Array(uint8ArrayToHex(data))).toEqual(data);
+  });
+
+  it(`should convert hex to byte arrays`, () => {
+    expect(hexToByteArrays('A3CCF8')).toEqual([
+      [1, 0, 1, 0, 0, 0, 1, 1],
+      [1, 1, 0, 0, 1, 1, 0, 0],
+      [1, 1, 1, 1, 1, 0, 0, 0],
+    ]);
+  });
+
+  it(`should convert int to hex`, () => {
+    expect(intToHex(42367).toUpperCase()).toBe('A57F');
+  });
+
+  it(`should convert ascii to uint8`, () => {
+    expect(asciiToUint8('asdsdgagsgsdiou')).toEqual(
+      new Uint8Array([
+        97,
+        115,
+        100,
+        115,
+        100,
+        103,
+        97,
+        103,
+        115,
+        103,
+        115,
+        100,
+        105,
+        111,
+        117,
+      ])
+    );
+  });
+
+  it(`should return empty uint8 array`, () => {
+    expect(hexToUint8Array()).toEqual(new Uint8Array([]));
   });
 });

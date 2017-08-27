@@ -16,6 +16,7 @@ export default class SdkNodeBindings {
   }
 
   loadNativeAddOn() {
+    /* istanbul ignore next */
     if (
       fs.existsSync(
         path.resolve(__dirname, '..', 'sdk-node-bindings', 'lib', 'binding.js')
@@ -28,6 +29,7 @@ export default class SdkNodeBindings {
       return require('../bindings/ubuntu');
     }
 
+    /* istanbul ignore next */
     throw new Error('Native "hmkit" addon missing for your platform.');
   }
 
@@ -35,14 +37,8 @@ export default class SdkNodeBindings {
     this.onGetSerialNumber(
       () => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer
     );
-    this.onGetLocalPublicKey(
-      () => hexToUint8Array(this.hmkit.clientCertificate.get().publicKey).buffer
-    );
     this.onGetLocalPrivateKey(
       () => base64ToUint8(this.hmkit.clientPrivateKey).buffer
-    );
-    this.onGetDeviceCertificate(
-      () => base64ToUint8(this.hmkit.clientCertificate).buffer
     );
 
     this.onGetAccessCertificate(serial => {
