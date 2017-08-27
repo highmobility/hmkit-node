@@ -10,6 +10,7 @@ import Storage from './Storage';
 import DeviceCertificate from './DeviceCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
+import ApiClient from './ApiClient';
 
 var HMKit = function () {
   function HMKit(deviceCertificate, devicePrivateKey) {
@@ -20,6 +21,7 @@ var HMKit = function () {
     this.issuer = 'tmcs';
 
     this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');
+    this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
     this.storage = new Storage(this);
@@ -32,6 +34,15 @@ var HMKit = function () {
     value: function staging() {
       this.api = new Api('https://developers.h-m.space/hm_cloud/api/v1/');
       return this;
+    }
+  }, {
+    key: 'downloadAccessCertificate',
+    value: function downloadAccessCertificate() {
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return this.certificates.download.apply(this, args);
     }
   }]);
 

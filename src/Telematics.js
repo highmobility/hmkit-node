@@ -1,54 +1,25 @@
-import ApiClient from './ApiClient';
 import Response from './Responses/Response';
-const client = new ApiClient();
 import {
   base64ToUint8,
   byteArrayToBase64,
   uint8ArrayToHex,
   hexToUint8Array,
 } from './encoding';
-import AccessCertificate from './AccessCertificate';
 
 export default class Telematics {
   constructor(hmkit) {
     this.hmkit = hmkit;
   }
 
-  downloadAccessCertificate = async accessToken => {
-    const byteSignature = this.hmkit.crypto.generateSignature(
-      new Uint8Array(Buffer.from(accessToken)).buffer
-    );
-    const signature = byteArrayToBase64(byteSignature);
-
-    const {
-      body: { device_access_certificate: rawAccessCertificate },
-    } = await client.post(`${this.hmkit.api.getUrl()}access_certificates`, {
-      body: JSON.stringify({
-        serial_number: this.hmkit.deviceCertificate.getSerial(),
-        access_token: accessToken,
-        signature,
-      }),
-    });
-
-    const accessCertificate = new AccessCertificate(
-      base64ToUint8(rawAccessCertificate)
-    );
-
-    this.hmkit.storage.add(
-      'access_certificates',
-      accessCertificate.getVehicleSerial(),
-      rawAccessCertificate
-    );
-
-    return accessCertificate;
-  };
-
   getNonce = async () => {
-    const result = await client.post(`${this.hmkit.api.getUrl()}nonces`, {
-      body: JSON.stringify({
-        serial_number: this.hmkit.deviceCertificate.getSerial(),
-      }),
-    });
+    const result = await this.hmkit.apiClient.post(
+      `${this.hmkit.api.getUrl()}nonces`,
+      {
+        body: JSON.stringify({
+          serial_number: this.hmkit.deviceCertificate.getSerial(),
+        }),
+      }
+    );
 
     return result.body.nonce;
   };
@@ -60,7 +31,7 @@ export default class Telematics {
       data: byteArrayToBase64(data),
     };
 
-    this.promise = client.post(
+    this.promise = this.hmkit.apiClient.post(
       `${this.hmkit.api.getUrl()}telematics_commands`,
       {
         body: JSON.stringify(payload),

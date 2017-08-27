@@ -8,7 +8,7 @@ const accessToken = 'sFy5sjP_AX_EKfumK3cM2rX4RBinEavnidzwgUsSZOM5JwaXvnKIC37CyNR
 const hmkit = new HMKit(deviceCertificate, devicePrivateKey).staging();
 
 async function app() {
-  const accessCertificate = await hmkit.telematics.downloadAccessCertificate(
+  const accessCertificate = await hmkit.downloadAccessCertificate(
     accessToken
   );
 

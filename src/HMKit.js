@@ -6,6 +6,7 @@ import Storage from './Storage';
 import DeviceCertificate from './DeviceCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
+import ApiClient from './ApiClient';
 
 export default class HMKit {
   constructor(deviceCertificate, devicePrivateKey) {
@@ -16,6 +17,7 @@ export default class HMKit {
     this.issuer = 'tmcs';
 
     this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');
+    this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
     this.storage = new Storage(this);
@@ -26,5 +28,9 @@ export default class HMKit {
   staging() {
     this.api = new Api('https://developers.h-m.space/hm_cloud/api/v1/');
     return this;
+  }
+
+  downloadAccessCertificate(...args) {
+    return this.certificates.download.apply(this, args);
   }
 }
