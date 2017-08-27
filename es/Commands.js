@@ -1,5 +1,6 @@
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+import BrowserCommand from './Commands/BrowserCommand';
 import CapabilitiesCommand from './Commands/CapabilitiesCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
@@ -12,6 +13,7 @@ var Commands = function Commands() {
   _classCallCheck(this, Commands);
 
   Object.assign(this, {
+    BrowserCommand: BrowserCommand,
     CapabilitiesCommand: CapabilitiesCommand,
     DiagnosticsCommand: DiagnosticsCommand,
     DoorLocksCommand: DoorLocksCommand,

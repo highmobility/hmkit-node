@@ -2,6 +2,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+import BrowserResponse from './BrowserResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
@@ -15,7 +16,7 @@ var Response = function () {
     this.rawData = data;
     this.checkRawDataLength();
 
-    this.parsers = [DiagnosticsResponse, DoorLocksResponse, EngineResponse, TrunkAccessResponse, VehicleLocationResponse];
+    this.parsers = [BrowserResponse, DiagnosticsResponse, DoorLocksResponse, EngineResponse, TrunkAccessResponse, VehicleLocationResponse];
   }
 
   _createClass(Response, [{

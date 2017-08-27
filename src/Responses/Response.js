@@ -1,3 +1,4 @@
+import BrowserResponse from './BrowserResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
@@ -10,6 +11,7 @@ export default class Response {
     this.checkRawDataLength();
 
     this.parsers = [
+      BrowserResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
       EngineResponse,

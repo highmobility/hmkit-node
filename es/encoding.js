@@ -75,3 +75,11 @@ export function ieee754ToBase10(array) {
 
   return ieee754.read(array, 0, false, 23, bytes);
 }
+
+export function stringToHex(string) {
+  var result = '';
+  for (var i = 0; i < string.length; i++) {
+    result += string[i].charCodeAt(0).toString(16);
+  }
+  return result;
+}
