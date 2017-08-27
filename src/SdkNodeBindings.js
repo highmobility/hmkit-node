@@ -33,16 +33,16 @@ export default class SdkNodeBindings {
 
   setup() {
     this.onGetSerialNumber(
-      () => hexToUint8Array(this.hmkit.deviceCertificate.getSerial()).buffer
+      () => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer
     );
     this.onGetLocalPublicKey(
-      () => hexToUint8Array(this.hmkit.deviceCertificate.get().publicKey).buffer
+      () => hexToUint8Array(this.hmkit.clientCertificate.get().publicKey).buffer
     );
     this.onGetLocalPrivateKey(
-      () => base64ToUint8(this.hmkit.devicePrivateKey).buffer
+      () => base64ToUint8(this.hmkit.clientPrivateKey).buffer
     );
     this.onGetDeviceCertificate(
-      () => base64ToUint8(this.hmkit.deviceCertificate).buffer
+      () => base64ToUint8(this.hmkit.clientCertificate).buffer
     );
 
     this.onGetAccessCertificate(serial => {

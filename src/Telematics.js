@@ -16,7 +16,7 @@ export default class Telematics {
       `${this.hmkit.api.getUrl()}nonces`,
       {
         body: JSON.stringify({
-          serial_number: this.hmkit.deviceCertificate.getSerial(),
+          serial_number: this.hmkit.clientCertificate.getSerial(),
         }),
       }
     );

@@ -3,17 +3,17 @@ import { base64ToUint8 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
-import DeviceCertificate from './DeviceCertificate';
+import ClientCertificate from './ClientCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
 import ApiClient from './ApiClient';
 
 export default class HMKit {
-  constructor(deviceCertificate, devicePrivateKey) {
-    this.deviceCertificate = new DeviceCertificate(
-      base64ToUint8(deviceCertificate)
+  constructor(clientCertificate, clientPrivateKey) {
+    this.clientCertificate = new ClientCertificate(
+      base64ToUint8(clientCertificate)
     );
-    this.devicePrivateKey = devicePrivateKey;
+    this.clientPrivateKey = clientPrivateKey;
     this.issuer = 'tmcs';
 
     this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');

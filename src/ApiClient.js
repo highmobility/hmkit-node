@@ -44,7 +44,7 @@ export default class ApiClient {
         .then(resolve)
         .catch(async err => {
           const json = await err.json();
-          if (json.response_data) return resolve({ response: err, body: json });
+          // if (json.response_data) return resolve({ response: err, body: json });
           console.error(`** API request failed for ${url}:`, json);
           return reject({ response: err });
         });

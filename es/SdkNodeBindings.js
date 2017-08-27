@@ -43,16 +43,16 @@ var SdkNodeBindings = function () {
       var _this2 = this;
 
       this.onGetSerialNumber(function () {
-        return hexToUint8Array(_this2.hmkit.deviceCertificate.getSerial()).buffer;
+        return hexToUint8Array(_this2.hmkit.clientCertificate.getSerial()).buffer;
       });
       this.onGetLocalPublicKey(function () {
-        return hexToUint8Array(_this2.hmkit.deviceCertificate.get().publicKey).buffer;
+        return hexToUint8Array(_this2.hmkit.clientCertificate.get().publicKey).buffer;
       });
       this.onGetLocalPrivateKey(function () {
-        return base64ToUint8(_this2.hmkit.devicePrivateKey).buffer;
+        return base64ToUint8(_this2.hmkit.clientPrivateKey).buffer;
       });
       this.onGetDeviceCertificate(function () {
-        return base64ToUint8(_this2.hmkit.deviceCertificate).buffer;
+        return base64ToUint8(_this2.hmkit.clientCertificate).buffer;
       });
 
       this.onGetAccessCertificate(function (serial) {

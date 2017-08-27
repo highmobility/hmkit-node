@@ -19,7 +19,7 @@ var Telematics = function Telematics(hmkit) {
             _context.next = 2;
             return _this.hmkit.apiClient.post(_this.hmkit.api.getUrl() + 'nonces', {
               body: JSON.stringify({
-                serial_number: _this.hmkit.deviceCertificate.getSerial()
+                serial_number: _this.hmkit.clientCertificate.getSerial()
               })
             });
 

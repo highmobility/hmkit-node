@@ -26,7 +26,7 @@ var AccessCertificatesManager = function () {
                 _context.next = 4;
                 return _this.hmkit.apiClient.post(_this.hmkit.api.getUrl() + 'access_certificates', {
                   body: JSON.stringify({
-                    serial_number: _this.hmkit.deviceCertificate.getSerial(),
+                    serial_number: _this.hmkit.clientCertificate.getSerial(),
                     access_token: accessToken,
                     signature: signature
                   })

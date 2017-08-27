@@ -29,7 +29,7 @@ export default class AccessCertificatesManager {
       `${this.hmkit.api.getUrl()}access_certificates`,
       {
         body: JSON.stringify({
-          serial_number: this.hmkit.deviceCertificate.getSerial(),
+          serial_number: this.hmkit.clientCertificate.getSerial(),
           access_token: accessToken,
           signature,
         }),

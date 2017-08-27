@@ -4,27 +4,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 import { uint8ArrayToHex } from './encoding';
 
-var DeviceCertificate = function () {
-  function DeviceCertificate(bytes) {
-    _classCallCheck(this, DeviceCertificate);
+var ClientCertificate = function () {
+  function ClientCertificate(bytes) {
+    _classCallCheck(this, ClientCertificate);
 
     this.bytes = bytes;
-    this.rawDeviceCertificate = this.parse(bytes);
-    this.issuer = this.rawDeviceCertificate.issuer;
+    this.rawClientCertificate = this.parse(bytes);
+    this.issuer = this.rawClientCertificate.issuer;
     this.appIdentifier = this.getAppId();
-    this.deviceSerial = this.getSerial();
-    this.publicKey = this.rawDeviceCertificate.publicKey;
-    this.signature = this.rawDeviceCertificate.signature;
-    this.deviceCertificate = this.get();
+    this.clientSerial = this.getSerial();
+    this.publicKey = this.rawClientCertificate.publicKey;
+    this.signature = this.rawClientCertificate.signature;
+    this.clientCertificate = this.get();
   }
 
-  _createClass(DeviceCertificate, [{
+  _createClass(ClientCertificate, [{
     key: 'parse',
     value: function parse(bytes) {
       return {
         issuer: uint8ArrayToHex(bytes.slice(0, 4)).toUpperCase(),
         appIdentifier: uint8ArrayToHex(bytes.slice(4, 16)).toUpperCase(),
-        deviceSerial: uint8ArrayToHex(bytes.slice(16, 25)).toUpperCase(),
+        clientSerial: uint8ArrayToHex(bytes.slice(16, 25)).toUpperCase(),
         publicKey: uint8ArrayToHex(bytes.slice(25, 89)).toUpperCase(),
         signature: uint8ArrayToHex(bytes.slice(89, 153)).toUpperCase()
       };
@@ -35,23 +35,23 @@ var DeviceCertificate = function () {
       return {
         issuer: this.issuer,
         appIdentifier: this.appIdentifier,
-        deviceSerial: this.deviceSerial,
+        clientSerial: this.clientSerial,
         publicKey: this.publicKey
       };
     }
   }, {
     key: 'getSerial',
     value: function getSerial() {
-      return this.rawDeviceCertificate.deviceSerial;
+      return this.rawClientCertificate.clientSerial;
     }
   }, {
     key: 'getAppId',
     value: function getAppId() {
-      return this.rawDeviceCertificate.appIdentifier;
+      return this.rawClientCertificate.appIdentifier;
     }
   }]);
 
-  return DeviceCertificate;
+  return ClientCertificate;
 }();
 
-export default DeviceCertificate;
+export default ClientCertificate;

@@ -7,17 +7,17 @@ import { base64ToUint8 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
 import Storage from './Storage';
-import DeviceCertificate from './DeviceCertificate';
+import ClientCertificate from './ClientCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
 import ApiClient from './ApiClient';
 
 var HMKit = function () {
-  function HMKit(deviceCertificate, devicePrivateKey) {
+  function HMKit(clientCertificate, clientPrivateKey) {
     _classCallCheck(this, HMKit);
 
-    this.deviceCertificate = new DeviceCertificate(base64ToUint8(deviceCertificate));
-    this.devicePrivateKey = devicePrivateKey;
+    this.clientCertificate = new ClientCertificate(base64ToUint8(clientCertificate));
+    this.clientPrivateKey = clientPrivateKey;
     this.issuer = 'tmcs';
 
     this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');
