@@ -1,10 +1,10 @@
-import getHmkit from '../testutils/getHmkit';
+import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
 const hmkit = getHmkit();
 
 describe(`DiagnosticsCommand`, () => {
   it(`should get diagnostics state`, async () => {
     const response = await hmkit.telematics.sendCommand(
-      '356675D0CC76A8FFF5',
+      vehicleSerial,
       hmkit.commands.DiagnosticsCommand.getState()
     );
 

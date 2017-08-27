@@ -1,10 +1,10 @@
-import getHmkit from '../testutils/getHmkit';
+import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
 const hmkit = getHmkit();
 
 describe(`EngineCommand`, () => {
   it(`should get ignition state`, async () => {
     const response = await hmkit.telematics.sendCommand(
-      '356675D0CC76A8FFF5',
+      vehicleSerial,
       hmkit.commands.EngineCommand.getIgnitionState()
     );
 
@@ -17,7 +17,7 @@ describe(`EngineCommand`, () => {
 
   it(`should turn engine on`, async () => {
     const response = await hmkit.telematics.sendCommand(
-      '356675D0CC76A8FFF5',
+      vehicleSerial,
       hmkit.commands.EngineCommand.turnOn()
     );
 
@@ -30,7 +30,7 @@ describe(`EngineCommand`, () => {
 
   it(`should turn engine off`, async () => {
     const response = await hmkit.telematics.sendCommand(
-      '356675D0CC76A8FFF5',
+      vehicleSerial,
       hmkit.commands.EngineCommand.turnOff()
     );
 

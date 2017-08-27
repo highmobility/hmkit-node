@@ -10,3 +10,5 @@ export default function hmkit(
 ) {
   return new HMKit(deviceCertificate, devicePrivateKey).staging();
 }
+
+export const vehicleSerial = '356675D0CC76A8FFF5';

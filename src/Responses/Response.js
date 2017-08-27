@@ -1,4 +1,5 @@
 import DiagnosticsResponse from './DiagnosticsResponse';
+import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 
@@ -9,6 +10,7 @@ export default class Response {
 
     this.parsers = [
       DiagnosticsResponse,
+      DoorLocksResponse,
       EngineResponse,
       VehicleLocationResponse,
     ];

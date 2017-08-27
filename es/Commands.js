@@ -2,6 +2,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 import CapabilitiesCommand from './Commands/CapabilitiesCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
+import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
@@ -12,6 +13,7 @@ var Commands = function Commands() {
   Object.assign(this, {
     CapabilitiesCommand: CapabilitiesCommand,
     DiagnosticsCommand: DiagnosticsCommand,
+    DoorLocksCommand: DoorLocksCommand,
     EngineCommand: EngineCommand,
     VehicleLocationCommand: VehicleLocationCommand,
     VehicleStatusCommand: VehicleStatusCommand
