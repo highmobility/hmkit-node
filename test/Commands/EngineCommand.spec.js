@@ -1,4 +1,5 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
+import EngineResponse from '../../src/Responses/EngineResponse';
 const hmkit = getHmkit();
 
 describe(`EngineCommand`, () => {
@@ -8,6 +9,7 @@ describe(`EngineCommand`, () => {
       hmkit.commands.EngineCommand.getIgnitionState()
     );
 
+    expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
         engine: expect.any(Number),
