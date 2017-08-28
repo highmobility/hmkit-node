@@ -1,7 +1,7 @@
-import BrowserResponse from './BrowserResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
+import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
@@ -12,7 +12,6 @@ export default class Response {
     this.checkRawDataLength();
 
     this.parsers = [
-      BrowserResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
       EngineResponse,
@@ -23,7 +22,7 @@ export default class Response {
   }
 
   checkRawDataLength() {
-    if (this.rawData.length < 2) {
+    if (this.rawData.length < 2 && this.rawData.length !== 0) {
       throw new Error(
         `Response string length invalid (length: ${this.rawData.length} chars).`
       );
@@ -39,6 +38,7 @@ export default class Response {
     const Parser = this.findParser(bytes);
 
     if (!Parser) {
+      if (bytes.length === 0) return new EmptyResponse();
       return bytes;
     }
 
@@ -46,6 +46,10 @@ export default class Response {
   }
 
   findParser(bytes) {
+    if (bytes.length === 0) {
+      return null;
+    }
+
     for (const parser of this.parsers) {
       if (
         parser.identifier[0] === bytes[0] &&

@@ -2,10 +2,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-import BrowserResponse from './BrowserResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
+import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
@@ -17,13 +17,13 @@ var Response = function () {
     this.rawData = data;
     this.checkRawDataLength();
 
-    this.parsers = [BrowserResponse, DiagnosticsResponse, DoorLocksResponse, EngineResponse, FailureMessageResponse, TrunkAccessResponse, VehicleLocationResponse];
+    this.parsers = [DiagnosticsResponse, DoorLocksResponse, EngineResponse, FailureMessageResponse, TrunkAccessResponse, VehicleLocationResponse];
   }
 
   _createClass(Response, [{
     key: 'checkRawDataLength',
     value: function checkRawDataLength() {
-      if (this.rawData.length < 2) {
+      if (this.rawData.length < 2 && this.rawData.length !== 0) {
         throw new Error('Response string length invalid (length: ' + this.rawData.length + ' chars).');
       }
     }
@@ -39,6 +39,7 @@ var Response = function () {
       var Parser = this.findParser(bytes);
 
       if (!Parser) {
+        if (bytes.length === 0) return new EmptyResponse();
         return bytes;
       }
 
@@ -47,6 +48,10 @@ var Response = function () {
   }, {
     key: 'findParser',
     value: function findParser(bytes) {
+      if (bytes.length === 0) {
+        return null;
+      }
+
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;

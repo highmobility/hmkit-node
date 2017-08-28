@@ -1,5 +1,5 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
-import FailureMessageResponse from '../../src/Responses/FailureMessageResponse';
+import EmptyResponse from '../../src/Responses/EmptyResponse';
 const hmkit = getHmkit();
 
 describe(`BrowserCommand`, () => {
@@ -9,6 +9,6 @@ describe(`BrowserCommand`, () => {
       hmkit.commands.BrowserCommand.loadUrl('https://google.com')
     );
 
-    expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 });

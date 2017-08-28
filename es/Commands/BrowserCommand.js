@@ -5,7 +5,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 import Command from './Command';
-import { stringToHex, hexToUint8Array } from '../encoding';
+import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
 
 var BrowserCommand = function () {
   function BrowserCommand() {
@@ -17,8 +17,13 @@ var BrowserCommand = function () {
     value: function loadUrl(url) {
       var command = [0x00, 0x49, 0x00];
       var urlInBytes = hexToUint8Array(stringToHex(url));
-      command = [].concat(_toConsumableArray(command), [urlInBytes.length], _toConsumableArray(Array.from(urlInBytes)));
+      command = [].concat(_toConsumableArray(command), _toConsumableArray(this.urlSizeToBytes(urlInBytes.length)), _toConsumableArray(Array.from(urlInBytes)));
       return new Command(command);
+    }
+  }, {
+    key: 'urlSizeToBytes',
+    value: function urlSizeToBytes(size) {
+      return hexToUint8Array(pad(intToHex(size), 4));
     }
   }]);
 
