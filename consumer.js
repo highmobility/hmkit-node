@@ -18,7 +18,7 @@ async function app() {
   );
 
   console.log(response.bytes()); // [0, 53, 1, 1]
-  console.log(response.parse()); // EngineResponse { engine: 1 }
+  console.log(response.parse()); // EngineResponse { engine: 'on' }
 }
 
 // run app

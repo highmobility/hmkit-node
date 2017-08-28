@@ -12,7 +12,7 @@ describe(`EngineCommand`, () => {
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        engine: expect.any(Number),
+        engine: expect.any(String),
       })
     );
   });
@@ -25,7 +25,7 @@ describe(`EngineCommand`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        engine: 1,
+        engine: 'on',
       })
     );
   });
@@ -38,7 +38,7 @@ describe(`EngineCommand`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        engine: 0,
+        engine: 'off',
       })
     );
   });

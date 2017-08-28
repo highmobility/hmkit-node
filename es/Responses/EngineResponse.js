@@ -10,9 +10,9 @@ var EngineResponse = function () {
   }
 
   _createClass(EngineResponse, [{
-    key: "getEngineState",
+    key: 'getEngineState',
     value: function getEngineState(bytes) {
-      return bytes[3] === 0x00 ? 0 : 1;
+      return bytes[3] === 0x00 ? 'off' : 'on';
     }
   }]);
 

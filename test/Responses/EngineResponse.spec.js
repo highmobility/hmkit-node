@@ -7,7 +7,7 @@ describe(`EngineResponse`, () => {
     const response = new Response(hexToUint8Array('00350101'));
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual({
-      engine: 1,
+      engine: 'on',
     });
   });
 });

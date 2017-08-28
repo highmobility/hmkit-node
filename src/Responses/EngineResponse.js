@@ -6,6 +6,6 @@ export default class EngineResponse {
   }
 
   getEngineState(bytes) {
-    return bytes[3] === 0x00 ? 0 : 1;
+    return bytes[3] === 0x00 ? 'off' : 'on';
   }
 }
