@@ -12,3 +12,4 @@ yarn.lock
 npm-debug.log
 .idea
 .npmignore
+CONTRIBUTING.md
