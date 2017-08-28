@@ -11,14 +11,14 @@ async function app() {
   const accessCertificate = await hmkit.downloadAccessCertificate(
     accessToken
   );
-  //
-  // const response = await hmkit.telematics.sendCommand(
-  //   accessCertificate.getVehicleSerial(),
-  //   hmkit.commands.EngineCommand.turnOn()
-  // );
 
-  // console.log(response.bytes()); // [0, 53, 1, 1]
-  // console.log(response.parse()); // EngineResponse { engine: 1 }
+  const response = await hmkit.telematics.sendCommand(
+    accessCertificate.getVehicleSerial(),
+    hmkit.commands.EngineCommand.turnOn()
+  );
+
+  console.log(response.bytes()); // [0, 53, 1, 1]
+  console.log(response.parse()); // EngineResponse { engine: 1 }
 }
 
 // run app
