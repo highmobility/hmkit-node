@@ -1,5 +1,6 @@
 import BrowserCommand from './Commands/BrowserCommand';
 import CapabilitiesCommand from './Commands/CapabilitiesCommand';
+import ChargingCommand from './Commands/ChargingCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
@@ -13,6 +14,7 @@ export default class Commands {
     Object.assign(this, {
       BrowserCommand,
       CapabilitiesCommand,
+      ChargingCommand,
       DiagnosticsCommand,
       DoorLocksCommand,
       EngineCommand,
