@@ -3,6 +3,7 @@ import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
+import MaintenanceResponse from './MaintenanceResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 
@@ -16,6 +17,7 @@ export default class Response {
       DoorLocksResponse,
       EngineResponse,
       FailureMessageResponse,
+      MaintenanceResponse,
       TrunkAccessResponse,
       VehicleLocationResponse,
     ];

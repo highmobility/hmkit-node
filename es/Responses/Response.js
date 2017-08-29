@@ -7,6 +7,7 @@ import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
+import MaintenanceResponse from './MaintenanceResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 
@@ -17,7 +18,7 @@ var Response = function () {
     this.rawData = data;
     this.checkRawDataLength();
 
-    this.parsers = [DiagnosticsResponse, DoorLocksResponse, EngineResponse, FailureMessageResponse, TrunkAccessResponse, VehicleLocationResponse];
+    this.parsers = [DiagnosticsResponse, DoorLocksResponse, EngineResponse, FailureMessageResponse, MaintenanceResponse, TrunkAccessResponse, VehicleLocationResponse];
   }
 
   _createClass(Response, [{

@@ -5,6 +5,7 @@ import CapabilitiesCommand from './Commands/CapabilitiesCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
+import MaintenanceCommand from './Commands/MaintenanceCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
@@ -18,6 +19,7 @@ var Commands = function Commands() {
     DiagnosticsCommand: DiagnosticsCommand,
     DoorLocksCommand: DoorLocksCommand,
     EngineCommand: EngineCommand,
+    MaintenanceCommand: MaintenanceCommand,
     TrunkAccessCommand: TrunkAccessCommand,
     VehicleLocationCommand: VehicleLocationCommand,
     VehicleStatusCommand: VehicleStatusCommand
