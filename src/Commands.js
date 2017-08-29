@@ -8,6 +8,7 @@ import MaintenanceCommand from './Commands/MaintenanceCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
+import WakeUpCommand from './Commands/WakeUpCommand';
 
 export default class Commands {
   constructor() {
@@ -22,6 +23,7 @@ export default class Commands {
       TrunkAccessCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,
+      WakeUpCommand,
     });
   }
 }
