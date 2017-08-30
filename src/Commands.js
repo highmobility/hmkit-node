@@ -9,6 +9,7 @@ import MaintenanceCommand from './Commands/MaintenanceCommand';
 import NotificationCommand from './Commands/NotificationCommand';
 import RooftopControlCommand from './Commands/RooftopControlCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
+import ValetModeCommand from './Commands/ValetModeCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
 import WakeUpCommand from './Commands/WakeUpCommand';
@@ -27,6 +28,7 @@ export default class Commands {
       NotificationCommand,
       RooftopControlCommand,
       TrunkAccessCommand,
+      ValetModeCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,
       WakeUpCommand,

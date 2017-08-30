@@ -9,6 +9,7 @@ import MaintenanceResponse from './MaintenanceResponse';
 import NotificationResponse from './NotificationResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
+import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 
 export default class Response {
@@ -27,6 +28,7 @@ export default class Response {
       NotificationResponse,
       RooftopControlResponse,
       TrunkAccessResponse,
+      ValetModeResponse,
       VehicleLocationResponse,
     ];
   }
