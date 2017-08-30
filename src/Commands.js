@@ -4,6 +4,7 @@ import ChargingCommand from './Commands/ChargingCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
+import KeyfobPositionCommand from './Commands/KeyfobPositionCommand';
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import NotificationCommand from './Commands/NotificationCommand';
@@ -22,6 +23,7 @@ export default class Commands {
       DiagnosticsCommand,
       DoorLocksCommand,
       EngineCommand,
+      KeyfobPositionCommand,
       LightsCommand,
       MaintenanceCommand,
       NotificationCommand,
