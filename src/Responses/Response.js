@@ -4,6 +4,7 @@ import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
+import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
 import NotificationResponse from './NotificationResponse';
 import RooftopControlResponse from './RooftopControlResponse';
@@ -21,6 +22,7 @@ export default class Response {
       DoorLocksResponse,
       EngineResponse,
       FailureMessageResponse,
+      LightsResponse,
       MaintenanceResponse,
       NotificationResponse,
       RooftopControlResponse,
