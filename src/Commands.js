@@ -5,6 +5,7 @@ import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
+import NotificationCommand from './Commands/NotificationCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
@@ -20,6 +21,7 @@ export default class Commands {
       DoorLocksCommand,
       EngineCommand,
       MaintenanceCommand,
+      NotificationCommand,
       TrunkAccessCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,
