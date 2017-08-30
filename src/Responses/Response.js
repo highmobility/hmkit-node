@@ -8,6 +8,7 @@ import MaintenanceResponse from './MaintenanceResponse';
 import NotificationResponse from './NotificationResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
+import WindowsResponse from './WindowsResponse';
 
 export default class Response {
   constructor(data: string) {
@@ -24,6 +25,7 @@ export default class Response {
       NotificationResponse,
       TrunkAccessResponse,
       VehicleLocationResponse,
+      WindowsResponse,
     ];
   }
 

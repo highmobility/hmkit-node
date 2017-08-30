@@ -10,6 +10,7 @@ import TrunkAccessCommand from './Commands/TrunkAccessCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
 import WakeUpCommand from './Commands/WakeUpCommand';
+import WindowsCommand from './Commands/WindowsCommand';
 
 export default class Commands {
   constructor() {
@@ -26,6 +27,7 @@ export default class Commands {
       VehicleLocationCommand,
       VehicleStatusCommand,
       WakeUpCommand,
+      WindowsCommand,
     });
   }
 }
