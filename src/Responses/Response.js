@@ -4,7 +4,6 @@ import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
-import KeyfobPositionResponse from './KeyfobPositionResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
 import NotificationResponse from './NotificationResponse';
@@ -23,7 +22,6 @@ export default class Response {
       DoorLocksResponse,
       EngineResponse,
       FailureMessageResponse,
-      KeyfobPositionResponse,
       LightsResponse,
       MaintenanceResponse,
       NotificationResponse,
