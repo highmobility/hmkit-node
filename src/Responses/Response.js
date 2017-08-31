@@ -7,6 +7,7 @@ import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
+import MessagingResponse from './MessagingResponse';
 import NotificationResponse from './NotificationResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
@@ -28,6 +29,7 @@ export default class Response {
       FailureMessageResponse,
       LightsResponse,
       MaintenanceResponse,
+      MessagingResponse,
       NotificationResponse,
       RooftopControlResponse,
       TrunkAccessResponse,

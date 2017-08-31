@@ -89,3 +89,7 @@ export function stringToHex(string) {
   }
   return result;
 }
+
+export function bytesToString(bytes) {
+    return Buffer.from(bytes).toString('utf8');
+}

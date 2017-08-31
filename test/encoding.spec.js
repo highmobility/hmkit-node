@@ -5,6 +5,7 @@ import {
   hexToByteArrays,
   intToHex,
   asciiToUint8,
+  bytesToString,
 } from '../src/encoding';
 
 describe(`encoding`, () => {
@@ -118,5 +119,11 @@ describe(`encoding`, () => {
 
   it(`should return empty uint8 array`, () => {
     expect(hexToUint8Array()).toEqual(new Uint8Array([]));
+  });
+
+  it('should convert bytes to utf8 string', () => {
+     const bytes = [0x4C, 0x61, 0x70, 0x69, 0x6B, 0x20, 0x6D, 0x61, 0x61, 0x20, 0x6F, 0x6E, 0x20, 0x74, 0xC3, 0xB5, 0x64, 0x65, 0x2E];
+
+     expect(bytesToString(bytes)).toEqual('Lapik maa on tõde.');
   });
 });
