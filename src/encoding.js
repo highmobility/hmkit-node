@@ -27,6 +27,10 @@ export function intToHex(int) {
   return int.toString(16);
 }
 
+export function intToBinary(int) {
+  return int.toString(2);
+}
+
 export function hexToUint8Array(hexString) {
   if (!hexString) {
     return new Uint8Array();
