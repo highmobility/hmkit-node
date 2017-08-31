@@ -91,5 +91,5 @@ export function stringToHex(string) {
 }
 
 export function bytesToString(bytes) {
-    return Buffer.from(bytes).toString('utf8');
+  return Buffer.from(bytes).toString('utf8');
 }
