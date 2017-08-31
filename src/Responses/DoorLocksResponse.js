@@ -12,8 +12,8 @@ export default class DoorLocksResponse {
     const positions = {
       0: 'frontLeft',
       1: 'frontRight',
-      2: 'rearLeft',
-      3: 'rearRight',
+      2: 'rearRight',
+      3: 'rearLeft',
     };
 
     for (let i = 0; i < doorsCount; i++) {
