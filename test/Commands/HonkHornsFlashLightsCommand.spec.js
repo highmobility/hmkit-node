@@ -14,18 +14,14 @@ describe(`HonkHornsFlashLightsCommand`, () => {
   });
 
   it(`should activate emergency flasher`, async () => {
-    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.activateEmergencyFlasher(
-      true
-    );
+    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.activateEmergencyFlasher();
     const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 
   it(`should deactivate emergency flasher`, async () => {
-    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.activateEmergencyFlasher(
-      false
-    );
+    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.deactivateEmergencyFlasher();
     const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);

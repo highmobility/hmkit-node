@@ -5,9 +5,11 @@ export default class HonkHornsFlashLightsCommand {
     return new Command([0x00, 0x26, 0x00, honkHorn, flashLights]);
   }
 
-  static activateEmergencyFlasher(activate) {
-    const byte = activate ? 0x01 : 0x00;
+  static activateEmergencyFlasher() {
+    return new Command([0x00, 0x26, 0x01, 0x01]);
+  }
 
-    return new Command([0x00, 0x26, 0x01, byte]);
+  static deactivateEmergencyFlasher() {
+    return new Command([0x00, 0x26, 0x01, 0x00]);
   }
 }
