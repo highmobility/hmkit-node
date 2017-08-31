@@ -31,6 +31,10 @@ export function intToBinary(int) {
   return int.toString(2);
 }
 
+export function binaryToInt(binary) {
+  return parseInt(binary, 2);
+}
+
 export function hexToUint8Array(hexString) {
   if (!hexString) {
     return new Uint8Array();
@@ -66,6 +70,12 @@ export function pad(string: string, width: number) {
 
 export function hexArrayToHex(hexArray: Array<number>) {
   return hexArray.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
+}
+
+export function intToIeee754(value: number, bytes: number = 4) {
+  const ieeeArray = [];
+  ieee754.write(ieeeArray, value, 0, false, 23, bytes);
+  return ieeeArray;
 }
 
 export function ieee754ToBase10(array: Array<number>, bytes: number = 4) {

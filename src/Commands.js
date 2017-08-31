@@ -1,6 +1,7 @@
 import BrowserCommand from './Commands/BrowserCommand';
 import CapabilitiesCommand from './Commands/CapabilitiesCommand';
 import ChargingCommand from './Commands/ChargingCommand';
+import ClimateCommand from './Commands/ClimateCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
@@ -22,6 +23,7 @@ export default class Commands {
       BrowserCommand,
       CapabilitiesCommand,
       ChargingCommand,
+      ClimateCommand,
       DiagnosticsCommand,
       DoorLocksCommand,
       EngineCommand,
