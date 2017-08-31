@@ -5,7 +5,12 @@ export default class WindowsCommand {
     return new Command([0x00, 0x45, 0x00]);
   }
 
-  static setState(frontLeft: string, frontRight: string, rearRight: string, rearLeft: string) {
+  static setState(
+    frontLeft: string,
+    frontRight: string,
+    rearRight: string,
+    rearLeft: string
+  ) {
     const windowsBytes = this.getWindowsBytes({
       frontLeft,
       frontRight,

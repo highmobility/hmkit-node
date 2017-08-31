@@ -17,7 +17,12 @@ describe(`WindowsCommand`, () => {
   });
 
   it(`should open all windows`, async () => {
-    const bytes = hmkit.commands.WindowsCommand.setState('open', 'open', 'open', 'open');
+    const bytes = hmkit.commands.WindowsCommand.setState(
+      'open',
+      'open',
+      'open',
+      'open'
+    );
     const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
@@ -31,7 +36,12 @@ describe(`WindowsCommand`, () => {
   });
 
   it(`should close all windows`, async () => {
-    const bytes = hmkit.commands.WindowsCommand.setState('closed', 'closed', 'closed', 'closed');
+    const bytes = hmkit.commands.WindowsCommand.setState(
+      'closed',
+      'closed',
+      'closed',
+      'closed'
+    );
     const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
