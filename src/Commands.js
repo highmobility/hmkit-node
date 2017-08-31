@@ -5,9 +5,12 @@ import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
 import HonkHornsFlashLightsCommand from './Commands/HonkHornsFlashLightsCommand';
+import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import NotificationCommand from './Commands/NotificationCommand';
+import RooftopControlCommand from './Commands/RooftopControlCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
+import ValetModeCommand from './Commands/ValetModeCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
 import WakeUpCommand from './Commands/WakeUpCommand';
@@ -23,9 +26,12 @@ export default class Commands {
       DoorLocksCommand,
       EngineCommand,
       HonkHornsFlashLightsCommand,
+      LightsCommand,
       MaintenanceCommand,
       NotificationCommand,
+      RooftopControlCommand,
       TrunkAccessCommand,
+      ValetModeCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,
       WakeUpCommand,

@@ -4,9 +4,12 @@ import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
+import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
 import NotificationResponse from './NotificationResponse';
+import RooftopControlResponse from './RooftopControlResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
+import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 import WindowsResponse from './WindowsResponse';
 
@@ -21,9 +24,12 @@ export default class Response {
       DoorLocksResponse,
       EngineResponse,
       FailureMessageResponse,
+      LightsResponse,
       MaintenanceResponse,
       NotificationResponse,
+      RooftopControlResponse,
       TrunkAccessResponse,
+      ValetModeResponse,
       VehicleLocationResponse,
       WindowsResponse,
     ];
