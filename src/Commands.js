@@ -10,6 +10,7 @@ import HonkHornsFlashLightsCommand from './Commands/HonkHornsFlashLightsCommand'
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import MessagingCommand from './Commands/MessagingCommand';
+import NaviDestinationCommand from './Commands/NaviDestinationCommand';
 import NotificationCommand from './Commands/NotificationCommand';
 import RooftopControlCommand from './Commands/RooftopControlCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
@@ -35,6 +36,7 @@ export default class Commands {
       LightsCommand,
       MaintenanceCommand,
       MessagingCommand,
+      NaviDestinationCommand,
       NotificationCommand,
       RooftopControlCommand,
       TrunkAccessCommand,
