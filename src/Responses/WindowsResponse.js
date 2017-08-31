@@ -20,7 +20,7 @@ export default class WindowsResponse {
             const pos = 4 + (2 * i);
 
             windows[positions[bytes[pos]]] = {
-                openClosed: this.getOpenClosedValue(bytes[pos + 1])
+                openClosed: this.getPositionValue(bytes[pos + 1])
             };
         }
 
