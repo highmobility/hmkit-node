@@ -4,17 +4,16 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`WindowsResponse`, () => {
   it(`should return WindowsResponse`, () => {
-    const response = new Response(
-      hexToUint8Array('004501040001010002010300')
-    );
+    const response = new Response(hexToUint8Array('004501040001010002010300'));
 
     expect(response.parse()).toBeInstanceOf(WindowsResponse);
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
         windows: expect.objectContaining({
-          front_left: expect.objectContaining({ openClosed: 'open', }),
+          front_left: expect.objectContaining({ openClosed: 'open' }),
         }),
-    }));
+      })
+    );
   });
 });
