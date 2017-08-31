@@ -5,8 +5,13 @@ export default class WindowsCommand {
     return new Command([0x00, 0x45, 0x00]);
   }
 
-  static openClose(windows: Object) {
-    const windowsBytes = this.getWindowsBytes(windows);
+  static setState(frontLeft: string, frontRight: string, rearRight: string, rearLeft: string) {
+    const windowsBytes = this.getWindowsBytes({
+      frontLeft,
+      frontRight,
+      rearRight,
+      rearLeft,
+    });
 
     return new Command([0x00, 0x45, 0x02, ...windowsBytes]);
   }
@@ -27,18 +32,12 @@ export default class WindowsCommand {
 
   static getWindowPositionByte(position) {
     switch (position) {
-      case 'front_left':
-        return 0x00;
-
-      case 'front_right':
+      case 'frontRight':
         return 0x01;
-
-      case 'rear_right':
+      case 'rearRight':
         return 0x02;
-
-      case 'rear_left':
+      case 'rearLeft':
         return 0x03;
-
       default:
         return 0x00;
     }
@@ -46,12 +45,8 @@ export default class WindowsCommand {
 
   static getWindowOpenCloseByte(openClose) {
     switch (openClose) {
-      case 'close':
-        return 0x00;
-
       case 'open':
         return 0x01;
-
       default:
         return 0x00;
     }

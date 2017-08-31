@@ -10,9 +10,10 @@ describe(`WindowsResponse`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        windows: expect.objectContaining({
-          front_left: expect.objectContaining({ openClosed: 'open' }),
-        }),
+        frontLeft: 'open',
+        frontRight: 'closed',
+        rearRight: 'open',
+        rearLeft: 'closed',
       })
     );
   });
