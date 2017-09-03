@@ -16,6 +16,7 @@ import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 import WindowsResponse from './WindowsResponse';
+import WindscreenResponse from './WindscreenResponse';
 
 export default class Response {
   constructor(data: string) {
@@ -40,6 +41,7 @@ export default class Response {
       ValetModeResponse,
       VehicleLocationResponse,
       WindowsResponse,
+      WindscreenResponse,
     ];
   }
 

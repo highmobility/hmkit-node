@@ -24,6 +24,7 @@ import VehicleStatusCommand from './Commands/VehicleStatusCommand';
 import VideoHandoverCommand from './Commands/VideoHandoverCommand';
 import WakeUpCommand from './Commands/WakeUpCommand';
 import WindowsCommand from './Commands/WindowsCommand';
+import WindscreenCommand from './Commands/WindscreenCommand';
 
 export default class Commands {
   constructor() {
@@ -54,6 +55,7 @@ export default class Commands {
       VideoHandoverCommand,
       WakeUpCommand,
       WindowsCommand,
+      WindscreenCommand,
     });
   }
 }
