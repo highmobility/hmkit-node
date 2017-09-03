@@ -48,6 +48,8 @@ describe(`AccessCertificate`, () => {
     const accessCertificate = new AccessCertificate(accessCertificateBytes);
     const startDate = accessCertificate.getValidityStartDate();
     expect(startDate).toBeInstanceOf(Date);
+
+    // This is dependant on the "executor's" timeZone (i.e. fails, by 1 hour, if not run in EEST)
     expect(startDate.getTime()).toBe(1505120400000);
   });
 
@@ -55,6 +57,8 @@ describe(`AccessCertificate`, () => {
     const accessCertificate = new AccessCertificate(accessCertificateBytes);
     const endDate = accessCertificate.getValidityEndDate();
     expect(endDate).toBeInstanceOf(Date);
+
+    // This is dependant on the "executor's" timeZone (i.e. fails, by 1 hour, if not run in EEST)
     expect(endDate.getTime()).toBe(1507712400000);
   });
 
