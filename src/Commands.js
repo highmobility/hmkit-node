@@ -16,6 +16,7 @@ import NotificationCommand from './Commands/NotificationCommand';
 import ParkingTicketCommand from './Commands/ParkingTicketCommand';
 import RooftopControlCommand from './Commands/RooftopControlCommand';
 import TextInputCommand from './Commands/TextInputCommand';
+import TheftAlarmCommand from './Commands/TheftAlarmCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
 import ValetModeCommand from './Commands/ValetModeCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
@@ -45,6 +46,7 @@ export default class Commands {
       ParkingTicketCommand,
       RooftopControlCommand,
       TextInputCommand,
+      TheftAlarmCommand,
       TrunkAccessCommand,
       ValetModeCommand,
       VehicleLocationCommand,

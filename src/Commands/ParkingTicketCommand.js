@@ -6,10 +6,6 @@ export default class ParkingTicketCommand {
     return new Command([0x00, 0x47, 0x00]);
   }
 
-  static getState() {
-    return new Command([0x00, 0x47, 0x00]);
-  }
-
   static endParking() {
     return new Command([0x00, 0x47, 0x03]);
   }

@@ -13,16 +13,6 @@ describe(`ParkingTicketCommand`, () => {
     //    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
   });
 
-  it('should get parking ticket #2', async () => {
-    const command = hmkit.commands.ParkingTicketCommand.getState();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
-
-    expect(command.toString()).toBe('004700');
-
-    // Waiting for the emulator to support this
-    //    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
-  });
-
   it('should end parking', async () => {
     const command = hmkit.commands.ParkingTicketCommand.endParking();
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
