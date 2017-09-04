@@ -2,7 +2,7 @@ import Command from './Command';
 import { stringToHex, hexToUint8Array, intToHex } from '../encoding';
 
 export default class ParkingTicketCommand {
-  static getParkingTicket() {
+  static get() {
     return new Command([0x00, 0x47, 0x00]);
   }
 

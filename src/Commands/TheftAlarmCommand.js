@@ -5,13 +5,15 @@ export default class TheftAlarmCommand {
     return new Command([0x00, 0x46, 0x00]);
   }
 
-  static setState(action: string) {
-    const actionOptions = {
-      unarm: 0x00,
-      arm: 0x01,
-      trigger: 0x02,
-    };
+  static unarm() {
+    return new Command([0x00, 0x46, 0x02, 0x00]);
+  }
 
-    return new Command([0x00, 0x46, 0x02, actionOptions[action]]);
+  static arm() {
+    return new Command([0x00, 0x46, 0x02, 0x01]);
+  }
+
+  static triggerAlarm() {
+    return new Command([0x00, 0x46, 0x02, 0x02]);
   }
 }

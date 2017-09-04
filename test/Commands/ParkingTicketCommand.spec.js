@@ -4,7 +4,7 @@ const hmkit = getHmkit();
 
 describe(`ParkingTicketCommand`, () => {
   it('should get parking ticket #1', async () => {
-    const command = hmkit.commands.ParkingTicketCommand.getParkingTicket();
+    const command = hmkit.commands.ParkingTicketCommand.get();
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
     expect(command.toString()).toBe('004700');

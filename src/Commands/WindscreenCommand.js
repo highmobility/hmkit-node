@@ -5,7 +5,7 @@ export default class WindscreenCommand {
     return new Command([0x00, 0x42, 0x00]);
   }
 
-  static setState(
+  static setDamage(
     damage: string,
     damageZoneHorisontal: number,
     damageZoneVertical: number,

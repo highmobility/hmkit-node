@@ -12,7 +12,7 @@ describe(`WindscreenCommand`, () => {
   });
 
   it('should set windscreen damage', async () => {
-    const bytes = hmkit.commands.WindscreenCommand.setState(
+    const bytes = hmkit.commands.WindscreenCommand.setDamage(
       'no_impact_occured',
       4,
       1,
@@ -22,7 +22,7 @@ describe(`WindscreenCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
 
-    const bytes2 = hmkit.commands.WindscreenCommand.setState(
+    const bytes2 = hmkit.commands.WindscreenCommand.setDamage(
       'damage_larger_than_1_inch',
       4,
       3,
@@ -32,7 +32,7 @@ describe(`WindscreenCommand`, () => {
 
     expect(response2.parse()).toBeInstanceOf(WindscreenResponse);
 
-    const bytes3 = hmkit.commands.WindscreenCommand.setState(
+    const bytes3 = hmkit.commands.WindscreenCommand.setDamage(
       'damage_smaller_than_1_inch',
       1,
       2,
@@ -42,7 +42,7 @@ describe(`WindscreenCommand`, () => {
 
     expect(response3.parse()).toBeInstanceOf(WindscreenResponse);
 
-    const bytes4 = hmkit.commands.WindscreenCommand.setState(
+    const bytes4 = hmkit.commands.WindscreenCommand.setDamage(
       'no_damage',
       2,
       2,
