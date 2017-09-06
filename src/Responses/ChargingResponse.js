@@ -4,11 +4,11 @@ import { ieee754ToBase10 } from '../encoding';
 export default class ChargingResponse {
   static identifier = [0x00, 0x23];
 
-  constructor(bytes) {
-    if (bytes[2] === 0x01) {
-      this.getState(bytes);
-    } else {
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
       this.getVehicleState(bytes);
+    } else {
+      this.getState(bytes);
     }
   }
 

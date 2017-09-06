@@ -42,7 +42,7 @@ describe(`ChargingResponse`, () => {
   it(`should get charging state when fetching vehicle state`, () => {
     const response = new Response(
       hexToUint8Array('0023080200FF32BF19999A0190')
-    );
+    ).vehicleState();
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
       chargingState: 'charging',
