@@ -1,9 +1,8 @@
 const HMKit = require('./lib');
 
-const clientCertificate =
-  'dGVzdPZ/oYYWgKrJFhGOCcX/U8uWPy3SVh1dVY8r3vb0yFLi8kA1duKvysIPprpqbQw089Z33MdPuFGQU9Le509pmeAcnqiqOrrnVQHC+o+4tdUVLijFkBys6WliZSqwVY7KOu5SXSBY1PU8ophRJKm7X+r26qspCawv1S43ZboFGoyCxIpRUwsi0zsV3Daskx05USIR50X5';
-const clientPrivateKey = 'jVNDUrJjZnVFYybph7MoMiFpTqi6Bz3w6iG+XqKD1e0=';
-const accessToken = 'sFy5sjP_AX_EKfumK3cM2rX4RBinEavnidzwgUsSZOM5JwaXvnKIC37CyNRc1Rdb04o33EwsvNSzdjBnBXK0RjHhdFukonlJqczVZjl7B4EGlK1vFNhU9LA7vDgzn3ctGQ';
+const clientCertificate = 'dGVzdEqFnlrGfjCXqCkTwfqzK3ZNj/lhWk0caxnRv8Qt+G6Na+KH6jConA6RufYqNxm+WqehbBcjFSjJIlMBLG11hlRbv2fKE/p+sLzgn8Q3/y3fFvpIGpSHa7cRnnL+t3oLLU+sJfWRqYkwYNty/EqkJ8AEwmH++fW13grveSc5bhtLIAd+biDFKnl3txM4aSneu/jPc/nc';
+const clientPrivateKey = 'wTd1J5SfHMLu2ta0zkRFm6rPCFhoKp/ZAzeLNsZ85OU=';
+const accessToken = 'dVZ_ILse2ZnvR1Yov-bwmjEadxDFY4WKwLDcYXRW43zN94JIRF930RSHH33wDix-7tsEzK4oGtrkVkU2z0vrtdxGn3P3tHOGTeWNrnvoCer_QgRE1AAJJN96UQHJyuAN2Q';
 
 const hmkit = new HMKit(clientCertificate, clientPrivateKey).staging();
 
