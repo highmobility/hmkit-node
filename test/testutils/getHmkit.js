@@ -1,7 +1,8 @@
 import HMKit from '../../src';
 
-const defaultClientCertificate = 'dGVzdEqFnlrGfjCXqCkTwfqzK3ZNj/lhWk0caxnRv8Qt+G6Na+KH6jConA6RufYqNxm+WqehbBcjFSjJIlMBLG11hlRbv2fKE/p+sLzgn8Q3/y3fFvpIGpSHa7cRnnL+t3oLLU+sJfWRqYkwYNty/EqkJ8AEwmH++fW13grveSc5bhtLIAd+biDFKnl3txM4aSneu/jPc/nc';
-const defaultClientPrivateKey = 'wTd1J5SfHMLu2ta0zkRFm6rPCFhoKp/ZAzeLNsZ85OU=';
+const defaultClientCertificate =
+  'dGVzdDRbiGWyUEqp6/BYf5skRhEFhuDbabgxKubaSrtF6KhjQFvKADHfO9+LhYq9TdJ4yzswsShrIEMQ6Ezu63NPtTXU+uKShsFzAXeNhTyO7tGcwLItGRrELb4lxXE22oGxuLgLsqQD5qS8EqTkEcgdF8UNUMhZce3bQtXRrBPJAdeC70BCggV5TOlVepKNBkzTU5sFubdH';
+const defaultClientPrivateKey = '7qzkS+bF8n84E2HnLZ/AKGMfyVcRt8L6PeXXiLaRHkM=';
 
 export default function hmkit(
   clientCertificate = defaultClientCertificate,
@@ -10,5 +11,6 @@ export default function hmkit(
   return new HMKit(clientCertificate, clientPrivateKey).staging();
 }
 
-export const vehicleSerial = '6940F8C15002CF62E904E085';
-export const accessToken = 'dVZ_ILse2ZnvR1Yov-bwmjEadxDFY4WKwLDcYXRW43zN94JIRF930RSHH33wDix-7tsEzK4oGtrkVkU2z0vrtdxGn3P3tHOGTeWNrnvoCer_QgRE1AAJJN96UQHJyuAN2Q';
+export const vehicleSerial = '356675D0CC76A8FFF5';
+export const accessToken =
+  '1-c1w9toXnTiLIMX43FfGF2Zn744hthep3WHCkFJO8Z9akKC--yfkkWIC1afZfVG-A9V8Pu6D2ORSkxt1gXnPo899mBeoRVDHz0i34ru9QCDGD9YGvpGrwTFdiZ05DiiaQ';
