@@ -31,7 +31,17 @@ export default class ClimateResponse {
 
   getVehicleState(bytes) {
     if (bytes[2] === 16) {
-      this.getValues(bytes);
+      this.insideTemperature = this.getInsideTemperature(bytes.slice(3, 7));
+      this.outsideTemperature = this.getOutsideTemperature(bytes.slice(7, 11));
+      this.hvacState = this.getHvacState(bytes[11]);
+      this.defoggingState = this.getDefoggingState(bytes[12]);
+      this.defrostingState = this.getDefrostingState(bytes[13]);
+      this.defrostingTemperature = this.getDefrostingTemperature(
+        bytes.slice(14, 18)
+      );
+      this.autoHvacActivatedOn = this.getAutoHvacActivatedOn(
+        bytes.slice(18, 19)
+      );
     } else {
       this.error = 'invalid state size';
     }
