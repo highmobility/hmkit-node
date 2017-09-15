@@ -26,6 +26,28 @@ describe(`DiagnosticsResponse`, () => {
     });
   });
 
+  it('should return Diagnostics vehicle state', () => {
+    const response = new Response(
+      hexToUint8Array('00330B0249F00063003C09C45A01')
+    ).vehicleState();
+
+    expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
+    expect(response.parse()).toEqual({
+      mileage: 150000,
+      engineOilTemperature: 99,
+      speed: 60,
+      engineRPM: 2500,
+      fuelLevel: 90,
+      washerFluidLevel: 'filled',
+    });
+
+    const response2 = new Response(
+      hexToUint8Array('00330A0249F00063003C09C45A01')
+    ).vehicleState();
+
+    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+  });
+
   it(`should return DiagnosticsResponse`, () => {
     const response = new Response(
       hexToUint8Array(

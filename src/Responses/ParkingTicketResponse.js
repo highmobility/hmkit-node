@@ -3,7 +3,15 @@ import { bytesToString, hexToInt, uint8ArrayToHex } from '../encoding';
 export default class ParkingTicketResponse {
   static identifier = [0x00, 0x47];
 
-  constructor(bytes) {
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
+      this.getVehicleState(bytes);
+    } else {
+      this.getValues(bytes);
+    }
+  }
+
+  getValues(bytes) {
     this.state = this.getState(bytes);
     this.operatorName = this.getOperatorName(bytes);
     this.operatorTicketID = this.getOperatorTicketID(bytes);
@@ -13,6 +21,17 @@ export default class ParkingTicketResponse {
 
     this.startDate = this.getDate(bytes, datesStartIdx);
     this.endDate = this.getDate(bytes, datesStartIdx + 5);
+  }
+
+  getVehicleState(bytes) {
+    const nameSize = this.getOperatorNameSize(bytes);
+    const ticketSize = this.getOperatorTicketIDSize(bytes);
+
+    if (bytes[2] === 13 + nameSize + ticketSize) {
+      this.getValues(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getOperatorName(bytes) {

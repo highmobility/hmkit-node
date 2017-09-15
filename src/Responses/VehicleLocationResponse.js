@@ -3,8 +3,20 @@ import { ieee754ToBase10 } from '../encoding';
 export default class VehicleLocationResponse {
   static identifier = [0x00, 0x30];
 
-  constructor(bytes) {
-    this.vehicleLocation(bytes);
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
+      this.getVehicleState(bytes);
+    } else {
+      this.vehicleLocation(bytes);
+    }
+  }
+
+  getVehicleState(bytes) {
+    if (bytes[2] === 8) {
+      this.vehicleLocation(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   vehicleLocation(bytes) {

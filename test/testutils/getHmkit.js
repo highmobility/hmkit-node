@@ -11,6 +11,7 @@ export default function hmkit(
   return new HMKit(clientCertificate, clientPrivateKey).staging();
 }
 
+// https://developers.h-m.space/orgs/19/emulators/105#/
 export const vehicleSerial = '356675D0CC76A8FFF5';
 export const accessToken =
   '1-c1w9toXnTiLIMX43FfGF2Zn744hthep3WHCkFJO8Z9akKC--yfkkWIC1afZfVG-A9V8Pu6D2ORSkxt1gXnPo899mBeoRVDHz0i34ru9QCDGD9YGvpGrwTFdiZ05DiiaQ';

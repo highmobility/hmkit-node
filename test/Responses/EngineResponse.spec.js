@@ -10,4 +10,16 @@ describe(`EngineResponse`, () => {
       engine: 'on',
     });
   });
+
+  it(`should return Engine VS`, () => {
+    const response = new Response(hexToUint8Array('00350100')).vehicleState();
+    expect(response.parse()).toBeInstanceOf(EngineResponse);
+    expect(response.parse()).toEqual({
+      engine: 'off',
+    });
+
+    const response2 = new Response(hexToUint8Array('00350200')).vehicleState();
+
+    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+  });
 });

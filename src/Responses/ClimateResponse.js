@@ -3,37 +3,37 @@ import { ieee754ToBase10, intToBinary, pad } from '../encoding';
 export default class ClimateResponse {
   static identifier = [0x00, 0x24];
 
-  constructor(bytes) {
-    if (bytes[2] === 0x01) {
-      this.insideTemperature = this.getInsideTemperature(bytes.slice(3, 7));
-      this.outsideTemperature = this.getOutsideTemperature(bytes.slice(7, 11));
-      this.driverTemperatureSetting = this.getDriverTemperatureSetting(
-        bytes.slice(11, 15)
-      );
-      this.passengerTemperatureSetting = this.getPassengerTemperatureSetting(
-        bytes.slice(15, 19)
-      );
-      this.hvacState = this.getHvacState(bytes[19]);
-      this.defoggingState = this.getDefoggingState(bytes[20]);
-      this.defrostingState = this.getDefrostingState(bytes[21]);
-      this.defrostingTemperature = this.getDefrostingTemperature(
-        bytes.slice(22, 26)
-      );
-      this.autoHvacActivatedOn = this.getAutoHvacActivatedOn(
-        bytes.slice(26, 41)
-      );
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
+      this.getVehicleState(bytes);
     } else {
-      this.insideTemperature = this.getInsideTemperature(bytes.slice(3, 7));
-      this.outsideTemperature = this.getOutsideTemperature(bytes.slice(7, 11));
-      this.hvacState = this.getHvacState(bytes[11]);
-      this.defoggingState = this.getDefoggingState(bytes[12]);
-      this.defrostingState = this.getDefrostingState(bytes[13]);
-      this.defrostingTemperature = this.getDefrostingTemperature(
-        bytes.slice(14, 18)
-      );
-      this.autoHvacActivatedOn = this.getAutoHvacActivatedOn(
-        bytes.slice(18, 19)
-      );
+      this.getValues(bytes);
+    }
+  }
+
+  getValues(bytes) {
+    this.insideTemperature = this.getInsideTemperature(bytes.slice(3, 7));
+    this.outsideTemperature = this.getOutsideTemperature(bytes.slice(7, 11));
+    this.driverTemperatureSetting = this.getDriverTemperatureSetting(
+      bytes.slice(11, 15)
+    );
+    this.passengerTemperatureSetting = this.getPassengerTemperatureSetting(
+      bytes.slice(15, 19)
+    );
+    this.hvacState = this.getHvacState(bytes[19]);
+    this.defoggingState = this.getDefoggingState(bytes[20]);
+    this.defrostingState = this.getDefrostingState(bytes[21]);
+    this.defrostingTemperature = this.getDefrostingTemperature(
+      bytes.slice(22, 26)
+    );
+    this.autoHvacActivatedOn = this.getAutoHvacActivatedOn(bytes.slice(26, 41));
+  }
+
+  getVehicleState(bytes) {
+    if (bytes[2] === 16) {
+      this.getValues(bytes);
+    } else {
+      this.error = 'invalid state size';
     }
   }
 

@@ -40,16 +40,21 @@ describe(`ChargingResponse`, () => {
   });
 
   it(`should get charging state when fetching vehicle state`, () => {
-    const response = new Response(
+    const response1 = new Response(
       hexToUint8Array('0023080200FF32BF19999A0190')
     ).vehicleState();
-    expect(response.parse()).toBeInstanceOf(ChargingResponse);
-    expect(response.parse()).toEqual({
+    expect(response1.parse()).toBeInstanceOf(ChargingResponse);
+    expect(response1.parse()).toEqual({
       chargingState: 'charging',
       estimatedRange: 255,
       batteryLevel: 0.5,
       batteryCurrent: -0.6000000238418579,
-      chargerVoltage: 400,
     });
+
+    const response2 = new Response(
+      hexToUint8Array('0023070200FF32BF19999A0190')
+    ).vehicleState();
+
+    expect(response2.parse()).toEqual({ error: 'invalid state size' });
   });
 });

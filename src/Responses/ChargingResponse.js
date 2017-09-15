@@ -25,11 +25,14 @@ export default class ChargingResponse {
   }
 
   getVehicleState(bytes) {
-    this.chargingState = this.getChargingState(bytes);
-    this.estimatedRange = this.getEstimatedRange(bytes);
-    this.batteryLevel = this.getBatteryLevel(bytes);
-    this.batteryCurrent = this.getBatteryCurrent(bytes);
-    this.chargerVoltage = this.getChargerVoltage(bytes);
+    if (bytes[2] === 8) {
+      this.chargingState = this.getChargingState(bytes);
+      this.estimatedRange = this.getEstimatedRange(bytes);
+      this.batteryLevel = this.getBatteryLevel(bytes);
+      this.batteryCurrent = this.getBatteryCurrent(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getChargingState(bytes) {

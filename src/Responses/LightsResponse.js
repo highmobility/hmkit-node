@@ -3,11 +3,11 @@ import { intToHex, pad } from '../encoding';
 export default class LightsResponse {
   static identifier = [0x00, 0x36];
 
-  constructor(bytes) {
-    if (bytes[2] === 0x01) {
-      this.getState(bytes);
-    } else {
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
       this.getVehicleState(bytes);
+    } else {
+      this.getState(bytes);
     }
   }
 
@@ -19,9 +19,13 @@ export default class LightsResponse {
   }
 
   getVehicleState(bytes) {
-    this.frontExteriorLight = this.getFrontExteriorLight(bytes);
-    this.rearExteriorLight = this.getRearExteriorLighte(bytes);
-    this.interiorLight = this.getInteriorLight(bytes);
+    if (bytes[2] === 3) {
+      this.frontExteriorLight = this.getFrontExteriorLight(bytes);
+      this.rearExteriorLight = this.getRearExteriorLighte(bytes);
+      this.interiorLight = this.getInteriorLight(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getFrontExteriorLight(bytes) {

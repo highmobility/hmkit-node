@@ -4,11 +4,11 @@ import { ieee754ToBase10 } from '../encoding';
 export default class DiagnosticsResponse {
   static identifier = [0x00, 0x33];
 
-  constructor(bytes) {
-    if (bytes[2] === 0x01) {
-      this.diagnosticsState(bytes);
-    } else {
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
       this.getVehicleState(bytes);
+    } else {
+      this.diagnosticsState(bytes);
     }
   }
 
@@ -20,6 +20,19 @@ export default class DiagnosticsResponse {
     this.fuelLevel = this.getFuelLevel(bytes);
     this.washerFluidLevel = this.getWasherFluidLevel(bytes);
     this.tires = this.getTires(bytes);
+  }
+
+  getVehicleState(bytes) {
+    if (bytes[2] === 11) {
+      this.mileage = this.getMileage(bytes);
+      this.engineOilTemperature = this.getEngineOilTemperature(bytes);
+      this.speed = this.getSpeed(bytes);
+      this.engineRPM = this.getEngineRPM(bytes);
+      this.fuelLevel = this.getFuelLevel(bytes);
+      this.washerFluidLevel = this.getWasherFluidLevel(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getMileage(bytes) {
@@ -68,14 +81,5 @@ export default class DiagnosticsResponse {
     }
 
     return tires;
-  }
-
-  getVehicleState(bytes) {
-    this.mileage = this.getMileage(bytes);
-    this.engineOilTemperature = this.getEngineOilTemperature(bytes);
-    this.speed = this.getSpeed(bytes);
-    this.engineRPM = this.getEngineRPM(bytes);
-    this.fuelLevel = this.getFuelLevel(bytes);
-    this.washerFluidLevel = this.getWasherFluidLevel(bytes);
   }
 }

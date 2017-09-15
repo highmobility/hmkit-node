@@ -3,7 +3,7 @@ import WindscreenResponse from '../../src/Responses/WindscreenResponse';
 import { hexToUint8Array } from '../../src/encoding';
 
 describe(`WindscreemResponse`, () => {
-  it(`should return WindscreemResponse`, () => {
+  it(`should return WindscreenResponse`, () => {
     const response = new Response(
       hexToUint8Array('0042010203024312025f11010a102005')
     );
@@ -51,5 +51,49 @@ describe(`WindscreemResponse`, () => {
     );
 
     expect(response3.parse()).toBeInstanceOf(WindscreenResponse);
+  });
+
+  it(`should return Windscreen VS`, () => {
+    const response = new Response(
+      hexToUint8Array('00420D0203024312025f11010a102005')
+    ).vehicleState();
+
+    expect(response.parse()).toBeInstanceOf(WindscreenResponse);
+
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        wipers: {
+          state: 'automatic',
+          intensityLevel: 3,
+        },
+        windscreen: {
+          damage: 'damage_smaller_than_1_inch',
+          zoneMatrix: {
+            horisontal: 4,
+            vertical: 3,
+          },
+          damageZone: {
+            horisontal: 1,
+            vertical: 2,
+          },
+          needsReplacement: 'yes',
+          damageConfidence: 0.95,
+          damageDetectionDate: {
+            year: 2017,
+            month: 1,
+            day: 10,
+            hour: 16,
+            minute: 32,
+            seconds: 5,
+          },
+        },
+      })
+    );
+
+    const response2 = new Response(
+      hexToUint8Array('00420E0203024312025f11010a102005')
+    ).vehicleState();
+
+    expect(response2.parse()).toEqual({ error: 'invalid state size' });
   });
 });

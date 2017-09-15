@@ -10,4 +10,15 @@ describe(`ValetModeResponse`, () => {
       mode: 'activated',
     });
   });
+
+  it(`should return ValetMode VS`, () => {
+    const response = new Response(hexToUint8Array('00280100')).vehicleState();
+
+    expect(response.parse()).toBeInstanceOf(ValetModeResponse);
+    expect(response.parse()).toEqual({ mode: 'deactivated' });
+
+    const response2 = new Response(hexToUint8Array('00280200')).vehicleState();
+
+    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+  });
 });

@@ -1,8 +1,22 @@
 export default class WindowsResponse {
   static identifier = [0x00, 0x45];
 
-  constructor(bytes) {
-    Object.assign(this, this.getWindowsStates(bytes));
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
+      this.getVehicleState(bytes);
+    } else {
+      Object.assign(this, this.getWindowsStates(bytes));
+    }
+  }
+
+  getVehicleState(bytes) {
+    const windowsCount = bytes[3];
+
+    if (bytes[2] === 1 + windowsCount * 2) {
+      Object.assign(this, this.getWindowsStates(bytes));
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getWindowsStates(bytes) {

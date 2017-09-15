@@ -41,7 +41,7 @@ describe(`ClimateResponse`, () => {
   it(`should return vehicle state version of ClimateResponse`, () => {
     const response = new Response(
       hexToUint8Array('002410419800004140000001000041AC000006')
-    );
+    ).vehicleState();
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual({
       insideTemperature: 19,
@@ -63,6 +63,12 @@ describe(`ClimateResponse`, () => {
     });
     expect(response.parse().driverTemperatureSetting).not.toBeDefined();
     expect(response.parse().passengerTemperatureSetting).not.toBeDefined();
+
+    const response2 = new Response(
+      hexToUint8Array('002411419800004140000001000041AC000006')
+    ).vehicleState();
+
+    expect(response2.parse()).toEqual({ error: 'invalid state size' });
   });
 
   it(`should handle other cases of ClimateResponse`, () => {

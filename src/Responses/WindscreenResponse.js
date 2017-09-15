@@ -1,7 +1,15 @@
 export default class WindscreenResponse {
   static identifier = [0x00, 0x42];
 
-  constructor(bytes) {
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
+      this.getVehicleState(bytes);
+    } else {
+      this.getValues(bytes);
+    }
+  }
+
+  getValues(bytes) {
     this.wipers = {
       state: this.getWiperState(bytes),
       intensityLevel: this.getWipersIntensityLevel(bytes),
@@ -15,6 +23,14 @@ export default class WindscreenResponse {
       damageConfidence: this.getDamageConfidence(bytes),
       damageDetectionDate: this.getDate(bytes, 10),
     };
+  }
+
+  getVehicleState(bytes) {
+    if (bytes[2] === 13) {
+      this.getValues(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getWiperState(bytes) {

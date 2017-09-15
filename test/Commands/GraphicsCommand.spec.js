@@ -14,6 +14,6 @@ describe(`GraphicsCommand`, () => {
     );
 
     // Needs capability in emulator
-    //    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    //        expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 });

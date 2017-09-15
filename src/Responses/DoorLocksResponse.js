@@ -1,8 +1,22 @@
 export default class DoorLocksResponse {
   static identifier = [0x00, 0x20];
 
-  constructor(bytes) {
-    this.doors = this.getDoorLocksState(bytes);
+  constructor(bytes, vehicleState = false) {
+    if (vehicleState) {
+      this.getVehicleState(bytes);
+    } else {
+      this.doors = this.getDoorLocksState(bytes);
+    }
+  }
+
+  getVehicleState(bytes) {
+    const doorsCount = bytes[3];
+
+    if (bytes[2] === 1 + doorsCount * 3) {
+      this.doors = this.getDoorLocksState(bytes);
+    } else {
+      this.error = 'invalid state size';
+    }
   }
 
   getDoorLocksState(bytes) {
