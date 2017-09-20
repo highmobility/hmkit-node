@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
-    "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/.bin/jest --runInBand",
+    "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
