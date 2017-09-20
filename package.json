@@ -10,7 +10,7 @@
     "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
-    "test:setup": "node --napi-modules test/testutils/initialSetup.js",
+    "test:setup": "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
