@@ -27,6 +27,8 @@ export default class SdkNodeBindings {
       return require('../bindings/macos');
     } else if (process.platform === 'linux') {
       return require('../bindings/ubuntu');
+    } else if (process.platform === 'win32') {
+      return require('../bindings/windows');
     }
 
     /* istanbul ignore next */
