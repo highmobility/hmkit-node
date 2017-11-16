@@ -17,6 +17,7 @@ import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 import WindowsResponse from './WindowsResponse';
 import WindscreenResponse from './WindscreenResponse';
+import CapabilitiesResponse from './CapabilitiesResponse';
 
 export default class Response {
   constructor(data: string) {
@@ -25,6 +26,7 @@ export default class Response {
     this.checkRawDataLength();
 
     this.parsers = [
+      CapabilitiesResponse,
       ChargingResponse,
       ClimateResponse,
       DiagnosticsResponse,
