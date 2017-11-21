@@ -67,7 +67,7 @@ export default class DiagnosticsResponse {
       0: 'frontLeft',
       1: 'frontRight',
       2: 'rearLeft',
-      3: 'rearRight',
+      3: 'rearRight'
     };
 
     for (let i = 0; i < tiresCount; i++) {
@@ -76,7 +76,7 @@ export default class DiagnosticsResponse {
         bytes[pos + 1],
         bytes[pos + 2],
         bytes[pos + 3],
-        bytes[pos + 4],
+        bytes[pos + 4]
       ]);
     }
 
