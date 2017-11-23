@@ -1,5 +1,5 @@
-import { CAPABILITY } from "../capabilities";
-import { intToHex } from "../encoding";
+import autoApis from '../autoApis';
+import { intToHex } from '../encoding';
 
 export default class CapabilitiesResponse {
   static identifier = [0x00, 0x10];
@@ -14,13 +14,10 @@ export default class CapabilitiesResponse {
     const capabilitiesLength = capabilitiesData[0];
 
     const capabilityIndexes = this.findCapabilityIndexes(capabilitiesData);
-    const capabilityTokens = this.getCapabilityTokens(
-      capabilityIndexes,
-      capabilitiesData
-    );
+    const capabilityTokens = this.getCapabilityTokens(capabilityIndexes, capabilitiesData);
 
     if (capabilityTokens.length !== capabilitiesLength) {
-      this.error = "Failed to parse all capabilities.";
+      this.error = 'Failed to parse all capabilities.';
     } else {
       this.mapCapabilities(capabilityTokens);
     }
@@ -37,8 +34,8 @@ export default class CapabilitiesResponse {
    */
   mapCapabilities(capabilityTokens) {
     capabilityTokens.forEach(token => {
-      const capabilityToMap = Object.values(CAPABILITY).find(
-        capability => token[0] === 0x00 && token[1] === capability.LSB
+      const capabilityToMap = Object.values(autoApis).find(
+        capability => token[0] === 0x00 && token[1] === capability.lsb
       );
 
       if (!capabilityToMap) {
@@ -51,7 +48,7 @@ export default class CapabilitiesResponse {
       const capabilityData = token.slice(3, token.length);
 
       if (capabilityData.length !== token[2]) {
-        this.error = `Invalid configuration length ${token[2]} instead of ${capabilityData.length}. ${capabilityToMap.LABEL} (0x${intToHex(
+        this.error = `Invalid configuration length ${token[2]} instead of ${capabilityData.length}. ${capabilityToMap.label} (0x${intToHex(
           token[0]
         )} 0x${intToHex(token[1])}).`;
         return;
@@ -62,29 +59,25 @@ export default class CapabilitiesResponse {
   }
 
   mapCapabilityAvailability(capabilityToMap, capabilityData) {
-    this[capabilityToMap.NAMESPACE] = {};
+    this[capabilityToMap.namespace] = {};
 
     capabilityData.forEach((availability, index) => {
-      const availabilityValues = Object.values(capabilityToMap.AVAILABILITY);
-      const availabilityNamespaces = Object.keys(capabilityToMap.AVAILABILITY);
+      const availabilityValues = Object.values(capabilityToMap.availability);
+      const availabilityNamespaces = Object.keys(capabilityToMap.availability);
 
       if (
         availabilityValues.length > index &&
         Object.values(availabilityValues[index]).length > availability
       ) {
         if (availabilityNamespaces.length === 1) {
-          this[capabilityToMap.NAMESPACE] = Object.values(
+          this[capabilityToMap.namespace] = Object.values(availabilityValues[index])[availability];
+        } else {
+          this[capabilityToMap.namespace][availabilityNamespaces[index]] = Object.values(
             availabilityValues[index]
           )[availability];
-        } else {
-          this[capabilityToMap.NAMESPACE][
-            availabilityNamespaces[index]
-          ] = Object.values(availabilityValues[index])[availability];
         }
       } else {
-        this.error = `Invalid capability configuration. (0x00 0x${intToHex(
-          capabilityToMap.LSB
-        )}).`;
+        this.error = `Invalid capability configuration. (0x00 0x${intToHex(capabilityToMap.LSB)}).`;
       }
     });
   }
@@ -127,10 +120,7 @@ export default class CapabilitiesResponse {
     capabilityIndexes.forEach((capabilityIndex, index) => {
       if (index < capabilityIndexes.length - 1) {
         capabilityTokens.push(
-          encodedCapabilitiesArray.slice(
-            capabilityIndex,
-            capabilityIndexes[index + 1]
-          )
+          encodedCapabilitiesArray.slice(capabilityIndex, capabilityIndexes[index + 1])
         );
       }
     });

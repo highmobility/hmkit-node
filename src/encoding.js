@@ -54,18 +54,14 @@ export function hexToByteArrays(hexString) {
   const byteArrays = [];
 
   uint8Array.forEach(uint8 => {
-    byteArrays.push(
-      pad(uint8.toString(2), 8).split('').map(byte => Number(byte))
-    );
+    byteArrays.push(pad(uint8.toString(2), 8).split('').map(byte => Number(byte)));
   });
 
   return byteArrays;
 }
 
 export function pad(string: string, width: number) {
-  return string.length >= width
-    ? string
-    : new Array(width - string.length + 1).join('0') + string;
+  return string.length >= width ? string : new Array(width - string.length + 1).join('0') + string;
 }
 
 export function hexArrayToHex(hexArray: Array<number>) {

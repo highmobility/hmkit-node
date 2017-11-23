@@ -1,89 +1,40 @@
-import { bytesSum } from '../helpers';
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { bytesSum, switchDecoder, progressDecoder } from '../helpers';
 import { ieee754ToBase10 } from '../encoding';
 
-export default class ChargingResponse {
+// TODO: Identifier should have third type parameter as well
+export default class ChargingResponse extends PropertyResponse {
   static identifier = [0x00, 0x23];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.getState(bytes);
-    }
-  }
+  constructor(data: Uint8Array) {
+    super();
 
-  getState(bytes) {
-    this.chargingState = this.getChargingState(bytes);
-    this.estimatedRange = this.getEstimatedRange(bytes);
-    this.batteryLevel = this.getBatteryLevel(bytes);
-    this.batteryCurrent = this.getBatteryCurrent(bytes);
-    this.chargerVoltage = this.getChargerVoltage(bytes);
-    this.chargeLimit = this.getChargeLimit(bytes);
-    this.timeToCompleteCharge = this.getTimeToCompleteCharge(bytes);
-    this.chargeRate = this.getChargeRate(bytes);
-    this.chargePortState = this.getChargePortState(bytes);
-  }
+    const properties = [
+      new Property(0x01, 'chargingState').setDecoder(
+        switchDecoder({
+          0x00: 'disconnected',
+          0x01: 'plugged_in',
+          0x02: 'charging',
+          0x03: 'charging_complete'
+        })
+      ),
+      new Property(0x02, 'estimatedRange').setDecoder(bytesSum),
+      new Property(0x03, 'batteryLevel').setDecoder(progressDecoder),
+      new Property(0x04, 'batteryCurrentAc').setDecoder(ieee754ToBase10),
+      new Property(0x05, 'batteryCurrentDc').setDecoder(ieee754ToBase10),
+      new Property(0x06, 'chargerVoltage').setDecoder(bytesSum),
+      new Property(0x07, 'chargeLimit').setDecoder(progressDecoder),
+      new Property(0x08, 'timeToCompleteCharge').setDecoder(bytesSum),
+      new Property(0x09, 'chargeRate').setDecoder(ieee754ToBase10),
+      new Property(0x0a, 'chargePortState').setDecoder(
+        switchDecoder({
+          0x00: 'closed',
+          0x01: 'open'
+        })
+      )
+    ];
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 8) {
-      this.chargingState = this.getChargingState(bytes);
-      this.estimatedRange = this.getEstimatedRange(bytes);
-      this.batteryLevel = this.getBatteryLevel(bytes);
-      this.batteryCurrent = this.getBatteryCurrent(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
-
-  getChargingState(bytes) {
-    switch (bytes[3]) {
-      case 0x00:
-        return 'disconnected';
-      case 0x01:
-        return 'plugged_in';
-      case 0x02:
-        return 'charging';
-      default:
-        return 'charging_complete';
-    }
-  }
-
-  getEstimatedRange(bytes) {
-    return bytesSum([bytes[4], bytes[5]]);
-  }
-
-  getBatteryLevel(bytes) {
-    return bytes[6] / 100;
-  }
-
-  getBatteryCurrent(bytes) {
-    return ieee754ToBase10([bytes[7], bytes[8], bytes[9], bytes[10]]);
-  }
-
-  getChargerVoltage(bytes) {
-    return bytesSum([bytes[11], bytes[12]]);
-  }
-
-  getChargeLimit(bytes) {
-    return bytes[13] / 100;
-  }
-
-  getTimeToCompleteCharge(bytes) {
-    return bytesSum([bytes[14], bytes[15]]);
-  }
-
-  getChargeRate(bytes) {
-    return ieee754ToBase10([bytes[16], bytes[17], bytes[18], bytes[19]]);
-  }
-
-  getChargePortState(bytes) {
-    switch (bytes[20]) {
-      case 0x00:
-        return 'closed';
-      case 0x01:
-        return 'open';
-      default:
-        return 'unavailable';
-    }
+    this.parse(data, properties);
   }
 }

@@ -1,29 +1,18 @@
-export default class RooftopControlResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { progressDecoder } from '../helpers';
+
+export default class RooftopControlResponse extends PropertyResponse {
   static identifier = [0x00, 0x25];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.dimmingState = this.getDimmingState(bytes);
-      this.openState = this.getOpenState(bytes);
-    }
-  }
+  constructor(data: Uint8Array) {
+    super();
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 2) {
-      this.dimmingState = this.getDimmingState(bytes);
-      this.openState = this.getOpenState(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
+    const properties = [
+      new Property(0x01, 'dimmingState').setDecoder(progressDecoder),
+      new Property(0x02, 'openState').setDecoder(progressDecoder)
+    ];
 
-  getDimmingState(bytes) {
-    return bytes[3] / 100;
-  }
-
-  getOpenState(bytes) {
-    return bytes[4] / 100;
+    this.parse(data, properties);
   }
 }

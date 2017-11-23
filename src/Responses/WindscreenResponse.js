@@ -1,106 +1,58 @@
-export default class WindscreenResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { switchDecoder, matrixZoneDecoder, dateDecoder, progressDecoder } from '../helpers';
+
+export default class WindscreenResponse extends PropertyResponse {
   static identifier = [0x00, 0x42];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.getValues(bytes);
-    }
+  constructor(data: Uint8Array) {
+    super();
+
+    const properties = [
+      new Property(0x01, 'state').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+          0x02: 'automatic'
+        })
+      ),
+      new Property(0x02, 'intensityLevel'),
+      new Property(0x03, 'damage').setDecoder(
+        switchDecoder({
+          0x00: 'no_impact_occured',
+          0x01: 'no_damage',
+          0x02: 'damage_smaller_than_1_inch',
+          0x03: 'damage_larger_than_1_inch'
+        })
+      ),
+      new Property(0x04, 'zoneMatrix').setDecoder(matrixZoneDecoder),
+      new Property(0x05, 'damageZone').setDecoder(matrixZoneDecoder),
+      new Property(0x06, 'needsReplacement').setDecoder(
+        switchDecoder({
+          0x00: 'unknown',
+          0x01: 'no',
+          0x02: 'yes'
+        })
+      ),
+      new Property(0x07, 'damageConfidence').setDecoder(progressDecoder),
+      new Property(0x08, 'damageDetectionDate').setDecoder(dateDecoder)
+    ];
+
+    this.parse(data, properties);
   }
 
-  getValues(bytes) {
-    this.wipers = {
-      state: this.getWiperState(bytes),
-      intensityLevel: this.getWipersIntensityLevel(bytes),
-    };
+  bindProperties(properties: Array<Property>) {
+    this.wipers = {};
+    this.windscreen = {};
 
-    this.windscreen = {
-      damage: this.getWindscreenDamage(bytes),
-      zoneMatrix: this.getZone(bytes[6]),
-      damageZone: this.getZone(bytes[7]),
-      needsReplacement: this.getNeedsReplacement(bytes),
-      damageConfidence: this.getDamageConfidence(bytes),
-      damageDetectionDate: this.getDate(bytes, 10),
-    };
-  }
+    properties.filter(property => [0x01, 0x02].includes(property.identifier)).forEach(property => {
+      this.wipers[property.namespace] = property.value;
+    });
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 13) {
-      this.getValues(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
-
-  getWiperState(bytes) {
-    switch (bytes[3]) {
-      case 0x01:
-        return 'active';
-      case 0x02:
-        return 'automatic';
-      default:
-        return 'inactive';
-    }
-  }
-
-  getWipersIntensityLevel(bytes) {
-    switch (bytes[4]) {
-      case 0x01:
-        return 1;
-      case 0x02:
-        return 2;
-      case 0x03:
-        return 3;
-      default:
-        return 0;
-    }
-  }
-
-  getWindscreenDamage(bytes) {
-    switch (bytes[5]) {
-      case 0x01:
-        return 'no_damage';
-      case 0x02:
-        return 'damage_smaller_than_1_inch';
-      case 0x03:
-        return 'damage_larger_than_1_inch';
-      default:
-        return 'no_impact_occured';
-    }
-  }
-
-  getZone(theByte) {
-    if (theByte === 0x00) {
-      return 'unknown';
-    }
-
-    return { horisontal: (theByte & 0xf0) >> 4, vertical: theByte & 0x0f };
-  }
-
-  getNeedsReplacement(bytes) {
-    switch (bytes[8]) {
-      case 0x01:
-        return 'no';
-      case 0x02:
-        return 'yes';
-      default:
-        return 'unknown';
-    }
-  }
-
-  getDamageConfidence(bytes) {
-    return bytes[9] / 100;
-  }
-
-  getDate(bytes, idx) {
-    return {
-      year: 2000 + bytes[idx],
-      month: bytes[idx + 1],
-      day: bytes[idx + 2],
-      hour: bytes[idx + 3],
-      minute: bytes[idx + 4],
-      seconds: bytes[idx + 5],
-    };
+    properties
+      .filter(property => [0x03, 0x04, 0x05, 0x06, 0x07, 0x08].includes(property.identifier))
+      .forEach(property => {
+        this.windscreen[property.namespace] = property.value;
+      });
   }
 }

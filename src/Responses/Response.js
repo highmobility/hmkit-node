@@ -44,15 +44,13 @@ export default class Response {
       ValetModeResponse,
       VehicleLocationResponse,
       WindowsResponse,
-      WindscreenResponse,
+      WindscreenResponse
     ];
   }
 
   checkRawDataLength() {
     if (this.rawData.length < 2 && this.rawData.length !== 0) {
-      throw new Error(
-        `Response string length invalid (length: ${this.rawData.length} chars).`
-      );
+      throw new Error(`Response string length invalid (length: ${this.rawData.length} chars).`);
     }
   }
 
@@ -78,10 +76,7 @@ export default class Response {
     }
 
     for (const parser of this.parsers) {
-      if (
-        parser.identifier[0] === bytes[0] &&
-        parser.identifier[1] === bytes[1]
-      ) {
+      if (parser.identifier[0] === bytes[0] && parser.identifier[1] === bytes[1]) {
         return parser;
       }
     }

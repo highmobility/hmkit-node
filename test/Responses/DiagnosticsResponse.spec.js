@@ -4,68 +4,6 @@ import { hexToUint8Array } from '../../src/encoding';
 import TestResponse from '../../src/NewResponses/DiagnosticsResponse';
 
 describe(`DiagnosticsResponse`, () => {
-  it('should work', () => {
-    const data = [
-      0x00,
-      0x33,
-      0x01,
-      0x00,
-      0x43,
-      0x01,
-      0x00,
-      0x03,
-      0x02,
-      0x49,
-      0xf0,
-      0x02,
-      0x00,
-      0x02,
-      0x00,
-      0x63,
-      0x03,
-      0x00,
-      0x02,
-      0x00,
-      0x3c,
-      0x04,
-      0x00,
-      0x02,
-      0x09,
-      0xc4,
-      0x05,
-      0x00,
-      0x01,
-      0x5a,
-      0x06,
-      0x00,
-      0x02,
-      0x01,
-      0x09,
-      0x07,
-      0x00,
-      0x04,
-      0x41,
-      0x0c,
-      0x00,
-      0x00,
-      0x08,
-      0x00,
-      0x04,
-      0x40,
-      0xc6,
-      0x66,
-      0x66,
-      0x09,
-      0x00,
-      0x01,
-      0x01
-    ];
-
-    const diagnosticsResponse = new TestResponse(data);
-
-    console.log(diagnosticsResponse);
-  });
-
   it(`should return DiagnosticsResponse`, () => {
     const response = new Response(
       hexToUint8Array('0033010249F00063003C09C45A0104004013D70A014013D70A02401666660340166666')

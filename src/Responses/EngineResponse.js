@@ -1,23 +1,22 @@
-export default class EngineResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { switchDecoder } from '../helpers';
+
+export default class EngineResponse extends PropertyResponse {
   static identifier = [0x00, 0x35];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.engine = this.getEngineState(bytes);
-    }
-  }
+  constructor(data: Uint8Array) {
+    super();
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 1) {
-      this.engine = this.getEngineState(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
+    const properties = [
+      new Property(0x01, 'engine').setDecoder(
+        switchDecoder({
+          0x00: 'off',
+          0x01: 'on'
+        })
+      )
+    ];
 
-  getEngineState(bytes) {
-    return bytes[3] === 0x00 ? 'off' : 'on';
+    this.parse(data, properties);
   }
 }
