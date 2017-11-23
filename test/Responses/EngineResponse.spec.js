@@ -4,22 +4,8 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`EngineResponse`, () => {
   it(`should return EngineResponse`, () => {
-    const response = new Response(hexToUint8Array('00350101'));
+    const response = new Response(hexToUint8Array('003501000401000100'));
     expect(response.parse()).toBeInstanceOf(EngineResponse);
-    expect(response.parse()).toEqual({
-      engine: 'on',
-    });
-  });
-
-  it(`should return Engine VS`, () => {
-    const response = new Response(hexToUint8Array('00350100')).vehicleState();
-    expect(response.parse()).toBeInstanceOf(EngineResponse);
-    expect(response.parse()).toEqual({
-      engine: 'off',
-    });
-
-    const response2 = new Response(hexToUint8Array('00350200')).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+    expect(response.parse()).toEqual({ engine: 'off' });
   });
 });

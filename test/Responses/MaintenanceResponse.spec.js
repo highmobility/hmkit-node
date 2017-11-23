@@ -4,28 +4,11 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`MaintenanceResponse`, () => {
   it(`should return MaintenanceResponse`, () => {
-    const response = new Response(hexToUint8Array('00340101F5000E61'));
+    const response = new Response(hexToUint8Array('003401000B0100020190020003007530'));
     expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
     expect(response.parse()).toEqual({
-      daysToNextService: 501,
-      kilometersToNextService: 3681,
+      daysToNextService: 400,
+      kilometersToNextService: 30000
     });
-  });
-
-  it(`should return Maintenance VS`, () => {
-    const response = new Response(
-      hexToUint8Array('00340501F5000E61')
-    ).vehicleState();
-    expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
-    expect(response.parse()).toEqual({
-      daysToNextService: 501,
-      kilometersToNextService: 3681,
-    });
-
-    const response2 = new Response(
-      hexToUint8Array('00340601F5000E61')
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
   });
 });

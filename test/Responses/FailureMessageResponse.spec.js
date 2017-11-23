@@ -4,25 +4,24 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`FailureMessageResponse`, () => {
   it(`should return FailureMessageResponse`, () => {
-    const response = new Response(hexToUint8Array('00020100210001'));
+    const response = new Response(hexToUint8Array('000201000A01000300450002000101'));
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
     expect(response.parse()).toEqual({
       autoApi: {
-        label: 'Trunk Access',
-        lsb: 33,
-        namespace: 'trunkAccess',
+        lsb: 69,
+        namespace: 'windows',
+        label: 'Windows'
       },
       type: 0,
       reason: {
         key: 1,
-        value:
-          'Unauthorised - User has not been authenticated or lacks permissions',
-      },
+        value: 'Unauthorised - User has not been authenticated or lacks permissions'
+      }
     });
   });
 
   it(`should return FailureMessageResponse with no Auto API info`, () => {
-    const response = new Response(hexToUint8Array('00020100FF0001'));
+    const response = new Response(hexToUint8Array('000201000A01000300FF0002000101'));
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
     expect(response.parse().autoApi).toBe(null);
   });

@@ -5,32 +5,28 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00200104000100010000020001030001')
+      hexToUint8Array('00200100140000020100010002010002000201000300020100')
     );
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        doors: expect.anything(),
-      })
-    );
-  });
-
-  it('should return DoorLocks VS', () => {
-    const response = new Response(
-      hexToUint8Array('00200D04000100010000020001030001')
-    ).vehicleState();
-
-    expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        doors: expect.anything(),
-      })
-    );
-
-    const response2 = new Response(
-      hexToUint8Array('00200E04000100010000020001030001')
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+    expect(response.parse()).toEqual({
+      doors: {
+        frontLeft: {
+          position: 'closed',
+          lock: 'unlocked'
+        },
+        frontRight: {
+          position: 'closed',
+          lock: 'unlocked'
+        },
+        rearRight: {
+          position: 'closed',
+          lock: 'unlocked'
+        },
+        rearLeft: {
+          position: 'closed',
+          lock: 'unlocked'
+        }
+      }
+    });
   });
 });

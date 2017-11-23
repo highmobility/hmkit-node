@@ -6,7 +6,7 @@ describe(`ParkingTicketResponse`, () => {
   it('should return started ParkingTicketResponse', () => {
     const response = new Response(
       hexToUint8Array(
-        '004701010e4265726c696e205061726b696e670363054f11010a11220000000000'
+        '00470100310100010102000E4265726C696E205061726B696E6703000973323634383934323304000511010A11220500050000000000'
       )
     );
 
@@ -14,51 +14,21 @@ describe(`ParkingTicketResponse`, () => {
     expect(response.parse()).toEqual({
       state: 'started',
       operatorName: 'Berlin Parking',
-      operatorTicketID: 6489423,
-      startDate: { year: 2017, month: 1, day: 10, hour: 17, minute: 34 },
-      endDate: { year: 0, month: 0, day: 0, hour: 0, minute: 0 },
-    });
-  });
-
-  it('should return started ParkingTicket VS', () => {
-    const response = new Response(
-      hexToUint8Array(
-        '00471E010e4265726c696e205061726b696e670363054f11010a11220000000000'
-      )
-    ).vehicleState();
-
-    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
-    expect(response.parse()).toEqual({
-      state: 'started',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: 6489423,
-      startDate: { year: 2017, month: 1, day: 10, hour: 17, minute: 34 },
-      endDate: { year: 0, month: 0, day: 0, hour: 0, minute: 0 },
-    });
-
-    const response2 = new Response(
-      hexToUint8Array(
-        '00471F010e4265726c696e205061726b696e670363054f11010a11220000000000'
-      )
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
-  });
-
-  it('should return ended ParkingTicketResponse', () => {
-    const response = new Response(
-      hexToUint8Array(
-        '004701000e4265726c696e205061726b696e670363054f11010a11220000000000'
-      )
-    );
-
-    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
-    expect(response.parse()).toEqual({
-      state: 'ended',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: 6489423,
-      startDate: { year: 2017, month: 1, day: 10, hour: 17, minute: 34 },
-      endDate: { year: 0, month: 0, day: 0, hour: 0, minute: 0 },
+      operatorTicketID: 's26489423',
+      startDate: {
+        year: 2017,
+        month: 1,
+        day: 10,
+        hour: 17,
+        minute: 34
+      },
+      endDate: {
+        year: 2000,
+        month: 0,
+        day: 0,
+        hour: 0,
+        minute: 0
+      }
     });
   });
 });
