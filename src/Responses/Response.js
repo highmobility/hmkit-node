@@ -22,7 +22,7 @@ import CapabilitiesResponse from './CapabilitiesResponse';
 export default class Response {
   constructor(data: string) {
     this.rawData = data;
-    this.formatVehicleState = false;
+
     this.checkRawDataLength();
 
     this.parsers = [
@@ -67,7 +67,7 @@ export default class Response {
       return bytes;
     }
 
-    return new Parser(bytes, this.formatVehicleState);
+    return new Parser(bytes);
   }
 
   findParser(bytes) {
@@ -82,10 +82,5 @@ export default class Response {
     }
 
     return null;
-  }
-
-  vehicleState() {
-    this.formatVehicleState = true;
-    return this;
   }
 }
