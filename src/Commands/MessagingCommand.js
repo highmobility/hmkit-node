@@ -1,5 +1,5 @@
 import Command from './Command';
-import { stringToHex, hexToUint8Array, decimalToHexArray, utfStringToByteArray } from '../encoding';
+import { decimalToHexArray, utfStringToByteArray } from '../encoding';
 
 export default class MessageCommand {
   static messageReceived(handle: string, text: string) {
