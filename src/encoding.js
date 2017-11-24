@@ -89,3 +89,23 @@ export function stringToHex(string) {
 export function bytesToString(bytes) {
   return Buffer.from(bytes).toString('utf8');
 }
+
+export function decimalToHexArray(value: number, bytes: number = 1) {
+  let hex = parseInt(value, 10).toString(16);
+  while (hex.length % (bytes * 2) !== 0) hex = `0${hex}`;
+  const hexArray = hex.match(/.{1,2}/g);
+
+  return hexArray.map(hexItem => Number(`0x${hexItem}`));
+}
+
+export function utfStringToByteArray(string: string, minLength?: number) {
+  const byteArray = unescape(encodeURIComponent(string)).split('').map(char => char.charCodeAt(0));
+
+  if (minLength !== undefined) {
+    while (byteArray.length < minLength) {
+      byteArray.unshift(0);
+    }
+  }
+
+  return byteArray;
+}

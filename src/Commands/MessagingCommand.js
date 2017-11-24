@@ -1,5 +1,5 @@
 import Command from './Command';
-import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
+import { stringToHex, hexToUint8Array, decimalToHexArray, utfStringToByteArray } from '../encoding';
 
 export default class MessageCommand {
   static messageReceived(handle: string, text: string) {
@@ -10,15 +10,12 @@ export default class MessageCommand {
   }
 
   static getHandleBytes(text) {
-    const stringBytes = hexToUint8Array(stringToHex(text));
-
+    const stringBytes = utfStringToByteArray(text);
     return [stringBytes.length, ...stringBytes];
   }
 
   static getTextBytes(text) {
-    const stringBytes = hexToUint8Array(stringToHex(text));
-    const lengthBytes = hexToUint8Array(pad(intToHex(stringBytes.length), 4));
-
-    return [...lengthBytes, ...stringBytes];
+    const stringBytes = utfStringToByteArray(text);
+    return [...decimalToHexArray(stringBytes.length, 2), ...stringBytes];
   }
 }
