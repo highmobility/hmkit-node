@@ -14,7 +14,9 @@ export default class PropertyResponse {
   parse(data: Uint8Array, properties: Array<Property>) {
     this.bindProperties(
       this.parseProperties(data, properties).filter(
-        property => property.value !== null && property.value !== undefined
+        property =>
+          (property.value !== null && property.value !== undefined) ||
+          property.subProperties.length > 0
       )
     );
   }
@@ -29,7 +31,7 @@ export default class PropertyResponse {
    */
   bindProperties(properties: Array<Property>) {
     properties.forEach(property => {
-      this[property.namespace] = property.value;
+      this[property.namespace] = property.getValue();
     });
   }
 
@@ -48,7 +50,7 @@ export default class PropertyResponse {
   parseProperties(data: Uint8Array, properties: Array<Property>) {
     const propertiesData = [...data.slice(5, data.length)];
 
-    if (propertiesData !== null) {
+    if (propertiesData.length > 0) {
       let counter = 0;
 
       while (counter < propertiesData.length) {

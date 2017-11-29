@@ -8,10 +8,15 @@ export default class DoorLocksResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x00, 'frontLeft').setDecoder(this.doorDecoder),
-      new Property(0x01, 'frontRight').setDecoder(this.doorDecoder),
-      new Property(0x02, 'rearRight').setDecoder(this.doorDecoder),
-      new Property(0x03, 'rearLeft').setDecoder(this.doorDecoder)
+      new Property(0x01, 'doors').setSubProperty(
+        new Property(0x00, 'frontLeft').setDecoder(this.doorDecoder)
+      ).setSubProperty(
+        new Property(0x01, 'frontRight').setDecoder(this.doorDecoder)
+      ).setSubProperty(
+        new Property(0x02, 'rearRight').setDecoder(this.doorDecoder)
+      ).setSubProperty(
+        new Property(0x03, 'rearLeft').setDecoder(this.doorDecoder)
+      )
     ];
 
     this.parse(data, properties);
@@ -24,11 +29,4 @@ export default class DoorLocksResponse extends PropertyResponse {
     };
   }
 
-  bindProperties(properties: Array<Property>) {
-    this.doors = {};
-
-    properties.forEach(property => {
-      this.doors[property.namespace] = property.value;
-    });
-  }
 }

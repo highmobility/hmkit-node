@@ -27,7 +27,7 @@ export default class ClimateResponse extends PropertyResponse {
 
   activeInactiveDecoder() {
     return switchDecoder({
-      0x00: 'inactivated',
+      0x00: 'deactivated',
       0x01: 'activated'
     });
   }

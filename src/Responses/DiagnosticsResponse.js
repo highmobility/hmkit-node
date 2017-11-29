@@ -24,40 +24,25 @@ export default class DiagnosticsResponse extends PropertyResponse {
           0x01: 'filled'
         })
       ),
-      new Property(0x0a, 'tires').setDecoder(this.tiresDecoder)
+      new Property(0x0a, 'tires').setSubProperty(
+        new Property(0x00, 'frontLeft').setDecoder(this.tireDecoder)
+      ).setSubProperty(
+        new Property(0x01, 'frontRight').setDecoder(this.tireDecoder)
+      ).setSubProperty(
+        new Property(0x02, 'rearRight').setDecoder(this.tireDecoder)
+      ).setSubProperty(
+        new Property(0x03, 'rearLeft').setDecoder(this.tireDecoder)
+      )
     ];
 
     this.parse(data, properties);
   }
 
-  tiresDecoder = (bytes: Array<Number>) => {
-    const tires = {};
-
-    chunkArray(bytes.slice(1, bytes.length), 4).forEach(tireBytes => {
-      switch (tireBytes[0]) {
-        case 0x00:
-          tires.frontLeft = this.tireDecoder(tireBytes);
-          break;
-        case 0x01:
-          tires.frontRight = this.tireDecoder(tireBytes);
-          break;
-        case 0x02:
-          tires.rearRight = this.tireDecoder(tireBytes);
-          break;
-        case 0x03:
-          tires.rearLeft = this.tireDecoder(tireBytes);
-          break;
-      }
-    });
-
-    return tires;
-  };
-
   tireDecoder(bytes: Array<Number>) {
     return {
-      pressure: ieee754ToBase10(bytes.slice(1, 5)),
-      temperature: ieee754ToBase10(bytes.slice(5, 9)),
-      rpm: bytesSum(bytes.slice(9, 11))
+      pressure: ieee754ToBase10(bytes.slice(0, 4)),
+      temperature: ieee754ToBase10(bytes.slice(4, 8)),
+      rpm: bytesSum(bytes.slice(8, 10))
     };
   }
 }

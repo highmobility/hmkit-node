@@ -1,6 +1,7 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { switchDecoder, decimalToHexStringDecoder } from '../helpers';
+import { switchDecoder } from '../helpers';
+import { hexArrayToHex } from '../encoding';
 
 export default class LightsResponse extends PropertyResponse {
   static identifier = [0x00, 0x36];
@@ -28,29 +29,13 @@ export default class LightsResponse extends PropertyResponse {
           0x01: 'active'
         })
       ),
-      new Property(0x04, 'ambientLightRed').setDecoder(decimalToHexStringDecoder),
-      new Property(0x05, 'ambientLightGreen').setDecoder(decimalToHexStringDecoder),
-      new Property(0x06, 'ambientLightBlue').setDecoder(decimalToHexStringDecoder)
+      new Property(0x04, 'ambientLight').setDecoder(this.ambientLightDecoder)
     ];
 
     this.parse(data, properties);
   }
 
-  bindProperties(properties: Array<Property>) {
-    properties
-      .filter(property => [0x01, 0x02, 0x03].includes(property.identifier))
-      .forEach(property => {
-        this[property.namespace] = property.value;
-      });
-
-    this.ambientLight = this.getAmbientLight(
-      properties
-        .filter(property => [0x04, 0x05, 0x06].includes(property.identifier))
-        .map(property => property.value)
-    );
-  }
-
-  getAmbientLight(values: Array<String>) {
-    return `#${values[0]}${values[1]}${values[2]}`;
+  ambientLightDecoder(values: Array<String>) {
+    return `#${hexArrayToHex(values)}`;
   }
 }

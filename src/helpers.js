@@ -1,4 +1,4 @@
-import { pad, intToBinary, intToHex } from './encoding';
+import { pad, intToBinary } from './encoding';
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = bytes.map(decimal => pad(decimal.toString(16), 2)).reduce((memo, i) => memo + i, '');
@@ -19,9 +19,7 @@ export function chunkArray(array: Array<any>, chunkCount: number = 2) {
 }
 
 export function switchDecoder(options: Object) {
-  return (bytes: Array<Number>) => {
-    return bytes.length > 0 && bytes[0] in options ? options[bytes[0]] : null;
-  };
+  return (bytes: Array<Number>) => (bytes.length > 0 && bytes[0] in options ? options[bytes[0]] : null)
 }
 
 export function dateDecoder(bytes: Array<Number>) {
@@ -71,10 +69,6 @@ export function autoHvacTimeDecoder(hours: Number, minutes: Number) {
     hours,
     minutes
   };
-}
-
-export function decimalToHexStringDecoder(bytes: Array<Number>) {
-  return pad(intToHex(bytes[0]), 2);
 }
 
 export function progressDecoder(bytes: Array<Number>) {
