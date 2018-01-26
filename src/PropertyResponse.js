@@ -48,7 +48,7 @@ export default class PropertyResponse {
    * TODO: Maybe split this function into more readable chunks. This function does too much at the moment.
    */
   parseProperties(data: Uint8Array, properties: Array<Property>) {
-    const propertiesData = [...data.slice(5, data.length)];
+    const propertiesData = [...data.slice(3, data.length)];
 
     if (propertiesData.length > 0) {
       let counter = 0;

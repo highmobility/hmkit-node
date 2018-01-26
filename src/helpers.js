@@ -19,7 +19,8 @@ export function chunkArray(array: Array<any>, chunkCount: number = 2) {
 }
 
 export function switchDecoder(options: Object) {
-  return (bytes: Array<Number>) => (bytes.length > 0 && bytes[0] in options ? options[bytes[0]] : null)
+  return (bytes: Array<Number>) =>
+    bytes.length > 0 && bytes[0] in options ? options[bytes[0]] : null;
 }
 
 export function dateDecoder(bytes: Array<Number>) {
@@ -30,6 +31,16 @@ export function dateDecoder(bytes: Array<Number>) {
       day: bytes[2],
       hour: bytes[3],
       minute: bytes[4]
+    };
+  } else if (bytes.length === 8) {
+    return {
+      year: 2000 + bytes[0],
+      month: bytes[1],
+      day: bytes[2],
+      hour: bytes[3],
+      minute: bytes[4],
+      second: bytes[5],
+      utcOffset: bytesSum(bytes.slice(6, 8))
     };
   }
 
