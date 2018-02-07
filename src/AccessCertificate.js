@@ -5,9 +5,11 @@ export default class AccessCertificate {
   constructor(bytes: Uint8Array) {
     this.bytes = bytes;
     this.rawAccessCertificate = this.parse(bytes);
+    this.version = this.getVersion();
+    this.issuer = this.getIssuer();
+    this.accessProvidingSerialNumber = this.getClientSerial();
     this.accessGainingSerialNumber = this.getVehicleSerial();
     this.accessGainingPublicKey = this.getVehiclePublicKey();
-    this.accessProvidingSerialNumber = this.getClientSerial();
     this.validityStartDate = this.getValidityStartDate();
     this.validityEndDate = this.getValidityEndDate();
     this.permissions = this.rawAccessCertificate.permissions;
@@ -44,13 +46,23 @@ export default class AccessCertificate {
 
   get() {
     return {
+      version: this.version,
+      issuer: this.issuer,
+      accessProvidingSerialNumber: this.accessProvidingSerialNumber,
       accessGainingSerialNumber: this.accessGainingSerialNumber,
       accessGainingPublicKey: this.accessGainingPublicKey,
-      accessProvidingSerialNumber: this.accessProvidingSerialNumber,
       validityStartDate: this.validityStartDate,
       validityEndDate: this.validityEndDate,
       permissions: this.permissions
     };
+  }
+
+  getVersion() {
+    return this.rawAccessCertificate.version;
+  }
+
+  getIssuer() {
+    return this.rawAccessCertificate.issuer;
   }
 
   getVehicleSerial() {
