@@ -56,7 +56,7 @@ export function matrixZoneDecoder(bytes: Array<Number>) {
 }
 
 export function autoHvacDecoder(bytes: Array<Number>) {
-  const [mondays, tuesdays, wednesdays, thursdays, fridays, saturdays, sundays, constant] = pad(
+  const [constant, sundays, saturdays, fridays, thursdays, wednesdays, tuesdays, mondays] = pad(
     intToBinary(bytes[0]),
     8
   )

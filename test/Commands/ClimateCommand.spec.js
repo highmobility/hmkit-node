@@ -143,4 +143,32 @@ describe(`ClimateCommand`, () => {
       })
     );
   });
+
+         it('should start ionising', async () => {
+            const response = await hmkit.telematics.sendCommand(
+            vehicleSerial,
+                                                                hmkit.commands.ClimateCommand.startIonising()
+                                                                );
+
+            expect(response.parse()).toBeInstanceOf(ClimateResponse);
+            expect(response.parse()).toEqual(
+                                             expect.objectContaining({
+                                                                     ionisingState: 'activated',
+                                             })
+            );
+            });
+
+         it('should stop ionising', async () => {
+            const response = await hmkit.telematics.sendCommand(
+                                                                vehicleSerial,
+                                                                hmkit.commands.ClimateCommand.stopIonising()
+                                                                );
+
+            expect(response.parse()).toBeInstanceOf(ClimateResponse);
+            expect(response.parse()).toEqual(
+                                             expect.objectContaining({
+                                                                     ionisingState: 'deactivated',
+                                                                     })
+                                             );
+            });
 });

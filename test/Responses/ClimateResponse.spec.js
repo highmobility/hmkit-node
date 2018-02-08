@@ -6,35 +6,35 @@ describe(`ClimateResponse`, () => {
   it(`should return ClimateResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '002401004501000441B800000200044190000003000441A4000004000441B4000006000100070001000800010009000441B80000050001000A000FC1020D033A00000000000000000000'
+        '002401010004419800000200044140000003000441AC000004000441AC00000500010106000100070001000800010009000441AC00000A000F6000000000000000000000071E071E'
       )
     );
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual({
-      insideTemperature: 23,
-      outsideTemperature: 18,
-      driverTemperatureSetting: 20.5,
-      passengerTemperatureSetting: 22.5,
-      hvacState: 'inactivated',
-      defoggingState: 'inactivated',
-      defrostingState: 'inactivated',
-      ionisingState: 'inactivated',
-      defrostingTemperature: 23,
+      insideTemperature: 19,
+      outsideTemperature: 12,
+      driverTemperatureSetting: 21.5,
+      passengerTemperatureSetting: 21.5,
+      hvacState: 'activated',
+      defoggingState: 'deactivated',
+      defrostingState: 'deactivated',
+      ionisingState: 'deactivated',
+      defrostingTemperature: 21.5,
       autoHvacActivatedOn: {
-        mondays: {
-          hours: 2,
-          minutes: 13
-        },
-        tuesdays: {
-          hours: 3,
-          minutes: 58
-        },
+        mondays: false,
+        tuesdays: false,
         wednesdays: false,
         thursdays: false,
         fridays: false,
-        saturdays: false,
-        sundays: false,
-        constant: true
+         saturdays: {
+             hours: 7,
+             minutes: 30
+         },
+         sundays: {
+             hours: 7,
+             minutes: 30
+         },
+        constant: false
       }
     });
   });
