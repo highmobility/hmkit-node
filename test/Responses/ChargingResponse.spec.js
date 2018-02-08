@@ -6,42 +6,33 @@ describe(`ChargingResponse`, () => {
   it(`should return ChargingResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '00230100340100010002000200C8030001500400043F8000000500043F80000006000200E607000132080002003C090004404000000A000101'
+        '0023010100010202000200FF03000132040004BF19999A050004BF19999A06000443C8000007000443CD00000800015A090002003C0A0004000000000B0001010C0001000D00090212010A1020050000'
       )
     );
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
-
     expect(response.parse()).toEqual({
-      chargingState: 'disconnected',
-      estimatedRange: 200,
-      batteryLevel: 0.8,
-      batteryCurrentAc: 1,
-      batteryCurrentDc: 1,
-      chargerVoltage: 230,
-      chargeLimit: 0.5,
-      timeToCompleteCharge: 60,
-      chargeRate: 3,
-      chargePortState: 'open'
+                                     batteryCurrentAC: -0.6,
+                                     batteryCurrentDC: -0.6,
+                                     batteryLevel: 0.5,
+                                     chargeLimit: 0.9,
+                                     chargeMode: 'immediate',
+                                     chargePortState: 'open',
+                                     chargeTimer: {
+                                         chargeTimer: 'departure_time',
+                                         year: 2018,
+                                         month: 1,
+                                         day: 10,
+                                         hour: 16,
+                                         minute: 32,
+                                         second: 5,
+                                         timeOffset: 0
+                                     },
+                                     chargerVoltageAC: 400,
+                                     chargerVoltageDC: 410,
+                                     chargingRate: 0,
+                                     chargingState: 'charging',
+                                     estimatedRange: 255,
+                                     timeToCompleteCharge: 60,
     });
   });
-
-  // it(`should throw error on invalid response`, () => {
-  //   const response = new Response(
-  //     hexToUint8Array('00230100340100010002000200C8030001500400043F80000')
-  //   );
-
-  //   expect(response.parse()).toEqual({ error: expect.anything() });
-  // });
-
-  // it(`should respond correctly with other variations of ChargingResponse`, () => {
-  //   expect(
-  //     new Response(hexToUint8Array('0023010000FF32BF19999A01905A003C0000000000')).parse()
-  //   ).toBeInstanceOf(ChargingResponse);
-  //   expect(
-  //     new Response(hexToUint8Array('0023010100FF32BF19999A01905A003C00000000FF')).parse()
-  //   ).toBeInstanceOf(ChargingResponse);
-  //   expect(
-  //     new Response(hexToUint8Array('0023010300FF32BF19999A01905A003C0000000001')).parse()
-  //   ).toBeInstanceOf(ChargingResponse);
-  // });
 });

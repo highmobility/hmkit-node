@@ -21,20 +21,48 @@ export default class ChargingResponse extends PropertyResponse {
       ),
       new Property(0x02, 'estimatedRange').setDecoder(bytesSum),
       new Property(0x03, 'batteryLevel').setDecoder(progressDecoder),
-      new Property(0x04, 'batteryCurrentAc').setDecoder(ieee754ToBase10),
-      new Property(0x05, 'batteryCurrentDc').setDecoder(ieee754ToBase10),
-      new Property(0x06, 'chargerVoltage').setDecoder(bytesSum),
-      new Property(0x07, 'chargeLimit').setDecoder(progressDecoder),
-      new Property(0x08, 'timeToCompleteCharge').setDecoder(bytesSum),
-      new Property(0x09, 'chargeRate').setDecoder(ieee754ToBase10),
-      new Property(0x0a, 'chargePortState').setDecoder(
+      new Property(0x04, 'batteryCurrentAC').setDecoder(ieee754ToBase10),
+      new Property(0x05, 'batteryCurrentDC').setDecoder(ieee754ToBase10),
+      new Property(0x06, 'chargerVoltageAC').setDecoder(ieee754ToBase10),
+        new Property(0x07, 'chargerVoltageDC').setDecoder(ieee754ToBase10),
+        new Property(0x08, 'chargeLimit').setDecoder(progressDecoder),
+        new Property(0x09, 'timeToCompleteCharge').setDecoder(bytesSum),
+      new Property(0x0A, 'chargingRate').setDecoder(ieee754ToBase10),
+      new Property(0x0B, 'chargePortState').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open'
         })
-      )
+      ),
+        new Property(0x0C, 'chargeMode').setDecoder(
+            switchDecoder({
+              0x00: 'immediate',
+              0x01: 'timer_based',
+              0x02: 'inductive'
+            })
+        ),
+        new Property(0x0D, 'chargeTimer').setDecoder(this.chargeTimerDecoder)
     ];
 
     this.parse(data, properties);
   }
+
+    chargeTimerDecoder(bytes: Array<Number>) {
+        const chargeTimerOptions = {
+            0x00: 'preferred_start_time',
+            0x01: 'preferred_end_time',
+            0x02: 'departure_time'
+        };
+
+        return {
+            chargeTimer: chargeTimerOptions[bytes[0]],
+            year: bytes[1] + 2000,
+            month: bytes[2],
+            day: bytes[3],
+            hour: bytes[4],
+            minute: bytes[5],
+            second: bytes[6],
+            timeOffset: bytesSum([bytes[7], bytes[8]])
+        };
+    }
 }
