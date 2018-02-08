@@ -38,41 +38,4 @@ describe(`ClimateResponse`, () => {
       }
     });
   });
-
-  // it(`should handle other cases of ClimateResponse`, () => {
-  //   const response = new Response(
-  //     hexToUint8Array(
-  //       '002401419800004140000041AC000041AC000000010141AC0000FF071E071E071E071E071E071E071E'
-  //     )
-  //   );
-  //   expect(response.parse()).toBeInstanceOf(ClimateResponse);
-  //   expect(response.parse()).toEqual(
-  //     expect.objectContaining({
-  //       hvacState: 'deactivated',
-  //       defoggingState: 'activated',
-  //       defrostingState: 'activated'
-  //     })
-  //   );
-
-  //   const response2 = new Response(
-  //     hexToUint8Array(
-  //       '002401419800004140000041AC000041AC000000010141AC0000010000000000000000000000000000'
-  //     )
-  //   );
-  //   expect(response2.parse()).toBeInstanceOf(ClimateResponse);
-  //   expect(response2.parse()).toEqual(
-  //     expect.objectContaining({
-  //       autoHvacActivatedOn: {
-  //         mondays: false,
-  //         tuesdays: false,
-  //         wednesdays: false,
-  //         thursdays: false,
-  //         fridays: false,
-  //         saturdays: false,
-  //         sundays: false,
-  //         constant: true
-  //       }
-  //     })
-  //   );
-  // });
 });
