@@ -31,6 +31,10 @@ export function intToBinary(int) {
   return int.toString(2);
 }
 
+export function uint8toInt8(uint8) {
+    return uint8 << 24 >> 24;
+}
+
 export function binaryToInt(binary) {
   return parseInt(binary, 2);
 }

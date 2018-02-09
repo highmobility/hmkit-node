@@ -61,6 +61,7 @@ export default class ChargingCommand {
                             hour,
                             minute,
                             seconds,
+                            // TODO: Needs [Int8] -> [UInt8] converter
                             ...decimalToHexArray(timeOffset),
                             ]);
     }

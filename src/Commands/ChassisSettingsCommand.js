@@ -33,15 +33,18 @@ export default class ChassisSettingsCommand {
 
 
     static setFrontAxleSpringRate(rate: number) {
+        // TODO: Needs Int8 -> UInt8 converter
         return new Command([0x00, 0x53, 0x04, 0x00, rate]);
     }
 
     static setRearAxleSpringRate(rate: number) {
+        // TODO: Needs Int8 -> UInt8 converter
         return new Command([0x00, 0x53, 0x04, 0x01, rate]);
     }
 
 
     static setChassisPosition(position: number) {
+        // TODO: Needs Int8 -> UInt8 converter
         return new Command([0x00, 0x53, 0x05, position]);
     }
 }

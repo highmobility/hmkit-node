@@ -30,7 +30,7 @@ describe(`ChassisSettingsCommand`, () => {
   it(`should start sport chrono`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ChassisSettingsCommand.startSportsChrono()
+      hmkit.commands.ChassisSettingsCommand.startSportChrono()
     );
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
@@ -44,7 +44,7 @@ describe(`ChassisSettingsCommand`, () => {
    it(`should stop sport chrono`, async () => {
      const response = await hmkit.telematics.sendCommand(
        vehicleSerial,
-       hmkit.commands.ChassisSettingsCommand.stopSporstChrono()
+       hmkit.commands.ChassisSettingsCommand.stopSportChrono()
      );
 
      expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
@@ -58,7 +58,7 @@ describe(`ChassisSettingsCommand`, () => {
    it(`should reset sport chrono`, async () => {
      const response = await hmkit.telematics.sendCommand(
        vehicleSerial,
-       hmkit.commands.ChassisSettingsCommand.resetSportsChrono()
+       hmkit.commands.ChassisSettingsCommand.resetSportChrono()
      );
 
      expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
@@ -73,10 +73,11 @@ describe(`ChassisSettingsCommand`, () => {
      expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
      expect(response.parse()).toEqual(
        expect.objectContaining({
-         springRate: {
-           axle: 'front',
-           springRate: 26
-         }
+           springRates: expect.objectContaining({
+              front: expect.objectContaining({
+                  rate: 26
+              })
+           })
        })
      );
    });
@@ -90,24 +91,27 @@ describe(`ChassisSettingsCommand`, () => {
       expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
       expect(response.parse()).toEqual(
         expect.objectContaining({
-          springRate: {
-            axle: 'rear',
-            springRate: 57
-          }
+            springRates: expect.objectContaining({
+                rear: expect.objectContaining({
+                   rate: 57
+               })
+            })
         })
       );
     });
 
-   it(`should start sport chrono`, async () => {
+   it(`should set chassis position`, async () => {
      const response = await hmkit.telematics.sendCommand(
        vehicleSerial,
-       hmkit.commands.ChassisSettingsCommand.startSportChrono()
+       hmkit.commands.ChassisSettingsCommand.setChassisPosition(-29)
      );
 
      expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
      expect(response.parse()).toEqual(
        expect.objectContaining({
-         sportChrono: 'active',
+           chassisPosition: expect.objectContaining({
+             position: -29
+           })
        })
      );
    });

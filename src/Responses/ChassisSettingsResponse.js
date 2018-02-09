@@ -1,7 +1,7 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { bytesSum, switchDecoder, progressDecoder } from '../helpers';
-import { ieee754ToBase10 } from '../encoding';
+import { uint8toInt8 } from '../encoding';
+import { switchDecoder } from '../helpers';
 
 
 export default class ChassisSettingsResponse extends PropertyResponse {
@@ -22,43 +22,39 @@ export default class ChassisSettingsResponse extends PropertyResponse {
                    })
             ),
 
-            new Property(0x02, 'sportChrono').setDecoder(this.activeInactiveDecoder()),
+            new Property(0x02, 'sportChrono').setDecoder(
+                 switchDecoder({
+                       0x00: 'inactive',
+                       0x01: 'active'
+                   })
+             ),
 
-            new Property(0x03, 'springRate').setDecoder(this.springRateDecoder()),
+            new Property(0x03, 'springRates').setSubProperty(
+                    new Property(0x00, 'front').setDecoder(this.springRateDecoder)
+                ).setSubProperty(
+                    new Property(0x01, 'rear').setDecoder(this.springRateDecoder)
+                ),
 
-            new Property(0x04, 'chassisPosition').setDecoder(this.chassisPositionDecoder())
+            new Property(0x04, 'chassisPosition').setDecoder(this.chassisPositionDecoder)
         ];
 
         this.parse(data, properties);
     }
 
 
-    activeInactiveDecoder() {
-        return switchDecoder({
-             0x00: 'inactive',
-             0x01: 'active'
-        });
-    }
-
     chassisPositionDecoder(bytes: Array<Number>) {
         return {
-            chassisPosition: bytes[0],
-            maximum: bytes[1],
-            minimum: bytes[2]
+            position: uint8toInt8(bytes[0]),
+            maximum: uint8toInt8(bytes[1]),
+            minimum: uint8toInt8(bytes[2])
         };
     }
 
     springRateDecoder(bytes: Array<Number>) {
-        const axleOptions = {
-            0x00: 'front',
-            0x01: 'rear'
-        };
-
         return {
-            axle: axleOptions[bytes[0]],
-            springRate: bytes[1],
-            maximum: bytes[2],
-            minimum: bytes[3]
+            rate: uint8toInt8(bytes[0]),
+            maximum: uint8toInt8(bytes[1]),
+            minimum: uint8toInt8(bytes[2])
         };
     }
 }

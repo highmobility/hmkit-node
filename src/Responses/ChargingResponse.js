@@ -62,6 +62,7 @@ export default class ChargingResponse extends PropertyResponse {
             hour: bytes[4],
             minute: bytes[5],
             second: bytes[6],
+            // TODO: Needs [UInt8] -> [Int8] converter
             timeOffset: bytesSum([bytes[7], bytes[8]])
         };
     }
