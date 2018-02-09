@@ -1,4 +1,5 @@
 import ChargingResponse from './ChargingResponse';
+import ChassisSettingsResponse from './ChassisSettingsResponse';
 import ClimateResponse from './ClimateResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
@@ -28,6 +29,7 @@ export default class Response {
     this.parsers = [
       CapabilitiesResponse,
       ChargingResponse,
+      ChassisSettingsResponse,
       ClimateResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
