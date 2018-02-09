@@ -7,6 +7,7 @@ import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
 import HonkHornsFlashLightsResponse from './HonkHornsFlashLightsResponse';
+import KeyfobPositionResponse from './KeyfobPositionResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
 import MessagingResponse from './MessagingResponse';
@@ -37,6 +38,7 @@ export default class Response {
       EngineResponse,
       FailureMessageResponse,
       HonkHornsFlashLightsResponse,
+      KeyfobPositionResponse,
       LightsResponse,
       MaintenanceResponse,
       MessagingResponse,

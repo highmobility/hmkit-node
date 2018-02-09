@@ -9,6 +9,7 @@ import EngineCommand from './Commands/EngineCommand';
 import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
 import HonkHornsFlashLightsCommand from './Commands/HonkHornsFlashLightsCommand';
+import KeyfobPositionCommand from './Commands/KeyfobPositionCommand';
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import MessagingCommand from './Commands/MessagingCommand';
@@ -41,6 +42,7 @@ export default class Commands {
       FuelingCommand,
       GraphicsCommand,
       HonkHornsFlashLightsCommand,
+      KeyfobPositionCommand,
       LightsCommand,
       MaintenanceCommand,
       MessagingCommand,
