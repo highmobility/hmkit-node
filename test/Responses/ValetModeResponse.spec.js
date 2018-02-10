@@ -4,10 +4,16 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`ValetModeResponse`, () => {
   it(`should return ValetModeResponse`, () => {
-    const response = new Response(hexToUint8Array('002801000401000100'));
+    const response = new Response(hexToUint8Array('00280101000101'));
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
     expect(response.parse()).toEqual({
-      mode: 'deactivated'
+      mode: 'activated',
     });
+  });
+
+  const response = new Response(hexToUint8Array('00280101000100'));
+  expect(response.parse()).toBeInstanceOf(ValetModeResponse);
+  expect(response.parse()).toEqual({
+    mode: 'deactivated',
   });
 });
