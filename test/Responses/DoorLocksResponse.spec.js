@@ -5,28 +5,28 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00200100140000020100010002010002000201000300020100')
+      hexToUint8Array('002001010003000100010003010000010003020001010003030001')
     );
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
     expect(response.parse()).toEqual({
       doors: {
         frontLeft: {
-          position: 'closed',
-          lock: 'unlocked'
+          position: 'open',
+          lock: 'unlocked',
         },
         frontRight: {
           position: 'closed',
-          lock: 'unlocked'
+          lock: 'unlocked',
         },
         rearRight: {
           position: 'closed',
-          lock: 'unlocked'
+          lock: 'locked',
         },
         rearLeft: {
           position: 'closed',
-          lock: 'unlocked'
-        }
-      }
+          lock: 'locked',
+        },
+      },
     });
   });
 });
