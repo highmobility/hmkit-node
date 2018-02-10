@@ -9,10 +9,17 @@ export default class VehicleLocationResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'latitude').setDecoder(ieee754ToBase10),
-      new Property(0x02, 'longitude').setDecoder(ieee754ToBase10)
+      new Property(0x01, 'coordinates').setDecoder(this.coordinatesDecoder),
+      new Property(0x02, 'heading').setDecoder(ieee754ToBase10),
     ];
 
     this.parse(data, properties);
+  }
+
+  coordinatesDecoder(bytes: Array<number>) {
+    return {
+      latitude: ieee754ToBase10(bytes.slice(0, bytes.length / 2)),
+      longitude: ieee754ToBase10(bytes.slice(bytes.length / 2)),
+    };
   }
 }

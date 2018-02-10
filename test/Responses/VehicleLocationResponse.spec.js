@@ -4,11 +4,16 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`VehicleLocationResponse`, () => {
   it(`should return VehicleLocationResponse`, () => {
-    const response = new Response(hexToUint8Array('003001000E010004425210E702000441561BEA'));
+    const response = new Response(
+      hexToUint8Array('0030010100084252147d41567ab10200044252147d')
+    );
     expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
     expect(response.parse()).toEqual({
-      latitude: 52.51650619506836,
-      longitude: 13.381814956665039
+      coordinates: {
+        latitude: 52.5200080871582,
+        longitude: 13.404953956604004,
+      },
+      heading: 52.5200080871582,
     });
   });
 });
