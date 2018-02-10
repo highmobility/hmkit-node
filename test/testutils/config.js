@@ -1,7 +1,6 @@
 module.exports = {
-clientCertificate: 'dGVzdKaO5/gAOBL61RBYvGKMqvRSiC9NBrZ1WJAq2c3+syO0/zZpuMg8W4lwp+38I3OnYgVudhMr7C3L16uR/BvZpWHxSds0uyr1j1V3sm95NE195E9pBXnayZIe3lJu2urff0WTqKGvDeDSpRezr316eFapM2FEt8aGN0XAnYM8YGJTB2IwulDX7pW5XMpAotqYfoS6Q7/R',
-clientPrivateKey: 'z8ozPzbXAya56FuOJGoXVCzFumD+tsCZiuV3dP+yY0s=',
-vehicleSerial: '058C759C62DDFBC48B',
-accessToken: 'LIXq4pwaEIJ9qbMUs8llOXhy-cgcyOruSbEnfklcwBpHkvPf2GBspkHLuxUuXVfKQbJIsTL8RvhByGkvNFlkIDffWqduOYydiJLeHhw5iNT_4CAocleTv2gfJZtM_HnF-Q',
+  clientCertificate: 'dGVzdBpcHymaNACWBIShpOIVMcWVPmJgiB3f44mkxk/9oCdFEBE6prvk5JaVZ5ocQCCXrnSKDbM1WDMEy5fu6FuFNDq7PBr53jAqwVeBr1JkCYTcLDOC1ra54AfJGnWgkoZRC1XcvyK0hMseKd6G+QSFUCpRUaJX1iXLLIZzsUhIXcz2z/SiJvEA5D2iRHpKtqDkBRJCwaC/',
+  clientPrivateKey: 'pDQ1k7udQug/r5eqM+u/YO9sER138Ho/WzVaKgzzu2w=',
+  vehicleSerial: '13038240E6429AD779',
+  accessToken: 'Chh5WVBTYYl3XX7vi0_eo24oAtMtyClfxIEbjdEBkyortwdx0-XUnGT9SEpaXdVXWRk1PsIowF_IKCbMDaokyMO8d9F6ggbNqgriofBgi4BC-VxVFiix_wVjagd5Tx_flg',
 };
-
