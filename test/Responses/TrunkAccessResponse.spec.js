@@ -4,11 +4,18 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`TrunkAccessResponse`, () => {
   it(`should return TrunkAccessResponse`, () => {
-    const response = new Response(hexToUint8Array('00210100080100010102000100'));
+    let response = new Response(hexToUint8Array('0021010100010102000100'));
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual({
       lock: 'locked',
-      position: 'closed'
+      position: 'closed',
+    });
+
+    response = new Response(hexToUint8Array('0021010100010002000101'));
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
+    expect(response.parse()).toEqual({
+      lock: 'unlocked',
+      position: 'open',
     });
   });
 });
