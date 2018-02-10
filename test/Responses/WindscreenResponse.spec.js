@@ -2,11 +2,11 @@ import Response from '../../src/Responses/Response';
 import WindscreenResponse from '../../src/Responses/WindscreenResponse';
 import { hexToUint8Array } from '../../src/encoding';
 
-describe(`WindscreemResponse`, () => {
+describe(`WindscreenResponse`, () => {
   it(`should return WindscreenResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0042010024010001000200010003000101040001320500012206000101070001000800050001010200'
+        '0042010100010202000103030001010400014305000112060001020700015F08000811010A1020050000'
       )
     );
 
@@ -14,27 +14,29 @@ describe(`WindscreemResponse`, () => {
 
     expect(response.parse()).toEqual({
       wipers: {
-        state: 'inactive',
-        intensityLevel: 0
+        state: 'automatic',
+        intensityLevel: 3
       },
       windscreen: {
         damage: 'no_damage',
         zoneMatrix: {
-          horisontal: 3,
-          vertical: 2
+          horisontal: 4,
+          vertical: 3
         },
         damageZone: {
-          horisontal: 2,
+          horisontal: 1,
           vertical: 2
         },
-        needsReplacement: 'no',
-        damageConfidence: 0,
+        needsReplacement: 'yes',
+        damageConfidence: 0.95,
         damageDetectionDate: {
-          year: 2000,
+          year: 2017,
           month: 1,
-          day: 1,
-          hour: 2,
-          minute: 0
+          day: 10,
+          hour: 16,
+          minute: 32,
+          second: 5,
+          utcOffset: 0,
         }
       }
     });
