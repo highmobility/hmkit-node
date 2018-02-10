@@ -4,11 +4,13 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`MaintenanceResponse`, () => {
   it(`should return MaintenanceResponse`, () => {
-    const response = new Response(hexToUint8Array('003401000B0100020190020003007530'));
+    const response = new Response(
+      hexToUint8Array('00340101000201F5020003000E61')
+    );
     expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
     expect(response.parse()).toEqual({
-      daysToNextService: 400,
-      kilometersToNextService: 30000
+      daysToNextService: 501,
+      kilometersToNextService: 3681,
     });
   });
 });
