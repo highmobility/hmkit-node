@@ -4,9 +4,19 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`TheftAlarmResponse`, () => {
   it(`should return TheftAlarmResponse`, () => {
-    const response1 = new Response(hexToUint8Array('004601000401000102'));
+    let response = new Response(hexToUint8Array('00460101000100'));
 
-    expect(response1.parse()).toBeInstanceOf(TheftAlarmResponse);
-    expect(response1.parse()).toEqual({ state: 'triggered' });
+    expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
+    expect(response.parse()).toEqual({ state: 'not_armed' });
+
+    response = new Response(hexToUint8Array('00460101000101'));
+
+    expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
+    expect(response.parse()).toEqual({ state: 'armed' });
+
+    response = new Response(hexToUint8Array('00460101000102'));
+
+    expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
+    expect(response.parse()).toEqual({ state: 'triggered' });
   });
 });
