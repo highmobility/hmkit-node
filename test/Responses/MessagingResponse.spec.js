@@ -6,7 +6,7 @@ describe(`MessageResponse`, () => {
   it(`should return MessageResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0037010e2b31203535352d3535352d353535000d48656c6c6f20796f7520746f6f'
+        '00370101000e2b31203535352d3535352d35353502000d48656c6c6f20796f7520746f6f'
       )
     );
 
@@ -16,7 +16,7 @@ describe(`MessageResponse`, () => {
   it(`should contain correct text`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0037010e2b31203535352d3535352d353535000d48656c6c6f20796f7520746f6f'
+        '00370101000e2b31203535352d3535352d35353502000d48656c6c6f20796f7520746f6f'
       )
     );
 
