@@ -8,6 +8,6 @@ describe(`KeyfobPositionResponse`, () => {
     const response = new Response(hexToUint8Array('00480101000105'));
 
     expect(response.parse()).toBeInstanceOf(KeyfobPositionResponse);
-    expect(response.parse()).toEqual({ position: 'inside' });
+    expect(response.parse()).toEqual({ position: 'inside_car' });
   });
 });

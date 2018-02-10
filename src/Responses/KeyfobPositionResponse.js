@@ -15,9 +15,10 @@ export default class KeyfobPositionResponse extends PropertyResponse {
           0x01: 'outside_driver_side',
           0x02: 'outside_in_front_of_car',
           0x03: 'outside_passenger_side',
-          0x04: 'inside_car'
+          0x04: 'outside_behind_car',
+          0x05: 'inside_car',
         })
-      )
+      ),
     ];
 
     this.parse(data, properties);
