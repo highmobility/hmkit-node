@@ -1,7 +1,9 @@
 import { pad, intToBinary } from './encoding';
 
 export function bytesSum(bytes: Array<Number>) {
-  const hex = bytes.map(decimal => pad(decimal.toString(16), 2)).reduce((memo, i) => memo + i, '');
+  const hex = bytes
+    .map(decimal => pad(decimal.toString(16), 2))
+    .reduce((memo, i) => memo + i, '');
   return Number(`0x${hex}`);
 }
 
@@ -30,7 +32,7 @@ export function dateDecoder(bytes: Array<Number>) {
       month: bytes[1],
       day: bytes[2],
       hour: bytes[3],
-      minute: bytes[4]
+      minute: bytes[4],
     };
   } else if (bytes.length === 8) {
     return {
@@ -40,7 +42,7 @@ export function dateDecoder(bytes: Array<Number>) {
       hour: bytes[3],
       minute: bytes[4],
       second: bytes[5],
-      utcOffset: bytesSum(bytes.slice(6, 8))
+      utcOffset: bytesSum(bytes.slice(6, 8)) << 16 >> 16,
     };
   }
 
@@ -56,12 +58,16 @@ export function matrixZoneDecoder(bytes: Array<Number>) {
 }
 
 export function autoHvacDecoder(bytes: Array<Number>) {
-  const [constant, sundays, saturdays, fridays, thursdays, wednesdays, tuesdays, mondays] = pad(
-    intToBinary(bytes[0]),
-    8
-  )
-    .split('')
-    .map(orig => Number(orig));
+  const [
+    constant,
+    sundays,
+    saturdays,
+    fridays,
+    thursdays,
+    wednesdays,
+    tuesdays,
+    mondays,
+  ] = pad(intToBinary(bytes[0]), 8).split('').map(orig => Number(orig));
 
   return {
     mondays: mondays ? autoHvacTimeDecoder(bytes[1], bytes[2]) : false,
@@ -71,14 +77,14 @@ export function autoHvacDecoder(bytes: Array<Number>) {
     fridays: fridays ? autoHvacTimeDecoder(bytes[9], bytes[10]) : false,
     saturdays: saturdays ? autoHvacTimeDecoder(bytes[11], bytes[12]) : false,
     sundays: sundays ? autoHvacTimeDecoder(bytes[13], bytes[14]) : false,
-    constant: !!constant
+    constant: !!constant,
   };
 }
 
 export function autoHvacTimeDecoder(hours: Number, minutes: Number) {
   return {
     hours,
-    minutes
+    minutes,
   };
 }
 

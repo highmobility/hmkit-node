@@ -12,15 +12,15 @@ export default class TrunkAccessResponse extends PropertyResponse {
       new Property(0x01, 'lock').setDecoder(
         switchDecoder({
           0x00: 'unlocked',
-          0x01: 'locked'
+          0x01: 'locked',
         })
       ),
       new Property(0x02, 'position').setDecoder(
         switchDecoder({
           0x00: 'closed',
-          0x01: 'open'
+          0x01: 'open',
         })
-      )
+      ),
     ];
 
     this.parse(data, properties);

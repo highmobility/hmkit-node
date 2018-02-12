@@ -7,7 +7,7 @@ import {
   autoHvacDecoder,
   autoHvacTimeDecoder,
   decimalToHexStringDecoder,
-  progressDecoder
+  progressDecoder,
 } from '../src/helpers';
 
 describe(`helpers`, () => {
@@ -32,7 +32,7 @@ describe(`helpers`, () => {
       0x00: 'disconnected',
       0x01: 'plugged_in',
       0x02: 'charging',
-      0x03: 'charging_complete'
+      0x03: 'charging_complete',
     });
     const decodedValue = decoder([0x01]);
 
@@ -49,7 +49,7 @@ describe(`helpers`, () => {
       month: 1,
       day: 1,
       hour: 1,
-      minute: 1
+      minute: 1,
     });
 
     expect(invalidDate).toEqual(null);
@@ -87,7 +87,7 @@ describe(`helpers`, () => {
         0x01,
         0x01,
         0x01,
-        0x01
+        0x01,
       ])
     ).toEqual({
       mondays: false,
@@ -97,7 +97,7 @@ describe(`helpers`, () => {
       fridays: false,
       saturdays: false,
       sundays: false,
-      constant: false
+      constant: false,
     });
 
     expect(
@@ -116,38 +116,38 @@ describe(`helpers`, () => {
         0x01,
         0x01,
         0x01,
-        0x01
+        0x01,
       ])
     ).toEqual({
       mondays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
       tuesdays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
       wednesdays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
       thursdays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
       fridays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
       saturdays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
       sundays: {
         hours: 1,
-        minutes: 1
+        minutes: 1,
       },
-      constant: false
+      constant: false,
     });
   });
 
@@ -155,7 +155,7 @@ describe(`helpers`, () => {
     const time = autoHvacTimeDecoder([0x05, 0x04]);
     expect(time).toEqual({
       hours: 5,
-      minutes: 4
+      minutes: 4,
     });
   });
 });

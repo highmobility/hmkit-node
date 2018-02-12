@@ -20,15 +20,15 @@ describe(`ParkingTicketResponse`, () => {
         month: 1,
         day: 10,
         hour: 17,
-        minute: 34
+        minute: 34,
       },
       endDate: {
         year: 2000,
         month: 0,
         day: 0,
         hour: 0,
-        minute: 0
-      }
+        minute: 0,
+      },
     });
   });
 });

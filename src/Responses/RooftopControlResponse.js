@@ -10,7 +10,7 @@ export default class RooftopControlResponse extends PropertyResponse {
 
     const properties = [
       new Property(0x01, 'dimming').setDecoder(progressDecoder),
-      new Property(0x02, 'position').setDecoder(progressDecoder)
+      new Property(0x02, 'position').setDecoder(progressDecoder),
     ];
 
     this.parse(data, properties);

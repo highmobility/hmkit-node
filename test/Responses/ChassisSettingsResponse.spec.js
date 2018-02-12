@@ -2,7 +2,6 @@ import Response from '../../src/Responses/Response';
 import ChassisSettingsResponse from '../../src/Responses/ChassisSettingsResponse';
 import { hexToUint8Array } from '../../src/encoding';
 
-
 describe(`ChassisSettingsResponse`, () => {
   it(`should return ChassisSettingsResponse`, () => {
     const response = new Response(
@@ -12,25 +11,25 @@ describe(`ChassisSettingsResponse`, () => {
     );
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual({
-         chassisPosition: {
-            maximum: 55,
-            minimum: -28,
-            position: 25
-         },
-         drivingMode: 'eco',
-         sportChrono: 'active',
-         springRates: {
-             front: {
-                maximum: 37,
-                minimum: 21,
-                rate: 21
-             },
-             rear: {
-                maximum: 31,
-                minimum: 17,
-                rate: 23
-             }
-         }
+      chassisPosition: {
+        maximum: 55,
+        minimum: -28,
+        position: 25,
+      },
+      drivingMode: 'eco',
+      sportChrono: 'active',
+      springRates: {
+        front: {
+          maximum: 37,
+          minimum: 21,
+          rate: 21,
+        },
+        rear: {
+          maximum: 31,
+          minimum: 17,
+          rate: 23,
+        },
+      },
     });
   });
 });

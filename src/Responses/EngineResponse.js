@@ -12,9 +12,9 @@ export default class EngineResponse extends PropertyResponse {
       new Property(0x01, 'engine').setDecoder(
         switchDecoder({
           0x00: 'off',
-          0x01: 'on'
+          0x01: 'on',
         })
-      )
+      ),
     ];
 
     this.parse(data, properties);

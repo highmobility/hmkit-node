@@ -23,6 +23,7 @@ import TrunkAccessCommand from './Commands/TrunkAccessCommand';
 import ValetModeCommand from './Commands/ValetModeCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
+import VehicleTimeCommand from './Commands/VehicleTimeCommand';
 import VideoHandoverCommand from './Commands/VideoHandoverCommand';
 import WakeUpCommand from './Commands/WakeUpCommand';
 import WindowsCommand from './Commands/WindowsCommand';
@@ -56,6 +57,7 @@ export default class Commands {
       ValetModeCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,
+      VehicleTimeCommand,
       VideoHandoverCommand,
       WakeUpCommand,
       WindowsCommand,

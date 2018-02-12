@@ -18,6 +18,7 @@ import TheftAlarmResponse from './TheftAlarmResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
+import VehicleTimeResponse from './VehicleTimeResponse';
 import WindowsResponse from './WindowsResponse';
 import WindscreenResponse from './WindscreenResponse';
 import CapabilitiesResponse from './CapabilitiesResponse';
@@ -49,14 +50,17 @@ export default class Response {
       TrunkAccessResponse,
       ValetModeResponse,
       VehicleLocationResponse,
+      VehicleTimeResponse,
       WindowsResponse,
-      WindscreenResponse
+      WindscreenResponse,
     ];
   }
 
   checkRawDataLength() {
     if (this.rawData.length < 2 && this.rawData.length !== 0) {
-      throw new Error(`Response string length invalid (length: ${this.rawData.length} chars).`);
+      throw new Error(
+        `Response string length invalid (length: ${this.rawData.length} chars).`
+      );
     }
   }
 
@@ -82,7 +86,10 @@ export default class Response {
     }
 
     for (const parser of this.parsers) {
-      if (parser.identifier[0] === bytes[0] && parser.identifier[1] === bytes[1]) {
+      if (
+        parser.identifier[0] === bytes[0] &&
+        parser.identifier[1] === bytes[1]
+      ) {
         return parser;
       }
     }

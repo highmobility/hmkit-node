@@ -8,7 +8,7 @@ const FAILURE_REASONS = {
   2: 'Incorrect State - Command can not be executed in the current car state',
   3: 'Execution Timeout - Command failed to execute in time for an unknown reason',
   4: 'Vehicle Asleep - Car has to be waken up before the command can be used. If this is for a virtual car, the emulator has to be loaded',
-  5: 'Invalid Auto Command - Auto API command not recognised'
+  5: 'Invalid Auto Command - Auto API command not recognised',
 };
 
 export default class FailureMessageResponse extends PropertyResponse {
@@ -19,7 +19,7 @@ export default class FailureMessageResponse extends PropertyResponse {
 
     const properties = [
       new Property(0x01, 'failedMessage').setDecoder(this.failedMessageDecoder),
-      new Property(0x02, 'reason').setDecoder(this.reasonDecoder)
+      new Property(0x02, 'reason').setDecoder(this.reasonDecoder),
     ];
 
     this.parse(data, properties);
@@ -44,7 +44,7 @@ export default class FailureMessageResponse extends PropertyResponse {
   reasonDecoder(bytes: Array<Number>) {
     return {
       key: bytes[0],
-      value: FAILURE_REASONS[bytes[0]]
+      value: FAILURE_REASONS[bytes[0]],
     };
   }
 }

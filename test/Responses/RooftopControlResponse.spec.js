@@ -9,7 +9,7 @@ describe(`RooftopControlResponse`, () => {
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
       dimming: 1,
-      position: 0
+      position: 0,
     });
   });
 });

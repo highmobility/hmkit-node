@@ -26,8 +26,8 @@ describe(`DiagnosticsResponse`, () => {
           frontLeft: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
           frontRight: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
           rearRight: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
-          rearLeft: { pressure: 2.299999952316284, temperature: 40, rpm: 0 }
-        }
+          rearLeft: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
+        },
       })
     );
   });

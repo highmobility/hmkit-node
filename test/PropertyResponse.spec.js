@@ -11,9 +11,9 @@ describe(`PropertyResponse`, () => {
       new Property(0x01, 'engine').setDecoder(
         switchDecoder({
           0x00: 'off',
-          0x01: 'on'
+          0x01: 'on',
         })
-      )
+      ),
     ];
 
     const propertyResponse = new PropertyResponse();

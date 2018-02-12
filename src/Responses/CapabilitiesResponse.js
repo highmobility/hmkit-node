@@ -14,7 +14,10 @@ export default class CapabilitiesResponse {
     const capabilitiesLength = capabilitiesData[0];
 
     const capabilityIndexes = this.findCapabilityIndexes(capabilitiesData);
-    const capabilityTokens = this.getCapabilityTokens(capabilityIndexes, capabilitiesData);
+    const capabilityTokens = this.getCapabilityTokens(
+      capabilityIndexes,
+      capabilitiesData
+    );
 
     if (capabilityTokens.length !== capabilitiesLength) {
       this.error = 'Failed to parse all capabilities.';
@@ -70,14 +73,18 @@ export default class CapabilitiesResponse {
         Object.values(availabilityValues[index]).length > availability
       ) {
         if (availabilityNamespaces.length === 1) {
-          this[capabilityToMap.namespace] = Object.values(availabilityValues[index])[availability];
-        } else {
-          this[capabilityToMap.namespace][availabilityNamespaces[index]] = Object.values(
+          this[capabilityToMap.namespace] = Object.values(
             availabilityValues[index]
           )[availability];
+        } else {
+          this[capabilityToMap.namespace][
+            availabilityNamespaces[index]
+          ] = Object.values(availabilityValues[index])[availability];
         }
       } else {
-        this.error = `Invalid capability configuration. (0x00 0x${intToHex(capabilityToMap.LSB)}).`;
+        this.error = `Invalid capability configuration. (0x00 0x${intToHex(
+          capabilityToMap.LSB
+        )}).`;
       }
     });
   }
@@ -120,7 +127,10 @@ export default class CapabilitiesResponse {
     capabilityIndexes.forEach((capabilityIndex, index) => {
       if (index < capabilityIndexes.length - 1) {
         capabilityTokens.push(
-          encodedCapabilitiesArray.slice(capabilityIndex, capabilityIndexes[index + 1])
+          encodedCapabilitiesArray.slice(
+            capabilityIndex,
+            capabilityIndexes[index + 1]
+          )
         );
       }
     });

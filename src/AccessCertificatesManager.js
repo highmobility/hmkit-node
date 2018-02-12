@@ -23,7 +23,12 @@ export default class AccessCertificatesManager {
     );
     const signature = byteArrayToBase64(byteSignature);
 
-    console.log(`${this.hmkit.api.getUrl()}access_certificates`, this.hmkit.clientCertificate.getSerial(), accessToken, signature);
+    console.log(
+      `${this.hmkit.api.getUrl()}access_certificates`,
+      this.hmkit.clientCertificate.getSerial(),
+      accessToken,
+      signature
+    );
     const {
       body: { device_access_certificate: rawAccessCertificate },
     } = await this.hmkit.apiClient.post(

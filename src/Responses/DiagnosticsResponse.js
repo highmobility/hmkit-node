@@ -1,6 +1,11 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { bytesSum, switchDecoder, chunkArray, progressDecoder } from '../helpers';
+import {
+  bytesSum,
+  switchDecoder,
+  chunkArray,
+  progressDecoder,
+} from '../helpers';
 import { ieee754ToBase10 } from '../encoding';
 
 export default class DiagnosticsResponse extends PropertyResponse {
@@ -21,18 +26,22 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x09, 'washerFluidLevel').setDecoder(
         switchDecoder({
           0x00: 'low',
-          0x01: 'filled'
+          0x01: 'filled',
         })
       ),
-      new Property(0x0a, 'tires').setSubProperty(
-        new Property(0x00, 'frontLeft').setDecoder(this.tireDecoder)
-      ).setSubProperty(
-        new Property(0x01, 'frontRight').setDecoder(this.tireDecoder)
-      ).setSubProperty(
-        new Property(0x02, 'rearRight').setDecoder(this.tireDecoder)
-      ).setSubProperty(
-        new Property(0x03, 'rearLeft').setDecoder(this.tireDecoder)
-      )
+      new Property(0x0a, 'tires')
+        .setSubProperty(
+          new Property(0x00, 'frontLeft').setDecoder(this.tireDecoder)
+        )
+        .setSubProperty(
+          new Property(0x01, 'frontRight').setDecoder(this.tireDecoder)
+        )
+        .setSubProperty(
+          new Property(0x02, 'rearRight').setDecoder(this.tireDecoder)
+        )
+        .setSubProperty(
+          new Property(0x03, 'rearLeft').setDecoder(this.tireDecoder)
+        ),
     ];
 
     this.parse(data, properties);
@@ -42,7 +51,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
     return {
       pressure: ieee754ToBase10(bytes.slice(0, 4)),
       temperature: ieee754ToBase10(bytes.slice(4, 8)),
-      rpm: bytesSum(bytes.slice(8, 10))
+      rpm: bytesSum(bytes.slice(8, 10)),
     };
   }
 }

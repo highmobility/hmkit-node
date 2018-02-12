@@ -14,22 +14,22 @@ export default class LightsResponse extends PropertyResponse {
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
-          0x02: 'full_beam'
+          0x02: 'full_beam',
         })
       ),
       new Property(0x02, 'rearExteriorLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
-          0x01: 'active'
+          0x01: 'active',
         })
       ),
       new Property(0x03, 'interiorLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
-          0x01: 'active'
+          0x01: 'active',
         })
       ),
-      new Property(0x04, 'ambientLight').setDecoder(this.ambientLightDecoder)
+      new Property(0x04, 'ambientLight').setDecoder(this.ambientLightDecoder),
     ];
 
     this.parse(data, properties);

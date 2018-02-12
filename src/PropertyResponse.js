@@ -55,8 +55,13 @@ export default class PropertyResponse {
 
       while (counter < propertiesData.length) {
         const identifier = propertiesData[counter];
-        const propertyDataLength = bytesSum(propertiesData.slice(counter + 1, counter + 3));
-        const propertyData = propertiesData.slice(counter + 3, counter + 3 + propertyDataLength);
+        const propertyDataLength = bytesSum(
+          propertiesData.slice(counter + 1, counter + 3)
+        );
+        const propertyData = propertiesData.slice(
+          counter + 3,
+          counter + 3 + propertyDataLength
+        );
 
         const property = this.findProperty(identifier, properties);
 

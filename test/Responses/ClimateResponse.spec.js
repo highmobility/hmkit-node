@@ -26,16 +26,16 @@ describe(`ClimateResponse`, () => {
         wednesdays: false,
         thursdays: false,
         fridays: false,
-         saturdays: {
-             hours: 7,
-             minutes: 30
-         },
-         sundays: {
-             hours: 7,
-             minutes: 30
-         },
-        constant: false
-      }
+        saturdays: {
+          hours: 7,
+          minutes: 30,
+        },
+        sundays: {
+          hours: 7,
+          minutes: 30,
+        },
+        constant: false,
+      },
     });
   });
 });

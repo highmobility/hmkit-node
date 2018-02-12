@@ -18,7 +18,7 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.controlRooftop(0.2, 0.3)
     );
 
-     // Emulator doesn't return middle-values right now
+    // Emulator doesn't return middle-values right now
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
@@ -32,7 +32,7 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.controlRooftop(0.32, 0.41)
     );
 
-     // Emulator doesn't return middle-values right now
+    // Emulator doesn't return middle-values right now
     expect(response2.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({

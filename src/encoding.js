@@ -32,7 +32,7 @@ export function intToBinary(int) {
 }
 
 export function uint8toInt8(uint8) {
-    return uint8 << 24 >> 24;
+  return uint8 << 24 >> 24;
 }
 
 export function binaryToInt(binary) {
@@ -58,14 +58,18 @@ export function hexToByteArrays(hexString) {
   const byteArrays = [];
 
   uint8Array.forEach(uint8 => {
-    byteArrays.push(pad(uint8.toString(2), 8).split('').map(byte => Number(byte)));
+    byteArrays.push(
+      pad(uint8.toString(2), 8).split('').map(byte => Number(byte))
+    );
   });
 
   return byteArrays;
 }
 
 export function pad(string: string, width: number) {
-  return string.length >= width ? string : new Array(width - string.length + 1).join('0') + string;
+  return string.length >= width
+    ? string
+    : new Array(width - string.length + 1).join('0') + string;
 }
 
 export function hexArrayToHex(hexArray: Array<number>) {
@@ -103,7 +107,9 @@ export function decimalToHexArray(value: number, bytes: number = 1) {
 }
 
 export function utfStringToByteArray(string: string, minLength?: number) {
-  const byteArray = unescape(encodeURIComponent(string)).split('').map(char => char.charCodeAt(0));
+  const byteArray = unescape(encodeURIComponent(string))
+    .split('')
+    .map(char => char.charCodeAt(0));
 
   if (minLength !== undefined) {
     while (byteArray.length < minLength) {

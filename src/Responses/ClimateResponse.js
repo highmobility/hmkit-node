@@ -12,14 +12,24 @@ export default class ClimateResponse extends PropertyResponse {
     const properties = [
       new Property(0x01, 'insideTemperature').setDecoder(ieee754ToBase10),
       new Property(0x02, 'outsideTemperature').setDecoder(ieee754ToBase10),
-      new Property(0x03, 'driverTemperatureSetting').setDecoder(ieee754ToBase10),
-      new Property(0x04, 'passengerTemperatureSetting').setDecoder(ieee754ToBase10),
+      new Property(0x03, 'driverTemperatureSetting').setDecoder(
+        ieee754ToBase10
+      ),
+      new Property(0x04, 'passengerTemperatureSetting').setDecoder(
+        ieee754ToBase10
+      ),
       new Property(0x05, 'hvacState').setDecoder(this.activeInactiveDecoder()),
-      new Property(0x06, 'defoggingState').setDecoder(this.activeInactiveDecoder()),
-      new Property(0x07, 'defrostingState').setDecoder(this.activeInactiveDecoder()),
-      new Property(0x08, 'ionisingState').setDecoder(this.activeInactiveDecoder()),
+      new Property(0x06, 'defoggingState').setDecoder(
+        this.activeInactiveDecoder()
+      ),
+      new Property(0x07, 'defrostingState').setDecoder(
+        this.activeInactiveDecoder()
+      ),
+      new Property(0x08, 'ionisingState').setDecoder(
+        this.activeInactiveDecoder()
+      ),
       new Property(0x09, 'defrostingTemperature').setDecoder(ieee754ToBase10),
-      new Property(0x0a, 'autoHvacActivatedOn').setDecoder(autoHvacDecoder)
+      new Property(0x0a, 'autoHvacActivatedOn').setDecoder(autoHvacDecoder),
     ];
 
     this.parse(data, properties);
@@ -28,7 +38,7 @@ export default class ClimateResponse extends PropertyResponse {
   activeInactiveDecoder() {
     return switchDecoder({
       0x00: 'deactivated',
-      0x01: 'activated'
+      0x01: 'activated',
     });
   }
 }

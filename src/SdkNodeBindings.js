@@ -17,7 +17,11 @@ export default class SdkNodeBindings {
 
   loadNativeAddOn() {
     /* istanbul ignore next */
-    if (fs.existsSync(path.resolve(__dirname, '..', 'sdk-node-bindings', 'lib', 'binding.js'))) {
+    if (
+      fs.existsSync(
+        path.resolve(__dirname, '..', 'sdk-node-bindings', 'lib', 'binding.js')
+      )
+    ) {
       return require('../sdk-node-bindings/lib/binding.js');
     } else if (process.platform === 'darwin') {
       return require('../bindings/macos');
@@ -32,8 +36,12 @@ export default class SdkNodeBindings {
   }
 
   setup() {
-    this.onGetSerialNumber(() => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer);
-    this.onGetLocalPrivateKey(() => base64ToUint8(this.hmkit.clientPrivateKey).buffer);
+    this.onGetSerialNumber(
+      () => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer
+    );
+    this.onGetLocalPrivateKey(
+      () => base64ToUint8(this.hmkit.clientPrivateKey).buffer
+    );
 
     this.onGetAccessCertificate(serial => {
       const accessCert = this.hmkit.certificates.get(
@@ -43,6 +51,8 @@ export default class SdkNodeBindings {
     });
 
     this.onTelematicsSendData(this.hmkit.telematics.onTelematicsSendData);
-    this.onTelematicsCommandIncoming(this.hmkit.telematics.onTelematicsCommandIncoming);
+    this.onTelematicsCommandIncoming(
+      this.hmkit.telematics.onTelematicsCommandIncoming
+    );
   }
 }

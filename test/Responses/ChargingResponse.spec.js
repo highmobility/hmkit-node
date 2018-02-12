@@ -11,28 +11,28 @@ describe(`ChargingResponse`, () => {
     );
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
-                                     batteryCurrentAC: -0.6,
-                                     batteryCurrentDC: -0.6,
-                                     batteryLevel: 0.5,
-                                     chargeLimit: 0.9,
-                                     chargeMode: 'immediate',
-                                     chargePortState: 'open',
-                                     chargeTimer: {
-                                         chargeTimer: 'departure_time',
-                                         year: 2018,
-                                         month: 1,
-                                         day: 10,
-                                         hour: 16,
-                                         minute: 32,
-                                         second: 5,
-                                         timeOffset: 0
-                                     },
-                                     chargerVoltageAC: 400,
-                                     chargerVoltageDC: 410,
-                                     chargingRate: 0,
-                                     chargingState: 'charging',
-                                     estimatedRange: 255,
-                                     timeToCompleteCharge: 60,
+      batteryCurrentAC: -0.6,
+      batteryCurrentDC: -0.6,
+      batteryLevel: 0.5,
+      chargeLimit: 0.9,
+      chargeMode: 'immediate',
+      chargePortState: 'open',
+      chargeTimer: {
+        chargeTimer: 'departure_time',
+        year: 2018,
+        month: 1,
+        day: 10,
+        hour: 16,
+        minute: 32,
+        second: 5,
+        timeOffset: 0,
+      },
+      chargerVoltageAC: 400,
+      chargerVoltageDC: 410,
+      chargingRate: 0,
+      chargingState: 'charging',
+      estimatedRange: 255,
+      timeToCompleteCharge: 60,
     });
   });
 });

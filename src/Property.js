@@ -18,7 +18,7 @@ export default class Property {
     }
 
     return this.value;
-  }
+  };
 
   parseValue = (data: Array<number>) => {
     if (this.subProperties.length > 0 && data.length > 0) {
@@ -50,10 +50,13 @@ export default class Property {
     return this;
   };
 
-  setSubProperty = (subProperty:Property) => {
+  setSubProperty = (subProperty: Property) => {
     this.subProperties.push(subProperty);
     return this;
-  }
+  };
 
-  findSubProperty = (identifier:number) => this.subProperties.find(supProperty => supProperty.identifier === identifier);
+  findSubProperty = (identifier: number) =>
+    this.subProperties.find(
+      supProperty => supProperty.identifier === identifier
+    );
 }

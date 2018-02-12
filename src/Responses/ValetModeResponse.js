@@ -12,9 +12,9 @@ export default class ValetModeResponse extends PropertyResponse {
       new Property(0x01, 'mode').setDecoder(
         switchDecoder({
           0x00: 'deactivated',
-          0x01: 'activated'
+          0x01: 'activated',
         })
-      )
+      ),
     ];
 
     this.parse(data, properties);

@@ -11,7 +11,7 @@ export default class MessagingResponse extends PropertyResponse {
 
     const properties = [
       new Property(0x01, 'handle').setDecoder(bytesToString),
-      new Property(0x02, 'text').setDecoder(bytesToString)
+      new Property(0x02, 'text').setDecoder(bytesToString),
     ];
 
     this.parse(data, properties);

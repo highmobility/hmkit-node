@@ -10,7 +10,7 @@ export default class MaintenanceResponse extends PropertyResponse {
 
     const properties = [
       new Property(0x01, 'daysToNextService').setDecoder(bytesSum),
-      new Property(0x02, 'kilometersToNextService').setDecoder(bytesSum)
+      new Property(0x02, 'kilometersToNextService').setDecoder(bytesSum),
     ];
 
     this.parse(data, properties);

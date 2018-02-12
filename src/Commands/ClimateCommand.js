@@ -22,17 +22,18 @@ export default class ClimateCommand {
       0x00,
       0x24,
       0x02,
-                        0x01,
-                        0x00, 0x0F,
+      0x01,
+      0x00,
+      0x0f,
       this.getHvacActivatedOnDaysByte(
-                                      constant,
-                                      sundays,
-                                      saturdays,
-                                      fridays,
-                                      thursdays,
-                                      wednesdays,
-                                      tuesdays,
-                                      mondays
+        constant,
+        sundays,
+        saturdays,
+        fridays,
+        thursdays,
+        wednesdays,
+        tuesdays,
+        mondays
       ),
       ...this.getHvacDayBytes(mondays),
       ...this.getHvacDayBytes(tuesdays),
@@ -41,11 +42,13 @@ export default class ClimateCommand {
       ...this.getHvacDayBytes(fridays),
       ...this.getHvacDayBytes(saturdays),
       ...this.getHvacDayBytes(sundays),
-                        0x02,
-                        0x00, 0x04,
+      0x02,
+      0x00,
+      0x04,
       ...intToIeee754(driverTemperatureSetting),
-                        0x03,
-                        0x00, 0x04,
+      0x03,
+      0x00,
+      0x04,
       ...intToIeee754(passengerTemperatureSetting),
     ]);
   }
@@ -87,11 +90,11 @@ export default class ClimateCommand {
     return new Command([0x00, 0x24, 0x05, 0x00]);
   }
 
-    static startIonising() {
-        return new Command([0x00, 0x24, 0x06, 0x01]);
-    }
+  static startIonising() {
+    return new Command([0x00, 0x24, 0x06, 0x01]);
+  }
 
-    static stopIonising() {
-        return new Command([0x00, 0x24, 0x06, 0x00]);
-    }
+  static stopIonising() {
+    return new Command([0x00, 0x24, 0x06, 0x00]);
+  }
 }

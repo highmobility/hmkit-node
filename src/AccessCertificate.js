@@ -1,4 +1,9 @@
-import { base64ToUint8, uint8ArrayToHex, hexToInt, hexToUint8Array } from './encoding';
+import {
+  base64ToUint8,
+  uint8ArrayToHex,
+  hexToInt,
+  hexToUint8Array,
+} from './encoding';
 import Permissions from './Permissions';
 
 export default class AccessCertificate {
@@ -23,24 +28,38 @@ export default class AccessCertificate {
     const response = {
       version: uint8ArrayToHex(unparsedBytes.splice(0, 1)).toUpperCase(),
       issuer: uint8ArrayToHex(unparsedBytes.splice(0, 4)).toUpperCase(),
-      accessProvidingSerialNumber: uint8ArrayToHex(unparsedBytes.splice(0, 9)).toUpperCase(),
-      accessGainingSerialNumber: uint8ArrayToHex(unparsedBytes.splice(0, 9)).toUpperCase(),
-      accessGainingPublicKey: uint8ArrayToHex(unparsedBytes.splice(0, 64)).toUpperCase(),
-      validityStartDate: uint8ArrayToHex(unparsedBytes.splice(0, 5)).toUpperCase(),
-      validityEndDate: uint8ArrayToHex(unparsedBytes.splice(0, 5)).toUpperCase()
+      accessProvidingSerialNumber: uint8ArrayToHex(
+        unparsedBytes.splice(0, 9)
+      ).toUpperCase(),
+      accessGainingSerialNumber: uint8ArrayToHex(
+        unparsedBytes.splice(0, 9)
+      ).toUpperCase(),
+      accessGainingPublicKey: uint8ArrayToHex(
+        unparsedBytes.splice(0, 64)
+      ).toUpperCase(),
+      validityStartDate: uint8ArrayToHex(
+        unparsedBytes.splice(0, 5)
+      ).toUpperCase(),
+      validityEndDate: uint8ArrayToHex(
+        unparsedBytes.splice(0, 5)
+      ).toUpperCase(),
     };
 
-    const permissionsSize = uint8ArrayToHex(unparsedBytes.splice(0, 1)).toUpperCase();
+    const permissionsSize = uint8ArrayToHex(
+      unparsedBytes.splice(0, 1)
+    ).toUpperCase();
     const permissions = uint8ArrayToHex(
       unparsedBytes.splice(0, hexToInt(permissionsSize))
     ).toUpperCase();
-    const signature = uint8ArrayToHex(unparsedBytes.splice(0, 64)).toUpperCase();
+    const signature = uint8ArrayToHex(
+      unparsedBytes.splice(0, 64)
+    ).toUpperCase();
 
     return {
       ...response,
       permissionsSize,
       permissions,
-      signature
+      signature,
     };
   }
 
@@ -53,7 +72,7 @@ export default class AccessCertificate {
       accessGainingPublicKey: this.accessGainingPublicKey,
       validityStartDate: this.validityStartDate,
       validityEndDate: this.validityEndDate,
-      permissions: this.permissions
+      permissions: this.permissions,
     };
   }
 
@@ -114,6 +133,8 @@ export default class AccessCertificate {
   }
 
   getPermissions() {
-    return new Permissions(base64ToUint8(this.rawAccessCertificate.permissions));
+    return new Permissions(
+      base64ToUint8(this.rawAccessCertificate.permissions)
+    );
   }
 }

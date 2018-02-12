@@ -13,9 +13,9 @@ export default class TheftAlarmResponse extends PropertyResponse {
         switchDecoder({
           0x00: 'not_armed',
           0x01: 'armed',
-          0x02: 'triggered'
+          0x02: 'triggered',
         })
-      )
+      ),
     ];
 
     this.parse(data, properties);

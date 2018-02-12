@@ -26,7 +26,9 @@ export default class HMKit {
   }
 
   staging() {
-    this.api = new Api('https://limitless-gorge-44605.herokuapp.com/hm_cloud/api/v1/');
+    this.api = new Api(
+      'https://limitless-gorge-44605.herokuapp.com/hm_cloud/api/v1/'
+    );
     return this;
   }
 

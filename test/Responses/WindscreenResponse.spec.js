@@ -15,17 +15,17 @@ describe(`WindscreenResponse`, () => {
     expect(response.parse()).toEqual({
       wipers: {
         state: 'automatic',
-        intensityLevel: 3
+        intensityLevel: 3,
       },
       windscreen: {
         damage: 'no_damage',
         zoneMatrix: {
           horisontal: 4,
-          vertical: 3
+          vertical: 3,
         },
         damageZone: {
           horisontal: 1,
-          vertical: 2
+          vertical: 2,
         },
         needsReplacement: 'yes',
         damageConfidence: 0.95,
@@ -37,8 +37,8 @@ describe(`WindscreenResponse`, () => {
           minute: 32,
           second: 5,
           utcOffset: 0,
-        }
-      }
+        },
+      },
     });
   });
 });
