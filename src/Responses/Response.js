@@ -13,6 +13,7 @@ import MaintenanceResponse from './MaintenanceResponse';
 import MessagingResponse from './MessagingResponse';
 import NotificationResponse from './NotificationResponse';
 import ParkingTicketResponse from './ParkingTicketResponse';
+import RaceResponse from './RaceResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import SeatsResponse from './SeatsResponse';
 import TheftAlarmResponse from './TheftAlarmResponse';
@@ -46,6 +47,7 @@ export default class Response {
       MessagingResponse,
       NotificationResponse,
       ParkingTicketResponse,
+      RaceResponse,
       RooftopControlResponse,
       SeatsResponse,
       TheftAlarmResponse,

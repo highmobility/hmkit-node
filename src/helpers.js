@@ -91,3 +91,18 @@ export function autoHvacTimeDecoder(hours: Number, minutes: Number) {
 export function progressDecoder(bytes: Array<Number>) {
   return bytes[0] / 100;
 }
+
+export function activeInactiveDecoder() {
+  return switchDecoder({
+    0x00: 'inactive',
+    0x01: 'active',
+  });
+}
+
+export function assertFloatsEqualWithAccuracy(
+  float1: Number,
+  float2: Number,
+  accuracy: Number
+) {
+  return Math.abs(float1 - float2) < accuracy;
+}
