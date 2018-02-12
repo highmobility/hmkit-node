@@ -14,6 +14,7 @@ import MaintenanceCommand from './Commands/MaintenanceCommand';
 import MessagingCommand from './Commands/MessagingCommand';
 import NaviDestinationCommand from './Commands/NaviDestinationCommand';
 import NotificationCommand from './Commands/NotificationCommand';
+import ParkingBrakeCommand from './Commands/ParkingBrakeCommand';
 import ParkingTicketCommand from './Commands/ParkingTicketCommand';
 import RaceCommand from './Commands/RaceCommand';
 import RooftopControlCommand from './Commands/RooftopControlCommand';
@@ -49,6 +50,7 @@ export default class Commands {
       MessagingCommand,
       NaviDestinationCommand,
       NotificationCommand,
+                  ParkingBrakeCommand,
       ParkingTicketCommand,
       RaceCommand,
       RooftopControlCommand,
