@@ -23,8 +23,8 @@ describe(`ParkingBrakeCommand`, () => {
       hmkit.commands.ParkingBrakeCommand.activateParkingBrake()
     );
 
-     // Emulator fails to parse this correctly
-     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
+    // Emulator fails to parse this correctly
+    expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
         brakeState: 'active',
@@ -38,7 +38,7 @@ describe(`ParkingBrakeCommand`, () => {
       hmkit.commands.ParkingBrakeCommand.inactivateParkingBrake()
     );
 
-     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
+    expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
         brakeState: 'inactive',

@@ -3,7 +3,7 @@ import RaceResponse from '../../src/Responses/RaceResponse';
 const hmkit = getHmkit();
 
 describe(`RaceCommand`, () => {
-  it(`should get seats state`, async () => {
+  it(`should get race state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.RaceCommand.getRaceState()

@@ -11,6 +11,7 @@ import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
 import MessagingResponse from './MessagingResponse';
 import NotificationResponse from './NotificationResponse';
+import OffroadResponse from './OffroadResponse';
 import ParkingBrakeResponse from './ParkingBrakeResponse';
 import ParkingTicketResponse from './ParkingTicketResponse';
 import RaceResponse from './RaceResponse';
@@ -45,7 +46,8 @@ export default class Response {
       MaintenanceResponse,
       MessagingResponse,
       NotificationResponse,
-                    ParkingBrakeResponse,
+      OffroadResponse,
+      ParkingBrakeResponse,
       ParkingTicketResponse,
       RaceResponse,
       RooftopControlResponse,
