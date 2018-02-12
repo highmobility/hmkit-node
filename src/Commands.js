@@ -17,6 +17,7 @@ import NaviDestinationCommand from './Commands/NaviDestinationCommand';
 import NotificationCommand from './Commands/NotificationCommand';
 import ParkingTicketCommand from './Commands/ParkingTicketCommand';
 import RooftopControlCommand from './Commands/RooftopControlCommand';
+import SeatsCommand from './Commands/SeatsCommand';
 import TextInputCommand from './Commands/TextInputCommand';
 import TheftAlarmCommand from './Commands/TheftAlarmCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
@@ -51,6 +52,7 @@ export default class Commands {
       NotificationCommand,
       ParkingTicketCommand,
       RooftopControlCommand,
+      SeatsCommand,
       TextInputCommand,
       TheftAlarmCommand,
       TrunkAccessCommand,

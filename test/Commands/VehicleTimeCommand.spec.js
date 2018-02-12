@@ -3,7 +3,7 @@ import VehicleTimeResponse from '../../src/Responses/VehicleTimeResponse';
 const hmkit = getHmkit();
 
 describe(`VehicleTimeCommand`, () => {
-  it(`should get vehicle location`, async () => {
+  it(`should get vehicle time`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.VehicleTimeCommand.getVehicleTime()
