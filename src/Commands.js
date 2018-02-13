@@ -9,10 +9,10 @@ import EngineCommand from './Commands/EngineCommand';
 import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
 import HonkHornsFlashLightsCommand from './Commands/HonkHornsFlashLightsCommand';
+import LightConditionsCommand from './Commands/LightConditionsCommand';
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import MessagingCommand from './Commands/MessagingCommand';
-import NaviDestinationCommand from './Commands/NaviDestinationCommand';
 import NotificationCommand from './Commands/NotificationCommand';
 import OffroadCommand from './Commands/OffroadCommand';
 import ParkingBrakeCommand from './Commands/ParkingBrakeCommand';
@@ -47,10 +47,10 @@ export default class Commands {
       FuelingCommand,
       GraphicsCommand,
       HonkHornsFlashLightsCommand,
+      LightConditionsCommand,
       LightsCommand,
       MaintenanceCommand,
       MessagingCommand,
-      NaviDestinationCommand,
       NotificationCommand,
       OffroadCommand,
       ParkingBrakeCommand,

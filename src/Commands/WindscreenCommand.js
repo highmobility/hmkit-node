@@ -16,11 +16,21 @@ export default class WindscreenCommand {
     const replacementByte = this.getNeedReplacementByte(needsReplacement);
 
     return new Command([
-      0x00, 0x42,
+      0x00,
+      0x42,
       0x02,
-      0x03, 0x00, 0x01, damageByte,
-      0x05, 0x00, 0x01, zoneByte,
-      0x06, 0x00, 0x01, replacementByte,
+      0x03,
+      0x00,
+      0x01,
+      damageByte,
+      0x05,
+      0x00,
+      0x01,
+      zoneByte,
+      0x06,
+      0x00,
+      0x01,
+      replacementByte,
     ]);
   }
 
