@@ -1,7 +1,7 @@
 import Command from './Command';
 
 export default class ValetModeCommand {
-  static getState() {
+  static getMode() {
     return new Command([0x00, 0x28, 0x00]);
   }
 

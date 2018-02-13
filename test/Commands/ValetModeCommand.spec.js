@@ -6,7 +6,7 @@ describe(`ValetModeCommand`, () => {
   it(`should get state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ValetModeCommand.getState()
+      hmkit.commands.ValetModeCommand.getMode()
     );
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
