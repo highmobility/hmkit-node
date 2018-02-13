@@ -14,54 +14,44 @@ export default class WindscreenResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'state').setDecoder(
+      new Property(0x01, 'wipers').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
           0x02: 'automatic',
         })
       ),
-      new Property(0x02, 'intensityLevel'),
-      new Property(0x03, 'damage').setDecoder(
+      new Property(0x02, 'wipersIntensity').setDecoder(
         switchDecoder({
-          0x00: 'no_impact_occured',
-          0x01: 'no_damage',
+          0x00: 'level_0',
+          0x01: 'level_1',
+          0x02: 'level_2',
+          0x03: 'level_3',
+        })
+      ),
+      new Property(0x03, 'windscreenDamage').setDecoder(
+        switchDecoder({
+          0x00: 'no_impact_detected',
+          0x01: 'impact_but_no_damage_detected',
           0x02: 'damage_smaller_than_1_inch',
           0x03: 'damage_larger_than_1_inch',
         })
       ),
-      new Property(0x04, 'zoneMatrix').setDecoder(matrixZoneDecoder),
-      new Property(0x05, 'damageZone').setDecoder(matrixZoneDecoder),
-      new Property(0x06, 'needsReplacement').setDecoder(
+      new Property(0x04, 'windscreenZoneMatrix').setDecoder(matrixZoneDecoder),
+      new Property(0x05, 'windscreenDamageZone').setDecoder(matrixZoneDecoder),
+      new Property(0x06, 'windscreenNeedsReplacement').setDecoder(
         switchDecoder({
           0x00: 'unknown',
-          0x01: 'no',
-          0x02: 'yes',
+          0x01: 'no_replacement_needed',
+          0x02: 'replacement_needed',
         })
       ),
-      new Property(0x07, 'damageConfidence').setDecoder(progressDecoder),
-      new Property(0x08, 'damageDetectionDate').setDecoder(dateDecoder),
+      new Property(0x07, 'windscreenDamageConfidence'),
+      new Property(0x08, 'windscreenDamageDetectionTime').setDecoder(
+        dateDecoder
+      ),
     ];
 
     this.parse(data, properties);
-  }
-
-  bindProperties(properties: Array<Property>) {
-    this.wipers = {};
-    this.windscreen = {};
-
-    properties
-      .filter(property => [0x01, 0x02].includes(property.identifier))
-      .forEach(property => {
-        this.wipers[property.namespace] = property.value;
-      });
-
-    properties
-      .filter(property =>
-        [0x03, 0x04, 0x05, 0x06, 0x07, 0x08].includes(property.identifier)
-      )
-      .forEach(property => {
-        this.windscreen[property.namespace] = property.value;
-      });
   }
 }

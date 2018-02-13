@@ -27,34 +27,30 @@ export function switchDecoder(options: Object) {
 
 export function dateDecoder(bytes: Array<Number>) {
   if (bytes.length === 5) {
-    return {
-      year: 2000 + bytes[0],
-      month: bytes[1],
-      day: bytes[2],
-      hour: bytes[3],
-      minute: bytes[4],
-    };
+    const date = new Date();
+
+    date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
+    date.setUTCHours(bytes[3], bytes[4]);
+
+    return date;
   } else if (bytes.length === 8) {
-    return {
-      year: 2000 + bytes[0],
-      month: bytes[1],
-      day: bytes[2],
-      hour: bytes[3],
-      minute: bytes[4],
-      second: bytes[5],
-      utcOffset: bytesSum(bytes.slice(6, 8)) << 16 >> 16,
-    };
+    const utcOffset = bytesSum(bytes.slice(6, 8)) << 16 >> 16;
+    const date = new Date();
+
+    date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
+    date.setUTCHours(bytes[3], bytes[4] - utcOffset, bytes[5], 0);
+
+    return date;
   }
 
   return null;
 }
 
 export function matrixZoneDecoder(bytes: Array<Number>) {
-  if (bytes.length === 0 || bytes[0] === 0x00) {
-    return 'unknown';
-  }
-
-  return { horisontal: (bytes[0] & 0xf0) >> 4, vertical: bytes[0] & 0x0f };
+  return {
+    rows: (bytes[0] & 0xf0) >> 4,
+    columns: bytes[0] & 0x0f,
+  };
 }
 
 export function autoHvacDecoder(bytes: Array<Number>) {
