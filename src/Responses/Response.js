@@ -22,6 +22,7 @@ import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 import VehicleTimeResponse from './VehicleTimeResponse';
+import WeatherConditionsResponse from './WeatherConditionsResponse';
 import WindowsResponse from './WindowsResponse';
 import WindscreenResponse from './WindscreenResponse';
 import CapabilitiesResponse from './CapabilitiesResponse';
@@ -57,6 +58,7 @@ export default class Response {
       ValetModeResponse,
       VehicleLocationResponse,
       VehicleTimeResponse,
+      WeatherConditionsResponse,
       WindowsResponse,
       WindscreenResponse,
     ];
