@@ -10,11 +10,9 @@ describe(`LightConditionsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(LightConditionsResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        outsideLight: expect.any(Number),
-        insideLight: expect.any(Number),
-      })
-    );
+    expect(response.parse()).toEqual({
+      outsideLight: expect.any(Number),
+      insideLight: expect.any(Number),
+    });
   });
 });

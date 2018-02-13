@@ -13,7 +13,7 @@ export default class TheftAlarmCommand {
     return new Command([0x00, 0x46, 0x02, 0x01]);
   }
 
-  static triggerAlarm() {
+  static trigger() {
     return new Command([0x00, 0x46, 0x02, 0x02]);
   }
 }

@@ -9,7 +9,7 @@ export default class TheftAlarmResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'state').setDecoder(
+      new Property(0x01, 'theftAlarm').setDecoder(
         switchDecoder({
           0x00: 'not_armed',
           0x01: 'armed',
