@@ -10,39 +10,32 @@ describe(`ParkingBrakeCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        brakeState: expect.any(String),
-      })
-    );
+    expect(response.parse()).toEqual({
+      parkingBrake: expect.any(String),
+    });
   });
 
   it(`should activate parking brake`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ParkingBrakeCommand.activateParkingBrake()
+      hmkit.commands.ParkingBrakeCommand.activate()
     );
 
-    // Emulator fails to parse this correctly
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        brakeState: 'active',
-      })
-    );
+    expect(response.parse()).toEqual({
+      parkingBrake: 'active',
+    });
   });
 
   it(`should inactivate parking brake`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ParkingBrakeCommand.inactivateParkingBrake()
+      hmkit.commands.ParkingBrakeCommand.inactivate()
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        brakeState: 'inactive',
-      })
-    );
+    expect(response.parse()).toEqual({
+      parkingBrake: 'inactive',
+    });
   });
 });

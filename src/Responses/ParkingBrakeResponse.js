@@ -9,7 +9,7 @@ export default class EngineResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'brakeState').setDecoder(activeInactiveDecoder()),
+      new Property(0x01, 'parkingBrake').setDecoder(activeInactiveDecoder()),
     ];
 
     this.parse(data, properties);

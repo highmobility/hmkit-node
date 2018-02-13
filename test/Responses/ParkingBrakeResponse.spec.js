@@ -7,6 +7,6 @@ describe(`ParkingBrakeResponse`, () => {
     const response = new Response(hexToUint8Array('00580101000101'));
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
-    expect(response.parse()).toEqual({ brakeState: 'active' });
+    expect(response.parse()).toEqual({ parkingBrake: 'active' });
   });
 });

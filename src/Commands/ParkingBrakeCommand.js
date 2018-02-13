@@ -5,11 +5,11 @@ export default class ParkingBrakeCommand {
     return new Command([0x00, 0x58, 0x00]);
   }
 
-  static activateParkingBrake() {
+  static activate() {
     return new Command([0x00, 0x58, 0x02, 0x01]);
   }
 
-  static inactivateParkingBrake() {
+  static inactivate() {
     return new Command([0x00, 0x58, 0x02, 0x00]);
   }
 }
