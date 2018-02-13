@@ -9,7 +9,7 @@ export default class ValetModeResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'mode').setDecoder(
+      new Property(0x01, 'valetMode').setDecoder(
         switchDecoder({
           0x00: 'deactivated',
           0x01: 'activated',
