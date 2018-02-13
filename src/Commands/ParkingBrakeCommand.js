@@ -1,7 +1,7 @@
 import Command from './Command';
 
 export default class ParkingBrakeCommand {
-  static getParkingBrakeState() {
+  static getState() {
     return new Command([0x00, 0x58, 0x00]);
   }
 

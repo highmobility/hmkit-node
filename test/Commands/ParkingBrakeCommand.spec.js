@@ -6,7 +6,7 @@ describe(`ParkingBrakeCommand`, () => {
   it(`should get parking brake state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ParkingBrakeCommand.getParkingBrakeState()
+      hmkit.commands.ParkingBrakeCommand.getState()
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
