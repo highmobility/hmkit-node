@@ -1,18 +1,21 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
+import VehicleLocationResponse from '../../src/Responses/VehicleLocationResponse';
 const hmkit = getHmkit();
 
 describe(`VehicleLocationCommand`, () => {
   it(`should get vehicle location`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.VehicleLocationCommand.get()
+      hmkit.commands.VehicleLocationCommand.getLocation()
     );
 
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
+    expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
+    expect(response.parse()).toEqual({
+      coordinates: {
         latitude: expect.any(Number),
         longitude: expect.any(Number),
-      })
-    );
+      },
+      heading: expect.any(Number),
+    });
   });
 });
