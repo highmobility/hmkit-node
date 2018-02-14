@@ -2,17 +2,22 @@ import Command from './Command';
 import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
 
 export default class VideoHandoverCommand {
-  static play(
-    video: string,
-    startingFrom: number = 0,
-    screen: string = 'front'
+  static handover(
+    videoURL: string,
+    startingSecond: number = 0,
+    screen: string = 'front_screen'
   ) {
     return new Command([
       0x00,
       0x43,
       0x00,
-      ...this.getVideoBytes(video),
-      ...this.getStartingFrom(startingFrom),
+      0x01,
+      ...this.getVideoBytes(videoURL),
+      0x02,
+      ...this.getStartingFrom(startingSecond),
+      0x03,
+      0x00,
+      0x01,
       this.getSceenByte(screen),
     ]);
   }
@@ -20,6 +25,7 @@ export default class VideoHandoverCommand {
   static getVideoBytes(video) {
     const stringBytes = hexToUint8Array(stringToHex(video));
     const lengthBytes = hexToUint8Array(pad(intToHex(stringBytes.length), 4));
+
     return [...lengthBytes, ...stringBytes];
   }
 
@@ -28,6 +34,12 @@ export default class VideoHandoverCommand {
   }
 
   static getSceenByte(screen) {
-    return screen === 'rear' ? 0x01 : 0x00;
+    switch (screen) {
+      case 'rear':
+      case 'rear_screen':
+        return 0x01;
+      default:
+        return 0x00;
+    }
   }
 }
