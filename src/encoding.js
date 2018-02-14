@@ -98,8 +98,8 @@ export function stringToBytes(string) {
     return hexToUint8Array(stringToHex(string));
 }
 
-export function sizeBytes(array: Uint8Array) {
-    return hexToUint8Array(pad(intToHex(array.length), 4));
+export function intToTwoBytes(int) {
+    return hexToUint8Array(pad(intToHex(int), 4));
 }
 
 export function bytesToString(bytes) {
