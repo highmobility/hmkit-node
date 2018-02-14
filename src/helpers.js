@@ -30,7 +30,7 @@ export function dateDecoder(bytes: Array<Number>) {
     const date = new Date();
 
     date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
-    date.setUTCHours(bytes[3], bytes[4]);
+    date.setUTCHours(bytes[3], bytes[4], 0, 0);
 
     return date;
   } else if (bytes.length === 8) {
@@ -93,12 +93,4 @@ export function activeInactiveDecoder() {
     0x00: 'inactive',
     0x01: 'active',
   });
-}
-
-export function assertFloatsEqualWithAccuracy(
-  float1: Number,
-  float2: Number,
-  accuracy: Number
-) {
-  return Math.abs(float1 - float2) < accuracy;
 }

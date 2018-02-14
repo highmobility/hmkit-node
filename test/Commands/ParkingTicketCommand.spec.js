@@ -4,42 +4,53 @@ const hmkit = getHmkit();
 
 describe(`ParkingTicketCommand`, () => {
   it('should get parking ticket #1', async () => {
-    const command = hmkit.commands.ParkingTicketCommand.get();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ParkingTicketCommand.getTicket()
+    );
 
-    expect(command.toString()).toBe('004700');
-
-    // Waiting for the emulator to support this
-    //    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toEqual({
+      parkingTicketState: expect.any(String),
+      operatorName: expect.any(String),
+      operatorTicketID: expect.any(String),
+      ticketStartTime: expect.any(Date),
+      ticketEndTime: expect.any(Date),
+    });
   });
 
   it('should end parking', async () => {
-    const command = hmkit.commands.ParkingTicketCommand.endParking();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ParkingTicketCommand.end()
+    );
 
-    expect(command.toString()).toBe('004703');
-
-    // Waiting for the emulator to support this
-    //    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        parkingTicketState: 'ended',
+      })
+    );
   });
 
   it('should start parking', async () => {
-    const command = hmkit.commands.ParkingTicketCommand.startParking(
-      'Berlin Parking',
-      6489423,
-      2017,
-      1,
-      10,
-      17,
-      34
-    );
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
-
-    expect(command.toString()).toBe(
-      '0047020e4265726c696e205061726b696e670363054f11010a11220000000000'
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ParkingTicketCommand.start(
+        'Berlin Parking',
+        '6489423333asd',
+        new Date(Date.UTC(2018, 1, 14, 18, 30, 1)),
+        new Date(Date.UTC(2018, 1, 17, 12, 5, 2))
+      )
     );
 
-    // Waiting for the emulator to support this
-    //    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toEqual({
+      parkingTicketState: 'started',
+      operatorName: 'Berlin Parking',
+      operatorTicketID: '6489423333asd',
+      ticketStartTime: new Date(Date.UTC(2018, 1, 14, 18, 30, 1)),
+      ticketEndTime: new Date(Date.UTC(2018, 1, 17, 12, 5, 2)),
+    });
   });
 });

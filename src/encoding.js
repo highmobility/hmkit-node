@@ -102,6 +102,20 @@ export function intToTwoBytes(int) {
   return hexToUint8Array(pad(intToHex(int), 4));
 }
 
+export function dateToBytes(date: Date) {
+  // TODO: Siin peaks OFFSET'i ka kuidagi saama
+  return [
+    date.getUTCFullYear() - 2000,
+    date.getUTCMonth() + 1,
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+    0x00,
+    0x00,
+  ];
+}
+
 export function bytesToString(bytes) {
   return Buffer.from(bytes).toString('utf8');
 }

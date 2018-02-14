@@ -6,29 +6,17 @@ describe(`ParkingTicketResponse`, () => {
   it('should return started ParkingTicketResponse', () => {
     const response = new Response(
       hexToUint8Array(
-        '00470100310100010102000E4265726C696E205061726B696E6703000973323634383934323304000511010A11220500050000000000'
+        '0047010100010102000E4265726C696E205061726B696E67030008363438393432333304000811010A1122000000050008120214160B000000'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual({
-      state: 'started',
+      parkingTicketState: 'started',
       operatorName: 'Berlin Parking',
-      operatorTicketID: 's26489423',
-      startDate: {
-        year: 2017,
-        month: 1,
-        day: 10,
-        hour: 17,
-        minute: 34,
-      },
-      endDate: {
-        year: 2000,
-        month: 0,
-        day: 0,
-        hour: 0,
-        minute: 0,
-      },
+      operatorTicketID: '64894233',
+      ticketStartTime: new Date('2017-01-10T17:34:00Z'),
+      ticketEndTime: new Date('2018-02-20T22:11:00Z'),
     });
   });
 });
