@@ -24,6 +24,7 @@ import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
 import VehicleTimeResponse from './VehicleTimeResponse';
 import WeatherConditionsResponse from './WeatherConditionsResponse';
+import WiFiResponse from './WiFiResponse';
 import WindowsResponse from './WindowsResponse';
 import WindscreenResponse from './WindscreenResponse';
 import CapabilitiesResponse from './CapabilitiesResponse';
@@ -61,6 +62,7 @@ export default class Response {
       VehicleLocationResponse,
       VehicleTimeResponse,
       WeatherConditionsResponse,
+      WiFiResponse,
       WindowsResponse,
       WindscreenResponse,
     ];

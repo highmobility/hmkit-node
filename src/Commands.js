@@ -30,6 +30,7 @@ import VehicleTimeCommand from './Commands/VehicleTimeCommand';
 import VideoHandoverCommand from './Commands/VideoHandoverCommand';
 import WakeUpCommand from './Commands/WakeUpCommand';
 import WeatherConditionsCommand from './Commands/WeatherConditionsCommand';
+import WiFiCommand from './Commands/WiFiCommand';
 import WindowsCommand from './Commands/WindowsCommand';
 import WindscreenCommand from './Commands/WindscreenCommand';
 
@@ -68,6 +69,7 @@ export default class Commands {
       VideoHandoverCommand,
       WakeUpCommand,
       WeatherConditionsCommand,
+      WiFiCommand,
       WindowsCommand,
       WindscreenCommand,
     });

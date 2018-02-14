@@ -95,11 +95,11 @@ export function stringToHex(string) {
 }
 
 export function stringToBytes(string) {
-    return hexToUint8Array(stringToHex(string));
+  return hexToUint8Array(stringToHex(string));
 }
 
 export function intToTwoBytes(int) {
-    return hexToUint8Array(pad(intToHex(int), 4));
+  return hexToUint8Array(pad(intToHex(int), 4));
 }
 
 export function bytesToString(bytes) {
