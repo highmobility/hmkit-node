@@ -19,6 +19,8 @@ export default class VideoHandoverCommand {
       0x01,
       ...this.getVideoBytes(videoURL),
       0x02,
+     0x00,
+                        0x02,
       ...intToTwoBytes(startingSecond),
       0x03,
       0x00,
