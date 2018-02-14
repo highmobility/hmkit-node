@@ -8,19 +8,25 @@ describe(`TrunkAccessCommand`, () => {
       vehicleSerial,
       hmkit.commands.TrunkAccessCommand.getState()
     );
+
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
+    expect(response.parse()).toEqual({
+      trunkLock: expect.any(String),
+      trunkPosition: expect.any(String),
+    });
   });
 
-  it(`should unlock trunk and leave it closed`, async () => {
+  it(`should unlock trunk`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.TrunkAccessCommand.unlock()
     );
 
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        lock: 'unlocked',
-        position: 'closed',
+        trunkLock: 'unlocked',
+        trunkPosition: expect.any(String),
       })
     );
   });
@@ -31,10 +37,11 @@ describe(`TrunkAccessCommand`, () => {
       hmkit.commands.TrunkAccessCommand.open()
     );
 
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        lock: 'unlocked',
-        position: 'open',
+        trunkLock: expect.any(String),
+        trunkPosition: 'open',
       })
     );
   });
@@ -45,10 +52,11 @@ describe(`TrunkAccessCommand`, () => {
       hmkit.commands.TrunkAccessCommand.close()
     );
 
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        lock: 'unlocked',
-        position: 'closed',
+        trunkLock: expect.any(String),
+        trunkPosition: 'closed',
       })
     );
   });
@@ -59,10 +67,11 @@ describe(`TrunkAccessCommand`, () => {
       hmkit.commands.TrunkAccessCommand.lock()
     );
 
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        lock: 'locked',
-        position: 'closed',
+        trunkLock: 'locked',
+        trunkPosition: expect.any(String),
       })
     );
   });
