@@ -8,6 +8,6 @@ describe('TextInputCommand', () => {
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
-    expect(command.toString()).toBe('00440003796573');
+    expect(command.toString()).toBe('004400010003796573');
   });
 });

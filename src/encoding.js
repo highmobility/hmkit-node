@@ -94,6 +94,14 @@ export function stringToHex(string) {
   return result;
 }
 
+export function stringToBytes(string) {
+    return hexToUint8Array(stringToHex(string));
+}
+
+export function sizeBytes(array: Uint8Array) {
+    return hexToUint8Array(pad(intToHex(array.length), 4));
+}
+
 export function bytesToString(bytes) {
   return Buffer.from(bytes).toString('utf8');
 }
