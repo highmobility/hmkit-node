@@ -9,7 +9,7 @@ describe(`OffroadResponse`, () => {
     expect(response.parse()).toBeInstanceOf(OffroadResponse);
     expect(response.parse()).toEqual({
       routeIncline: -10,
-      wheelSuspension: 0.5,
+      wheelSuspension: 50,
     });
   });
 });

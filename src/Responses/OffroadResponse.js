@@ -10,7 +10,7 @@ export default class OffroadResponse extends PropertyResponse {
 
     const properties = [
       new Property(0x01, 'routeIncline').setDecoder(this.routeInclineDecoder),
-      new Property(0x02, 'wheelSuspension').setDecoder(progressDecoder),
+      new Property(0x02, 'wheelSuspension'),
     ];
 
     this.parse(data, properties);
