@@ -3,7 +3,7 @@ import EmptyResponse from '../../src/Responses/EmptyResponse';
 const hmkit = getHmkit();
 
 describe('TextInputCommand', () => {
-  it('should sen text to the headunit', async () => {
+  it('should send text to the headunit', async () => {
     const command = hmkit.commands.TextInputCommand.textInput('yes');
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 

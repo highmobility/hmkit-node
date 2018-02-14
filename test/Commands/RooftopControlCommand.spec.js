@@ -6,38 +6,27 @@ describe(`RooftopControlCommand`, () => {
   it(`should get rooftop state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RooftopControlCommand.getRooftopState()
+      hmkit.commands.RooftopControlCommand.getState()
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
+    expect(response.parse()).toEqual({
+      dimming: expect.any(Number),
+      position: expect.any(Number),
+    });
   });
 
   it(`should control rooftop`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RooftopControlCommand.controlRooftop(0.2, 0.3)
+      hmkit.commands.RooftopControlCommand.control(20, 30)
     );
 
-    // Emulator doesn't return middle-values right now
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        dimming: 0.2,
-        position: 0.3,
-      })
-    );
-
-    const response2 = await hmkit.telematics.sendCommand(
-      vehicleSerial,
-      hmkit.commands.RooftopControlCommand.controlRooftop(0.32, 0.41)
-    );
-
-    // Emulator doesn't return middle-values right now
-    expect(response2.parse()).toBeInstanceOf(RooftopControlResponse);
-    expect(response2.parse()).toEqual(
-      expect.objectContaining({
-        dimming: 0.32,
-        position: 0.41,
+        dimming: 20,
+        position: 30,
       })
     );
   });

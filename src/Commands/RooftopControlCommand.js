@@ -1,11 +1,19 @@
 import Command from './Command';
 
 export default class RooftopControlCommand {
-  static getRooftopState() {
+  static getState() {
     return new Command([0x00, 0x25, 0x00]);
   }
 
-  static controlRooftop(dimming: number, position: number) {
+  static control(dimming: number, position: number) {
+    if (dimming > 0.0 && dimming < 1.0) {
+      dimming = dimming * 100;
+    }
+
+    if (position > 0.0 && position < 1.0) {
+      position = position * 100;
+    }
+
     return new Command([
       0x00,
       0x25,
@@ -13,11 +21,11 @@ export default class RooftopControlCommand {
       0x01,
       0x00,
       0x01,
-      dimming * 100,
+      dimming,
       0x02,
       0x00,
       0x01,
-      open * 100,
+      open,
     ]);
   }
 }

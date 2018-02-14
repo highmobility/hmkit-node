@@ -4,12 +4,12 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`RooftopControlResponse`, () => {
   it(`should return RooftopControlResponse`, () => {
-    const response = new Response(hexToUint8Array('0025010100016402000100'));
+    const response = new Response(hexToUint8Array('0025010100016402000105'));
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: 1,
-      position: 0,
+      dimming: 100,
+      position: 5,
     });
   });
 });
