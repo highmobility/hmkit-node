@@ -8,7 +8,9 @@ export default class VehicleTimeResponse extends PropertyResponse {
   constructor(data: Uint8Array) {
     super();
 
-    const properties = [new Property(0x01, 'time').setDecoder(dateDecoder)];
+    const properties = [
+      new Property(0x01, 'vehicleTime').setDecoder(dateDecoder),
+    ];
 
     this.parse(data, properties);
   }

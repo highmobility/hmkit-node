@@ -10,15 +10,7 @@ describe(`VehicleTimeResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(VehicleTimeResponse);
     expect(response.parse()).toEqual({
-      time: {
-        year: 2017,
-        month: 1,
-        day: 10,
-        hour: 16,
-        minute: 32,
-        second: 51,
-        utcOffset: -120,
-      },
+      vehicleTime: new Date('2017-01-10T18:32:51.000Z'),
     });
   });
 });
