@@ -6,6 +6,7 @@ import ClimateCommand from './Commands/ClimateCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
+import FirmwareVersionCommand from './Commands/FirmwareVersionCommand';
 import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
 import HonkHornsFlashLightsCommand from './Commands/HonkHornsFlashLightsCommand';
@@ -46,6 +47,7 @@ export default class Commands {
       DiagnosticsCommand,
       DoorLocksCommand,
       EngineCommand,
+      FirmwareVersionCommand,
       FuelingCommand,
       GraphicsCommand,
       HonkHornsFlashLightsCommand,
