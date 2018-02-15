@@ -7,6 +7,6 @@ describe(`HonkHornsFlashLightsResponse`, () => {
     const response = new Response(hexToUint8Array('00260101000102'));
 
     expect(response.parse()).toBeInstanceOf(HonkHornsFlashLightsResponse);
-    expect(response.parse()).toEqual({ flashersState: 'left_flasher_active' });
+    expect(response.parse()).toEqual({ flashers: 'left_flasher_active' });
   });
 });

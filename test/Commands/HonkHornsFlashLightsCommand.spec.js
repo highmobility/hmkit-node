@@ -3,39 +3,41 @@ import EmptyResponse from '../../src/Responses/EmptyResponse';
 import HonkHornsFlashLightsResponse from '../../src/Responses/HonkHornsFlashLightsResponse';
 const hmkit = getHmkit();
 
-// Waiting for the EMULATOR to support Level 6
 describe(`HonkHornsFlashLightsCommand`, () => {
   it('should get flashers state', async () => {
-    const command = hmkit.commands.HonkHornsFlashLightsCommand.getFlasherState();
+    const command = hmkit.commands.HonkHornsFlashLightsCommand.getFlashersState();
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
+
+    expect(response.parse()).toBeInstanceOf(HonkHornsFlashLightsResponse);
+    expect(response.parse()).toEqual({
+      flashers: expect.any(String),
+    });
+  });
+
+  it(`should flash the lights thrice`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HonkHornsFlashLightsCommand.honkHornsFlashLights(0, 3)
+    );
 
     expect(response.parse()).toBeInstanceOf(HonkHornsFlashLightsResponse);
   });
 
-  it(`should flash the lights thrice`, async () => {
-    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.honkHornsFlashLights(
-      0,
-      3
-    );
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
-
-    // TODO: Not sure about this response
-    expect(response.parse()).toBeInstanceOf(EmptyResponse);
-  });
-
   it(`should activate emergency flasher`, async () => {
-    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.activateEmergencyFlasher();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HonkHornsFlashLightsCommand.activateEmergencyFlasher()
+    );
 
-    // TODO: Not sure about this response
-    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    expect(response.parse()).toBeInstanceOf(HonkHornsFlashLightsResponse);
   });
 
   it(`should deactivate emergency flasher`, async () => {
-    const bytes = hmkit.commands.HonkHornsFlashLightsCommand.deactivateEmergencyFlasher();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HonkHornsFlashLightsCommand.deactivateEmergencyFlasher()
+    );
 
-    // TODO: Not sure about this response
-    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    expect(response.parse()).toBeInstanceOf(HonkHornsFlashLightsResponse);
   });
 });

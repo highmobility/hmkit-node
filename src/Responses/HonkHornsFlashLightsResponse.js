@@ -9,7 +9,7 @@ export default class HonkHornsFlashLightsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'flashersState').setDecoder(
+      new Property(0x01, 'flashers').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'emergency_flasher_active',

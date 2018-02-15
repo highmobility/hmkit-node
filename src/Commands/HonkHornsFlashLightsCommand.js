@@ -1,7 +1,7 @@
 import Command from './Command';
 
 export default class HonkHornsFlashLightsCommand {
-  static getFlasherState() {
+  static getFlashersState() {
     return new Command([0x00, 0x26, 0x00]);
   }
 
