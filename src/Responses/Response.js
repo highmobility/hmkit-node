@@ -6,6 +6,7 @@ import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
+import FirmwareVersionResponse from './FirmwareVersionResponse';
 import FuelingResponse from './FuelingResponse';
 import HonkHornsFlashLightsResponse from './HonkHornsFlashLightsResponse';
 import LightConditionsResponse from './LightConditionsResponse';
@@ -45,6 +46,7 @@ export default class Response {
       DoorLocksResponse,
       EngineResponse,
       FailureMessageResponse,
+      FirmwareVersionResponse,
       FuelingResponse,
       HonkHornsFlashLightsResponse,
       LightConditionsResponse,

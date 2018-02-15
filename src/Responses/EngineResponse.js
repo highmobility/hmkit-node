@@ -9,10 +9,10 @@ export default class EngineResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'engine').setDecoder(
+      new Property(0x01, 'ignition').setDecoder(
         switchDecoder({
-          0x00: 'off',
-          0x01: 'on',
+          0x00: 'engine_off',
+          0x01: 'engine_on',
         })
       ),
     ];

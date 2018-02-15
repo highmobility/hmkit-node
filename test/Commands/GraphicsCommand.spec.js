@@ -9,11 +9,9 @@ describe(`GraphicsCommand`, () => {
     );
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
-    expect(command.toString()).toBe(
-      '005100001568747470733a2f2f676f6f2e676c2f567955316970'
+    expect(command.toString().toUpperCase()).toBe(
+      '00510001001568747470733A2F2F676F6F2E676C2F567955316970'
     );
-
-    // Needs capability in emulator
-    //        expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 });

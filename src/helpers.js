@@ -72,15 +72,23 @@ export function autoHvacDecoder(bytes: Array<Number>) {
     mondays,
   ] = pad(intToBinary(bytes[0]), 8).split('').map(orig => Number(orig));
 
+  // TODO: The HVAC Activated days (array?)
   return {
-    mondays: mondays ? autoHvacTimeDecoder(bytes[1], bytes[2]) : false,
-    tuesdays: tuesdays ? autoHvacTimeDecoder(bytes[3], bytes[4]) : false,
-    wednesdays: wednesdays ? autoHvacTimeDecoder(bytes[5], bytes[6]) : false,
-    thursdays: thursdays ? autoHvacTimeDecoder(bytes[7], bytes[8]) : false,
-    fridays: fridays ? autoHvacTimeDecoder(bytes[9], bytes[10]) : false,
-    saturdays: saturdays ? autoHvacTimeDecoder(bytes[11], bytes[12]) : false,
-    sundays: sundays ? autoHvacTimeDecoder(bytes[13], bytes[14]) : false,
-    constant: !!constant,
+    autoHvacActivated: 'TODO',
+    mondayStartingHour: bytes[1],
+    mondayStartingMinute: bytes[2],
+    tuesdayStartingHour: bytes[3],
+    tuesdayStartingMinute: bytes[4],
+    wednesdayStartingHour: bytes[5],
+    wednesdayStartingMinute: bytes[6],
+    thursdayStartingHour: bytes[7],
+    thursdayStartingMinute: bytes[8],
+    fridayStartingHour: bytes[9],
+    fridayStartingMinute: bytes[10],
+    saturdayStartingHour: bytes[11],
+    saturdayStartingMinute: bytes[12],
+    sundayStartingHour: bytes[13],
+    sundayStartingMinute: bytes[14],
   };
 }
 
