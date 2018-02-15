@@ -1,6 +1,9 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { switchDecoder, autoHvacDecoder } from '../helpers';
+import {
+  activeInactiveDecoder,
+  autoHvacDecoder
+} from '../helpers';
 import { ieee754ToBase10 } from '../encoding';
 
 export default class ClimateResponse extends PropertyResponse {
@@ -12,33 +15,16 @@ export default class ClimateResponse extends PropertyResponse {
     const properties = [
       new Property(0x01, 'insideTemperature').setDecoder(ieee754ToBase10),
       new Property(0x02, 'outsideTemperature').setDecoder(ieee754ToBase10),
-      new Property(0x03, 'driverTemperatureSetting').setDecoder(
-        ieee754ToBase10
-      ),
-      new Property(0x04, 'passengerTemperatureSetting').setDecoder(
-        ieee754ToBase10
-      ),
-      new Property(0x05, 'hvacState').setDecoder(this.activeInactiveDecoder()),
-      new Property(0x06, 'defoggingState').setDecoder(
-        this.activeInactiveDecoder()
-      ),
-      new Property(0x07, 'defrostingState').setDecoder(
-        this.activeInactiveDecoder()
-      ),
-      new Property(0x08, 'ionisingState').setDecoder(
-        this.activeInactiveDecoder()
-      ),
+      new Property(0x03, 'driverTemperatureSetting').setDecoder(ieee754ToBase10),
+      new Property(0x04, 'passengerTemperatureSetting').setDecoder(ieee754ToBase10),
+      new Property(0x05, 'hvacState').setDecoder(activeInactiveDecoder()),
+      new Property(0x06, 'defoggingState').setDecoder(activeInactiveDecoder()),
+      new Property(0x07, 'defrostingState').setDecoder(activeInactiveDecoder()),
+      new Property(0x08, 'ionisingState').setDecoder(activeInactiveDecoder()),
       new Property(0x09, 'defrostingTemperature').setDecoder(ieee754ToBase10),
-      new Property(0x0a, 'autoHvacActivatedOn').setDecoder(autoHvacDecoder),
+      new Property(0x0a, 'autoHvacProfile').setDecoder(autoHvacDecoder),
     ];
 
     this.parse(data, properties);
-  }
-
-  activeInactiveDecoder() {
-    return switchDecoder({
-      0x00: 'deactivated',
-      0x01: 'activated',
-    });
   }
 }

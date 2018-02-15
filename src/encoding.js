@@ -103,7 +103,7 @@ export function intToTwoBytes(int) {
 }
 
 export function dateToBytes(date: Date) {
-  // TODO: Siin peaks OFFSET'i ka kuidagi saama
+  // TODO: Siin peaks OFFSET'i ka kuidagi saama (teoorias pole tähtsust)
   return [
     date.getUTCFullYear() - 2000,
     date.getUTCMonth() + 1,
