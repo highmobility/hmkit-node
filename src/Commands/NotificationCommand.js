@@ -1,26 +1,38 @@
 import Command from './Command';
-import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
+import { intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class NotificationCommand {
   static send(text: string, actions: Object) {
-    const textBytes = this.getTextBytes(text);
-    const actionsBytes = this.getActionsBytes(actions);
-    return new Command([0x00, 0x38, 0x00, ...textBytes, ...actionsBytes]);
+    const textBytes = stringToBytes(text);
+
+    return new Command([
+      0x00,
+      0x38,
+      0x00,
+      0x01,
+      ...intToTwoBytes(textBytes.length),
+      ...textBytes,
+      ...this.getActionsBytes(actions),
+    ]);
   }
 
-  static getTextBytes(text) {
-    const stringBytes = hexToUint8Array(stringToHex(text));
-    const lengthBytes = hexToUint8Array(pad(intToHex(stringBytes.length), 4));
-    return [...lengthBytes, ...stringBytes];
+  static clear() {
+    return new Command([0x00, 0x38, 0x02]);
   }
 
   static getActionsBytes(actions) {
-    const actionsCount = Object.keys(actions).length;
-    let result = [actionsCount];
+    var result = [];
 
     for (const [actionId, actionName] of Object.entries(actions)) {
-      const actionBytes = hexToUint8Array(stringToHex(actionName));
-      result = [...result, actionId, actionBytes.length, ...actionBytes];
+      const nameBytes = stringToBytes(actionName);
+
+      result = [
+        ...result,
+        0x02,
+        ...intToTwoBytes(nameBytes.length + 1),
+        actionId,
+        ...nameBytes,
+      ];
     }
 
     return result;

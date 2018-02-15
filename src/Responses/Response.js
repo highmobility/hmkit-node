@@ -13,7 +13,6 @@ import LightConditionsResponse from './LightConditionsResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
 import NaviDestinationResponse from './NaviDestinationResponse';
-import NotificationResponse from './NotificationResponse';
 import OffroadResponse from './OffroadResponse';
 import ParkingBrakeResponse from './ParkingBrakeResponse';
 import ParkingTicketResponse from './ParkingTicketResponse';
@@ -53,7 +52,6 @@ export default class Response {
       LightsResponse,
       MaintenanceResponse,
       NaviDestinationResponse,
-      NotificationResponse,
       OffroadResponse,
       ParkingBrakeResponse,
       ParkingTicketResponse,

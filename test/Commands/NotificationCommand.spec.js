@@ -1,5 +1,5 @@
-import getHmkit from '../testutils/getHmkit';
-// import EmptyResponse from '../../src/Responses/EmptyResponse';
+import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
+import EmptyResponse from '../../src/Responses/EmptyResponse';
 const hmkit = getHmkit();
 
 describe(`NotificationCommand`, () => {
@@ -7,25 +7,23 @@ describe(`NotificationCommand`, () => {
     const command = hmkit.commands.NotificationCommand.send(
       'Start navigation?',
       {
-        0: 'No',
-        1: 'Yes',
+        0x00: 'No',
+        0x01: 'Yes',
       }
     );
+    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
     expect(command.toString().toUpperCase()).toBe(
-      '00380000115374617274206E617669676174696F6E3F0200024E6F0103596573'
+      '0038000100115374617274206E617669676174696F6E3F020003004E6F02000401596573'
     );
+  });
 
-    // const response = await hmkit.telematics.sendCommand(
-    //   vehicleSerial,
-    //   command
-    // );
+  it('should clear notifications', async () => {
+    const command = hmkit.commands.NotificationCommand.clear();
+    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
-    // expect(response.parse()).toBeInstanceOf(EmptyResponse);
-    // expect(response.parse()).toEqual(
-    //   expect.objectContaining({
-    //     engine: expect.any(String),
-    //   })
-    // );
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    expect(command.toString().toUpperCase()).toBe('003802');
   });
 });
