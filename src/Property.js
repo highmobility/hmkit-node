@@ -4,10 +4,24 @@ export default class Property {
     this.namespace = namespace;
     this.value = null;
     this.subProperties = [];
+    this.subPropertiesIdentifierNamespace = null;
   }
 
   getValue = () => {
     if (this.subProperties.length > 0) {
+      if (this.subPropertiesIdentifierNamespace !== null) {
+        const value = [];
+
+        this.subProperties.forEach(subProperty => {
+          value.push({
+            [this.subPropertiesIdentifierNamespace]: subProperty.identifierValue,
+            ...subProperty.getValue()
+          });
+        });
+
+        return value;
+      }
+
       const value = {};
 
       this.subProperties.forEach(subProperty => {
@@ -55,8 +69,12 @@ export default class Property {
     return this;
   };
 
+  setOptionalSubProperties = (identifierNamespace: String, subProperties: OptionalProperty) => {
+    this.subProperties.push(...subProperties);
+    this.subPropertiesIdentifierNamespace = identifierNamespace;
+    return this;
+  };
+
   findSubProperty = (identifier: number) =>
-    this.subProperties.find(
-      supProperty => supProperty.identifier === identifier
-    );
+    this.subProperties.find(supProperty => supProperty.identifier === identifier);
 }
