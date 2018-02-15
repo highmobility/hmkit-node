@@ -76,7 +76,7 @@ export function hexArrayToHex(hexArray: Array<number>) {
   return hexArray.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
 }
 
-export function intToIeee754(value: number, bytes: number = 4) {
+export function base10ToIeee754(value: number, bytes: number = 4) {
   const ieeeArray = [];
   ieee754.write(ieeeArray, value, 0, false, 23, bytes);
   return ieeeArray;

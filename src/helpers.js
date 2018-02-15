@@ -1,4 +1,4 @@
-import { pad, intToBinary } from './encoding';
+import { ieee754ToBase10, intToBinary, pad } from './encoding';
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = bytes
@@ -44,6 +44,13 @@ export function dateDecoder(bytes: Array<Number>) {
   }
 
   return null;
+}
+
+export function coordinatesDecoder(bytes: Array<Number>) {
+  return {
+    latitude: ieee754ToBase10(bytes.slice(0, bytes.length / 2)),
+    longitude: ieee754ToBase10(bytes.slice(bytes.length / 2)),
+  };
 }
 
 export function matrixZoneDecoder(bytes: Array<Number>) {

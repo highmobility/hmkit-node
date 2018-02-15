@@ -1,5 +1,5 @@
 import Command from './Command';
-import { binaryToInt, intToIeee754 } from '../encoding';
+import { binaryToInt, base10ToIeee754 } from '../encoding';
 
 export default class ClimateCommand {
   static getState() {
@@ -45,11 +45,11 @@ export default class ClimateCommand {
       0x02,
       0x00,
       0x04,
-      ...intToIeee754(driverTemperatureSetting),
+      ...base10ToIeee754(driverTemperatureSetting),
       0x03,
       0x00,
       0x04,
-      ...intToIeee754(passengerTemperatureSetting),
+      ...base10ToIeee754(passengerTemperatureSetting),
     ]);
   }
 

@@ -1,6 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { progressDecoder } from '../helpers';
 
 export default class OffroadResponse extends PropertyResponse {
   static identifier = [0x00, 0x52];
