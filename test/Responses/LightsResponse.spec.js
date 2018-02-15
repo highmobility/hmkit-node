@@ -5,13 +5,13 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`LightsResponse`, () => {
   it(`should return LightsResponse`, () => {
     const response = new Response(
-      hexToUint8Array('003601010001020200010003000101040003ff0000')
+      hexToUint8Array('003601010001020200010103000100040003FF0000')
     );
     expect(response.parse()).toBeInstanceOf(LightsResponse);
     expect(response.parse()).toEqual({
-      frontExteriorLight: 'full_beam',
-      rearExteriorLight: 'inactive',
-      interiorLight: 'active',
+      frontExteriorLight: 'active_with_full_beam',
+      rearExteriorLight: 'active',
+      interiorLight: 'inactive',
       ambientLight: '#ff0000',
     });
   });
