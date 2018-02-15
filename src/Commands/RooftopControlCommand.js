@@ -25,7 +25,7 @@ export default class RooftopControlCommand {
       0x02,
       0x00,
       0x01,
-      open,
+      position,
     ]);
   }
 }
