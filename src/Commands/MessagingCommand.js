@@ -1,21 +1,21 @@
 import Command from './Command';
-import { decimalToHexArray, utfStringToByteArray } from '../encoding';
+import { intToTwoBytes, stringToBytes } from '../encoding';
 
-export default class MessageCommand {
+export default class MessagingCommand {
   static messageReceived(handle: string, text: string) {
-    const handleBytes = this.getHandleBytes(handle);
-    const textBytes = this.getTextBytes(text);
+    const handleBytes = stringToBytes(handle);
+    const textBytes = stringToBytes(text);
 
-    return new Command([0x00, 0x37, 0x00, ...handleBytes, ...textBytes]);
-  }
-
-  static getHandleBytes(text) {
-    const stringBytes = utfStringToByteArray(text);
-    return [stringBytes.length, ...stringBytes];
-  }
-
-  static getTextBytes(text) {
-    const stringBytes = utfStringToByteArray(text);
-    return [...decimalToHexArray(stringBytes.length, 2), ...stringBytes];
+    return new Command([
+      0x00,
+      0x37,
+      0x00,
+      0x01,
+      ...intToTwoBytes(handleBytes.length),
+      ...handleBytes,
+      0x02,
+      ...intToTwoBytes(textBytes.length),
+      ...textBytes,
+    ]);
   }
 }

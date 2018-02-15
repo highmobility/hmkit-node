@@ -1,9 +1,5 @@
 import Command from './Command';
-import {
-  base10ToIeee754,
-  intToTwoBytes,
-  stringToBytes,
-} from '../encoding';
+import { base10ToIeee754, intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class NaviDestinationCommand {
   static getDestination() {

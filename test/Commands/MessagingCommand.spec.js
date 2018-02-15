@@ -3,14 +3,16 @@ import EmptyResponse from '../../src/Responses/EmptyResponse';
 const hmkit = getHmkit();
 
 describe(`MessagingCommand`, () => {
-  it(`should send messaging command`, async () => {
+  it(`should send message received`, async () => {
     const command = hmkit.commands.MessagingCommand.messageReceived(
-      'peeter',
-      'paan'
+      '+1 555-555-555',
+      'Hello'
     );
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
-    expect(command.toString()).toBe('0037000670656574657200047061616e');
+    expect(command.toString().toUpperCase()).toBe(
+      '00370001000E2B31203535352D3535352D35353502000548656C6C6F'
+    );
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 });

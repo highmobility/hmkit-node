@@ -10,7 +10,6 @@ import HonkHornsFlashLightsResponse from './HonkHornsFlashLightsResponse';
 import LightConditionsResponse from './LightConditionsResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
-import MessagingResponse from './MessagingResponse';
 import NaviDestinationResponse from './NaviDestinationResponse';
 import NotificationResponse from './NotificationResponse';
 import OffroadResponse from './OffroadResponse';
@@ -49,7 +48,6 @@ export default class Response {
       LightConditionsResponse,
       LightsResponse,
       MaintenanceResponse,
-      MessagingResponse,
       NaviDestinationResponse,
       NotificationResponse,
       OffroadResponse,
