@@ -23,13 +23,15 @@ describe(`WindscreenCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
-    expect(response.parse()).toEqual({
-      windscreenDamage: 'damage_smaller_than_1_inch',
-      windscreenDamageZone: {
-        rows: 2,
-        columns: 3,
-      },
-      windscreenNeedsReplacement: 'replacement_needed',
-    });
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        windscreenDamage: 'damage_smaller_than_1_inch',
+        windscreenDamageZone: {
+          rows: 2,
+          columns: 3,
+        },
+        windscreenNeedsReplacement: 'replacement_needed',
+      })
+    );
   });
 });
