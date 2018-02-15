@@ -19,15 +19,13 @@ describe(`RooftopControlCommand`, () => {
   it(`should control rooftop`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RooftopControlCommand.control(20, 30)
+      hmkit.commands.RooftopControlCommand.control(22, 33)
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        dimming: 20,
-        position: 30,
-      })
-    );
+    expect(response.parse()).toEqual({
+      dimming: 22,
+      position: 33,
+    });
   });
 });
