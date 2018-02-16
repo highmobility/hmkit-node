@@ -19,7 +19,7 @@ describe(`NaviDestinationCommand`, () => {
     });
   });
 
-  it.only('should set navi destination', async () => {
+  it('should set navi destination', async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.NaviDestinationCommand.setDestination(

@@ -2,7 +2,7 @@ import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import { switchDecoder } from '../helpers';
 
-export default class HonkHornsFlashLightsResponse extends PropertyResponse {
+export default class HonkHornFlashLightsResponse extends PropertyResponse {
   static identifier = [0x00, 0x26];
 
   constructor(data: Uint8Array) {

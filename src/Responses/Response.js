@@ -8,7 +8,7 @@ import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
 import FirmwareVersionResponse from './FirmwareVersionResponse';
 import FuelingResponse from './FuelingResponse';
-import HonkHornsFlashLightsResponse from './HonkHornsFlashLightsResponse';
+import HonkHornFlashLightsResponse from './HonkHornFlashLightsResponse';
 import LightConditionsResponse from './LightConditionsResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
@@ -47,7 +47,7 @@ export default class Response {
       FailureMessageResponse,
       FirmwareVersionResponse,
       FuelingResponse,
-      HonkHornsFlashLightsResponse,
+      HonkHornFlashLightsResponse,
       LightConditionsResponse,
       LightsResponse,
       MaintenanceResponse,

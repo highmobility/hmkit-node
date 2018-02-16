@@ -1,11 +1,11 @@
 import Command from './Command';
 
-export default class HonkHornsFlashLightsCommand {
+export default class HonkHornFlashLightsCommand {
   static getFlashersState() {
     return new Command([0x00, 0x26, 0x00]);
   }
 
-  static honkHornsFlashLights(honkHorn: number, flashLights: number) {
+  static honkHornFlashLights(honkHorn: number, flashLights: number) {
     return new Command([
       0x00,
       0x26,
