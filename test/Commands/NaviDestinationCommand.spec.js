@@ -33,7 +33,7 @@ describe(`NaviDestinationCommand`, () => {
     expect(response.parse()).toEqual({
       coordinates: {
         latitude: -52.5200080871582,
-        longitude: -13.404953956604,
+        longitude: -13.404953956604004,
       },
       destinationName: 'Narnia',
     });

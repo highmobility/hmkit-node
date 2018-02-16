@@ -20,7 +20,7 @@ describe(`HonkHornFlashLightsCommand`, () => {
       hmkit.commands.HonkHornFlashLightsCommand.honkHornFlashLights(0, 3)
     );
 
-    expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 
   it(`should activate emergency flasher`, async () => {
