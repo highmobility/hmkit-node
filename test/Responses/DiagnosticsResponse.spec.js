@@ -6,27 +6,27 @@ describe(`DiagnosticsResponse`, () => {
   it(`should return DiagnosticsResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0033010060010003000BB80200020012030002000004000200000500015006000200C8070004410C000008000440C66666090001000A002D040040133333422000000000014013333342200000000002401333334220000000000340133333422000000000'
+        '0033010100030249F00200020063030002003C04000209C40500015A0600020109070004410c000008000440c66666090001010A000b004013d70a4220000002EA0A000b014013d70a4220000002EA0A000b024013d70a4220000002EA0A000b034013d70a4220000002EA0B0004414000000C00043F0000000D000205DC0E0002000A'
       )
     );
     expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        mileage: 3000,
-        engineOilTemperature: 18,
-        speed: 0,
-        engineRPM: 0,
-        fuelLevel: 0.8,
-        estimatedRange: 200,
+        mileage: 150000,
+        engineOilTemperature: 99,
+        speed: 60,
+        engineRPM: 2500,
+        fuelLevel: 0.9,
+        estimatedRange: 265,
         fuelConsumption: 8.75,
-        averageFuelConsumption: 6.199999809265137,
-        washerFluidLevel: 'low',
+        averageFuelConsumption: 6.2,
+        washerFluidLevel: 'filled',
         tires: {
-          frontLeft: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
-          frontRight: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
-          rearRight: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
-          rearLeft: { pressure: 2.299999952316284, temperature: 40, rpm: 0 },
+          frontLeft: { pressure: 2.31, temperature: 40, rpm: 746 },
+          frontRight: { pressure: 2.31, temperature: 40, rpm: 746 },
+          rearRight: { pressure: 2.31, temperature: 40, rpm: 746 },
+          rearLeft: { pressure: 2.31, temperature: 40, rpm: 746 },
         },
       })
     );

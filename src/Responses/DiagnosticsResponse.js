@@ -5,6 +5,7 @@ import {
   switchDecoder,
   chunkArray,
   progressDecoder,
+  getRoundedIeee754ToBase10,
 } from '../helpers';
 import { ieee754ToBase10 } from '../encoding';
 
@@ -22,7 +23,9 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x05, 'fuelLevel').setDecoder(progressDecoder),
       new Property(0x06, 'estimatedRange').setDecoder(bytesSum),
       new Property(0x07, 'fuelConsumption').setDecoder(ieee754ToBase10),
-      new Property(0x08, 'averageFuelConsumption').setDecoder(ieee754ToBase10),
+      new Property(0x08, 'averageFuelConsumption').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
       new Property(0x09, 'washerFluidLevel').setDecoder(
         switchDecoder({
           0x00: 'low',
@@ -48,9 +51,11 @@ export default class DiagnosticsResponse extends PropertyResponse {
   }
 
   tireDecoder(bytes: Array<Number>) {
+    const decoder = getRoundedIeee754ToBase10(2);
+
     return {
-      pressure: ieee754ToBase10(bytes.slice(0, 4)),
-      temperature: ieee754ToBase10(bytes.slice(4, 8)),
+      pressure: decoder(bytes.slice(0, 4)),
+      temperature: decoder(bytes.slice(4, 8)),
       rpm: bytesSum(bytes.slice(8, 10)),
     };
   }
