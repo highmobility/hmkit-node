@@ -9,6 +9,7 @@ import EngineCommand from './Commands/EngineCommand';
 import FirmwareVersionCommand from './Commands/FirmwareVersionCommand';
 import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
+import HomeChargerCommand from './Commands/HomeChargerCommand';
 import HonkHornFlashLightsCommand from './Commands/HonkHornFlashLightsCommand';
 import LightConditionsCommand from './Commands/LightConditionsCommand';
 import LightsCommand from './Commands/LightsCommand';
@@ -50,6 +51,7 @@ export default class Commands {
       FirmwareVersionCommand,
       FuelingCommand,
       GraphicsCommand,
+      HomeChargerCommand,
       HonkHornFlashLightsCommand,
       LightConditionsCommand,
       LightsCommand,
