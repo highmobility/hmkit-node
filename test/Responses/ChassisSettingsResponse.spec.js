@@ -9,27 +9,30 @@ describe(`ChassisSettingsResponse`, () => {
         '00530101000101020001010300040015251503000401171F110400031937E4'
       )
     );
+
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual({
       chassisPosition: {
-        maximum: 55,
-        minimum: -28,
-        position: 25,
+        maximumValue: 55,
+        minimumValue: -28,
+        chassisPosition: 25,
       },
       drivingMode: 'eco',
       sportChrono: 'active',
-      springRates: {
-        front: {
-          maximum: 37,
-          minimum: 21,
-          rate: 21,
+      springRates: [
+        {
+          axle: 'front_axle',
+          springRate: 21,
+          maximumValue: 37,
+          minimumValue: 21,
         },
-        rear: {
-          maximum: 31,
-          minimum: 17,
-          rate: 23,
+        {
+          axle: 'rear_axle',
+          springRate: 23,
+          maximumValue: 31,
+          minimumValue: 17,
         },
-      },
+      ],
     });
   });
 });

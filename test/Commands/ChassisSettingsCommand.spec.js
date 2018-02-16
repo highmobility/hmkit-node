@@ -6,10 +6,33 @@ describe(`ChassisSettingsCommand`, () => {
   it(`should get chassis settings`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ChassisSettingsCommand.getChassisSettings()
+      hmkit.commands.ChassisSettingsCommand.getSettings()
     );
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
+    expect(response.parse()).toEqual({
+      chassisPosition: {
+        maximumValue: expect.any(Number),
+        minimumValue: expect.any(Number),
+        chassisPosition: expect.any(Number),
+      },
+      drivingMode: expect.any(String),
+      sportChrono: expect.any(String),
+      springRates: [
+        {
+          axle: 'front_axle',
+          springRate: expect.any(Number),
+          maximumValue: expect.any(Number),
+          minimumValue: expect.any(Number),
+        },
+        {
+          axle: 'rear_axle',
+          springRate: expect.any(Number),
+          maximumValue: expect.any(Number),
+          minimumValue: expect.any(Number),
+        },
+      ],
+    });
   });
 
   it(`should set driving mode to sport`, async () => {
@@ -61,21 +84,27 @@ describe(`ChassisSettingsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        sportChrono: expect.any(String),
+      })
+    );
   });
 
   it(`should set front axle spring rate`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ChassisSettingsCommand.setFrontAxleSpringRate(26)
+      hmkit.commands.ChassisSettingsCommand.setFrontAxleSpringRate(-26)
     );
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
         springRates: expect.objectContaining({
-          front: expect.objectContaining({
-            rate: 26,
-          }),
+          axle: 'front_axle',
+          springRate: -26,
+          maximumValue: expect.any(Number),
+          minimumValue: expect.any(Number),
         }),
       })
     );
@@ -90,11 +119,14 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        springRates: expect.objectContaining({
-          rear: expect.objectContaining({
-            rate: 57,
-          }),
-        }),
+        springRates: [
+          {
+            axle: 'rear_axle',
+            springRate: 57,
+            maximumValue: expect.any(Number),
+            minimumValue: expect.any(Number),
+          },
+        ],
       })
     );
   });
@@ -109,7 +141,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         chassisPosition: expect.objectContaining({
-          position: -29,
+          chassisPosition: -29,
         }),
       })
     );

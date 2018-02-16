@@ -14,8 +14,9 @@ export default class Property {
 
         this.subProperties.forEach(subProperty => {
           value.push({
-            [this.subPropertiesIdentifierNamespace]: subProperty.identifierValue,
-            ...subProperty.getValue()
+            [this.subPropertiesIdentifierNamespace]:
+              subProperty.identifierValue,
+            ...subProperty.getValue(),
           });
         });
 
@@ -69,12 +70,17 @@ export default class Property {
     return this;
   };
 
-  setOptionalSubProperties = (identifierNamespace: String, subProperties: OptionalProperty) => {
+  setOptionalSubProperties = (
+    identifierNamespace: String,
+    subProperties: OptionalProperty
+  ) => {
     this.subProperties.push(...subProperties);
     this.subPropertiesIdentifierNamespace = identifierNamespace;
     return this;
   };
 
   findSubProperty = (identifier: number) =>
-    this.subProperties.find(supProperty => supProperty.identifier === identifier);
+    this.subProperties.find(
+      supProperty => supProperty.identifier === identifier
+    );
 }
