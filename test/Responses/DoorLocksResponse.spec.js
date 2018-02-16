@@ -9,24 +9,28 @@ describe(`DoorLocksResponse`, () => {
     );
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
     expect(response.parse()).toEqual({
-      doors: {
-        frontLeft: {
-          position: 'open',
-          lock: 'unlocked',
+      doors: [
+        {
+          doorLocation: 'front_left',
+          doorPosition: 'open',
+          doorLock: 'unlocked',
         },
-        frontRight: {
-          position: 'closed',
-          lock: 'unlocked',
+        {
+          doorLocation: 'front_right',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
         },
-        rearRight: {
-          position: 'closed',
-          lock: 'locked',
+        {
+          doorLocation: 'rear_right',
+          doorPosition: 'closed',
+          doorLock: 'locked',
         },
-        rearLeft: {
-          position: 'closed',
-          lock: 'locked',
+        {
+          doorLocation: 'rear_left',
+          doorPosition: 'closed',
+          doorLock: 'locked',
         },
-      },
+      ],
     });
   });
 });
