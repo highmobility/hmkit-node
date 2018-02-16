@@ -34,7 +34,7 @@ export function dateDecoder(bytes: Array<Number>) {
 
     return date;
   } else if (bytes.length === 8) {
-    const utcOffset = bytesSum(bytes.slice(6, 8)) << 16 >> 16;
+    const utcOffset = (bytesSum(bytes.slice(6, 8)) << 16) >> 16;
     const date = new Date();
 
     date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
@@ -50,6 +50,15 @@ export function coordinatesDecoder(bytes: Array<Number>) {
   return {
     latitude: ieee754ToBase10(bytes.slice(0, bytes.length / 2)),
     longitude: ieee754ToBase10(bytes.slice(bytes.length / 2)),
+  };
+}
+
+export function getRoundedIeee754ToBase10(precision): number {
+  const precisionMultiplier = Math.pow(10, precision);
+
+  return (...args) => {
+    const unrounded = ieee754ToBase10(...args);
+    return Math.round(unrounded * precisionMultiplier) / precisionMultiplier;
   };
 }
 
@@ -70,7 +79,9 @@ export function autoHvacDecoder(bytes: Array<Number>) {
     wednesdays,
     tuesdays,
     mondays,
-  ] = pad(intToBinary(bytes[0]), 8).split('').map(orig => Number(orig));
+  ] = pad(intToBinary(bytes[0]), 8)
+    .split('')
+    .map(orig => Number(orig));
 
   // TODO: The HVAC Activated days (array?)
   return {
