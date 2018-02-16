@@ -40,7 +40,7 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: expect.any(String),
+        trunkLock: 'unlocked',
         trunkPosition: 'open',
       })
     );
