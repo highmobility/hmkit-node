@@ -19,15 +19,39 @@ describe(`DiagnosticsResponse`, () => {
         engineRPM: 2500,
         fuelLevel: 0.9,
         estimatedRange: 265,
-        fuelConsumption: 8.75,
+        currentFuelConsumption: 8.75,
         averageFuelConsumption: 6.2,
         washerFluidLevel: 'filled',
-        tires: {
-          frontLeft: { pressure: 2.31, temperature: 40, rpm: 746 },
-          frontRight: { pressure: 2.31, temperature: 40, rpm: 746 },
-          rearRight: { pressure: 2.31, temperature: 40, rpm: 746 },
-          rearLeft: { pressure: 2.31, temperature: 40, rpm: 746 },
-        },
+        tires: [
+          {
+            tirePosition: 'front_left',
+            tirePressure: 2.31,
+            tireTemperature: 40,
+            wheelRPM: 746,
+          },
+          {
+            tirePosition: 'front_right',
+            tirePressure: 2.31,
+            tireTemperature: 40,
+            wheelRPM: 746,
+          },
+          {
+            tirePosition: 'rear_right',
+            tirePressure: 2.31,
+            tireTemperature: 40,
+            wheelRPM: 746,
+          },
+          {
+            tirePosition: 'rear_left',
+            tirePressure: 2.31,
+            tireTemperature: 40,
+            wheelRPM: 746,
+          },
+        ],
+        batteryVoltage: 12,
+        adblueLevel: 0.5,
+        distanceSinceReset: 1500,
+        distanceSinceStart: 10,
       })
     );
   });
