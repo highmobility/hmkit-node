@@ -10,16 +10,18 @@ describe(`SeatsResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(SeatsResponse);
     expect(response.parse()).toEqual({
-      seats: expect.objectContaining({
-        frontLeft: {
-          person: 'detected',
-          seatbelt: 'fastened',
+      seats: [
+        {
+          seatPosition: 'front_left',
+          personDetected: 'detected',
+          seatbeltFastened: 'fastened',
         },
-        frontRight: {
-          person: 'not_detected',
-          seatbelt: 'not_fastened',
+        {
+          seatPosition: 'front_right',
+          personDetected: 'not_detected',
+          seatbeltFastened: 'not_fastened',
         },
-      }),
+      ],
     });
   });
 });
