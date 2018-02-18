@@ -81,32 +81,32 @@ export function autoHvacDecoder(bytes: Array<Number>) {
     mondays,
   ] = pad(intToBinary(bytes[0]), 8)
     .split('')
-    .map(orig => Boolean(Number(orig)));
+    .map(orig => (Boolean(Number(orig)) === true ? 'active' : 'inactive'));
 
   return {
-    mondays: { active: mondays, ...autoHvacTimeDecoder(bytes[1], bytes[2]) },
-    tuesdays: { active: tuesdays, ...autoHvacTimeDecoder(bytes[3], bytes[4]) },
+    mondays: { state: mondays, ...autoHvacTimeDecoder(bytes[1], bytes[2]) },
+    tuesdays: { state: tuesdays, ...autoHvacTimeDecoder(bytes[3], bytes[4]) },
     wednesdays: {
-      active: wednesdays,
+      state: wednesdays,
       ...autoHvacTimeDecoder(bytes[5], bytes[6]),
     },
     thursdays: {
-      active: thursdays,
+      state: thursdays,
       ...autoHvacTimeDecoder(bytes[7], bytes[8]),
     },
-    fridays: { active: fridays, ...autoHvacTimeDecoder(bytes[9], bytes[10]) },
+    fridays: { state: fridays, ...autoHvacTimeDecoder(bytes[9], bytes[10]) },
     saturdays: {
-      active: saturdays,
+      state: saturdays,
       ...autoHvacTimeDecoder(bytes[11], bytes[12]),
     },
-    sundays: { active: sundays, ...autoHvacTimeDecoder(bytes[13], bytes[14]) },
+    sundays: { state: sundays, ...autoHvacTimeDecoder(bytes[13], bytes[14]) },
   };
 }
 
-export function autoHvacTimeDecoder(hours: Number, minutes: Number) {
+export function autoHvacTimeDecoder(hour: Number, minute: Number) {
   return {
-    hours,
-    minutes,
+    hour,
+    minute,
   };
 }
 
