@@ -13,16 +13,30 @@ describe(`RaceResponse`, () => {
 
     // TODO: Find a way to use assertFloatsEqualWithAccuracy(-1.2345, -1.2339, 0.001) in float-values here
     expect(response.parse()).toBeInstanceOf(RaceResponse);
+
     expect(response.parse()).toEqual({
-      accelerations: expect.objectContaining({
-        longitudinal: 0.8640000224113464,
-        lateral: -0.753000020980835,
-      }),
+      accelerations: [
+        {
+          type: 'longitudinal_acceleration',
+          gForce: 0.8640000224113464,
+        },
+        {
+          type: 'lateral_acceleration',
+          gForce: -0.753000020980835,
+        },
+      ],
       brakePedalPosition: 0.0,
       brakePressure: 11.5600004196167,
-      brakeTorqueVectorings: expect.objectContaining({
-        rearAxle: 'active',
-      }),
+      brakeTorqueVectorings: [
+        {
+          axle: 'front_axle',
+          vectoring: 'active',
+        },
+        {
+          axle: 'rear_axle',
+          vectoring: 'active',
+        },
+      ],
       gasPedalPosition: 0.98,
       gearMode: 'drive',
       electronicStabilityProgram: 'active',
