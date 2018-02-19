@@ -30,6 +30,7 @@ describe(`HonkHornFlashLightsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
+    expect(response.parse()).toEqual({ flashers: 'emergency_flasher_active' });
   });
 
   it(`should deactivate emergency flasher`, async () => {
@@ -39,5 +40,6 @@ describe(`HonkHornFlashLightsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
+    expect(response.parse()).toEqual({ flashers: 'inactive' });
   });
 });
