@@ -11,49 +11,121 @@ describe(`WindowsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(WindowsResponse);
-    // asd
+    expect(response.parse()).toEqual({
+      windows: expect.objectContaining([
+        {
+          windowPosition: 'front_left',
+          windowState: expect.any(String),
+        },
+        {
+          windowPosition: 'front_right',
+          windowState: expect.any(String),
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: expect.any(String),
+        },
+        {
+          windowPosition: 'rear_left',
+          windowState: expect.any(String),
+        },
+      ]),
+    });
   });
 
-  it.only(`should open all windows`, async () => {
+  it(`should open all windows`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.WindowsCommand.control([
         {
           windowPosition: 'front_right',
-          windowState: 'closed',
+          windowState: 'open',
         },
         {
           windowPosition: 'rear_right',
+          windowState: 'open',
+        },
+
+        {
+          windowPosition: 'front_left',
+          windowState: 'open',
+        },
+
+        {
+          windowPosition: 'rear_left',
           windowState: 'open',
         },
       ])
     );
 
     expect(response.parse()).toBeInstanceOf(WindowsResponse);
-
-    // Waiting for implementatation in the emulator
-    //       expect(response.parse()).toEqual(expect.objectContaining({
-    //            windows: expect.objectContaining({
-    //                front_left: expect.objectContaining({ openClosed: 'open', }),
-    //            }),
-    //        }));
+    expect(response.parse()).toEqual({
+      windows: expect.objectContaining([
+        {
+          windowPosition: 'front_left',
+          windowState: 'open',
+        },
+        {
+          windowPosition: 'front_right',
+          windowState: 'open',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'open',
+        },
+        {
+          windowPosition: 'rear_left',
+          windowState: 'open',
+        },
+      ]),
+    });
   });
 
   it(`should close all windows`, async () => {
-    //    const bytes = hmkit.commands.WindowsCommand.setState(
-    //      'closed',
-    //      'closed',
-    //      'closed',
-    //      'closed'
-    //    );
-    //    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
-    //
-    //    expect(response.parse()).toBeInstanceOf(WindowsResponse);
-    // Waiting for implementatation in the emulator
-    //       expect(response.parse()).toEqual(expect.objectContaining({
-    //            windows: expect.objectContaining({
-    //                rear_right: expect.objectContaining({ openClosed: 'closed', }),
-    //            }),
-    //        }));
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindowsCommand.control([
+        {
+          windowPosition: 'front_right',
+          windowState: 'close',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'close',
+        },
+
+        {
+          windowPosition: 'front_left',
+          windowState: 'close',
+        },
+
+        {
+          windowPosition: 'rear_left',
+          windowState: 'close',
+        },
+      ])
+    );
+
+    expect(response.parse()).toBeInstanceOf(WindowsResponse);
+    expect(response.parse()).toEqual({
+      windows: expect.objectContaining([
+        {
+          windowPosition: 'front_left',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'front_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_left',
+          windowState: 'closed',
+        },
+      ]),
+    });
   });
 });

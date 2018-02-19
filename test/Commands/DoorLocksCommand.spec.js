@@ -8,7 +8,9 @@ describe(`DoorLocksCommand`, () => {
       vehicleSerial,
       hmkit.commands.DoorLocksCommand.getState()
     );
+
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
+    // TODO: Check the structure
   });
 
   it(`should unlock all doors`, async () => {
@@ -17,6 +19,8 @@ describe(`DoorLocksCommand`, () => {
       hmkit.commands.DoorLocksCommand.unlock()
     );
 
+    expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
+    // TODO: This is invalid atm
     expect(response.parse()).toEqual(
       expect.objectContaining({
         doors: expect.objectContaining({
@@ -34,6 +38,8 @@ describe(`DoorLocksCommand`, () => {
       hmkit.commands.DoorLocksCommand.lock()
     );
 
+    expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
+    // TODO: This is invalid atm
     expect(response.parse()).toEqual(
       expect.objectContaining({
         doors: expect.objectContaining({

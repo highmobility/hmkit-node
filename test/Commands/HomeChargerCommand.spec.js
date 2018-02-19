@@ -52,45 +52,45 @@ describe(`HomeChargerCommand`, () => {
     );
   });
 
-   it(`should deactivate solar charging`, async () => {
-     const response = await hmkit.telematics.sendCommand(
-       vehicleSerial,
-       hmkit.commands.HomeChargerCommand.deactivateSolarCharging()
-     );
+  it(`should deactivate solar charging`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.deactivateSolarCharging()
+    );
 
-     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
-     expect(response.parse()).toEqual(
-       expect.objectContaining({
-         solarCharging: 'deactivated',
-       })
-     );
-   });
+    expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        solarCharging: 'deactivated',
+      })
+    );
+  });
 
-   it(`should enable wifi hotspot`, async () => {
-     const response = await hmkit.telematics.sendCommand(
-       vehicleSerial,
-       hmkit.commands.HomeChargerCommand.enableWifiHotspot()
-     );
+  it(`should enable wifi hotspot`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.enableWifiHotspot()
+    );
 
-     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
-     expect(response.parse()).toEqual(
-       expect.objectContaining({
-         hotspotEnabled: 'enabled',
-       })
-     );
-   });
+    expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        hotspotEnabled: 'enabled',
+      })
+    );
+  });
 
-   it(`should disable wifi hotspot`, async () => {
-     const response = await hmkit.telematics.sendCommand(
-       vehicleSerial,
-       hmkit.commands.HomeChargerCommand.disableWifiHotspot()
-     );
+  it(`should disable wifi hotspot`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.disableWifiHotspot()
+    );
 
-     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
-     expect(response.parse()).toEqual(
-       expect.objectContaining({
-         hotspotEnabled: 'disabled',
-       })
-     );
-   });
+    expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        hotspotEnabled: 'disabled',
+      })
+    );
+  });
 });

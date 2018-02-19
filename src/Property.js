@@ -17,8 +17,9 @@ export default class Property {
 
           if (subPropertyValue !== undefined && subPropertyValue !== null) {
             value.push({
-              [this.subPropertiesIdentifierNamespace]: subProperty.identifierValue,
-              ...subPropertyValue
+              [this.subPropertiesIdentifierNamespace]:
+                subProperty.identifierValue,
+              ...subPropertyValue,
             });
           }
         });
@@ -73,12 +74,17 @@ export default class Property {
     return this;
   };
 
-  setOptionalSubProperties = (identifierNamespace: String, subProperties: OptionalProperty) => {
+  setOptionalSubProperties = (
+    identifierNamespace: String,
+    subProperties: OptionalProperty
+  ) => {
     this.subProperties.push(...subProperties);
     this.subPropertiesIdentifierNamespace = identifierNamespace;
     return this;
   };
 
   findSubProperty = (identifier: number) =>
-    this.subProperties.find(supProperty => supProperty.identifier === identifier);
+    this.subProperties.find(
+      supProperty => supProperty.identifier === identifier
+    );
 }

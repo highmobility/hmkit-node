@@ -47,7 +47,7 @@ export function dateDecoder(bytes: Array<Number>) {
 }
 
 export function coordinatesDecoder(bytes: Array<Number>) {
-    const decoder = getRoundedIeee754ToBase10(6);
+  const decoder = getRoundedIeee754ToBase10(6);
 
   return {
     latitude: decoder(bytes.slice(0, bytes.length / 2)),

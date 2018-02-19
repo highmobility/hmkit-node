@@ -12,49 +12,24 @@ export default class WindowsCommand {
   static getWindowsBytes(windows) {
     var result = [];
 
-    console.log(windows);
-
     for (const window of windows) {
-      result = [...result, 0x01, 0x00, 0x02];
+      const positionStr = window['windowPosition'];
+      const stateStr = window['windowState'];
 
-      console.log('HELLLLOOO:', window['windowPosition']);
-
-      for (const [key, value] of Object.entries(window)) {
-        //              if (key === 'windowPosition') {
-        //                  result = [...result, this.getWindowPositionByte(value)];
-        //              }
-
-        console.log('key:', key, ' value:', value);
+      if (positionStr !== null && stateStr !== null) {
+        result = [
+          ...result,
+          0x01,
+          0x00,
+          0x02,
+          this.getWindowPositionByte(positionStr),
+          this.getWindowOpenCloseByte(stateStr),
+        ];
       }
-    }
-
-    for (const [position, openClose] of Object.entries(windows)) {
-      //      result = [
-      //        ...result,
-      //        0x01,
-      //        0x00,
-      //        0x02,
-      //        this.getWindowPositionByte(position),
-      //        this.getWindowOpenCloseByte(openClose),
-      //      ];
     }
 
     return result;
   }
-
-  //  static getWindowsBytes(windows) {
-  //    const windowsCount = Object.keys(windows).length;
-  //    let result = [windowsCount];
-  //
-  //    for (const [windowPosition, windowOpenClose] of Object.entries(windows)) {
-  //      const positionByte = this.getWindowPositionByte(windowPosition);
-  //      const openCloseByte = this.getWindowOpenCloseByte(windowOpenClose);
-  //
-  //      result = [...result, positionByte, openCloseByte];
-  //    }
-  //
-  //    return result;
-  //  }
 
   static getWindowPositionByte(position) {
     switch (position) {

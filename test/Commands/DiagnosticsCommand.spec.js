@@ -10,5 +10,6 @@ describe(`DiagnosticsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
+    // TODO: Check the structure as well
   });
 });
