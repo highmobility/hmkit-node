@@ -10,8 +10,8 @@ describe(`NaviDestinationResponse`, () => {
     expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        latitude: 52.5200080871582,
-        longitude: 13.404953956604004,
+        latitude: 52.520008,
+        longitude: 13.404954,
       },
       destinationName: 'Berlin',
     });

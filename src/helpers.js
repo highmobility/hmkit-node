@@ -47,9 +47,11 @@ export function dateDecoder(bytes: Array<Number>) {
 }
 
 export function coordinatesDecoder(bytes: Array<Number>) {
+    const decoder = getRoundedIeee754ToBase10(6);
+
   return {
-    latitude: ieee754ToBase10(bytes.slice(0, bytes.length / 2)),
-    longitude: ieee754ToBase10(bytes.slice(bytes.length / 2)),
+    latitude: decoder(bytes.slice(0, bytes.length / 2)),
+    longitude: decoder(bytes.slice(bytes.length / 2)),
   };
 }
 
