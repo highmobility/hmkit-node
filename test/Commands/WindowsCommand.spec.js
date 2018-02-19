@@ -1,31 +1,35 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
-import EmptyResponse from '../../src/Responses/EmptyResponse';
-import FailureMessageResponse from '../../src/Responses/FailureMessageResponse';
-// import WindowsResponse from '../../src/Responses/WindowsResponse';
+import WindowsResponse from '../../src/Responses/WindowsResponse';
 
 const hmkit = getHmkit();
 
 describe(`WindowsCommand`, () => {
   it(`should get windows states`, async () => {
-    const bytes = hmkit.commands.WindowsCommand.getState();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindowsCommand.getState()
+    );
 
-    expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
-
-    // Waiting for implementatation in the emulator
-    //       expect(response.parse()).toBeInstanceOf(WindowsResponse);
+    expect(response.parse()).toBeInstanceOf(WindowsResponse);
+    // asd
   });
 
-  it(`should open all windows`, async () => {
-    const bytes = hmkit.commands.WindowsCommand.setState(
-      'open',
-      'open',
-      'open',
-      'open'
+  it.only(`should open all windows`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindowsCommand.control([
+        {
+          windowPosition: 'front_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'open',
+        },
+      ])
     );
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
-    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    expect(response.parse()).toBeInstanceOf(WindowsResponse);
 
     // Waiting for implementatation in the emulator
     //       expect(response.parse()).toEqual(expect.objectContaining({
@@ -36,16 +40,15 @@ describe(`WindowsCommand`, () => {
   });
 
   it(`should close all windows`, async () => {
-    const bytes = hmkit.commands.WindowsCommand.setState(
-      'closed',
-      'closed',
-      'closed',
-      'closed'
-    );
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
-
-    expect(response.parse()).toBeInstanceOf(EmptyResponse);
-
+    //    const bytes = hmkit.commands.WindowsCommand.setState(
+    //      'closed',
+    //      'closed',
+    //      'closed',
+    //      'closed'
+    //    );
+    //    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
+    //
+    //    expect(response.parse()).toBeInstanceOf(WindowsResponse);
     // Waiting for implementatation in the emulator
     //       expect(response.parse()).toEqual(expect.objectContaining({
     //            windows: expect.objectContaining({

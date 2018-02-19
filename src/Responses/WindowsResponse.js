@@ -1,5 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
+import OptionalProperty from '../OptionalProperty';
 import { switchDecoder } from '../helpers';
 
 export default class WindowsResponse extends PropertyResponse {
@@ -9,31 +10,29 @@ export default class WindowsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'windows')
-        .setSubProperty(
-          new Property(0x00, 'frontLeft').setDecoder(this.openClosedDecoder())
-        )
-        .setSubProperty(
-          new Property(0x01, 'frontRight').setDecoder(this.openClosedDecoder())
-        )
-        .setSubProperty(
-          new Property(0x02, 'rearRight').setDecoder(this.openClosedDecoder())
-        )
-        .setSubProperty(
-          new Property(0x03, 'rearLeft').setDecoder(this.openClosedDecoder())
-        )
-        .setSubProperty(
-          new Property(0x04, 'hatch').setDecoder(this.openClosedDecoder())
+      new Property(0x01, 'windows').setOptionalSubProperties('windowPosition', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(
+          this.openClosedDecoder
         ),
+        new OptionalProperty(0x01, 'front_right').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x04, 'hatch').setDecoder(this.openClosedDecoder),
+      ]),
     ];
 
     this.parse(data, properties);
   }
 
-  openClosedDecoder() {
-    return switchDecoder({
-      0x00: 'closed',
-      0x01: 'open',
-    });
+  openClosedDecoder(bytes: Array<Number>) {
+    return {
+      windowState: bytes[0] === 0x00 ? 'closed' : 'open',
+    };
   }
 }
