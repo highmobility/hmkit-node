@@ -10,6 +10,19 @@ describe(`SeatsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(SeatsResponse);
-    // TODO: Check the returned structure
+    expect(response.parse()).toEqual({
+      seats: expect.objectContaining([
+        {
+          seatPosition: 'front_left',
+          personDetected: expect.any(String),
+          seatbeltFastened: expect.any(String),
+        },
+        {
+          seatPosition: 'front_right',
+          personDetected: expect.any(String),
+          seatbeltFastened: expect.any(String),
+        },
+      ]),
+    });
   });
 });
