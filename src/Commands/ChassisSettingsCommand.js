@@ -29,14 +29,20 @@ export default class ChassisSettingsCommand {
   }
 
   static setFrontAxleSpringRate(rate: number) {
-    return new Command([0x00, 0x53, 0x04, 0x00, rate << 24 >> 24]);
+    const rateByte = ((rate << 24) >> 24) & 0xff;
+
+    return new Command([0x00, 0x53, 0x04, 0x00, rateByte]);
   }
 
   static setRearAxleSpringRate(rate: number) {
-    return new Command([0x00, 0x53, 0x04, 0x01, rate << 24 >> 24]);
+    const rateByte = ((rate << 24) >> 24) & 0xff;
+
+    return new Command([0x00, 0x53, 0x04, 0x01, rateByte]);
   }
 
   static setChassisPosition(position: number) {
-    return new Command([0x00, 0x53, 0x05, position << 24 >> 24]);
+    const positionByte = ((position << 24) >> 24) & 0xff;
+
+    return new Command([0x00, 0x53, 0x05, positionByte]);
   }
 }
