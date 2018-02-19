@@ -18,8 +18,8 @@ describe(`HomeChargerResponse`, () => {
       chargingPower: 11.5,
       solarCharging: 'activated',
       location: {
-        latitude: 52.5200080871582,
-        longitude: 13.404953956604004,
+        latitude: 52.520008,
+        longitude: 13.404954,
       },
       chargeCurrent: {
         chargeCurrent: 0.5,
@@ -39,7 +39,7 @@ describe(`HomeChargerResponse`, () => {
         {
           pricingType: 'per_kwh',
           currency: 'EUR',
-          price: 0.30000001192092896,
+          price: 0.3,
         },
       ],
     });

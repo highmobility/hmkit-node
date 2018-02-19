@@ -6,9 +6,10 @@ describe(`SeatsCommand`, () => {
   it(`should get seats state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.SeatsCommand.getSeatsState()
+      hmkit.commands.SeatsCommand.getState()
     );
 
     expect(response.parse()).toBeInstanceOf(SeatsResponse);
+     // TODO: Check the returned structure
   });
 });

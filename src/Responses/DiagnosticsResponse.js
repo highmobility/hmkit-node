@@ -7,7 +7,6 @@ import {
   progressDecoder,
   getRoundedIeee754ToBase10,
 } from '../helpers';
-import { ieee754ToBase10 } from '../encoding';
 import OptionalProperty from '../OptionalProperty';
 
 export default class DiagnosticsResponse extends PropertyResponse {
@@ -23,7 +22,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x04, 'engineRPM').setDecoder(bytesSum),
       new Property(0x05, 'fuelLevel').setDecoder(progressDecoder),
       new Property(0x06, 'estimatedRange').setDecoder(bytesSum),
-      new Property(0x07, 'currentFuelConsumption').setDecoder(ieee754ToBase10),
+      new Property(0x07, 'currentFuelConsumption').setDecoder(getRoundedIeee754ToBase10(2)),
       new Property(0x08, 'averageFuelConsumption').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
@@ -39,8 +38,8 @@ export default class DiagnosticsResponse extends PropertyResponse {
         new OptionalProperty(0x02, 'rear_right').setDecoder(this.tireDecoder),
         new OptionalProperty(0x03, 'rear_left').setDecoder(this.tireDecoder),
       ]),
-      new Property(0x0b, 'batteryVoltage').setDecoder(ieee754ToBase10),
-      new Property(0x0c, 'adblueLevel').setDecoder(ieee754ToBase10),
+      new Property(0x0b, 'batteryVoltage').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x0c, 'adblueLevel').setDecoder(getRoundedIeee754ToBase10(2)),
       new Property(0x0d, 'distanceSinceReset').setDecoder(bytesSum),
       new Property(0x0e, 'distanceSinceStart').setDecoder(bytesSum),
     ];

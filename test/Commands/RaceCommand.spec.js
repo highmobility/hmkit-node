@@ -6,7 +6,7 @@ describe(`RaceCommand`, () => {
   it(`should get race state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RaceCommand.getRaceState()
+      hmkit.commands.RaceCommand.getState()
     );
 
     expect(response.parse()).toBeInstanceOf(RaceResponse);

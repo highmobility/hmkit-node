@@ -1,9 +1,7 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { bytesSum, switchDecoder, progressDecoder } from '../helpers';
-import { ieee754ToBase10 } from '../encoding';
+import { bytesSum, getRoundedIeee754ToBase10, switchDecoder, progressDecoder } from '../helpers';
 
-// TODO: Identifier should have third type parameter as well
 export default class ChargingResponse extends PropertyResponse {
   static identifier = [0x00, 0x23];
 
@@ -21,13 +19,13 @@ export default class ChargingResponse extends PropertyResponse {
       ),
       new Property(0x02, 'estimatedRange').setDecoder(bytesSum),
       new Property(0x03, 'batteryLevel').setDecoder(progressDecoder),
-      new Property(0x04, 'batteryCurrentAC').setDecoder(ieee754ToBase10),
-      new Property(0x05, 'batteryCurrentDC').setDecoder(ieee754ToBase10),
-      new Property(0x06, 'chargerVoltageAC').setDecoder(ieee754ToBase10),
-      new Property(0x07, 'chargerVoltageDC').setDecoder(ieee754ToBase10),
+      new Property(0x04, 'batteryCurrentAC').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x05, 'batteryCurrentDC').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x06, 'chargerVoltageAC').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x07, 'chargerVoltageDC').setDecoder(getRoundedIeee754ToBase10(2)),
       new Property(0x08, 'chargeLimit').setDecoder(progressDecoder),
       new Property(0x09, 'timeToCompleteCharge').setDecoder(bytesSum),
-      new Property(0x0a, 'chargingRate').setDecoder(ieee754ToBase10),
+      new Property(0x0a, 'chargingRate').setDecoder(getRoundedIeee754ToBase10(2)),
       new Property(0x0b, 'chargePortState').setDecoder(
         switchDecoder({
           0x00: 'closed',

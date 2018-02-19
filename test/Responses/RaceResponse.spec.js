@@ -1,7 +1,6 @@
 import Response from '../../src/Responses/Response';
 import RaceResponse from '../../src/Responses/RaceResponse';
 import { hexToUint8Array } from '../../src/encoding';
-import { assertFloatsEqualWithAccuracy } from '../../src/helpers';
 
 describe(`RaceResponse`, () => {
   it(`should return RaceResponse`, () => {
@@ -11,22 +10,21 @@ describe(`RaceResponse`, () => {
       )
     );
 
-    // TODO: Find a way to use assertFloatsEqualWithAccuracy(-1.2345, -1.2339, 0.001) in float-values here
     expect(response.parse()).toBeInstanceOf(RaceResponse);
 
     expect(response.parse()).toEqual({
       accelerations: [
         {
           type: 'longitudinal_acceleration',
-          gForce: 0.8640000224113464,
+          gForce: 0.864,
         },
         {
           type: 'lateral_acceleration',
-          gForce: -0.753000020980835,
+          gForce: -0.753,
         },
       ],
       brakePedalPosition: 0.0,
-      brakePressure: 11.5600004196167,
+      brakePressure: 11.56,
       brakeTorqueVectorings: [
         {
           axle: 'front_axle',
@@ -45,7 +43,7 @@ describe(`RaceResponse`, () => {
       selectedGear: 4,
       steeringAngle: -30,
       understeering: 0.19,
-      yawRate: 6.659999847412109,
+      yawRate: 6.66,
     });
   });
 });

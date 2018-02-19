@@ -2,10 +2,11 @@ import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import {
   activeInactiveDecoder,
+    getRoundedIeee754ToBase10,
   progressDecoder,
   switchDecoder,
 } from '../helpers';
-import { ieee754ToBase10, uint8toInt8 } from '../encoding';
+import { uint8toInt8 } from '../encoding';
 import OptionalProperty from '../OptionalProperty';
 
 export default class RaceResponse extends PropertyResponse {
@@ -33,8 +34,8 @@ export default class RaceResponse extends PropertyResponse {
       new Property(0x03, 'oversteering').setDecoder(progressDecoder),
       new Property(0x04, 'gasPedalPosition').setDecoder(progressDecoder),
       new Property(0x05, 'steeringAngle').setDecoder(uint8toInt8),
-      new Property(0x06, 'brakePressure').setDecoder(ieee754ToBase10),
-      new Property(0x07, 'yawRate').setDecoder(ieee754ToBase10),
+      new Property(0x06, 'brakePressure').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x07, 'yawRate').setDecoder(getRoundedIeee754ToBase10(2)),
       new Property(0x08, 'rearSuspensionSteering').setDecoder(uint8toInt8),
       new Property(0x09, 'electronicStabilityProgram').setDecoder(
         activeInactiveDecoder()
@@ -78,8 +79,10 @@ export default class RaceResponse extends PropertyResponse {
   }
 
   accelerationDecoder(...args) {
+      const decoder = getRoundedIeee754ToBase10(3);
+
     return {
-      gForce: ieee754ToBase10(...args),
+      gForce: decoder(...args),
     };
   }
 }
