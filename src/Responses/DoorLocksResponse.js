@@ -22,8 +22,8 @@ export default class DoorLocksResponse extends PropertyResponse {
 
   doorDecoder(data: Array<Number>) {
     return {
-      doorPosition: data[0] === 1 ? 'open' : 'closed',
-      doorLock: data[1] === 1 ? 'locked' : 'unlocked',
+      doorPosition: data[0] === 0x01 ? 'open' : 'closed',
+      doorLock: data[1] === 0x01 ? 'locked' : 'unlocked',
     };
   }
 }
