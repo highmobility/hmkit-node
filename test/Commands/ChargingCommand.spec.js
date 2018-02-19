@@ -23,8 +23,8 @@ describe(`ChargingCommand`, () => {
       },
       chargerVoltageAC: expect.any(Number),
       chargerVoltageDC: expect.any(Number),
-      chargingRate: expect.any(Number),
-      chargingState: expect.any(String),
+      chargingRateKW: expect.any(Number),
+      charging: expect.any(String),
       estimatedRange: expect.any(Number),
       timeToCompleteCharge: expect.any(Number),
     });
@@ -39,7 +39,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargingState: 'charging',
+        charging: 'charging',
       })
     );
   });
@@ -53,7 +53,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargingState: 'plugged_in',
+        charging: 'plugged_in',
       })
     );
   });

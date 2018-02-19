@@ -23,8 +23,8 @@ describe(`ChargingResponse`, () => {
       },
       chargerVoltageAC: 400,
       chargerVoltageDC: 410,
-      chargingRate: 0,
-      chargingState: 'charging',
+      chargingRateKW: 0,
+      charging: 'charging',
       estimatedRange: 255,
       timeToCompleteCharge: 60,
     });

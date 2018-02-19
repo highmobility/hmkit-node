@@ -15,7 +15,7 @@ export default class ChargingResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'chargingState').setDecoder(
+      new Property(0x01, 'charging').setDecoder(
         switchDecoder({
           0x00: 'disconnected',
           0x01: 'plugged_in',
@@ -39,7 +39,7 @@ export default class ChargingResponse extends PropertyResponse {
       ),
       new Property(0x08, 'chargeLimit').setDecoder(progressDecoder),
       new Property(0x09, 'timeToCompleteCharge').setDecoder(bytesSum),
-      new Property(0x0a, 'chargingRate').setDecoder(
+      new Property(0x0a, 'chargingRateKW').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
       new Property(0x0b, 'chargePortState').setDecoder(
