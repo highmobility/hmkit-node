@@ -9,7 +9,7 @@ describe(`VideoHandoverCommand`, () => {
       hmkit.commands.VideoHandoverCommand.handover(
         'https://www.youtube.com/watch?v=yWVB7U6mX2Y',
         90,
-        'rear_screen'
+        'rear'
       )
     );
 

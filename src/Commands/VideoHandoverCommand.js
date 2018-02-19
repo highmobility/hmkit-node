@@ -5,11 +5,11 @@ export default class VideoHandoverCommand {
   static handover(
     videoURL: string,
     startingSecond: number = 0,
-    screen: string = 'front_screen'
+    screen: string = 'front'
   ) {
     const screenOptions = {
-      front_screen: 0x00,
-      rear_screen: 0x01,
+      front: 0x00,
+      rear: 0x01,
     };
 
     return new Command([
