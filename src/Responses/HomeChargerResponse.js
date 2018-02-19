@@ -2,7 +2,11 @@ import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import OptionalProperty from '../OptionalProperty';
 import { bytesToString } from '../encoding';
-import { coordinatesDecoder, getRoundedIeee754ToBase10, switchDecoder } from '../helpers';
+import {
+  coordinatesDecoder,
+  getRoundedIeee754ToBase10,
+  switchDecoder,
+} from '../helpers';
 
 export default class HomeChargerResponse extends PropertyResponse {
   static identifier = [0x00, 0x60];
@@ -32,7 +36,9 @@ export default class HomeChargerResponse extends PropertyResponse {
           0x03: 'chademo',
         })
       ),
-      new Property(0x04, 'chargingPower').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x04, 'chargingPower').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
       new Property(0x05, 'solarCharging').setDecoder(
         switchDecoder({
           0x00: 'deactivated',
@@ -77,7 +83,7 @@ export default class HomeChargerResponse extends PropertyResponse {
   }
 
   chargeCurrentDecoder(bytes: Array<Number>) {
-      const decoder = getRoundedIeee754ToBase10(2);
+    const decoder = getRoundedIeee754ToBase10(2);
 
     return {
       chargeCurrent: decoder(bytes.slice(0, 4)),
@@ -87,7 +93,7 @@ export default class HomeChargerResponse extends PropertyResponse {
   }
 
   priceTariffDecoder(bytes: Array<Number>) {
-      const decoder = getRoundedIeee754ToBase10(2);
+    const decoder = getRoundedIeee754ToBase10(2);
 
     return {
       currency: bytesToString(bytes.slice(0, 3)),

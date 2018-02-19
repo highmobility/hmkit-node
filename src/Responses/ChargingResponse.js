@@ -1,6 +1,12 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { bytesSum, getRoundedIeee754ToBase10, switchDecoder, progressDecoder } from '../helpers';
+import {
+  bytesSum,
+  dateDecoder,
+  getRoundedIeee754ToBase10,
+  switchDecoder,
+  progressDecoder,
+} from '../helpers';
 
 export default class ChargingResponse extends PropertyResponse {
   static identifier = [0x00, 0x23];
@@ -19,13 +25,23 @@ export default class ChargingResponse extends PropertyResponse {
       ),
       new Property(0x02, 'estimatedRange').setDecoder(bytesSum),
       new Property(0x03, 'batteryLevel').setDecoder(progressDecoder),
-      new Property(0x04, 'batteryCurrentAC').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x05, 'batteryCurrentDC').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x06, 'chargerVoltageAC').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x07, 'chargerVoltageDC').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x04, 'batteryCurrentAC').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x05, 'batteryCurrentDC').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x06, 'chargerVoltageAC').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x07, 'chargerVoltageDC').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
       new Property(0x08, 'chargeLimit').setDecoder(progressDecoder),
       new Property(0x09, 'timeToCompleteCharge').setDecoder(bytesSum),
-      new Property(0x0a, 'chargingRate').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x0a, 'chargingRate').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
       new Property(0x0b, 'chargePortState').setDecoder(
         switchDecoder({
           0x00: 'closed',
@@ -53,14 +69,8 @@ export default class ChargingResponse extends PropertyResponse {
     };
 
     return {
-      chargeTimer: chargeTimerOptions[bytes[0]],
-      year: bytes[1] + 2000,
-      month: bytes[2],
-      day: bytes[3],
-      hour: bytes[4],
-      minute: bytes[5],
-      second: bytes[6],
-      timeOffset: bytesSum([bytes[7], bytes[8]]) << 16 >> 16,
+      timerType: chargeTimerOptions[bytes[0]],
+      time: dateDecoder(bytes.slice(1, 9)),
     };
   }
 }

@@ -10,6 +10,24 @@ describe(`ChargingCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
+    expect(response.parse()).toEqual({
+      batteryCurrentAC: expect.any(Number),
+      batteryCurrentDC: expect.any(Number),
+      batteryLevel: expect.any(Number),
+      chargeLimit: expect.any(Number),
+      chargeMode: expect.any(String),
+      chargePortState: expect.any(String),
+      chargeTimer: {
+        timerType: expect.any(String),
+        time: expect.any(Date),
+      },
+      chargerVoltageAC: expect.any(Number),
+      chargerVoltageDC: expect.any(Number),
+      chargingRate: expect.any(Number),
+      chargingState: expect.any(String),
+      estimatedRange: expect.any(Number),
+      timeToCompleteCharge: expect.any(Number),
+    });
   });
 
   it(`should start charging`, async () => {
@@ -101,13 +119,7 @@ describe(`ChargingCommand`, () => {
       vehicleSerial,
       hmkit.commands.ChargingCommand.setChargeTimer(
         'preferred_start_time',
-        2018,
-        2,
-        11,
-        12,
-        13,
-        14,
-        300
+        new Date(Date.UTC(2018, 1, 11, 12, 13, 14))
       )
     );
 
@@ -115,14 +127,8 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         chargeTimer: {
-          chargeTimer: 'preferred_start_time',
-          year: 2018,
-          month: 2,
-          day: 11,
-          hour: 12,
-          minute: 13,
-          second: 14,
-          timeOffset: 300,
+          timerType: 'preferred_start_time',
+          time: new Date(Date.UTC(2018, 1, 11, 12, 13, 14)),
         },
       })
     );

@@ -9,8 +9,12 @@ export default class LightConditionsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'outsideLight').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x02, 'insideLight').setDecoder(getRoundedIeee754ToBase10(2)),
+      new Property(0x01, 'outsideLight').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x02, 'insideLight').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
     ];
 
     this.parse(data, properties);

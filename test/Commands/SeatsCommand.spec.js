@@ -10,6 +10,6 @@ describe(`SeatsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(SeatsResponse);
-     // TODO: Check the returned structure
+    // TODO: Check the returned structure
   });
 });
