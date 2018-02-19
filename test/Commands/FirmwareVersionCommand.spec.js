@@ -3,7 +3,7 @@ import FirmwareVersionResponse from '../../src/Responses/FirmwareVersionResponse
 const hmkit = getHmkit();
 
 describe(`FirmwareVersionCommand`, () => {
-  it(`should get ignition state`, async () => {
+  it(`should get firmware version`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.FirmwareVersionCommand.getVersion()

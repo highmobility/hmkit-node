@@ -13,12 +13,12 @@ export default class WiFiCommand {
   ) {
     const ssidBytes = stringToBytes(SSID);
     const passwordBytes = stringToBytes(password);
-    const securityOptions = [
-      (none: 0x00),
-      (wep: 0x01),
-      (wpa: 0x02),
-      (wpa2_personal: 0x03),
-    ];
+      const securityOptions = {
+      none: 0x00,
+      wep: 0x01,
+      wpa: 0x02,
+      wpa2_personal: 0x03,
+      };
 
     return new Command([
       0x00,
