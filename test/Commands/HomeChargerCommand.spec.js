@@ -11,7 +11,31 @@ describe(`HomeChargerCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual({
-      gasFlap: expect.any(String),
+      charging: expect.any(String),
+      authenticationMechanism: expect.any(String),
+      plugType: expect.any(String),
+      chargingPower: expect.any(Number),
+      solarCharging: expect.any(String),
+      location: {
+        latitude: expect.any(Number),
+        longitude: expect.any(Number),
+      },
+      chargeCurrent: {
+        chargeCurrent: expect.any(Number),
+        maximumValue: expect.any(Number),
+        minimumValue: expect.any(Number),
+      },
+      hotspotEnabled: expect.any(String),
+      hotspotSSID: expect.any(String),
+      wiFiHotspotSecurity: expect.any(String),
+      wiFiHotspotPassword: expect.any(String),
+      priceTariffs: expect.objectContaining([
+        {
+          pricingType: expect.any(String),
+          currency: expect.any(String),
+          price: expect.any(Number),
+        },
+      ]),
     });
   });
 
@@ -33,9 +57,23 @@ describe(`HomeChargerCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
-    expect(response.parse()).toEqual({
-      gasFlap: 'open',
-    });
+    // TODO: Haven't figured it out for hours how to write this Partial array-test
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        priceTariffs: expect.objectContaining([
+          {
+            pricingType: 'starting_fee',
+            currency: 'EUR',
+            price: 2.5,
+          },
+          {
+            pricingType: 'per_kwh',
+            currency: 'USD',
+            price: 1.3,
+          },
+        ]),
+      })
+    );
   });
 
   it(`should activate solar charging`, async () => {

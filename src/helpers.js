@@ -102,6 +102,7 @@ export function autoHvacDecoder(bytes: Array<Number>) {
       ...autoHvacTimeDecoder(bytes[11], bytes[12]),
     },
     sundays: { state: sundays, ...autoHvacTimeDecoder(bytes[13], bytes[14]) },
+    constant: constant,
   };
 }
 
