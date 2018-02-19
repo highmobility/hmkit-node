@@ -53,19 +53,6 @@ export default class ClimateCommand {
     ]);
   }
 
-  static getHvacActivatedOnDaysByte(...args) {
-    return binaryToInt(
-      [...args].reduce((memory, day) => memory + String(!!day ? 1 : 0), '')
-    );
-  }
-
-  static getHvacDayBytes(day) {
-    if (day) {
-      return [day.hours, day.minutes];
-    }
-    return [0x00, 0x00];
-  }
-
   static startHvac() {
     return new Command([0x00, 0x24, 0x03, 0x01]);
   }
@@ -96,5 +83,18 @@ export default class ClimateCommand {
 
   static stopIonising() {
     return new Command([0x00, 0x24, 0x06, 0x00]);
+  }
+
+  static getHvacActivatedOnDaysByte(...args) {
+    return binaryToInt(
+      [...args].reduce((memory, day) => memory + String(!!day ? 1 : 0), '')
+    );
+  }
+
+  static getHvacDayBytes(day) {
+    if (day) {
+      return [day.hour, day.minute];
+    }
+    return [0x00, 0x00];
   }
 }

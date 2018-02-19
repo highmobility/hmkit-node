@@ -57,6 +57,7 @@ describe(`ClimateResponse`, () => {
           minute: 30,
           state: 'active',
         },
+        constant: 'inactive',
       },
     });
   });
