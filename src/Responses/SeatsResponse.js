@@ -1,5 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
+import OptionalProperty from '../OptionalProperty';
 
 export default class SeatsResponse extends PropertyResponse {
   static identifier = [0x00, 0x56];
@@ -8,22 +9,13 @@ export default class SeatsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'seats')
-        .setSubProperty(
-          new Property(0x00, 'frontLeft').setDecoder(this.seatsDecoder)
-        )
-        .setSubProperty(
-          new Property(0x01, 'frontRight').setDecoder(this.seatsDecoder)
-        )
-        .setSubProperty(
-          new Property(0x02, 'rearRight').setDecoder(this.seatsDecoder)
-        )
-        .setSubProperty(
-          new Property(0x03, 'rearLeft').setDecoder(this.seatsDecoder)
-        )
-        .setSubProperty(
-          new Property(0x04, 'rearCenter').setDecoder(this.seatsDecoder)
-        ),
+      new Property(0x01, 'seats').setOptionalSubProperties('seatPosition', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(this.seatsDecoder),
+        new OptionalProperty(0x01, 'front_right').setDecoder(this.seatsDecoder),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(this.seatsDecoder),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(this.seatsDecoder),
+        new OptionalProperty(0x04, 'rear_center').setDecoder(this.seatsDecoder),
+      ]),
     ];
 
     this.parse(data, properties);
@@ -31,8 +23,8 @@ export default class SeatsResponse extends PropertyResponse {
 
   seatsDecoder(data: Array<Number>) {
     return {
-      person: data[0] === 0x00 ? 'not_detected' : 'detected',
-      seatbelt: data[1] === 0x00 ? 'not_fastened' : 'fastened',
+      personDetected: data[0] === 0x00 ? 'not_detected' : 'detected',
+      seatbeltFastened: data[1] === 0x00 ? 'not_fastened' : 'fastened',
     };
   }
 }

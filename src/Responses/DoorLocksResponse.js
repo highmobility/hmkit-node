@@ -1,5 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
+import OptionalProperty from '../OptionalProperty';
 
 export default class DoorLocksResponse extends PropertyResponse {
   static identifier = [0x00, 0x20];
@@ -8,19 +9,12 @@ export default class DoorLocksResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'doors')
-        .setSubProperty(
-          new Property(0x00, 'frontLeft').setDecoder(this.doorDecoder)
-        )
-        .setSubProperty(
-          new Property(0x01, 'frontRight').setDecoder(this.doorDecoder)
-        )
-        .setSubProperty(
-          new Property(0x02, 'rearRight').setDecoder(this.doorDecoder)
-        )
-        .setSubProperty(
-          new Property(0x03, 'rearLeft').setDecoder(this.doorDecoder)
-        ),
+      new Property(0x01, 'doors').setOptionalSubProperties('doorLocation', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(this.doorDecoder),
+        new OptionalProperty(0x01, 'front_right').setDecoder(this.doorDecoder),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(this.doorDecoder),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(this.doorDecoder),
+      ]),
     ];
 
     this.parse(data, properties);
@@ -28,8 +22,8 @@ export default class DoorLocksResponse extends PropertyResponse {
 
   doorDecoder(data: Array<Number>) {
     return {
-      position: data[0] === 1 ? 'open' : 'closed',
-      lock: data[1] === 1 ? 'locked' : 'unlocked',
+      doorPosition: data[0] === 1 ? 'open' : 'closed',
+      doorLock: data[1] === 1 ? 'locked' : 'unlocked',
     };
   }
 }

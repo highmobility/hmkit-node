@@ -34,7 +34,7 @@ export function dateDecoder(bytes: Array<Number>) {
 
     return date;
   } else if (bytes.length === 8) {
-    const utcOffset = bytesSum(bytes.slice(6, 8)) << 16 >> 16;
+    const utcOffset = (bytesSum(bytes.slice(6, 8)) << 16) >> 16;
     const date = new Date();
 
     date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
@@ -50,6 +50,15 @@ export function coordinatesDecoder(bytes: Array<Number>) {
   return {
     latitude: ieee754ToBase10(bytes.slice(0, bytes.length / 2)),
     longitude: ieee754ToBase10(bytes.slice(bytes.length / 2)),
+  };
+}
+
+export function getRoundedIeee754ToBase10(precision): number {
+  const precisionMultiplier = Math.pow(10, precision);
+
+  return (...args) => {
+    const unrounded = ieee754ToBase10(...args);
+    return Math.round(unrounded * precisionMultiplier) / precisionMultiplier;
   };
 }
 
@@ -70,32 +79,34 @@ export function autoHvacDecoder(bytes: Array<Number>) {
     wednesdays,
     tuesdays,
     mondays,
-  ] = pad(intToBinary(bytes[0]), 8).split('').map(orig => Number(orig));
+  ] = pad(intToBinary(bytes[0]), 8)
+    .split('')
+    .map(orig => (Boolean(Number(orig)) === true ? 'active' : 'inactive'));
 
-  // TODO: The HVAC Activated days (array?)
   return {
-    autoHvacActivated: 'TODO',
-    mondayStartingHour: bytes[1],
-    mondayStartingMinute: bytes[2],
-    tuesdayStartingHour: bytes[3],
-    tuesdayStartingMinute: bytes[4],
-    wednesdayStartingHour: bytes[5],
-    wednesdayStartingMinute: bytes[6],
-    thursdayStartingHour: bytes[7],
-    thursdayStartingMinute: bytes[8],
-    fridayStartingHour: bytes[9],
-    fridayStartingMinute: bytes[10],
-    saturdayStartingHour: bytes[11],
-    saturdayStartingMinute: bytes[12],
-    sundayStartingHour: bytes[13],
-    sundayStartingMinute: bytes[14],
+    mondays: { state: mondays, ...autoHvacTimeDecoder(bytes[1], bytes[2]) },
+    tuesdays: { state: tuesdays, ...autoHvacTimeDecoder(bytes[3], bytes[4]) },
+    wednesdays: {
+      state: wednesdays,
+      ...autoHvacTimeDecoder(bytes[5], bytes[6]),
+    },
+    thursdays: {
+      state: thursdays,
+      ...autoHvacTimeDecoder(bytes[7], bytes[8]),
+    },
+    fridays: { state: fridays, ...autoHvacTimeDecoder(bytes[9], bytes[10]) },
+    saturdays: {
+      state: saturdays,
+      ...autoHvacTimeDecoder(bytes[11], bytes[12]),
+    },
+    sundays: { state: sundays, ...autoHvacTimeDecoder(bytes[13], bytes[14]) },
   };
 }
 
-export function autoHvacTimeDecoder(hours: Number, minutes: Number) {
+export function autoHvacTimeDecoder(hour: Number, minute: Number) {
   return {
-    hours,
-    minutes,
+    hour,
+    minute,
   };
 }
 

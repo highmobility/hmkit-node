@@ -22,21 +22,41 @@ describe(`ClimateResponse`, () => {
       ionisingState: 'inactive',
       defrostingTemperature: 21.5,
       autoHvacProfile: {
-        autoHvacActivated: 'confusion is the greatest form of communication',
-        mondayStartingHour: 0,
-        mondayStartingMinute: 0,
-        tuesdayStartingHour: 0,
-        tuesdayStartingMinute: 0,
-        wednesdayStartingHour: 0,
-        wednesdayStartingMinute: 0,
-        thursdayStartingHour: 0,
-        thursdayStartingMinute: 0,
-        fridayStartingHour: 0,
-        fridayStartingMinute: 0,
-        saturdayStartingHour: 7,
-        saturdayStartingMinute: 30,
-        sundayStartingHour: 7,
-        sundayStartingMinute: 30,
+        mondays: {
+          hour: 0,
+          minute: 0,
+          state: 'inactive',
+        },
+        tuesdays: {
+          hour: 0,
+          minute: 0,
+          state: 'inactive',
+        },
+        wednesdays: {
+          hour: 0,
+          minute: 0,
+          state: 'inactive',
+        },
+        thursdays: {
+          hour: 0,
+          minute: 0,
+          state: 'inactive',
+        },
+        fridays: {
+          hour: 0,
+          minute: 0,
+          state: 'inactive',
+        },
+        saturdays: {
+          hour: 7,
+          minute: 30,
+          state: 'active',
+        },
+        sundays: {
+          hour: 7,
+          minute: 30,
+          state: 'active',
+        },
       },
     });
   });
