@@ -112,7 +112,7 @@ describe(`ChassisSettingsCommand`, () => {
     );
   });
 
-  it.only(`should set rear axle spring rate`, async () => {
+  it(`should set rear axle spring rate`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.ChassisSettingsCommand.setRearAxleSpringRate(27)
