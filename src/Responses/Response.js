@@ -84,17 +84,24 @@ export default class Response {
     return this.rawData;
   }
 
-  parse() {
-    const bytes = this.bytes();
-    const Parser = this.findParser(bytes);
+  parse = (() => {
+    let parsedValue = null;
 
-    if (!Parser) {
-      if (bytes.length === 0) return new EmptyResponse();
-      return bytes;
-    }
+    return function parse() {
+      if (parsedValue !== null) return parsedValue;
 
-    return new Parser(bytes);
-  }
+      const bytes = this.bytes();
+      const Parser = this.findParser(bytes);
+
+      if (!Parser) {
+        if (bytes.length === 0) return new EmptyResponse();
+        return bytes;
+      }
+
+      parsedValue = new Parser(bytes);
+      return parsedValue;
+    };
+  })();
 
   findParser(bytes) {
     if (bytes.length === 0) {
