@@ -63,20 +63,20 @@ export default class HomeChargerResponse extends PropertyResponse {
         })
       ),
       new Property(0x0b, 'wiFiHotspotPassword').setDecoder(bytesToString),
-      new Property(
-        0x0c,
-        'priceTariffs'
-      ).setOptionalSubProperties('pricingType', [
-        new OptionalProperty(0x00, 'starting_fee').setDecoder(
-          this.priceTariffDecoder
-        ),
-        new OptionalProperty(0x01, 'per_minute').setDecoder(
-          this.priceTariffDecoder
-        ),
-        new OptionalProperty(0x02, 'per_kwh').setDecoder(
-          this.priceTariffDecoder
-        ),
-      ]),
+      new Property(0x0c, 'priceTariffs').setOptionalSubProperties(
+        'pricingType',
+        [
+          new OptionalProperty(0x00, 'starting_fee').setDecoder(
+            this.priceTariffDecoder
+          ),
+          new OptionalProperty(0x01, 'per_minute').setDecoder(
+            this.priceTariffDecoder
+          ),
+          new OptionalProperty(0x02, 'per_kwh').setDecoder(
+            this.priceTariffDecoder
+          ),
+        ]
+      ),
     ];
 
     this.parse(data, properties);

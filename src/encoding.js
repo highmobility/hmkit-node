@@ -3,7 +3,11 @@ import btoa from 'btoa';
 import ieee754 from 'ieee754';
 
 export function base64ToUint8(base64String) {
-  return new Uint8Array(atob(base64String).split('').map(c => c.charCodeAt(0)));
+  return new Uint8Array(
+    atob(base64String)
+      .split('')
+      .map(c => c.charCodeAt(0))
+  );
 }
 
 export function byteArrayToBase64(byteArray) {
@@ -32,7 +36,7 @@ export function intToBinary(int) {
 }
 
 export function uint8toInt8(uint8) {
-  return uint8 << 24 >> 24;
+  return (uint8 << 24) >> 24;
 }
 
 export function binaryToInt(binary) {
@@ -59,7 +63,9 @@ export function hexToByteArrays(hexString) {
 
   uint8Array.forEach(uint8 => {
     byteArrays.push(
-      pad(uint8.toString(2), 8).split('').map(byte => Number(byte))
+      pad(uint8.toString(2), 8)
+        .split('')
+        .map(byte => Number(byte))
     );
   });
 

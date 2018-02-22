@@ -51,9 +51,11 @@ export default class CapabilitiesResponse {
       const capabilityData = token.slice(3, token.length);
 
       if (capabilityData.length !== token[2]) {
-        this.error = `Invalid configuration length ${token[2]} instead of ${capabilityData.length}. ${capabilityToMap.label} (0x${intToHex(
-          token[0]
-        )} 0x${intToHex(token[1])}).`;
+        this.error = `Invalid configuration length ${token[2]} instead of ${
+          capabilityData.length
+        }. ${capabilityToMap.label} (0x${intToHex(token[0])} 0x${intToHex(
+          token[1]
+        )}).`;
         return;
       }
 

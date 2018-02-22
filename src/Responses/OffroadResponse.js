@@ -19,6 +19,6 @@ export default class OffroadResponse extends PropertyResponse {
     // For some reason, the 'bytesSum' is failing here
     const sum = (bytes[0] << 8) + bytes[1];
 
-    return sum << 16 >> 16;
+    return (sum << 16) >> 16;
   }
 }

@@ -7,29 +7,28 @@
   "scripts": {
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
-    "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
+    "test":
+      "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
-    "test:setup": "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
+    "test:coverage":
+      "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
+    "test:setup":
+      "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
-    "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
-    "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" "
+    "prepare-beta":
+      "npm run clean && npm run lint && npm test && npm run build",
+    "format": "prettier --write \"{src,test}/**/*.js\" "
   },
   "entry": "./build/bundle.js",
   "jest": {
     "coverageDirectory": "coverage",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "node"
-    ],
-    "setupFiles": [
-      "<rootDir>/test/testutils/setupTests.js"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "node"],
+    "setupFiles": ["<rootDir>/test/testutils/setupTests.js"],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js"
     },
     "testRegex": "(/test/.*\\.spec.js)$"
   },
