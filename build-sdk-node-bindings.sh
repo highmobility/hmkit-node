@@ -4,3 +4,4 @@ cd sdk-node-bindings
 git checkout BC-105
 git submodule update --init --recursive
 npm install
+

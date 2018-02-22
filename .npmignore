@@ -1,6 +1,8 @@
 /docs
 /src
 /test
+/.vscode
+/sdk-node-bindings
 .babelrc
 .editorconfig
 .eslintrc
