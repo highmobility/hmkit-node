@@ -21,7 +21,7 @@ export default class NotificationCommand {
   }
 
   static getActionsBytes(actions) {
-    var result = [];
+    let result = [];
 
     for (const [actionId, actionName] of Object.entries(actions)) {
       const nameBytes = stringToBytes(actionName);

@@ -4,7 +4,7 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`WiFiResponse`, () => {
   it(`should return WiFiResponse`, () => {
-    let response = new Response(
+    const response = new Response(
       hexToUint8Array('0059010100010102000101030004484F4D4504000103')
     );
 

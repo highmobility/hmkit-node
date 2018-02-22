@@ -36,7 +36,7 @@ export default class HomeChargerCommand {
   }
 
   static getPriceTariffsBytes(priceTariffs) {
-    var result = [];
+    let result = [];
     const pricingTypeOptions = {
       starting_fee: 0x00,
       per_minute: 0x01,
@@ -49,9 +49,9 @@ export default class HomeChargerCommand {
         0x0c,
         0x00,
         0x08,
-        pricingTypeOptions[priceTariff['pricingType']],
-        ...stringToBytes(priceTariff['currency']),
-        ...base10ToIeee754(priceTariff['price']),
+        pricingTypeOptions[priceTariff.pricingType],
+        ...stringToBytes(priceTariff.currency),
+        ...base10ToIeee754(priceTariff.price),
       ];
     }
 

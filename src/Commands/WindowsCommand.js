@@ -10,11 +10,11 @@ export default class WindowsCommand {
   }
 
   static getWindowsBytes(windows) {
-    var result = [];
+    let result = [];
 
     for (const window of windows) {
-      const positionStr = window['windowPosition'];
-      const stateStr = window['windowState'];
+      const positionStr = window.windowPosition;
+      const stateStr = window.windowState;
 
       if (positionStr !== null && stateStr !== null) {
         result = [

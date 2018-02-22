@@ -18,7 +18,7 @@ export default class ParkingTicketCommand {
   ) {
     const operatorNameBytes = stringToBytes(operatorName);
     const operatorTicketIDBytes = stringToBytes(operatorTicketID);
-    var allEndTimeBytes = [];
+    let allEndTimeBytes = [];
 
     if (arguments.length === 4) {
       allEndTimeBytes = [0x04, 0x00, 0x08, ...dateToBytes(ticketEndTime)];

@@ -12,10 +12,10 @@ export default class LightsCommand {
     interiorLight: string,
     ambientLight: string
   ) {
-    var allFrontBytes = [];
-    var allRearBytes = [];
-    var allInteriorBytes = [];
-    var allAmbientBytes = [];
+    let allFrontBytes = [];
+    let allRearBytes = [];
+    let allInteriorBytes = [];
+    let allAmbientBytes = [];
 
     if (frontExteriorLight.length > 0) {
       const frontExteriorLightOptions = {

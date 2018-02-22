@@ -11,7 +11,7 @@ export default class NaviDestinationCommand {
     longitude: number,
     destinationName: string = ''
   ) {
-    var allNameBytes = [];
+    let allNameBytes = [];
 
     if (destinationName.length > 0) {
       const nameBytes = stringToBytes(destinationName);
