@@ -57,23 +57,20 @@ describe(`HomeChargerCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
-    // TODO: Haven't figured it out for hours how to write this Partial array-test
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        priceTariffs: expect.objectContaining([
-          {
-            pricingType: 'starting_fee',
-            currency: 'EUR',
-            price: 2.5,
-          },
-          {
-            pricingType: 'per_kwh',
-            currency: 'USD',
-            price: 1.3,
-          },
-        ]),
-      })
-    );
+    expect(response.parse()).toMatchObject({
+      priceTariffs: expect.arrayContaining([
+        {
+          pricingType: 'starting_fee',
+          currency: 'EUR',
+          price: 2.5,
+        },
+        {
+          pricingType: 'per_kwh',
+          currency: 'USD',
+          price: 1.3,
+        },
+      ]),
+    });
   });
 
   it(`should activate solar charging`, async () => {
