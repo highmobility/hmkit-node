@@ -76,7 +76,7 @@ export default class Property {
 
   setOptionalSubProperties = (
     identifierNamespace: String,
-    subProperties: OptionalProperty
+    subProperties: Array<OptionalProperty>
   ) => {
     this.subProperties.push(...subProperties);
     this.subPropertiesIdentifierNamespace = identifierNamespace;
