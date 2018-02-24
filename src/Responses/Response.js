@@ -30,6 +30,7 @@ import WiFiResponse from './WiFiResponse';
 import WindowsResponse from './WindowsResponse';
 import WindscreenResponse from './WindscreenResponse';
 import CapabilitiesResponse from './CapabilitiesResponse';
+import VehicleStatusResponse from './VehicleStatusResponse';
 
 export default class Response {
   constructor(data: string) {
@@ -64,6 +65,7 @@ export default class Response {
       TrunkAccessResponse,
       ValetModeResponse,
       VehicleLocationResponse,
+      VehicleStatusResponse,
       VehicleTimeResponse,
       WeatherConditionsResponse,
       WiFiResponse,
