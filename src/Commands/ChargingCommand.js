@@ -15,7 +15,7 @@ export default class ChargingCommand {
   }
 
   static setChargeLimit(limit: number) {
-    return new Command([0x00, 0x23, 0x03, limit * 100]);
+    return new Command([0x00, 0x23, 0x03, limit]);
   }
 
   static openChargePort() {
