@@ -1,5 +1,6 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
 import ChassisSettingsResponse from '../../src/Responses/ChassisSettingsResponse';
+import HMKit from '../../src';
 const hmkit = getHmkit();
 
 describe(`ChassisSettingsCommand`, () => {
@@ -149,5 +150,21 @@ describe(`ChassisSettingsCommand`, () => {
         },
       })
     );
+  });
+
+  it.only(`should fail to set invalid driving mode`, async () => {
+    let res;
+    try {
+      hmkit.telematics.sendCommand(
+        vehicleSerial,
+        hmkit.commands.ChassisSettingsCommand.setDrivingMode(
+          'totallynotarealdrivingmode'
+        )
+      );
+    } catch (err) {
+      res = err;
+    }
+
+    expect(res).toBeInstanceOf(HMKit.InvalidArgumentError);
   });
 });

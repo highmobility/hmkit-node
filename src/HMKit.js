@@ -7,8 +7,11 @@ import ClientCertificate from './ClientCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
 import ApiClient from './ApiClient';
+import InvalidArgumentError from './InvalidArgumentError';
 
 export default class HMKit {
+  static InvalidArgumentError = InvalidArgumentError;
+
   constructor(clientCertificate, clientPrivateKey) {
     this.clientCertificate = new ClientCertificate(
       base64ToUint8(clientCertificate)

@@ -1,11 +1,22 @@
 import Command from './Command';
+import { validate, Joi } from '../validate';
 
 export default class ChassisSettingsCommand {
   static getSettings() {
     return new Command([0x00, 0x53, 0x00]);
   }
 
-  static setDrivingMode(drivingMode: string) {
+  static setDrivingMode(drivingMode) {
+    validate([
+      {
+        value: drivingMode,
+        name: 'Driving mode',
+        condition: Joi.string()
+          .valid('regular', 'eco', 'sport', 'sport_plus')
+          .required(),
+      },
+    ]);
+
     const drivingModeOptions = {
       regular: 0x00,
       eco: 0x01,
