@@ -40,18 +40,42 @@ export default class ChassisSettingsCommand {
   }
 
   static setFrontAxleSpringRate(rate: number) {
+    validate([
+      {
+        value: rate,
+        name: 'Rate',
+        condition: Joi.number().required(),
+      },
+    ]);
+
     const rateByte = ((rate << 24) >> 24) & 0xff;
 
     return new Command([0x00, 0x53, 0x04, 0x00, rateByte]);
   }
 
   static setRearAxleSpringRate(rate: number) {
+    validate([
+      {
+        value: rate,
+        name: 'Rate',
+        condition: Joi.number().required(),
+      },
+    ]);
+
     const rateByte = ((rate << 24) >> 24) & 0xff;
 
     return new Command([0x00, 0x53, 0x04, 0x01, rateByte]);
   }
 
   static setChassisPosition(position: number) {
+    validate([
+      {
+        value: position,
+        name: 'Position',
+        condition: Joi.number().required(),
+      },
+    ]);
+
     const positionByte = ((position << 24) >> 24) & 0xff;
 
     return new Command([0x00, 0x53, 0x05, positionByte]);

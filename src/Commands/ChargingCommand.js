@@ -1,5 +1,6 @@
 import Command from './Command';
-import { dateToBytes, decimalToHexArray } from '../encoding';
+import { dateToBytes } from '../encoding';
+import { validate, Joi } from '../validate';
 
 export default class ChargingCommand {
   static getChargeState() {
@@ -15,6 +16,17 @@ export default class ChargingCommand {
   }
 
   static setChargeLimit(limit: number) {
+    validate([
+      {
+        value: limit,
+        name: 'Limit',
+        condition: Joi.number()
+          .min(0)
+          .max(100)
+          .required(),
+      },
+    ]);
+
     return new Command([0x00, 0x23, 0x03, limit]);
   }
 
@@ -27,6 +39,16 @@ export default class ChargingCommand {
   }
 
   static setChargeMode(chargeMode: string) {
+    validate([
+      {
+        value: chargeMode,
+        name: 'Charge mode',
+        condition: Joi.string()
+          .valid('immediate', 'timer_based')
+          .required(),
+      },
+    ]);
+
     const chargeModeOptions = {
       immediate: 0x00,
       timer_based: 0x01,
