@@ -23,8 +23,8 @@ export default {
   offroad: {
     identifier: [0x00, 0x52],
     messages: {
-      [0x01]: 'get_offroad_state',
-      [0x02]: 'offroad_state',
+      [0x00]: 'get_offroad_state',
+      [0x01]: 'offroad_state',
     },
   },
   door_locks: {

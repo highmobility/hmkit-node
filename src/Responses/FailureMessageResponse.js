@@ -18,27 +18,24 @@ export default class FailureMessageResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'failedMessage').setDecoder(this.failedMessageDecoder),
-      new Property(0x02, 'reason').setDecoder(this.reasonDecoder),
+      new Property(0x01, 'autoApi').setDecoder(this.failedCapabilityDecoder),
+      new Property(0x02, 'type'),
+      new Property(0x03, 'reason').setDecoder(this.reasonDecoder)
     ];
 
     this.parse(data, properties);
   }
 
-  bindProperties(properties: Array<Property>) {
-    const { autoApi, type } = properties[0].value;
-
-    this.autoApi = autoApi;
-    this.type = type;
-    this.reason = properties[1].value;
-  }
-
-  failedMessageDecoder(bytes: Array<Number>) {
+  failedCapabilityDecoder(bytes: Array<Number>) {
     const autoApi = Object.values(autoApis).find(api => api.lsb === bytes[1]);
 
-    if (autoApi) delete autoApi.availability;
-
-    return { autoApi, type: bytes[2] };
+    return !!autoApi ? {
+      label: autoApi.label,
+      namespace: autoApi.namespace,
+      lsb: autoApi.lsb
+    } : {
+      lsb: bytes[1]
+    };
   }
 
   reasonDecoder(bytes: Array<Number>) {
