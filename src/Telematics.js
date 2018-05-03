@@ -60,10 +60,16 @@ export default class Telematics {
 
     const result = await this.promise;
 
-    this.hmkit.crypto.telematicsDataReceived(
-      base64ToUint8(result.body.response_data).buffer
-    );
+    if (result && result.body && result.body.response_data) {
+      this.hmkit.crypto.telematicsDataReceived(
+        base64ToUint8(result.body.response_data).buffer
+      );
 
-    return new Response(this.response.incomingCommandData);
+      if (this.response && this.response.incomingCommandData) {
+        return new Response(this.response.incomingCommandData);
+      }
+    }
+
+    throw new Error('Failed to read incoming data.');
   };
 }
