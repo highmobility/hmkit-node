@@ -17,6 +17,7 @@ class TestClass {
     this.data = `x`.repeat(10000000);
     this.setBindings();
     this.useBindings();
+	//this.clearBindings();
   }
 
   setBindings() {
@@ -50,6 +51,10 @@ class TestClass {
 
   useBindings() {
     this.onGetSerialNumber(() => this);
+  }
+
+  clearBindings() {
+    this.cleanup(() => this);
   }
 }
 
