@@ -24,6 +24,7 @@ import RaceResponse from './RaceResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import SeatsResponse from './SeatsResponse';
 import StartStopResponse from './StartStopResponse';
+import TachographResponse from './TachographResponse';
 import TheftAlarmResponse from './TheftAlarmResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
@@ -69,6 +70,7 @@ export default class Response {
       RooftopControlResponse,
       SeatsResponse,
       StartStopResponse,
+      TachographResponse,
       TheftAlarmResponse,
       TrunkAccessResponse,
       ValetModeResponse,

@@ -35,25 +35,25 @@ export default class TachographResponse extends PropertyResponse {
           new OptionalProperty(0x02, 2).setDecoder(this.driverCardDecoder),
         ]
       ),
-      new Property(0x04, 'motion').setDecoder(
+      new Property(0x04, 'vehicleMotion').setDecoder(
         switchDecoder({
           0x00: 'not_detected',
           0x01: 'detected',
         })
       ),
-      new Property(0x05, 'overspeed').setDecoder(
+      new Property(0x05, 'vehicleOverspeed').setDecoder(
         switchDecoder({
           0x00: 'no_overspeed',
           0x01: 'overspeed',
         })
       ),
-      new Property(0x06, 'direction').setDecoder(
+      new Property(0x06, 'vehicleDirection').setDecoder(
         switchDecoder({
           0x00: 'forward',
           0x01: 'reverse',
         })
       ),
-      new Property(0x07, 'speed').setDecoder(bytesSum),
+      new Property(0x07, 'vehicleSpeed').setDecoder(bytesSum),
     ];
 
     this.parse(data, properties);
@@ -86,7 +86,7 @@ export default class TachographResponse extends PropertyResponse {
 
   driverCardDecoder(data: Array<Number>) {
     return {
-      timeState: switchDecoder({
+      card: switchDecoder({
         0x00: 'not_present',
         0x01: 'present',
       })(data),
