@@ -40,6 +40,17 @@ export default class VehicleStatusResponse extends PropertyResponse {
       new Property(0x09, 'powerInKw').setDecoder(bytesSum),
       new Property(0x0a, 'numberOfDoors').setDecoder(bytesSum),
       new Property(0x0b, 'numberOfSeats').setDecoder(bytesSum),
+      new Property(0x0c, 'engineVolume').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x0d, 'engineMaximumTorque').setDecoder(bytesSum),
+      new Property(0x0e, 'gearbox').setDecoder(
+        switchDecoder({
+          0x00: 'manual',
+          0x01: 'automatic',
+          0x02: 'semi-automatic',
+        })
+      ),
       new CapabilityProperty(0x99, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
         Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {

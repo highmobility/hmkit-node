@@ -15,6 +15,12 @@ export default class EngineResponse extends PropertyResponse {
           0x01: 'engine_on',
         })
       ),
+      new Property(0x02, 'accessoriesIgnition').setDecoder(
+        switchDecoder({
+          0x00: 'powered_off',
+          0x01: 'powered_on',
+        })
+      ),
     ];
 
     this.parse(data, properties);
