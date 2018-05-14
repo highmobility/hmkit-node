@@ -1,4 +1,5 @@
 import Command from './Command';
+import { validate, Joi } from '../validate';
 
 export default class CruiseControlCommand {
   static getState() {
@@ -6,6 +7,14 @@ export default class CruiseControlCommand {
   }
 
   static activateCruiseControl(targetSpeed: ?number) {
+    validate([
+      {
+        value: targetSpeed,
+        name: 'Target speed',
+        condition: Joi.number().min(0),
+      },
+    ]);
+
     const targetSpeedBytes =
       targetSpeed !== null && targetSpeed !== undefined
         ? [0x02, 0x00, 0x01, targetSpeed]
