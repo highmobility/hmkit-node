@@ -22,9 +22,12 @@ import NotificationCommand from './Commands/NotificationCommand';
 import OffroadCommand from './Commands/OffroadCommand';
 import ParkingBrakeCommand from './Commands/ParkingBrakeCommand';
 import ParkingTicketCommand from './Commands/ParkingTicketCommand';
+import PowerTakeOffCommand from './Commands/PowerTakeOffCommand';
 import RaceCommand from './Commands/RaceCommand';
 import RooftopControlCommand from './Commands/RooftopControlCommand';
 import SeatsCommand from './Commands/SeatsCommand';
+import StartStopCommand from './Commands/StartStopCommand';
+import TachographCommand from './Commands/TachographCommand';
 import TextInputCommand from './Commands/TextInputCommand';
 import TheftAlarmCommand from './Commands/TheftAlarmCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
@@ -66,9 +69,12 @@ export default class Commands {
       OffroadCommand,
       ParkingBrakeCommand,
       ParkingTicketCommand,
+      PowerTakeOffCommand,
       RaceCommand,
       RooftopControlCommand,
       SeatsCommand,
+      StartStopCommand,
+      TachographCommand,
       TextInputCommand,
       TheftAlarmCommand,
       TrunkAccessCommand,
