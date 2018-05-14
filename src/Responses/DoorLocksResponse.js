@@ -53,7 +53,7 @@ export default class DoorLocksResponse extends PropertyResponse {
 
   outsideLockDecoder(data: Array<Number>) {
     return {
-      insideLock: switchDecoder({
+      outsideLock: switchDecoder({
         0x00: 'unlocked',
         0x01: 'locked',
       })(data),

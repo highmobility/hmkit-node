@@ -48,7 +48,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
         switchDecoder({
           0x00: 'manual',
           0x01: 'automatic',
-          0x02: 'semi-automatic',
+          0x02: 'semi_automatic',
         })
       ),
       new CapabilityProperty(0x99, 'states').setOptionalSubProperties(
