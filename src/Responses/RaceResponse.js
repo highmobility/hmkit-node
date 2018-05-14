@@ -56,6 +56,30 @@ export default class RaceResponse extends PropertyResponse {
       ),
       new Property(0x0c, 'selectedGear'),
       new Property(0x0d, 'brakePedalPosition').setDecoder(progressDecoder),
+      new Property(0x0e, 'brakePedalSwitch').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+        })
+      ),
+      new Property(0x0f, 'clitchPedalSwitch').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+        })
+      ),
+      new Property(0x10, 'acceleratorPedalIdleSwitch').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+        })
+      ),
+      new Property(0x11, 'acceleratorPedalKickdownSwitch').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+        })
+      ),
     ];
 
     this.parse(data, properties);
