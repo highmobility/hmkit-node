@@ -1,6 +1,7 @@
 import ChargingResponse from './ChargingResponse';
 import ChassisSettingsResponse from './ChassisSettingsResponse';
 import ClimateResponse from './ClimateResponse';
+import DashboardLightsResponse from './DashboardLightsResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
@@ -20,6 +21,7 @@ import ParkingTicketResponse from './ParkingTicketResponse';
 import RaceResponse from './RaceResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import SeatsResponse from './SeatsResponse';
+import StartStopResponse from './StartStopResponse';
 import TheftAlarmResponse from './TheftAlarmResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
@@ -43,6 +45,7 @@ export default class Response {
       ChargingResponse,
       ChassisSettingsResponse,
       ClimateResponse,
+      DashboardLightsResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
       EngineResponse,
@@ -61,6 +64,7 @@ export default class Response {
       RaceResponse,
       RooftopControlResponse,
       SeatsResponse,
+      StartStopResponse,
       TheftAlarmResponse,
       TrunkAccessResponse,
       ValetModeResponse,
