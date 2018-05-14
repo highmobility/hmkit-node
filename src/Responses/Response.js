@@ -19,6 +19,7 @@ import NaviDestinationResponse from './NaviDestinationResponse';
 import OffroadResponse from './OffroadResponse';
 import ParkingBrakeResponse from './ParkingBrakeResponse';
 import ParkingTicketResponse from './ParkingTicketResponse';
+import PowerTakeOffResponse from './PowerTakeOffResponse';
 import RaceResponse from './RaceResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import SeatsResponse from './SeatsResponse';
@@ -63,6 +64,7 @@ export default class Response {
       OffroadResponse,
       ParkingBrakeResponse,
       ParkingTicketResponse,
+      PowerTakeOffResponse,
       RaceResponse,
       RooftopControlResponse,
       SeatsResponse,
