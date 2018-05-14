@@ -1,6 +1,7 @@
 import ChargingResponse from './ChargingResponse';
 import ChassisSettingsResponse from './ChassisSettingsResponse';
 import ClimateResponse from './ClimateResponse';
+import CruiseControlResponse from './CruiseControlResponse';
 import DashboardLightsResponse from './DashboardLightsResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
@@ -45,6 +46,7 @@ export default class Response {
       ChargingResponse,
       ChassisSettingsResponse,
       ClimateResponse,
+      CruiseControlResponse,
       DashboardLightsResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
