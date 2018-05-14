@@ -3,6 +3,8 @@ import CapabilitiesCommand from './Commands/CapabilitiesCommand';
 import ChargingCommand from './Commands/ChargingCommand';
 import ChassisSettingsCommand from './Commands/ChassisSettingsCommand';
 import ClimateCommand from './Commands/ClimateCommand';
+import CruiseControlCommand from './Commands/CruiseControlCommand';
+import DashboardLightsCommand from './Commands/DashboardLightsCommand';
 import DiagnosticsCommand from './Commands/DiagnosticsCommand';
 import DoorLocksCommand from './Commands/DoorLocksCommand';
 import EngineCommand from './Commands/EngineCommand';
@@ -45,6 +47,8 @@ export default class Commands {
       ChargingCommand,
       ChassisSettingsCommand,
       ClimateCommand,
+      CruiseControlCommand,
+      DashboardLightsCommand,
       DiagnosticsCommand,
       DoorLocksCommand,
       EngineCommand,
