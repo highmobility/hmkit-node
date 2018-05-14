@@ -42,7 +42,13 @@ export default class RaceResponse extends PropertyResponse {
       new Property(0x09, 'electronicStabilityProgram').setDecoder(
         activeInactiveDecoder()
       ),
-      new Property(0x0a, 'brakeTorqueVectorings').setDecoder(this.axleDecoder),
+      new Property(0x0a, 'brakeTorqueVectorings').setOptionalSubProperties(
+        'axle',
+        [
+          new OptionalProperty(0x00, 'front_axle').setDecoder(this.axleDecoder),
+          new OptionalProperty(0x01, 'rear_axle').setDecoder(this.axleDecoder),
+        ]
+      ),
       new Property(0x0b, 'gearMode').setDecoder(
         switchDecoder({
           0x00: 'manual',
@@ -85,23 +91,13 @@ export default class RaceResponse extends PropertyResponse {
     this.parse(data, properties);
   }
 
-  axleDecoder(bytes) {
-    const [front_axle, rear_axle] = bytes;
-    const decode = switchDecoder({
-      0x00: 'inactive',
-      0x01: 'active',
-    });
-
-    return [
-      {
-        axle: 'front_axle',
-        vectoring: decode([front_axle]),
-      },
-      {
-        axle: 'rear_axle',
-        vectoring: decode([rear_axle]),
-      },
-    ];
+  axleDecoder(bytes: Array<Number>) {
+    return {
+      vectoring: switchDecoder({
+        0x00: 'inactive',
+        0x01: 'active',
+      })(bytes),
+    };
   }
 
   accelerationDecoder(...args) {

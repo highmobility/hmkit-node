@@ -37,7 +37,7 @@ import CapabilitiesResponse from './CapabilitiesResponse';
 import VehicleStatusResponse from './VehicleStatusResponse';
 
 export default class Response {
-  constructor(data: string) {
+  constructor(data: Array<Number>) {
     this.rawData = data;
 
     this.checkRawDataLength();

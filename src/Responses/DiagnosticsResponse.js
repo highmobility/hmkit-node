@@ -3,7 +3,7 @@ import Property from '../Property';
 import {
   bytesSum,
   switchDecoder,
-  chunkArray,
+  uint8Decoder,
   progressDecoder,
   getRoundedIeee754ToBase10,
 } from '../helpers';
@@ -48,16 +48,14 @@ export default class DiagnosticsResponse extends PropertyResponse {
       ),
       new Property(0x0d, 'distanceSinceReset').setDecoder(bytesSum),
       new Property(0x0e, 'distanceSinceStart').setDecoder(bytesSum),
-      new Property(0x0f, 'fuelVolume').setDecoder(bytesSum),
+      new Property(0x0f, 'fuelVolume').setDecoder(getRoundedIeee754ToBase10(2)),
       new Property(0x10, 'antiLockBrakingSystem').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x11, 'engineCoolantTemperature').setDecoder(
-        getRoundedIeee754ToBase10(2)
-      ),
+      new Property(0x11, 'engineCoolantTemperature').setDecoder(uint8Decoder),
       new Property(0x12, 'engineTotalOperatingHours').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),

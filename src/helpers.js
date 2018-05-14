@@ -1,10 +1,14 @@
-import { ieee754ToBase10, intToBinary, pad } from './encoding';
+import { ieee754ToBase10, intToBinary, pad, uint8toInt8 } from './encoding';
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = bytes
     .map(decimal => pad(decimal.toString(16), 2))
     .reduce((memo, i) => memo + i, '');
   return Number(`0x${hex}`);
+}
+
+export function uint8Decoder(bytes: Array<Number>) {
+  return uint8toInt8(bytesSum(bytes));
 }
 
 export function chunkArray(array: Array<any>, chunkCount: number = 2) {
