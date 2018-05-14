@@ -10,7 +10,7 @@ export default class DashboardLightsResponse extends PropertyResponse {
     super();
     /* prettier-ignore */
     const properties = [
-      new Property(0x01, 'dashboardLights').setOptionalSubProperties('indicator', [
+      new Property(0x01, 'dashboardLights').setOptionalSubProperties('lightName', [
         new OptionalProperty(0x00, 'high_beam').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x01, 'low_beam').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x02, 'hazard_warning').setDecoder(this.lightStateDecoder),
@@ -25,27 +25,27 @@ export default class DashboardLightsResponse extends PropertyResponse {
         new OptionalProperty(0x0B, 'rear_fog_light').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x0C, 'park_heating').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x0D, 'engine_indicator').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x0E, 'service').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x0E, 'service_call').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x0F, 'transmission_fluid_temperature').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x10, 'transmission_failure').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x11, 'anti_lock_brake_system_failure').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x11, 'anti_lock_brake_failure').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x12, 'worn_brake_linings').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x13, 'windscreen_washer_fluid').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x14, 'tire_failure').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x15, 'engine_oil_level').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x16, 'engine_coolant_level').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x17, 'steering_failure').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x18, 'electronic_speed_controller_indication').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x18, 'esc_indication').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x19, 'brake_lights').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x1A, 'adblue_level').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x1B, 'fuel_filter_differential_pressure').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x1B, 'fuel_filter_diff_pressure').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x1C, 'seat_belt').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x1D, 'advanced_emergency_braking_system').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x1E, 'autonomous_cruise_control').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x1D, 'advanced_braking').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x1E, 'acc').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x1F, 'trailer_connected').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x20, 'airbag').setDecoder(this.lightStateDecoder),
         new OptionalProperty(0x21, 'esc_switched_off').setDecoder(this.lightStateDecoder),
-        new OptionalProperty(0x22, 'lane_departure_warning_switched_off').setDecoder(this.lightStateDecoder),
+        new OptionalProperty(0x22, 'lane_departure_warning_off').setDecoder(this.lightStateDecoder),
       ])
     ];
     /* prettier-ignore-end */
