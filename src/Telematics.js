@@ -11,20 +11,21 @@ export default class Telematics {
     this.hmkit = hmkit;
   }
 
-  getNonce = async () => {
-    const result = await this.hmkit.apiClient.post(
-      `${this.hmkit.api.getUrl()}nonces`,
-      {
+  getNonce = () =>
+    this.hmkit.apiClient
+      .post(`${this.hmkit.api.getUrl()}nonces`, {
         body: JSON.stringify({
           serial_number: this.hmkit.clientCertificate.getSerial(),
         }),
-      }
-    );
+      })
+      .then(
+        result => result.body.nonce,
+        () => {
+          throw new Error('Failed to fetch nonce.');
+        }
+      );
 
-    return result.body.nonce;
-  };
-
-  onTelematicsSendData = async (issuer, serial, data) => {
+  onTelematicsSendData = (issuer, serial, data) => {
     const payload = {
       serial_number: uint8ArrayToHex(new Uint8Array(serial)).toUpperCase(),
       issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
@@ -36,10 +37,13 @@ export default class Telematics {
       {
         body: JSON.stringify(payload),
       }
+    ).then(
+      res => res.body.response_data,
+      () => null
     );
   };
 
-  onTelematicsCommandIncoming = async (serial, id, data) => {
+  onTelematicsCommandIncoming = (serial, id, data) => {
     this.response = {
       incomingCommandSerial: uint8ArrayToHex(
         new Uint8Array(serial)
@@ -58,16 +62,22 @@ export default class Telematics {
       hexToUint8Array(data.toString()).buffer
     );
 
+    if (!this.promise) {
+      throw new Error('Failed to send telematics command.');
+    }
+
     const result = await this.promise;
 
-    if (result && result.body && result.body.response_data) {
-      this.hmkit.crypto.telematicsDataReceived(
-        base64ToUint8(result.body.response_data).buffer
-      );
+    this.promise = null;
 
-      if (this.response && this.response.incomingCommandData) {
-        return new Response(this.response.incomingCommandData);
-      }
+    if (!result) {
+      throw new Error('Failed to send telematics command.');
+    }
+
+    this.hmkit.crypto.telematicsDataReceived(base64ToUint8(result).buffer);
+
+    if (this.response && this.response.incomingCommandData) {
+      return new Response(this.response.incomingCommandData);
     }
 
     throw new Error('Failed to read incoming data.');
