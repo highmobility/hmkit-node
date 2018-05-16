@@ -30,6 +30,18 @@ export default class LightsResponse extends PropertyResponse {
         })
       ),
       new Property(0x04, 'ambientLight').setDecoder(this.ambientLightDecoder),
+      new Property(0x05, 'reverseLight').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+        })
+      ),
+      new Property(0x06, 'emergencyBrakeLight').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+        })
+      ),
     ];
 
     this.parse(data, properties);

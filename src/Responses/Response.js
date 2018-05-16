@@ -1,6 +1,8 @@
 import ChargingResponse from './ChargingResponse';
 import ChassisSettingsResponse from './ChassisSettingsResponse';
 import ClimateResponse from './ClimateResponse';
+import CruiseControlResponse from './CruiseControlResponse';
+import DashboardLightsResponse from './DashboardLightsResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
@@ -17,9 +19,12 @@ import NaviDestinationResponse from './NaviDestinationResponse';
 import OffroadResponse from './OffroadResponse';
 import ParkingBrakeResponse from './ParkingBrakeResponse';
 import ParkingTicketResponse from './ParkingTicketResponse';
+import PowerTakeOffResponse from './PowerTakeOffResponse';
 import RaceResponse from './RaceResponse';
 import RooftopControlResponse from './RooftopControlResponse';
 import SeatsResponse from './SeatsResponse';
+import StartStopResponse from './StartStopResponse';
+import TachographResponse from './TachographResponse';
 import TheftAlarmResponse from './TheftAlarmResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
@@ -33,7 +38,7 @@ import CapabilitiesResponse from './CapabilitiesResponse';
 import VehicleStatusResponse from './VehicleStatusResponse';
 
 export default class Response {
-  constructor(data: string) {
+  constructor(data: Array<Number>) {
     this.rawData = data;
 
     this.checkRawDataLength();
@@ -43,6 +48,8 @@ export default class Response {
       ChargingResponse,
       ChassisSettingsResponse,
       ClimateResponse,
+      CruiseControlResponse,
+      DashboardLightsResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
       EngineResponse,
@@ -58,9 +65,12 @@ export default class Response {
       OffroadResponse,
       ParkingBrakeResponse,
       ParkingTicketResponse,
+      PowerTakeOffResponse,
       RaceResponse,
       RooftopControlResponse,
       SeatsResponse,
+      StartStopResponse,
+      TachographResponse,
       TheftAlarmResponse,
       TrunkAccessResponse,
       ValetModeResponse,
