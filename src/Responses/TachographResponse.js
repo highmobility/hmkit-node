@@ -10,7 +10,7 @@ export default class TachographResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'driverWorkingState').setOptionalSubProperties(
+      new Property(0x01, 'driverWorkingStates').setOptionalSubProperties(
         'driverNumber',
         [
           new OptionalProperty(0x01, 1).setDecoder(
@@ -21,14 +21,14 @@ export default class TachographResponse extends PropertyResponse {
           ),
         ]
       ),
-      new Property(0x02, 'driverTimeState').setOptionalSubProperties(
+      new Property(0x02, 'driverTimeStates').setOptionalSubProperties(
         'driverNumber',
         [
           new OptionalProperty(0x01, 1).setDecoder(this.driverTimeStateDecoder),
           new OptionalProperty(0x02, 2).setDecoder(this.driverTimeStateDecoder),
         ]
       ),
-      new Property(0x03, 'driverCard').setOptionalSubProperties(
+      new Property(0x03, 'driverCards').setOptionalSubProperties(
         'driverNumber',
         [
           new OptionalProperty(0x01, 1).setDecoder(this.driverCardDecoder),

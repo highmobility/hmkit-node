@@ -43,7 +43,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
       new Property(0x0c, 'engineVolume').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0d, 'engineMaximumTorque').setDecoder(bytesSum),
+      new Property(0x0d, 'engineMaxTorque').setDecoder(bytesSum),
       new Property(0x0e, 'gearbox').setDecoder(
         switchDecoder({
           0x00: 'manual',

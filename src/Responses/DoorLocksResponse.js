@@ -17,13 +17,13 @@ export default class DoorLocksResponse extends PropertyResponse {
         new OptionalProperty(0x02, 'rear_right').setDecoder(this.doorDecoder),
         new OptionalProperty(0x03, 'rear_left').setDecoder(this.doorDecoder),
       ]),
-      new Property(0x02, 'insideDoorLock').setOptionalSubProperties('doorLocation', [
+      new Property(0x02, 'insideDoorLocks').setOptionalSubProperties('doorLocation', [
         new OptionalProperty(0x00, 'front_left').setDecoder(this.insideLockDecoder),
         new OptionalProperty(0x01, 'front_right').setDecoder(this.insideLockDecoder),
         new OptionalProperty(0x02, 'rear_right').setDecoder(this.insideLockDecoder),
         new OptionalProperty(0x03, 'rear_left').setDecoder(this.insideLockDecoder),
       ]),
-      new Property(0x03, 'outsideDoorLock').setOptionalSubProperties('doorLocation', [
+      new Property(0x03, 'outsideDoorLocks').setOptionalSubProperties('doorLocation', [
         new OptionalProperty(0x00, 'front_left').setDecoder(this.outsideLockDecoder),
         new OptionalProperty(0x01, 'front_right').setDecoder(this.outsideLockDecoder),
         new OptionalProperty(0x02, 'rear_right').setDecoder(this.outsideLockDecoder),

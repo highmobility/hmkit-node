@@ -68,7 +68,7 @@ export default class RaceResponse extends PropertyResponse {
           0x01: 'active',
         })
       ),
-      new Property(0x0f, 'clitchPedalSwitch').setDecoder(
+      new Property(0x0f, 'clutchPedalSwitch').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
