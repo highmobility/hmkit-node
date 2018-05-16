@@ -23,14 +23,14 @@ export default class CruiseControlResponse extends PropertyResponse {
           0x03: 'speed_fixed',
         })
       ),
-      new Property(0x03, 'speed').setDecoder(bytesSum),
-      new Property(0x04, 'adaptiveCruiseControl').setDecoder(
+      new Property(0x03, 'targetSpeed').setDecoder(bytesSum),
+      new Property(0x04, 'acc').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x05, 'adaptiveCruiseControlTargetSpeed').setDecoder(
+      new Property(0x05, 'accTargetSpeed').setDecoder(
         bytesSum
       ),
     ];

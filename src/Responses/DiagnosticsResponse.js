@@ -49,7 +49,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x0d, 'distanceSinceReset').setDecoder(bytesSum),
       new Property(0x0e, 'distanceSinceStart').setDecoder(bytesSum),
       new Property(0x0f, 'fuelVolume').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x10, 'antiLockBrakingSystem').setDecoder(
+      new Property(0x10, 'antiLockBraking').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
