@@ -35,7 +35,7 @@ export default class ApiClient {
         })
         .then(resolve)
         .catch(async err => {
-          reject({ response: err });
+          reject({ response: err, json: await err.json() });
         });
     });
 }

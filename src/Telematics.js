@@ -37,9 +37,6 @@ export default class Telematics {
       {
         body: JSON.stringify(payload),
       }
-    ).then(
-      res => res.body.response_data,
-      () => null
     );
   };
 
@@ -66,13 +63,15 @@ export default class Telematics {
       throw new Error('Failed to send telematics command.');
     }
 
-    const result = await this.promise;
+    const result = await this.promise.then(
+      res => res.body.response_data,
+      err => {
+        this.promise = null;
+        throw new Error(err.json.message);
+      }
+    );
 
     this.promise = null;
-
-    if (!result) {
-      throw new Error('Failed to send telematics command.');
-    }
 
     this.hmkit.crypto.telematicsDataReceived(base64ToUint8(result).buffer);
 
