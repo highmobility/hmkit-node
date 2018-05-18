@@ -2,7 +2,7 @@ import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import { switchDecoder } from '../helpers';
 
-export default class PowerTakeoffResponse extends PropertyResponse {
+export default class PowerTakeOffResponse extends PropertyResponse {
   static identifier = [0x00, 0x65];
 
   constructor(data: Uint8Array) {
