@@ -32,12 +32,17 @@ export default class Telematics {
       data: byteArrayToBase64(data),
     };
 
-    this.promise = this.hmkit.apiClient.post(
-      `${this.hmkit.api.getUrl()}telematics_commands`,
-      {
+    this.promise = this.hmkit.apiClient
+      .post(`${this.hmkit.api.getUrl()}telematics_commands`, {
         body: JSON.stringify(payload),
-      }
-    );
+      })
+      .then(
+        res => res.body.response_data,
+        (err) => {
+          this.promise = null;
+          throw err;
+        }
+      );
   };
 
   onTelematicsCommandIncoming = (serial, id, data) => {
@@ -63,13 +68,7 @@ export default class Telematics {
       throw new Error('Failed to send telematics command.');
     }
 
-    const result = await this.promise.then(
-      res => res.body.response_data,
-      err => {
-        this.promise = null;
-        throw new Error(err.json.message);
-      }
-    );
+    const result = await this.promise;
 
     this.promise = null;
 
