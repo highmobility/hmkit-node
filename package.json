@@ -1,6 +1,6 @@
 {
   "name": "hmkit",
-  "version": "0.5.2-beta4",
+  "version": "0.5.2-beta5",
   "description": "High Mobility SDK for Node.js",
   "main": "lib/index.js",
   "module": "es/index.js",
