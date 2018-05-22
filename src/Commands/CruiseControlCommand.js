@@ -11,7 +11,7 @@ export default class CruiseControlCommand {
       {
         value: targetSpeed,
         name: 'Target speed',
-        condition: Joi.number().min(0),
+        condition: Joi.number(),
       },
     ]);
 
