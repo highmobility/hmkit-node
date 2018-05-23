@@ -3,13 +3,7 @@ import OptionalProperty from '../OptionalProperty';
 import Response from './Response';
 import CapabilityProperty from '../CapabilityProperty';
 import Property from '../Property';
-import {
-  bytesSum,
-  dateDecoder,
-  getRoundedIeee754ToBase10,
-  switchDecoder,
-  progressDecoder,
-} from '../helpers';
+import { bytesSum, getRoundedIeee754ToBase10, switchDecoder } from '../helpers';
 import { bytesToString } from '../encoding';
 import CAPABILITY_IDENTIFIERS from '../CAPABILITY_IDENTIFIERS';
 
