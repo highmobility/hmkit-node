@@ -2,7 +2,7 @@ export default class Property {
   constructor(identifier: number, namespace: string) {
     this.identifier = identifier;
     this.namespace = namespace;
-    this.value = null;
+    this.value = undefined;
     this.subProperties = [];
     this.subPropertiesIdentifierNamespace = null;
   }

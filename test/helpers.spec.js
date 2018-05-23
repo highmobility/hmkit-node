@@ -37,32 +37,21 @@ describe(`helpers`, () => {
     const decodedValue = decoder([0x01]);
 
     expect(typeof decoder).toEqual('function');
-    expect(decodedValue).toEqual('plugged_id');
+    expect(decodedValue).toEqual('plugged_in');
   });
 
   it(`should decode date correctly`, () => {
     const decodedDate = dateDecoder([0x01, 0x01, 0x01, 0x01, 0x01]);
     const invalidDate = dateDecoder([0x01, 0x01, 0x01]);
 
-    expect(decodedDate).toEqual({
-      year: 2001,
-      month: 1,
-      day: 1,
-      hour: 1,
-      minute: 1,
-    });
+    expect(decodedDate).toEqual(new Date('2001-01-01T01:01:00.000Z'));
 
     expect(invalidDate).toEqual(null);
   });
 
   it(`should decode matrix correctly`, () => {
-    const invalidMatrix = matrixZoneDecoder([0x00]);
-    expect(invalidMatrix).toEqual('unknown');
-  });
-
-  it(`should decode decimals to hex correctly`, () => {
-    const hexString = decimalToHexStringDecoder([10]);
-    expect(hexString).toEqual('0x0a');
+    const matrix = matrixZoneDecoder([0x00]);
+    expect(matrix).toEqual({ columns: 0, rows: 0 });
   });
 
   it(`should decode progress correctly`, () => {
@@ -90,14 +79,14 @@ describe(`helpers`, () => {
         0x01,
       ])
     ).toEqual({
-      mondays: false,
-      tuesdays: false,
-      wednesdays: false,
-      thursdays: false,
-      fridays: false,
-      saturdays: false,
-      sundays: false,
-      constant: false,
+      constant: 'inactive',
+      fridays: { hour: 1, minute: 1, state: 'inactive' },
+      mondays: { hour: 1, minute: 1, state: 'inactive' },
+      saturdays: { hour: 1, minute: 1, state: 'inactive' },
+      sundays: { hour: 1, minute: 1, state: 'inactive' },
+      thursdays: { hour: 1, minute: 1, state: 'inactive' },
+      tuesdays: { hour: 1, minute: 1, state: 'inactive' },
+      wednesdays: { hour: 1, minute: 1, state: 'inactive' },
     });
 
     expect(
@@ -119,43 +108,22 @@ describe(`helpers`, () => {
         0x01,
       ])
     ).toEqual({
-      mondays: {
-        hours: 1,
-        minutes: 1,
-      },
-      tuesdays: {
-        hours: 1,
-        minutes: 1,
-      },
-      wednesdays: {
-        hours: 1,
-        minutes: 1,
-      },
-      thursdays: {
-        hours: 1,
-        minutes: 1,
-      },
-      fridays: {
-        hours: 1,
-        minutes: 1,
-      },
-      saturdays: {
-        hours: 1,
-        minutes: 1,
-      },
-      sundays: {
-        hours: 1,
-        minutes: 1,
-      },
-      constant: false,
+      constant: 'active',
+      fridays: { hour: 1, minute: 1, state: 'active' },
+      mondays: { hour: 1, minute: 1, state: 'active' },
+      saturdays: { hour: 1, minute: 1, state: 'active' },
+      sundays: { hour: 1, minute: 1, state: 'active' },
+      thursdays: { hour: 1, minute: 1, state: 'active' },
+      tuesdays: { hour: 1, minute: 1, state: 'active' },
+      wednesdays: { hour: 1, minute: 1, state: 'active' },
     });
   });
 
   it(`should decode auto hvac time correctly`, () => {
-    const time = autoHvacTimeDecoder([0x05, 0x04]);
+    const time = autoHvacTimeDecoder(0x05, 0x04);
     expect(time).toEqual({
-      hours: 5,
-      minutes: 4,
+      hour: 5,
+      minute: 4,
     });
   });
 });
