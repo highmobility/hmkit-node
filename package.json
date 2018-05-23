@@ -8,6 +8,7 @@
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
     "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:no-commands": "npm test -- --testRegex='^((?!Command).)*spec.js$'",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
     "test:setup": "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",

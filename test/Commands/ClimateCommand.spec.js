@@ -88,17 +88,14 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         autoHvacProfile: expect.objectContaining({
-          mondays: {
-            hour: 2,
-            minute: 13,
-            state: 'active',
-          },
-          tuesdays: {
-            hour: 3,
-            minute: 58,
-            state: 'active',
-          },
-          constant: 'active',
+          constant: 'inactive',
+          fridays: { hour: 0, minute: 0, state: 'inactive' },
+          mondays: { hour: 2, minute: 13, state: 'active' },
+          saturdays: { hour: 0, minute: 0, state: 'inactive' },
+          sundays: { hour: 0, minute: 0, state: 'inactive' },
+          thursdays: { hour: 0, minute: 0, state: 'inactive' },
+          tuesdays: { hour: 3, minute: 58, state: 'active' },
+          wednesdays: { hour: 0, minute: 0, state: 'inactive' },
         }),
         driverTemperatureSetting: 20.5,
         passengerTemperatureSetting: 22.5,

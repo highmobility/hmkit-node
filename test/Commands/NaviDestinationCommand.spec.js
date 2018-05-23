@@ -23,8 +23,8 @@ describe(`NaviDestinationCommand`, () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.NaviDestinationCommand.setDestination(
-        -52.5200080871582,
-        -13.404953956604,
+        -52.520008,
+        -13.404954,
         'Narnia'
       )
     );
@@ -32,8 +32,8 @@ describe(`NaviDestinationCommand`, () => {
     expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        latitude: -52.5200080871582,
-        longitude: -13.404953956604004,
+        latitude: -52.520008,
+        longitude: -13.404954,
       },
       destinationName: 'Narnia',
     });
