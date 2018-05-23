@@ -6,7 +6,7 @@ describe(`RaceResponse`, () => {
   it(`should return RaceResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '005701010005003F5D2F1B01000501BF40C49C020001130300010004000162050001E20600044138F5C307000440D51EB808000103090001010A000201010B0001040C0001040D000100'
+        '005701010005000000000001000501000000000100050200000000010005030000000002000100030001000400010005000100060004000000000700040000000008000100090001000a000200000a000201000b0001000c0001000d0001000e0001000f0001001000010011000100'
       )
     );
 
@@ -16,34 +16,46 @@ describe(`RaceResponse`, () => {
       accelerations: [
         {
           type: 'longitudinal_acceleration',
-          gForce: 0.864,
+          gForce: 0,
         },
         {
           type: 'lateral_acceleration',
-          gForce: -0.753,
+          gForce: 0,
+        },
+        {
+          type: 'front_lateral_acceleration',
+          gForce: 0,
+        },
+        {
+          type: 'rear_lateral_acceleration',
+          gForce: 0,
         },
       ],
-      brakePedalPosition: 0.0,
-      brakePressure: 11.56,
+      understeering: 0,
+      oversteering: 0,
+      gasPedalPosition: 0,
+      steeringAngle: 0,
+      brakePressure: 0,
+      yawRate: 0,
+      rearSuspensionSteering: 0,
+      electronicStabilityProgram: 'inactive',
       brakeTorqueVectorings: [
         {
           axle: 'front_axle',
-          vectoring: 'active',
+          vectoring: 'inactive',
         },
         {
           axle: 'rear_axle',
-          vectoring: 'active',
+          vectoring: 'inactive',
         },
       ],
-      gasPedalPosition: 0.98,
-      gearMode: 'drive',
-      electronicStabilityProgram: 'active',
-      oversteering: 0.0,
-      rearSuspensionSteering: 3,
-      selectedGear: 4,
-      steeringAngle: -30,
-      understeering: 0.19,
-      yawRate: 6.66,
+      gearMode: 'manual',
+      selectedGear: 0,
+      brakePedalPosition: 0,
+      brakePedalSwitch: 'inactive',
+      clutchPedalSwitch: 'inactive',
+      acceleratorPedalIdleSwitch: 'inactive',
+      acceleratorPedalKickdownSwitch: 'inactive',
     });
   });
 });

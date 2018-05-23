@@ -11,7 +11,7 @@ describe(`DoorLocksCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
     expect(response.parse()).toEqual({
-      doors: expect.objectContaining([
+      doors: [
         {
           doorLocation: 'front_left',
           doorPosition: expect.any(String),
@@ -32,7 +32,43 @@ describe(`DoorLocksCommand`, () => {
           doorPosition: expect.any(String),
           doorLock: expect.any(String),
         },
-      ]),
+      ],
+      insideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          insideLock: expect.any(String),
+        },
+        {
+          doorLocation: 'front_right',
+          insideLock: expect.any(String),
+        },
+        {
+          doorLocation: 'rear_right',
+          insideLock: expect.any(String),
+        },
+        {
+          doorLocation: 'rear_left',
+          insideLock: expect.any(String),
+        },
+      ],
+      outsideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          outsideLock: expect.any(String),
+        },
+        {
+          doorLocation: 'front_right',
+          outsideLock: expect.any(String),
+        },
+        {
+          doorLocation: 'rear_right',
+          outsideLock: expect.any(String),
+        },
+        {
+          doorLocation: 'rear_left',
+          outsideLock: expect.any(String),
+        },
+      ],
     });
   });
 
@@ -43,30 +79,32 @@ describe(`DoorLocksCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
-    expect(response.parse()).toEqual({
-      doors: expect.objectContaining([
-        {
-          doorLocation: 'front_left',
-          doorPosition: expect.any(String),
-          doorLock: 'unlocked',
-        },
-        {
-          doorLocation: 'front_right',
-          doorPosition: expect.any(String),
-          doorLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_right',
-          doorPosition: expect.any(String),
-          doorLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_left',
-          doorPosition: expect.any(String),
-          doorLock: 'unlocked',
-        },
-      ]),
-    });
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        doors: expect.objectContaining([
+          {
+            doorLocation: 'front_left',
+            doorPosition: expect.any(String),
+            doorLock: 'unlocked',
+          },
+          {
+            doorLocation: 'front_right',
+            doorPosition: expect.any(String),
+            doorLock: 'unlocked',
+          },
+          {
+            doorLocation: 'rear_right',
+            doorPosition: expect.any(String),
+            doorLock: 'unlocked',
+          },
+          {
+            doorLocation: 'rear_left',
+            doorPosition: expect.any(String),
+            doorLock: 'unlocked',
+          },
+        ]),
+      })
+    );
   });
 
   it(`should lock all doors`, async () => {
@@ -76,29 +114,31 @@ describe(`DoorLocksCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
-    expect(response.parse()).toEqual({
-      doors: expect.objectContaining([
-        {
-          doorLocation: 'front_left',
-          doorPosition: expect.any(String),
-          doorLock: 'locked',
-        },
-        {
-          doorLocation: 'front_right',
-          doorPosition: expect.any(String),
-          doorLock: 'locked',
-        },
-        {
-          doorLocation: 'rear_right',
-          doorPosition: expect.any(String),
-          doorLock: 'locked',
-        },
-        {
-          doorLocation: 'rear_left',
-          doorPosition: expect.any(String),
-          doorLock: 'locked',
-        },
-      ]),
-    });
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        doors: [
+          {
+            doorLocation: 'front_left',
+            doorPosition: expect.any(String),
+            doorLock: 'locked',
+          },
+          {
+            doorLocation: 'front_right',
+            doorPosition: expect.any(String),
+            doorLock: 'locked',
+          },
+          {
+            doorLocation: 'rear_right',
+            doorPosition: expect.any(String),
+            doorLock: 'locked',
+          },
+          {
+            doorLocation: 'rear_left',
+            doorPosition: expect.any(String),
+            doorLock: 'locked',
+          },
+        ],
+      })
+    );
   });
 });

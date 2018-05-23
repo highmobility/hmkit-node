@@ -15,6 +15,8 @@ describe(`LightsCommand`, () => {
       rearExteriorLight: expect.any(String),
       interiorLight: expect.any(String),
       ambientLight: expect.any(String),
+      reverseLight: expect.any(String),
+      emergencyBrakeLight: expect.any(String),
     });
   });
 

@@ -5,7 +5,9 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
-      hexToUint8Array('002001010003000100010003010000010003020001010003030001')
+      hexToUint8Array(
+        '00200101000300000001000301000001000302000001000303000002000200000200020100020002020002000203000300020000030002010003000202000300020300'
+      )
     );
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
@@ -13,7 +15,7 @@ describe(`DoorLocksResponse`, () => {
       doors: [
         {
           doorLocation: 'front_left',
-          doorPosition: 'open',
+          doorPosition: 'closed',
           doorLock: 'unlocked',
         },
         {
@@ -24,12 +26,48 @@ describe(`DoorLocksResponse`, () => {
         {
           doorLocation: 'rear_right',
           doorPosition: 'closed',
-          doorLock: 'locked',
+          doorLock: 'unlocked',
         },
         {
           doorLocation: 'rear_left',
           doorPosition: 'closed',
-          doorLock: 'locked',
+          doorLock: 'unlocked',
+        },
+      ],
+      insideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          insideLock: 'unlocked',
+        },
+      ],
+      outsideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          outsideLock: 'unlocked',
         },
       ],
     });
