@@ -11,6 +11,7 @@ export default class VehicleLocationResponse extends PropertyResponse {
     const properties = [
       new Property(0x01, 'coordinates').setDecoder(coordinatesDecoder),
       new Property(0x02, 'heading').setDecoder(getRoundedIeee754ToBase10(6)),
+      new Property(0x03, 'altitude').setDecoder(getRoundedIeee754ToBase10(1)),
     ];
 
     this.parse(data, properties);
