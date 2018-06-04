@@ -84,6 +84,10 @@ export default class AccessCertificate {
     return this.rawAccessCertificate.issuer;
   }
 
+  getSerial() {
+    return this.rawAccessCertificate.accessGainingSerialNumber;
+  }
+
   getVehicleSerial() {
     return this.rawAccessCertificate.accessGainingSerialNumber;
   }
