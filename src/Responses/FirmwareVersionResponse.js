@@ -1,11 +1,26 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import { bytesToString } from '../encoding';
-import { switchDecoder } from '../helpers';
 
 export default class FirmwareVersionResponse extends PropertyResponse {
   static identifier = [0x00, 0x03];
 
+  /**
+   * @property {Object} carSDKVersion (object `{versionMajor: (number), versionMinor: (string), versionPatch: (string),}`) Car SDK version
+   * @property {String} carSDKBuildName (string) Car SDK build name
+   * @property {String} applicationVersion 	(string) Application version
+   *
+   * @example FirmwareVersionResponse
+    {
+      carSDKVersion: {
+        versionMajor: 2,
+        versionMinor: 1,
+        versionPatch: 0,
+      },
+      carSDKBuildName: 'hm-emulator',
+      applicationVersion: 'v2.1.0-production'
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

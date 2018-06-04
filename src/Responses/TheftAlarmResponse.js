@@ -5,6 +5,14 @@ import { switchDecoder } from '../helpers';
 export default class TheftAlarmResponse extends PropertyResponse {
   static identifier = [0x00, 0x46];
 
+  /**
+   * @property {String} theftAlarm (string 'not_armed|armed|triggered') Theft alarm state
+   *
+   * @example TheftAlarmResponse
+    {
+      theftAlarm: 'triggered',
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

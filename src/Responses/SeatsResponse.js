@@ -5,6 +5,40 @@ import OptionalProperty from '../OptionalProperty';
 export default class SeatsResponse extends PropertyResponse {
   static identifier = [0x00, 0x56];
 
+  /**
+   * @property {Array<Object>} seats (array `{seatPosition: (string 'front_left|front_right|rear_right|rear_left|rear_center'), personDetected: (string 'detected|not_detected'), seatbeltFastened: (string 'fastened|not_fastened')}`) Seats
+   *
+   * @example SeatsResponse
+    {
+      seats: [
+        {
+          seatPosition: 'front_left',
+          personDetected: 'not_detected',
+          seatbeltFastened: 'not_fastened',
+        },
+        {
+          seatPosition: 'front_right',
+          personDetected: 'not_detected',
+          seatbeltFastened: 'not_fastened',
+        },
+        {
+          seatPosition: 'rear_right',
+          personDetected: 'not_detected',
+          seatbeltFastened: 'not_fastened',
+        },
+        {
+          seatPosition: 'rear_left',
+          personDetected: 'not_detected',
+          seatbeltFastened: 'not_fastened',
+        },
+        {
+          seatPosition: 'rear_center',
+          personDetected: 'not_detected',
+          seatbeltFastened: 'not_fastened',
+        },
+      ],
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

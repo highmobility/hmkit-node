@@ -6,6 +6,20 @@ import { switchDecoder } from '../helpers';
 export default class WiFiResponse extends PropertyResponse {
   static identifier = [0x00, 0x59];
 
+  /**
+   * @property {String} wifiEnabled (string 'enabled|disabled') Wi-Fi enabled
+   * @property {String} networkConnected (string 'connected|disconnected') Network connected
+   * @property {String} networkSSID (string) Network SSID formatted in UTF-8
+   * @property {String} networkSecurity (string 'none|wep|wpa|wpa2_personal') Network security
+   *
+   * @example WifiResponse
+    {
+      wifiEnabled: 'enabled',
+      networkConnected: 'disconnected',
+      networkSSID: 'TOTALLYFREEWIFI',
+      networkSecurity: 'wpa',
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

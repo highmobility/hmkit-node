@@ -11,6 +11,59 @@ import {
 export default class HomeChargerResponse extends PropertyResponse {
   static identifier = [0x00, 0x60];
 
+  /**
+   * @property {String} charging (string 'disconnected|plugged_in|charging') Charging
+   * @property {String} authenticationMechanism (string 'pin|app') Authentication mechanism
+   * @property {String} plugType (string 'type_1|type_2|ccs|chademo') Plug type
+   * @property {Number} chargingPower (number) Charging power in kW formatted in 4-bytes per IEEE 754
+   * @property {String} solarCharging (string 'activated|deactivated') Solar charging
+   * @property {Object} location (object '{latitude: (number), longitude: (number)}') Location
+   * @property {Object} chargeCurrent (object '{chargeCurrent: (number), maximumValue: (number), minimumValue: (number)}') Charge current
+   * @property {String} hotspotEnabled (string 'disabled|enabled') Hotspot enabled
+   * @property {String} hotspotSSID (string) Wi-Fi Hotspot SSID formatted in UTF-8
+   * @property {String} wiFiHotspotSecurity (string 'none|wep|wpa|wpa2_personal') Wi-Fi hotspot security
+   * @property {String} wiFiHotspotPassword (string) Wi-Fi Hotspot password formatted in UTF-8
+   * @property {Object} priceTariffs (object '{pricingType: (string 'starting_fee|per_minute|per_kwh'), currency: (string), price: (string)}')
+   *
+   * @example HomeChargerResponse
+    {
+      charging: 'disconnected',
+      authenticationMechanism: 'pin',
+      plugType: 'type_1',
+      chargingPower: 0,
+      solarCharging: 'deactivated',
+      location: {
+        latitude: 52.521919,
+        longitude: 13.413215,
+      },
+      chargeCurrent: {
+        chargeCurrent: 0.6,
+        maximumValue: 50,
+        minimumValue: 0,
+      },
+      hotspotEnabled: 'disabled',
+      hotspotSSID: '',
+      wiFiHotspotSecurity: 'none',
+      wiFiHotspotPassword: '',
+      priceTariffs: [
+        {
+          pricingType: 'starting_fee',
+          currency: 'EUR',
+          price: 2.5,
+        },
+        {
+          pricingType: 'per_minute',
+          currency: 'EUR',
+          price: 0,
+        },
+        {
+          pricingType: 'per_kwh',
+          currency: 'EUR',
+          price: 1.3,
+        },
+      ],
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

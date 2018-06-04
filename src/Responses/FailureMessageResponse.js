@@ -14,13 +14,33 @@ const FAILURE_REASONS = {
 export default class FailureMessageResponse extends PropertyResponse {
   static identifier = [0x00, 0x02];
 
+  /**
+   * @property {Object} autoApi (Object `{label: (string), lsb: (number), namespace: (string)}`) AutoApi
+   * @property {Number} type (number) Failure type
+   * @property {Object} reason (Object `{key: (number), value: (string)}`) Failure reason
+   *
+   * @example FailureMessageResponse
+    {
+      autoApi: {
+        label: 'Trunk Access',
+        lsb: 33,
+        namespace: 'trunkAccess',
+      },
+      type: 0,
+      reason: {
+        key: 1,
+        value:
+        'Unauthorised - User has not been authenticated or lacks permissions',
+      },
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 
     const properties = [
       new Property(0x01, 'autoApi').setDecoder(this.failedCapabilityDecoder),
       new Property(0x02, 'type'),
-      new Property(0x03, 'reason').setDecoder(this.reasonDecoder)
+      new Property(0x03, 'reason').setDecoder(this.reasonDecoder),
     ];
 
     this.parse(data, properties);
@@ -29,13 +49,15 @@ export default class FailureMessageResponse extends PropertyResponse {
   failedCapabilityDecoder(bytes: Array<Number>) {
     const autoApi = Object.values(autoApis).find(api => api.lsb === bytes[1]);
 
-    return !!autoApi ? {
-      label: autoApi.label,
-      namespace: autoApi.namespace,
-      lsb: autoApi.lsb
-    } : {
-      lsb: bytes[1]
-    };
+    return !!autoApi
+      ? {
+          label: autoApi.label,
+          namespace: autoApi.namespace,
+          lsb: autoApi.lsb,
+        }
+      : {
+          lsb: bytes[1],
+        };
   }
 
   reasonDecoder(bytes: Array<Number>) {

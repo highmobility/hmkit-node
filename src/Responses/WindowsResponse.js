@@ -1,11 +1,39 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import OptionalProperty from '../OptionalProperty';
-import { switchDecoder } from '../helpers';
 
 export default class WindowsResponse extends PropertyResponse {
   static identifier = [0x00, 0x45];
 
+  /**
+   * @property {Array<Object>} windows (array `{windowPosition: (string 'front_left|front_right|rear_right|rear_left|hatch'), windowState: (string)}`) Windows states
+   *
+   * @example WindowsResponse
+    {
+      windows: [
+        {
+          windowPosition: 'front_left',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'front_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_left',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'hatch',
+          windowState: 'closed',
+        },
+      ],
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

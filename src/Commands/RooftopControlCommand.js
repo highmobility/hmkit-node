@@ -11,10 +11,19 @@ function getByteArray(identifier, value) {
 }
 
 export default class RooftopControlCommand {
+  /**
+   * @function getState
+   */
   static getState() {
     return new Command([0x00, 0x25, 0x00]);
   }
 
+  /**
+   * @function control
+   *
+   * @property {Number} dimming (number) Dimming from 0 (0%) to 1 (100%).
+   * @property {Number} position (number) Position from 0 (0%) to 1 (100%).
+   */
   static control(dimming: ?number, position: ?number) {
     return new Command([
       0x00,

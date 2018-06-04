@@ -1,10 +1,22 @@
 import Command from './Command';
 
 export default class WindscreenCommand {
+  /**
+   * @function getState
+   */
   static getState() {
     return new Command([0x00, 0x42, 0x00]);
   }
 
+  /**
+   *
+   * @function setDamage
+   *
+   * @property {String} damage (string 'impact_but_no_damage_detected, damage_smaller_than_1_inch, damage_larger_than_1_inch, no_damage') Windscreen Damage
+   * @property {Number} damageZoneRow (number) Limit from 1 to 16, representing the horizontal position of the damage
+   * @property {Number} damageZoneColumn (number) Limit from 1 to 16, representing the vertical position of the damage
+   * @property {String} needsReplacement (string 'no_replacement_needed, replacement_needed, unknown') Windscreen damage needs replacement
+   */
   static setDamage(
     damage: string,
     damageZoneRow: number,

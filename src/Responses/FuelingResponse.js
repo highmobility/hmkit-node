@@ -5,6 +5,14 @@ import { switchDecoder } from '../helpers';
 export default class FuelingResponse extends PropertyResponse {
   static identifier = [0x00, 0x40];
 
+  /**
+   * @property {String} gasFlap (string 'open|closed') Gas flap status
+   *
+   * @example FuelingResponse
+    {
+      gasFlap: 'open'
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

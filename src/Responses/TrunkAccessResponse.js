@@ -5,6 +5,16 @@ import { switchDecoder } from '../helpers';
 export default class TrunkAccessResponse extends PropertyResponse {
   static identifier = [0x00, 0x21];
 
+  /**
+   * @property {String} trunkLock (string 'unlocked|locked') Lock State
+   * @property {String} trunkPosition (string 'closed|open') Position State
+   *
+   * @example TrunkAccessResponse
+    {
+      trunkLock: 'locked',
+      trunkPosition: 'closed',
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

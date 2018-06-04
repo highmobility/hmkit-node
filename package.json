@@ -62,6 +62,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",
+    "comment-parser": "^0.5.0",
     "dotenv": "^4.0.0",
     "eslint": "^4.18.1",
     "eslint-config-prettier": "^2.3.0",
@@ -71,6 +72,7 @@
     "jest": "^20.0.4",
     "json-loader": "^0.5.7",
     "node-loader": "^0.6.0",
-    "prettier": "^1.5.3"
+    "prettier": "^1.5.3",
+    "yamljs": "^0.3.0"
   }
 }

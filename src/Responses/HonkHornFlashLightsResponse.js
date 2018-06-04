@@ -5,6 +5,14 @@ import { switchDecoder } from '../helpers';
 export default class HonkHornFlashLightsResponse extends PropertyResponse {
   static identifier = [0x00, 0x26];
 
+  /**
+   * @property {String} flashers (string 'inactive|emergency_flasher_active|left_flasher_active|right_flasher_active') Flashers
+   *
+   * @example HonkHornFlashLightsResponse
+    {
+      flashers: 'inactive',
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

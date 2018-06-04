@@ -5,6 +5,14 @@ import { switchDecoder } from '../helpers';
 export default class ValetModeResponse extends PropertyResponse {
   static identifier = [0x00, 0x28];
 
+  /**
+   * @property {String} valetMode (string 'deactivated|activated') Valet mode state
+   *
+   * @example ValetModeResponse
+    {
+      valetMode: 'deactivated',
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

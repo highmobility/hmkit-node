@@ -6,6 +6,24 @@ import { hexArrayToHex } from '../encoding';
 export default class LightsResponse extends PropertyResponse {
   static identifier = [0x00, 0x36];
 
+  /**
+   * @property {String} frontExteriorLight (string) Front exterior light state
+   * @property {String} rearExteriorLight (string) Rear exterior light state
+   * @property {String} interiorLight (string) Interior light state
+   * @property {String} ambientLight (string) Ambient light color
+   * @property {String} reverseLight (string) Reverse light state
+   * @property {String} emergencyBrakeLight (string) Emergency brake light state
+   *
+   * @example LightsResponse
+    {
+      frontExteriorLight: 'inactive',
+      rearExteriorLight: 'inactive',
+      interiorLight: 'inactive',
+      ambientLight: '#254f4c',
+      reverseLight: 'active',
+      emergencyBrakeLight: 'active'
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

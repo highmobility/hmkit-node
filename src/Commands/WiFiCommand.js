@@ -2,10 +2,30 @@ import Command from './Command';
 import { intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class WiFiCommand {
+  /**
+   * @function getState
+   */
   static getState() {
     return new Command([0x00, 0x59, 0x00]);
   }
 
+  /**
+   * @function connectToNetwork
+   *
+   * @property {String} SSID (string) The network SSID formatted in UTF-8
+   * @property {String} security (string 'none, wep, wpa, wpa2_personal') Security
+   * @property {String} password (string) Password
+   *
+   * @example connectToNetwork
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WiFiCommand.connectToNetwork(
+        'DEFINITELYFREEWIFI',
+        'wpa',
+        'secret666'
+      )
+    );
+   */
   static connectToNetwork(
     SSID: string,
     security: string,
@@ -37,6 +57,11 @@ export default class WiFiCommand {
     ]);
   }
 
+  /**
+   * @function forgetNetwork
+   *
+   * @property {String} SSID (string) The network SSID formatted in UTF-8
+   */
   static forgetNetwork(SSID: string) {
     const ssidBytes = stringToBytes(SSID);
 
@@ -50,10 +75,16 @@ export default class WiFiCommand {
     ]);
   }
 
+  /**
+   * @function disable
+   */
   static disable() {
     return new Command([0x00, 0x59, 0x04, 0x00]);
   }
 
+  /**
+   * @function enable
+   */
   static enable() {
     return new Command([0x00, 0x59, 0x04, 0x01]);
   }

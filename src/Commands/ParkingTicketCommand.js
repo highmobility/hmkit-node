@@ -2,14 +2,39 @@ import Command from './Command';
 import { dateToBytes, intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class ParkingTicketCommand {
+  /**
+   * @function getTicket
+   */
   static getTicket() {
     return new Command([0x00, 0x47, 0x00]);
   }
 
+  /**
+   * @function end
+   */
   static end() {
     return new Command([0x00, 0x47, 0x03]);
   }
 
+  /**
+   * @function start
+   *
+   * @property {String} operatorName (string) Operator name
+   * @property {Number} operatorTicketID (number) Operator ticket id
+   * @property {Date} ticketStartTime (date) Ticket start time
+   * @property {Date} ticketEndTime (date) Ticket end time
+   *
+   * @example start
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ParkingTicketCommand.start(
+        'Berlin Parking',
+        '6489423333asd',
+        new Date(Date.UTC(2018, 1, 14, 18, 30, 1)),
+        new Date(Date.UTC(2018, 1, 17, 12, 5, 2))
+      );
+    );
+   */
   static start(
     operatorName: string,
     operatorTicketID: number,

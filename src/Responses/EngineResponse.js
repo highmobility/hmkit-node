@@ -5,6 +5,16 @@ import { switchDecoder } from '../helpers';
 export default class EngineResponse extends PropertyResponse {
   static identifier = [0x00, 0x35];
 
+  /**
+   * @property {String} ignition (string) Engine ignition state
+   * @property {String} accessoriesIgnition (string) Accessories ignition state
+   *
+   * @example EngineResponse
+    {
+      ignition: 'engine_off',
+      accessoriesIgnition: 'powered_off'
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

@@ -2,15 +2,45 @@ import Command from './Command';
 import { base10ToIeee754, stringToBytes } from '../encoding';
 
 export default class HomeChargerCommand {
+  /**
+   * @function getState
+   */
   static getState() {
     return new Command([0x00, 0x60, 0x00]);
   }
 
+  /**
+   * @function setChargeCurrent
+   *
+   * @property {Number} current (number) Charge current
+   */
   static setChargeCurrent(current: number) {
     return new Command([0x00, 0x60, 0x02, ...base10ToIeee754(current)]);
   }
 
-  static setPriceTariffs(priceTariffs: Object) {
+  /**
+   * @function setPriceTariffs
+   *
+   * @property {Array} priceTariffs (Array `[Object {pricingType: (string 'starting_fee, per_minute, per_kwh'), currency: (string ISO 4217), price: (number)}]`) Price tariffs
+   *
+   * @example setPriceTariffs
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.setPriceTariffs([
+        {
+          pricingType: 'starting_fee',
+          currency: 'EUR',
+          price: 2.5,
+        },
+        {
+          pricingType: 'per_kwh',
+          currency: 'USD',
+          price: 1.3,
+        },
+      ])
+    );
+   */
+  static setPriceTariffs(priceTariffs: Array<Object>) {
     return new Command([
       0x00,
       0x60,
@@ -19,18 +49,30 @@ export default class HomeChargerCommand {
     ]);
   }
 
+  /**
+   * @function activateSolarCharging
+   */
   static activateSolarCharging() {
     return new Command([0x00, 0x60, 0x04, 0x01]);
   }
 
+  /**
+   * @function deactivateSolarCharging
+   */
   static deactivateSolarCharging() {
     return new Command([0x00, 0x60, 0x04, 0x00]);
   }
 
+  /**
+   * @function enableWifiHotspot
+   */
   static enableWifiHotspot() {
     return new Command([0x00, 0x60, 0x05, 0x01]);
   }
 
+  /**
+   * @function disableWifiHotspot
+   */
   static disableWifiHotspot() {
     return new Command([0x00, 0x60, 0x05, 0x00]);
   }

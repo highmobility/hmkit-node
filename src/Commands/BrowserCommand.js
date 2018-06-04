@@ -3,6 +3,11 @@ import { intToTwoBytes, stringToBytes } from '../encoding';
 import { validate, Joi } from '../validate';
 
 export default class BrowserCommand {
+  /**
+   * @function loadUrl
+   *
+   * @property {String} url (string) Url to be loaded in.
+   */
   static loadUrl(url) {
     validate([
       {
