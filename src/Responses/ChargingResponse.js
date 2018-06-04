@@ -11,6 +11,41 @@ import {
 export default class ChargingResponse extends PropertyResponse {
   static identifier = [0x00, 0x23];
 
+  /**
+   * @property {String} charging (string) Charging State
+   * @property {Number} estimatedRange (number) Estimated range in km
+   * @property {Number} batteryLevel (number) Battery level 0..1 (0 = 0%, 1 = 100%)
+   * @property {Number} batteryCurrentAC (number) Battery current (AC) in 4-bytes per IEEE 754
+   * @property {Number} batteryCurrentDC (number) Battery current (DC) in 4-bytes per IEEE 754
+   * @property {Number} chargerVoltageAC (number) Charger voltage (AC) in V
+   * @property {Number} chargerVoltageDC (number) Charger voltage (DC) in V
+   * @property {Number} chargeLimit (number) Charge limit 0..1 (0 = 0%, 1 = 100%)
+   * @property {Number} timeToCompleteCharge (number) Time to complete charge in min
+   * @property {Number} chargingRateKW (number) Charging rate (kW)
+   * @property {String} chargePortState (string) Charge port state
+   * @property {String} chargeMode (string) Charge mode
+   * @property {Object} chargeTimer (object) Charge timer {timerType: (string), time: (date)}
+   *
+   * @example ChargingResponse
+    {
+      charging: 'plugged_in',
+      estimatedRange: 30,
+      batteryLevel: 0.5,
+      batteryCurrentAC: -0.6,
+      batteryCurrentDC: -0.6,
+      chargerVoltageAC: 0,
+      chargerVoltageDC: 0,
+      chargeLimit: 0.5,
+      timeToCompleteCharge: 0,
+      chargingRateKW: 0,
+      chargePortState: 'closed',
+      chargeMode: 'timer_based',
+      chargeTimer: {
+        timerType: 'preferred_start_time',
+        time: 2018-02-11T12:13:14.000Z,
+      }
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

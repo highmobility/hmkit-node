@@ -2,6 +2,11 @@ import Command from './Command';
 import { intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class TextInputCommand {
+  /**
+   * @function textInput
+   *
+   * @property {String} text (string) The text formatted in UTF-8
+   */
   static textInput(text) {
     const textBytes = stringToBytes(text);
     const lengthBytes = intToTwoBytes(textBytes.length);

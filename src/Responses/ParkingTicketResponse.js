@@ -6,6 +6,22 @@ import { switchDecoder, dateDecoder } from '../helpers';
 export default class ParkingTicketResponse extends PropertyResponse {
   static identifier = [0x00, 0x47];
 
+  /**
+   * @property {String} state (string) Parking Ticket state
+   * @property {String} operatorName (string) Operator name bytes formatted in UTF-8
+   * @property {String} operatorTicketID (string) Operator ticket id
+   * @property {Date} startDate (date) Parking ticket start time
+   * @property {Date} endDate (date) Parking ticket end time
+   *
+   * @example ParkingTicketResponse
+    {
+      parkingTicketState: 'started',
+      operatorName: 'Berlin Parking',
+      operatorTicketID: '6489423333asd',
+      ticketStartTime: 2018-02-14T18:30:01.000Z,
+      ticketEndTime: 2018-02-17T12:05:02.000Z,
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

@@ -6,6 +6,53 @@ import { switchDecoder, bytesSum } from '../helpers';
 export default class TachographResponse extends PropertyResponse {
   static identifier = [0x00, 0x64];
 
+  /**
+   * @property {Array<Object>} driverWorkingStates (object { driverNumber: (Number), workingState: (String 'resting|driver_available|working|driving') }) Driver working states
+   * @property {Array<Object>} driverTimeStates (object { driverNumber: (Number), timeState: (String 'normal|15_min_before_4|4_reached|15_min_before_9|9_reached|15_min_before_16|16_reached') }) Driver time states
+   * @property {Array<Object>} driverCards  (object { driverNumber: (Number), card: (String 'not_presented|presented') }) Driver card states
+   * @property {String} vehicleMotion (string 'not_detected|detected') Vehicle motion detected
+   * @property {String} vehicleOverspeed (string 'no_overspeed|overspeed') Overspeed state
+   * @property {String} vehicleDirection (string 'forward|reverse') Vehicle direction
+   * @property {Number} vehicleSpeed (number) Vehicle speed in km/h
+   *
+   * @example TachographResponse
+    {
+      driverWorkingStates: [
+        {
+          driverNumber: 1,
+          workingState: 'resting',
+        },
+        {
+          driverNumber: 2,
+          workingState: 'resting',
+        },
+      ],
+      driverTimeStates: [
+        {
+          driverNumber: 1,
+          timeState: 'normal',
+        },
+        {
+          driverNumber: 2,
+          timeState: 'normal',
+        },
+      ],
+      driverCards: [
+        {
+          driverNumber: 1,
+          card: 'not_present',
+        },
+        {
+          driverNumber: 2,
+          card: 'not_present',
+        },
+      ],
+      vehicleMotion: 'not_detected',
+      vehicleOverspeed: 'no_overspeed',
+      vehicleDirection: 'forward',
+      vehicleSpeed: 0,
+    }
+  */
   constructor(data: Uint8Array) {
     super();
 

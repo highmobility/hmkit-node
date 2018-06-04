@@ -5,6 +5,16 @@ import { switchDecoder } from '../helpers';
 export default class PowerTakeOffResponse extends PropertyResponse {
   static identifier = [0x00, 0x65];
 
+  /**
+   * @property {String} powerTakeoff (string 'inactive|active') Power Take-Off
+   * @property {String} powerTakeoffEngaged (string 'not_engaged|engaged') Power Take-Off engaged
+   *
+   * @example PowerTakeOffResponse
+    {
+      powerTakeoff: 'inactive',
+      powerTakeoffEngaged: 'not_engaged'
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

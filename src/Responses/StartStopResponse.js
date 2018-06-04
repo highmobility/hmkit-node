@@ -5,6 +5,14 @@ import { switchDecoder } from '../helpers';
 export default class StartStopResponse extends PropertyResponse {
   static identifier = [0x00, 0x63];
 
+  /**
+   * @property {String} startStop (string 'inactive|active') StartStop state
+   *
+   * @example StartStopResponse
+    {
+      startStop: 'active'
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

@@ -12,6 +12,74 @@ import OptionalProperty from '../OptionalProperty';
 export default class DiagnosticsResponse extends PropertyResponse {
   static identifier = [0x00, 0x33];
 
+  /**
+   * @property {Number} mileage (number) The car mileage (odometer) in km
+   * @property {Number} engineOilTemperature (number) Engine oil temperature in Celsius, whereas can be negative
+   * @property {Number} speed (number) The car speed on km/h, whereas can be negative
+   * @property {Number} engineRPM (number) RPM of the Engine
+   * @property {Number} fuelLevel (number) Fuel level percentage between 0-1
+   * @property {Number} estimatedRange (number) Estimated range
+   * @property {Number} currentFuelConsumption (number) Current fuel consumption formatted in 4-bytes per IEEE 754
+   * @property {Number} averateFuelConsumption (number) Average fuel consumption formatted in 4-bytes per IEEE 754
+   * @property {String} washerFluidLevel (string) Washer fluid level
+   * @property {Object} tires (Object) Tires
+   * @property {Number} batteryVoltage (number) Battery voltage per IEEE 754 formatting
+   * @property {Number} adblueLevel (number) AdBlue level in liters formatted in 4-bytes per IEEE 754
+   * @property {Number} distanceSinceReset (number) The distance driven in km since reset
+   * @property {Number} distanceSinceStart (number) The distance driven in km since trip start
+   * @property {Number} fuelVolume (number) The fuel volume measured in liters
+   * @property {String} antiLockBraking (string) Anti-lock braking system (ABS)
+   * @property {Number} engineCoolantTemperature (number) Engine coolant temperature in Celsius, whereas can be negative
+   * @property {Number} engineTotalOperatingHours (number) The accumulated time of engine operation per IEEE 754 formatting
+   * @property {Number} engineTotalFuelConsumption (number) The accumulated lifespan fuel consumption in liters per IEEE 754 formatting
+   * @property {String} brakeFluidLevel (string) Brake fluid level
+   * @property {Number} engineTorque (number) Current engine torque percentage between 0-1
+   * @property {Number} engineLoad (number) Current engine load percentage between 0-1
+   * @property {Number} wheelBasedSpeed (number) The vehicle speed in km/h measured at the wheel base, whereas can be negative
+   *
+   * @example DiagnosticsResponse
+    {
+      mileage: 3000,
+      engineOilTemperature: 18,
+      speed: 0,
+      engineRPM: 0,
+      fuelLevel: 0.4,
+      estimatedRange: 200,
+      currentFuelConsumption: 8.75,
+      averageFuelConsumption: 6.2,
+      washerFluidLevel: 'low',
+      tires: [
+        {
+          tirePosition: 'front_left',
+          tirePressure: 2.3,
+          tireTemperature: 40,
+          wheelRPM: 0,
+        },
+        {
+          tirePosition: 'front_right',
+          tirePressure: 2.3,
+          tireTemperature: 40,
+          wheelRPM: 0,
+        },
+        {
+          tirePosition: 'rear_right',
+          tirePressure: 2.3,
+          tireTemperature: 40,
+          wheelRPM: 0,
+        },
+        {
+          tirePosition: 'rear_left',
+          tirePressure: 2.3,
+          tireTemperature: 40,
+          wheelRPM: 0,
+        },
+      ],
+      batteryVoltage: 12,
+      adblueLevel: 0,
+      distanceSinceReset: 0,
+      distanceSinceStart: 0,
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

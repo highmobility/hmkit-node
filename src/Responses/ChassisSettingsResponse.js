@@ -7,6 +7,37 @@ import { switchDecoder } from '../helpers';
 export default class ChassisSettingsResponse extends PropertyResponse {
   static identifier = [0x00, 0x53];
 
+  /**
+   * @property {String} drivingMode (string) Driving mode
+   * @property {String} sportChrono (string) Sport chrono
+   * @property {Array<Object>} springRates (array<object>) Spring rates {axle: (string 'front_axle|rear_axle'), springRate: (number), maximumValue: (number), minimumValue: (number) }
+   * @property {Object} chassisPosition (object) Chassis position {chassisPosition: (number), maximumValue: (number), minimumValue: (number)}
+   *
+   * @example ChassisSettingsResponse
+    {
+      drivingMode: 'eco',
+      sportChrono: 'inactive',
+      springRates: [
+        {
+          axle: 'front_axle',
+          springRate: 21,
+          maximumValue: 37,
+          minimumValue: 21,
+        },
+        {
+          axle: 'rear_axle',
+          springRate: 21,
+          maximumValue: 37,
+          minimumValue: 17,
+        },
+      ],
+      chassisPosition: {
+        chassisPosition: 25,
+        maximumValue: 55,
+        minimumValue: -28,
+      },
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

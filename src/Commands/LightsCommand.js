@@ -2,10 +2,21 @@ import Command from './Command';
 import { hexToInt } from '../encoding';
 
 export default class LightsCommand {
+  /**
+   * @function getState
+   */
   static getState() {
     return new Command([0x00, 0x36, 0x00]);
   }
 
+  /**
+   * @function control
+   *
+   * @property {String} frontExteriorLight (string: 'inactive', 'active', 'active_with_full_beam') Front exterior light
+   * @property {String} rearExteriorLight (string: 'inactive', 'active') Rear exterior light
+   * @property {String} interiorLight (string: 'inactive', 'active') Interior light
+   * @property {String} ambientLight 	(string, hex color: '#rrggbb') Ambient light
+   */
   static control(
     frontExteriorLight: string,
     rearExteriorLight: string,

@@ -12,6 +12,68 @@ import OptionalProperty from '../OptionalProperty';
 export default class RaceResponse extends PropertyResponse {
   static identifier = [0x00, 0x57];
 
+  /**
+   * @property {Object} accelerations (object '{type: (string), gForce: (number)}') Accelerations
+   * @property {Number} understeering (number) Understeering percentage between 0-1
+   * @property {Number} oversteering (number) Oversteering percentage between 0-1
+   * @property {Number} gasPedalPosition (number) Gas pedal position percentage between 0-1
+   * @property {Number} steeringAngle (number) Steering angle
+   * @property {Number} brakePressure (number) Brake pressure
+   * @property {Number} yawRate (number) Yaw rate
+   * @property {Number} rearSuspensionSteering (number) Rear suspension steering
+   * @property {String} electronicStabilityProgram (string 'active|inactive') Electronic stability program
+   * @property {Object} brakeTorqueVectorings (object '{axle: (string), vectoring: (string)}') Brake torque vectorings
+   * @property {String} gearMode (string 'manual|park|reverse|neutral|drive|low_gear|sport') Gear mode
+   * @property {Number} selectedGear (number) Selected gear
+   * @property {Number} brakePedalPosition (number) Brake pedal positioning percentage between 0-1
+   * @property {String} brakePedalSwitch (string 'inactive|active') Brake pedal switch status
+   * @property {String} clutchPedalSwitch (string 'inactive|active') Clutch pedal switch status
+   * @property {String} acceleratorPedalIdleSwitch (string 'inactive|active') Accelerator pedal idle switch status
+   * @property {String} acceleratorPedalKickdownSwitch (string 'inactive|active') Accelerator pedal kickdown switch status
+   *
+   * @example RaceResponse
+    {
+      accelerations: [
+        {
+          type: 'longitudinal_acceleration',
+          gForce: 0,
+        },
+        {
+          type: 'lateral_acceleration',
+          gForce: 0,
+        },
+        {
+          type: 'front_lateral_acceleration',
+          gForce: 0,
+        },
+        {
+          type: 'rear_lateral_acceleration',
+          gForce: 0,
+        },
+      ],
+      understeering: 0,
+      oversteering: 0,
+      gasPedalPosition: 0,
+      steeringAngle: 0,
+      brakePressure: 0,
+      yawRate: 0,
+      rearSuspensionSteering: 0,
+      electronicStabilityProgram: 'inactive',
+      brakeTorqueVectorings: [
+        {
+          axle: 'front_axle',
+          vectoring: 'active',
+        },
+        {
+          axle: 'rear_axle',
+          vectoring: 'inactive',
+        },
+      ],
+      gearMode: 'manual',
+      selectedGear: 0,
+      brakePedalPosition: 0,
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 

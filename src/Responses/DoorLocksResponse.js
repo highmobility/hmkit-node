@@ -6,6 +6,73 @@ import { switchDecoder } from '../helpers';
 export default class DoorLocksResponse extends PropertyResponse {
   static identifier = [0x00, 0x20];
 
+  /**
+   * @property {Array<Object>} doors (Array<Object> { doorLocation: (String 'front_left|front_right|rear_right|rear_left'), doorPosition: (String 'open|closed'), doorLock: (String 'locked|unlocked')}`) Doors
+   * @property {Array<Object>} insideDoorLocks (Array<Object>) { doorLocation: (String 'front_left|front_right|rear_right|rear_left'), insideLock: (String 'unlocked|locked') } Inside door locks
+   * @property {Array<Object>} outsideDoorLocks (Array<Object>) { doorLocation: (String 'front_left|front_right|rear_right|rear_left'), outsideLock: (String 'unlocked|locked') } Outside door locks
+   *
+   * @example DoorLocksResponse
+    {
+      doors: [
+        {
+          doorLocation: 'front_left',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+      ],
+      insideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          insideLock: 'unlocked',
+        },
+      ],
+      outsideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          outsideLock: 'unlocked',
+        },
+      ]
+    }
+   */
   constructor(data: Uint8Array) {
     super();
 
