@@ -28,7 +28,7 @@ export default class LightsCommand {
     let allInteriorBytes = [];
     let allAmbientBytes = [];
 
-    if (frontExteriorLight.length > 0) {
+    if (!!frontExteriorLight && frontExteriorLight.length > 0) {
       const frontExteriorLightOptions = {
         inactive: 0x00,
         active: 0x01,
@@ -43,7 +43,7 @@ export default class LightsCommand {
       ];
     }
 
-    if (rearExteriorLight.length > 0) {
+    if (!!rearExteriorLight && rearExteriorLight.length > 0) {
       const rearExteriorLightOptions = {
         inactive: 0x00,
         active: 0x01,
@@ -57,7 +57,7 @@ export default class LightsCommand {
       ];
     }
 
-    if (interiorLight.length > 0) {
+    if (!!interiorLight && interiorLight.length > 0) {
       const interiorLightOptions = {
         inactive: 0x00,
         active: 0x01,
@@ -71,7 +71,7 @@ export default class LightsCommand {
       ];
     }
 
-    if (ambientLight.length > 0) {
+    if (!!ambientLight && ambientLight.length > 0) {
       const red = hexToInt(ambientLight.slice(1, 3));
       const green = hexToInt(ambientLight.slice(3, 5));
       const blue = hexToInt(ambientLight.slice(5, 7));
