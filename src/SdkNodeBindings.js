@@ -10,9 +10,9 @@ export default class SdkNodeBindings {
   }
 
   mergeNativeMethods(addon) {
-    Object.getOwnPropertyNames(addon).forEach(method => {
-      this[method] = addon[method];
-    });
+    //Object.getOwnPropertyNames(addon).forEach(method => {
+		//this[method] = addon[method];
+    //});
   }
 
   loadNativeAddOn() {
@@ -22,13 +22,22 @@ export default class SdkNodeBindings {
         path.resolve(__dirname, '..', 'sdk-node-bindings', 'lib', 'binding.js')
       )
     ) {
-      return require('../sdk-node-bindings/lib/binding.js');
+      //return require('../sdk-node-bindings/lib/binding.js');
+      const ref = require('../sdk-node-bindings/lib/binding.js');
+	  this.addon = new ref.AddonObj();
+	  return this.addon;
     } else if (process.platform === 'darwin') {
-      return require('../bindings/macos');
+      const ref = require('../bindings/macos');
+      this.addon = new ref.AddonObj();
+      return this.addon;
     } else if (process.platform === 'linux') {
-      return require('../bindings/ubuntu');
+      const ref = require('../bindings/ubuntu');
+      this.addon = new ref.AddonObj();
+      return this.addon;
     } else if (process.platform === 'win32') {
-      return require('../bindings/windows');
+      const ref = require('../bindings/windows');
+      this.addon = new ref.AddonObj();
+      return this.addon;
     }
 
     /* istanbul ignore next */
@@ -36,23 +45,50 @@ export default class SdkNodeBindings {
   }
 
   setup() {
-    this.onGetSerialNumber(
-      () => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer
-    );
-    this.onGetLocalPrivateKey(
-      () => base64ToUint8(this.hmkit.clientPrivateKey).buffer
-    );
+	this.onGetSerialNumber();
+    this.onGetLocalPrivateKey();
+    this.onGetAccessCertificate();
+    this.onTelematicsSendData();
+    this.onTelematicsCommandIncoming();
+	}
 
-    this.onGetAccessCertificate(serial => {
+  onGetSerialNumber(){
+      this.addon.onGetSerialNumber(() => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer);
+  }
+
+   onGetLocalPrivateKey(){
+      this.addon.onGetLocalPrivateKey(() => base64ToUint8(this.hmkit.clientPrivateKey).buffer);
+  }
+
+   onGetAccessCertificate(){
+	this.addon.onGetAccessCertificate(serial => {
       const accessCert = this.hmkit.certificates.get(
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
       );
       return accessCert ? accessCert.bytes.buffer : null;
     });
+	}
 
-    this.onTelematicsSendData(this.hmkit.telematics.onTelematicsSendData);
-    this.onTelematicsCommandIncoming(
+    onTelematicsSendData(){
+    this.addon.onTelematicsSendData(this.hmkit.telematics.onTelematicsSendData);
+	}
+
+    onTelematicsCommandIncoming(){
+    this.addon.onTelematicsCommandIncoming(
       this.hmkit.telematics.onTelematicsCommandIncoming
     );
-  }
+    }
+
+    telematicsDataReceived(buffer){
+      this.addon.telematicsDataReceived(buffer);
+	}
+
+    sendTelematicsCommand(serial, nounce, buffer){
+	this.addon.sendTelematicsCommand(serial, nounce, buffer);
+	}
+
+    generateSignature(buffer){
+	return this.addon.generateSignature(buffer);
+	}
+
 }
