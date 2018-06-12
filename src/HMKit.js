@@ -7,8 +7,11 @@ import ClientCertificate from './ClientCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
 import ApiClient from './ApiClient';
+import InvalidArgumentError from './InvalidArgumentError';
 
 export default class HMKit {
+  static InvalidArgumentError = InvalidArgumentError;
+
   constructor(clientCertificate, clientPrivateKey) {
     this.clientCertificate = new ClientCertificate(
       base64ToUint8(clientCertificate)
@@ -26,11 +29,13 @@ export default class HMKit {
   }
 
   staging() {
-    this.api = new Api('https://developers.h-m.space/hm_cloud/api/v1/');
+    this.api = new Api(
+      'https://limitless-gorge-44605.herokuapp.com/hm_cloud/api/v1/'
+    );
     return this;
   }
 
-  async downloadAccessCertificate(...args) {
-    return await this.certificates.download.apply(this, args);
+  downloadAccessCertificate(...args) {
+    return this.certificates.download.apply(this, args);
   }
 }

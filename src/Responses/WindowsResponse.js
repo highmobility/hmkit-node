@@ -1,45 +1,66 @@
-export default class WindowsResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import OptionalProperty from '../OptionalProperty';
+
+export default class WindowsResponse extends PropertyResponse {
   static identifier = [0x00, 0x45];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      Object.assign(this, this.getWindowsStates(bytes));
+  /**
+   * @property {Array<Object>} windows (array `{windowPosition: (string 'front_left|front_right|rear_right|rear_left|hatch'), windowState: (string)}`) Windows states
+   *
+   * @example WindowsResponse
+    {
+      windows: [
+        {
+          windowPosition: 'front_left',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'front_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'rear_left',
+          windowState: 'closed',
+        },
+        {
+          windowPosition: 'hatch',
+          windowState: 'closed',
+        },
+      ],
     }
+   */
+  constructor(data: Uint8Array) {
+    super();
+
+    const properties = [
+      new Property(0x01, 'windows').setOptionalSubProperties('windowPosition', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x01, 'front_right').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(
+          this.openClosedDecoder
+        ),
+        new OptionalProperty(0x04, 'hatch').setDecoder(this.openClosedDecoder),
+      ]),
+    ];
+
+    this.parse(data, properties);
   }
 
-  getVehicleState(bytes) {
-    const windowsCount = bytes[3];
-
-    if (bytes[2] === 1 + windowsCount * 2) {
-      Object.assign(this, this.getWindowsStates(bytes));
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
-
-  getWindowsStates(bytes) {
-    const windows = {};
-    const windowsCount = bytes[3];
-
-    const positions = {
-      0: 'frontLeft',
-      1: 'frontRight',
-      2: 'rearRight',
-      3: 'rearLeft',
+  openClosedDecoder(bytes: Array<Number>) {
+    return {
+      windowState: bytes[0] === 0x00 ? 'closed' : 'open',
     };
-
-    for (let i = 0; i < windowsCount; i++) {
-      const pos = 4 + 2 * i;
-
-      windows[positions[bytes[pos]]] = this.getPositionValue(bytes[pos + 1]);
-    }
-
-    return windows;
-  }
-
-  getPositionValue(byte) {
-    return byte === 0x00 ? 'closed' : 'open';
   }
 }

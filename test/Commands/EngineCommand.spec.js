@@ -10,11 +10,10 @@ describe(`EngineCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(EngineResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        engine: expect.any(String),
-      })
-    );
+    expect(response.parse()).toEqual({
+      ignition: expect.any(String),
+      accessoriesIgnition: expect.any(String),
+    });
   });
 
   it(`should turn engine on`, async () => {
@@ -23,9 +22,10 @@ describe(`EngineCommand`, () => {
       hmkit.commands.EngineCommand.turnOn()
     );
 
+    expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        engine: 'on',
+        ignition: 'engine_on',
       })
     );
   });
@@ -36,9 +36,10 @@ describe(`EngineCommand`, () => {
       hmkit.commands.EngineCommand.turnOff()
     );
 
+    expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        engine: 'off',
+        ignition: 'engine_off',
       })
     );
   });

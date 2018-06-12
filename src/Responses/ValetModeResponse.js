@@ -1,23 +1,30 @@
-export default class ValetModeResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { switchDecoder } from '../helpers';
+
+export default class ValetModeResponse extends PropertyResponse {
   static identifier = [0x00, 0x28];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.mode = this.getMode(bytes);
+  /**
+   * @property {String} valetMode (string 'deactivated|activated') Valet mode state
+   *
+   * @example ValetModeResponse
+    {
+      valetMode: 'deactivated',
     }
-  }
+   */
+  constructor(data: Uint8Array) {
+    super();
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 1) {
-      this.mode = this.getMode(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
+    const properties = [
+      new Property(0x01, 'valetMode').setDecoder(
+        switchDecoder({
+          0x00: 'deactivated',
+          0x01: 'activated',
+        })
+      ),
+    ];
 
-  getMode(bytes) {
-    return bytes[3] === 0x00 ? 'deactivated' : 'activated';
+    this.parse(data, properties);
   }
 }

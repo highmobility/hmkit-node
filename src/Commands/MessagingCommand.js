@@ -1,24 +1,27 @@
 import Command from './Command';
-import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
+import { intToTwoBytes, stringToBytes } from '../encoding';
 
-export default class MessageCommand {
+export default class MessagingCommand {
+  /**
+   * @function messageReceived
+   *
+   * @property {String} handle (string) Sender handle
+   * @property {String} text (string) Text to send
+   */
   static messageReceived(handle: string, text: string) {
-    const handleBytes = this.getHandleBytes(handle);
-    const textBytes = this.getTextBytes(text);
+    const handleBytes = stringToBytes(handle);
+    const textBytes = stringToBytes(text);
 
-    return new Command([0x00, 0x37, 0x00, ...handleBytes, ...textBytes]);
-  }
-
-  static getHandleBytes(text) {
-    const stringBytes = hexToUint8Array(stringToHex(text));
-
-    return [stringBytes.length, ...stringBytes];
-  }
-
-  static getTextBytes(text) {
-    const stringBytes = hexToUint8Array(stringToHex(text));
-    const lengthBytes = hexToUint8Array(pad(intToHex(stringBytes.length), 4));
-
-    return [...lengthBytes, ...stringBytes];
+    return new Command([
+      0x00,
+      0x37,
+      0x00,
+      0x01,
+      ...intToTwoBytes(handleBytes.length),
+      ...handleBytes,
+      0x02,
+      ...intToTwoBytes(textBytes.length),
+      ...textBytes,
+    ]);
   }
 }

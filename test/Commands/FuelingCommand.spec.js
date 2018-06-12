@@ -1,13 +1,29 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
-import EmptyResponse from '../../src/Responses/EmptyResponse';
+import FuelingResponse from '../../src/Responses/FuelingResponse';
 const hmkit = getHmkit();
 
 describe(`FuelingCommand`, () => {
-  it(`should open gas flap`, async () => {
-    const command = hmkit.commands.FuelingCommand.openGasFlap();
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
+  it(`should get fueling state`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.FuelingCommand.getState()
+    );
 
-    expect(command.toString().toUpperCase()).toBe('004002');
-    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+    expect(response.parse()).toBeInstanceOf(FuelingResponse);
+    expect(response.parse()).toEqual({
+      gasFlap: expect.any(String),
+    });
+  });
+
+  it(`should open gas flap`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.FuelingCommand.openGasFlap()
+    );
+
+    expect(response.parse()).toBeInstanceOf(FuelingResponse);
+    expect(response.parse()).toEqual({
+      gasFlap: 'open',
+    });
   });
 });

@@ -6,7 +6,7 @@ describe(`ValetModeCommand`, () => {
   it(`should get state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ValetModeCommand.getState()
+      hmkit.commands.ValetModeCommand.getMode()
     );
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
@@ -19,11 +19,9 @@ describe(`ValetModeCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        mode: 'activated',
-      })
-    );
+    expect(response.parse()).toEqual({
+      valetMode: 'activated',
+    });
   });
 
   it(`should deactivate valet mode`, async () => {
@@ -33,10 +31,8 @@ describe(`ValetModeCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        mode: 'deactivated',
-      })
-    );
+    expect(response.parse()).toEqual({
+      valetMode: 'deactivated',
+    });
   });
 });

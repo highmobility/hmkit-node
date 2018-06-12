@@ -1,106 +1,80 @@
-export default class WindscreenResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { switchDecoder, matrixZoneDecoder, dateDecoder } from '../helpers';
+
+export default class WindscreenResponse extends PropertyResponse {
   static identifier = [0x00, 0x42];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.getValues(bytes);
+  /**
+   * @property {String} wipers (string 'inactive|active|automatic') Wipers state
+   * @property {String} wipersIntensity (string 'level_0|level_1|level_2|level_3') Wipers intensity
+   * @property {String} windscreenDamage (string 'no_impact_detected|impact_but_no_damage_detected|damage_smaller_than_1_inch|damage_larger_than_1_inch') Windscreen damage
+   * @property {Object} windscreenZoneMatrix (object '{rows: (number), columns: (number)}') Windscreen zone matrix
+   * @property {Object} windscreenDamageZone (object '{rows: (number), columns: (number)}') Windscreen damage zone
+   * @property {String} windscreenNeedsReplacement (string 'unknown|no_replacement_needed|replacement_needed') Windscreen needs replacement
+   * @property {Number} windscreenDamageConfidence (number) Windscreen damage confidence
+   * @property {Date} windscreenDamageDetectionTime (date) Windscreen damage detection time
+   *
+   * @example WindscreenResponse
+    {
+      wipers: 'active',
+      wipersIntensity: 'level_1',
+      windscreenDamage: 'damage_smaller_than_1_inch',
+      windscreenZoneMatrix: {
+        rows: 3,
+        columns: 2,
+      },
+      windscreenDamageZone: {
+        rows: 2,
+        columns: 3,
+      },
+      windscreenNeedsReplacement: 'replacement_needed',
+      windscreenDamageConfidence: 0,
+      windscreenDamageDetectionTime: '2000-01-01T00:00:00.000Z',
     }
-  }
+   */
+  constructor(data: Uint8Array) {
+    super();
 
-  getValues(bytes) {
-    this.wipers = {
-      state: this.getWiperState(bytes),
-      intensityLevel: this.getWipersIntensityLevel(bytes),
-    };
+    const properties = [
+      new Property(0x01, 'wipers').setDecoder(
+        switchDecoder({
+          0x00: 'inactive',
+          0x01: 'active',
+          0x02: 'automatic',
+        })
+      ),
+      new Property(0x02, 'wipersIntensity').setDecoder(
+        switchDecoder({
+          0x00: 'level_0',
+          0x01: 'level_1',
+          0x02: 'level_2',
+          0x03: 'level_3',
+        })
+      ),
+      new Property(0x03, 'windscreenDamage').setDecoder(
+        switchDecoder({
+          0x00: 'no_impact_detected',
+          0x01: 'impact_but_no_damage_detected',
+          0x02: 'damage_smaller_than_1_inch',
+          0x03: 'damage_larger_than_1_inch',
+        })
+      ),
+      new Property(0x04, 'windscreenZoneMatrix').setDecoder(matrixZoneDecoder),
+      new Property(0x05, 'windscreenDamageZone').setDecoder(matrixZoneDecoder),
+      new Property(0x06, 'windscreenNeedsReplacement').setDecoder(
+        switchDecoder({
+          0x00: 'unknown',
+          0x01: 'no_replacement_needed',
+          0x02: 'replacement_needed',
+        })
+      ),
+      new Property(0x07, 'windscreenDamageConfidence'),
+      new Property(0x08, 'windscreenDamageDetectionTime').setDecoder(
+        dateDecoder
+      ),
+    ];
 
-    this.windscreen = {
-      damage: this.getWindscreenDamage(bytes),
-      zoneMatrix: this.getZone(bytes[6]),
-      damageZone: this.getZone(bytes[7]),
-      needsReplacement: this.getNeedsReplacement(bytes),
-      damageConfidence: this.getDamageConfidence(bytes),
-      damageDetectionDate: this.getDate(bytes, 10),
-    };
-  }
-
-  getVehicleState(bytes) {
-    if (bytes[2] === 13) {
-      this.getValues(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
-
-  getWiperState(bytes) {
-    switch (bytes[3]) {
-      case 0x01:
-        return 'active';
-      case 0x02:
-        return 'automatic';
-      default:
-        return 'inactive';
-    }
-  }
-
-  getWipersIntensityLevel(bytes) {
-    switch (bytes[4]) {
-      case 0x01:
-        return 1;
-      case 0x02:
-        return 2;
-      case 0x03:
-        return 3;
-      default:
-        return 0;
-    }
-  }
-
-  getWindscreenDamage(bytes) {
-    switch (bytes[5]) {
-      case 0x01:
-        return 'no_damage';
-      case 0x02:
-        return 'damage_smaller_than_1_inch';
-      case 0x03:
-        return 'damage_larger_than_1_inch';
-      default:
-        return 'no_impact_occured';
-    }
-  }
-
-  getZone(theByte) {
-    if (theByte === 0x00) {
-      return 'unknown';
-    }
-
-    return { horisontal: (theByte & 0xf0) >> 4, vertical: theByte & 0x0f };
-  }
-
-  getNeedsReplacement(bytes) {
-    switch (bytes[8]) {
-      case 0x01:
-        return 'no';
-      case 0x02:
-        return 'yes';
-      default:
-        return 'unknown';
-    }
-  }
-
-  getDamageConfidence(bytes) {
-    return bytes[9] / 100;
-  }
-
-  getDate(bytes, idx) {
-    return {
-      year: 2000 + bytes[idx],
-      month: bytes[idx + 1],
-      day: bytes[idx + 2],
-      hour: bytes[idx + 3],
-      minute: bytes[idx + 4],
-      seconds: bytes[idx + 5],
-    };
+    this.parse(data, properties);
   }
 }

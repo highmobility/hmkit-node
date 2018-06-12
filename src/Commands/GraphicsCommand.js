@@ -1,19 +1,22 @@
 import Command from './Command';
-import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
+import { intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class GraphicsCommand {
+  /**
+   * @function getState
+   *
+   * @property {String} url (string) Image url
+   */
   static displayImage(url) {
-    let command = [0x00, 0x51, 0x00];
-    const urlInBytes = hexToUint8Array(stringToHex(url));
-    command = [
-      ...command,
-      ...this.urlSizeToBytes(urlInBytes.length),
-      ...Array.from(urlInBytes),
-    ];
-    return new Command(command);
-  }
+    const urlBytes = stringToBytes(url);
 
-  static urlSizeToBytes(size) {
-    return hexToUint8Array(pad(intToHex(size), 4));
+    return new Command([
+      0x00,
+      0x51,
+      0x00,
+      0x01,
+      ...intToTwoBytes(urlBytes.length),
+      ...urlBytes,
+    ]);
   }
 }

@@ -6,59 +6,17 @@ describe(`ParkingTicketResponse`, () => {
   it('should return started ParkingTicketResponse', () => {
     const response = new Response(
       hexToUint8Array(
-        '004701010e4265726c696e205061726b696e670363054f11010a11220000000000'
+        '0047010100010102000E4265726C696E205061726B696E67030008363438393432333304000811010A1122000000050008120214160B000000'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual({
-      state: 'started',
+      parkingTicketState: 'started',
       operatorName: 'Berlin Parking',
-      operatorTicketID: 6489423,
-      startDate: { year: 2017, month: 1, day: 10, hour: 17, minute: 34 },
-      endDate: { year: 0, month: 0, day: 0, hour: 0, minute: 0 },
-    });
-  });
-
-  it('should return started ParkingTicket VS', () => {
-    const response = new Response(
-      hexToUint8Array(
-        '00471E010e4265726c696e205061726b696e670363054f11010a11220000000000'
-      )
-    ).vehicleState();
-
-    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
-    expect(response.parse()).toEqual({
-      state: 'started',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: 6489423,
-      startDate: { year: 2017, month: 1, day: 10, hour: 17, minute: 34 },
-      endDate: { year: 0, month: 0, day: 0, hour: 0, minute: 0 },
-    });
-
-    const response2 = new Response(
-      hexToUint8Array(
-        '00471F010e4265726c696e205061726b696e670363054f11010a11220000000000'
-      )
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
-  });
-
-  it('should return ended ParkingTicketResponse', () => {
-    const response = new Response(
-      hexToUint8Array(
-        '004701000e4265726c696e205061726b696e670363054f11010a11220000000000'
-      )
-    );
-
-    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
-    expect(response.parse()).toEqual({
-      state: 'ended',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: 6489423,
-      startDate: { year: 2017, month: 1, day: 10, hour: 17, minute: 34 },
-      endDate: { year: 0, month: 0, day: 0, hour: 0, minute: 0 },
+      operatorTicketID: '64894233',
+      ticketStartTime: new Date('2017-01-10T17:34:00Z'),
+      ticketEndTime: new Date('2018-02-20T22:11:00Z'),
     });
   });
 });

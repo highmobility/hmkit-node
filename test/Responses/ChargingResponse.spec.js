@@ -5,56 +5,28 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`ChargingResponse`, () => {
   it(`should return ChargingResponse`, () => {
     const response = new Response(
-      hexToUint8Array('0023010200FF32BF19999A01905A003C0000000001')
+      hexToUint8Array(
+        '0023010100010202000200FF03000132040004BF19999A050004BF19999A06000443C8000007000443CD00000800015A090002003C0A0004000000000B0001010C0001000D00090212010A1020050000'
+      )
     );
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
-      chargingState: 'charging',
-      estimatedRange: 255,
+      batteryCurrentAC: -0.6,
+      batteryCurrentDC: -0.6,
       batteryLevel: 0.5,
-      batteryCurrent: -0.6000000238418579,
-      chargerVoltage: 400,
       chargeLimit: 0.9,
-      timeToCompleteCharge: 60,
-      chargeRate: 0,
+      chargeMode: 'immediate',
       chargePortState: 'open',
-    });
-  });
-
-  it(`should repond correctly with other variations of ChargingResponse`, () => {
-    expect(
-      new Response(
-        hexToUint8Array('0023010000FF32BF19999A01905A003C0000000000')
-      ).parse()
-    ).toBeInstanceOf(ChargingResponse);
-    expect(
-      new Response(
-        hexToUint8Array('0023010100FF32BF19999A01905A003C00000000FF')
-      ).parse()
-    ).toBeInstanceOf(ChargingResponse);
-    expect(
-      new Response(
-        hexToUint8Array('0023010300FF32BF19999A01905A003C0000000001')
-      ).parse()
-    ).toBeInstanceOf(ChargingResponse);
-  });
-
-  it(`should get charging state when fetching vehicle state`, () => {
-    const response1 = new Response(
-      hexToUint8Array('0023080200FF32BF19999A0190')
-    ).vehicleState();
-    expect(response1.parse()).toBeInstanceOf(ChargingResponse);
-    expect(response1.parse()).toEqual({
-      chargingState: 'charging',
+      chargeTimer: {
+        timerType: 'departure_time',
+        time: new Date(Date.UTC(2018, 0, 10, 16, 32, 5)),
+      },
+      chargerVoltageAC: 400,
+      chargerVoltageDC: 410,
+      chargingRateKW: 0,
+      charging: 'charging',
       estimatedRange: 255,
-      batteryLevel: 0.5,
-      batteryCurrent: -0.6000000238418579,
+      timeToCompleteCharge: 60,
     });
-
-    const response2 = new Response(
-      hexToUint8Array('0023070200FF32BF19999A0190')
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
   });
 });

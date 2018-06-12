@@ -10,33 +10,61 @@ describe(`RooftopControlCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
+    expect(response.parse()).toEqual({
+      dimming: expect.any(Number),
+      position: expect.any(Number),
+    });
   });
 
-  it(`should change rooftop state`, async () => {
+  it(`should control rooftop`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RooftopControlCommand.setState(0.2, 0.3)
+      hmkit.commands.RooftopControlCommand.control(22, 33)
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        dimmingState: 0.2,
-        openState: 0.3,
-      })
-    );
+    expect(response.parse()).toEqual({
+      dimming: 22,
+      position: 33,
+    });
+  });
 
-    const response2 = await hmkit.telematics.sendCommand(
+  it('should control dimming separately', async () => {
+    const oldData = (await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RooftopControlCommand.setState(0.32, 0.41)
+      hmkit.commands.RooftopControlCommand.getState()
+    )).parse();
+    // Ensure new value is different from old
+    const newDimming = oldData.dimming >= 99 ? 1 : oldData.dimming + 1;
+
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.control(newDimming)
     );
 
-    expect(response2.parse()).toBeInstanceOf(RooftopControlResponse);
-    expect(response2.parse()).toEqual(
-      expect.objectContaining({
-        dimmingState: 0.32,
-        openState: 0.41,
-      })
+    expect(response.parse()).toEqual({
+      dimming: newDimming,
+      position: oldData.position,
+    });
+  });
+
+  it('should control position separately', async () => {
+    const oldData = (await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.getState()
+    )).parse();
+    // Ensure new value is different from old
+    const newPosition = oldData.position >= 99 ? 1 : oldData.position + 1;
+
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.control(undefined, newPosition)
     );
+
+    expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
+    expect(response.parse()).toEqual({
+      dimming: oldData.dimming,
+      position: newPosition,
+    });
   });
 });

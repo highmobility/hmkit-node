@@ -5,32 +5,71 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00200104000100010000020001030001')
+      hexToUint8Array(
+        '00200101000300000001000301000001000302000001000303000002000200000200020100020002020002000203000300020000030002010003000202000300020300'
+      )
     );
-    expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        doors: expect.anything(),
-      })
-    );
-  });
-
-  it('should return DoorLocks VS', () => {
-    const response = new Response(
-      hexToUint8Array('00200D04000100010000020001030001')
-    ).vehicleState();
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        doors: expect.anything(),
-      })
-    );
-
-    const response2 = new Response(
-      hexToUint8Array('00200E04000100010000020001030001')
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+    expect(response.parse()).toEqual({
+      doors: [
+        {
+          doorLocation: 'front_left',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          doorPosition: 'closed',
+          doorLock: 'unlocked',
+        },
+      ],
+      insideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          insideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          insideLock: 'unlocked',
+        },
+      ],
+      outsideDoorLocks: [
+        {
+          doorLocation: 'front_left',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'front_right',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_right',
+          outsideLock: 'unlocked',
+        },
+        {
+          doorLocation: 'rear_left',
+          outsideLock: 'unlocked',
+        },
+      ],
+    });
   });
 });

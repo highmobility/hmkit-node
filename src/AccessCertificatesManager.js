@@ -23,18 +23,20 @@ export default class AccessCertificatesManager {
     );
     const signature = byteArrayToBase64(byteSignature);
 
-    const {
-      body: { device_access_certificate: rawAccessCertificate },
-    } = await this.hmkit.apiClient.post(
-      `${this.hmkit.api.getUrl()}access_certificates`,
-      {
+    const rawAccessCertificate = await this.hmkit.apiClient
+      .post(`${this.hmkit.api.getUrl()}access_certificates`, {
         body: JSON.stringify({
           serial_number: this.hmkit.clientCertificate.getSerial(),
           access_token: accessToken,
           signature,
         }),
-      }
-    );
+      })
+      .then(
+        result => result.body.device_access_certificate,
+        () => {
+          throw new Error('Failed to fetch access certificate.');
+        }
+      );
 
     const accessCertificate = new AccessCertificate(
       base64ToUint8(rawAccessCertificate)

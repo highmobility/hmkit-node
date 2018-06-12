@@ -1,6 +1,6 @@
 {
   "name": "hmkit",
-  "version": "0.3.0",
+  "version": "0.5.2",
   "description": "High Mobility SDK for Node.js",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -8,6 +8,7 @@
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
     "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:no-commands": "npm test -- --testRegex='^((?!Command).)*spec.js$'",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
     "test:setup": "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
@@ -15,7 +16,8 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
     "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
-    "format": "prettier --single-quote --trailing-comma es5 --write --print-width 80 \"{src,test}/**/*.js\" "
+    "format": "prettier --write \"{src,test}/**/*.js\" ",
+    "build-bindings:macos": "./build-sdk-node-bindings.sh && cp ./sdk-node-bindings/build/Release/sdk-node-bindings-native.node ./bindings/macos.node"
   },
   "entry": "./build/bundle.js",
   "jest": {
@@ -41,15 +43,18 @@
     "babel-preset-flow": "^6.23.0",
     "btoa": "^1.1.2",
     "cross-env": "^5.0.5",
-    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-react": "^7.7.0",
+    "heapdump": "^0.3.9",
     "ieee754": "^1.1.8",
+    "joi": "^13.1.2",
+    "memwatch-next": "^0.3.0",
     "node-fetch": "^1.7.2",
     "rimraf": "^2.6.1"
   },
   "devDependencies": {
     "@optimistdigital/eslint-config-rules": "^1.7.1",
     "babel-core": "^6.25.0",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -57,15 +62,17 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",
+    "comment-parser": "^0.5.0",
     "dotenv": "^4.0.0",
-    "eslint": "^4.4.1",
+    "eslint": "^4.18.1",
     "eslint-config-prettier": "^2.3.0",
     "eslint-loader": "^1.9.0",
-    "eslint-plugin-flowtype": "^2.35.0",
-    "eslint-plugin-import": "^2.7.0",
-    "jest": "^20.0.4",
+    "eslint-plugin-flowtype": "^2.46.0",
+    "eslint-plugin-import": "^2.9.0",
+    "jest": "^23.1.0",
     "json-loader": "^0.5.7",
     "node-loader": "^0.6.0",
-    "prettier": "^1.5.3"
+    "prettier": "^1.5.3",
+    "yamljs": "^0.3.0"
   }
 }

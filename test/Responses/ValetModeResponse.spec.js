@@ -4,21 +4,18 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`ValetModeResponse`, () => {
   it(`should return ValetModeResponse`, () => {
-    const response = new Response(hexToUint8Array('00280101'));
+    let response = new Response(hexToUint8Array('00280101000101'));
+
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
     expect(response.parse()).toEqual({
-      mode: 'activated',
+      valetMode: 'activated',
     });
-  });
 
-  it(`should return ValetMode VS`, () => {
-    const response = new Response(hexToUint8Array('00280100')).vehicleState();
+    response = new Response(hexToUint8Array('00280101000100'));
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
-    expect(response.parse()).toEqual({ mode: 'deactivated' });
-
-    const response2 = new Response(hexToUint8Array('00280200')).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+    expect(response.parse()).toEqual({
+      valetMode: 'deactivated',
+    });
   });
 });

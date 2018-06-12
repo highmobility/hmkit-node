@@ -1,32 +1,31 @@
-export default class TheftAlarmResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { switchDecoder } from '../helpers';
+
+export default class TheftAlarmResponse extends PropertyResponse {
   static identifier = [0x00, 0x46];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.state = this.getState(bytes);
+  /**
+   * @property {String} theftAlarm (string 'not_armed|armed|triggered') Theft alarm state
+   *
+   * @example TheftAlarmResponse
+    {
+      theftAlarm: 'triggered',
     }
-  }
+   */
+  constructor(data: Uint8Array) {
+    super();
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 1) {
-      this.state = this.getState(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
+    const properties = [
+      new Property(0x01, 'theftAlarm').setDecoder(
+        switchDecoder({
+          0x00: 'not_armed',
+          0x01: 'armed',
+          0x02: 'triggered',
+        })
+      ),
+    ];
 
-  getState(bytes) {
-    switch (bytes[3]) {
-      case 0x01:
-        return 'armed';
-
-      case 0x02:
-        return 'triggered';
-
-      default:
-        return 'not armed';
-    }
+    this.parse(data, properties);
   }
 }

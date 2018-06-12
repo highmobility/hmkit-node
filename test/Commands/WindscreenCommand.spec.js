@@ -12,44 +12,26 @@ describe(`WindscreenCommand`, () => {
   });
 
   it('should set windscreen damage', async () => {
-    const bytes = hmkit.commands.WindscreenCommand.setDamage(
-      'no_impact_occured',
-      4,
-      1,
-      'yes'
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindscreenCommand.setDamage(
+        'damage_smaller_than_1_inch',
+        2,
+        3,
+        'replacement_needed'
+      )
     );
-    const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
-
-    const bytes2 = hmkit.commands.WindscreenCommand.setDamage(
-      'damage_larger_than_1_inch',
-      4,
-      3,
-      'no'
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        windscreenDamage: 'damage_smaller_than_1_inch',
+        windscreenDamageZone: {
+          rows: 2,
+          columns: 3,
+        },
+        windscreenNeedsReplacement: 'replacement_needed',
+      })
     );
-    const response2 = await hmkit.telematics.sendCommand(vehicleSerial, bytes2);
-
-    expect(response2.parse()).toBeInstanceOf(WindscreenResponse);
-
-    const bytes3 = hmkit.commands.WindscreenCommand.setDamage(
-      'damage_smaller_than_1_inch',
-      1,
-      2,
-      'unknown'
-    );
-    const response3 = await hmkit.telematics.sendCommand(vehicleSerial, bytes3);
-
-    expect(response3.parse()).toBeInstanceOf(WindscreenResponse);
-
-    const bytes4 = hmkit.commands.WindscreenCommand.setDamage(
-      'no_damage',
-      2,
-      2,
-      'no'
-    );
-    const response4 = await hmkit.telematics.sendCommand(vehicleSerial, bytes4);
-
-    expect(response4.parse()).toBeInstanceOf(WindscreenResponse);
   });
 });

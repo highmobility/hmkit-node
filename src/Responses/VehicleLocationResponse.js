@@ -1,34 +1,34 @@
-import { ieee754ToBase10 } from '../encoding';
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+import { coordinatesDecoder, getRoundedIeee754ToBase10 } from '../helpers';
 
-export default class VehicleLocationResponse {
+export default class VehicleLocationResponse extends PropertyResponse {
   static identifier = [0x00, 0x30];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.vehicleLocation(bytes);
+  /**
+   * @property {Object} coordinates (object `{latitude: (number), longitude: (number)}`) Coordinates
+   * @property {Number} heading (number) Heading in 4-bytes per IEEE 754
+   * @property {Number} altitude (number) Altitude in meters above the WGS 84 reference ellipsoid
+   *
+   * @example VehicleLocationResponse
+    {
+      coordinates: {
+        latitude: 52.516506,
+        longitude: 13.381815,
+      },
+      heading: 52.520008,
+      altitude: 133.5
     }
-  }
+   */
+  constructor(data: Uint8Array) {
+    super();
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 8) {
-      this.vehicleLocation(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
+    const properties = [
+      new Property(0x01, 'coordinates').setDecoder(coordinatesDecoder),
+      new Property(0x02, 'heading').setDecoder(getRoundedIeee754ToBase10(6)),
+      new Property(0x03, 'altitude').setDecoder(getRoundedIeee754ToBase10(1)),
+    ];
 
-  vehicleLocation(bytes) {
-    this.latitude = this.getLatitude(bytes);
-    this.longitude = this.getLongitude(bytes);
-  }
-
-  getLatitude(bytes) {
-    return ieee754ToBase10([bytes[3], bytes[4], bytes[5], bytes[6]]);
-  }
-
-  getLongitude(bytes) {
-    return ieee754ToBase10([bytes[7], bytes[8], bytes[9], bytes[10]]);
+    this.parse(data, properties);
   }
 }

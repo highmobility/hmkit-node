@@ -8,9 +8,7 @@ const accessToken = config.accessToken;
 const hmkit = new HMKit(clientCertificate, clientPrivateKey).staging();
 
 async function setup() {
-  await hmkit.downloadAccessCertificate(
-    accessToken
-  );
+  await hmkit.downloadAccessCertificate(accessToken);
 }
 
 // run app

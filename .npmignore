@@ -1,11 +1,14 @@
 /docs
 /src
 /test
+/.vscode
+/sdk-node-bindings
 .babelrc
 .editorconfig
 .eslintrc
 .gitignore
 build-sdk-node-bindings.sh
+build-sdk-node-bindings.bat
 consumer.js
 package-lock.json
 yarn.lock

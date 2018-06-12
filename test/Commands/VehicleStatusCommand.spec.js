@@ -1,13 +1,14 @@
 import getHmkit, { vehicleSerial } from '../testutils/getHmkit';
+import VehicleStatusResponse from '../../src/Responses/VehicleStatusResponse';
 const hmkit = getHmkit();
 
 describe(`VehicleStatusCommand`, () => {
-  it(`should load url into headunit browser`, async () => {
+  it(`should return the vehicle status`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.VehicleStatusCommand.get()
     );
 
-    expect(response.parse()).toBeInstanceOf(Uint8Array);
+    expect(response.parse()).toBeInstanceOf(VehicleStatusResponse);
   });
 });

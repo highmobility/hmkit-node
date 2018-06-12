@@ -4,29 +4,19 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`VehicleLocationResponse`, () => {
   it(`should return VehicleLocationResponse`, () => {
-    const response = new Response(hexToUint8Array('0030014252147D41567AB1'));
-    expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
-    expect(response.parse()).toEqual({
-      latitude: 52.5200080871582,
-      longitude: 13.404953956604004,
-    });
-  });
-
-  it(`should return VehicleLocation VS`, () => {
     const response = new Response(
-      hexToUint8Array('0030084252147D41567AB1')
-    ).vehicleState();
-
+      hexToUint8Array(
+        '003001010008425210e741561bea0200044252147d03000443058000'
+      )
+    );
     expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
     expect(response.parse()).toEqual({
-      latitude: 52.5200080871582,
-      longitude: 13.404953956604004,
+      coordinates: {
+        latitude: 52.516506,
+        longitude: 13.381815,
+      },
+      heading: 52.520008,
+      altitude: 133.5,
     });
-
-    const response2 = new Response(
-      hexToUint8Array('0030074252147D41567AB1')
-    ).vehicleState();
-
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
   });
 });

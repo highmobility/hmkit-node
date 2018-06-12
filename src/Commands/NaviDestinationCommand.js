@@ -1,27 +1,44 @@
 import Command from './Command';
-import {
-  hexToUint8Array,
-  intToHex,
-  intToIeee754,
-  pad,
-  stringToHex,
-} from '../encoding';
+import { base10ToIeee754, intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class NaviDestinationCommand {
-  static setDestination(lat: number, long: number, name: string) {
+  /**
+   * @function getDestination
+   */
+  static getDestination() {
+    return new Command([0x00, 0x31, 0x00]);
+  }
+
+  /**
+   * @function setDestination
+   *
+   * @property {Number} latitude (number) Latitude in decimal format e.g. 52.520008
+   * @property {Number} longitude (number) Longitude in decimal format e.g. 13.404954
+   * @property {String} destinationName (string) destination name
+   */
+  static setDestination(
+    latitude: number,
+    longitude: number,
+    destinationName: string = ''
+  ) {
+    let allNameBytes = [];
+
+    if (destinationName.length > 0) {
+      const nameBytes = stringToBytes(destinationName);
+
+      allNameBytes = [0x02, ...intToTwoBytes(nameBytes.length), ...nameBytes];
+    }
+
     return new Command([
       0x00,
       0x31,
       0x02,
-      ...intToIeee754(lat),
-      ...intToIeee754(long),
-      ...this.getStringBytes(name),
+      0x01,
+      0x00,
+      0x08,
+      ...base10ToIeee754(latitude),
+      ...base10ToIeee754(longitude),
+      ...allNameBytes,
     ]);
-  }
-
-  static getStringBytes(name) {
-    const stringBytes = hexToUint8Array(stringToHex(name));
-    const lengthBytes = hexToUint8Array(pad(intToHex(stringBytes.length), 2));
-    return [...lengthBytes, ...stringBytes];
   }
 }

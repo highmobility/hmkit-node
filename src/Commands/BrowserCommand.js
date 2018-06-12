@@ -1,19 +1,31 @@
 import Command from './Command';
-import { stringToHex, hexToUint8Array, intToHex, pad } from '../encoding';
+import { intToTwoBytes, stringToBytes } from '../encoding';
+import { validate, Joi } from '../validate';
 
 export default class BrowserCommand {
+  /**
+   * @function loadUrl
+   *
+   * @property {String} url (string) Url to be loaded in.
+   */
   static loadUrl(url) {
-    let command = [0x00, 0x49, 0x00];
-    const urlInBytes = hexToUint8Array(stringToHex(url));
-    command = [
-      ...command,
-      ...this.urlSizeToBytes(urlInBytes.length),
-      ...Array.from(urlInBytes),
-    ];
-    return new Command(command);
-  }
+    validate([
+      {
+        value: url,
+        name: 'Url',
+        condition: Joi.string().required(),
+      },
+    ]);
 
-  static urlSizeToBytes(size) {
-    return hexToUint8Array(pad(intToHex(size), 4));
+    const urlBytes = stringToBytes(url);
+
+    return new Command([
+      0x00,
+      0x49,
+      0x00,
+      0x01,
+      ...intToTwoBytes(urlBytes.length),
+      ...urlBytes,
+    ]);
   }
 }

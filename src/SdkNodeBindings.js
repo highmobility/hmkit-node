@@ -44,27 +44,10 @@ export default class SdkNodeBindings {
     );
 
     this.onGetAccessCertificate(serial => {
-      const accesCertificate = this.hmkit.certificates.get(
+      const accessCert = this.hmkit.certificates.get(
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
       );
-      if (!accesCertificate) {
-        return null;
-      }
-
-      return {
-        public_key: hexToUint8Array(
-          accesCertificate.rawAccessCertificate.accessGainingPublicKey
-        ).buffer,
-        start_date: hexToUint8Array(
-          accesCertificate.rawAccessCertificate.validityStartDate
-        ).buffer,
-        end_date: hexToUint8Array(
-          accesCertificate.rawAccessCertificate.validityEndDate
-        ).buffer,
-        permissions: hexToUint8Array(
-          accesCertificate.rawAccessCertificate.permissions
-        ).buffer,
-      };
+      return accessCert ? accessCert.bytes.buffer : null;
     });
 
     this.onTelematicsSendData(this.hmkit.telematics.onTelematicsSendData);

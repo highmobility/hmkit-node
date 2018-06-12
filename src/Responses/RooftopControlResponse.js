@@ -1,29 +1,27 @@
-export default class RooftopControlResponse {
+import PropertyResponse from '../PropertyResponse';
+import Property from '../Property';
+
+export default class RooftopControlResponse extends PropertyResponse {
   static identifier = [0x00, 0x25];
 
-  constructor(bytes, vehicleState = false) {
-    if (vehicleState) {
-      this.getVehicleState(bytes);
-    } else {
-      this.dimmingState = this.getDimmingState(bytes);
-      this.openState = this.getOpenState(bytes);
+  /**
+   * @property {Number} dimming (number) Percentage value between 0-100 whereas 100 is opaque
+   * @property {Number} position (number) Percentage value between 0-100 whereas 100 is fully open
+   *
+   * @example RooftopControlResponse
+    {
+      dimming: 23,
+      position: 34,
     }
-  }
+   */
+  constructor(data: Uint8Array) {
+    super();
 
-  getVehicleState(bytes) {
-    if (bytes[2] === 2) {
-      this.dimmingState = this.getDimmingState(bytes);
-      this.openState = this.getOpenState(bytes);
-    } else {
-      this.error = 'invalid state size';
-    }
-  }
+    const properties = [
+      new Property(0x01, 'dimming'),
+      new Property(0x02, 'position'),
+    ];
 
-  getDimmingState(bytes) {
-    return bytes[3] / 100;
-  }
-
-  getOpenState(bytes) {
-    return bytes[4] / 100;
+    this.parse(data, properties);
   }
 }

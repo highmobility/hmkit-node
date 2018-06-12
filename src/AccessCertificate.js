@@ -10,9 +10,11 @@ export default class AccessCertificate {
   constructor(bytes: Uint8Array) {
     this.bytes = bytes;
     this.rawAccessCertificate = this.parse(bytes);
+    this.version = this.getVersion();
+    this.issuer = this.getIssuer();
+    this.accessProvidingSerialNumber = this.getClientSerial();
     this.accessGainingSerialNumber = this.getVehicleSerial();
     this.accessGainingPublicKey = this.getVehiclePublicKey();
-    this.accessProvidingSerialNumber = this.getClientSerial();
     this.validityStartDate = this.getValidityStartDate();
     this.validityEndDate = this.getValidityEndDate();
     this.permissions = this.rawAccessCertificate.permissions;
@@ -21,40 +23,69 @@ export default class AccessCertificate {
   }
 
   parse(bytes: Uint8Array) {
-    const permissionsSize = uint8ArrayToHex(bytes.slice(92, 93)).toUpperCase();
+    const unparsedBytes = [...bytes];
+
+    const response = {
+      version: uint8ArrayToHex(unparsedBytes.splice(0, 1)).toUpperCase(),
+      issuer: uint8ArrayToHex(unparsedBytes.splice(0, 4)).toUpperCase(),
+      accessProvidingSerialNumber: uint8ArrayToHex(
+        unparsedBytes.splice(0, 9)
+      ).toUpperCase(),
+      accessGainingSerialNumber: uint8ArrayToHex(
+        unparsedBytes.splice(0, 9)
+      ).toUpperCase(),
+      accessGainingPublicKey: uint8ArrayToHex(
+        unparsedBytes.splice(0, 64)
+      ).toUpperCase(),
+      validityStartDate: uint8ArrayToHex(
+        unparsedBytes.splice(0, 5)
+      ).toUpperCase(),
+      validityEndDate: uint8ArrayToHex(
+        unparsedBytes.splice(0, 5)
+      ).toUpperCase(),
+    };
+
+    const permissionsSize = uint8ArrayToHex(
+      unparsedBytes.splice(0, 1)
+    ).toUpperCase();
+    const permissions = uint8ArrayToHex(
+      unparsedBytes.splice(0, hexToInt(permissionsSize))
+    ).toUpperCase();
+    const signature = uint8ArrayToHex(
+      unparsedBytes.splice(0, 64)
+    ).toUpperCase();
 
     return {
-      accessGainingSerialNumber: uint8ArrayToHex(
-        bytes.slice(0, 9)
-      ).toUpperCase(),
-      accessGainingPublicKey: uint8ArrayToHex(bytes.slice(9, 73)).toUpperCase(),
-      accessProvidingSerialNumber: uint8ArrayToHex(
-        bytes.slice(73, 82)
-      ).toUpperCase(),
-      validityStartDate: uint8ArrayToHex(bytes.slice(82, 87)).toUpperCase(),
-      validityEndDate: uint8ArrayToHex(bytes.slice(87, 92)).toUpperCase(),
+      ...response,
       permissionsSize,
-      permissions: uint8ArrayToHex(
-        bytes.slice(93, 93 + hexToInt(permissionsSize))
-      ).toUpperCase(),
-      signature: uint8ArrayToHex(
-        bytes.slice(
-          93 + hexToInt(permissionsSize),
-          93 + hexToInt(permissionsSize) + 64
-        )
-      ).toUpperCase(),
+      permissions,
+      signature,
     };
   }
 
   get() {
     return {
+      version: this.version,
+      issuer: this.issuer,
+      accessProvidingSerialNumber: this.accessProvidingSerialNumber,
       accessGainingSerialNumber: this.accessGainingSerialNumber,
       accessGainingPublicKey: this.accessGainingPublicKey,
-      accessProvidingSerialNumber: this.accessProvidingSerialNumber,
       validityStartDate: this.validityStartDate,
       validityEndDate: this.validityEndDate,
       permissions: this.permissions,
     };
+  }
+
+  getVersion() {
+    return this.rawAccessCertificate.version;
+  }
+
+  getIssuer() {
+    return this.rawAccessCertificate.issuer;
+  }
+
+  getSerial() {
+    return this.rawAccessCertificate.accessGainingSerialNumber;
   }
 
   getVehicleSerial() {

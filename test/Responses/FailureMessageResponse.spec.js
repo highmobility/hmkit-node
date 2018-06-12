@@ -4,13 +4,16 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`FailureMessageResponse`, () => {
   it(`should return FailureMessageResponse`, () => {
-    const response = new Response(hexToUint8Array('00020100210001'));
+    const response = new Response(
+      hexToUint8Array('00020101000200450200010003000101')
+    );
+
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
     expect(response.parse()).toEqual({
       autoApi: {
-        label: 'Trunk Access',
-        lsb: 33,
-        namespace: 'trunkAccess',
+        lsb: 69,
+        namespace: 'windows',
+        label: 'Windows',
       },
       type: 0,
       reason: {
@@ -22,8 +25,8 @@ describe(`FailureMessageResponse`, () => {
   });
 
   it(`should return FailureMessageResponse with no Auto API info`, () => {
-    const response = new Response(hexToUint8Array('00020100FF0001'));
+    const response = new Response(hexToUint8Array('0002010200010003000101'));
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
-    expect(response.parse().autoApi).toBe(null);
+    expect(response.parse().autoApi).toBe(undefined);
   });
 });

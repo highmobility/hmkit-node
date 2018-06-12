@@ -3,7 +3,11 @@ import btoa from 'btoa';
 import ieee754 from 'ieee754';
 
 export function base64ToUint8(base64String) {
-  return new Uint8Array(atob(base64String).split('').map(c => c.charCodeAt(0)));
+  return new Uint8Array(
+    atob(base64String)
+      .split('')
+      .map(c => c.charCodeAt(0))
+  );
 }
 
 export function byteArrayToBase64(byteArray) {
@@ -31,6 +35,10 @@ export function intToBinary(int) {
   return int.toString(2);
 }
 
+export function uint8toInt8(uint8) {
+  return (uint8 << 24) >> 24;
+}
+
 export function binaryToInt(binary) {
   return parseInt(binary, 2);
 }
@@ -55,7 +63,9 @@ export function hexToByteArrays(hexString) {
 
   uint8Array.forEach(uint8 => {
     byteArrays.push(
-      pad(uint8.toString(2), 8).split('').map(byte => Number(byte))
+      pad(uint8.toString(2), 8)
+        .split('')
+        .map(byte => Number(byte))
     );
   });
 
@@ -72,7 +82,7 @@ export function hexArrayToHex(hexArray: Array<number>) {
   return hexArray.reduce((memo, i) => memo + pad(i.toString(16), 2), '');
 }
 
-export function intToIeee754(value: number, bytes: number = 4) {
+export function base10ToIeee754(value: number, bytes: number = 4) {
   const ieeeArray = [];
   ieee754.write(ieeeArray, value, 0, false, 23, bytes);
   return ieeeArray;
@@ -90,6 +100,50 @@ export function stringToHex(string) {
   return result;
 }
 
+export function stringToBytes(string) {
+  return hexToUint8Array(stringToHex(string));
+}
+
+export function intToTwoBytes(int) {
+  return hexToUint8Array(pad(intToHex(int), 4));
+}
+
+export function dateToBytes(date: Date) {
+  // TODO: Siin peaks OFFSET'i ka kuidagi saama (teoorias pole tähtsust)
+  return [
+    date.getUTCFullYear() - 2000,
+    date.getUTCMonth() + 1,
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+    0x00,
+    0x00,
+  ];
+}
+
 export function bytesToString(bytes) {
   return Buffer.from(bytes).toString('utf8');
+}
+
+export function decimalToHexArray(value: number, bytes: number = 1) {
+  let hex = parseInt(value, 10).toString(16);
+  while (hex.length % (bytes * 2) !== 0) hex = `0${hex}`;
+  const hexArray = hex.match(/.{1,2}/g);
+
+  return hexArray.map(hexItem => Number(`0x${hexItem}`));
+}
+
+export function utfStringToByteArray(string: string, minLength?: number) {
+  const byteArray = unescape(encodeURIComponent(string))
+    .split('')
+    .map(char => char.charCodeAt(0));
+
+  if (minLength !== undefined) {
+    while (byteArray.length < minLength) {
+      byteArray.unshift(0);
+    }
+  }
+
+  return byteArray;
 }

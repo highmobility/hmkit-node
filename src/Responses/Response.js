@@ -1,48 +1,84 @@
 import ChargingResponse from './ChargingResponse';
+import ChassisSettingsResponse from './ChassisSettingsResponse';
 import ClimateResponse from './ClimateResponse';
+import CruiseControlResponse from './CruiseControlResponse';
+import DashboardLightsResponse from './DashboardLightsResponse';
 import DiagnosticsResponse from './DiagnosticsResponse';
 import DoorLocksResponse from './DoorLocksResponse';
 import EngineResponse from './EngineResponse';
 import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
+import FirmwareVersionResponse from './FirmwareVersionResponse';
+import FuelingResponse from './FuelingResponse';
+import HomeChargerResponse from './HomeChargerResponse';
+import HonkHornFlashLightsResponse from './HonkHornFlashLightsResponse';
+import LightConditionsResponse from './LightConditionsResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
-import MessagingResponse from './MessagingResponse';
-import NotificationResponse from './NotificationResponse';
+import NaviDestinationResponse from './NaviDestinationResponse';
+import OffroadResponse from './OffroadResponse';
+import ParkingBrakeResponse from './ParkingBrakeResponse';
 import ParkingTicketResponse from './ParkingTicketResponse';
+import PowerTakeOffResponse from './PowerTakeOffResponse';
+import RaceResponse from './RaceResponse';
 import RooftopControlResponse from './RooftopControlResponse';
+import SeatsResponse from './SeatsResponse';
+import StartStopResponse from './StartStopResponse';
+import TachographResponse from './TachographResponse';
 import TheftAlarmResponse from './TheftAlarmResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
+import VehicleTimeResponse from './VehicleTimeResponse';
+import WeatherConditionsResponse from './WeatherConditionsResponse';
+import WiFiResponse from './WiFiResponse';
 import WindowsResponse from './WindowsResponse';
 import WindscreenResponse from './WindscreenResponse';
 import CapabilitiesResponse from './CapabilitiesResponse';
+import VehicleStatusResponse from './VehicleStatusResponse';
 
 export default class Response {
-  constructor(data: string) {
+  constructor(data: Array<Number>) {
     this.rawData = data;
-    this.formatVehicleState = false;
+
     this.checkRawDataLength();
 
     this.parsers = [
       CapabilitiesResponse,
       ChargingResponse,
+      ChassisSettingsResponse,
       ClimateResponse,
+      CruiseControlResponse,
+      DashboardLightsResponse,
       DiagnosticsResponse,
       DoorLocksResponse,
       EngineResponse,
       FailureMessageResponse,
+      FirmwareVersionResponse,
+      FuelingResponse,
+      HomeChargerResponse,
+      HonkHornFlashLightsResponse,
+      LightConditionsResponse,
       LightsResponse,
       MaintenanceResponse,
-      MessagingResponse,
-      NotificationResponse,
+      NaviDestinationResponse,
+      OffroadResponse,
+      ParkingBrakeResponse,
       ParkingTicketResponse,
+      PowerTakeOffResponse,
+      RaceResponse,
       RooftopControlResponse,
+      SeatsResponse,
+      StartStopResponse,
+      TachographResponse,
       TheftAlarmResponse,
       TrunkAccessResponse,
       ValetModeResponse,
       VehicleLocationResponse,
+      VehicleStatusResponse,
+      VehicleTimeResponse,
+      WeatherConditionsResponse,
+      WiFiResponse,
       WindowsResponse,
       WindscreenResponse,
     ];
@@ -60,17 +96,24 @@ export default class Response {
     return this.rawData;
   }
 
-  parse() {
-    const bytes = this.bytes();
-    const Parser = this.findParser(bytes);
+  parse = (() => {
+    let parsedValue = null;
 
-    if (!Parser) {
-      if (bytes.length === 0) return new EmptyResponse();
-      return bytes;
-    }
+    return function parse() {
+      if (parsedValue !== null) return parsedValue;
 
-    return new Parser(bytes, this.formatVehicleState);
-  }
+      const bytes = this.bytes();
+      const Parser = this.findParser(bytes);
+
+      if (!Parser) {
+        if (bytes.length === 0) return new EmptyResponse();
+        return bytes;
+      }
+
+      parsedValue = new Parser(bytes);
+      return parsedValue;
+    };
+  })();
 
   findParser(bytes) {
     if (bytes.length === 0) {
@@ -87,10 +130,5 @@ export default class Response {
     }
 
     return null;
-  }
-
-  vehicleState() {
-    this.formatVehicleState = true;
-    return this;
   }
 }

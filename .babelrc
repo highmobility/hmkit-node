@@ -1,13 +1,17 @@
 {
-  "presets": ["flow", [
-      "env", {
-          "modules": false,
-          "targets": {
-              "uglify": true
-          },
-          "useBuiltIns": true
+  "presets": [
+    "flow",
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "uglify": true
+        },
+        "useBuiltIns": true
       }
-  ]],
+    ]
+  ],
 
   "plugins": [
     "syntax-dynamic-import",
@@ -17,6 +21,9 @@
 
   "env": {
     "commonjs": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
       "plugins": ["transform-es2015-modules-commonjs"]
     }
   }

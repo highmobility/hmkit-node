@@ -4,27 +4,20 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`TrunkAccessResponse`, () => {
   it(`should return TrunkAccessResponse`, () => {
-    const response = new Response(hexToUint8Array('0021010001'));
-    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
-    expect(response.parse()).toEqual({
-      position: 'open',
-      lock: 'unlocked',
-    });
-  });
-
-  it(`should return TrunkAccess VS`, () => {
-    const response = new Response(hexToUint8Array('0021020100')).vehicleState();
+    let response = new Response(hexToUint8Array('0021010100010102000100'));
 
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual({
-      position: 'closed',
-      lock: 'locked',
+      trunkLock: 'locked',
+      trunkPosition: 'closed',
     });
 
-    const response2 = new Response(
-      hexToUint8Array('0021010100')
-    ).vehicleState();
+    response = new Response(hexToUint8Array('0021010100010002000101'));
 
-    expect(response2.parse()).toEqual({ error: 'invalid state size' });
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
+    expect(response.parse()).toEqual({
+      trunkLock: 'unlocked',
+      trunkPosition: 'open',
+    });
   });
 });
