@@ -17,11 +17,10 @@ class TestClass {
     this.data = `x`.repeat(10000000);
     this.setBindings();
     this.useBindings();
-	//this.clearBindings();
+//	this.clearBindings();
   }
 
   setBindings() {
-    let bindings;
 
     if (
       require('fs').existsSync(
@@ -34,27 +33,31 @@ class TestClass {
           'binding.js'
         )
       )
-    ) {
-      bindings = require('../../sdk-node-bindings/lib/binding.js');
+     ) {
+      const ref = require('../../sdk-node-bindings/lib/binding.js');
+      this.addon = new ref.AddonObj();
     } else if (process.platform === 'darwin') {
-      bindings = require('../../bindings/macos');
+      const ref = require('../../bindings/macos');
+      this.addon = new ref.AddonObj();
     } else if (process.platform === 'linux') {
-      bindings = require('../../bindings/ubuntu');
+      const ref = require('../../bindings/ubuntu');
+      this.addon = new ref.AddonObj();
     } else if (process.platform === 'win32') {
-      bindings = require('../../bindings/windows');
+      const ref = require('../../bindings/windows');
+      this.addon = new ref.AddonObj();
     }
 
-    Object.getOwnPropertyNames(bindings).forEach(method => {
-      this[method] = bindings[method];
-    });
+//    Object.getOwnPropertyNames(bindings).forEach(method => {
+//      this[method] = bindings[method];
+//   });
   }
 
   useBindings() {
-    this.onGetSerialNumber(() => this);
+    this.addon.onGetSerialNumber(() => this);
   }
 
   clearBindings() {
-    this.cleanup(() => this);
+    this.addon.cleanup(() => this);
   }
 }
 

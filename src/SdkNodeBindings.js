@@ -91,4 +91,9 @@ export default class SdkNodeBindings {
 	return this.addon.generateSignature(buffer);
 	}
 
+	clearBindings() {
+	//	console.log("**** clearBindings ******");
+		this.addon.cleanup(() => this);
+	}
+
 }
