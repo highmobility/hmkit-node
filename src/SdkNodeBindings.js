@@ -3,16 +3,10 @@ import path from 'path';
 import { base64ToUint8, uint8ArrayToHex, hexToUint8Array } from './encoding';
 
 export default class SdkNodeBindings {
+
   constructor(hmkit) {
     this.hmkit = hmkit;
-    this.mergeNativeMethods(this.loadNativeAddOn());
-    this.setup();
-  }
-
-  mergeNativeMethods(addon) {
-    //Object.getOwnPropertyNames(addon).forEach(method => {
-		//this[method] = addon[method];
-    //});
+    this.loadNativeAddOn();
   }
 
   loadNativeAddOn() {
@@ -22,7 +16,6 @@ export default class SdkNodeBindings {
         path.resolve(__dirname, '..', 'sdk-node-bindings', 'lib', 'binding.js')
       )
     ) {
-      //return require('../sdk-node-bindings/lib/binding.js');
       const ref = require('../sdk-node-bindings/lib/binding.js');
 	  this.addon = new ref.AddonObj();
 	  return this.addon;
@@ -44,13 +37,28 @@ export default class SdkNodeBindings {
     throw new Error('Native "hmkit" addon missing for your platform.');
   }
 
-  setup() {
-	this.onGetSerialNumber();
-    this.onGetLocalPrivateKey();
-    this.onGetAccessCertificate();
-    this.onTelematicsSendData();
-    this.onTelematicsCommandIncoming();
-	}
+	callbacks = {
+		blah: function() { console.log("JS: blah"); },
+		foo: function() { console.log("JS: foo"); },
+
+		getser: () => {
+		console.log("JS: get Serial");
+		return hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer; },
+
+		getpriv: () => {
+		console.log("JS: get private key");
+		return base64ToUint8(this.hmkit.clientPrivateKey).buffer; },
+
+		sendtele: () => this.hmkit.telematics.onTelematicsSendData,
+
+		incmtele: () => this.hmkit.telematics.onTelematicsCommandIncoming,
+		getac: serial => {
+			console.log("JS: get access certificate");
+			const accessCert = this.hmkit.certificates.get(
+			uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
+			return accessCert ? accessCert.bytes.buffer : null;
+			}
+	};
 
   onGetSerialNumber(){
       this.addon.onGetSerialNumber(() => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer);
@@ -80,15 +88,15 @@ export default class SdkNodeBindings {
     }
 
     telematicsDataReceived(buffer){
-      this.addon.telematicsDataReceived(buffer);
+      this.addon.telematicsDataReceived(this.callbacks, buffer);
 	}
 
     sendTelematicsCommand(serial, nounce, buffer){
-	this.addon.sendTelematicsCommand(serial, nounce, buffer);
+	this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
 	}
 
     generateSignature(buffer){
-	return this.addon.generateSignature(buffer);
+	return this.addon.generateSignature(this.callbacks, buffer);
 	}
 
 	clearBindings() {
