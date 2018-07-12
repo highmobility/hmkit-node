@@ -42,60 +42,45 @@ export default class SdkNodeBindings {
 		foo: function() { console.log("JS: foo"); },
 
 		getser: () => {
-		console.log("JS: get Serial");
+		//console.log("JS: get Serial");
 		return hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer; },
 
 		getpriv: () => {
-		console.log("JS: get private key");
+		//console.log("JS: get private key");
 		return base64ToUint8(this.hmkit.clientPrivateKey).buffer; },
 
-		sendtele: () => this.hmkit.telematics.onTelematicsSendData,
+		sendtele: (issuer, serial, data) => {
+			//console.log("JS: sendtele");
+			this.hmkit.telematics.onTelematicsSendData(issuer, serial, data);
+			//console.log("JS: End sendtele");
+		},
 
-		incmtele: () => this.hmkit.telematics.onTelematicsCommandIncoming,
+		incmtele: (serial, id, data) => {
+			//console.log("JS: incmtele");
+			this.hmkit.telematics.onTelematicsCommandIncoming(serial, id, data);
+			//console.log("JS: End incmtele");
+		},
+
 		getac: serial => {
-			console.log("JS: get access certificate");
+			//console.log("JS: get access certificate");
 			const accessCert = this.hmkit.certificates.get(
 			uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
 			return accessCert ? accessCert.bytes.buffer : null;
 			}
 	};
 
-  onGetSerialNumber(){
-      this.addon.onGetSerialNumber(() => hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer);
-  }
-
-   onGetLocalPrivateKey(){
-      this.addon.onGetLocalPrivateKey(() => base64ToUint8(this.hmkit.clientPrivateKey).buffer);
-  }
-
-   onGetAccessCertificate(){
-	this.addon.onGetAccessCertificate(serial => {
-      const accessCert = this.hmkit.certificates.get(
-        uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
-      );
-      return accessCert ? accessCert.bytes.buffer : null;
-    });
-	}
-
-    onTelematicsSendData(){
-    this.addon.onTelematicsSendData(this.hmkit.telematics.onTelematicsSendData);
-	}
-
-    onTelematicsCommandIncoming(){
-    this.addon.onTelematicsCommandIncoming(
-      this.hmkit.telematics.onTelematicsCommandIncoming
-    );
-    }
-
     telematicsDataReceived(buffer){
+//			console.log("JS: telematicsDataReceived");
       this.addon.telematicsDataReceived(this.callbacks, buffer);
 	}
 
     sendTelematicsCommand(serial, nounce, buffer){
+//			console.log("JS: sendTelematicsCommand");
 	this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
 	}
 
     generateSignature(buffer){
+//			console.log("JS: generateSignature");
 	return this.addon.generateSignature(this.callbacks, buffer);
 	}
 
