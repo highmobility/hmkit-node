@@ -11,6 +11,7 @@ describe(`VehicleLocationCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
     expect(response.parse()).toEqual({
+      altitude: expect.any(Number),
       coordinates: {
         latitude: expect.any(Number),
         longitude: expect.any(Number),
