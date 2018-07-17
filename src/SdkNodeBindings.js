@@ -17,8 +17,8 @@ export default class SdkNodeBindings {
       )
     ) {
       const ref = require('../sdk-node-bindings/lib/binding.js');
-	  this.addon = new ref.AddonObj();
-	  return this.addon;
+      this.addon = new ref.AddonObj();
+      return this.addon;
     } else if (process.platform === 'darwin') {
       const ref = require('../bindings/macos');
       this.addon = new ref.AddonObj();
@@ -38,55 +38,45 @@ export default class SdkNodeBindings {
   }
 
 	callbacks = {
-		blah: function() { console.log("JS: blah"); },
-		foo: function() { console.log("JS: foo"); },
+		blah: () => {
+		  console.log('JS: blah');
+    },
+		foo: () => {
+		  console.log('JS: foo');
+    },
 
-		getser: () => {
-		//console.log("JS: get Serial");
-		return hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer; },
+		getser: () =>
+      hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer,
 
-		getpriv: () => {
-		//console.log("JS: get private key");
-		return base64ToUint8(this.hmkit.clientPrivateKey).buffer; },
+		getpriv: () => base64ToUint8(this.hmkit.clientPrivateKey).buffer,
 
-		sendtele: (issuer, serial, data) => {
-			//console.log("JS: sendtele");
-			this.hmkit.telematics.onTelematicsSendData(issuer, serial, data);
-			//console.log("JS: End sendtele");
-		},
+		sendtele: (issuer, serial, data) =>
+      this.hmkit.telematics.onTelematicsSendData(issuer, serial, data),
 
-		incmtele: (serial, id, data) => {
-			//console.log("JS: incmtele");
-			this.hmkit.telematics.onTelematicsCommandIncoming(serial, id, data);
-			//console.log("JS: End incmtele");
-		},
+		incmtele: (serial, id, data) =>
+      this.hmkit.telematics.onTelematicsCommandIncoming(serial, id, data),
 
 		getac: serial => {
-			//console.log("JS: get access certificate");
 			const accessCert = this.hmkit.certificates.get(
-			uint8ArrayToHex(new Uint8Array(serial)).toUpperCase());
+			  uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
+      );
 			return accessCert ? accessCert.bytes.buffer : null;
-			}
+    }
 	};
 
-    telematicsDataReceived(buffer){
-//			console.log("JS: telematicsDataReceived");
-      this.addon.telematicsDataReceived(this.callbacks, buffer);
+  telematicsDataReceived(buffer) {
+    this.addon.telematicsDataReceived(this.callbacks, buffer);
 	}
 
-    sendTelematicsCommand(serial, nounce, buffer){
-//			console.log("JS: sendTelematicsCommand");
-	this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
+  sendTelematicsCommand(serial, nounce, buffer) {
+	  this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
 	}
 
-    generateSignature(buffer){
-//			console.log("JS: generateSignature");
-	return this.addon.generateSignature(this.callbacks, buffer);
+  generateSignature(buffer) {
+	  return this.addon.generateSignature(this.callbacks, buffer);
 	}
 
 	clearBindings() {
-	//	console.log("**** clearBindings ******");
 		this.addon.cleanup(() => this);
 	}
-
 }
