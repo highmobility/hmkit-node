@@ -37,46 +37,46 @@ export default class SdkNodeBindings {
     throw new Error('Native "hmkit" addon missing for your platform.');
   }
 
-	callbacks = {
-		blah: () => {
-		  console.log('JS: blah');
+  callbacks = {
+    blah: () => {
+      console.log('JS: blah');
     },
-		foo: () => {
-		  console.log('JS: foo');
+    foo: () => {
+      console.log('JS: foo');
     },
 
-		getser: () =>
+    getser: () =>
       hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer,
 
-		getpriv: () => base64ToUint8(this.hmkit.clientPrivateKey).buffer,
+    getpriv: () => base64ToUint8(this.hmkit.clientPrivateKey).buffer,
 
-		sendtele: (issuer, serial, data) =>
+    sendtele: (issuer, serial, data) =>
       this.hmkit.telematics.onTelematicsSendData(issuer, serial, data),
 
-		incmtele: (serial, id, data) =>
+    incmtele: (serial, id, data) =>
       this.hmkit.telematics.onTelematicsCommandIncoming(serial, id, data),
 
-		getac: serial => {
-			const accessCert = this.hmkit.certificates.get(
-			  uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
+    getac: serial => {
+      const accessCert = this.hmkit.certificates.get(
+        uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
       );
-			return accessCert ? accessCert.bytes.buffer : null;
+      return accessCert ? accessCert.bytes.buffer : null;
     }
-	};
+  };
 
   telematicsDataReceived(buffer) {
     this.addon.telematicsDataReceived(this.callbacks, buffer);
-	}
+  }
 
   sendTelematicsCommand(serial, nounce, buffer) {
-	  this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
-	}
+    this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
+  }
 
   generateSignature(buffer) {
-	  return this.addon.generateSignature(this.callbacks, buffer);
-	}
+    return this.addon.generateSignature(this.callbacks, buffer);
+  }
 
-	clearBindings() {
-		this.addon.cleanup(() => this);
-	}
+  clearBindings() {
+    this.addon.cleanup(() => this);
+  }
 }
