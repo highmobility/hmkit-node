@@ -7,3 +7,4 @@ npm-debug.log
 /lib
 /.vscode
 /test/memory/*.heapsnapshot
+.idea
