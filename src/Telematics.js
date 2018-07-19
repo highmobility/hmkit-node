@@ -38,7 +38,7 @@ export default class Telematics {
       })
       .then(
         res => res.body.response_data,
-        (err) => {
+        err => {
           this.promise = null;
           throw err;
         }
