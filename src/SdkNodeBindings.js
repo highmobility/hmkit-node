@@ -3,7 +3,6 @@ import path from 'path';
 import { base64ToUint8, uint8ArrayToHex, hexToUint8Array } from './encoding';
 
 export default class SdkNodeBindings {
-
   constructor(hmkit) {
     this.hmkit = hmkit;
     this.loadNativeAddOn();
@@ -61,7 +60,7 @@ export default class SdkNodeBindings {
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
       );
       return accessCert ? accessCert.bytes.buffer : null;
-    }
+    },
   };
 
   telematicsDataReceived(buffer) {

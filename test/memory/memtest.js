@@ -17,11 +17,10 @@ class TestClass {
     this.data = `x`.repeat(10000000);
     this.setBindings();
     this.useBindings();
-//	this.clearBindings();
+    //	this.clearBindings();
   }
 
   setBindings() {
-
     if (
       require('fs').existsSync(
         require('path').resolve(
@@ -33,7 +32,7 @@ class TestClass {
           'binding.js'
         )
       )
-     ) {
+    ) {
       const ref = require('../../sdk-node-bindings/lib/binding.js');
       this.addon = new ref.AddonObj();
     } else if (process.platform === 'darwin') {
@@ -47,9 +46,9 @@ class TestClass {
       this.addon = new ref.AddonObj();
     }
 
-//    Object.getOwnPropertyNames(bindings).forEach(method => {
-//      this[method] = bindings[method];
-//   });
+    //    Object.getOwnPropertyNames(bindings).forEach(method => {
+    //      this[method] = bindings[method];
+    //   });
   }
 
   useBindings() {
