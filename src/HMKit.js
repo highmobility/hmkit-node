@@ -16,6 +16,11 @@ export default class HMKit {
     this.clientCertificate = new ClientCertificate(
       base64ToUint8(clientCertificate)
     );
+
+    if (!clientPrivateKey || clientPrivateKey.length !== 44) {
+      throw new Error('Invalid client private key.');
+    }
+
     this.clientPrivateKey = clientPrivateKey;
     this.issuer = 'tmcs';
 
