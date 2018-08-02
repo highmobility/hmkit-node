@@ -34,4 +34,54 @@ describe(`WindscreenCommand`, () => {
       })
     );
   });
+
+  it(`should return correct damage byte`, () => {
+    expect(
+      hmkit.commands.WindscreenCommand.getDamageByte(
+        'impact_but_no_damage_detected'
+      )
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getDamageByte(
+        'damage_smaller_than_1_inch'
+      )
+    ).toEqual(0x02);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getDamageByte(
+        'damage_larger_than_1_inch'
+      )
+    ).toEqual(0x03);
+
+    expect(hmkit.commands.WindscreenCommand.getDamageByte('u_wot_m8')).toEqual(
+      0x00
+    );
+  });
+
+  it(`should return correct replacement byte`, () => {
+    expect(
+      hmkit.commands.WindscreenCommand.getNeedReplacementByte('no')
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getNeedReplacementByte(
+        'no_replacement_needed'
+      )
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getNeedReplacementByte('yes')
+    ).toEqual(0x02);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getNeedReplacementByte(
+        'replacement_needed'
+      )
+    ).toEqual(0x02);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getNeedReplacementByte('u_wot_m8')
+    ).toEqual(0x00);
+  });
 });

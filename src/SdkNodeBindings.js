@@ -37,13 +37,6 @@ export default class SdkNodeBindings {
   }
 
   callbacks = {
-    blah: () => {
-      console.log('JS: blah');
-    },
-    foo: () => {
-      console.log('JS: foo');
-    },
-
     getser: () =>
       hexToUint8Array(this.hmkit.clientCertificate.getSerial()).buffer,
 

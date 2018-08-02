@@ -101,7 +101,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        springRates: expect.objectContaining([
+        springRates: expect.arrayContaining([
           {
             axle: 'front_axle',
             springRate: -26,
@@ -122,7 +122,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        springRates: expect.objectContaining([
+        springRates: expect.arrayContaining([
           {
             axle: 'rear_axle',
             springRate: 27,
@@ -152,7 +152,7 @@ describe(`ChassisSettingsCommand`, () => {
     );
   });
 
-  it.only(`should fail to set invalid driving mode`, async () => {
+  it(`should fail to set invalid driving mode`, async () => {
     let res;
     try {
       hmkit.telematics.sendCommand(

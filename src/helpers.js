@@ -127,3 +127,7 @@ export function activeInactiveDecoder() {
     0x01: 'active',
   });
 }
+
+export function percentToInteger(value: Number) {
+  return value > 0.0 && value < 1.0 ? value * 100 : value;
+}

@@ -8,29 +8,22 @@ export default class Property {
   }
 
   getValue = () => {
-    if (this.subProperties.length > 0) {
-      if (this.subPropertiesIdentifierNamespace !== null) {
-        const value = [];
-
-        this.subProperties.forEach(subProperty => {
-          const subPropertyValue = subProperty.getValue();
-
-          if (subPropertyValue !== undefined && subPropertyValue !== null) {
-            value.push({
-              [this.subPropertiesIdentifierNamespace]:
-                subProperty.identifierValue,
-              ...subPropertyValue,
-            });
-          }
-        });
-
-        return value;
-      }
-
-      const value = {};
+    if (
+      this.subProperties.length > 0 &&
+      this.subPropertiesIdentifierNamespace !== null
+    ) {
+      const value = [];
 
       this.subProperties.forEach(subProperty => {
-        value[subProperty.namespace] = subProperty.getValue();
+        const subPropertyValue = subProperty.getValue();
+
+        if (subPropertyValue !== undefined && subPropertyValue !== null) {
+          value.push({
+            [this.subPropertiesIdentifierNamespace]:
+              subProperty.identifierValue,
+            ...subPropertyValue,
+          });
+        }
       });
 
       return value;
@@ -66,11 +59,6 @@ export default class Property {
 
   setDecoder = (decoder: Function) => {
     this.decoder = decoder;
-    return this;
-  };
-
-  setSubProperty = (subProperty: Property) => {
-    this.subProperties.push(subProperty);
     return this;
   };
 

@@ -72,4 +72,18 @@ describe(`DoorLocksResponse`, () => {
       ],
     });
   });
+
+  it(`should decode door data correctly`, () => {
+    const doorLocksResponse = new DoorLocksResponse([]);
+
+    expect(doorLocksResponse.doorDecoder([0x00, 0x00])).toEqual({
+      doorPosition: 'closed',
+      doorLock: 'unlocked',
+    });
+
+    expect(doorLocksResponse.doorDecoder([0x01, 0x01])).toEqual({
+      doorPosition: 'open',
+      doorLock: 'locked',
+    });
+  });
 });

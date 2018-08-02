@@ -2,8 +2,7 @@ import AccessCertificate from '../src/AccessCertificate';
 import Permissions from '../src/Permissions';
 import { base64ToUint8, hexToUint8Array } from '../src/encoding';
 
-const accessCertificateBase64 =
-  'AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgIHDAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==';
+const accessCertificateBase64 = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgIHDAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
 const accessCertificateBytes = base64ToUint8(accessCertificateBase64);
 
 describe(`AccessCertificate`, () => {
@@ -32,6 +31,7 @@ describe(`AccessCertificate`, () => {
   it(`should return correct vehicle serial number`, () => {
     const accessCertificate = new AccessCertificate(accessCertificateBytes);
     expect(accessCertificate.getVehicleSerial()).toBe('13038240E6429AD779');
+    expect(accessCertificate.getSerial()).toBe('13038240E6429AD779');
   });
 
   it(`should return correct vehicle public key`, () => {
@@ -53,6 +53,71 @@ describe(`AccessCertificate`, () => {
 
     // This is dependant on the "executor's" timeZone (i.e. fails, by 1 hour, if not run in EEST)
     expect(startDate.getTime()).toBe(1520417520000);
+  });
+
+  it(`should throw error on invalid date validation`, () => {
+    const invalidYearCert = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6ZAIHDAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
+    const invalidMonthCert = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EjwHDAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
+    const invalidDayCert = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgI8DAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
+    const invalidHourCert = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgIHPAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
+    const invalidMinCert = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgIHDDwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
+
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(invalidYearCert)
+      );
+      console.log(accessCertificate.getValidityStartDate());
+    }).toThrow();
+
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(invalidMonthCert)
+      );
+      console.log(accessCertificate.getValidityStartDate());
+    }).toThrow();
+
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(invalidDayCert)
+      );
+      console.log(accessCertificate.getValidityStartDate());
+    }).toThrow();
+
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(invalidHourCert)
+      );
+      console.log(accessCertificate.getValidityStartDate());
+    }).toThrow();
+
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(invalidMinCert)
+      );
+      console.log(accessCertificate.getValidityStartDate());
+    }).toThrow();
+  });
+
+  it(`should throw error on invalid start date`, () => {
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(
+          `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6ZQIHDAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`
+        )
+      );
+      accessCertificate.getValidityStartDate();
+    }).toThrow();
+  });
+
+  it(`should throw error on invalid end date`, () => {
+    expect(() => {
+      const accessCertificate = new AccessCertificate(
+        base64ToUint8(
+          `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgIHDAxkAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`
+        )
+      );
+      accessCertificate.getValidityEndDate();
+    }).toThrow();
   });
 
   it(`should return correct validity end date`, () => {

@@ -15,4 +15,15 @@ describe(`VideoHandoverCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
+
+  it(`should hand video over to headunit with default values`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.VideoHandoverCommand.handover(
+        'https://www.youtube.com/watch?v=yWVB7U6mX2Y'
+      )
+    );
+
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+  });
 });

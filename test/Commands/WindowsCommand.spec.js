@@ -128,4 +128,94 @@ describe(`WindowsCommand`, () => {
       ]),
     });
   });
+
+  it(`should get correct window position byte`, () => {
+    expect(
+      hmkit.commands.WindowsCommand.getWindowPositionByte('front_right')
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowPositionByte('rear_right')
+    ).toEqual(0x02);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowPositionByte('rear_left')
+    ).toEqual(0x03);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowPositionByte('hatch')
+    ).toEqual(0x04);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowPositionByte('front_left')
+    ).toEqual(0x00);
+  });
+
+  it(`should build correct windows bytes`, () => {
+    expect(
+      hmkit.commands.WindowsCommand.getWindowsBytes([
+        {
+          windowPosition: 'front_right',
+          windowState: 'close',
+        },
+        {
+          windowPosition: 'rear_right',
+          windowState: 'close',
+        },
+        {
+          windowPosition: 'front_left',
+          windowState: 'close',
+        },
+        {
+          windowPosition: 'rear_left',
+          windowState: 'close',
+        },
+      ])
+    ).toEqual([
+      0x01,
+      0x00,
+      0x02,
+      0x01,
+      0x00,
+      0x01,
+      0x00,
+      0x02,
+      0x02,
+      0x00,
+      0x01,
+      0x00,
+      0x02,
+      0x00,
+      0x00,
+      0x01,
+      0x00,
+      0x02,
+      0x03,
+      0x00,
+    ]);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowsBytes([
+        {
+          windowPosition: 'front_right',
+          windowState: 'close',
+        },
+        {
+          windowState: 'close',
+        },
+      ])
+    ).toEqual([0x01, 0x00, 0x02, 0x01, 0x00]);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowsBytes([
+        {
+          windowPosition: 'front_right',
+          windowState: 'close',
+        },
+        {
+          windowPosition: 'rear_right',
+        },
+      ])
+    ).toEqual([0x01, 0x00, 0x02, 0x01, 0x00]);
+  });
 });

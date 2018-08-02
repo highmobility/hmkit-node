@@ -128,4 +128,10 @@ describe(`HomeChargerCommand`, () => {
       })
     );
   });
+
+  it(`should build charge command correctly`, () => {
+    expect(
+      hmkit.commands.HomeChargerCommand.setChargeCurrent(5.0).command
+    ).toEqual([0, 96, 2, 64, 160, 0, 0]);
+  });
 });

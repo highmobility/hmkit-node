@@ -14,4 +14,10 @@ describe(`AccessCertificatesManager`, () => {
     );
     expect(accessCertificate).toBeInstanceOf(AccessCertificate);
   });
+
+  it(`should throw error on failed access certification download`, async () => {
+    expect(
+      hmkit.downloadAccessCertificate('pleasefailInstantly')
+    ).rejects.toEqual(new Error('Failed to fetch access certificate.'));
+  });
 });
