@@ -10,6 +10,8 @@ const GC_TICKS = 2000;
 
 class CertCache {
   constructor() {
+    this.cacheTTL = CACHE_TTL;
+    this.GCTicks = GC_TICKS;
     this.GCCounter = 0;
     this.storePath = `${path.resolve(
       __dirname,
@@ -57,11 +59,10 @@ class CertCache {
   }
 
   tryCacheGC() {
-    if (this.GCCounter >= GC_TICKS) {
+    if (this.GCCounter >= this.GCTicks) {
       const currentTimestamp = Date.now();
-
       const newStore = Object.entries(this.getStore())
-        .filter(([, { t }]) => t + CACHE_TTL > currentTimestamp)
+        .filter(([, { t }]) => t + this.cacheTTL > currentTimestamp)
         .reduce(
           (store, [key, value]) => ({
             ...store,
@@ -95,6 +96,21 @@ class CertCache {
 
   setRawStore(data) {
     fs.writeFileSync(this.storePath, data);
+  }
+
+  setCacheTTL(cacheTTL) {
+    this.cacheTTL = cacheTTL;
+    return this;
+  }
+
+  setGcTicks(GCTicks) {
+    this.GCTicks = GCTicks;
+    return this;
+  }
+
+  resetGcCounter() {
+    this.GCCounter = 0;
+    return this;
   }
 
   destroy() {

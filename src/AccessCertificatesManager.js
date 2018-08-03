@@ -22,7 +22,10 @@ export default class AccessCertificatesManager {
 
     const { appIdentifier } = this.hmkit.clientCertificate;
     const certFromCache = this.certCache.get(appIdentifier);
-    if (!!certFromCache) return certFromCache;
+    if (!!certFromCache) {
+      this.accessCertificate = certFromCache;
+      return certFromCache;
+    }
 
     const byteSignature = this.hmkit.crypto.generateSignature(
       new Uint8Array(Buffer.from(accessToken)).buffer
@@ -54,6 +57,7 @@ export default class AccessCertificatesManager {
       rawAccessCertificate
     );
 
+    this.accessCertificate = accessCertificate;
     return accessCertificate;
   };
 }
