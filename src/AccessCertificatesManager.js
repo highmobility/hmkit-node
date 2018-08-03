@@ -1,26 +1,36 @@
 import AccessCertificate from './AccessCertificate';
+import CertCache from './CertCache';
 import { base64ToUint8, byteArrayToBase64 } from './encoding';
 
 export default class AccessCertificatesManager {
   constructor(hmkit) {
     this.hmkit = hmkit;
+    this.certCache = CertCache;
+    this.accessCertificate = null;
   }
 
-  get(serial: string) {
-    const base64AccessCertificate = this.hmkit.storage.get(
-      'access_certificates',
-      serial
-    );
+  get() {
+    const { appIdentifier } = this.hmkit.clientCertificate;
 
-    if (!base64AccessCertificate) return null;
-
-    return new AccessCertificate(base64ToUint8(base64AccessCertificate));
+    return !!this.accessCertificate
+      ? this.accessCertificate
+      : this.certCache.get(appIdentifier);
   }
 
   download = async accessToken => {
+    if (!!this.accessCertificate) return this.accessCertificate;
+
+    const { appIdentifier } = this.hmkit.clientCertificate;
+    const certFromCache = this.certCache.get(appIdentifier);
+    if (!!certFromCache) {
+      this.accessCertificate = certFromCache;
+      return certFromCache;
+    }
+
     const byteSignature = this.hmkit.crypto.generateSignature(
       new Uint8Array(Buffer.from(accessToken)).buffer
     );
+
     const signature = byteArrayToBase64(byteSignature);
 
     const rawAccessCertificate = await this.hmkit.apiClient
@@ -42,12 +52,12 @@ export default class AccessCertificatesManager {
       base64ToUint8(rawAccessCertificate)
     );
 
-    this.hmkit.storage.add(
-      'access_certificates',
-      accessCertificate.getVehicleSerial(),
+    this.certCache.set(
+      this.hmkit.clientCertificate.appIdentifier,
       rawAccessCertificate
     );
 
+    this.accessCertificate = accessCertificate;
     return accessCertificate;
   };
 }
