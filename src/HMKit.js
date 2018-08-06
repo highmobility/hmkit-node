@@ -23,7 +23,7 @@ export default class HMKit {
     this.clientPrivateKey = clientPrivateKey;
     this.issuer = 'tmcs';
 
-    this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');
+    this.api = new Api('https://high-mobility.com/hm_cloud/api/v1/');
     this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);

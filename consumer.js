@@ -8,9 +8,7 @@ const accessToken = config.accessToken;
 const hmkit = new HMKit(clientCertificate, clientPrivateKey).staging();
 
 async function app() {
-  const accessCertificate = await hmkit.downloadAccessCertificate(
-    accessToken
-  );
+  const accessCertificate = await hmkit.downloadAccessCertificate(accessToken);
 
   const response = await hmkit.telematics.sendCommand(
     accessCertificate.getVehicleSerial(),
