@@ -2,7 +2,6 @@ import SdkNodeBindings from './SdkNodeBindings';
 import { base64ToUint8 } from './encoding';
 import Commands from './Commands';
 import Telematics from './Telematics';
-import Storage from './Storage';
 import ClientCertificate from './ClientCertificate';
 import AccessCertificatesManager from './AccessCertificatesManager';
 import Api from './Api';
@@ -16,14 +15,18 @@ export default class HMKit {
     this.clientCertificate = new ClientCertificate(
       base64ToUint8(clientCertificate)
     );
+
+    if (!clientPrivateKey || clientPrivateKey.length !== 44) {
+      throw new Error('Invalid client private key.');
+    }
+
     this.clientPrivateKey = clientPrivateKey;
     this.issuer = 'tmcs';
 
-    this.api = new Api('https://developers.high-mobility.com/hm_cloud/api/v1/');
+    this.api = new Api('https://high-mobility.com/hm_cloud/api/v1/');
     this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
-    this.storage = new Storage(this);
     this.crypto = new SdkNodeBindings(this);
     this.certificates = new AccessCertificatesManager(this);
   }
@@ -34,6 +37,6 @@ export default class HMKit {
   }
 
   downloadAccessCertificate(...args) {
-    return this.certificates.download.apply(this, args);
+    return this.certificates.download(...args);
   }
 }

@@ -17,7 +17,16 @@ describe(`HonkHornFlashLightsCommand`, () => {
   it(`should flash the lights thrice`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.HonkHornFlashLightsCommand.honkHornFlashLights(0, 3)
+      hmkit.commands.HonkHornFlashLightsCommand.honkHornFlashLights(null, 3)
+    );
+
+    expect(response.parse()).toBeInstanceOf(EmptyResponse);
+  });
+
+  it(`should honk for 3 seconds`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HonkHornFlashLightsCommand.honkHornFlashLights(3, null)
     );
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);

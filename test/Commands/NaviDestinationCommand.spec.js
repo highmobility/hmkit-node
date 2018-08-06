@@ -38,4 +38,23 @@ describe(`NaviDestinationCommand`, () => {
       destinationName: 'Narnia',
     });
   });
+
+  it('should set navi destination without name', async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.NaviDestinationCommand.setDestination(
+        -52.520008,
+        -13.404954
+      )
+    );
+
+    expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
+    expect(response.parse()).toEqual({
+      coordinates: {
+        latitude: -52.520008,
+        longitude: -13.404954,
+      },
+      destinationName: expect.any(String),
+    });
+  });
 });

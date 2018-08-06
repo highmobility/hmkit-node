@@ -12,35 +12,25 @@ describe(`CapabilitiesCommand`, () => {
     expect(response.parse()).toBeInstanceOf(CapabilitiesResponse);
   });
 
-  it(`should throw error on invalid length data`, async () => {
+  it(`should ignore invalid properties`, async () => {
     const invalidResponseBytes = new Uint8Array(
-      '0,16,1,22,0,73,1,1,0,35,1,1,0,36,2,1,1,0,51,1,1,0,32,1,1'.split(',')
+      `0,16,1,1,0,5,0,32,0,1,2,1,0,5,0,33,0,1,2,1,0,6,0,35,0,1,2,3,1,0,8,0,36,0,1,2,3,4,5,6,1,0,5,0,37,0,1,2,1,0,6,0,38,0,1,2,3,1,0,7,0,39,0,1,2,3,4,1,0,5,0,40,0,1,2,1,0,3,0,41,2,1,0,4,0,48,0,1,1,0,5,0,49,0,1,2`.split(
+        ','
+      )
     );
+
     const capabilitiesResponse = new CapabilitiesResponse(invalidResponseBytes);
-    console.log('capabilitiesResponse', capabilitiesResponse);
-    expect(capabilitiesResponse.error).toBeDefined();
-  });
 
-  it(`should throw error on invalid capability data`, async () => {
-    // Invalid capability configuration length
-    const invalidBytes1 = new Uint8Array(
-      '0,16,1,5,0,73,2,1,0,35,1,1,0,36,2,1,1,0,51,1,1,0,32,1,1'.split(',')
-    );
-    const invalidResponse1 = new CapabilitiesResponse(invalidBytes1);
-    expect(invalidResponse1.error).toBeDefined();
+    expect(
+      capabilitiesResponse.capabilities.find(
+        c => c.capabilityIdentifier === 'rooftop_control'
+      )
+    ).toBeUndefined();
 
-    // Invalid capability lsb
-    const invalidBytes2 = new Uint8Array(
-      '0,16,1,5,0,250,1,1,0,35,1,1,0,36,2,1,1,0,51,1,1,0,32,1,1'.split(',')
-    );
-    const invalidResponse2 = new CapabilitiesResponse(invalidBytes2);
-    expect(invalidResponse2.error).toBeDefined();
-
-    // Invalid capability availability
-    const invalidBytes3 = new Uint8Array(
-      '0,16,1,5,0,73,1,5,0,35,1,5,0,36,2,1,1,0,51,1,1,0,32,1,1'.split(',')
-    );
-    const invalidResponse3 = new CapabilitiesResponse(invalidBytes3);
-    expect(invalidResponse3.error).toBeDefined();
+    expect(
+      capabilitiesResponse.capabilities.find(
+        c => c.capabilityIdentifier === 'climate'
+      )
+    ).toBeDefined();
   });
 });

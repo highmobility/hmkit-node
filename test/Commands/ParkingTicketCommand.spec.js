@@ -53,4 +53,24 @@ describe(`ParkingTicketCommand`, () => {
       ticketEndTime: new Date(Date.UTC(2018, 1, 17, 12, 5, 2)),
     });
   });
+
+  it('should start parking without end time', async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ParkingTicketCommand.start(
+        'Berlin Parking',
+        '6489423333asd',
+        new Date(Date.UTC(2018, 1, 14, 18, 30, 1))
+      )
+    );
+
+    expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
+    expect(response.parse()).toEqual({
+      parkingTicketState: 'started',
+      operatorName: 'Berlin Parking',
+      operatorTicketID: '6489423333asd',
+      ticketStartTime: new Date(Date.UTC(2018, 1, 14, 18, 30, 1)),
+      ticketEndTime: expect.any(Date),
+    });
+  });
 });

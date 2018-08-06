@@ -53,5 +53,19 @@ describe(`LightsCommand`, () => {
         ambientLight: expect.any(String),
       })
     );
+
+    const response3 = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.LightsCommand.control(null, null, 'active', '#ffffff')
+    );
+    expect(response3.parse()).toBeInstanceOf(LightsResponse);
+    expect(response3.parse()).toEqual(
+      expect.objectContaining({
+        frontExteriorLight: expect.any(String),
+        rearExteriorLight: expect.any(String),
+        interiorLight: 'active',
+        ambientLight: '#ffffff',
+      })
+    );
   });
 });

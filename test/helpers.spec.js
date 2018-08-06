@@ -6,7 +6,7 @@ import {
   matrixZoneDecoder,
   autoHvacDecoder,
   autoHvacTimeDecoder,
-  decimalToHexStringDecoder,
+  percentToInteger,
   progressDecoder,
 } from '../src/helpers';
 
@@ -34,10 +34,13 @@ describe(`helpers`, () => {
       0x02: 'charging',
       0x03: 'charging_complete',
     });
+
     const decodedValue = decoder([0x01]);
 
     expect(typeof decoder).toEqual('function');
     expect(decodedValue).toEqual('plugged_in');
+
+    expect(decoder([])).toBeNull();
   });
 
   it(`should decode date correctly`, () => {
@@ -125,5 +128,10 @@ describe(`helpers`, () => {
       hour: 5,
       minute: 4,
     });
+  });
+
+  it(`should convert percent to integer`, () => {
+    expect(percentToInteger(0.5)).toEqual(50);
+    expect(percentToInteger(20)).toEqual(20);
   });
 });

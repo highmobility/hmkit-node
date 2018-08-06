@@ -1,14 +1,5 @@
 import Command from './Command';
-
-function getByteArray(identifier, value) {
-  if (typeof value !== 'number') return [];
-
-  if (value > 0.0 && value < 1.0) {
-    value = value * 100;
-  }
-
-  return [identifier, 0x00, 0x01, value];
-}
+import { percentToInteger } from '../helpers';
 
 export default class RooftopControlCommand {
   /**
@@ -25,12 +16,16 @@ export default class RooftopControlCommand {
    * @property {Number} position (number) Position from 0 (0%) to 1 (100%).
    */
   static control(dimming: ?number, position: ?number) {
-    return new Command([
-      0x00,
-      0x25,
-      0x02,
-      ...getByteArray(0x01, dimming),
-      ...getByteArray(0x02, position),
-    ]);
+    const dimmingBytes =
+      typeof dimming !== 'number'
+        ? []
+        : [0x01, 0x00, 0x01, percentToInteger(dimming)];
+
+    const positionBytes =
+      typeof position !== 'number'
+        ? []
+        : [0x02, 0x00, 0x01, percentToInteger(position)];
+
+    return new Command([0x00, 0x25, 0x02, ...dimmingBytes, ...positionBytes]);
   }
 }

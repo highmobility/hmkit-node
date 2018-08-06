@@ -18,7 +18,7 @@ describe(`Response`, () => {
     expect(response.bytes()).toEqual([0, 53, 1, 1]);
   });
 
-  it.only(`should return cached version if parse is called multiple times`, () => {
+  it(`should return cached version if parse is called multiple times`, () => {
     const response = new Response(hexToUint8Array('00350101000100'));
     const parsed1 = response.parse();
     const parsed2 = response.parse();
@@ -28,5 +28,15 @@ describe(`Response`, () => {
     expect(parsed2).toEqual({
       ignition: 'engine_off',
     });
+  });
+
+  it(`should return bytes if there is no parser`, () => {
+    const response = new Response([0x00, 0x00, 0x00, 0x00]);
+    expect(response.parse()).toEqual([0x00, 0x00, 0x00, 0x00]);
+  });
+
+  it(`should return null if there is no parser for data`, () => {
+    const response = new Response([0x00, 0x00, 0x00, 0x00]);
+    expect(response.findParser([0x00, 0x00, 0x00, 0x00])).toBeNull();
   });
 });

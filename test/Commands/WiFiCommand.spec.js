@@ -37,6 +37,21 @@ describe(`WiFiCommand`, () => {
     });
   });
 
+  it(`sould connect to a network without password`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WiFiCommand.connectToNetwork('goodNetwork', 'wpa')
+    );
+
+    expect(response.parse()).toBeInstanceOf(WiFiResponse);
+    expect(response.parse()).toEqual({
+      wifiEnabled: 'enabled',
+      networkConnected: 'connected',
+      networkSSID: 'goodNetwork',
+      networkSecurity: 'wpa',
+    });
+  });
+
   it(`should forget network`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,

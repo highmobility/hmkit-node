@@ -47,7 +47,12 @@ export default class WindowsCommand {
       const positionStr = window.windowPosition;
       const stateStr = window.windowState;
 
-      if (positionStr !== null && stateStr !== null) {
+      if (
+        positionStr !== null &&
+        stateStr !== null &&
+        positionStr !== undefined &&
+        stateStr !== undefined
+      ) {
         result = [
           ...result,
           0x01,

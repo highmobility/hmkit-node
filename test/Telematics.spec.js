@@ -10,4 +10,9 @@ describe(`Telematics`, () => {
       )
     ).rejects.toBeInstanceOf(Object);
   });
+
+  it(`should fail to fetch a nonce`, async () => {
+    hmkit.clientCertificate.rawClientCertificate.clientSerial = '';
+    await expect(hmkit.telematics.getNonce()).rejects.toThrow();
+  });
 });

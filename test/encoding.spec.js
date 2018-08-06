@@ -6,6 +6,9 @@ import {
   intToHex,
   asciiToUint8,
   bytesToString,
+  binaryToInt,
+  utfStringToByteArray,
+  decimalToHexArray,
 } from '../src/encoding';
 
 describe(`encoding`, () => {
@@ -145,5 +148,19 @@ describe(`encoding`, () => {
     ];
 
     expect(bytesToString(bytes)).toEqual('Lapik maa on tõde.');
+  });
+
+  it(`should convert binary to int`, () => {
+    expect(binaryToInt('1100')).toEqual(12);
+  });
+
+  it(`should convert string to bytearray`, () => {
+    expect(utfStringToByteArray('asd')).toEqual([97, 115, 100]);
+    expect(utfStringToByteArray('asd', 5)).toEqual([0, 0, 97, 115, 100]);
+  });
+
+  it(`should convert decimal to hex array`, () => {
+    expect(decimalToHexArray(10)).toEqual([0x0a]);
+    expect(decimalToHexArray(10, 2)).toEqual([0x00, 0x0a]);
   });
 });
