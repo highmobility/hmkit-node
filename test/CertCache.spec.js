@@ -13,15 +13,29 @@ describe(`CertCache`, () => {
   it(`should return empty object when cached cert does not exist`, () => {
     expect(() => {
       hmkit.certificates.certCache.destroy();
-      hmkit.certificates.certCache.set('test_key', 'test_value');
+      hmkit.certificates.certCache.set(
+        'app_id1',
+        'vehicleSerial1',
+        'accessToken1',
+        'cert1'
+      );
     }).not.toThrow();
   });
 
   it(`should throw invalid json error`, () => {
     expect(() => {
       hmkit.certificates.certCache.destroy();
-      hmkit.certificates.certCache.setRawStore('test_key:test_value');
-      hmkit.certificates.certCache.get('test_key');
+      hmkit.certificates.certCache.setRawStore('invalidStoreData');
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1');
+    }).toThrow();
+
+    expect(() => {
+      hmkit.certificates.certCache.destroy();
+      hmkit.certificates.certCache.setRawStore('invalidStoreData');
+      hmkit.certificates.certCache.getByVehicleSerial(
+        'appId1',
+        'vehicleSerial1'
+      );
     }).toThrow();
   });
 
@@ -40,27 +54,37 @@ describe(`CertCache`, () => {
       .resetGcCounter();
 
     hmkit.certificates.certCache.setRawStore(
-      JSON.stringify({
-        appId1: {
+      JSON.stringify([
+        {
+          ai: 'appId1',
+          vs: 'vehicleSerial1',
+          at: 'accessToken1',
           c: 'cert1',
           t: Date.now() + 5000,
         },
-        appId2: {
+        {
+          ai: 'appId2',
+          vs: 'vehicleSerial2',
+          at: 'accessToken2',
           c: 'cert2',
           t: Date.now() - 5000,
         },
-      })
+      ])
     );
 
-    expect(hmkit.certificates.certCache.get('appId1')).toBeInstanceOf(
-      AccessCertificate
-    );
-    expect(hmkit.certificates.certCache.get('appId2')).toBeInstanceOf(
-      AccessCertificate
-    );
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
+    ).toBeInstanceOf(AccessCertificate);
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId2', 'accessToken2')
+    ).toBeInstanceOf(AccessCertificate);
 
-    expect(hmkit.certificates.certCache.get('appId1')).toBeNull();
-    expect(hmkit.certificates.certCache.get('appId2')).toBeNull();
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
+    ).toBeNull();
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId2', 'accessToken2')
+    ).toBeNull();
 
     hmkit.certificates.certCache
       .setGcTicks(2)
@@ -70,32 +94,50 @@ describe(`CertCache`, () => {
     const time = Date.now() + 5000;
 
     hmkit.certificates.certCache.setRawStore(
-      JSON.stringify({
-        appId1: {
+      JSON.stringify([
+        {
+          ai: 'appId1',
+          vs: 'vehicleSerial1',
+          at: 'accessToken1',
           c: 'cert1',
           t: time,
         },
-        appId2: {
+        {
+          ai: 'appId2',
+          vs: 'vehicleSerial2',
+          at: 'accessToken2',
           c: 'cert2',
           t: time,
         },
-      })
+      ])
     );
 
-    expect(hmkit.certificates.certCache.get('appId1')).toBeInstanceOf(
-      AccessCertificate
-    );
-    expect(hmkit.certificates.certCache.get('appId1')).toBeInstanceOf(
-      AccessCertificate
-    );
-    expect(hmkit.certificates.certCache.get('appId1')).toBeNull();
-    expect(hmkit.certificates.certCache.get('appId2')).toBeInstanceOf(
-      AccessCertificate
-    );
-    expect(hmkit.certificates.certCache.get('appId1')).toBeNull();
-    expect(hmkit.certificates.certCache.get('appId2')).toBeInstanceOf(
-      AccessCertificate
-    );
-    expect(hmkit.certificates.certCache.get('appId2')).toBeNull();
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
+    ).toBeInstanceOf(AccessCertificate);
+
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
+    ).toBeInstanceOf(AccessCertificate);
+
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
+    ).toBeNull();
+
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId2', 'accessToken2')
+    ).toBeInstanceOf(AccessCertificate);
+
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
+    ).toBeNull();
+
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId2', 'accessToken2')
+    ).toBeInstanceOf(AccessCertificate);
+
+    expect(
+      hmkit.certificates.certCache.getByAccessToken('appId2', 'accessToken2')
+    ).toBeNull();
   });
 });

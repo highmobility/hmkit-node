@@ -9,19 +9,23 @@ export default class AccessCertificatesManager {
     this.accessCertificate = null;
   }
 
-  get() {
+  get(vehicleSerial) {
     const { appIdentifier } = this.hmkit.clientCertificate;
 
     return !!this.accessCertificate
       ? this.accessCertificate
-      : this.certCache.get(appIdentifier);
+      : this.certCache.getByVehicleSerial(appIdentifier, vehicleSerial);
   }
 
   download = async accessToken => {
     if (!!this.accessCertificate) return this.accessCertificate;
 
     const { appIdentifier } = this.hmkit.clientCertificate;
-    const certFromCache = this.certCache.get(appIdentifier);
+    const certFromCache = this.certCache.getByAccessToken(
+      appIdentifier,
+      accessToken
+    );
+
     if (!!certFromCache) {
       this.accessCertificate = certFromCache;
       return certFromCache;
@@ -53,7 +57,9 @@ export default class AccessCertificatesManager {
     );
 
     this.certCache.set(
-      this.hmkit.clientCertificate.appIdentifier,
+      appIdentifier,
+      accessCertificate.getSerial(),
+      accessToken,
       rawAccessCertificate
     );
 

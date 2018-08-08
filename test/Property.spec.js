@@ -1,5 +1,4 @@
 import Property from '../src/Property';
-import { switchDecoder } from '../src/helpers';
 
 describe(`Property`, () => {
   it(`should decode data correctly`, () => {

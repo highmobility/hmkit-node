@@ -1,6 +1,6 @@
 import AccessCertificate from '../src/AccessCertificate';
 import Permissions from '../src/Permissions';
-import { base64ToUint8, hexToUint8Array } from '../src/encoding';
+import { base64ToUint8 } from '../src/encoding';
 
 const accessCertificateBase64 = `AXRtY3PiFTHFlT5iYIgTA4JA5kKa13mps2Fpa2Mk6+7VNjx7B/9L1HrmhzWPGuWwS2EMA3vyChZXvB7xM78DVytiH+YDQ1Gt3MAHrFmGcOIjK3UlaKi6EgIHDAwSAwcMDAcQB//9/+//1jq+dn2onSRkXAoB68+K+9+pNTUtYxQbQFYShgyU7V+LFf5EyYg2C8KXnJ+qpcKL1fPSDd1xV/K9zUi04JhFAA==`;
 const accessCertificateBytes = base64ToUint8(accessCertificateBase64);
