@@ -21,70 +21,82 @@ class CertCache {
     )}.json`;
   }
 
-  get(appId) {
-    const store = this.getStore();
-    const existingItem = store[appId];
-
-    if (!existingItem) return null;
-
-    this.GCCounter++;
-
-    this.setStore({
-      ...store,
-      [appId]: {
-        ...existingItem,
-        t: Date.now(),
-      },
-    });
-
-    this.tryCacheGC();
-
-    return new AccessCertificate(base64ToUint8(existingItem.c));
+  getByVehicleSerial(appId, vehicleSerial) {
+    return this.get(({ ai, vs }) => ai === appId && vs === vehicleSerial);
   }
 
-  set(appId, base64Cert) {
+  getByAccessToken(appId, accessToken) {
+    return this.get(({ ai, at }) => ai === appId && at === accessToken);
+  }
+
+  get(filterFunction) {
+    const store = this.getStore();
+    const existingItemIndex = store.findIndex(filterFunction);
+
+    if (existingItemIndex < 0) return null;
+
+    const { c } = this.updateTimestamp(store, existingItemIndex);
+    return new AccessCertificate(base64ToUint8(c));
+  }
+
+  updateTimestamp(store, index) {
+    this.GCCounter++;
+
+    const { ai, vs, at, c } = store[index];
+    const newStore = [...store];
+    const newItem = this.createCacheObject(ai, vs, at, c);
+    newStore.splice(index, 1, newItem);
+
+    this.setStore(newStore);
+    this.tryCacheGC();
+
+    return newItem;
+  }
+
+  set(appId, vehicleSerial, accessToken, base64Cert) {
     this.GCCounter++;
 
     const store = this.getStore();
 
-    this.setStore({
+    this.setStore([
       ...store,
-      [appId]: {
-        c: base64Cert,
-        t: Date.now(),
-      },
-    });
+      this.createCacheObject(appId, vehicleSerial, accessToken, base64Cert),
+    ]);
 
     this.tryCacheGC();
+  }
+
+  createCacheObject(appId, vehicleSerial, accessToken, base64Cert) {
+    return {
+      ai: appId,
+      vs: vehicleSerial,
+      at: accessToken,
+      c: base64Cert,
+      t: Date.now(),
+    };
   }
 
   tryCacheGC() {
     if (this.GCCounter >= this.GCTicks) {
       const currentTimestamp = Date.now();
-      const newStore = Object.entries(this.getStore())
-        .filter(([, { t }]) => t + this.cacheTTL > currentTimestamp)
-        .reduce(
-          (store, [key, value]) => ({
-            ...store,
-            [key]: value,
-          }),
-          {}
-        );
 
-      this.setStore(newStore);
+      this.setStore(
+        this.getStore().filter(({ t }) => t + this.cacheTTL > currentTimestamp)
+      );
       this.GCCounter = 0;
     }
   }
 
   getStore() {
     if (!fs.existsSync(this.storePath)) {
-      return {};
+      return [];
     }
 
     const storeContents = fs.readFileSync(this.storePath, 'utf8');
 
     try {
-      return JSON.parse(storeContents);
+      const store = JSON.parse(storeContents);
+      return Array.isArray(store) ? store : [];
     } catch (e) {
       throw new Error(`Invalid json in file "${this.storePath}"`);
     }
