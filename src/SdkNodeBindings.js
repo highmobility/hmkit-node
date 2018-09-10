@@ -42,12 +42,6 @@ export default class SdkNodeBindings {
 
     getpriv: () => base64ToUint8(this.hmkit.clientPrivateKey).buffer,
 
-    sendtele: (issuer, serial, data) =>
-      this.hmkit.telematics.onTelematicsSendData(issuer, serial, data),
-
-    incmtele: (serial, id, data) =>
-      this.hmkit.telematics.onTelematicsCommandIncoming(serial, id, data),
-
     getac: serial => {
       const accessCert = this.hmkit.certificates.get(
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
@@ -56,12 +50,31 @@ export default class SdkNodeBindings {
     },
   };
 
-  telematicsDataReceived(buffer) {
-    this.addon.telematicsDataReceived(this.callbacks, buffer);
+  telematicsDataReceived(buffer, callback) {
+    return new Promise(resolve => {
+      this.addon.telematicsDataReceived(
+        {
+          ...this.callbacks,
+          incmtele: (serial, id, data) => resolve(callback(serial, id, data)),
+        },
+        buffer
+      );
+    });
   }
 
-  sendTelematicsCommand(serial, nounce, buffer) {
-    this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
+  sendTelematicsCommand(ser, nounce, buffer, callback) {
+    return new Promise(resolve => {
+      this.addon.sendTelematicsCommand(
+        {
+          ...this.callbacks,
+          sendtele: (issuer, serial, data) =>
+            resolve(callback(issuer, serial, data)),
+        },
+        ser,
+        nounce,
+        buffer
+      );
+    });
   }
 
   generateSignature(buffer) {
