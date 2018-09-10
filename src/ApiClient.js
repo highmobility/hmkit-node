@@ -35,7 +35,13 @@ export default class ApiClient {
         })
         .then(resolve)
         .catch(async err => {
-          reject({ response: err, json: await err.json() });
+          const contentType = err.headers.get('content-type');
+
+          if (contentType && contentType.indexOf('application/json') !== -1) {
+            reject({ response: err, json: await err.json() });
+          } else {
+            reject({ response: err, json: await err.text() });
+          }
         });
     });
 }
