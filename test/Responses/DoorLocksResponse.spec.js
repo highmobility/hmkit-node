@@ -6,69 +6,29 @@ describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '00200101000300000001000301000001000302000001000303000002000200000200020100020002020002000203000300020000030002010003000202000300020300'
+        '002001020002000002000201000200020200020002030003000200000300020100030002020003000203000400020000040002010004000202010400020300a20008120a110e360700b4'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
     expect(response.parse()).toEqual({
-      doors: [
-        {
-          doorLocation: 'front_left',
-          doorPosition: 'closed',
-          doorLock: 'unlocked',
-        },
-        {
-          doorLocation: 'front_right',
-          doorPosition: 'closed',
-          doorLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_right',
-          doorPosition: 'closed',
-          doorLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_left',
-          doorPosition: 'closed',
-          doorLock: 'unlocked',
-        },
+      insideLocks: [
+        { doorLocation: 'front_left', lockState: 'unlocked' },
+        { doorLocation: 'front_right', lockState: 'unlocked' },
+        { doorLocation: 'rear_right', lockState: 'unlocked' },
+        { doorLocation: 'rear_left', lockState: 'unlocked' },
       ],
-      insideDoorLocks: [
-        {
-          doorLocation: 'front_left',
-          insideLock: 'unlocked',
-        },
-        {
-          doorLocation: 'front_right',
-          insideLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_right',
-          insideLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_left',
-          insideLock: 'unlocked',
-        },
+      locks: [
+        { doorLocation: 'front_left', lockState: 'unlocked' },
+        { doorLocation: 'front_right', lockState: 'unlocked' },
+        { doorLocation: 'rear_right', lockState: 'unlocked' },
+        { doorLocation: 'rear_left', lockState: 'unlocked' },
       ],
-      outsideDoorLocks: [
-        {
-          doorLocation: 'front_left',
-          outsideLock: 'unlocked',
-        },
-        {
-          doorLocation: 'front_right',
-          outsideLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_right',
-          outsideLock: 'unlocked',
-        },
-        {
-          doorLocation: 'rear_left',
-          outsideLock: 'unlocked',
-        },
+      positions: [
+        { doorLocation: 'front_left', position: 'closed' },
+        { doorLocation: 'front_right', position: 'closed' },
+        { doorLocation: 'rear_right', position: 'open' },
+        { doorLocation: 'rear_left', position: 'closed' },
       ],
     });
   });
@@ -76,14 +36,20 @@ describe(`DoorLocksResponse`, () => {
   it(`should decode door data correctly`, () => {
     const doorLocksResponse = new DoorLocksResponse([]);
 
-    expect(doorLocksResponse.doorDecoder([0x00, 0x00])).toEqual({
-      doorPosition: 'closed',
-      doorLock: 'unlocked',
+    expect(doorLocksResponse.positionDecoder([0x00])).toEqual({
+      position: 'closed',
     });
 
-    expect(doorLocksResponse.doorDecoder([0x01, 0x01])).toEqual({
-      doorPosition: 'open',
-      doorLock: 'locked',
+    expect(doorLocksResponse.positionDecoder([0x01])).toEqual({
+      position: 'open',
+    });
+
+    expect(doorLocksResponse.lockDecoder([0x00])).toEqual({
+      lockState: 'unlocked',
+    });
+
+    expect(doorLocksResponse.lockDecoder([0x01])).toEqual({
+      lockState: 'locked',
     });
   });
 });
