@@ -3,9 +3,15 @@ export default class Property {
     this.identifier = identifier;
     this.namespace = namespace;
     this.value = undefined;
+    this.isArray = false;
     this.subProperties = [];
     this.subPropertiesIdentifierNamespace = null;
   }
+
+  array = () => {
+    this.isArray = true;
+    return this;
+  };
 
   getValue = () => {
     if (
@@ -43,7 +49,14 @@ export default class Property {
       return null;
     }
 
-    this.value = this.decode(data);
+    if (this.isArray) {
+      if (!Array.isArray(this.value)) this.value = [];
+
+      this.value.push(this.decode(data));
+    } else {
+      this.value = this.decode(data);
+    }
+
     return this.value;
   };
 

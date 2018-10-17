@@ -11,22 +11,42 @@ describe(`ChargingCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
+      estimatedRange: expect.any(Number),
+      batteryLevel: expect.any(Number),
       batteryCurrentAC: expect.any(Number),
       batteryCurrentDC: expect.any(Number),
-      batteryLevel: expect.any(Number),
-      chargeLimit: expect.any(Number),
-      chargeMode: expect.any(String),
-      chargePortState: expect.any(String),
-      chargeTimer: {
-        timerType: expect.any(String),
-        time: expect.any(Date),
-      },
       chargerVoltageAC: expect.any(Number),
       chargerVoltageDC: expect.any(Number),
-      chargingRateKW: expect.any(Number),
-      charging: expect.any(String),
-      estimatedRange: expect.any(Number),
+      chargeLimit: expect.any(Number),
       timeToCompleteCharge: expect.any(Number),
+      chargingRateKW: expect.any(Number),
+      chargePortState: expect.any(String),
+      chargeMode: expect.any(String),
+      maxChargingCurrent: expect.any(Number),
+      plugType: expect.any(String),
+      chargingWindowChosen: expect.any(String),
+      departureTimes: expect.arrayContaining([
+        {
+          activeState: expect.any(String),
+          hour: expect.any(Number),
+          minutes: expect.any(Number),
+        },
+      ]),
+      reductionTimes: expect.arrayContaining([
+        {
+          hour: expect.any(Number),
+          minutes: expect.any(Number),
+        },
+      ]),
+      batteryTemperature: expect.any(Number),
+      timers: expect.arrayContaining([
+        {
+          timerType: expect.any(String),
+          date: expect.any(Date),
+        },
+      ]),
+      pluggedIn: expect.any(String),
+      activeState: expect.any(String),
     });
   });
 
@@ -39,7 +59,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        charging: 'charging',
+        activeState: 'charging',
       })
     );
   });
@@ -53,7 +73,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        charging: 'plugged_in',
+        activeState: 'not_charging',
       })
     );
   });
@@ -117,19 +137,39 @@ describe(`ChargingCommand`, () => {
   it(`should set charge timer`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ChargingCommand.setChargeTimer(
-        'preferred_start_time',
-        new Date(Date.UTC(2018, 1, 11, 12, 13, 14))
-      )
+      hmkit.commands.ChargingCommand.setChargeTimers([
+        {
+          timerType: 'preferred_start_time',
+          date: new Date(Date.UTC(2018, 1, 11, 12, 13)),
+        },
+        {
+          timerType: 'preferred_end_time',
+          date: new Date(Date.UTC(2018, 1, 11, 12, 14)),
+        },
+        {
+          timerType: 'departure_time',
+          date: new Date(Date.UTC(2018, 1, 11, 12, 15)),
+        },
+      ])
     );
 
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeTimer: {
-          timerType: 'preferred_start_time',
-          time: new Date(Date.UTC(2018, 1, 11, 12, 13, 14)),
-        },
+        timers: [
+          {
+            timerType: 'preferred_start_time',
+            date: new Date(Date.UTC(2018, 1, 11, 12, 13)),
+          },
+          {
+            timerType: 'preferred_end_time',
+            date: new Date(Date.UTC(2018, 1, 11, 12, 14)),
+          },
+          {
+            timerType: 'departure_time',
+            date: new Date(Date.UTC(2018, 1, 11, 12, 15)),
+          },
+        ],
       })
     );
   });

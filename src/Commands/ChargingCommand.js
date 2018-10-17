@@ -1,8 +1,9 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 import { dateToBytes } from '../encoding';
 import { validate, Joi } from '../validate';
 
-export default class ChargingCommand {
+export default class ChargingCommand extends BaseCommand {
   /**
    * @function getChargeState
    */
@@ -14,14 +15,14 @@ export default class ChargingCommand {
    * @function startCharging
    */
   static startCharging() {
-    return new Command([0x00, 0x23, 0x02, 0x01]);
+    return new Command([0x00, 0x23, 0x12, ...this.buildProperty(0x01, 0x01)]);
   }
 
   /**
    * @function stopCharging
    */
   static stopCharging() {
-    return new Command([0x00, 0x23, 0x02, 0x00]);
+    return new Command([0x00, 0x23, 0x12, ...this.buildProperty(0x01, 0x00)]);
   }
 
   /**
@@ -41,21 +42,21 @@ export default class ChargingCommand {
       },
     ]);
 
-    return new Command([0x00, 0x23, 0x03, limit]);
+    return new Command([0x00, 0x23, 0x13, ...this.buildProperty(0x01, limit)]);
   }
 
   /**
    * @function openChargePort
    */
   static openChargePort() {
-    return new Command([0x00, 0x23, 0x04, 0x01]);
+    return new Command([0x00, 0x23, 0x14, ...this.buildProperty(0x01, 0x01)]);
   }
 
   /**
    * @function closeChargePort
    */
   static closeChargePort() {
-    return new Command([0x00, 0x23, 0x04, 0x00]);
+    return new Command([0x00, 0x23, 0x14, ...this.buildProperty(0x01, 0x00)]);
   }
 
   /**
@@ -80,7 +81,12 @@ export default class ChargingCommand {
       inductive: 0x02,
     };
 
-    return new Command([0x00, 0x23, 0x05, chargeModeOptions[chargeMode]]);
+    return new Command([
+      0x00,
+      0x23,
+      0x15,
+      ...this.buildProperty(0x01, chargeModeOptions[chargeMode]),
+    ]);
   }
 
   /**
@@ -89,22 +95,26 @@ export default class ChargingCommand {
    * @property {String} chargeTimer (string: 'preferred_start_time', 'preferred_end_time', 'departure_time') Charge timer
    * @property {Date} time (date) Time
    */
-  static setChargeTimer(chargeTimer: string, time: Date) {
+  static setChargeTimers(
+    chargeTimers: Array<{ timerType: string, date: Date }>
+  ) {
     const chargeTimerOptions = {
       preferred_start_time: 0x00,
       preferred_end_time: 0x01,
       departure_time: 0x02,
     };
 
-    return new Command([
-      0x00,
-      0x23,
-      0x06,
-      0x0d,
-      0x00,
-      0x09,
-      chargeTimerOptions[chargeTimer],
-      ...dateToBytes(time),
-    ]);
+    const chargeTimerProperties = chargeTimers.reduce(
+      (allTimers, { timerType, date }) =>
+        allTimers.concat(
+          this.buildProperty(0x0d, [
+            chargeTimerOptions[timerType],
+            ...dateToBytes(date),
+          ])
+        ),
+      []
+    );
+
+    return new Command([0x00, 0x23, 0x16, ...chargeTimerProperties]);
   }
 }
