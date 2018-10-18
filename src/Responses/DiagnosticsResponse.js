@@ -19,10 +19,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
    * @property {Number} engineRPM (number) RPM of the Engine
    * @property {Number} fuelLevel (number) Fuel level percentage between 0-1
    * @property {Number} estimatedRange (number) Estimated range
-   * @property {Number} currentFuelConsumption (number) Current fuel consumption formatted in 4-bytes per IEEE 754
-   * @property {Number} averateFuelConsumption (number) Average fuel consumption formatted in 4-bytes per IEEE 754
    * @property {String} washerFluidLevel (string) Washer fluid level
-   * @property {Object} tires (Object) Tires
    * @property {Number} batteryVoltage (number) Battery voltage per IEEE 754 formatting
    * @property {Number} adblueLevel (number) AdBlue level in liters formatted in 4-bytes per IEEE 754
    * @property {Number} distanceSinceReset (number) The distance driven in km since reset
@@ -36,6 +33,10 @@ export default class DiagnosticsResponse extends PropertyResponse {
    * @property {Number} engineTorque (number) Current engine torque percentage between 0-1
    * @property {Number} engineLoad (number) Current engine load percentage between 0-1
    * @property {Number} wheelBasedSpeed (number) The vehicle speed in km/h measured at the wheel base, whereas can be negative
+   * @property {Number} batteryLevel (number) Battery level 0..1 (0 = 0%, 1 = 100%)
+   * @property {Object} tirePressures (Object) Tire pressures [{ location: (string), pressure: (number) }]
+   * @property {Object} tireTemperatures (Object) Tire pressures [{ location: (string), temperature: (number) }]
+   * @property {Object} wheelRpms (Object) Tire pressures [{ location: (string), rpm: (number) }]
    *
    * @example DiagnosticsResponse
     {
@@ -43,41 +44,62 @@ export default class DiagnosticsResponse extends PropertyResponse {
       engineOilTemperature: 18,
       speed: 0,
       engineRPM: 0,
-      fuelLevel: 0.4,
+      fuelLevel: 0.8,
       estimatedRange: 200,
-      currentFuelConsumption: 8.75,
-      averageFuelConsumption: 6.2,
       washerFluidLevel: 'low',
-      tires: [
-        {
-          tirePosition: 'front_left',
-          tirePressure: 2.3,
-          tireTemperature: 40,
-          wheelRPM: 0,
-        },
-        {
-          tirePosition: 'front_right',
-          tirePressure: 2.3,
-          tireTemperature: 40,
-          wheelRPM: 0,
-        },
-        {
-          tirePosition: 'rear_right',
-          tirePressure: 2.3,
-          tireTemperature: 40,
-          wheelRPM: 0,
-        },
-        {
-          tirePosition: 'rear_left',
-          tirePressure: 2.3,
-          tireTemperature: 40,
-          wheelRPM: 0,
-        },
-      ],
       batteryVoltage: 12,
       adblueLevel: 0,
       distanceSinceReset: 0,
       distanceSinceStart: 0,
+      fuelVolume: 0,
+      antiLockBraking: 'inactive',
+      engineCoolantTemperature: 23,
+      engineTotalOperatingHours: 24,
+      engineTotalFuelConsumption: 600,
+      brakeFluidLevel: 'low',
+      engineTorque: 0.2,
+      engineLoad: 0.1,
+      wheelBasedSpeed: 0,
+      batteryLevel: 0.8,
+      tirePressures: [{
+        location: 'front_left',
+        pressure: 2.3
+      }, {
+        location: 'front_right',
+        pressure: 2.3
+      }, {
+        location: 'rear_right',
+        pressure: 2.3
+      }, {
+        location: 'rear_left',
+        pressure: 2.3
+      }],
+      tireTemperatures: [{
+        location: 'front_left',
+        temperature: 40
+      }, {
+        location: 'front_right',
+        temperature: 40
+      }, {
+        location: 'rear_right',
+        temperature: 40
+      }, {
+        location: 'rear_left',
+        temperature: 40
+      }],
+      wheelRpms: [{
+        location: 'front_left',
+        rpm: 0
+      }, {
+        location: 'front_right',
+        rpm: 0
+      }, {
+        location: 'rear_right',
+        rpm: 0
+      }, {
+        location: 'rear_left',
+        rpm: 0
+      }]
     }
    */
   constructor(data: Uint8Array) {
@@ -90,24 +112,12 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x04, 'engineRPM').setDecoder(bytesSum),
       new Property(0x05, 'fuelLevel').setDecoder(progressDecoder),
       new Property(0x06, 'estimatedRange').setDecoder(bytesSum),
-      new Property(0x07, 'currentFuelConsumption').setDecoder(
-        getRoundedIeee754ToBase10(2)
-      ),
-      new Property(0x08, 'averageFuelConsumption').setDecoder(
-        getRoundedIeee754ToBase10(2)
-      ),
       new Property(0x09, 'washerFluidLevel').setDecoder(
         switchDecoder({
           0x00: 'low',
           0x01: 'filled',
         })
       ),
-      new Property(0x0a, 'tires').setOptionalSubProperties('tirePosition', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.tireDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.tireDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.tireDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.tireDecoder),
-      ]),
       new Property(0x0b, 'batteryVoltage').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
@@ -139,18 +149,68 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x15, 'engineTorque').setDecoder(progressDecoder),
       new Property(0x16, 'engineLoad').setDecoder(progressDecoder),
       new Property(0x17, 'wheelBasedSpeed').setDecoder(bytesSum),
+
+      new Property(0x18, 'batteryLevel').setDecoder(progressDecoder),
+
+      new Property(0x1a, 'tirePressures').setOptionalSubProperties('location', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(
+          this.pressureDecoder
+        ),
+        new OptionalProperty(0x01, 'front_right').setDecoder(
+          this.pressureDecoder
+        ),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(
+          this.pressureDecoder
+        ),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(
+          this.pressureDecoder
+        ),
+      ]),
+
+      new Property(0x1b, 'tireTemperatures').setOptionalSubProperties(
+        'location',
+        [
+          new OptionalProperty(0x00, 'front_left').setDecoder(
+            this.temperatureDecoder
+          ),
+          new OptionalProperty(0x01, 'front_right').setDecoder(
+            this.temperatureDecoder
+          ),
+          new OptionalProperty(0x02, 'rear_right').setDecoder(
+            this.temperatureDecoder
+          ),
+          new OptionalProperty(0x03, 'rear_left').setDecoder(
+            this.temperatureDecoder
+          ),
+        ]
+      ),
+
+      new Property(0x1c, 'wheelRpms').setOptionalSubProperties('location', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(this.rpmDecoder),
+        new OptionalProperty(0x01, 'front_right').setDecoder(this.rpmDecoder),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(this.rpmDecoder),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(this.rpmDecoder),
+      ]),
     ];
 
     this.parse(data, properties);
   }
 
-  tireDecoder(bytes: Array<Number>) {
-    const decoder = getRoundedIeee754ToBase10(2);
-
+  pressureDecoder(bytes: Array<Number>) {
     return {
-      tirePressure: decoder(bytes.slice(0, 4)),
-      tireTemperature: decoder(bytes.slice(4, 8)),
-      wheelRPM: bytesSum(bytes.slice(8, 10)),
+      pressure: getRoundedIeee754ToBase10(2)(bytes),
+    };
+  }
+
+  temperatureDecoder(bytes: Array<Number>) {
+    return {
+      temperature: getRoundedIeee754ToBase10(2)(bytes),
+    };
+  }
+
+  rpmDecoder(bytes: Array<Number>) {
+    return {
+      rpm: bytesSum(bytes),
     };
   }
 }
