@@ -6,16 +6,16 @@ describe(`VehicleLocationResponse`, () => {
   it(`should return VehicleLocationResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '003001010008425210e741561bea0200044252147d03000443058000'
+        '003001040010000000004252147b000000004156147b050008000000004252147b0600080000000043058000a20008120a160b071e00b4'
       )
     );
     expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        latitude: 52.516506,
-        longitude: 13.381815,
+        latitude: 52.52,
+        longitude: 13.38,
       },
-      heading: 52.520008,
+      heading: 52.52,
       altitude: 133.5,
     });
   });

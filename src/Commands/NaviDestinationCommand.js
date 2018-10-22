@@ -1,7 +1,9 @@
 import Command from './Command';
-import { base10ToIeee754, intToTwoBytes, stringToBytes } from '../encoding';
+import BaseCommand from './BaseCommand';
 
-export default class NaviDestinationCommand {
+import { base10ToIeee754, stringToBytes } from '../encoding';
+
+export default class NaviDestinationCommand extends BaseCommand {
   /**
    * @function getDestination
    */
@@ -12,8 +14,8 @@ export default class NaviDestinationCommand {
   /**
    * @function setDestination
    *
-   * @property {Number} latitude (number) Latitude in decimal format e.g. 52.520008
-   * @property {Number} longitude (number) Longitude in decimal format e.g. 13.404954
+   * @property {Number} latitude (number) Latitude in decimal format e.g. 52.52
+   * @property {Number} longitude (number) Longitude in decimal format e.g. 13.42
    * @property {String} destinationName (string) destination name
    */
   static setDestination(
@@ -21,24 +23,20 @@ export default class NaviDestinationCommand {
     longitude: number,
     destinationName: string = ''
   ) {
-    let allNameBytes = [];
-
-    if (destinationName.length > 0) {
-      const nameBytes = stringToBytes(destinationName);
-
-      allNameBytes = [0x02, ...intToTwoBytes(nameBytes.length), ...nameBytes];
-    }
+    const nameBytes =
+      destinationName.length > 0
+        ? this.buildProperty(0x02, destinationName, stringToBytes)
+        : [];
 
     return new Command([
       0x00,
       0x31,
-      0x02,
-      0x01,
-      0x00,
-      0x08,
-      ...base10ToIeee754(latitude),
-      ...base10ToIeee754(longitude),
-      ...allNameBytes,
+      0x12,
+      ...this.buildProperty(0x01, [
+        ...base10ToIeee754(latitude, 8),
+        ...base10ToIeee754(longitude, 8),
+      ]),
+      ...nameBytes,
     ]);
   }
 }

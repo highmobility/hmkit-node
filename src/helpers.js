@@ -50,12 +50,12 @@ export function dateDecoder(bytes: Array<Number>) {
   return null;
 }
 
-export function coordinatesDecoder(bytes: Array<Number>) {
-  const decoder = getRoundedIeee754ToBase10(6);
+export function coordinatesDecoder(data: Array<Number>) {
+  const decoder = getRoundedIeee754ToBase10(2);
 
   return {
-    latitude: decoder(bytes.slice(0, bytes.length / 2)),
-    longitude: decoder(bytes.slice(bytes.length / 2)),
+    latitude: decoder(data.slice(0, data.length / 2), data.length / 2),
+    longitude: decoder(data.slice(data.length / 2), data.length / 2),
   };
 }
 
@@ -130,4 +130,13 @@ export function activeInactiveDecoder() {
 
 export function percentToInteger(value: Number) {
   return value > 0.0 && value < 1.0 ? value * 100 : value;
+}
+
+export function isArray(value: Any) {
+  return (
+    (value.BYTES_PER_ELEMENT &&
+      Object.prototype.toString.call(value.buffer) ===
+        `[object ArrayBuffer]`) ||
+    Array.isArray(value)
+  );
 }

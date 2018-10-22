@@ -1,4 +1,5 @@
 import { decimalToHexArray } from '../encoding';
+import { isArray } from '../helpers';
 
 export default class BaseCommand {
   static buildProperty(identifier: Number, value: Any, encodingFunc: Function) {
@@ -14,9 +15,9 @@ export default class BaseCommand {
   static encodeProperty(value: Any, encodingFunc: Function) {
     if (!!encodingFunc) {
       const encodedValue = encodingFunc(value);
-      return Array.isArray(encodedValue) ? encodedValue : [encodedValue];
+      return isArray(encodedValue) ? encodedValue : [encodedValue];
     }
 
-    return Array.isArray(value) ? value : [value];
+    return isArray(value) ? value : [value];
   }
 }

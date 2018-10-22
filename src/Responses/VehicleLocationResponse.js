@@ -7,7 +7,7 @@ export default class VehicleLocationResponse extends PropertyResponse {
 
   /**
    * @property {Object} coordinates (object `{latitude: (number), longitude: (number)}`) Coordinates
-   * @property {Number} heading (number) Heading in 4-bytes per IEEE 754
+   * @property {Number} heading (number) Heading in 8-bytes per IEEE 754
    * @property {Number} altitude (number) Altitude in meters above the WGS 84 reference ellipsoid
    *
    * @example VehicleLocationResponse
@@ -24,9 +24,13 @@ export default class VehicleLocationResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'coordinates').setDecoder(coordinatesDecoder),
-      new Property(0x02, 'heading').setDecoder(getRoundedIeee754ToBase10(6)),
-      new Property(0x03, 'altitude').setDecoder(getRoundedIeee754ToBase10(1)),
+      new Property(0x04, 'coordinates').setDecoder(coordinatesDecoder),
+      new Property(0x05, 'heading').setDecoder(bytes =>
+        getRoundedIeee754ToBase10(2)(bytes, 8)
+      ),
+      new Property(0x06, 'altitude').setDecoder(bytes =>
+        getRoundedIeee754ToBase10(2)(bytes, 8)
+      ),
     ];
 
     this.parse(data, properties);
