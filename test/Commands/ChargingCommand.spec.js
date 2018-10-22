@@ -29,13 +29,14 @@ describe(`ChargingCommand`, () => {
         {
           activeState: expect.any(String),
           hour: expect.any(Number),
-          minutes: expect.any(Number),
+          minute: expect.any(Number),
         },
       ]),
       reductionTimes: expect.arrayContaining([
         {
+          startStop: expect.any(String),
           hour: expect.any(Number),
-          minutes: expect.any(Number),
+          minute: expect.any(Number),
         },
       ]),
       batteryTemperature: expect.any(Number),

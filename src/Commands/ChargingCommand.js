@@ -92,11 +92,10 @@ export default class ChargingCommand extends BaseCommand {
   /**
    * @function setChargeTimer
    *
-   * @property {String} chargeTimer (string: 'preferred_start_time', 'preferred_end_time', 'departure_time') Charge timer
-   * @property {Date} time (date) Time
+   * @property {Object} chargeTimers Charge timers ([{ timerType: (string:'preferred_start_time|preferred_end_time|departure_time'), time: (date) }])
    */
   static setChargeTimers(
-    chargeTimers: Array<{ timerType: string, date: Date }>
+    chargeTimers: Array<{ timerType: String, date: Date }>
   ) {
     const chargeTimerOptions = {
       preferred_start_time: 0x00,
@@ -116,5 +115,24 @@ export default class ChargingCommand extends BaseCommand {
     );
 
     return new Command([0x00, 0x23, 0x16, ...chargeTimerProperties]);
+  }
+
+  static setReductionOfChargingCurrentTimes(
+    reductionTimes: Array<{ startStop: String, hour: Number, minute: Number }>
+  ) {
+    const startStopOptions = {
+      start: 0x00,
+      stop: 0x01,
+    };
+
+    const reductionTimeProperties = reductionTimes.reduce(
+      (allTimers, { startStop, hour, minute }) =>
+        allTimers.concat(
+          this.buildProperty(0x01, [startStopOptions[startStop], hour, minute])
+        ),
+      []
+    );
+
+    return new Command([0x00, 0x23, 0x17, ...reductionTimeProperties]);
   }
 }

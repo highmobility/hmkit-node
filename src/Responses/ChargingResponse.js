@@ -27,8 +27,8 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {Number} maxChargingCurrent (number) Maximum charging current in 4-bytes per IEEE 754
    * @property {String} plugType (string) Plug state
    * @property {String} chargingWindowChosen (string) Charging window chosen
-   * @property {Array} departureTimes (array) Departure times [{ activeState: (boolean), hour: (number), minutes: (number)}]
-   * @property {Array} reductionTimes (array) Reduction of charging-current times [{ hour: (number), minutes: (number) }]
+   * @property {Array} departureTimes (array) Departure times [{ activeState: (boolean), hour: (number), minute: (number)}]
+   * @property {Array} reductionTimes (array) Reduction of charging-current times [{ startStop: (string), hour: (number), minute: (number) }]
    * @property {Number} batteryTemperature (number) Battery temperature in Celsius in 4-bytes per IEEE 754
    * @property {Array} timers (array) Charging timers [{ timerType: (string), date: (date) }]
    * @property {String} pluggedIn (string) Plugged in
@@ -53,11 +53,12 @@ export default class ChargingResponse extends PropertyResponse {
       departureTimes: [{
         activeState: 'inactive',
         hour: 18,
-        minutes: 10
+        minute: 10
       }],
       reductionTimes: [{
+        startStop: 'reset',
         hour: 18,
-        minutes: 10
+        minute: 10
       }],
       batteryTemperature: 38.4,
       timers: [{
@@ -133,7 +134,7 @@ export default class ChargingResponse extends PropertyResponse {
         .setDecoder(this.departureTimeDecoder),
       new Property(0x13, 'reductionTimes')
         .array()
-        .setDecoder(this.hourMinuteDecoder),
+        .setDecoder(this.reductionTimeDecoder),
       new Property(0x14, 'batteryTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
@@ -179,14 +180,19 @@ export default class ChargingResponse extends PropertyResponse {
     return {
       activeState: { 0x00: 'inactive', 0x01: 'active' }[data[0]],
       hour: data[1],
-      minutes: data[2],
+      minute: data[2],
     };
   }
 
-  hourMinuteDecoder(data) {
+  reductionTimeDecoder(data) {
     return {
-      hour: data[0],
-      minutes: data[1],
+      startStop: {
+        0x00: 'start',
+        0x01: 'stop',
+        0x02: 'reset',
+      }[data[0]],
+      hour: data[1],
+      minute: data[2],
     };
   }
 }
