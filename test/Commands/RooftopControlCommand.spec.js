@@ -13,19 +13,28 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toEqual({
       dimming: expect.any(Number),
       position: expect.any(Number),
+      convertibleRoof: expect.any(String),
+      sunroofTilt: expect.any(String),
     });
   });
 
   it(`should control rooftop`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.RooftopControlCommand.control(22, 33)
+      hmkit.commands.RooftopControlCommand.control(
+        22,
+        33,
+        'closed_secured',
+        'tilted'
+      )
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
       dimming: 22,
       position: 33,
+      convertibleRoof: 'closed_secured',
+      sunroofTilt: 'tilted',
     });
   });
 
@@ -45,6 +54,8 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toEqual({
       dimming: newDimming,
       position: oldData.position,
+      convertibleRoof: oldData.convertibleRoof,
+      sunroofTilt: oldData.sunroofTilt,
     });
   });
 
@@ -65,6 +76,8 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
       position: newPosition,
+      convertibleRoof: oldData.convertibleRoof,
+      sunroofTilt: oldData.sunroofTilt,
     });
   });
 });

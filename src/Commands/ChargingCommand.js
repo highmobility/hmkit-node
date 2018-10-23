@@ -75,6 +75,7 @@ export default class ChargingCommand extends BaseCommand {
       },
     ]);
 
+    // inductive not supported
     const chargeModeOptions = {
       immediate: 0x00,
       timer_based: 0x01,
@@ -104,13 +105,22 @@ export default class ChargingCommand extends BaseCommand {
     };
 
     const chargeTimerProperties = chargeTimers.reduce(
-      (allTimers, { timerType, date }) =>
-        allTimers.concat(
+      (allTimers, { timerType, date }) => {
+        validate([
+          {
+            value: timerType,
+            name: 'Timer type',
+            condition: Joi.string().valid(...Object.keys(chargeTimerOptions)),
+          },
+        ]);
+
+        return allTimers.concat(
           this.buildProperty(0x0d, [
             chargeTimerOptions[timerType],
             ...dateToBytes(date),
           ])
-        ),
+        );
+      },
       []
     );
 
@@ -126,10 +136,19 @@ export default class ChargingCommand extends BaseCommand {
     };
 
     const reductionTimeProperties = reductionTimes.reduce(
-      (allTimers, { startStop, hour, minute }) =>
-        allTimers.concat(
+      (allTimers, { startStop, hour, minute }) => {
+        validate([
+          {
+            value: startStop,
+            name: 'Reduction timer start/stop',
+            condition: Joi.string().valid(...Object.keys(startStopOptions)),
+          },
+        ]);
+
+        return allTimers.concat(
           this.buildProperty(0x01, [startStopOptions[startStop], hour, minute])
-        ),
+        );
+      },
       []
     );
 
