@@ -1,6 +1,7 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 
-export default class HonkHornFlashLightsCommand {
+export default class HonkHornFlashLightsCommand extends BaseCommand {
   /**
    * @function getFlashersState
    */
@@ -15,10 +16,11 @@ export default class HonkHornFlashLightsCommand {
    * @property {Number} flashLights (number) Number of times
    */
   static honkHornFlashLights(honkHorn: number, flashLights: number) {
-    const commandBase = [0x00, 0x26, 0x02];
+    const commandBase = [0x00, 0x26, 0x12];
 
-    if (!!honkHorn) commandBase.push(0x01, 0x00, 0x01, honkHorn);
-    if (!!flashLights) commandBase.push(0x02, 0x00, 0x01, flashLights);
+    if (!!honkHorn) commandBase.push(...this.buildProperty(0x01, honkHorn));
+    if (!!flashLights)
+      commandBase.push(...this.buildProperty(0x02, flashLights));
 
     return new Command(commandBase);
   }
@@ -27,13 +29,13 @@ export default class HonkHornFlashLightsCommand {
    * @function activateEmergencyFlasher
    */
   static activateEmergencyFlasher() {
-    return new Command([0x00, 0x26, 0x03, 0x01]);
+    return new Command([0x00, 0x26, 0x13, ...this.buildProperty(0x01, 0x01)]);
   }
 
   /**
    * @function deactivateEmergencyFlasher
    */
   static deactivateEmergencyFlasher() {
-    return new Command([0x00, 0x26, 0x03, 0x00]);
+    return new Command([0x00, 0x26, 0x13, ...this.buildProperty(0x01, 0x00)]);
   }
 }
