@@ -11,164 +11,245 @@ describe(`WindowsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(WindowsResponse);
+
     expect(response.parse()).toEqual({
-      windows: expect.objectContaining([
-        {
-          windowPosition: 'front_left',
-          windowState: expect.any(String),
-        },
-        {
-          windowPosition: 'front_right',
-          windowState: expect.any(String),
-        },
-        {
-          windowPosition: 'rear_right',
-          windowState: expect.any(String),
-        },
-        {
-          windowPosition: 'rear_left',
-          windowState: expect.any(String),
-        },
+      windowsOpenPercentages: expect.objectContaining([
+        { windowLocation: 'front_left', openPercentage: expect.any(Number) },
+        { windowLocation: 'front_right', openPercentage: expect.any(Number) },
+        { windowLocation: 'rear_right', openPercentage: expect.any(Number) },
+        { windowLocation: 'rear_left', openPercentage: expect.any(Number) },
+        { windowLocation: 'hatch', openPercentage: expect.any(Number) },
+      ]),
+      windowsPositions: expect.objectContaining([
+        { windowLocation: 'front_left', windowPosition: expect.any(String) },
+        { windowLocation: 'front_right', windowPosition: expect.any(String) },
+        { windowLocation: 'rear_right', windowPosition: expect.any(String) },
+        { windowLocation: 'rear_left', windowPosition: expect.any(String) },
+        { windowLocation: 'hatch', windowPosition: expect.any(String) },
       ]),
     });
   });
 
-  it(`should open all windows`, async () => {
+  it(`should control windows`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.WindowsCommand.control([
-        {
-          windowPosition: 'front_right',
-          windowState: 'open',
-        },
-        {
-          windowPosition: 'rear_right',
-          windowState: 'open',
-        },
-
-        {
-          windowPosition: 'front_left',
-          windowState: 'open',
-        },
-
-        {
-          windowPosition: 'rear_left',
-          windowState: 'open',
-        },
-      ])
+      hmkit.commands.WindowsCommand.control(
+        [
+          {
+            windowLocation: 'front_left',
+            openPercentage: 1,
+          },
+          {
+            windowLocation: 'front_right',
+            openPercentage: 1,
+          },
+          {
+            windowLocation: 'rear_right',
+            openPercentage: 1,
+          },
+          {
+            windowLocation: 'rear_left',
+            openPercentage: 1,
+          },
+          {
+            windowLocation: 'hatch',
+            openPercentage: 1,
+          },
+        ],
+        [
+          {
+            windowLocation: 'front_left',
+            windowPosition: 'open',
+          },
+          {
+            windowLocation: 'front_right',
+            windowPosition: 'open',
+          },
+          {
+            windowLocation: 'rear_right',
+            windowPosition: 'open',
+          },
+          {
+            windowLocation: 'rear_left',
+            windowPosition: 'open',
+          },
+          {
+            windowLocation: 'hatch',
+            windowPosition: 'open',
+          },
+        ]
+      )
     );
 
     expect(response.parse()).toBeInstanceOf(WindowsResponse);
     expect(response.parse()).toEqual({
-      windows: expect.objectContaining([
+      windowsOpenPercentages: [
         {
-          windowPosition: 'front_left',
-          windowState: 'open',
+          windowLocation: 'front_left',
+          openPercentage: 1,
         },
         {
-          windowPosition: 'front_right',
-          windowState: 'open',
+          windowLocation: 'front_right',
+          openPercentage: 1,
         },
         {
-          windowPosition: 'rear_right',
-          windowState: 'open',
+          windowLocation: 'rear_right',
+          openPercentage: 1,
         },
         {
-          windowPosition: 'rear_left',
-          windowState: 'open',
+          windowLocation: 'rear_left',
+          openPercentage: 1,
         },
-      ]),
+        {
+          windowLocation: 'hatch',
+          openPercentage: 1,
+        },
+      ],
+      windowsPositions: [
+        {
+          windowLocation: 'front_left',
+          windowPosition: 'opened',
+        },
+        {
+          windowLocation: 'front_right',
+          windowPosition: 'opened',
+        },
+        {
+          windowLocation: 'rear_right',
+          windowPosition: 'opened',
+        },
+        {
+          windowLocation: 'rear_left',
+          windowPosition: 'opened',
+        },
+        {
+          windowLocation: 'hatch',
+          windowPosition: 'opened',
+        },
+      ],
     });
-  });
 
-  it(`should close all windows`, async () => {
-    const response = await hmkit.telematics.sendCommand(
+    const response2 = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.WindowsCommand.control([
-        {
-          windowPosition: 'front_right',
-          windowState: 'close',
-        },
-        {
-          windowPosition: 'rear_right',
-          windowState: 'close',
-        },
-
-        {
-          windowPosition: 'front_left',
-          windowState: 'close',
-        },
-
-        {
-          windowPosition: 'rear_left',
-          windowState: 'close',
-        },
-      ])
+      hmkit.commands.WindowsCommand.control(
+        [
+          {
+            windowLocation: 'front_left',
+            openPercentage: 0,
+          },
+          {
+            windowLocation: 'front_right',
+            openPercentage: 0,
+          },
+          {
+            windowLocation: 'rear_right',
+            openPercentage: 0,
+          },
+          {
+            windowLocation: 'rear_left',
+            openPercentage: 0,
+          },
+          {
+            windowLocation: 'hatch',
+            openPercentage: 0,
+          },
+        ],
+        [
+          {
+            windowLocation: 'front_left',
+            windowPosition: 'close',
+          },
+          {
+            windowLocation: 'front_right',
+            windowPosition: 'close',
+          },
+          {
+            windowLocation: 'rear_right',
+            windowPosition: 'close',
+          },
+          {
+            windowLocation: 'rear_left',
+            windowPosition: 'close',
+          },
+          {
+            windowLocation: 'hatch',
+            windowPosition: 'close',
+          },
+        ]
+      )
     );
 
-    expect(response.parse()).toBeInstanceOf(WindowsResponse);
-    expect(response.parse()).toEqual({
-      windows: expect.objectContaining([
+    expect(response2.parse()).toBeInstanceOf(WindowsResponse);
+    expect(response2.parse()).toEqual({
+      windowsOpenPercentages: [
         {
-          windowPosition: 'front_left',
-          windowState: 'closed',
+          windowLocation: 'front_left',
+          openPercentage: 0,
         },
         {
-          windowPosition: 'front_right',
-          windowState: 'closed',
+          windowLocation: 'front_right',
+          openPercentage: 0,
         },
         {
-          windowPosition: 'rear_right',
-          windowState: 'closed',
+          windowLocation: 'rear_right',
+          openPercentage: 0,
         },
         {
-          windowPosition: 'rear_left',
-          windowState: 'closed',
+          windowLocation: 'rear_left',
+          openPercentage: 0,
         },
-      ]),
+        {
+          windowLocation: 'hatch',
+          openPercentage: 0,
+        },
+      ],
+      windowsPositions: [
+        {
+          windowLocation: 'front_left',
+          windowPosition: 'closed',
+        },
+        {
+          windowLocation: 'front_right',
+          windowPosition: 'closed',
+        },
+        {
+          windowLocation: 'rear_right',
+          windowPosition: 'closed',
+        },
+        {
+          windowLocation: 'rear_left',
+          windowPosition: 'closed',
+        },
+        {
+          windowLocation: 'hatch',
+          windowPosition: 'closed',
+        },
+      ],
     });
   });
 
-  it(`should get correct window position byte`, () => {
+  it(`should build correct window open percentage bytes`, () => {
     expect(
-      hmkit.commands.WindowsCommand.getWindowPositionByte('front_right')
-    ).toEqual(0x01);
-
-    expect(
-      hmkit.commands.WindowsCommand.getWindowPositionByte('rear_right')
-    ).toEqual(0x02);
-
-    expect(
-      hmkit.commands.WindowsCommand.getWindowPositionByte('rear_left')
-    ).toEqual(0x03);
-
-    expect(
-      hmkit.commands.WindowsCommand.getWindowPositionByte('hatch')
-    ).toEqual(0x04);
-
-    expect(
-      hmkit.commands.WindowsCommand.getWindowPositionByte('front_left')
-    ).toEqual(0x00);
-  });
-
-  it(`should build correct windows bytes`, () => {
-    expect(
-      hmkit.commands.WindowsCommand.getWindowsBytes([
+      hmkit.commands.WindowsCommand.getWindowOpenPercentageBytes([
         {
-          windowPosition: 'front_right',
-          windowState: 'close',
+          windowLocation: 'front_right',
+          openPercentage: 1,
         },
         {
-          windowPosition: 'rear_right',
-          windowState: 'close',
+          windowLocation: 'rear_right',
+          openPercentage: 1,
         },
         {
-          windowPosition: 'front_left',
-          windowState: 'close',
+          windowLocation: 'front_left',
+          openPercentage: 0,
         },
         {
-          windowPosition: 'rear_left',
-          windowState: 'close',
+          windowLocation: 'rear_left',
+          openPercentage: 0,
+        },
+        {
+          windowLocation: 'hatch',
+          openPercentage: 1,
         },
       ])
     ).toEqual([
@@ -176,12 +257,12 @@ describe(`WindowsCommand`, () => {
       0x00,
       0x02,
       0x01,
-      0x00,
+      0x64,
       0x01,
       0x00,
       0x02,
       0x02,
-      0x00,
+      0x64,
       0x01,
       0x00,
       0x02,
@@ -192,30 +273,94 @@ describe(`WindowsCommand`, () => {
       0x02,
       0x03,
       0x00,
+      0x01,
+      0x00,
+      0x02,
+      0x04,
+      0x64,
     ]);
 
     expect(
-      hmkit.commands.WindowsCommand.getWindowsBytes([
+      hmkit.commands.WindowsCommand.getWindowPositionBytes([
         {
-          windowPosition: 'front_right',
-          windowState: 'close',
+          windowLocation: 'front_right',
+          windowPosition: 'open',
         },
         {
-          windowState: 'close',
+          windowLocation: 'rear_right',
+          windowPosition: 'open',
+        },
+        {
+          windowLocation: 'front_left',
+          windowPosition: 'close',
+        },
+        {
+          windowLocation: 'rear_left',
+          windowPosition: 'close',
+        },
+        {
+          windowLocation: 'hatch',
+          windowPosition: 'close',
         },
       ])
-    ).toEqual([0x01, 0x00, 0x02, 0x01, 0x00]);
+    ).toEqual([
+      0x02,
+      0x00,
+      0x02,
+      0x01,
+      0x01,
+      0x02,
+      0x00,
+      0x02,
+      0x02,
+      0x01,
+      0x02,
+      0x00,
+      0x02,
+      0x00,
+      0x00,
+      0x02,
+      0x00,
+      0x02,
+      0x03,
+      0x00,
+      0x02,
+      0x00,
+      0x02,
+      0x04,
+      0x00,
+    ]);
+  });
+
+  it(`should get correct window location byte`, () => {
+    expect(
+      hmkit.commands.WindowsCommand.getWindowLocationByte('front_left')
+    ).toEqual(0x00);
 
     expect(
-      hmkit.commands.WindowsCommand.getWindowsBytes([
-        {
-          windowPosition: 'front_right',
-          windowState: 'close',
-        },
-        {
-          windowPosition: 'rear_right',
-        },
-      ])
-    ).toEqual([0x01, 0x00, 0x02, 0x01, 0x00]);
+      hmkit.commands.WindowsCommand.getWindowLocationByte('front_right')
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowLocationByte('rear_right')
+    ).toEqual(0x02);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowLocationByte('rear_left')
+    ).toEqual(0x03);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowLocationByte('hatch')
+    ).toEqual(0x04);
+  });
+
+  it(`should get correct window open/close byte`, () => {
+    expect(
+      hmkit.commands.WindowsCommand.getWindowOpenCloseByte('open')
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindowsCommand.getWindowOpenCloseByte('close')
+    ).toEqual(0x00);
   });
 });
