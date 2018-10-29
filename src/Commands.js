@@ -31,6 +31,7 @@ import TachographCommand from './Commands/TachographCommand';
 import TextInputCommand from './Commands/TextInputCommand';
 import TheftAlarmCommand from './Commands/TheftAlarmCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
+import UsageCommand from './Commands/UsageCommand';
 import ValetModeCommand from './Commands/ValetModeCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
@@ -78,6 +79,7 @@ export default class Commands {
       TextInputCommand,
       TheftAlarmCommand,
       TrunkAccessCommand,
+      UsageCommand,
       ValetModeCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,
