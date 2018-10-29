@@ -30,6 +30,7 @@ export default class RaceResponse extends PropertyResponse {
    * @property {String} clutchPedalSwitch (string 'inactive|active') Clutch pedal switch status
    * @property {String} acceleratorPedalIdleSwitch (string 'inactive|active') Accelerator pedal idle switch status
    * @property {String} acceleratorPedalKickdownSwitch (string 'inactive|active') Accelerator pedal kickdown switch status
+   * @property {String} vehicleMoving (string 'not_moving|moving') Vehicle moving state
    *
    * @example RaceResponse
     {
@@ -72,6 +73,7 @@ export default class RaceResponse extends PropertyResponse {
       gearMode: 'manual',
       selectedGear: 0,
       brakePedalPosition: 0,
+      vehicleMoving: 'moving'
     }
    */
   constructor(data: Uint8Array) {
@@ -146,6 +148,12 @@ export default class RaceResponse extends PropertyResponse {
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
+        })
+      ),
+      new Property(0x12, 'vehicleMoving').setDecoder(
+        switchDecoder({
+          0x00: 'not_moving',
+          0x01: 'moving',
         })
       ),
     ];
