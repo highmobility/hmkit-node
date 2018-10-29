@@ -6,27 +6,21 @@ describe(`WindscreenResponse`, () => {
   it(`should return WindscreenResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0042010100010202000103030001020400014305000112060001020700015F08000811010A1020050078'
+        '004201010001000200010003000100040001320500012206000100070001000800080001010200000078a20008120a1d122a1b0078'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
 
     expect(response.parse()).toEqual({
-      wipers: 'automatic',
-      wipersIntensity: 'level_3',
-      windscreenDamage: 'damage_smaller_than_1_inch',
-      windscreenZoneMatrix: {
-        rows: 4,
-        columns: 3,
-      },
-      windscreenDamageZone: {
-        rows: 1,
-        columns: 2,
-      },
-      windscreenNeedsReplacement: 'replacement_needed',
-      windscreenDamageConfidence: 95,
-      windscreenDamageDetectionTime: new Date('2017-01-10T14:32:05Z'),
+      wipers: 'inactive',
+      wipersIntensity: 'level_0',
+      windscreenDamage: 'no_impact_detected',
+      windscreenZoneMatrix: { rows: 3, columns: 2 },
+      windscreenDamageZone: { rows: 2, columns: 2 },
+      windscreenNeedsReplacement: 'unknown',
+      windscreenDamageConfidence: 0,
+      windscreenDamageDetectionTime: new Date('2000-01-01T00:00:00.000Z'),
     });
   });
 });
