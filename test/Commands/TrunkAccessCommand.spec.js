@@ -75,4 +75,32 @@ describe(`TrunkAccessCommand`, () => {
       })
     );
   });
+
+  it(`should control trunk`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.TrunkAccessCommand.controlTrunk(true, true)
+    );
+
+    expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        trunkLock: 'locked',
+        trunkPosition: 'open',
+      })
+    );
+
+    const response2 = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.TrunkAccessCommand.controlTrunk(false, false)
+    );
+
+    expect(response2.parse()).toBeInstanceOf(TrunkAccessResponse);
+    expect(response2.parse()).toEqual(
+      expect.objectContaining({
+        trunkLock: 'unlocked',
+        trunkPosition: 'closed',
+      })
+    );
+  });
 });
