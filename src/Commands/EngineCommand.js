@@ -1,6 +1,7 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 
-export default class EngineCommand {
+export default class EngineCommand extends BaseCommand {
   /**
    * @function getIgnitionState
    */
@@ -12,13 +13,13 @@ export default class EngineCommand {
    * @function turnOff
    */
   static turnOff() {
-    return new Command([0x00, 0x35, 0x02, 0x00]);
+    return new Command([0x00, 0x35, 0x12, ...this.buildProperty(0x01, 0x00)]);
   }
 
   /**
    * @function turnOn
    */
   static turnOn() {
-    return new Command([0x00, 0x35, 0x02, 0x01]);
+    return new Command([0x00, 0x35, 0x12, ...this.buildProperty(0x01, 0x01)]);
   }
 }
