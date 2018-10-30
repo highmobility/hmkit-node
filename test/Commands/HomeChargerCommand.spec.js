@@ -16,27 +16,62 @@ describe(`HomeChargerCommand`, () => {
       plugType: expect.any(String),
       chargingPower: expect.any(Number),
       solarCharging: expect.any(String),
-      location: {
-        latitude: expect.any(Number),
-        longitude: expect.any(Number),
-      },
-      chargeCurrent: {
-        chargeCurrent: expect.any(Number),
-        maximumValue: expect.any(Number),
-        minimumValue: expect.any(Number),
-      },
       hotspotEnabled: expect.any(String),
       hotspotSSID: expect.any(String),
       wiFiHotspotSecurity: expect.any(String),
       wiFiHotspotPassword: expect.any(String),
-      priceTariffs: expect.objectContaining([
+      authentication: expect.any(String),
+      chargeCurrentDC: expect.any(Number),
+      maximumChargeCurrent: expect.any(Number),
+      minimumChargeCurrent: expect.any(Number),
+      coordinates: {
+        latitude: expect.any(Number),
+        longitude: expect.any(Number),
+      },
+      priceTariffs: [
         {
-          pricingType: expect.any(String),
-          currency: expect.any(String),
+          pricingType: 'starting_fee',
           price: expect.any(Number),
+          currency: expect.any(String),
         },
-      ]),
+        {
+          pricingType: 'per_minute',
+          price: expect.any(Number),
+          currency: expect.any(String),
+        },
+        {
+          pricingType: 'per_kwh',
+          price: expect.any(Number),
+          currency: expect.any(String),
+        },
+      ],
     });
+  });
+
+  it(`should set charge current correctly`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.setChargeCurrent(0.5)
+    );
+
+    expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        chargeCurrentDC: 0.5,
+      })
+    );
+
+    const response2 = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.setChargeCurrent(0.6)
+    );
+
+    expect(response2.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response2.parse()).toEqual(
+      expect.objectContaining({
+        chargeCurrentDC: 0.6,
+      })
+    );
   });
 
   it(`should set price tariffs`, async () => {
@@ -129,9 +164,31 @@ describe(`HomeChargerCommand`, () => {
     );
   });
 
-  it(`should build charge command correctly`, () => {
-    expect(
-      hmkit.commands.HomeChargerCommand.setChargeCurrent(5.0).command
-    ).toEqual([0, 96, 2, 64, 160, 0, 0]);
+  it(`should authenticate correctly`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.authenticate()
+    );
+
+    expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        authentication: 'authenticated',
+      })
+    );
+  });
+
+  it(`should expire authentication correctly`, async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.HomeChargerCommand.expireAuthentication()
+    );
+
+    expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        authentication: 'unauthenticated',
+      })
+    );
   });
 });

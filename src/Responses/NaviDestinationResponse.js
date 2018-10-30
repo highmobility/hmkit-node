@@ -7,7 +7,7 @@ export default class NaviDestinationResponse extends PropertyResponse {
   static identifier = [0x00, 0x31];
 
   /**
-   * @property {Object} coordinates (object `{latitude: (number), longitude: (number)}`) Coordinates
+   * @property {Object} coordinates (object) Coordinates ({ latitude: (double), longitude: (double) })
    * @property {String} destinationName (string) Destination name
    *
    * @example NaviDestinationResponse

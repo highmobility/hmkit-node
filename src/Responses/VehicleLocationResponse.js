@@ -6,7 +6,7 @@ export default class VehicleLocationResponse extends PropertyResponse {
   static identifier = [0x00, 0x30];
 
   /**
-   * @property {Object} coordinates (object `{latitude: (number), longitude: (number)}`) Coordinates
+   * @property {Object} coordinates (object) Coordinates ({ latitude: (double), longitude: (double) })
    * @property {Number} heading (number) Heading in 8-bytes per IEEE 754
    * @property {Number} altitude (number) Altitude in meters above the WGS 84 reference ellipsoid
    *

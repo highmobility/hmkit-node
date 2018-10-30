@@ -122,8 +122,11 @@ export function dateToBytes(date: Date) {
   ];
 }
 
+// This also removes null bytes
 export function bytesToString(bytes) {
-  return Buffer.from(bytes).toString('utf8');
+  return Buffer.from(bytes)
+    .toString('utf8')
+    .replace(/\0/g, '');
 }
 
 export function decimalToHexArray(value: number, bytes: number = 1) {
