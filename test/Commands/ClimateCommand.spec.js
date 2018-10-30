@@ -10,6 +10,7 @@ describe(`ClimateCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
+
     expect(response.parse()).toEqual({
       insideTemperature: expect.any(Number),
       outsideTemperature: expect.any(Number),
@@ -20,85 +21,56 @@ describe(`ClimateCommand`, () => {
       defrostingState: expect.any(String),
       ionisingState: expect.any(String),
       defrostingTemperature: expect.any(Number),
-      autoHvacProfile: {
-        mondays: {
+      hvacWeekdayStartingTimes: [
+        {
+          weekday: expect.any(String),
           hour: expect.any(Number),
           minute: expect.any(Number),
-          state: expect.any(String),
         },
-        tuesdays: {
+        {
+          weekday: expect.any(String),
           hour: expect.any(Number),
           minute: expect.any(Number),
-          state: expect.any(String),
         },
-        wednesdays: {
-          hour: expect.any(Number),
-          minute: expect.any(Number),
-          state: expect.any(String),
-        },
-        thursdays: {
-          hour: expect.any(Number),
-          minute: expect.any(Number),
-          state: expect.any(String),
-        },
-        fridays: {
-          hour: expect.any(Number),
-          minute: expect.any(Number),
-          state: expect.any(String),
-        },
-        saturdays: {
-          hour: expect.any(Number),
-          minute: expect.any(Number),
-          state: expect.any(String),
-        },
-        sundays: {
-          hour: expect.any(Number),
-          minute: expect.any(Number),
-          state: expect.any(String),
-        },
-        constant: expect.any(String),
-      },
+      ],
+      rearTemperatureSetting: expect.any(Number),
     });
   });
 
   it(`should set profile`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ClimateCommand.setProfile(
-        {
-          hour: 2,
-          minute: 13,
-        },
-        {
-          hour: 3,
-          minute: 58,
-        },
-        false,
-        false,
-        false,
-        false,
-        false,
-        true,
-        20.5,
-        22.5
-      )
+      hmkit.commands.ClimateCommand.setWeekdayStartingTimes([
+        { weekday: 'monday', hour: 18, minute: 30 },
+        { weekday: 'friday', hour: 18, minute: 30 },
+      ])
     );
 
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        autoHvacProfile: expect.objectContaining({
-          constant: 'inactive',
-          fridays: { hour: 0, minute: 0, state: 'inactive' },
-          mondays: { hour: 2, minute: 13, state: 'active' },
-          saturdays: { hour: 0, minute: 0, state: 'inactive' },
-          sundays: { hour: 0, minute: 0, state: 'inactive' },
-          thursdays: { hour: 0, minute: 0, state: 'inactive' },
-          tuesdays: { hour: 3, minute: 58, state: 'active' },
-          wednesdays: { hour: 0, minute: 0, state: 'inactive' },
-        }),
-        driverTemperatureSetting: 20.5,
-        passengerTemperatureSetting: 22.5,
+        hvacWeekdayStartingTimes: [
+          { weekday: 'monday', hour: 18, minute: 30 },
+          { weekday: 'friday', hour: 18, minute: 30 },
+        ],
+      })
+    );
+
+    const response2 = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ClimateCommand.setWeekdayStartingTimes([
+        { weekday: 'tuesday', hour: 8, minute: 30 },
+        { weekday: 'sunday', hour: 8, minute: 45 },
+      ])
+    );
+
+    expect(response2.parse()).toBeInstanceOf(ClimateResponse);
+    expect(response2.parse()).toEqual(
+      expect.objectContaining({
+        hvacWeekdayStartingTimes: [
+          { weekday: 'tuesday', hour: 8, minute: 30 },
+          { weekday: 'sunday', hour: 8, minute: 45 },
+        ],
       })
     );
   });
@@ -211,6 +183,36 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ionisingState: 'inactive',
+      })
+    );
+  });
+
+  it('should set temperature settings', async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ClimateCommand.setTemperatureSettings(24, 25, 26)
+    );
+
+    expect(response.parse()).toBeInstanceOf(ClimateResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        driverTemperatureSetting: 24,
+        passengerTemperatureSetting: 25,
+        rearTemperatureSetting: 26,
+      })
+    );
+
+    const response2 = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.ClimateCommand.setTemperatureSettings(22, 23, 24)
+    );
+
+    expect(response2.parse()).toBeInstanceOf(ClimateResponse);
+    expect(response2.parse()).toEqual(
+      expect.objectContaining({
+        driverTemperatureSetting: 22,
+        passengerTemperatureSetting: 23,
+        rearTemperatureSetting: 24,
       })
     );
   });

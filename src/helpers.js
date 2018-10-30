@@ -75,48 +75,6 @@ export function matrixZoneDecoder(bytes: Array<Number>) {
   };
 }
 
-export function autoHvacDecoder(bytes: Array<Number>) {
-  const [
-    constant,
-    sundays,
-    saturdays,
-    fridays,
-    thursdays,
-    wednesdays,
-    tuesdays,
-    mondays,
-  ] = pad(intToBinary(bytes[0]), 8)
-    .split('')
-    .map(orig => (Boolean(Number(orig)) === true ? 'active' : 'inactive'));
-
-  return {
-    mondays: { state: mondays, ...autoHvacTimeDecoder(bytes[1], bytes[2]) },
-    tuesdays: { state: tuesdays, ...autoHvacTimeDecoder(bytes[3], bytes[4]) },
-    wednesdays: {
-      state: wednesdays,
-      ...autoHvacTimeDecoder(bytes[5], bytes[6]),
-    },
-    thursdays: {
-      state: thursdays,
-      ...autoHvacTimeDecoder(bytes[7], bytes[8]),
-    },
-    fridays: { state: fridays, ...autoHvacTimeDecoder(bytes[9], bytes[10]) },
-    saturdays: {
-      state: saturdays,
-      ...autoHvacTimeDecoder(bytes[11], bytes[12]),
-    },
-    sundays: { state: sundays, ...autoHvacTimeDecoder(bytes[13], bytes[14]) },
-    constant,
-  };
-}
-
-export function autoHvacTimeDecoder(hour: Number, minute: Number) {
-  return {
-    hour,
-    minute,
-  };
-}
-
 export function progressDecoder(bytes: Array<Number>) {
   return bytes[0] / 100;
 }
