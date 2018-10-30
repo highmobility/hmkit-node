@@ -17,6 +17,7 @@ import LightConditionsCommand from './Commands/LightConditionsCommand';
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import MessagingCommand from './Commands/MessagingCommand';
+import MobileCommand from './Commands/MobileCommand';
 import NaviDestinationCommand from './Commands/NaviDestinationCommand';
 import NotificationCommand from './Commands/NotificationCommand';
 import OffroadCommand from './Commands/OffroadCommand';
@@ -65,6 +66,7 @@ export default class Commands {
       LightsCommand,
       MaintenanceCommand,
       MessagingCommand,
+      MobileCommand,
       NaviDestinationCommand,
       NotificationCommand,
       OffroadCommand,
