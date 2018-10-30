@@ -3,7 +3,7 @@ import MobileResponse from '../../src/Responses/MobileResponse';
 const hmkit = getHmkit();
 
 describe(`MobileCommand`, () => {
-  it(`should get ignition state`, async () => {
+  it(`should get mobile state`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.MobileCommand.getState()

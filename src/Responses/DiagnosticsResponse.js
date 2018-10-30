@@ -1,5 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
+import { bytesToString } from '../encoding';
 import {
   bytesSum,
   switchDecoder,
@@ -34,6 +35,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
    * @property {Number} engineLoad (number) Current engine load percentage between 0-1
    * @property {Number} wheelBasedSpeed (number) The vehicle speed in km/h measured at the wheel base, whereas can be negative
    * @property {Number} batteryLevel (number) Battery level 0..1 (0 = 0%, 1 = 100%)
+   * @property {Array} checkControlMessages (array) Check control message ([{ id: (number), remainingMinutes: (number), text: (string), status: (string) }])
    * @property {Object} tirePressures (Object) Tire pressures [{ location: (string), pressure: (number) }]
    * @property {Object} tireTemperatures (Object) Tire pressures [{ location: (string), temperature: (number) }]
    * @property {Object} wheelRpms (Object) Tire pressures [{ location: (string), rpm: (number) }]
@@ -61,6 +63,12 @@ export default class DiagnosticsResponse extends PropertyResponse {
       engineLoad: 0.1,
       wheelBasedSpeed: 0,
       batteryLevel: 0.8,
+      checkControlMessages: [{
+        id: 10,
+        remainingMinutes: 342344,
+        text: 'Check engine',
+        status: 'Alert'
+      }],
       tirePressures: [{
         location: 'front_left',
         pressure: 2.3
@@ -152,6 +160,10 @@ export default class DiagnosticsResponse extends PropertyResponse {
 
       new Property(0x18, 'batteryLevel').setDecoder(progressDecoder),
 
+      new Property(0x19, 'checkControlMessages').setDecoder(
+        this.checkControlMessagesDecoder
+      ),
+
       new Property(0x1a, 'tirePressures').setOptionalSubProperties('location', [
         new OptionalProperty(0x00, 'front_left').setDecoder(
           this.pressureDecoder
@@ -212,5 +224,18 @@ export default class DiagnosticsResponse extends PropertyResponse {
     return {
       rpm: bytesSum(bytes),
     };
+  }
+
+  checkControlMessagesDecoder(bytes: Array<Number>) {
+    const textLength = bytesSum(bytes.slice(5, 7));
+
+    return [
+      {
+        id: bytesSum(bytes.slice(0, 2)),
+        remainingMinutes: bytesSum(bytes.slice(2, 5)),
+        text: bytesToString(bytes.slice(7, 7 + textLength)),
+        status: bytesToString(bytes.slice(7 + textLength, bytes.length)),
+      },
+    ];
   }
 }

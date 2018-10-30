@@ -13,6 +13,7 @@ import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
 import HomeChargerCommand from './Commands/HomeChargerCommand';
 import HonkHornFlashLightsCommand from './Commands/HonkHornFlashLightsCommand';
+import HoodCommand from './Commands/HoodCommand';
 import LightConditionsCommand from './Commands/LightConditionsCommand';
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
@@ -62,6 +63,7 @@ export default class Commands {
       GraphicsCommand,
       HomeChargerCommand,
       HonkHornFlashLightsCommand,
+      HoodCommand,
       LightConditionsCommand,
       LightsCommand,
       MaintenanceCommand,

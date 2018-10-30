@@ -12,6 +12,7 @@ import FirmwareVersionResponse from './FirmwareVersionResponse';
 import FuelingResponse from './FuelingResponse';
 import HomeChargerResponse from './HomeChargerResponse';
 import HonkHornFlashLightsResponse from './HonkHornFlashLightsResponse';
+import HoodResponse from './HoodResponse';
 import LightConditionsResponse from './LightConditionsResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
@@ -60,6 +61,7 @@ export default class Response {
       FuelingResponse,
       HomeChargerResponse,
       HonkHornFlashLightsResponse,
+      HoodResponse,
       LightConditionsResponse,
       LightsResponse,
       MaintenanceResponse,
