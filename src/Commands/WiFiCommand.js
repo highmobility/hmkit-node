@@ -1,7 +1,9 @@
 import Command from './Command';
-import { intToTwoBytes, stringToBytes } from '../encoding';
+import BaseCommand from './BaseCommand';
+import { stringToBytes } from '../encoding';
+import { validate, Joi } from '../validate';
 
-export default class WiFiCommand {
+export default class WiFiCommand extends BaseCommand {
   /**
    * @function getState
    */
@@ -31,8 +33,6 @@ export default class WiFiCommand {
     security: string,
     password: string = ''
   ) {
-    const ssidBytes = stringToBytes(SSID);
-    const passwordBytes = stringToBytes(password);
     const securityOptions = {
       none: 0x00,
       wep: 0x01,
@@ -40,20 +40,28 @@ export default class WiFiCommand {
       wpa2_personal: 0x03,
     };
 
+    validate([
+      {
+        value: SSID,
+        name: 'SSID',
+        condition: Joi.string().required(),
+      },
+      {
+        value: security,
+        name: 'Security',
+        condition: Joi.string()
+          .required()
+          .valid(Object.keys(securityOptions)),
+      },
+    ]);
+
     return new Command([
       0x00,
       0x59,
       0x02,
-      0x03,
-      ...intToTwoBytes(ssidBytes.length),
-      ...ssidBytes,
-      0x04,
-      0x00,
-      0x01,
-      securityOptions[security],
-      0x05,
-      ...intToTwoBytes(passwordBytes.length),
-      ...passwordBytes,
+      ...this.buildProperty(0x03, stringToBytes(SSID)),
+      ...this.buildProperty(0x04, securityOptions[security]),
+      ...this.buildProperty(0x05, stringToBytes(password)),
     ]);
   }
 
@@ -63,29 +71,46 @@ export default class WiFiCommand {
    * @property {String} SSID (string) The network SSID formatted in UTF-8
    */
   static forgetNetwork(SSID: string) {
-    const ssidBytes = stringToBytes(SSID);
+    validate([
+      {
+        value: SSID,
+        name: 'SSID',
+        condition: Joi.string().required(),
+      },
+    ]);
 
     return new Command([
       0x00,
       0x59,
       0x03,
-      0x03,
-      ...intToTwoBytes(ssidBytes.length),
-      ...ssidBytes,
+      ...this.buildProperty(0x03, stringToBytes(SSID)),
     ]);
   }
 
   /**
-   * @function disable
+   * @function enableDisable
    */
-  static disable() {
-    return new Command([0x00, 0x59, 0x04, 0x00]);
-  }
+  static enableDisable(newState: String) {
+    const newWifiStateOptions = {
+      disabled: 0x00,
+      enabled: 0x01,
+    };
 
-  /**
-   * @function enable
-   */
-  static enable() {
-    return new Command([0x00, 0x59, 0x04, 0x01]);
+    validate([
+      {
+        value: newState,
+        name: 'New wifi state',
+        condition: Joi.string()
+          .required()
+          .valid(Object.keys(newWifiStateOptions)),
+      },
+    ]);
+
+    return new Command([
+      0x00,
+      0x59,
+      0x04,
+      ...this.buildProperty(0x04, newWifiStateOptions[newState]),
+    ]);
   }
 }

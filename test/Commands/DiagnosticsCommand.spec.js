@@ -34,14 +34,14 @@ describe(`DiagnosticsCommand`, () => {
         engineLoad: expect.any(Number),
         wheelBasedSpeed: expect.any(Number),
         batteryLevel: expect.any(Number),
-        checkControlMessage: [
+        checkControlMessages: expect.objectContaining([
           {
             id: expect.any(Number),
             remainingMinutes: expect.any(Number),
-            text: expect.any(String),
             status: expect.any(String),
+            text: expect.any(String),
           },
-        ],
+        ]),
         tirePressures: [
           { location: 'front_left', pressure: expect.any(Number) },
           { location: 'front_right', pressure: expect.any(Number) },
