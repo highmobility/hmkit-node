@@ -11,6 +11,7 @@ import EngineCommand from './Commands/EngineCommand';
 import FirmwareVersionCommand from './Commands/FirmwareVersionCommand';
 import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
+import HistoricalCommand from './Commands/HistoricalCommand';
 import HomeChargerCommand from './Commands/HomeChargerCommand';
 import HonkHornFlashLightsCommand from './Commands/HonkHornFlashLightsCommand';
 import HoodCommand from './Commands/HoodCommand';
@@ -61,6 +62,7 @@ export default class Commands {
       FirmwareVersionCommand,
       FuelingCommand,
       GraphicsCommand,
+      HistoricalCommand,
       HomeChargerCommand,
       HonkHornFlashLightsCommand,
       HoodCommand,
