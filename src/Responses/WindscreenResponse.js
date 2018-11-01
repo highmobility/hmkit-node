@@ -8,7 +8,7 @@ export default class WindscreenResponse extends PropertyResponse {
   /**
    * @property {String} wipers (string 'inactive|active|automatic') Wipers state
    * @property {String} wipersIntensity (string 'level_0|level_1|level_2|level_3') Wipers intensity
-   * @property {String} windscreenDamage (string 'no_impact_detected|impact_but_no_damage_detected|damage_smaller_than_1_inch|damage_larger_than_1_inch') Windscreen damage
+   * @property {String} windscreenDamage (string 'no_impact_detected | impact_but_no_damage_detected | damage_smaller_than_1_inch | damage_larger_than_1_inch') Windscreen damage
    * @property {Object} windscreenZoneMatrix (object '{rows: (number), columns: (number)}') Windscreen zone matrix
    * @property {Object} windscreenDamageZone (object '{rows: (number), columns: (number)}') Windscreen damage zone
    * @property {String} windscreenNeedsReplacement (string 'unknown|no_replacement_needed|replacement_needed') Windscreen needs replacement

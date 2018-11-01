@@ -6,8 +6,8 @@ export default class SeatsResponse extends PropertyResponse {
   static identifier = [0x00, 0x56];
 
   /**
-   * @property {Array<Object>} personsDetected (array) Persons detected [{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center'), personDetected: (string: 'not_detected|detected')}]
-   * @property {Array<Object>} seatbeltsFastened (array) Seatbelts fastened [{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center', seatbeltFastened: (string: 'not_fastened|fastened'))}]
+   * @property {Array} personsDetected (array) Persons detected ([{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center'), personDetected: (string: 'not_detected|detected')}])
+   * @property {Array} seatbeltsFastened (array) Seatbelts fastened ([{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center', seatbeltFastened: (string: 'not_fastened|fastened')) }])
    *
    * @example SeatsResponse {
       personsDetected: [{

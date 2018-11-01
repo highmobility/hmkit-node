@@ -7,9 +7,9 @@ export default class DoorLocksResponse extends PropertyResponse {
   static identifier = [0x00, 0x20];
 
   /**
-   * @property {Array<Object>} insideLocks (Array<Object>) { doorLocation: (String 'front_left|front_right|rear_right|rear_left'), lockState: (String 'unlocked|locked') } Inside door locks
-   * @property {Array<Object>} locks (Array<Object>) { doorLocation: (String 'front_left|front_right|rear_right|rear_left'), lockState: (String 'unlocked|locked') } Door locks
-   * @property {Array<Object>} positions (Array<Object> { doorLocation: (String 'front_left|front_right|rear_right|rear_left'), position: (String 'open|closed')}`) Positions
+   * @property {Array} insideLocks (array) Inside door locks ([{ doorLocation: (string 'front_left|front_right|rear_right|rear_left'), lockState: (string 'unlocked|locked') }])
+   * @property {Array} locks (array) Door locks ([{ doorLocation: (string 'front_left|front_right|rear_right|rear_left'), lockState: (string 'unlocked|locked') }])
+   * @property {Array} positions (Array { doorLocation: (string 'front_left|front_right|rear_right|rear_left'), position: (string 'open|closed')}`) Positions
    *
    * @example DoorLocksResponse
     {

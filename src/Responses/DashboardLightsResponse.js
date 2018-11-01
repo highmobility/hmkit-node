@@ -7,7 +7,7 @@ export default class DashboardLightsResponse extends PropertyResponse {
   static identifier = [0x00, 0x61];
 
   /**
-   * @property {Array<Object>} dashboardLights (Array<Object>) [{lightName: (String), state: (String)}, ...]
+   * @property {Array} dashboardLights (array) Dashbaord lights ([{lightName: (String), state: (String)}, ...])
    *
    * @example DashboardLightsResponse
     {

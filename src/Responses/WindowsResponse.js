@@ -7,8 +7,8 @@ export default class WindowsResponse extends PropertyResponse {
   static identifier = [0x00, 0x45];
 
   /**
-   * @property {Array<Object>} windowsOpenPercentages Windows open percentages [{ windowLocation: (string: 'front_left|front_right|rear_right|rear_left|hatch'), openPercentage: (number) }]
-   * @property {Array<Object>} windowsPositions Windows positions [{ windowLocation: (string: 'front_left|front_right|rear_right|rear_left|hatch'), windowPosition: (string: 'closed|opened|intermediate') }]
+   * @property {Array} windowsOpenPercentages Windows open percentages ([{ windowLocation: (string: 'front_left|front_right|rear_right|rear_left|hatch'), openPercentage: (number) }])
+   * @property {Array} windowsPositions Windows positions ([{ windowLocation: (string: 'front_left|front_right|rear_right|rear_left|hatch'), windowPosition: (string: 'closed|opened|intermediate') }])
    *
    * @example WindowsResponse
     {

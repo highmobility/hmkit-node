@@ -10,9 +10,9 @@ export default class ChassisSettingsResponse extends PropertyResponse {
   /**
    * @property {String} drivingMode (string) Driving mode
    * @property {String} sportChrono (string) Sport chrono
-   * @property {Array<Object>} currentSpringRates (array<object>) Current spring rates { axle: (string 'front_axle|rear_axle'), springRate: (number) }
-   * @property {Array<Object>} maximumSpringRates (array<object>) Maximum spring rates { axle: (string 'front_axle|rear_axle'), springRate: (number) }
-   * @property {Array<Object>} minimumSpringRates (array<object>) Minimum spring rates { axle: (string 'front_axle|rear_axle'), springRate: (number) }
+   * @property {Array} currentSpringRates (array) Current spring rates ([{ axle: (string 'front_axle|rear_axle'), springRate: (number) }])
+   * @property {Array} maximumSpringRates (array) Maximum spring rates ([{ axle: (string 'front_axle|rear_axle'), springRate: (number) }])
+   * @property {Array} minimumSpringRates (array) Minimum spring rates ([{ axle: (string 'front_axle|rear_axle'), springRate: (number) }])
    * @property {Number} currentChassisPosition (number) Current chassis position
    * @property {Number} maximumChassisPosition (number) Maximum chassis position
    * @property {Number} minimumChassisPosition (number) Minimum chassis position

@@ -8,7 +8,7 @@ export default class RooftopControlResponse extends PropertyResponse {
   /**
    * @property {Number} dimming (number) Percentage value between 0-100 whereas 100 is opaque
    * @property {Number} position (number) Percentage value between 0-100 whereas 100 is fully open
-   * @property {String} convertibleRoof (string 'closed|open|emergency_locked|closed_secured|open_secured|hard_top_mounted|intermediate_position|loading_position|loading_position_immediate') Convertible roof state
+   * @property {String} convertibleRoof (string 'closed | open | emergency_locked | closed_secured | open_secured | hard_top_mounted | intermediate_position | loading_position | loading_position_immediate') Convertible roof state
    * @property {String} sunroofTilt (string 'closed|tilted|half_tilted') Sunroof tilt state
    *
    * @example RooftopControlResponse
