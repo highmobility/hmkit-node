@@ -39,6 +39,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
    * @property {Object} tirePressures (Object) Tire pressures [{ location: (string), pressure: (number) }]
    * @property {Object} tireTemperatures (Object) Tire pressures [{ location: (string), temperature: (number) }]
    * @property {Object} wheelRpms (Object) Tire pressures [{ location: (string), rpm: (number) }]
+   * @property {Array} troubleCodes (array) Trouble codes [{ occurences: (number), id: (string), ecuId: (string), status: (string) }]
    *
    * @example DiagnosticsResponse
     {
@@ -107,6 +108,12 @@ export default class DiagnosticsResponse extends PropertyResponse {
       }, {
         location: 'rear_left',
         rpm: 0
+      }],
+      troubleCodes: [{
+        occurences: 5,
+        id: 'test id',
+        ecuId: 'test ECU id',
+        status: 'Alert',
       }]
     }
    */
@@ -157,13 +164,10 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new Property(0x15, 'engineTorque').setDecoder(progressDecoder),
       new Property(0x16, 'engineLoad').setDecoder(progressDecoder),
       new Property(0x17, 'wheelBasedSpeed').setDecoder(bytesSum),
-
       new Property(0x18, 'batteryLevel').setDecoder(progressDecoder),
-
       new Property(0x19, 'checkControlMessages').setDecoder(
         this.checkControlMessagesDecoder
       ),
-
       new Property(0x1a, 'tirePressures').setOptionalSubProperties('location', [
         new OptionalProperty(0x00, 'front_left').setDecoder(
           this.pressureDecoder
@@ -178,7 +182,6 @@ export default class DiagnosticsResponse extends PropertyResponse {
           this.pressureDecoder
         ),
       ]),
-
       new Property(0x1b, 'tireTemperatures').setOptionalSubProperties(
         'location',
         [
@@ -196,13 +199,13 @@ export default class DiagnosticsResponse extends PropertyResponse {
           ),
         ]
       ),
-
       new Property(0x1c, 'wheelRpms').setOptionalSubProperties('location', [
         new OptionalProperty(0x00, 'front_left').setDecoder(this.rpmDecoder),
         new OptionalProperty(0x01, 'front_right').setDecoder(this.rpmDecoder),
         new OptionalProperty(0x02, 'rear_right').setDecoder(this.rpmDecoder),
         new OptionalProperty(0x03, 'rear_left').setDecoder(this.rpmDecoder),
       ]),
+      new Property(0x1d, 'troubleCodes').setDecoder(this.troubleCodesDecoder),
     ];
 
     this.parse(data, properties);
@@ -235,6 +238,24 @@ export default class DiagnosticsResponse extends PropertyResponse {
         remainingMinutes: bytesSum(bytes.slice(2, 5)),
         text: bytesToString(bytes.slice(7, 7 + textLength)),
         status: bytesToString(bytes.slice(7 + textLength, bytes.length)),
+      },
+    ];
+  }
+
+  troubleCodesDecoder(bytes: Array<Number>) {
+    const idLength = bytesSum(bytes.slice(1, 3));
+    const ecuIdLength = bytesSum(bytes.slice(3 + idLength, 5 + idLength));
+
+    return [
+      {
+        occurences: bytes[0],
+        id: bytesToString(bytes.slice(3, 3 + idLength)),
+        ecuId: bytesToString(
+          bytes.slice(5 + idLength, 5 + idLength + ecuIdLength)
+        ),
+        status: bytesToString(
+          bytes.slice(5 + idLength + ecuIdLength, bytes.length)
+        ),
       },
     ];
   }

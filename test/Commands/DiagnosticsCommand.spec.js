@@ -60,6 +60,14 @@ describe(`DiagnosticsCommand`, () => {
           { location: 'rear_right', rpm: expect.any(Number) },
           { location: 'rear_left', rpm: expect.any(Number) },
         ],
+        troubleCodes: expect.objectContaining([
+          {
+            occurences: expect.any(Number),
+            id: expect.any(String),
+            ecuId: expect.any(String),
+            status: expect.any(String),
+          },
+        ]),
       })
     );
   });
