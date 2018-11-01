@@ -44,10 +44,8 @@
     "btoa": "^1.1.2",
     "cross-env": "^5.0.5",
     "eslint-plugin-react": "^7.7.0",
-    "heapdump": "^0.3.9",
     "ieee754": "^1.1.8",
-    "joi": "^13.1.2",
-    "memwatch-next": "^0.3.0",
+    "joi": "^14.0.2",
     "node-fetch": "^1.7.2",
     "rimraf": "^2.6.1"
   },
@@ -69,8 +67,10 @@
     "eslint-loader": "^1.9.0",
     "eslint-plugin-flowtype": "^2.46.0",
     "eslint-plugin-import": "^2.9.0",
+    "heapdump": "^0.3.9",
     "jest": "^23.1.0",
     "json-loader": "^0.5.7",
+    "memwatch-next": "^0.3.0",
     "node-loader": "^0.6.0",
     "prettier": "^1.5.3",
     "yamljs": "^0.3.0"
