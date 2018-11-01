@@ -13,60 +13,45 @@ export default class DoorLocksResponse extends PropertyResponse {
    *
    * @example DoorLocksResponse
     {
-    insideLocks: [
-      {
+      insideLocks: [{
         doorLocation: 'front_left',
         lockState: 'unlocked'
-      },
-      {
+      }, {
         doorLocation: 'front_right',
         lockState: 'unlocked'
-      },
-      {
+      }, {
         doorLocation: 'rear_right',
         lockState: 'unlocked'
-      },
-      {
+      }, {
         doorLocation: 'rear_left',
         lockState: 'unlocked'
-      }
-    ],
-    locks: [
-      {
+      }],
+      locks: [{
         doorLocation: 'front_left',
         lockState: 'unlocked'
-      },
-      {
+      }, {
         doorLocation: 'front_right',
         lockState: 'unlocked'
-      },
-      {
+      }, {
         doorLocation: 'rear_right',
         lockState: 'unlocked'
-      },
-      {
+      }, {
         doorLocation: 'rear_left',
         lockState: 'unlocked'
-      }
-    ],
-    positions: [
-      {
+      }],
+      positions: [{
         doorLocation: 'front_left',
         position: 'closed'
-      },
-      {
+      }, {
         doorLocation: 'front_right',
         position: 'closed'
-      },
-      {
+      }, {
         doorLocation: 'rear_right',
         position: 'open'
-      },
-      {
+      }, {
         doorLocation: 'rear_left',
         position: 'closed'
-      }
-    ]
+      }]
     }
 
    */
