@@ -1,37 +1,37 @@
 {
   "name": "hmkit",
-  "version": "0.6.3",
+  "version": "0.6.4-beta2",
   "description": "High Mobility SDK for Node.js",
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
-    "test": "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
+    "test":
+      "cross-env BABEL_ENV=commonjs node --napi-modules node_modules/jest/bin/jest.js --runInBand",
     "test:no-commands": "npm test -- --testRegex='^((?!Command).)*spec.js$'",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
-    "test:setup": "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
+    "test:coverage":
+      "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
+    "test:setup":
+      "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
-    "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
+    "prepare-beta":
+      "npm run clean && npm run lint && npm test && npm run build",
     "format": "prettier --write \"{src,test}/**/*.js\" ",
-    "build-bindings:macos": "./build-sdk-node-bindings.sh && cp ./sdk-node-bindings/build/Release/sdk-node-bindings-native.node ./bindings/macos.node"
+    "build-bindings:macos":
+      "./build-sdk-node-bindings.sh && cp ./sdk-node-bindings/build/Release/sdk-node-bindings-native.node ./bindings/macos.node"
   },
   "entry": "./build/bundle.js",
   "jest": {
     "coverageDirectory": "coverage",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "node"
-    ],
-    "setupFiles": [
-      "<rootDir>/test/testutils/setupTests.js"
-    ],
+    "moduleFileExtensions": ["js", "jsx", "node"],
+    "setupFiles": ["<rootDir>/test/testutils/setupTests.js"],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js"
     },
     "testRegex": "(/test/.*\\.spec.js)$"
   },
