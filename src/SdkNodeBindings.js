@@ -1,11 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import semver from 'semver';
 import { base64ToUint8, uint8ArrayToHex, hexToUint8Array } from './encoding';
 
 export default class SdkNodeBindings {
   constructor(hmkit) {
     this.hmkit = hmkit;
     this.loadNativeAddOn();
+  }
+
+  legacyOpenSsl() {
+    return !semver.gte(process.version, '10.0.0');
   }
 
   loadNativeAddOn() {
@@ -19,15 +24,21 @@ export default class SdkNodeBindings {
       this.addon = new ref.AddonObj();
       return this.addon;
     } else if (process.platform === 'darwin') {
-      const ref = require('../bindings/macos');
+      const ref = this.legacyOpenSsl()
+        ? require('../bindings/macos')
+        : require('../bindings/macos_openssl1.1.node');
       this.addon = new ref.AddonObj();
       return this.addon;
     } else if (process.platform === 'linux') {
-      const ref = require('../bindings/ubuntu');
+      const ref = this.legacyOpenSsl()
+        ? require('../bindings/ubuntu')
+        : require('../bindings/ubuntu_openssl1.1.node');
       this.addon = new ref.AddonObj();
       return this.addon;
     } else if (process.platform === 'win32') {
-      const ref = require('../bindings/windows');
+      const ref = this.legacyOpenSsl()
+        ? require('../bindings/windows')
+        : require('../bindings/windows_openssl1.1.node');
       this.addon = new ref.AddonObj();
       return this.addon;
     }
