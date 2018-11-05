@@ -112,7 +112,7 @@ export default class ChassisSettingsCommand extends BaseCommand {
   }
 
   /**
-   * @function startSportChrono
+   * @function setChassisPosition
    *
    * @property {Number} position (number) Chassis position
    */

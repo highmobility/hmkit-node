@@ -1,7 +1,7 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
 
-import { base10ToIeee754, stringToBytes } from '../encoding';
+import { base10ToIeee754Double, stringToBytes } from '../encoding';
 
 export default class NaviDestinationCommand extends BaseCommand {
   /**
@@ -33,8 +33,8 @@ export default class NaviDestinationCommand extends BaseCommand {
       0x31,
       0x12,
       ...this.buildProperty(0x01, [
-        ...base10ToIeee754(latitude, 8),
-        ...base10ToIeee754(longitude, 8),
+        ...base10ToIeee754Double(latitude),
+        ...base10ToIeee754Double(longitude),
       ]),
       ...nameBytes,
     ]);

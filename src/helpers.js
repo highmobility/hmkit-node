@@ -1,4 +1,9 @@
-import { ieee754ToBase10, intToBinary, pad, uint8toInt8 } from './encoding';
+import {
+  ieee754DoubleToBase10,
+  ieee754ToBase10,
+  pad,
+  uint8toInt8,
+} from './encoding';
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = bytes
@@ -51,11 +56,9 @@ export function dateDecoder(bytes: Array<Number>) {
 }
 
 export function coordinatesDecoder(data: Array<Number>) {
-  const decoder = getRoundedIeee754ToBase10(2);
-
   return {
-    latitude: decoder(data.slice(0, data.length / 2), data.length / 2),
-    longitude: decoder(data.slice(data.length / 2), data.length / 2),
+    latitude: ieee754DoubleToBase10(data.slice(0, data.length / 2)),
+    longitude: ieee754DoubleToBase10(data.slice(data.length / 2)),
   };
 }
 

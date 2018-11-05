@@ -88,8 +88,18 @@ export function base10ToIeee754(value: number, bytes: number = 4) {
   return ieeeArray;
 }
 
+export function base10ToIeee754Double(value: number, bytes: number = 8) {
+  const ieeeArray = [];
+  ieee754.write(ieeeArray, value, 0, false, 52, bytes);
+  return ieeeArray;
+}
+
 export function ieee754ToBase10(array: Array<number>, bytes: number = 4) {
   return ieee754.read(array, 0, false, 23, bytes);
+}
+
+export function ieee754DoubleToBase10(array: Array<number>, bytes: number = 8) {
+  return ieee754.read(array, 0, false, 52, bytes);
 }
 
 export function stringToHex(string) {

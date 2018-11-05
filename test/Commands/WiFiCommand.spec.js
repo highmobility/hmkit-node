@@ -14,6 +14,8 @@ describe(`WiFiCommand`, () => {
       expect.objectContaining({
         wifiEnabled: expect.any(String),
         networkConnected: expect.any(String),
+        networkSSID: expect.any(String),
+        networkSecurity: expect.any(String),
       })
     );
   });

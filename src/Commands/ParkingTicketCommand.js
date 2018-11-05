@@ -52,11 +52,6 @@ export default class ParkingTicketCommand extends BaseCommand {
         name: 'Ticket start time',
         condition: Joi.date().required(),
       },
-      {
-        value: ticketEndTime,
-        name: 'Ticket end time',
-        condition: Joi.date(),
-      },
     ]);
 
     return new Command([
