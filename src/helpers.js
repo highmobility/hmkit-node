@@ -57,8 +57,10 @@ export function dateDecoder(bytes: Array<Number>) {
 
 export function coordinatesDecoder(data: Array<Number>) {
   return {
-    latitude: ieee754DoubleToBase10(data.slice(0, data.length / 2)),
-    longitude: ieee754DoubleToBase10(data.slice(data.length / 2)),
+    latitude: getRoundedIeee754DoubleToBase10(6)(
+      data.slice(0, data.length / 2)
+    ),
+    longitude: getRoundedIeee754DoubleToBase10(6)(data.slice(data.length / 2)),
   };
 }
 
@@ -67,6 +69,15 @@ export function getRoundedIeee754ToBase10(precision): number {
 
   return (...args) => {
     const unrounded = ieee754ToBase10(...args);
+    return Math.round(unrounded * precisionMultiplier) / precisionMultiplier;
+  };
+}
+
+export function getRoundedIeee754DoubleToBase10(precision): number {
+  const precisionMultiplier = Math.pow(10, precision);
+
+  return (...args) => {
+    const unrounded = ieee754DoubleToBase10(...args);
     return Math.round(unrounded * precisionMultiplier) / precisionMultiplier;
   };
 }

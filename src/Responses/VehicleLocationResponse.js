@@ -1,6 +1,9 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { coordinatesDecoder, getRoundedIeee754ToBase10 } from '../helpers';
+import {
+  coordinatesDecoder,
+  getRoundedIeee754DoubleToBase10,
+} from '../helpers';
 
 export default class VehicleLocationResponse extends PropertyResponse {
   static identifier = [0x00, 0x30];
@@ -26,10 +29,10 @@ export default class VehicleLocationResponse extends PropertyResponse {
     const properties = [
       new Property(0x04, 'coordinates').setDecoder(coordinatesDecoder),
       new Property(0x05, 'heading').setDecoder(bytes =>
-        getRoundedIeee754ToBase10(2)(bytes, 8)
+        getRoundedIeee754DoubleToBase10(6)(bytes, 8)
       ),
       new Property(0x06, 'altitude').setDecoder(bytes =>
-        getRoundedIeee754ToBase10(2)(bytes, 8)
+        getRoundedIeee754DoubleToBase10(6)(bytes, 8)
       ),
     ];
 

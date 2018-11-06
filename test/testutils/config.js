@@ -1,7 +1,7 @@
-// Emulator url: https://hm-devcenter4.herokuapp.com/orgs/Akq6/emulators/84DD25C5C14218DED6#/
+// Emulator url: https://hm-devcenter4.herokuapp.com/orgs/rVnr/emulators/DEBF2383C2B0E0AD03#/
 module.exports = {
-  clientCertificate: `dGVzdO54Uz+290iX2kjir6mqUa4yZSawq97+QYaxk0IbfPfZHcS5aBSZRJ1fVGOoeTfI95PNRfjKCcZbUW+9TzeTbXzgRYbORI+PB6WN3HBqW1bFfiqNO5+cp9U9Un0pGo5cmqdycZlPzuQqta21belG9cQmNRgp2K0a8OqV3E4WNU/8LacZwwbZG+8Adw1M0PK6lyz6yZtB`,
-  clientPrivateKey: `HQ2083ZRRi1DyEfwxJpzg6MCf7fv+fb+kjMaDApEZcw=`,
+  clientCertificate: `dGVzdOEPVQy93qfqRgO5b6vFOF9cLN48jVR7lni3hVrsg/gluBCzyA+5/YGf/TK3JQQ2rdHpX5Ijnd+2hsXJekSWCO4ijzWuP5UM2DjwCcEtkgF3233pJpuT8T2HZh43D6UzVauvIW5a9e93vgCRXfMz+2OBALZZ8DV1PjDnSRL3ZYSdZ/DemY5TShDDY7BqcQhLLdwmL5vQ`,
+  clientPrivateKey: `ccIOHSPifdXpAVJleeKGcj+aMqzEAJiiuhnS0XymaJQ=`,
   vehicleSerial: 'DEBF2383C2B0E0AD03',
-  accessToken: `6kX6tMljBrhETbTg9HrE6zOXa1OhlfcMk-sTegr0uiJz0JsxCGaY7dHbZiUD0Q13U07p38i0O4hJDPYwRy2Sg5RjIUpCLjnHvc80cD_WggwC20yU6qShAcYIey4Tulv95Q`,
+  accessToken: `VKDJdIM5xomnePMLi24ea6WVthTbIVdo79juYGhjjCzHje4dm4anX0T_KcSPhOKsHF7JPw9DiUG6EoETT0H49QG9mMoUAl1mBSXP-XYdOYX-gip22NVRiYgS14X_F9zFRQ`,
 };
