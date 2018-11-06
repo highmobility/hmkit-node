@@ -91,12 +91,12 @@ export default class ChargingCommand extends BaseCommand {
   }
 
   /**
-   * @function setChargeTimer
+   * @function setChargeTimers
    *
    * @property {Object} chargeTimers Charge timers ([{ timerType: (string:'preferred_start_time|preferred_end_time|departure_time'), time: (date) }])
    */
   static setChargeTimers(
-    chargeTimers: Array<{ timerType: String, date: Date }>
+    chargeTimers: Array<{ timerType: String, time: Date }>
   ) {
     const chargeTimerOptions = {
       preferred_start_time: 0x00,
@@ -105,7 +105,7 @@ export default class ChargingCommand extends BaseCommand {
     };
 
     const chargeTimerProperties = chargeTimers.reduce(
-      (allTimers, { timerType, date }) => {
+      (allTimers, { timerType, time }) => {
         validate([
           {
             value: timerType,
@@ -117,7 +117,7 @@ export default class ChargingCommand extends BaseCommand {
         return allTimers.concat(
           this.buildProperty(0x0d, [
             chargeTimerOptions[timerType],
-            ...dateToBytes(date),
+            ...dateToBytes(time),
           ])
         );
       },

@@ -43,7 +43,7 @@ describe(`ChargingCommand`, () => {
       timers: expect.arrayContaining([
         {
           timerType: expect.any(String),
-          date: expect.any(Date),
+          time: expect.any(Date),
         },
       ]),
       pluggedIn: expect.any(String),
@@ -141,15 +141,15 @@ describe(`ChargingCommand`, () => {
       hmkit.commands.ChargingCommand.setChargeTimers([
         {
           timerType: 'preferred_start_time',
-          date: new Date(Date.UTC(2018, 1, 11, 12, 13)),
+          time: new Date(Date.UTC(2018, 1, 11, 12, 13)),
         },
         {
           timerType: 'preferred_end_time',
-          date: new Date(Date.UTC(2018, 1, 11, 12, 14)),
+          time: new Date(Date.UTC(2018, 1, 11, 12, 14)),
         },
         {
           timerType: 'departure_time',
-          date: new Date(Date.UTC(2018, 1, 11, 12, 15)),
+          time: new Date(Date.UTC(2018, 1, 11, 12, 15)),
         },
       ])
     );
@@ -160,15 +160,15 @@ describe(`ChargingCommand`, () => {
         timers: [
           {
             timerType: 'preferred_start_time',
-            date: new Date(Date.UTC(2018, 1, 11, 12, 13)),
+            time: new Date(Date.UTC(2018, 1, 11, 12, 13)),
           },
           {
             timerType: 'preferred_end_time',
-            date: new Date(Date.UTC(2018, 1, 11, 12, 14)),
+            time: new Date(Date.UTC(2018, 1, 11, 12, 14)),
           },
           {
             timerType: 'departure_time',
-            date: new Date(Date.UTC(2018, 1, 11, 12, 15)),
+            time: new Date(Date.UTC(2018, 1, 11, 12, 15)),
           },
         ],
       })

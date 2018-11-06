@@ -30,7 +30,7 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {Array} departureTimes (array) Departure times [{ activeState: (boolean), hour: (number), minute: (number)}]
    * @property {Array} reductionTimes (array) Reduction of charging-current times [{ startStop: (string), hour: (number), minute: (number) }]
    * @property {Number} batteryTemperature (number) Battery temperature in Celsius in 4-bytes per IEEE 754
-   * @property {Array} timers (array) Charging timers [{ timerType: (string), date: (date) }]
+   * @property {Array} timers (array) Charging timers [{ timerType: (string), time: (date) }]
    * @property {String} pluggedIn (string) Plugged in
    * @property {String} activeState (string) Charging state
    *
@@ -63,13 +63,13 @@ export default class ChargingResponse extends PropertyResponse {
       batteryTemperature: 38.4,
       timers: [{
         timerType: 'preferred_start_time',
-        date: 2018-10-17T07:27:52.000Z
+        time: 2018-10-17T07:27:52.000Z
       }, {
         timerType: 'preferred_end_time',
-        date: 2018-10-17T07:27:52.000Z
+        time: 2018-10-17T07:27:52.000Z
       }, {
         timerType: 'departure_time',
-        date: 2018-10-17T07:27:52.000Z
+        time: 2018-10-17T07:27:52.000Z
       }],
       pluggedIn: 'disconnected',
       activeState: 'not_charging'
@@ -140,13 +140,13 @@ export default class ChargingResponse extends PropertyResponse {
       ),
       new Property(0x15, 'timers').setOptionalSubProperties('timerType', [
         new OptionalProperty(0x00, 'preferred_start_time').setDecoder(
-          this.timerDateDecoder
+          this.timerTimeDecoder
         ),
         new OptionalProperty(0x01, 'preferred_end_time').setDecoder(
-          this.timerDateDecoder
+          this.timerTimeDecoder
         ),
         new OptionalProperty(0x02, 'departure_time').setDecoder(
-          this.timerDateDecoder
+          this.timerTimeDecoder
         ),
       ]),
       new Property(0x16, 'pluggedIn').setDecoder(
@@ -170,9 +170,9 @@ export default class ChargingResponse extends PropertyResponse {
     this.parse(data, properties);
   }
 
-  timerDateDecoder(...args) {
+  timerTimeDecoder(...args) {
     return {
-      date: dateDecoder(...args),
+      time: dateDecoder(...args),
     };
   }
 
