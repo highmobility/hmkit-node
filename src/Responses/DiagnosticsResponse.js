@@ -230,14 +230,14 @@ export default class DiagnosticsResponse extends PropertyResponse {
   }
 
   checkControlMessagesDecoder(bytes: Array<Number>) {
-    const textLength = bytesSum(bytes.slice(5, 7));
+    const textLength = bytesSum(bytes.slice(6, 8));
 
     return [
       {
         id: bytesSum(bytes.slice(0, 2)),
-        remainingMinutes: bytesSum(bytes.slice(2, 5)),
-        text: bytesToString(bytes.slice(7, 7 + textLength)),
-        status: bytesToString(bytes.slice(7 + textLength, bytes.length)),
+        remainingMinutes: bytesSum(bytes.slice(2, 6)),
+        text: bytesToString(bytes.slice(8, 8 + textLength)),
+        status: bytesToString(bytes.slice(8 + textLength, bytes.length)),
       },
     ];
   }
