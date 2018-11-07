@@ -1,6 +1,7 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 
-export default class TheftAlarmCommand {
+export default class TheftAlarmCommand extends BaseCommand {
   /**
    * @function getState
    */
@@ -12,20 +13,20 @@ export default class TheftAlarmCommand {
    * @function unarm
    */
   static unarm() {
-    return new Command([0x00, 0x46, 0x02, 0x00]);
+    return new Command([0x00, 0x46, 0x12, ...this.buildProperty(0x01, 0x00)]);
   }
 
   /**
    * @function arm
    */
   static arm() {
-    return new Command([0x00, 0x46, 0x02, 0x01]);
+    return new Command([0x00, 0x46, 0x12, ...this.buildProperty(0x01, 0x01)]);
   }
 
   /**
    * @function trigger
    */
   static trigger() {
-    return new Command([0x00, 0x46, 0x02, 0x02]);
+    return new Command([0x00, 0x46, 0x12, ...this.buildProperty(0x01, 0x02)]);
   }
 }

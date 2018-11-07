@@ -1,7 +1,8 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 import { validate, Joi } from '../validate';
 
-export default class ChassisSettingsCommand {
+export default class ChassisSettingsCommand extends BaseCommand {
   /**
    * @function getSettings
    */
@@ -12,7 +13,7 @@ export default class ChassisSettingsCommand {
   /**
    * @function setDrivingMode
    *
-   * @property {String} drivingMode (string: 'regular', 'eco', 'sport', 'sport_plus') Driving mode
+   * @property {String} drivingMode (string: 'regular', 'eco', 'sport', 'sport_plus', 'eco_plus') Driving mode
    */
   static setDrivingMode(drivingMode) {
     validate([
@@ -20,7 +21,7 @@ export default class ChassisSettingsCommand {
         value: drivingMode,
         name: 'Driving mode',
         condition: Joi.string()
-          .valid('regular', 'eco', 'sport', 'sport_plus')
+          .valid('regular', 'eco', 'sport', 'sport_plus', 'eco_plus')
           .required(),
       },
     ]);
@@ -30,30 +31,36 @@ export default class ChassisSettingsCommand {
       eco: 0x01,
       sport: 0x02,
       sport_plus: 0x03,
+      eco_plus: 0x04,
     };
 
-    return new Command([0x00, 0x53, 0x02, drivingModeOptions[drivingMode]]);
+    return new Command([
+      0x00,
+      0x53,
+      0x12,
+      ...this.buildProperty(0x01, drivingModeOptions[drivingMode]),
+    ]);
   }
 
   /**
    * @function startSportChrono
    */
   static startSportChrono() {
-    return new Command([0x00, 0x53, 0x03, 0x00]);
+    return new Command([0x00, 0x53, 0x13, ...this.buildProperty(0x01, 0x00)]);
   }
 
   /**
    * @function stopSportChrono
    */
   static stopSportChrono() {
-    return new Command([0x00, 0x53, 0x03, 0x01]);
+    return new Command([0x00, 0x53, 0x13, ...this.buildProperty(0x01, 0x01)]);
   }
 
   /**
    * @function resetSportChrono
    */
   static resetSportChrono() {
-    return new Command([0x00, 0x53, 0x03, 0x02]);
+    return new Command([0x00, 0x53, 0x13, ...this.buildProperty(0x01, 0x02)]);
   }
 
   /**
@@ -72,7 +79,12 @@ export default class ChassisSettingsCommand {
 
     const rateByte = ((rate << 24) >> 24) & 0xff;
 
-    return new Command([0x00, 0x53, 0x04, 0x00, rateByte]);
+    return new Command([
+      0x00,
+      0x53,
+      0x14,
+      ...this.buildProperty(0x01, [0x00, rateByte]),
+    ]);
   }
 
   /**
@@ -91,11 +103,16 @@ export default class ChassisSettingsCommand {
 
     const rateByte = ((rate << 24) >> 24) & 0xff;
 
-    return new Command([0x00, 0x53, 0x04, 0x01, rateByte]);
+    return new Command([
+      0x00,
+      0x53,
+      0x14,
+      ...this.buildProperty(0x01, [0x01, rateByte]),
+    ]);
   }
 
   /**
-   * @function startSportChrono
+   * @function setChassisPosition
    *
    * @property {Number} position (number) Chassis position
    */
@@ -110,6 +127,11 @@ export default class ChassisSettingsCommand {
 
     const positionByte = ((position << 24) >> 24) & 0xff;
 
-    return new Command([0x00, 0x53, 0x05, positionByte]);
+    return new Command([
+      0x00,
+      0x53,
+      0x15,
+      ...this.buildProperty(0x01, positionByte),
+    ]);
   }
 }

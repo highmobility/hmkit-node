@@ -4,8 +4,6 @@ import {
   switchDecoder,
   dateDecoder,
   matrixZoneDecoder,
-  autoHvacDecoder,
-  autoHvacTimeDecoder,
   percentToInteger,
   progressDecoder,
 } from '../src/helpers';
@@ -60,74 +58,6 @@ describe(`helpers`, () => {
   it(`should decode progress correctly`, () => {
     const progress = progressDecoder([0x5a]);
     expect(progress).toEqual(0.9);
-  });
-
-  it(`should decode auto hvac correctly`, () => {
-    expect(
-      autoHvacDecoder([
-        0x00,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-      ])
-    ).toEqual({
-      constant: 'inactive',
-      fridays: { hour: 1, minute: 1, state: 'inactive' },
-      mondays: { hour: 1, minute: 1, state: 'inactive' },
-      saturdays: { hour: 1, minute: 1, state: 'inactive' },
-      sundays: { hour: 1, minute: 1, state: 'inactive' },
-      thursdays: { hour: 1, minute: 1, state: 'inactive' },
-      tuesdays: { hour: 1, minute: 1, state: 'inactive' },
-      wednesdays: { hour: 1, minute: 1, state: 'inactive' },
-    });
-
-    expect(
-      autoHvacDecoder([
-        0xff,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-        0x01,
-      ])
-    ).toEqual({
-      constant: 'active',
-      fridays: { hour: 1, minute: 1, state: 'active' },
-      mondays: { hour: 1, minute: 1, state: 'active' },
-      saturdays: { hour: 1, minute: 1, state: 'active' },
-      sundays: { hour: 1, minute: 1, state: 'active' },
-      thursdays: { hour: 1, minute: 1, state: 'active' },
-      tuesdays: { hour: 1, minute: 1, state: 'active' },
-      wednesdays: { hour: 1, minute: 1, state: 'active' },
-    });
-  });
-
-  it(`should decode auto hvac time correctly`, () => {
-    const time = autoHvacTimeDecoder(0x05, 0x04);
-    expect(time).toEqual({
-      hour: 5,
-      minute: 4,
-    });
   });
 
   it(`should convert percent to integer`, () => {

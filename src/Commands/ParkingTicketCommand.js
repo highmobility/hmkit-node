@@ -1,7 +1,9 @@
 import Command from './Command';
-import { dateToBytes, intToTwoBytes, stringToBytes } from '../encoding';
+import BaseCommand from './BaseCommand';
+import { dateToBytes, stringToBytes } from '../encoding';
+import { validate, Joi } from '../validate';
 
-export default class ParkingTicketCommand {
+export default class ParkingTicketCommand extends BaseCommand {
   /**
    * @function getTicket
    */
@@ -10,19 +12,12 @@ export default class ParkingTicketCommand {
   }
 
   /**
-   * @function end
-   */
-  static end() {
-    return new Command([0x00, 0x47, 0x03]);
-  }
-
-  /**
    * @function start
    *
-   * @property {String} operatorName (string) Operator name
+   * @property {String} operatorName (string) Operator name (optional)
    * @property {Number} operatorTicketID (number) Operator ticket id
    * @property {Date} ticketStartTime (date) Ticket start time
-   * @property {Date} ticketEndTime (date) Ticket end time
+   * @property {Date} ticketEndTime (date) Ticket end time (optional)
    *
    * @example start
     const response = await hmkit.telematics.sendCommand(
@@ -37,33 +32,47 @@ export default class ParkingTicketCommand {
    */
   static start(
     operatorName: string,
-    operatorTicketID: number,
+    operatorTicketID: string,
     ticketStartTime: Date,
     ticketEndTime: Date
   ) {
-    const operatorNameBytes = stringToBytes(operatorName);
-    const operatorTicketIDBytes = stringToBytes(operatorTicketID);
-    let allEndTimeBytes = [];
-
-    if (arguments.length === 4) {
-      allEndTimeBytes = [0x04, 0x00, 0x08, ...dateToBytes(ticketEndTime)];
-    }
+    validate([
+      {
+        value: operatorName,
+        name: 'Operator name',
+        condition: Joi.string(),
+      },
+      {
+        value: operatorTicketID,
+        name: 'Operator ticket ID',
+        condition: Joi.string().required(),
+      },
+      {
+        value: ticketStartTime,
+        name: 'Ticket start time',
+        condition: Joi.date().required(),
+      },
+    ]);
 
     return new Command([
       0x00,
       0x47,
       0x02,
-      0x01,
-      ...intToTwoBytes(operatorNameBytes.length),
-      ...operatorNameBytes,
-      0x02,
-      ...intToTwoBytes(operatorTicketIDBytes.length),
-      ...operatorTicketIDBytes,
-      0x03,
-      0x00,
-      0x08,
-      ...dateToBytes(ticketStartTime),
-      ...allEndTimeBytes,
+      ...(!!operatorName
+        ? this.buildProperty(0x01, stringToBytes(operatorName))
+        : []),
+      ...this.buildProperty(0x02, stringToBytes(operatorTicketID)),
+      ...this.buildProperty(0x03, dateToBytes(ticketStartTime)),
+      ...(!!ticketEndTime
+        ? this.buildProperty(0x04, dateToBytes(ticketEndTime))
+        : []),
     ]);
+  }
+
+  /**
+   * @function end
+   */
+  static end() {
+    return new Command([0x00, 0x47, 0x03]);
   }
 }

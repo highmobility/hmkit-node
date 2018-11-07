@@ -1,4 +1,9 @@
-import { ieee754ToBase10, intToBinary, pad, uint8toInt8 } from './encoding';
+import {
+  ieee754DoubleToBase10,
+  ieee754ToBase10,
+  pad,
+  uint8toInt8,
+} from './encoding';
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = bytes
@@ -50,12 +55,12 @@ export function dateDecoder(bytes: Array<Number>) {
   return null;
 }
 
-export function coordinatesDecoder(bytes: Array<Number>) {
-  const decoder = getRoundedIeee754ToBase10(6);
-
+export function coordinatesDecoder(data: Array<Number>) {
   return {
-    latitude: decoder(bytes.slice(0, bytes.length / 2)),
-    longitude: decoder(bytes.slice(bytes.length / 2)),
+    latitude: getRoundedIeee754DoubleToBase10(6)(
+      data.slice(0, data.length / 2)
+    ),
+    longitude: getRoundedIeee754DoubleToBase10(6)(data.slice(data.length / 2)),
   };
 }
 
@@ -68,52 +73,19 @@ export function getRoundedIeee754ToBase10(precision): number {
   };
 }
 
+export function getRoundedIeee754DoubleToBase10(precision): number {
+  const precisionMultiplier = Math.pow(10, precision);
+
+  return (...args) => {
+    const unrounded = ieee754DoubleToBase10(...args);
+    return Math.round(unrounded * precisionMultiplier) / precisionMultiplier;
+  };
+}
+
 export function matrixZoneDecoder(bytes: Array<Number>) {
   return {
     rows: (bytes[0] & 0xf0) >> 4,
     columns: bytes[0] & 0x0f,
-  };
-}
-
-export function autoHvacDecoder(bytes: Array<Number>) {
-  const [
-    constant,
-    sundays,
-    saturdays,
-    fridays,
-    thursdays,
-    wednesdays,
-    tuesdays,
-    mondays,
-  ] = pad(intToBinary(bytes[0]), 8)
-    .split('')
-    .map(orig => (Boolean(Number(orig)) === true ? 'active' : 'inactive'));
-
-  return {
-    mondays: { state: mondays, ...autoHvacTimeDecoder(bytes[1], bytes[2]) },
-    tuesdays: { state: tuesdays, ...autoHvacTimeDecoder(bytes[3], bytes[4]) },
-    wednesdays: {
-      state: wednesdays,
-      ...autoHvacTimeDecoder(bytes[5], bytes[6]),
-    },
-    thursdays: {
-      state: thursdays,
-      ...autoHvacTimeDecoder(bytes[7], bytes[8]),
-    },
-    fridays: { state: fridays, ...autoHvacTimeDecoder(bytes[9], bytes[10]) },
-    saturdays: {
-      state: saturdays,
-      ...autoHvacTimeDecoder(bytes[11], bytes[12]),
-    },
-    sundays: { state: sundays, ...autoHvacTimeDecoder(bytes[13], bytes[14]) },
-    constant,
-  };
-}
-
-export function autoHvacTimeDecoder(hour: Number, minute: Number) {
-  return {
-    hour,
-    minute,
   };
 }
 
@@ -130,4 +102,13 @@ export function activeInactiveDecoder() {
 
 export function percentToInteger(value: Number) {
   return value > 0.0 && value < 1.0 ? value * 100 : value;
+}
+
+export function isArray(value: Any) {
+  return (
+    (value.BYTES_PER_ELEMENT &&
+      Object.prototype.toString.call(value.buffer) ===
+        `[object ArrayBuffer]`) ||
+    Array.isArray(value)
+  );
 }

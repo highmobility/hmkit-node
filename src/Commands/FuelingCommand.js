@@ -12,6 +12,6 @@ export default class FuelingCommand {
    * @function openGasFlap
    */
   static openGasFlap() {
-    return new Command([0x00, 0x40, 0x02]);
+    return new Command([0x00, 0x40, 0x12]);
   }
 }

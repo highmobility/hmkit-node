@@ -14,6 +14,8 @@ describe(`WiFiCommand`, () => {
       expect.objectContaining({
         wifiEnabled: expect.any(String),
         networkConnected: expect.any(String),
+        networkSSID: expect.any(String),
+        networkSecurity: expect.any(String),
       })
     );
   });
@@ -67,10 +69,10 @@ describe(`WiFiCommand`, () => {
     );
   });
 
-  it(`should disable wifi`, async () => {
+  it(`should enable and disable wifi`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.WiFiCommand.disable()
+      hmkit.commands.WiFiCommand.enableDisable('disabled')
     );
 
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
@@ -79,18 +81,28 @@ describe(`WiFiCommand`, () => {
         wifiEnabled: 'disabled',
       })
     );
-  });
 
-  it(`should enable wifi`, async () => {
-    const response = await hmkit.telematics.sendCommand(
+    const response2 = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.WiFiCommand.enable()
+      hmkit.commands.WiFiCommand.enableDisable('enabled')
     );
 
-    expect(response.parse()).toBeInstanceOf(WiFiResponse);
-    expect(response.parse()).toEqual(
+    expect(response2.parse()).toBeInstanceOf(WiFiResponse);
+    expect(response2.parse()).toEqual(
       expect.objectContaining({
         wifiEnabled: 'enabled',
+      })
+    );
+
+    const response3 = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WiFiCommand.enableDisable('disabled')
+    );
+
+    expect(response3.parse()).toBeInstanceOf(WiFiResponse);
+    expect(response3.parse()).toEqual(
+      expect.objectContaining({
+        wifiEnabled: 'disabled',
       })
     );
   });

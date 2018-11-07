@@ -1,7 +1,9 @@
 import Command from './Command';
-import { intToTwoBytes, stringToBytes } from '../encoding';
+import BaseCommand from './BaseCommand';
+import { stringToBytes } from '../encoding';
+import { validate, Joi } from '../validate';
 
-export default class MessagingCommand {
+export default class MessagingCommand extends BaseCommand {
   /**
    * @function messageReceived
    *
@@ -9,19 +11,29 @@ export default class MessagingCommand {
    * @property {String} text (string) Text to send
    */
   static messageReceived(handle: string, text: string) {
-    const handleBytes = stringToBytes(handle);
-    const textBytes = stringToBytes(text);
+    validate([
+      {
+        value: text,
+        name: 'Text',
+        condition: Joi.string().required(),
+      },
+      {
+        value: handle,
+        name: 'Handle',
+        condition: Joi.string(),
+      },
+    ]);
+
+    const handleBytes = !!handle
+      ? this.buildProperty(0x02, stringToBytes(handle))
+      : [];
 
     return new Command([
       0x00,
       0x37,
       0x00,
-      0x01,
-      ...intToTwoBytes(handleBytes.length),
+      ...this.buildProperty(0x01, stringToBytes(text)),
       ...handleBytes,
-      0x02,
-      ...intToTwoBytes(textBytes.length),
-      ...textBytes,
     ]);
   }
 }

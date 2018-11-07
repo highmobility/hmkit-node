@@ -6,7 +6,7 @@ export default {
     messages: {
       [0x00]: 'get_lock_state',
       [0x01]: 'lock_state',
-      [0x02]: 'lock_unlock_doors',
+      [0x12]: 'lock_unlock_doors',
     },
   },
   trunk: {
@@ -14,7 +14,7 @@ export default {
     messages: {
       [0x00]: 'get_trunk_state',
       [0x01]: 'trunk_state',
-      [0x02]: 'open_close_trunk',
+      [0x12]: 'control_trunk',
     },
   },
   wake_up: {
@@ -28,11 +28,12 @@ export default {
     messages: {
       [0x00]: 'get_charge_state',
       [0x01]: 'charge_state',
-      [0x02]: 'start_stop_charging',
-      [0x03]: 'set_charge_limit',
-      [0x04]: 'open_close_charge_port',
-      [0x05]: 'set_charge_mode',
-      [0x06]: 'set_charge_timer',
+      [0x12]: 'start_stop_charging',
+      [0x13]: 'set_charge_limit',
+      [0x14]: 'open_close_charging_port',
+      [0x15]: 'set_charge_mode',
+      [0x16]: 'set_charging_timers',
+      [0x17]: 'set_reduction_of_charging_current_times',
     },
   },
   climate: {
@@ -40,11 +41,12 @@ export default {
     messages: {
       [0x00]: 'get_climate_state',
       [0x01]: 'climate_state',
-      [0x02]: 'set_climate_profile',
-      [0x03]: 'start_stop_hvac',
-      [0x04]: 'start_stop_defogging',
-      [0x05]: 'start_stop_defrosting',
-      [0x06]: 'start_stop_ionising',
+      [0x12]: 'change_starting_times',
+      [0x13]: 'start_stop_hvac',
+      [0x14]: 'start_stop_defogging',
+      [0x15]: 'start_stop_defrosting',
+      [0x16]: 'start_stop_ionising',
+      [0x17]: 'set_temperature_settings',
     },
   },
   rooftop_control: {
@@ -52,7 +54,7 @@ export default {
     messages: {
       [0x00]: 'get_rooftop_state',
       [0x01]: 'rooftop_state',
-      [0x02]: 'control_rooftop',
+      [0x12]: 'control_rooftop',
     },
   },
   honk_horn_flash_lights: {
@@ -60,8 +62,8 @@ export default {
     messages: {
       [0x00]: 'get_flashers_state',
       [0x01]: 'flashers_state',
-      [0x02]: 'honk_flash',
-      [0x03]: 'activate_deactivate_emergency_flashers',
+      [0x12]: 'honk_flash',
+      [0x13]: 'activate_deactivate_emergency_flashers',
     },
   },
   remote_control: {
@@ -69,9 +71,8 @@ export default {
     messages: {
       [0x00]: 'get_control_mode',
       [0x01]: 'control_mode',
-      [0x02]: 'start_control_mode',
-      [0x03]: 'stop_control_mode',
       [0x04]: 'control_command',
+      [0x12]: 'start_stop_control',
     },
   },
   valet_mode: {
@@ -79,13 +80,13 @@ export default {
     messages: {
       [0x00]: 'get_valet_mode',
       [0x01]: 'valet_mode',
-      [0x02]: 'activate_deactivate_valet_mode',
+      [0x12]: 'activate_deactivate_valet_mode',
     },
   },
   heart_rate: {
     identifier: [0x00, 0x29],
     messages: {
-      [0x02]: 'send_heart_rate',
+      [0x12]: 'send_heart_rate',
     },
   },
   vehicle_location: {
@@ -100,7 +101,7 @@ export default {
     messages: {
       [0x00]: 'get_navi_destination',
       [0x01]: 'navi_destination',
-      [0x02]: 'set_navi_destination',
+      [0x12]: 'set_navi_destination',
     },
   },
   diagnostics: {
@@ -122,7 +123,7 @@ export default {
     messages: {
       [0x00]: 'get_ignition_state',
       [0x01]: 'ignition_state',
-      [0x02]: 'turn_engine_on_off',
+      [0x12]: 'turn_ignition_on_off',
     },
   },
   lights: {
@@ -130,7 +131,7 @@ export default {
     messages: {
       [0x00]: 'get_lights_state',
       [0x01]: 'lights_state',
-      [0x02]: 'control_lights',
+      [0x12]: 'control_lights',
     },
   },
   messaging: {
@@ -144,8 +145,8 @@ export default {
     identifier: [0x00, 0x38],
     messages: {
       [0x00]: 'notification',
-      [0x01]: 'notification_action',
       [0x02]: 'clear_notification',
+      [0x11]: 'notification_action',
     },
   },
   fueling: {
@@ -153,7 +154,7 @@ export default {
     messages: {
       [0x00]: 'get_gas_flap_state',
       [0x01]: 'gas_flap_state',
-      [0x02]: 'open_gas_flap',
+      [0x12]: 'open_close_gas_flap',
     },
   },
   driver_fatigue: {
@@ -167,7 +168,9 @@ export default {
     messages: {
       [0x00]: 'get_windscreen_state',
       [0x01]: 'windscreen_state',
-      [0x02]: 'set_windscreen_damage',
+      [0x12]: 'set_windscreen_damage',
+      [0x13]: 'set_windscreen_replacement_needed',
+      [0x14]: 'control_wipers',
     },
   },
   video_handover: {
@@ -187,7 +190,7 @@ export default {
     messages: {
       [0x00]: 'get_windows_state',
       [0x01]: 'windows_state',
-      [0x02]: 'open_close_windows',
+      [0x12]: 'control_windows',
     },
   },
   theft_alarm: {
@@ -195,7 +198,7 @@ export default {
     messages: {
       [0x00]: 'get_theft_alarm_state',
       [0x01]: 'theft_alarm_state',
-      [0x02]: 'set_theft_alarm_state',
+      [0x12]: 'set_theft_alarm_state',
     },
   },
   parking_ticket: {
@@ -245,10 +248,10 @@ export default {
     messages: {
       [0x00]: 'get_chassis_settings',
       [0x01]: 'chassis_settings',
-      [0x02]: 'set_driving_mode',
-      [0x03]: 'start_stop_sport_chrono',
-      [0x04]: 'set_spring_rate',
-      [0x05]: 'set_chassis_position',
+      [0x12]: 'set_driving_mode',
+      [0x13]: 'start_stop_sports_chrono',
+      [0x14]: 'set_spring_rates',
+      [0x15]: 'set_chassis_position',
     },
   },
   light_conditions: {
@@ -284,7 +287,7 @@ export default {
     messages: {
       [0x00]: 'get_parking_brake_state',
       [0x01]: 'parking_brake_state',
-      [0x02]: 'set_parking_brake',
+      [0x12]: 'set_parking_brake',
     },
   },
   wi_fi: {
@@ -302,10 +305,11 @@ export default {
     messages: {
       [0x00]: 'get_home_charger_state',
       [0x01]: 'home_charger_state',
-      [0x02]: 'set_charge_current',
-      [0x03]: 'set_price_tariffs',
-      [0x04]: 'activate_deactivate_solar_charging',
-      [0x05]: 'enable_disable_wi_fi_hotspot',
+      [0x12]: 'set_charge_current',
+      [0x13]: 'set_price_tariffs',
+      [0x14]: 'activate_deactivate_solar_charging',
+      [0x15]: 'enable_disable_wi_fi_hotspot',
+      [0x16]: 'authenticate_expire',
     },
   },
   dashboard_lights: {
@@ -320,7 +324,7 @@ export default {
     messages: {
       [0x00]: 'get_cruise_control_state',
       [0x01]: 'cruise_control_state',
-      [0x02]: 'activate_deactivate_cruise_control',
+      [0x12]: 'activate_deactivate_cruise_control',
     },
   },
   start_stop: {
@@ -328,7 +332,7 @@ export default {
     messages: {
       [0x00]: 'get_start_stop_state',
       [0x01]: 'start_stop_state',
-      [0x02]: 'activate_deactivate_start_stop',
+      [0x12]: 'activate_deactivate_start_stop',
     },
   },
   tachograph: {
@@ -344,6 +348,27 @@ export default {
       [0x00]: 'get_power_takeoff_state',
       [0x01]: 'power_takeoff_state',
       [0x02]: 'activate_deactivate_power_takeoff',
+    },
+  },
+  mobile: {
+    identifier: [0x00, 0x66],
+    messages: {
+      [0x00]: 'get_mobile_state',
+      [0x01]: 'mobile_state',
+    },
+  },
+  hood: {
+    identifier: [0x00, 0x67],
+    messages: {
+      [0x00]: 'get_hood_state',
+      [0x01]: 'hood_state',
+    },
+  },
+  usage: {
+    identifier: [0x00, 0x68],
+    messages: {
+      [0x00]: 'get_usage',
+      [0x01]: 'usage',
     },
   },
 };
