@@ -232,7 +232,7 @@ parameters-description="(Array) Capabilities ({ capabilityIdentifier: (string 'v
 {%
 include code-node-sdk-response.html
 parameters-name="estimatedRange, batteryLevel, batteryCurrentAC, batteryCurrentDC, chargerVoltageAC, chargerVoltageDC, chargeLimit, timeToCompleteCharge, chargingRateKW, chargePortState, chargeMode, maxChargingCurrent, plugType, chargingWindowChosen, departureTimes, reductionTimes, batteryTemperature, timers, pluggedIn, activeState"
-parameters-description="(number) Estimated range in km, (number) Battery level 0..1 (0 = 0%&comma; 1 = 100%), (number) Battery current (AC) in 4-bytes per IEEE 754, (number) Battery current (DC) in 4-bytes per IEEE 754, (number) Charger voltage (AC) in V, (number) Charger voltage (DC) in V, (number) Charge limit 0..1 (0 = 0%&comma; 1 = 100%), (number) Time to complete charge in min, (number) Charging rate (kW), (string) Charge port state, (string) Charge mode, (number) Maximum charging current in 4-bytes per IEEE 754, (string) Plug state, (string) Charging window chosen, (array) Departure times [{ activeState: (boolean)&comma; hour: (number)&comma; minute: (number)}], (array) Reduction of charging-current times [{ startStop: (string)&comma; hour: (number)&comma; minute: (number) }], (number) Battery temperature in Celsius in 4-bytes per IEEE 754, (array) Charging timers [{ timerType: (string)&comma; date: (date) }], (string) Plugged in, (string) Charging state"
+parameters-description="(number) Estimated range in km, (number) Battery level 0..1 (0 = 0%&comma; 1 = 100%), (number) Battery current (AC) in 4-bytes per IEEE 754, (number) Battery current (DC) in 4-bytes per IEEE 754, (number) Charger voltage (AC) in V, (number) Charger voltage (DC) in V, (number) Charge limit 0..1 (0 = 0%&comma; 1 = 100%), (number) Time to complete charge in min, (number) Charging rate (kW), (string) Charge port state, (string) Charge mode, (number) Maximum charging current in 4-bytes per IEEE 754, (string) Plug state, (string) Charging window chosen, (array) Departure times [{ activeState: (boolean)&comma; hour: (number)&comma; minute: (number)}], (array) Reduction of charging-current times [{ startStop: (string)&comma; hour: (number)&comma; minute: (number) }], (number) Battery temperature in Celsius in 4-bytes per IEEE 754, (array) Charging timers [{ timerType: (string)&comma; time: (date) }], (string) Plugged in, (string) Charging state"
 %}
 
 
@@ -267,13 +267,13 @@ parameters-description="(number) Estimated range in km, (number) Battery level 0
  batteryTemperature: 38.4,
  timers: [{
    timerType: 'preferred_start_time',
-   date: 2018-10-17T07:27:52.000Z
+   time: 2018-10-17T07:27:52.000Z
  }, {
    timerType: 'preferred_end_time',
-   date: 2018-10-17T07:27:52.000Z
+   time: 2018-10-17T07:27:52.000Z
  }, {
    timerType: 'departure_time',
-   date: 2018-10-17T07:27:52.000Z
+   time: 2018-10-17T07:27:52.000Z
  }],
  pluggedIn: 'disconnected',
  activeState: 'not_charging'
