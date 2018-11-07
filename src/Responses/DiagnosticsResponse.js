@@ -231,30 +231,39 @@ export default class DiagnosticsResponse extends PropertyResponse {
 
   checkControlMessagesDecoder(bytes: Array<Number>) {
     const textLength = bytesSum(bytes.slice(6, 8));
+    const text = bytesToString(bytes.slice(8, 8 + textLength));
+    const statusLength = bytes[9 + textLength];
+    const status = bytesToString(
+      bytes.slice(9 + textLength, 10 + textLength + statusLength)
+    );
 
     return [
       {
         id: bytesSum(bytes.slice(0, 2)),
         remainingMinutes: bytesSum(bytes.slice(2, 6)),
-        text: bytesToString(bytes.slice(8, 8 + textLength)),
-        status: bytesToString(bytes.slice(8 + textLength, bytes.length)),
+        text,
+        status,
       },
     ];
   }
 
   troubleCodesDecoder(bytes: Array<Number>) {
-    const idLength = bytesSum(bytes.slice(1, 3));
-    const ecuIdLength = bytesSum(bytes.slice(3 + idLength, 5 + idLength));
+    const idLength = bytes[1];
+    const ecuIdLength = bytes[2 + idLength];
+    const statusLength = bytes[3 + idLength + ecuIdLength];
 
     return [
       {
         occurences: bytes[0],
-        id: bytesToString(bytes.slice(3, 3 + idLength)),
+        id: bytesToString(bytes.slice(2, 2 + idLength)),
         ecuId: bytesToString(
-          bytes.slice(5 + idLength, 5 + idLength + ecuIdLength)
+          bytes.slice(3 + idLength, 3 + idLength + ecuIdLength)
         ),
         status: bytesToString(
-          bytes.slice(5 + idLength + ecuIdLength, bytes.length)
+          bytes.slice(
+            4 + idLength + ecuIdLength,
+            4 + idLength + ecuIdLength + statusLength
+          )
         ),
       },
     ];

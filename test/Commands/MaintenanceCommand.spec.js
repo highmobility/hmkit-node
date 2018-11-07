@@ -29,6 +29,7 @@ describe(`MaintenanceCommand`, () => {
             cbsIdentifier: expect.any(Number),
             dueStatus: expect.any(String),
             cbsText: expect.any(String),
+            description: expect.any(String),
           },
         ],
         brakeFluidChangeDate: expect.any(Date),
