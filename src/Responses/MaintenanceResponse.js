@@ -17,7 +17,7 @@ export default class MaintenanceResponse extends PropertyResponse {
    * @property {Date} automaticTeleserviceCallDate (date) Automatic teleservice call date
    * @property {Date} teleserviceBatteryCallDate (date) Teleservice battery call date
    * @property {Date} nextInspectionDate (date) Next inspection date
-   * @property {Array} conditionBasedServices (Array) Condition based services ([{ year: (number), month: (number), cbsIdentifier: (number), dueStatus: (string: 'ok|pending|overdue', cbsText: (string)) }])
+   * @property {Array} conditionBasedServices (Array) Condition based services ([{ year: (number), month: (number), cbsIdentifier: (number), dueStatus: (string: 'ok|pending|overdue'), cbsText: (string), description: (string) }])
    * @property {Date} brakeFluidChangeDate (Date) Brake fluid change date
    *
    * @example MaintenanceResponse
@@ -37,7 +37,8 @@ export default class MaintenanceResponse extends PropertyResponse {
         month: 8,
         cbsIdentifier: 123,
         dueStatus: 'overdue',
-        cbsText: 'Test'
+        cbsText: 'Test',
+        description: 'asdasd'
       }],
       brakeFluidChangeDate: 2018-10-22T12:10:33.000Z
     }
@@ -75,6 +76,15 @@ export default class MaintenanceResponse extends PropertyResponse {
   }
 
   conditionBasedServicesDecoder(bytes: Array<Number>) {
+    const cbsTextLength = bytesSum(bytes.slice(5, 7));
+    const cbsText = bytesToString(bytes.slice(7, 7 + cbsTextLength));
+    const descriptionLength = bytesSum(
+      bytes.slice(7 + cbsTextLength, 9 + cbsTextLength)
+    );
+    const description = bytesToString(
+      bytes.slice(9 + cbsTextLength, 9 + cbsTextLength + descriptionLength)
+    );
+
     return [
       {
         year: bytes[0] + 2000,
@@ -85,7 +95,8 @@ export default class MaintenanceResponse extends PropertyResponse {
           0x01: 'pending',
           0x02: 'overdue',
         })([bytes[4]]),
-        cbsText: bytesToString(bytes.slice(7, 7 + bytesSum(bytes.slice(5, 7)))),
+        cbsText,
+        description,
       },
     ];
   }
