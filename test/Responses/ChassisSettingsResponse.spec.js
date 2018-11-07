@@ -6,33 +6,47 @@ describe(`ChassisSettingsResponse`, () => {
   it(`should return ChassisSettingsResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '00530101000101020001010300040015251503000401171F110400031937E4'
+        '005301010001010200010005000200150500020115060002002506000201250700020011070002011108000119090001370a0001e4a20008120a170a360000b4'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual({
-      chassisPosition: {
-        maximumValue: 55,
-        minimumValue: -28,
-        chassisPosition: 25,
-      },
       drivingMode: 'eco',
-      sportChrono: 'active',
-      springRates: [
+      sportChrono: 'inactive',
+      currentSpringRates: [
         {
           axle: 'front_axle',
           springRate: 21,
-          maximumValue: 37,
-          minimumValue: 21,
         },
         {
           axle: 'rear_axle',
-          springRate: 23,
-          maximumValue: 31,
-          minimumValue: 17,
+          springRate: 21,
         },
       ],
+      maximumSpringRates: [
+        {
+          axle: 'front_axle',
+          springRate: 37,
+        },
+        {
+          axle: 'rear_axle',
+          springRate: 37,
+        },
+      ],
+      minimumSpringRates: [
+        {
+          axle: 'front_axle',
+          springRate: 17,
+        },
+        {
+          axle: 'rear_axle',
+          springRate: 17,
+        },
+      ],
+      currentChassisPosition: 25,
+      maximumChassisPosition: 55,
+      minimumChassisPosition: -28,
     });
   });
 });

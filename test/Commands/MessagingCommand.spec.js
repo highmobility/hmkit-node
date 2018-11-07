@@ -11,8 +11,9 @@ describe(`MessagingCommand`, () => {
     const response = await hmkit.telematics.sendCommand(vehicleSerial, command);
 
     expect(command.toString().toUpperCase()).toBe(
-      '00370001000E2B31203535352D3535352D35353502000548656C6C6F'
+      '00370001000548656C6C6F02000E2B31203535352D3535352D353535'
     );
+
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
   });
 });

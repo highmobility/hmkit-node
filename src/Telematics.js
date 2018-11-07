@@ -25,57 +25,45 @@ export default class Telematics {
         }
       );
 
-  onTelematicsSendData = (issuer, serial, data) => {
-    const payload = {
-      serial_number: uint8ArrayToHex(new Uint8Array(serial)).toUpperCase(),
-      issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
-      data: byteArrayToBase64(data),
-    };
-
-    this.promise = this.hmkit.apiClient
+  onTelematicsSendData = async (issuer, ser, dt) =>
+    await this.hmkit.apiClient
       .post(`${this.hmkit.api.getUrl()}telematics_commands`, {
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          serial_number: uint8ArrayToHex(new Uint8Array(ser)).toUpperCase(),
+          issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
+          data: byteArrayToBase64(dt),
+        }),
       })
       .then(
         res => res.body.response_data,
         err => {
-          this.promise = null;
           throw err;
         }
       );
-  };
 
-  onTelematicsCommandIncoming = (serial, id, data) => {
-    this.response = {
-      incomingCommandSerial: uint8ArrayToHex(
-        new Uint8Array(serial)
-      ).toUpperCase(),
-      incomingCommandId: uint8ArrayToHex(new Uint8Array(id)).toUpperCase(),
-      incomingCommandData: new Uint8Array(data),
-    };
-  };
+  onTelematicsCommandIncoming = (ser, id, dt) => ({
+    incomingCommandSerial: uint8ArrayToHex(new Uint8Array(ser)).toUpperCase(),
+    incomingCommandId: uint8ArrayToHex(new Uint8Array(id)).toUpperCase(),
+    incomingCommandData: new Uint8Array(dt),
+  });
 
   sendCommand = async (serial, data) => {
     const nonce = await this.getNonce(serial);
 
-    this.hmkit.crypto.sendTelematicsCommand(
+    const result = await this.hmkit.crypto.sendTelematicsCommand(
       hexToUint8Array(serial).buffer,
       base64ToUint8(nonce).buffer,
-      hexToUint8Array(data.toString()).buffer
+      hexToUint8Array(data.toString()).buffer,
+      this.onTelematicsSendData
     );
 
-    if (!this.promise) {
-      throw new Error('Failed to send telematics command.');
-    }
+    const response = await this.hmkit.crypto.telematicsDataReceived(
+      base64ToUint8(result).buffer,
+      this.onTelematicsCommandIncoming
+    );
 
-    const result = await this.promise;
-
-    this.promise = null;
-
-    this.hmkit.crypto.telematicsDataReceived(base64ToUint8(result).buffer);
-
-    if (this.response && this.response.incomingCommandData) {
-      return new Response(this.response.incomingCommandData);
+    if (response && response.incomingCommandData) {
+      return new Response(response.incomingCommandData);
     }
 
     throw new Error('Failed to read incoming data.');

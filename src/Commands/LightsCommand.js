@@ -1,7 +1,8 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 import { hexToInt } from '../encoding';
 
-export default class LightsCommand {
+export default class LightsCommand extends BaseCommand {
   /**
    * @function getState
    */
@@ -35,12 +36,10 @@ export default class LightsCommand {
         active_with_full_beam: 0x02,
       };
 
-      allFrontBytes = [
+      allFrontBytes = this.buildProperty(
         0x01,
-        0x00,
-        0x01,
-        frontExteriorLightOptions[frontExteriorLight],
-      ];
+        frontExteriorLightOptions[frontExteriorLight]
+      );
     }
 
     if (!!rearExteriorLight && rearExteriorLight.length > 0) {
@@ -49,12 +48,10 @@ export default class LightsCommand {
         active: 0x01,
       };
 
-      allRearBytes = [
+      allRearBytes = this.buildProperty(
         0x02,
-        0x00,
-        0x01,
-        rearExteriorLightOptions[rearExteriorLight],
-      ];
+        rearExteriorLightOptions[rearExteriorLight]
+      );
     }
 
     if (!!interiorLight && interiorLight.length > 0) {
@@ -63,12 +60,10 @@ export default class LightsCommand {
         active: 0x01,
       };
 
-      allInteriorBytes = [
+      allInteriorBytes = this.buildProperty(
         0x03,
-        0x00,
-        0x01,
-        interiorLightOptions[interiorLight],
-      ];
+        interiorLightOptions[interiorLight]
+      );
     }
 
     if (!!ambientLight && ambientLight.length > 0) {
@@ -76,13 +71,13 @@ export default class LightsCommand {
       const green = hexToInt(ambientLight.slice(3, 5));
       const blue = hexToInt(ambientLight.slice(5, 7));
 
-      allAmbientBytes = [0x04, 0x00, 0x03, red, green, blue];
+      allAmbientBytes = this.buildProperty(0x04, [red, green, blue]);
     }
 
     return new Command([
       0x00,
       0x36,
-      0x02,
+      0x12,
       ...allFrontBytes,
       ...allRearBytes,
       ...allInteriorBytes,

@@ -55,6 +55,7 @@ describe(`RaceCommand`, () => {
       clutchPedalSwitch: expect.any(String),
       acceleratorPedalIdleSwitch: expect.any(String),
       acceleratorPedalKickdownSwitch: expect.any(String),
+      vehicleMoving: expect.any(String),
     });
   });
 });

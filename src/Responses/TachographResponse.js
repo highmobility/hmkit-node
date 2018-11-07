@@ -7,9 +7,9 @@ export default class TachographResponse extends PropertyResponse {
   static identifier = [0x00, 0x64];
 
   /**
-   * @property {Array<Object>} driverWorkingStates (object { driverNumber: (Number), workingState: (String 'resting|driver_available|working|driving') }) Driver working states
-   * @property {Array<Object>} driverTimeStates (object { driverNumber: (Number), timeState: (String 'normal|15_min_before_4|4_reached|15_min_before_9|9_reached|15_min_before_16|16_reached') }) Driver time states
-   * @property {Array<Object>} driverCards  (object { driverNumber: (Number), card: (String 'not_presented|presented') }) Driver card states
+   * @property {Array} driverWorkingStates (object) Driver working states ({ driverNumber: (Number), workingState: (String 'resting|driver_available|working|driving') })
+   * @property {Array} driverTimeStates (object) Driver time states ({ driverNumber: (Number), timeState: (String 'normal|15_min_before_4|4_reached|15_min_before_9|9_reached|15_min_before_16|16_reached') })
+   * @property {Array} driverCards  (object) Driver card states ({ driverNumber: (Number), card: (String 'not_presented|presented') })
    * @property {String} vehicleMotion (string 'not_detected|detected') Vehicle motion detected
    * @property {String} vehicleOverspeed (string 'no_overspeed|overspeed') Overspeed state
    * @property {String} vehicleDirection (string 'forward|reverse') Vehicle direction

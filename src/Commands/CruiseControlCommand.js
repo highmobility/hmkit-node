@@ -1,7 +1,8 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 import { validate, Joi } from '../validate';
 
-export default class CruiseControlCommand {
+export default class CruiseControlCommand extends BaseCommand {
   /**
    * @function getState
    */
@@ -25,17 +26,14 @@ export default class CruiseControlCommand {
 
     const targetSpeedBytes =
       targetSpeed !== null && targetSpeed !== undefined
-        ? [0x02, 0x00, 0x01, targetSpeed]
+        ? this.buildProperty(0x02, targetSpeed)
         : [];
 
     return new Command([
       0x00,
       0x62,
-      0x02,
-      0x01,
-      0x00,
-      0x01,
-      0x01,
+      0x12,
+      ...this.buildProperty(0x01, 0x01),
       ...targetSpeedBytes,
     ]);
   }
@@ -44,6 +42,6 @@ export default class CruiseControlCommand {
    * @function deactivateCruiseControl
    */
   static deactivateCruiseControl() {
-    return new Command([0x00, 0x62, 0x02, 0x01, 0x00, 0x01, 0x00]);
+    return new Command([0x00, 0x62, 0x12, ...this.buildProperty(0x01, 0x00)]);
   }
 }

@@ -1,11 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import semver from 'semver';
 import { base64ToUint8, uint8ArrayToHex, hexToUint8Array } from './encoding';
 
 export default class SdkNodeBindings {
   constructor(hmkit) {
     this.hmkit = hmkit;
     this.loadNativeAddOn();
+  }
+
+  legacyOpenSsl() {
+    return !semver.gte(process.version, '10.0.0');
   }
 
   loadNativeAddOn() {
@@ -19,15 +24,21 @@ export default class SdkNodeBindings {
       this.addon = new ref.AddonObj();
       return this.addon;
     } else if (process.platform === 'darwin') {
-      const ref = require('../bindings/macos');
+      const ref = this.legacyOpenSsl()
+        ? require('../bindings/macos')
+        : require('../bindings/macos_openssl1.1.node');
       this.addon = new ref.AddonObj();
       return this.addon;
     } else if (process.platform === 'linux') {
-      const ref = require('../bindings/ubuntu');
+      const ref = this.legacyOpenSsl()
+        ? require('../bindings/ubuntu')
+        : require('../bindings/ubuntu_openssl1.1.node');
       this.addon = new ref.AddonObj();
       return this.addon;
     } else if (process.platform === 'win32') {
-      const ref = require('../bindings/windows');
+      const ref = this.legacyOpenSsl()
+        ? require('../bindings/windows')
+        : require('../bindings/windows_openssl1.1.node');
       this.addon = new ref.AddonObj();
       return this.addon;
     }
@@ -42,12 +53,6 @@ export default class SdkNodeBindings {
 
     getpriv: () => base64ToUint8(this.hmkit.clientPrivateKey).buffer,
 
-    sendtele: (issuer, serial, data) =>
-      this.hmkit.telematics.onTelematicsSendData(issuer, serial, data),
-
-    incmtele: (serial, id, data) =>
-      this.hmkit.telematics.onTelematicsCommandIncoming(serial, id, data),
-
     getac: serial => {
       const accessCert = this.hmkit.certificates.get(
         uint8ArrayToHex(new Uint8Array(serial)).toUpperCase()
@@ -56,12 +61,31 @@ export default class SdkNodeBindings {
     },
   };
 
-  telematicsDataReceived(buffer) {
-    this.addon.telematicsDataReceived(this.callbacks, buffer);
+  telematicsDataReceived(buffer, callback) {
+    return new Promise(resolve => {
+      this.addon.telematicsDataReceived(
+        {
+          ...this.callbacks,
+          incmtele: (serial, id, data) => resolve(callback(serial, id, data)),
+        },
+        buffer
+      );
+    });
   }
 
-  sendTelematicsCommand(serial, nounce, buffer) {
-    this.addon.sendTelematicsCommand(this.callbacks, serial, nounce, buffer);
+  sendTelematicsCommand(ser, nounce, buffer, callback) {
+    return new Promise(resolve => {
+      this.addon.sendTelematicsCommand(
+        {
+          ...this.callbacks,
+          sendtele: (issuer, serial, data) =>
+            resolve(callback(issuer, serial, data)),
+        },
+        ser,
+        nounce,
+        buffer
+      );
+    });
   }
 
   generateSignature(buffer) {

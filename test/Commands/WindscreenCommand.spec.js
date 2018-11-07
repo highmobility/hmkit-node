@@ -9,6 +9,23 @@ describe(`WindscreenCommand`, () => {
     const response = await hmkit.telematics.sendCommand(vehicleSerial, bytes);
 
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
+
+    expect(response.parse()).toEqual({
+      wipers: expect.any(String),
+      wipersIntensity: expect.any(String),
+      windscreenDamage: expect.any(String),
+      windscreenZoneMatrix: {
+        rows: expect.any(Number),
+        columns: expect.any(Number),
+      },
+      windscreenDamageZone: {
+        rows: expect.any(Number),
+        columns: expect.any(Number),
+      },
+      windscreenNeedsReplacement: expect.any(String),
+      windscreenDamageConfidence: expect.any(Number),
+      windscreenDamageDetectionTime: expect.any(Date),
+    });
   });
 
   it('should set windscreen damage', async () => {
@@ -17,8 +34,7 @@ describe(`WindscreenCommand`, () => {
       hmkit.commands.WindscreenCommand.setDamage(
         'damage_smaller_than_1_inch',
         2,
-        3,
-        'replacement_needed'
+        3
       )
     );
 
@@ -30,7 +46,49 @@ describe(`WindscreenCommand`, () => {
           rows: 2,
           columns: 3,
         },
+      })
+    );
+  });
+
+  it('should set windscreen replacement', async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindscreenCommand.setReplacement('replacement_needed')
+    );
+
+    expect(response.parse()).toBeInstanceOf(WindscreenResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
         windscreenNeedsReplacement: 'replacement_needed',
+      })
+    );
+  });
+
+  it('should control windscreen wipers without intensity', async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindscreenCommand.controlWipers('automatic')
+    );
+
+    expect(response.parse()).toBeInstanceOf(WindscreenResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        wipers: 'automatic',
+      })
+    );
+  });
+
+  it('should control windscreen wipers with intensity', async () => {
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.WindscreenCommand.controlWipers('active', 'level_3')
+    );
+
+    expect(response.parse()).toBeInstanceOf(WindscreenResponse);
+    expect(response.parse()).toEqual(
+      expect.objectContaining({
+        wipers: 'active',
+        wipersIntensity: 'level_3',
       })
     );
   });
@@ -83,5 +141,37 @@ describe(`WindscreenCommand`, () => {
     expect(
       hmkit.commands.WindscreenCommand.getNeedReplacementByte('u_wot_m8')
     ).toEqual(0x00);
+  });
+
+  it(`should return correct wipers state byte`, () => {
+    expect(
+      hmkit.commands.WindscreenCommand.getWiperStateByte('inactive')
+    ).toEqual(0x00);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getWiperStateByte('active')
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getWiperStateByte('automatic')
+    ).toEqual(0x02);
+  });
+
+  it(`should return correct wipers intensity byte`, () => {
+    expect(
+      hmkit.commands.WindscreenCommand.getWipersIntensityByte('level_0')
+    ).toEqual(0x00);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getWipersIntensityByte('level_1')
+    ).toEqual(0x01);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getWipersIntensityByte('level_2')
+    ).toEqual(0x02);
+
+    expect(
+      hmkit.commands.WindscreenCommand.getWipersIntensityByte('level_3')
+    ).toEqual(0x03);
   });
 });

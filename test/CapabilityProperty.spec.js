@@ -24,7 +24,7 @@ describe(`CapabilityProperty`, () => {
       )
     );
 
-    capabilityProperty.parseValue([0x00, 0x20, 0x00, 0x01, 0x02]);
+    capabilityProperty.parseValue([0x00, 0x20, 0x00, 0x01, 0x12]);
 
     expect(
       capabilityProperty.subProperties.find(

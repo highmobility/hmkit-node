@@ -6,41 +6,30 @@ describe(`HomeChargerResponse`, () => {
   it(`should return HomeChargerResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '00600101000102020001010300010104000441380000050001010600084252147D41567AB107000C3F0000003F800000000000000800010109000C4368617267657220373631320A0001030B000A5A57337641524E5542650C000800455552409000000C0008024555523E99999A'
+        '0060010100010002000100030001000400040000000005000100080001000900000a0001000b00000d0001000e00043f19999a0f00044248000010000400000000110010404a421cde5d1809402ac37d41743e9612000800402000004555521200080100000000000000120008023fa66666555344a20008120b060e1d180078'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual({
-      charging: 'charging',
-      authenticationMechanism: 'app',
-      plugType: 'type_2',
-      chargingPower: 11.5,
-      solarCharging: 'activated',
-      location: {
-        latitude: 52.520008,
-        longitude: 13.404954,
-      },
-      chargeCurrent: {
-        chargeCurrent: 0.5,
-        maximumValue: 1,
-        minimumValue: 0,
-      },
-      hotspotEnabled: 'enabled',
-      hotspotSSID: 'Charger 7612',
-      wiFiHotspotSecurity: 'wpa2_personal',
-      wiFiHotspotPassword: 'ZW3vARNUBe',
+      charging: 'disconnected',
+      authenticationMechanism: 'pin',
+      plugType: 'type_1',
+      chargingPower: 0,
+      solarCharging: 'deactivated',
+      hotspotEnabled: 'disabled',
+      hotspotSSID: '',
+      wiFiHotspotSecurity: 'none',
+      wiFiHotspotPassword: '',
+      authentication: 'unauthenticated',
+      chargeCurrentDC: 0.6,
+      maximumChargeCurrent: 50,
+      minimumChargeCurrent: 0,
+      coordinates: { latitude: 52.516506, longitude: 13.381815 },
       priceTariffs: [
-        {
-          pricingType: 'starting_fee',
-          currency: 'EUR',
-          price: 4.5,
-        },
-        {
-          pricingType: 'per_kwh',
-          currency: 'EUR',
-          price: 0.3,
-        },
+        { pricingType: 'starting_fee', price: 2.5, currency: 'EUR' },
+        { pricingType: 'per_minute', price: 0, currency: '' },
+        { pricingType: 'per_kwh', price: 1.3, currency: 'USD' },
       ],
     });
   });

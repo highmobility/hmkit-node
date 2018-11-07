@@ -12,18 +12,21 @@ export default class HomeChargerResponse extends PropertyResponse {
   static identifier = [0x00, 0x60];
 
   /**
-   * @property {String} charging (string 'disconnected|plugged_in|charging') Charging
+   * @property {String} charging (string: 'disconnected|plugged_in|charging') Charging
    * @property {String} authenticationMechanism (string 'pin|app') Authentication mechanism
-   * @property {String} plugType (string 'type_1|type_2|ccs|chademo') Plug type
+   * @property {String} plugType (string: 'type_1|type_2|ccs|chademo') Plug type
    * @property {Number} chargingPower (number) Charging power in kW formatted in 4-bytes per IEEE 754
-   * @property {String} solarCharging (string 'activated|deactivated') Solar charging
-   * @property {Object} location (object '{latitude: (number), longitude: (number)}') Location
-   * @property {Object} chargeCurrent (object '{chargeCurrent: (number), maximumValue: (number), minimumValue: (number)}') Charge current
-   * @property {String} hotspotEnabled (string 'disabled|enabled') Hotspot enabled
+   * @property {String} solarCharging (string: 'activated|deactivated') Solar charging
+   * @property {String} hotspotEnabled (string: 'disabled|enabled') Hotspot enabled
    * @property {String} hotspotSSID (string) Wi-Fi Hotspot SSID formatted in UTF-8
-   * @property {String} wiFiHotspotSecurity (string 'none|wep|wpa|wpa2_personal') Wi-Fi hotspot security
+   * @property {String} wiFiHotspotSecurity (string: 'none|wep|wpa|wpa2_personal') Wi-Fi hotspot security
    * @property {String} wiFiHotspotPassword (string) Wi-Fi Hotspot password formatted in UTF-8
-   * @property {Object} priceTariffs (object '{pricingType: (string 'starting_fee|per_minute|per_kwh'), currency: (string), price: (string)}')
+   * @property {String} authentication (string: 'unauthenticated|authenticated') Authentication state
+   * @property {Number} chargeCurrentDC (number) The charge current (DC) per IEEE 754
+   * @property {Number} maximumChargeCurrent (number) The maximum possible charge current per IEEE 754
+   * @property {Number} minimumChargeCurrent (number) The minimal possible charge current per IEEE 754
+   * @property {Object} coordinates (object) Coordinates ({ latitude: (double), longitude: (double) })
+   * @property {Object} priceTariffs (object) Price tariffs ({ pricingType: (string 'starting_fee|per_minute|per_kwh'), currency: (string), price: (number) })
    *
    * @example HomeChargerResponse
     {
@@ -32,37 +35,33 @@ export default class HomeChargerResponse extends PropertyResponse {
       plugType: 'type_1',
       chargingPower: 0,
       solarCharging: 'deactivated',
-      location: {
-        latitude: 52.521919,
-        longitude: 13.413215,
-      },
-      chargeCurrent: {
-        chargeCurrent: 0.6,
-        maximumValue: 50,
-        minimumValue: 0,
-      },
       hotspotEnabled: 'disabled',
-      hotspotSSID: '',
+      hotspotSSID: 'SSID123123',
       wiFiHotspotSecurity: 'none',
-      wiFiHotspotPassword: '',
-      priceTariffs: [
-        {
-          pricingType: 'starting_fee',
-          currency: 'EUR',
-          price: 2.5,
-        },
-        {
-          pricingType: 'per_minute',
-          currency: 'EUR',
-          price: 0,
-        },
-        {
-          pricingType: 'per_kwh',
-          currency: 'EUR',
-          price: 1.3,
-        },
-      ],
+      wiFiHotspotPassword: 'PASSWORD',
+      authentication: 'unauthenticated',
+      chargeCurrentDC: 0.6,
+      maximumChargeCurrent: 50,
+      minimumChargeCurrent: 0,
+      coordinates: {
+        latitude: 52.52,
+        longitude: 13.41
+      },
+      priceTariffs: [{
+        pricingType: 'starting_fee',
+        price: 2,
+        currency: 'EUR'
+      }, {
+        pricingType: 'per_minute',
+        price: 1,
+        currency: 'EUR'
+      }, {
+        pricingType: 'per_kwh',
+        price: 3,
+        currency: 'EUR'
+      }]
     }
+
    */
   constructor(data: Uint8Array) {
     super();
@@ -98,8 +97,6 @@ export default class HomeChargerResponse extends PropertyResponse {
           0x01: 'activated',
         })
       ),
-      new Property(0x06, 'location').setDecoder(coordinatesDecoder),
-      new Property(0x07, 'chargeCurrent').setDecoder(this.chargeCurrentDecoder),
       new Property(0x08, 'hotspotEnabled').setDecoder(
         switchDecoder({
           0x00: 'disabled',
@@ -116,7 +113,23 @@ export default class HomeChargerResponse extends PropertyResponse {
         })
       ),
       new Property(0x0b, 'wiFiHotspotPassword').setDecoder(bytesToString),
-      new Property(0x0c, 'priceTariffs').setOptionalSubProperties(
+      new Property(0x0d, 'authentication').setDecoder(
+        switchDecoder({
+          0x00: 'unauthenticated',
+          0x01: 'authenticated',
+        })
+      ),
+      new Property(0x0e, 'chargeCurrentDC').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x0f, 'maximumChargeCurrent').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x10, 'minimumChargeCurrent').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new Property(0x11, 'coordinates').setDecoder(coordinatesDecoder),
+      new Property(0x12, 'priceTariffs').setOptionalSubProperties(
         'pricingType',
         [
           new OptionalProperty(0x00, 'starting_fee').setDecoder(
@@ -135,22 +148,12 @@ export default class HomeChargerResponse extends PropertyResponse {
     this.parse(data, properties);
   }
 
-  chargeCurrentDecoder(bytes: Array<Number>) {
-    const decoder = getRoundedIeee754ToBase10(2);
-
-    return {
-      chargeCurrent: decoder(bytes.slice(0, 4)),
-      maximumValue: decoder(bytes.slice(4, 8)),
-      minimumValue: decoder(bytes.slice(8, 12)),
-    };
-  }
-
   priceTariffDecoder(bytes: Array<Number>) {
     const decoder = getRoundedIeee754ToBase10(2);
 
     return {
-      currency: bytesToString(bytes.slice(0, 3)),
-      price: decoder(bytes.slice(3, 7)),
+      price: decoder(bytes.slice(0, 4)),
+      currency: bytesToString(bytes.slice(4, 7)),
     };
   }
 }

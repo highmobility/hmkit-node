@@ -6,7 +6,7 @@ describe(`VehicleLocationResponse`, () => {
   it(`should return VehicleLocationResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '003001010008425210e741561bea0200044252147d03000443058000'
+        '003001040010404a421cde5d1809402ac37d41743e96050008404a428f9f44d4450600084060b00000000000a20008120b060e1a050078'
       )
     );
     expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);

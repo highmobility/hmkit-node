@@ -10,11 +10,14 @@ import EmptyResponse from './EmptyResponse';
 import FailureMessageResponse from './FailureMessageResponse';
 import FirmwareVersionResponse from './FirmwareVersionResponse';
 import FuelingResponse from './FuelingResponse';
+import HistoricalResponse from './HistoricalResponse';
 import HomeChargerResponse from './HomeChargerResponse';
 import HonkHornFlashLightsResponse from './HonkHornFlashLightsResponse';
+import HoodResponse from './HoodResponse';
 import LightConditionsResponse from './LightConditionsResponse';
 import LightsResponse from './LightsResponse';
 import MaintenanceResponse from './MaintenanceResponse';
+import MobileResponse from './MobileResponse';
 import NaviDestinationResponse from './NaviDestinationResponse';
 import OffroadResponse from './OffroadResponse';
 import ParkingBrakeResponse from './ParkingBrakeResponse';
@@ -26,6 +29,7 @@ import SeatsResponse from './SeatsResponse';
 import StartStopResponse from './StartStopResponse';
 import TachographResponse from './TachographResponse';
 import TheftAlarmResponse from './TheftAlarmResponse';
+import UsageResponse from './UsageResponse';
 import TrunkAccessResponse from './TrunkAccessResponse';
 import ValetModeResponse from './ValetModeResponse';
 import VehicleLocationResponse from './VehicleLocationResponse';
@@ -56,11 +60,14 @@ export default class Response {
       FailureMessageResponse,
       FirmwareVersionResponse,
       FuelingResponse,
+      HistoricalResponse,
       HomeChargerResponse,
       HonkHornFlashLightsResponse,
+      HoodResponse,
       LightConditionsResponse,
       LightsResponse,
       MaintenanceResponse,
+      MobileResponse,
       NaviDestinationResponse,
       OffroadResponse,
       ParkingBrakeResponse,
@@ -72,6 +79,7 @@ export default class Response {
       StartStopResponse,
       TachographResponse,
       TheftAlarmResponse,
+      UsageResponse,
       TrunkAccessResponse,
       ValetModeResponse,
       VehicleLocationResponse,

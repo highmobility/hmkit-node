@@ -13,12 +13,16 @@ class CertCache {
     this.cacheTTL = CACHE_TTL;
     this.GCTicks = GC_TICKS;
     this.GCCounter = 0;
-    this.storePath = `${path.resolve(
-      __dirname,
-      '..',
-      'storage',
-      CACHE_STORE_NAME
-    )}.json`;
+  }
+
+  storePath() {
+    if (process.env.HM_NODE_SDK_STORAGE_PATH) {
+      return `${path.resolve(
+        process.env.HM_NODE_SDK_STORAGE_PATH,
+        CACHE_STORE_NAME
+      )}.json`;
+    }
+    return `${path.resolve(__dirname, '..', 'storage', CACHE_STORE_NAME)}.json`;
   }
 
   getByVehicleSerial(appId, vehicleSerial) {
@@ -88,26 +92,26 @@ class CertCache {
   }
 
   getStore() {
-    if (!fs.existsSync(this.storePath)) {
+    if (!fs.existsSync(this.storePath())) {
       return [];
     }
 
-    const storeContents = fs.readFileSync(this.storePath, 'utf8');
+    const storeContents = fs.readFileSync(this.storePath(), 'utf8');
 
     try {
       const store = JSON.parse(storeContents);
       return Array.isArray(store) ? store : [];
     } catch (e) {
-      throw new Error(`Invalid json in file "${this.storePath}"`);
+      throw new Error(`Invalid json in file "${this.storePath()}"`);
     }
   }
 
   setStore(data) {
-    fs.writeFileSync(this.storePath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(this.storePath(), JSON.stringify(data, null, 2));
   }
 
   setRawStore(data) {
-    fs.writeFileSync(this.storePath, data);
+    fs.writeFileSync(this.storePath(), data);
   }
 
   setCacheTTL(cacheTTL) {
@@ -126,8 +130,8 @@ class CertCache {
   }
 
   destroy() {
-    if (!fs.existsSync(this.storePath)) return;
-    fs.unlinkSync(this.storePath);
+    if (!fs.existsSync(this.storePath())) return;
+    fs.unlinkSync(this.storePath());
   }
 }
 

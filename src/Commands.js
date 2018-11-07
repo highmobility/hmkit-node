@@ -11,12 +11,15 @@ import EngineCommand from './Commands/EngineCommand';
 import FirmwareVersionCommand from './Commands/FirmwareVersionCommand';
 import FuelingCommand from './Commands/FuelingCommand';
 import GraphicsCommand from './Commands/GraphicsCommand';
+import HistoricalCommand from './Commands/HistoricalCommand';
 import HomeChargerCommand from './Commands/HomeChargerCommand';
 import HonkHornFlashLightsCommand from './Commands/HonkHornFlashLightsCommand';
+import HoodCommand from './Commands/HoodCommand';
 import LightConditionsCommand from './Commands/LightConditionsCommand';
 import LightsCommand from './Commands/LightsCommand';
 import MaintenanceCommand from './Commands/MaintenanceCommand';
 import MessagingCommand from './Commands/MessagingCommand';
+import MobileCommand from './Commands/MobileCommand';
 import NaviDestinationCommand from './Commands/NaviDestinationCommand';
 import NotificationCommand from './Commands/NotificationCommand';
 import OffroadCommand from './Commands/OffroadCommand';
@@ -31,6 +34,7 @@ import TachographCommand from './Commands/TachographCommand';
 import TextInputCommand from './Commands/TextInputCommand';
 import TheftAlarmCommand from './Commands/TheftAlarmCommand';
 import TrunkAccessCommand from './Commands/TrunkAccessCommand';
+import UsageCommand from './Commands/UsageCommand';
 import ValetModeCommand from './Commands/ValetModeCommand';
 import VehicleLocationCommand from './Commands/VehicleLocationCommand';
 import VehicleStatusCommand from './Commands/VehicleStatusCommand';
@@ -58,12 +62,15 @@ export default class Commands {
       FirmwareVersionCommand,
       FuelingCommand,
       GraphicsCommand,
+      HistoricalCommand,
       HomeChargerCommand,
       HonkHornFlashLightsCommand,
+      HoodCommand,
       LightConditionsCommand,
       LightsCommand,
       MaintenanceCommand,
       MessagingCommand,
+      MobileCommand,
       NaviDestinationCommand,
       NotificationCommand,
       OffroadCommand,
@@ -78,6 +85,7 @@ export default class Commands {
       TextInputCommand,
       TheftAlarmCommand,
       TrunkAccessCommand,
+      UsageCommand,
       ValetModeCommand,
       VehicleLocationCommand,
       VehicleStatusCommand,

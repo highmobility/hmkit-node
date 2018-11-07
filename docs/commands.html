@@ -4,509 +4,9 @@ header: 'Node.js Auto API'
 permalink: /documentation/cloud-sdks/node-js/commands/
 search-title: 'Node.js Auto API'
 category: cloud
-toc-options:
-  -
-    text: BrowserCommand
-    href: '#browser-command'
-    options:
-      -
-        text: loadUrl()
-        href: '#browser-command-load-url'
-  -
-    text: CapabilitiesCommand
-    href: '#capabilities-command'
-    options:
-      -
-        text: get()
-        href: '#capabilities-command-get'
-  -
-    text: ChargingCommand
-    href: '#charging-command'
-    options:
-      -
-        text: getChargeState()
-        href: '#charging-command-get-charge-state'
-      -
-        text: startCharging()
-        href: '#charging-command-start-charging'
-      -
-        text: stopCharging()
-        href: '#charging-command-stop-charging'
-      -
-        text: setChargeLimit()
-        href: '#charging-command-set-charge-limit'
-      -
-        text: openChargePort()
-        href: '#charging-command-open-charge-port'
-      -
-        text: closeChargePort()
-        href: '#charging-command-close-charge-port'
-      -
-        text: setChargeMode()
-        href: '#charging-command-set-charge-mode'
-      -
-        text: setChargeTimer()
-        href: '#charging-command-set-charge-timer'
-  -
-    text: ChassisSettingsCommand
-    href: '#chassis-settings-command'
-    options:
-      -
-        text: getSettings()
-        href: '#chassis-settings-command-get-settings'
-      -
-        text: setDrivingMode()
-        href: '#chassis-settings-command-set-driving-mode'
-      -
-        text: startSportChrono()
-        href: '#chassis-settings-command-start-sport-chrono'
-      -
-        text: stopSportChrono()
-        href: '#chassis-settings-command-stop-sport-chrono'
-      -
-        text: resetSportChrono()
-        href: '#chassis-settings-command-reset-sport-chrono'
-      -
-        text: setFrontAxleSpringRate()
-        href: '#chassis-settings-command-set-front-axle-spring-rate'
-      -
-        text: setRearAxleSpringRate()
-        href: '#chassis-settings-command-set-rear-axle-spring-rate'
-      -
-        text: startSportChrono()
-        href: '#chassis-settings-command-start-sport-chrono'
-  -
-    text: ClimateCommand
-    href: '#climate-command'
-    options:
-      -
-        text: getState()
-        href: '#climate-command-get-state'
-      -
-        text: setProfile()
-        href: '#climate-command-set-profile'
-      -
-        text: startHvac()
-        href: '#climate-command-start-hvac'
-      -
-        text: stopHvac()
-        href: '#climate-command-stop-hvac'
-      -
-        text: startDefogging()
-        href: '#climate-command-start-defogging'
-      -
-        text: stopDefogging()
-        href: '#climate-command-stop-defogging'
-      -
-        text: startDefrosting()
-        href: '#climate-command-start-defrosting'
-      -
-        text: stopDefrosting()
-        href: '#climate-command-stop-defrosting'
-      -
-        text: startIonising()
-        href: '#climate-command-start-ionising'
-      -
-        text: stopIonising()
-        href: '#climate-command-stop-ionising'
-  -
-    text: CruiseControlCommand
-    href: '#cruise-control-command'
-    options:
-      -
-        text: getState()
-        href: '#cruise-control-command-get-state'
-      -
-        text: activateCruiseControl()
-        href: '#cruise-control-command-activate-cruise-control'
-      -
-        text: deactivateCruiseControl()
-        href: '#cruise-control-command-deactivate-cruise-control'
-  -
-    text: DashboardLightsCommand
-    href: '#dashboard-lights-command'
-    options:
-      -
-        text: getState()
-        href: '#dashboard-lights-command-get-state'
-  -
-    text: DiagnosticsCommand
-    href: '#diagnostics-command'
-    options:
-      -
-        text: getState()
-        href: '#diagnostics-command-get-state'
-  -
-    text: DoorLocksCommand
-    href: '#door-locks-command'
-    options:
-      -
-        text: getState()
-        href: '#door-locks-command-get-state'
-      -
-        text: unlock()
-        href: '#door-locks-command-unlock'
-      -
-        text: lock()
-        href: '#door-locks-command-lock'
-  -
-    text: EngineCommand
-    href: '#engine-command'
-    options:
-      -
-        text: getIgnitionState()
-        href: '#engine-command-get-ignition-state'
-      -
-        text: turnOff()
-        href: '#engine-command-turn-off'
-      -
-        text: turnOn()
-        href: '#engine-command-turn-on'
-  -
-    text: FirmwareVersionCommand
-    href: '#firmware-version-command'
-    options:
-      -
-        text: getVersion()
-        href: '#firmware-version-command-get-version'
-  -
-    text: FuelingCommand
-    href: '#fueling-command'
-    options:
-      -
-        text: getState()
-        href: '#fueling-command-get-state'
-      -
-        text: openGasFlap()
-        href: '#fueling-command-open-gas-flap'
-  -
-    text: GraphicsCommand
-    href: '#graphics-command'
-    options:
-      -
-        text: getState()
-        href: '#graphics-command-get-state'
-  -
-    text: HomeChargerCommand
-    href: '#home-charger-command'
-    options:
-      -
-        text: getState()
-        href: '#home-charger-command-get-state'
-      -
-        text: setChargeCurrent()
-        href: '#home-charger-command-set-charge-current'
-      -
-        text: setPriceTariffs()
-        href: '#home-charger-command-set-price-tariffs'
-      -
-        text: activateSolarCharging()
-        href: '#home-charger-command-activate-solar-charging'
-      -
-        text: deactivateSolarCharging()
-        href: '#home-charger-command-deactivate-solar-charging'
-      -
-        text: enableWifiHotspot()
-        href: '#home-charger-command-enable-wifi-hotspot'
-      -
-        text: disableWifiHotspot()
-        href: '#home-charger-command-disable-wifi-hotspot'
-  -
-    text: HonkHornFlashLightsCommand
-    href: '#honk-horn-flash-lights-command'
-    options:
-      -
-        text: getFlashersState()
-        href: '#honk-horn-flash-lights-command-get-flashers-state'
-      -
-        text: honkHornFlashLights()
-        href: '#honk-horn-flash-lights-command-honk-horn-flash-lights'
-      -
-        text: activateEmergencyFlasher()
-        href: '#honk-horn-flash-lights-command-activate-emergency-flasher'
-      -
-        text: deactivateEmergencyFlasher()
-        href: '#honk-horn-flash-lights-command-deactivate-emergency-flasher'
-  -
-    text: LightConditionsCommand
-    href: '#light-conditions-command'
-    options:
-      -
-        text: getConditions()
-        href: '#light-conditions-command-get-conditions'
-  -
-    text: LightsCommand
-    href: '#lights-command'
-    options:
-      -
-        text: getState()
-        href: '#lights-command-get-state'
-      -
-        text: control()
-        href: '#lights-command-control'
-  -
-    text: MaintenanceCommand
-    href: '#maintenance-command'
-    options:
-      -
-        text: getState()
-        href: '#maintenance-command-get-state'
-  -
-    text: MessagingCommand
-    href: '#messaging-command'
-    options:
-      -
-        text: messageReceived()
-        href: '#messaging-command-message-received'
-  -
-    text: NaviDestinationCommand
-    href: '#navi-destination-command'
-    options:
-      -
-        text: getDestination()
-        href: '#navi-destination-command-get-destination'
-      -
-        text: setDestination()
-        href: '#navi-destination-command-set-destination'
-  -
-    text: NotificationCommand
-    href: '#notification-command'
-    options:
-      -
-        text: send()
-        href: '#notification-command-send'
-      -
-        text: clear()
-        href: '#notification-command-clear'
-  -
-    text: OffroadCommand
-    href: '#offroad-command'
-    options:
-      -
-        text: getState()
-        href: '#offroad-command-get-state'
-  -
-    text: ParkingBrakeCommand
-    href: '#parking-brake-command'
-    options:
-      -
-        text: getState()
-        href: '#parking-brake-command-get-state'
-      -
-        text: activate()
-        href: '#parking-brake-command-activate'
-      -
-        text: inactivate()
-        href: '#parking-brake-command-inactivate'
-  -
-    text: ParkingTicketCommand
-    href: '#parking-ticket-command'
-    options:
-      -
-        text: getTicket()
-        href: '#parking-ticket-command-get-ticket'
-      -
-        text: end()
-        href: '#parking-ticket-command-end'
-      -
-        text: start()
-        href: '#parking-ticket-command-start'
-  -
-    text: PowerTakeOffCommand
-    href: '#power-take-off-command'
-    options:
-      -
-        text: getState()
-        href: '#power-take-off-command-get-state'
-      -
-        text: activate()
-        href: '#power-take-off-command-activate'
-      -
-        text: deactivate()
-        href: '#power-take-off-command-deactivate'
-  -
-    text: RaceCommand
-    href: '#race-command'
-    options:
-      -
-        text: getState()
-        href: '#race-command-get-state'
-  -
-    text: RooftopControlCommand
-    href: '#rooftop-control-command'
-    options:
-      -
-        text: getState()
-        href: '#rooftop-control-command-get-state'
-      -
-        text: control()
-        href: '#rooftop-control-command-control'
-  -
-    text: SeatsCommand
-    href: '#seats-command'
-    options:
-      -
-        text: getState()
-        href: '#seats-command-get-state'
-  -
-    text: StartStopCommand
-    href: '#start-stop-command'
-    options:
-      -
-        text: getState()
-        href: '#start-stop-command-get-state'
-      -
-        text: activate()
-        href: '#start-stop-command-activate'
-      -
-        text: deactivate()
-        href: '#start-stop-command-deactivate'
-  -
-    text: TachographCommand
-    href: '#tachograph-command'
-    options:
-      -
-        text: getState()
-        href: '#tachograph-command-get-state'
-  -
-    text: TextInputCommand
-    href: '#text-input-command'
-    options:
-      -
-        text: textInput()
-        href: '#text-input-command-text-input'
-  -
-    text: TheftAlarmCommand
-    href: '#theft-alarm-command'
-    options:
-      -
-        text: getState()
-        href: '#theft-alarm-command-get-state'
-      -
-        text: unarm()
-        href: '#theft-alarm-command-unarm'
-      -
-        text: arm()
-        href: '#theft-alarm-command-arm'
-      -
-        text: trigger()
-        href: '#theft-alarm-command-trigger'
-  -
-    text: TrunkAccessCommand
-    href: '#trunk-access-command'
-    options:
-      -
-        text: getState()
-        href: '#trunk-access-command-get-state'
-      -
-        text: unlock()
-        href: '#trunk-access-command-unlock'
-      -
-        text: open()
-        href: '#trunk-access-command-open'
-      -
-        text: close()
-        href: '#trunk-access-command-close'
-      -
-        text: lock()
-        href: '#trunk-access-command-lock'
-  -
-    text: ValetModeCommand
-    href: '#valet-mode-command'
-    options:
-      -
-        text: getMode()
-        href: '#valet-mode-command-get-mode'
-      -
-        text: activate()
-        href: '#valet-mode-command-activate'
-      -
-        text: deactivate()
-        href: '#valet-mode-command-deactivate'
-  -
-    text: VehicleLocationCommand
-    href: '#vehicle-location-command'
-    options:
-      -
-        text: getLocation()
-        href: '#vehicle-location-command-get-location'
-  -
-    text: VehicleStatusCommand
-    href: '#vehicle-status-command'
-    options:
-      -
-        text: get()
-        href: '#vehicle-status-command-get'
-  -
-    text: VehicleTimeCommand
-    href: '#vehicle-time-command'
-    options:
-      -
-        text: getTime()
-        href: '#vehicle-time-command-get-time'
-  -
-    text: VideoHandoverCommand
-    href: '#video-handover-command'
-    options:
-      -
-        text: handover()
-        href: '#video-handover-command-handover'
-  -
-    text: WakeUpCommand
-    href: '#wake-up-command'
-    options:
-      -
-        text: wakeUp()
-        href: '#wake-up-command-wake-up'
-  -
-    text: WeatherConditionsCommand
-    href: '#weather-conditions-command'
-    options:
-      -
-        text: getConditions()
-        href: '#weather-conditions-command-get-conditions'
-  -
-    text: WiFiCommand
-    href: '#wi-fi-command'
-    options:
-      -
-        text: getState()
-        href: '#wi-fi-command-get-state'
-      -
-        text: connectToNetwork()
-        href: '#wi-fi-command-connect-to-network'
-      -
-        text: forgetNetwork()
-        href: '#wi-fi-command-forget-network'
-      -
-        text: disable()
-        href: '#wi-fi-command-disable'
-      -
-        text: enable()
-        href: '#wi-fi-command-enable'
-  -
-    text: WindowsCommand
-    href: '#windows-command'
-    options:
-      -
-        text: getState()
-        href: '#windows-command-get-state'
-      -
-        text: control()
-        href: '#windows-command-control'
-  -
-    text: WindscreenCommand
-    href: '#windscreen-command'
-    options:
-      -
-        text: getState()
-        href: '#windscreen-command-get-state'
-      -
-        text: setDamage()
-        href: '#windscreen-command-set-damage'
 ---
 
-<p>More info at <a href="/resources/documentation/auto-api/api-structure/tutorial/">Auto API</a>.</p>
+<p class="introductory-text">See the Node.js <a href="/learn/documentation/auto-api/api-structure/tutorial/">Auto API</a> page for more information.</p>
 
 <h2 id="browser-command">BrowserCommand</h2>
 
@@ -619,17 +119,17 @@ HMKit.commands.ChargingCommand.setChargeMode(chargeMode)
   parameters-description="(string: 'immediate'&comma; 'timer_based') Charge mode"
 %}
 
-<h3 id="charging-command-set-charge-timer">setChargeTimer()</h3>
+<h3 id="charging-command-set-charge-timers">setChargeTimers()</h3>
 
 {% capture code %}
-HMKit.commands.ChargingCommand.setChargeTimer(chargeTimer, time)
+HMKit.commands.ChargingCommand.setChargeTimers(chargeTimers)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="charging-command-set-charge-timer"
-  parameters-name="chargeTimer, time"
-  parameters-description="(string: 'preferred_start_time'&comma; 'preferred_end_time'&comma; 'departure_time') Charge timer, (date) Time"
+  reference-id="charging-command-set-charge-timers"
+  parameters-name="chargeTimers"
+  parameters-description="Charge timers ([{ timerType: (string:'preferred_start_time|preferred_end_time|departure_time')&comma; time: (date) }])"
 %}
 
 <h2 id="chassis-settings-command">ChassisSettingsCommand</h2>
@@ -655,7 +155,7 @@ HMKit.commands.ChassisSettingsCommand.setDrivingMode(drivingMode)
   include code-reference-snippet.html
   reference-id="chassis-settings-command-set-driving-mode"
   parameters-name="drivingMode"
-  parameters-description="(string: 'regular'&comma; 'eco'&comma; 'sport'&comma; 'sport_plus') Driving mode"
+  parameters-description="(string: 'regular'&comma; 'eco'&comma; 'sport'&comma; 'sport_plus'&comma; 'eco_plus') Driving mode"
 %}
 
 <h3 id="chassis-settings-command-start-sport-chrono">startSportChrono()</h3>
@@ -717,15 +217,15 @@ HMKit.commands.ChassisSettingsCommand.setRearAxleSpringRate(rate)
   parameters-description="(number) Spring rate"
 %}
 
-<h3 id="chassis-settings-command-start-sport-chrono">startSportChrono()</h3>
+<h3 id="chassis-settings-command-set-chassis-position">setChassisPosition()</h3>
 
 {% capture code %}
-HMKit.commands.ChassisSettingsCommand.startSportChrono(position)
+HMKit.commands.ChassisSettingsCommand.setChassisPosition(position)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="chassis-settings-command-start-sport-chrono"
+  reference-id="chassis-settings-command-set-chassis-position"
   parameters-name="position"
   parameters-description="(number) Chassis position"
 %}
@@ -743,17 +243,17 @@ HMKit.commands.ClimateCommand.getState()
   reference-id="climate-command-get-state"
 %}
 
-<h3 id="climate-command-set-profile">setProfile()</h3>
+<h3 id="climate-command-set-weekday-starting-times">setWeekdayStartingTimes()</h3>
 
 {% capture code %}
-HMKit.commands.ClimateCommand.setProfile(mondays, tuesdays, wednesdays, thursdays, fridays, saturdays, sundays, constant, driverTemperatureSetting, passengerTemperatureSetting)
+HMKit.commands.ClimateCommand.setWeekdayStartingTimes(weekdayStartingTimes)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="climate-command-set-profile"
-  parameters-name="mondays, tuesdays, wednesdays, thursdays, fridays, saturdays, sundays, constant, driverTemperatureSetting, passengerTemperatureSetting"
-  parameters-description="(Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Monday setting, (Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Tuesday setting, (Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Wednesday setting, (Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Thursday setting, (Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Friday setting, (Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Saturday setting, (Object `{hour: (integer)&comma; minute: (integer)}` | false) Auto HVAC Sunday setting, (boolean) Auto HVAC Constant setting, (number) Driver temperature setting in ‎°C, (number) Passenger temperature setting in ‎°C"
+  reference-id="climate-command-set-weekday-starting-times"
+  parameters-name="weekdayStartingTimes"
+  parameters-description="(array) HVAC weekway starting times ([{ weekday: (string: 'monday|tuesday|wednesday|thursday|friday|satuday|sunday|automatic')&comma; hour: (number)&comma; minute: (number) }])"
 %}
 
 <h3 id="climate-command-start-hvac">startHvac()</h3>
@@ -842,6 +342,19 @@ HMKit.commands.ClimateCommand.stopIonising()
 {%
   include code-reference-snippet.html
   reference-id="climate-command-stop-ionising"
+%}
+
+<h3 id="climate-command-set-temperature-settings">setTemperatureSettings()</h3>
+
+{% capture code %}
+HMKit.commands.ClimateCommand.setTemperatureSettings(driverTemperatureSetting, passengerTemperatureSetting, rearTemperatureSetting)
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="climate-command-set-temperature-settings"
+  parameters-name="driverTemperatureSetting, passengerTemperatureSetting, rearTemperatureSetting"
+  parameters-description="(number) Driver temperature setting in ‎°C, (number) Passenger temperature setting in ‎°C, (number) Rear temperature setting in ‎°C"
 %}
 
 <h2 id="cruise-control-command">CruiseControlCommand</h2>
@@ -1016,17 +529,32 @@ HMKit.commands.FuelingCommand.openGasFlap()
 
 <h2 id="graphics-command">GraphicsCommand</h2>
 
-<h3 id="graphics-command-get-state">getState()</h3>
+<h3 id="graphics-command-display-image">displayImage()</h3>
 
 {% capture code %}
-HMKit.commands.GraphicsCommand.getState(url)
+HMKit.commands.GraphicsCommand.displayImage(url)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="graphics-command-get-state"
+  reference-id="graphics-command-display-image"
   parameters-name="url"
   parameters-description="(string) Image url"
+%}
+
+<h2 id="historical-command">HistoricalCommand</h2>
+
+<h3 id="historical-command-get-states">getStates()</h3>
+
+{% capture code %}
+HMKit.commands.HistoricalCommand.getStates(capability, startDate, endDate)
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="historical-command-get-states"
+  parameters-name="capability, startDate, endDate"
+  parameters-description="(string: 'door_locks | trunk | wake_up | charging | climate | rooftop_control | honk_horn_flash_lights | remote_control | valet_mode | heart_rate | vehicle_location | navi_destination | diagnostics | maintenance | engine | lights | messaging | notifications | fueling | driver_fatigue | windscreen | video_handover | text_input | windows | theft_alarm | parking_ticket | keyfob_position | browser | vehicle_time | graphics | offroad | chassis_settings | light_conditions | weather_conditions | seats | race | parking_brake | wi_fi | home_charger | dashboard_lights | cruise_control | start_stop | tachograph | power_takeoff | mobile | hood | usage') Capability, (date) Start date (optional), (date) End date (optional)"
 %}
 
 <h2 id="home-charger-command">HomeChargerCommand</h2>
@@ -1061,13 +589,15 @@ HMKit.commands.HomeChargerCommand.setChargeCurrent(current)
 HMKit.commands.HomeChargerCommand.setPriceTariffs(priceTariffs)
 {% endcapture %}
 
+<div class="split-design-wrapper"><div class="col-left">
+
 {%
   include code-reference-snippet.html
   reference-id="home-charger-command-set-price-tariffs"
   parameters-name="priceTariffs"
-  parameters-description="(Array `[Object {pricingType: (string 'starting_fee&comma; per_minute&comma; per_kwh')&comma; currency: (string ISO 4217)&comma; price: (number)}]`) Price tariffs"
+  parameters-description="(Array `[Object {pricingType: (string: 'starting_fee&comma; per_minute&comma; per_kwh')&comma; currency: (string ISO 4217)&comma; price: (number)}]`) Price tariffs"
 %}
-
+</div><div class="col-right">
 <h4>Example</h4>
 {% capture code %}
 const response = await hmkit.telematics.sendCommand(
@@ -1088,7 +618,8 @@ const response = await hmkit.telematics.sendCommand(
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 
-<h3 id="home-charger-command-activate-solar-charging">activateSolarCharging()</h3>
+
+</div></div><h3 id="home-charger-command-activate-solar-charging">activateSolarCharging()</h3>
 
 {% capture code %}
 HMKit.commands.HomeChargerCommand.activateSolarCharging()
@@ -1130,6 +661,28 @@ HMKit.commands.HomeChargerCommand.disableWifiHotspot()
 {%
   include code-reference-snippet.html
   reference-id="home-charger-command-disable-wifi-hotspot"
+%}
+
+<h3 id="home-charger-command-authenticate">authenticate()</h3>
+
+{% capture code %}
+HMKit.commands.HomeChargerCommand.authenticate()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="home-charger-command-authenticate"
+%}
+
+<h3 id="home-charger-command-expire-authentication">expireAuthentication()</h3>
+
+{% capture code %}
+HMKit.commands.HomeChargerCommand.expireAuthentication()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="home-charger-command-expire-authentication"
 %}
 
 <h2 id="honk-horn-flash-lights-command">HonkHornFlashLightsCommand</h2>
@@ -1178,6 +731,19 @@ HMKit.commands.HonkHornFlashLightsCommand.deactivateEmergencyFlasher()
 {%
   include code-reference-snippet.html
   reference-id="honk-horn-flash-lights-command-deactivate-emergency-flasher"
+%}
+
+<h2 id="hood-command">HoodCommand</h2>
+
+<h3 id="hood-command-get-state">getState()</h3>
+
+{% capture code %}
+HMKit.commands.HoodCommand.getState()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="hood-command-get-state"
 %}
 
 <h2 id="light-conditions-command">LightConditionsCommand</h2>
@@ -1247,6 +813,19 @@ HMKit.commands.MessagingCommand.messageReceived(handle, text)
   parameters-description="(string) Sender handle, (string) Text to send"
 %}
 
+<h2 id="mobile-command">MobileCommand</h2>
+
+<h3 id="mobile-command-get-state">getState()</h3>
+
+{% capture code %}
+HMKit.commands.MobileCommand.getState()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="mobile-command-get-state"
+%}
+
 <h2 id="navi-destination-command">NaviDestinationCommand</h2>
 
 <h3 id="navi-destination-command-get-destination">getDestination()</h3>
@@ -1270,7 +849,7 @@ HMKit.commands.NaviDestinationCommand.setDestination(latitude, longitude, destin
   include code-reference-snippet.html
   reference-id="navi-destination-command-set-destination"
   parameters-name="latitude, longitude, destinationName"
-  parameters-description="(number) Latitude in decimal format e.g. 52.520008, (number) Longitude in decimal format e.g. 13.404954, (string) destination name"
+  parameters-description="(number) Latitude in decimal format e.g. 52.52, (number) Longitude in decimal format e.g. 13.42, (string) destination name"
 %}
 
 <h2 id="notification-command">NotificationCommand</h2>
@@ -1281,13 +860,15 @@ HMKit.commands.NaviDestinationCommand.setDestination(latitude, longitude, destin
 HMKit.commands.NotificationCommand.send(text, actions)
 {% endcapture %}
 
+<div class="split-design-wrapper"><div class="col-left">
+
 {%
   include code-reference-snippet.html
   reference-id="notification-command-send"
   parameters-name="text, actions"
   parameters-description="(string) Text, (Object `{action1Id: action1Text&comma; action2Id: action2Text&comma; ..}`) Actions"
 %}
-
+</div><div class="col-right">
 <h4>Example</h4>
 {% capture code %}
 const response = await hmkit.telematics.sendCommand(
@@ -1304,7 +885,8 @@ const response = await hmkit.telematics.sendCommand(
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 
-<h3 id="notification-command-clear">clear()</h3>
+
+</div></div><h3 id="notification-command-clear">clear()</h3>
 
 {% capture code %}
 HMKit.commands.NotificationCommand.clear()
@@ -1376,30 +958,21 @@ HMKit.commands.ParkingTicketCommand.getTicket()
   reference-id="parking-ticket-command-get-ticket"
 %}
 
-<h3 id="parking-ticket-command-end">end()</h3>
-
-{% capture code %}
-HMKit.commands.ParkingTicketCommand.end()
-{% endcapture %}
-
-{%
-  include code-reference-snippet.html
-  reference-id="parking-ticket-command-end"
-%}
-
 <h3 id="parking-ticket-command-start">start()</h3>
 
 {% capture code %}
 HMKit.commands.ParkingTicketCommand.start(operatorName, operatorTicketID, ticketStartTime, ticketEndTime)
 {% endcapture %}
 
+<div class="split-design-wrapper"><div class="col-left">
+
 {%
   include code-reference-snippet.html
   reference-id="parking-ticket-command-start"
   parameters-name="operatorName, operatorTicketID, ticketStartTime, ticketEndTime"
-  parameters-description="(string) Operator name, (number) Operator ticket id, (date) Ticket start time, (date) Ticket end time"
+  parameters-description="(string) Operator name (optional), (number) Operator ticket id, (date) Ticket start time, (date) Ticket end time (optional)"
 %}
-
+</div><div class="col-right">
 <h4>Example</h4>
 {% capture code %}
 const response = await hmkit.telematics.sendCommand(
@@ -1413,6 +986,18 @@ const response = await hmkit.telematics.sendCommand(
 );
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+
+
+</div></div><h3 id="parking-ticket-command-end">end()</h3>
+
+{% capture code %}
+HMKit.commands.ParkingTicketCommand.end()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="parking-ticket-command-end"
+%}
 
 <h2 id="power-take-off-command">PowerTakeOffCommand</h2>
 
@@ -1478,14 +1063,14 @@ HMKit.commands.RooftopControlCommand.getState()
 <h3 id="rooftop-control-command-control">control()</h3>
 
 {% capture code %}
-HMKit.commands.RooftopControlCommand.control(dimming, position)
+HMKit.commands.RooftopControlCommand.control(dimming, position, convertibleRoof, sunroofTilt)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
   reference-id="rooftop-control-command-control"
-  parameters-name="dimming, position"
-  parameters-description="(number) Dimming from 0 (0%) to 1 (100%)., (number) Position from 0 (0%) to 1 (100%)."
+  parameters-name="dimming, position, convertibleRoof, sunroofTilt"
+  parameters-description="(number) Dimming from 0 (0%) to 1 (100%)., (number) Position from 0 (0%) to 1 (100%)., (string 'closed|open|emergency_locked|closed_secured|open_secured|hard_top_mounted|intermediate_position|loading_position|loading_position_immediate') Convertible roof state, (string 'closed|tilted|half_tilted') Sunroof tilt state"
 %}
 
 <h2 id="seats-command">SeatsCommand</h2>
@@ -1634,6 +1219,17 @@ HMKit.commands.TrunkAccessCommand.unlock()
   reference-id="trunk-access-command-unlock"
 %}
 
+<h3 id="trunk-access-command-lock">lock()</h3>
+
+{% capture code %}
+HMKit.commands.TrunkAccessCommand.lock()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="trunk-access-command-lock"
+%}
+
 <h3 id="trunk-access-command-open">open()</h3>
 
 {% capture code %}
@@ -1656,15 +1252,30 @@ HMKit.commands.TrunkAccessCommand.close()
   reference-id="trunk-access-command-close"
 %}
 
-<h3 id="trunk-access-command-lock">lock()</h3>
+<h3 id="trunk-access-command-control-trunk">controlTrunk()</h3>
 
 {% capture code %}
-HMKit.commands.TrunkAccessCommand.lock()
+HMKit.commands.TrunkAccessCommand.controlTrunk(isLocked, isOpen)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="trunk-access-command-lock"
+  reference-id="trunk-access-command-control-trunk"
+  parameters-name="isLocked, isOpen"
+  parameters-description="(boolean) Lock or unlock trunk, (boolean) Open or close trunk"
+%}
+
+<h2 id="usage-command">UsageCommand</h2>
+
+<h3 id="usage-command-get-state">getState()</h3>
+
+{% capture code %}
+HMKit.commands.UsageCommand.getState()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="usage-command-get-state"
 %}
 
 <h2 id="valet-mode-command">ValetModeCommand</h2>
@@ -1801,13 +1412,15 @@ HMKit.commands.WiFiCommand.getState()
 HMKit.commands.WiFiCommand.connectToNetwork(SSID, security, password)
 {% endcapture %}
 
+<div class="split-design-wrapper"><div class="col-left">
+
 {%
   include code-reference-snippet.html
   reference-id="wi-fi-command-connect-to-network"
   parameters-name="SSID, security, password"
   parameters-description="(string) The network SSID formatted in UTF-8, (string 'none&comma; wep&comma; wpa&comma; wpa2_personal') Security, (string) Password"
 %}
-
+</div><div class="col-right">
 <h4>Example</h4>
 {% capture code %}
 const response = await hmkit.telematics.sendCommand(
@@ -1821,7 +1434,8 @@ const response = await hmkit.telematics.sendCommand(
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 
-<h3 id="wi-fi-command-forget-network">forgetNetwork()</h3>
+
+</div></div><h3 id="wi-fi-command-forget-network">forgetNetwork()</h3>
 
 {% capture code %}
 HMKit.commands.WiFiCommand.forgetNetwork(SSID)
@@ -1834,26 +1448,15 @@ HMKit.commands.WiFiCommand.forgetNetwork(SSID)
   parameters-description="(string) The network SSID formatted in UTF-8"
 %}
 
-<h3 id="wi-fi-command-disable">disable()</h3>
+<h3 id="wi-fi-command-enable-disable">enableDisable()</h3>
 
 {% capture code %}
-HMKit.commands.WiFiCommand.disable()
+HMKit.commands.WiFiCommand.enableDisable()
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="wi-fi-command-disable"
-%}
-
-<h3 id="wi-fi-command-enable">enable()</h3>
-
-{% capture code %}
-HMKit.commands.WiFiCommand.enable()
-{% endcapture %}
-
-{%
-  include code-reference-snippet.html
-  reference-id="wi-fi-command-enable"
+  reference-id="wi-fi-command-enable-disable"
 %}
 
 <h2 id="windows-command">WindowsCommand</h2>
@@ -1872,43 +1475,62 @@ HMKit.commands.WindowsCommand.getState()
 <h3 id="windows-command-control">control()</h3>
 
 {% capture code %}
-HMKit.commands.WindowsCommand.control(windows)
+HMKit.commands.WindowsCommand.control(windowsOpenPercentages, windowsPositions)
 {% endcapture %}
+
+<div class="split-design-wrapper"><div class="col-left">
 
 {%
   include code-reference-snippet.html
   reference-id="windows-command-control"
-  parameters-name="windows"
-  parameters-description="(Array [Object {windowPosition: (string 'front_right&comma; front_left&comma; rear_right&comma; rear_left')&comma; windowState: (string 'open&comma; close')}])"
+  parameters-name="windowsOpenPercentages, windowsPositions"
+  parameters-description="Windows open percentages [{ windowLocation: (string: 'front_left|front_right|rear_right|rear_left|hatch')&comma; openPercentage: (number) }], Windows positions [{ windowLocation: (string: 'front_left|front_right|rear_right|rear_left|hatch')&comma; windowPosition: (string: 'closed|opened|intermediate') }]"
 %}
-
+</div><div class="col-right">
 <h4>Example</h4>
 {% capture code %}
 const response = await hmkit.telematics.sendCommand(
  vehicleSerial,
- hmkit.commands.WindowsCommand.control([
-   {
-     windowPosition: 'front_right',
-     windowState: 'close',
-   },
-   {
-     windowPosition: 'rear_right',
-     windowState: 'close',
-   },
-   {
-     windowPosition: 'front_left',
-     windowState: 'close',
-   },
-   {
-     windowPosition: 'rear_left',
-     windowState: 'close',
-   },
- ])
+ hmkit.commands.WindowsCommand.control(
+   [{
+     windowLocation: 'front_right',
+     openPercentage: 0.5,
+   }, {
+     windowLocation: 'rear_right',
+     openPercentage: 0.5,
+   }, {
+     windowLocation: 'front_left',
+     openPercentage: 0.5,
+   }, {
+     windowLocation: 'rear_left',
+     openPercentage: 0.5,
+   }, {
+     windowLocation: 'hatch',
+     openPercentage: 0.5,
+   }],
+    [{
+     windowLocation: 'front_right',
+     windowPosition: 'open',
+   }, {
+     windowLocation: 'rear_right',
+     windowPosition: 'open',
+   }, {
+     windowLocation: 'front_left',
+     windowPosition: 'close',
+   }, {
+     windowLocation: 'rear_left',
+     windowPosition: 'close',
+   }, {
+     windowLocation: 'hatch',
+     windowPosition: 'open',
+   }]
+ )
 );
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 
-<h2 id="windscreen-command">WindscreenCommand</h2>
+
+</div></div><h2 id="windscreen-command">WindscreenCommand</h2>
 
 <h3 id="windscreen-command-get-state">getState()</h3>
 
@@ -1924,13 +1546,39 @@ HMKit.commands.WindscreenCommand.getState()
 <h3 id="windscreen-command-set-damage">setDamage()</h3>
 
 {% capture code %}
-HMKit.commands.WindscreenCommand.setDamage(damage, damageZoneRow, damageZoneColumn, needsReplacement)
+HMKit.commands.WindscreenCommand.setDamage(damage, damageZoneRow, damageZoneColumn)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
   reference-id="windscreen-command-set-damage"
-  parameters-name="damage, damageZoneRow, damageZoneColumn, needsReplacement"
-  parameters-description="(string 'impact_but_no_damage_detected&comma; damage_smaller_than_1_inch&comma; damage_larger_than_1_inch&comma; no_damage') Windscreen Damage, (number) Limit from 1 to 16&comma; representing the horizontal position of the damage, (number) Limit from 1 to 16&comma; representing the vertical position of the damage, (string 'no_replacement_needed&comma; replacement_needed&comma; unknown') Windscreen damage needs replacement"
+  parameters-name="damage, damageZoneRow, damageZoneColumn"
+  parameters-description="(string 'impact_but_no_damage_detected&comma; damage_smaller_than_1_inch&comma; damage_larger_than_1_inch&comma; no_damage') Windscreen Damage, (number) Limit from 1 to 16&comma; representing the horizontal position of the damage, (number) Limit from 1 to 16&comma; representing the vertical position of the damage"
+%}
+
+<h3 id="windscreen-command-set-replacement">setReplacement()</h3>
+
+{% capture code %}
+HMKit.commands.WindscreenCommand.setReplacement(needsReplacement)
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="windscreen-command-set-replacement"
+  parameters-name="needsReplacement"
+  parameters-description="(string 'no_replacement_needed&comma; replacement_needed&comma; unknown') Windscreen damage needs replacement"
+%}
+
+<h3 id="windscreen-command-control-wipers">controlWipers()</h3>
+
+{% capture code %}
+HMKit.commands.WindscreenCommand.controlWipers(wipersState, wipersIntensity)
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="windscreen-command-control-wipers"
+  parameters-name="wipersState, wipersIntensity"
+  parameters-description="(string 'inactive|active|automatic') Wipers state, (string 'level_0|level_1|level_2|level_3') Wipers intensity (optional)"
 %}
 

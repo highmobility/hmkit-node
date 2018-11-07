@@ -3,7 +3,7 @@ import { intToTwoBytes, stringToBytes } from '../encoding';
 
 export default class GraphicsCommand {
   /**
-   * @function getState
+   * @function displayImage
    *
    * @property {String} url (string) Image url
    */

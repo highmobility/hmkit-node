@@ -6,7 +6,7 @@ describe(`DiagnosticsResponse`, () => {
   it(`should return DiagnosticsResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '003301010003000bb80200020012030002000004000200000500015006000200c8070004410c000008000440c66666090001000a000b00401333334220000000000a000b01401333334220000000000a000b02401333334220000000000a000b03401333334220000000000b0004414000000c0004000000000d000200000e000200000f00040000000010000100110002001712000441c000001300044416000014000100150001141600010a1700020000'
+        '003301010003000bb80200020012030002000004000200000500015006000200c8090001000b0004414000000c0004000000000d000200000e000200000f00040000000010000100110002001712000441c000001300044416000014000100150001141600010a170002000018000150190012000a000009c400045465726505416c6572741a000500401333331a000501401333331a000502401333331a000503401333331b000500422000001b000501422000001b000502422000001b000503422000001c00030000001c00030100001c00030200001c00030300001d001603066173646173640661736461736406617364617364a20008120b07122e250078'
       )
     );
     expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
@@ -19,35 +19,7 @@ describe(`DiagnosticsResponse`, () => {
         engineRPM: 0,
         fuelLevel: 0.8,
         estimatedRange: 200,
-        currentFuelConsumption: 8.75,
-        averageFuelConsumption: 6.2,
         washerFluidLevel: 'low',
-        tires: [
-          {
-            tirePosition: 'front_left',
-            tirePressure: 2.3,
-            tireTemperature: 40,
-            wheelRPM: 0,
-          },
-          {
-            tirePosition: 'front_right',
-            tirePressure: 2.3,
-            tireTemperature: 40,
-            wheelRPM: 0,
-          },
-          {
-            tirePosition: 'rear_right',
-            tirePressure: 2.3,
-            tireTemperature: 40,
-            wheelRPM: 0,
-          },
-          {
-            tirePosition: 'rear_left',
-            tirePressure: 2.3,
-            tireTemperature: 40,
-            wheelRPM: 0,
-          },
-        ],
         batteryVoltage: 12,
         adblueLevel: 0,
         distanceSinceReset: 0,
@@ -61,6 +33,31 @@ describe(`DiagnosticsResponse`, () => {
         engineTorque: 0.2,
         engineLoad: 0.1,
         wheelBasedSpeed: 0,
+        batteryLevel: 0.8,
+        checkControlMessages: [
+          { id: 10, remainingMinutes: 2500, text: 'Tere', status: 'Alert' },
+        ],
+        tirePressures: [
+          { location: 'front_left', pressure: 2.3 },
+          { location: 'front_right', pressure: 2.3 },
+          { location: 'rear_right', pressure: 2.3 },
+          { location: 'rear_left', pressure: 2.3 },
+        ],
+        tireTemperatures: [
+          { location: 'front_left', temperature: 40 },
+          { location: 'front_right', temperature: 40 },
+          { location: 'rear_right', temperature: 40 },
+          { location: 'rear_left', temperature: 40 },
+        ],
+        wheelRpms: [
+          { location: 'front_left', rpm: 0 },
+          { location: 'front_right', rpm: 0 },
+          { location: 'rear_right', rpm: 0 },
+          { location: 'rear_left', rpm: 0 },
+        ],
+        troubleCodes: [
+          { occurences: 3, id: 'asdasd', ecuId: 'asdasd', status: 'asdasd' },
+        ],
       })
     );
   });

@@ -1,6 +1,7 @@
 import Command from './Command';
+import BaseCommand from './BaseCommand';
 
-export default class ParkingBrakeCommand {
+export default class ParkingBrakeCommand extends BaseCommand {
   /**
    * @function getState
    */
@@ -12,13 +13,13 @@ export default class ParkingBrakeCommand {
    * @function activate
    */
   static activate() {
-    return new Command([0x00, 0x58, 0x02, 0x01]);
+    return new Command([0x00, 0x58, 0x12, ...this.buildProperty(0x01, 0x01)]);
   }
 
   /**
    * @function inactivate
    */
   static inactivate() {
-    return new Command([0x00, 0x58, 0x02, 0x00]);
+    return new Command([0x00, 0x58, 0x12, ...this.buildProperty(0x01, 0x00)]);
   }
 }
