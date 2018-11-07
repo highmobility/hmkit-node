@@ -31,15 +31,15 @@ describe(`ChargingResponse`, () => {
       timers: [
         {
           timerType: 'preferred_start_time',
-          date: new Date('2018-10-22T10:29:41.000Z'),
+          time: new Date('2018-10-22T10:29:41.000Z'),
         },
         {
           timerType: 'preferred_end_time',
-          date: new Date('2018-10-22T10:29:41.000Z'),
+          time: new Date('2018-10-22T10:29:41.000Z'),
         },
         {
           timerType: 'departure_time',
-          date: new Date('2018-10-22T10:29:41.000Z'),
+          time: new Date('2018-10-22T10:29:41.000Z'),
         },
       ],
       pluggedIn: 'disconnected',

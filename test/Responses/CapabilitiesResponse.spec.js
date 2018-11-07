@@ -291,6 +291,18 @@ describe(`CapabilitiesResponse`, () => {
             'activate_deactivate_power_takeoff',
           ],
         },
+        {
+          capabilityIdentifier: 'mobile',
+          supportedMessageTypes: ['get_mobile_state', 'mobile_state'],
+        },
+        {
+          capabilityIdentifier: 'hood',
+          supportedMessageTypes: ['get_hood_state', 'hood_state'],
+        },
+        {
+          capabilityIdentifier: 'usage',
+          supportedMessageTypes: ['get_usage', 'usage'],
+        },
       ],
     });
   });

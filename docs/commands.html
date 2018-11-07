@@ -119,15 +119,15 @@ HMKit.commands.ChargingCommand.setChargeMode(chargeMode)
   parameters-description="(string: 'immediate'&comma; 'timer_based') Charge mode"
 %}
 
-<h3 id="charging-command-set-charge-timer">setChargeTimer()</h3>
+<h3 id="charging-command-set-charge-timers">setChargeTimers()</h3>
 
 {% capture code %}
-HMKit.commands.ChargingCommand.setChargeTimer(chargeTimers)
+HMKit.commands.ChargingCommand.setChargeTimers(chargeTimers)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="charging-command-set-charge-timer"
+  reference-id="charging-command-set-charge-timers"
   parameters-name="chargeTimers"
   parameters-description="Charge timers ([{ timerType: (string:'preferred_start_time|preferred_end_time|departure_time')&comma; time: (date) }])"
 %}
@@ -217,15 +217,15 @@ HMKit.commands.ChassisSettingsCommand.setRearAxleSpringRate(rate)
   parameters-description="(number) Spring rate"
 %}
 
-<h3 id="chassis-settings-command-start-sport-chrono">startSportChrono()</h3>
+<h3 id="chassis-settings-command-set-chassis-position">setChassisPosition()</h3>
 
 {% capture code %}
-HMKit.commands.ChassisSettingsCommand.startSportChrono(position)
+HMKit.commands.ChassisSettingsCommand.setChassisPosition(position)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="chassis-settings-command-start-sport-chrono"
+  reference-id="chassis-settings-command-set-chassis-position"
   parameters-name="position"
   parameters-description="(number) Chassis position"
 %}
@@ -529,15 +529,15 @@ HMKit.commands.FuelingCommand.openGasFlap()
 
 <h2 id="graphics-command">GraphicsCommand</h2>
 
-<h3 id="graphics-command-get-state">getState()</h3>
+<h3 id="graphics-command-display-image">displayImage()</h3>
 
 {% capture code %}
-HMKit.commands.GraphicsCommand.getState(url)
+HMKit.commands.GraphicsCommand.displayImage(url)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="graphics-command-get-state"
+  reference-id="graphics-command-display-image"
   parameters-name="url"
   parameters-description="(string) Image url"
 %}
