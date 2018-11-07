@@ -13,7 +13,6 @@ class CertCache {
     this.cacheTTL = CACHE_TTL;
     this.GCTicks = GC_TICKS;
     this.GCCounter = 0;
-    console.log('STORE PATH', this.storePath());
   }
 
   storePath() {
