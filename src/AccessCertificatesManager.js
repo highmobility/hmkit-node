@@ -6,29 +6,64 @@ export default class AccessCertificatesManager {
   constructor(hmkit) {
     this.hmkit = hmkit;
     this.certCache = CertCache;
-    this.accessCertificate = null;
+    this.accessCertificates = [];
   }
 
   get(vehicleSerial) {
     const { appIdentifier } = this.hmkit.clientCertificate;
+    const existingCert = this.find(appIdentifier, vehicleSerial, null);
 
-    return !!this.accessCertificate
-      ? this.accessCertificate
-      : this.certCache.getByVehicleSerial(appIdentifier, vehicleSerial);
+    if (!!existingCert) return existingCert;
+
+    const certFromCache = this.certCache.getByVehicleSerial(
+      appIdentifier,
+      vehicleSerial
+    );
+
+    return this.addCert(vehicleSerial, appIdentifier, null, certFromCache);
+  }
+
+  find(appIdentifier, vehicleSerial, accessToken) {
+    const accessCertificate = this.accessCertificates.find(
+      accessCert =>
+        accessCert.appIdentifier === appIdentifier &&
+        ((!!accessCert.vehicleSerial &&
+          accessCert.vehicleSerial === vehicleSerial) ||
+          (!!accessCert.accessToken && accessCert.accessToken === accessToken))
+    );
+
+    return !!accessCertificate ? accessCertificate.cert : null;
+  }
+
+  addCert(vehicleSerial, appIdentifier, accessToken, cert) {
+    this.accessCertificates.push({
+      vehicleSerial,
+      appIdentifier,
+      accessToken,
+      cert,
+    });
+
+    return cert;
   }
 
   download = async accessToken => {
-    if (!!this.accessCertificate) return this.accessCertificate;
-
     const { appIdentifier } = this.hmkit.clientCertificate;
+    const existingCert = this.find(appIdentifier, null, accessToken);
+
+    if (!!existingCert) return existingCert;
+
     const certFromCache = this.certCache.getByAccessToken(
       appIdentifier,
       accessToken
     );
 
     if (!!certFromCache) {
-      this.accessCertificate = certFromCache;
-      return certFromCache;
+      return this.addCert(
+        certFromCache.getSerial(),
+        appIdentifier,
+        accessToken,
+        certFromCache
+      );
     }
 
     const byteSignature = this.hmkit.crypto.generateSignature(
@@ -63,7 +98,11 @@ export default class AccessCertificatesManager {
       rawAccessCertificate
     );
 
-    this.accessCertificate = accessCertificate;
-    return accessCertificate;
+    return this.addCert(
+      accessCertificate.getSerial(),
+      appIdentifier,
+      accessToken,
+      accessCertificate
+    );
   };
 }
