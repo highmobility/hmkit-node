@@ -97,6 +97,20 @@ export default class VehicleStatusResponse extends PropertyResponse {
           0x02: 'semi_automatic',
         })
       ),
+      new Property(0x0f, 'displayUnit').setDecoder(
+        switchDecoder({
+          0x00: 'km',
+          0x01: 'miles',
+        })
+      ),
+      new Property(0x10, 'driverSeatLocation').setDecoder(
+        switchDecoder({
+          0x00: 'left',
+          0x01: 'right',
+          0x02: 'center',
+        })
+      ),
+      new Property(0x11, 'equipments').array().setDecoder(bytesToString),
       new CapabilityProperty(0x99, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
         Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {
