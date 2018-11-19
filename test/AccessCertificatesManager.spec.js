@@ -38,18 +38,22 @@ describe(`AccessCertificatesManager`, () => {
 
   it(`should take cert from cache if it does not have one attached to it`, async () => {
     hmkit.certificates.certCache.destroy();
-    hmkit.certificates.accessCertificate = null;
+    hmkit.certificates.accessCertificates = [];
 
     await hmkit.downloadAccessCertificate(accessToken);
-    expect(hmkit.certificates.get()).toBeInstanceOf(AccessCertificate);
+    expect(hmkit.certificates.get('DEBF2383C2B0E0AD03')).toBeInstanceOf(
+      AccessCertificate
+    );
 
-    hmkit.certificates.accessCertificate = null;
+    hmkit.certificates.accessCertificates = [];
     await hmkit.downloadAccessCertificate(accessToken);
-    expect(hmkit.certificates.get()).toBeInstanceOf(AccessCertificate);
+    expect(hmkit.certificates.get('DEBF2383C2B0E0AD03')).toBeInstanceOf(
+      AccessCertificate
+    );
 
-    hmkit.certificates.accessCertificate = null;
+    hmkit.certificates.accessCertificates = [];
     hmkit.certificates.certCache.destroy();
-    expect(hmkit.certificates.get()).toBeNull();
+    expect(hmkit.certificates.get('DEBF2383C2B0E0AD03')).toBeNull();
   });
 
   it(`should download access certificate`, async () => {
