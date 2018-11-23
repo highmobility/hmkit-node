@@ -68,6 +68,7 @@ describe(`DiagnosticsCommand`, () => {
             status: expect.any(String),
           },
         ]),
+        mileageMeters: expect.any(Number),
       })
     );
   });

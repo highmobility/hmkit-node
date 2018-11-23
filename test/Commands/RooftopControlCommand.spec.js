@@ -15,6 +15,7 @@ describe(`RooftopControlCommand`, () => {
       position: expect.any(Number),
       convertibleRoof: expect.any(String),
       sunroofTilt: expect.any(String),
+      sunroofState: expect.any(String),
     });
   });
 
@@ -25,7 +26,8 @@ describe(`RooftopControlCommand`, () => {
         22,
         33,
         'closed_secured',
-        'tilted'
+        'tilted',
+        'open'
       )
     );
 
@@ -35,6 +37,7 @@ describe(`RooftopControlCommand`, () => {
       position: 33,
       convertibleRoof: 'closed_secured',
       sunroofTilt: 'tilted',
+      sunroofState: 'open',
     });
   });
 
@@ -56,6 +59,7 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
+      sunroofState: oldData.sunroofState,
     });
   });
 
@@ -78,6 +82,7 @@ describe(`RooftopControlCommand`, () => {
       position: newPosition,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
+      sunroofState: oldData.sunroofState,
     });
   });
 
@@ -104,6 +109,7 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: newRoofState,
       sunroofTilt: oldData.sunroofTilt,
+      sunroofState: oldData.sunroofState,
     });
   });
 
@@ -133,6 +139,38 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: newSunroofTilt,
+      sunroofState: oldData.sunroofState,
+    });
+  });
+
+  it('should control sunroof state separately', async () => {
+    const oldData = (await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.getState()
+    )).parse();
+
+    const newSunroofState =
+      oldData.sunroofState === 'closed' ? 'open' : 'closed';
+
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.control(
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        newSunroofState
+      )
+    );
+
+    expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
+
+    expect(response.parse()).toEqual({
+      dimming: oldData.dimming,
+      position: oldData.position,
+      convertibleRoof: oldData.convertibleRoof,
+      sunroofTilt: oldData.sunroofTilt,
+      sunroofState: newSunroofState,
     });
   });
 });

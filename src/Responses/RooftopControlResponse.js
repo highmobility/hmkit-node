@@ -10,13 +10,15 @@ export default class RooftopControlResponse extends PropertyResponse {
    * @property {Number} position (number) Percentage value between 0-100 whereas 100 is fully open
    * @property {String} convertibleRoof (string 'closed | open | emergency_locked | closed_secured | open_secured | hard_top_mounted | intermediate_position | loading_position | loading_position_immediate') Convertible roof state
    * @property {String} sunroofTilt (string 'closed|tilted|half_tilted') Sunroof tilt state
+   * @property {String} sunroofState (string 'closed|open|intermediate') Sunroof state
    *
    * @example RooftopControlResponse
     {
       dimming: 23,
       position: 34,
       convertibleRoof: 'closed',
-      sunroofTilt: 'closed'
+      sunroofTilt: 'closed',
+      sunroofState: 'open'
     }
    */
   constructor(data: Uint8Array) {
@@ -43,6 +45,13 @@ export default class RooftopControlResponse extends PropertyResponse {
           0x00: 'closed',
           0x01: 'tilted',
           0x02: 'half_tilted',
+        })
+      ),
+      new Property(0x05, 'sunroofState').setDecoder(
+        switchDecoder({
+          0x00: 'closed',
+          0x01: 'open',
+          0x02: 'intermediate',
         })
       ),
     ];

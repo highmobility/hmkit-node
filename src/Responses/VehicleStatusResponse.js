@@ -131,8 +131,8 @@ export default class VehicleStatusResponse extends PropertyResponse {
   }
 
   getCapabilityStateDecoder(identifier) {
-    return bytes => {
-      return { state: new Response([...identifier, ...bytes]).parse() };
-    };
+    return bytes => ({
+      state: new Response([...identifier, ...bytes]).parse(),
+    });
   }
 }
