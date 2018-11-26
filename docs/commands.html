@@ -826,6 +826,19 @@ HMKit.commands.MobileCommand.getState()
   reference-id="mobile-command-get-state"
 %}
 
+<h2 id="multi-command">MultiCommand</h2>
+
+<h3 id="multi-command-send">send()</h3>
+
+{% capture code %}
+HMKit.commands.MultiCommand.send()
+{% endcapture %}
+
+{%
+  include code-reference-snippet.html
+  reference-id="multi-command-send"
+%}
+
 <h2 id="navi-destination-command">NaviDestinationCommand</h2>
 
 <h3 id="navi-destination-command-get-destination">getDestination()</h3>
@@ -1063,14 +1076,14 @@ HMKit.commands.RooftopControlCommand.getState()
 <h3 id="rooftop-control-command-control">control()</h3>
 
 {% capture code %}
-HMKit.commands.RooftopControlCommand.control(dimming, position, convertibleRoof, sunroofTilt)
+HMKit.commands.RooftopControlCommand.control(dimming, position, convertibleRoof, sunroofTilt, sunroofState)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
   reference-id="rooftop-control-command-control"
-  parameters-name="dimming, position, convertibleRoof, sunroofTilt"
-  parameters-description="(number) Dimming from 0 (0%) to 1 (100%)., (number) Position from 0 (0%) to 1 (100%)., (string 'closed|open|emergency_locked|closed_secured|open_secured|hard_top_mounted|intermediate_position|loading_position|loading_position_immediate') Convertible roof state, (string 'closed|tilted|half_tilted') Sunroof tilt state"
+  parameters-name="dimming, position, convertibleRoof, sunroofTilt, sunroofState"
+  parameters-description="(number) Dimming from 0 (0%) to 1 (100%)., (number) Position from 0 (0%) to 1 (100%)., (string 'closed|open|emergency_locked|closed_secured|open_secured|hard_top_mounted|intermediate_position|loading_position|loading_position_immediate') Convertible roof state, (string 'closed|tilted|half_tilted') Sunroof tilt state, (string 'closed|open|intermediate') Sunroof state"
 %}
 
 <h2 id="seats-command">SeatsCommand</h2>
