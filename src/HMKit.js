@@ -9,8 +9,8 @@ import ApiClient from './ApiClient';
 import InvalidArgumentError from './InvalidArgumentError';
 
 const API_URLS = {
-  hmxv: 'https://xv-platform.high-mobility.com',
-  test: 'https://high-mobility.com',
+  hmxv: 'https://xv-platform.high-mobility.com/v1/',
+  test: 'https://sandbox.api.high-mobility.com/v1/',
 };
 
 export default class HMKit {
@@ -27,7 +27,7 @@ export default class HMKit {
 
     this.clientPrivateKey = clientPrivateKey;
 
-    this.api = new Api(`${this.getApiUrl()}/hm_cloud/api/v1/`);
+    this.api = new Api(this.getApiUrl());
     this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
