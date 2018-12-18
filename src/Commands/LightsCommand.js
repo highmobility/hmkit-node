@@ -13,7 +13,7 @@ export default class LightsCommand extends BaseCommand {
   /**
    * @function control
    *
-   * @property {String} frontExteriorLight (string: 'inactive', 'active', 'active_with_full_beam') Front exterior light
+   * @property {String} frontExteriorLight (string: 'inactive', 'active', 'active_with_full_beam', 'dlr', 'automatic') Front exterior light
    * @property {String} rearExteriorLight (string: 'inactive', 'active') Rear exterior light
    * @property {String} interiorLight (string: 'inactive', 'active') Interior light
    * @property {String} ambientLight (string: 'inactive', 'active') Ambient light
