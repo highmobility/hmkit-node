@@ -28,6 +28,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
    * @property {String} displayUnit (string 'km|miles') Display unit
    * @property {String} driverSeatLocation (string 'left|right|center') Driver seat location
    * @property {String} equipments (array) List of equipments
+   * @property {String} brand (string) Brand name
    * @property {String} states (array '{capabilityIdentifier: (string), state: (object)}') Capability states
    *
    * @example VehicleStatusResponse
@@ -49,6 +50,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
       displayUnit: 'km',
       driverSeatLocation: 'left',
       equipments: ['side skirts', 'front apron', 'rear apron'],
+      brand: 'Mercedes',
       states: [
         {
           capabilityIdentifier: 'trunk',
@@ -117,6 +119,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
         })
       ),
       new Property(0x11, 'equipments').array().setDecoder(bytesToString),
+      new Property(0x12, 'brand').setDecoder(bytesToString),
       new CapabilityProperty(0x99, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
         Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {

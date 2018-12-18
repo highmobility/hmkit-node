@@ -9,6 +9,8 @@ const FAILURE_REASONS = {
   3: 'Execution Timeout - Command failed to execute in time for an unknown reason',
   4: 'Vehicle Asleep - Car has to be waken up before the command can be used. If this is for a virtual car, the emulator has to be loaded',
   5: 'Invalid Auto Command - Auto API command not recognised',
+  6: 'Pending - Capability is being refreshed',
+  7: 'Rate Limit - Capability rate limit has been exceeded',
 };
 
 export default class FailureMessageResponse extends PropertyResponse {

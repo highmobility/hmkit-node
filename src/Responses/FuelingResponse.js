@@ -7,10 +7,14 @@ export default class FuelingResponse extends PropertyResponse {
 
   /**
    * @property {String} gasFlap (string 'open|closed') Gas flap status
+   * @property {String} gasFlapLock (string 'unlocked|locked') Gas flap lock
+   * @property {String} gasFlapPosition (string 'closed|open') Gas flap position
    *
    * @example FuelingResponse
     {
-      gasFlap: 'open'
+      gasFlap: 'open',
+      gasFlapLock: 'unlocked',
+      gasFlapPosition: 'closed'
     }
    */
   constructor(data: Uint8Array) {
