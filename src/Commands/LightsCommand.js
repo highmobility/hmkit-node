@@ -16,10 +16,10 @@ export default class LightsCommand extends BaseCommand {
    * @property {String} frontExteriorLight (string: 'inactive', 'active', 'active_with_full_beam', 'dlr', 'automatic') Front exterior light
    * @property {String} rearExteriorLight (string: 'inactive', 'active') Rear exterior light
    * @property {String} interiorLight (string: 'inactive', 'active') Interior light
-   * @property {String} ambientLight (string: 'inactive', 'active') Ambient light
+   * @property {String} ambientLight (string) Ambient light
    * @property {Array} fogLights (Array) Fog lights [{ location: (string), state: (number) }]
    * @property {Array} readingLamps (Array) Reading lamps [{ location: (string), state: (number) }]
-   * @property {Array} interiorLamps (Array) Reading lamps [{ location: (string), state: (number) }]
+   * @property {Array} interiorLights (Array) Reading lamps [{ location: (string), state: (number) }]
    */
   static control(
     frontExteriorLight: string,
@@ -28,7 +28,7 @@ export default class LightsCommand extends BaseCommand {
     ambientLight: string,
     fogLights: Array,
     readingLamps: Array,
-    interiorLamps: Array
+    interiorLights: Array
   ) {
     let allFrontBytes = [];
     let allRearBytes = [];
@@ -36,7 +36,7 @@ export default class LightsCommand extends BaseCommand {
     let allAmbientBytes = [];
     let allFogLightsBytes = [];
     let allReadingLampsBytes = [];
-    let allInteriorLampsBytes = [];
+    let allInteriorLightsBytes = [];
 
     if (!!frontExteriorLight && frontExteriorLight.length > 0) {
       const frontExteriorLightOptions = {
@@ -115,10 +115,10 @@ export default class LightsCommand extends BaseCommand {
       };
 
       const readingLampsPositions = {
-        frontLeft: 0x00,
-        frontRight: 0x01,
-        rearRight: 0x02,
-        rearLeft: 0x03,
+        front_left: 0x00,
+        front_right: 0x01,
+        rear_right: 0x02,
+        rear_left: 0x03,
       };
 
       allReadingLampsBytes = readingLamps.reduce(
@@ -133,23 +133,23 @@ export default class LightsCommand extends BaseCommand {
       );
     }
 
-    if (Array.isArray(interiorLamps) && interiorLamps.length > 0) {
-      const interiorLampsOptions = {
+    if (Array.isArray(interiorLights) && interiorLights.length > 0) {
+      const interiorLightsOptions = {
         inactive: 0x00,
         active: 0x01,
       };
 
-      const interiorLampsPositions = {
+      const interiorLightsPositions = {
         front: 0x00,
         rear: 0x01,
       };
 
-      allInteriorLampsBytes = interiorLamps.reduce(
-        (interiorLampBytes, { location, state }) =>
-          interiorLampBytes.concat(
+      allInteriorLightsBytes = interiorLights.reduce(
+        (interiorLightBytes, { location, state }) =>
+          interiorLightBytes.concat(
             this.buildProperty(0x09, [
-              interiorLampsPositions[location],
-              interiorLampsOptions[state],
+              interiorLightsPositions[location],
+              interiorLightsOptions[state],
             ])
           ),
         []
@@ -166,7 +166,7 @@ export default class LightsCommand extends BaseCommand {
       ...allAmbientBytes,
       ...allFogLightsBytes,
       ...allReadingLampsBytes,
-      ...allInteriorLampsBytes,
+      ...allInteriorLightsBytes,
     ]);
   }
 }

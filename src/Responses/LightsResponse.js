@@ -1,7 +1,7 @@
 import PropertyResponse from '../PropertyResponse';
 import OptionalProperty from '../OptionalProperty';
 import Property from '../Property';
-import { switchDecoder } from '../helpers';
+import { switchDecoder, activeInactiveDecoder } from '../helpers';
 import { hexArrayToHex } from '../encoding';
 
 export default class LightsResponse extends PropertyResponse {
@@ -14,9 +14,9 @@ export default class LightsResponse extends PropertyResponse {
    * @property {String} ambientLight (string) Ambient light color
    * @property {String} reverseLight (string) Reverse light state
    * @property {String} emergencyBrakeLight (string) Emergency brake light state
-   * @property {Array} fogLights (array) Fog lights ([{ fogLightLocation: (string 'front|rear'), fogLightState: (string 'inactive|active') }])
-   * @property {Array} readingLamps (Array Reading lamps { readingLampLocation: (string 'front_left|front_right|rear_right|rear_left'), readingLampState: (string 'inactive|active')}`)
-   * @property {Array} interiorLights (array) Interior lights ([{ interiorLightLocation: (string 'front|rear'), interiorLightState: (string 'inactive|active') }])
+   * @property {Array} fogLights (array) Fog lights ([{ location: (string 'front|rear'), state: (string 'inactive|active') }])
+   * @property {Array} readingLamps (Array Reading lamps { location: (string 'front_left|front_right|rear_right|rear_left'), state: (string 'inactive|active')}`)
+   * @property {Array} interiorLights (array) Interior lights ([{ location: (string 'front|rear'), state: (string 'inactive|active') }])
    *
    *
    * @example LightsResponse
@@ -28,33 +28,33 @@ export default class LightsResponse extends PropertyResponse {
       reverseLight: 'active',
       emergencyBrakeLight: 'active',
       fogLights: [{
-        fogLightLocation: 'front'
-        fogLightState: 'active'
+        location: 'front'
+        state: 'active'
       },
       {
-        fogLightLocation: 'rear'
-        fogLightState: 'inactive'
+        location: 'rear'
+        state: 'inactive'
       }],
       readingLamps: [{
-        readingLampLocation: 'front_left',
-        readingLampState: 'inactive'
+        location: 'front_left',
+        state: 'inactive'
       }, {
-        readingLampLocation: 'front_right',
-        readingLampState: 'inactive'
+        location: 'front_right',
+        state: 'inactive'
       }, {
-        readingLampLocation: 'rear_right',
-        readingLampState: 'inactive'
+        location: 'rear_right',
+        state: 'inactive'
       }, {
-        readingLampLocation: 'rear_left',
-        readingLampState: 'inactive'
+        location: 'rear_left',
+        state: 'inactive'
       }],
       interiorLights: [{
-        interiorLightLocation: 'front'
-        interiorLightState: 'active'
+        location: 'front'
+        state: 'active'
       },
       {
-        interiorLightLocation: 'rear'
-        interiorLightState: 'inactive'
+        location: 'rear'
+        state: 'inactive'
       }]
     }
    */
@@ -96,43 +96,23 @@ export default class LightsResponse extends PropertyResponse {
           0x01: 'active',
         })
       ),
-      new Property(0x07, 'fogLights').setOptionalSubProperties(
-        'fogLightLocation',
-        [
-          new OptionalProperty(0x00, 'front').setDecoder(
-            this.fogLightDecoder
-          ),
-          new OptionalProperty(0x01, 'rear').setDecoder(
-            this.fogLightDecoder
-          ),
-        ]
-      ),
-      new Property(0x08, 'readingLamps').setOptionalSubProperties(
-        'readingLampLocation',
-        [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
-            this.readingLampDecoder
-          ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
-            this.readingLampDecoder
-          ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
-            this.readingLampDecoder
-          ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
-            this.readingLampDecoder
-          ),
-        ]
-      ),
+      new Property(0x07, 'fogLights').setOptionalSubProperties('location', [
+        new OptionalProperty(0x00, 'front').setDecoder(this.lightsDecoder),
+        new OptionalProperty(0x01, 'rear').setDecoder(this.lightsDecoder),
+      ]),
+      new Property(0x08, 'readingLamps').setOptionalSubProperties('location', [
+        new OptionalProperty(0x00, 'front_left').setDecoder(this.lightsDecoder),
+        new OptionalProperty(0x01, 'front_right').setDecoder(
+          this.lightsDecoder
+        ),
+        new OptionalProperty(0x02, 'rear_right').setDecoder(this.lightsDecoder),
+        new OptionalProperty(0x03, 'rear_left').setDecoder(this.lightsDecoder),
+      ]),
       new Property(0x09, 'interiorLights').setOptionalSubProperties(
-        'interiorLightLocation',
+        'location',
         [
-          new OptionalProperty(0x00, 'front').setDecoder(
-            this.interiorLightDecoder
-          ),
-          new OptionalProperty(0x01, 'rear').setDecoder(
-            this.interiorLightDecoder
-          ),
+          new OptionalProperty(0x00, 'front').setDecoder(this.lightsDecoder),
+          new OptionalProperty(0x01, 'rear').setDecoder(this.lightsDecoder),
         ]
       ),
     ];
@@ -140,34 +120,16 @@ export default class LightsResponse extends PropertyResponse {
     this.parse(data, properties);
   }
 
+  lightsDecoder(data: Array<Number>) {
+    return {
+      state: switchDecoder({
+        0x00: 'inactive',
+        0x01: 'active',
+      })(data),
+    };
+  }
+
   ambientLightDecoder(values: Array<String>) {
     return `#${hexArrayToHex(values)}`;
-  }
-
-  fogLightDecoder(data: Array<Number>) {
-    return {
-      fogLightState: switchDecoder({
-        0x00: 'inactive',
-        0x01: 'active',
-      })(data),
-    };
-  }
-
-  readingLampDecoder(data: Array<Number>) {
-    return {
-      readingLampState: switchDecoder({
-        0x00: 'inactive',
-        0x01: 'active',
-      })(data),
-    };
-  }
-
-  interiorLightDecoder(data: Array<Number>) {
-    return {
-      interiorLightState: switchDecoder({
-        0x00: 'inactive',
-        0x01: 'active',
-      })(data),
-    };
   }
 }
