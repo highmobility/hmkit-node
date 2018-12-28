@@ -13,27 +13,35 @@ export default class LightsCommand extends BaseCommand {
   /**
    * @function control
    *
-   * @property {String} frontExteriorLight (string: 'inactive', 'active', 'active_with_full_beam') Front exterior light
-   * @property {String} rearExteriorLight (string: 'inactive', 'active') Rear exterior light
-   * @property {String} interiorLight (string: 'inactive', 'active') Interior light
-   * @property {String} ambientLight 	(string, hex color: '#rrggbb') Ambient light
+   * @property {String} frontExteriorLight (string: 'inactive|active|active_with_full_beam|dlr|automatic') Front exterior light
+   * @property {String} rearExteriorLight (string: 'inactive|active') Rear exterior light
+   * @property {String} ambientLight (string) Ambient light
+   * @property {Array} fogLights (Array) Fog lights [{ location: (string: 'front|rear'), state: (string: 'inactive|active') }]
+   * @property {Array} readingLamps (Array) Reading lamps [{ location: (string: 'front_left|front_right|rear_right|rear_left'), state: (string: 'inactive|active') }]
+   * @property {Array} interiorLights (Array) Interior lights [{ location: (string: 'front|rear'), state: (string: 'inactive|active') }]
    */
   static control(
-    frontExteriorLight: string,
-    rearExteriorLight: string,
-    interiorLight: string,
-    ambientLight: string
+    frontExteriorLight: String,
+    rearExteriorLight: String,
+    ambientLight: String,
+    fogLights: Array<Object>,
+    readingLamps: Array<Object>,
+    interiorLights: Array<Object>
   ) {
     let allFrontBytes = [];
     let allRearBytes = [];
-    let allInteriorBytes = [];
     let allAmbientBytes = [];
+    let allFogLightsBytes = [];
+    let allReadingLampsBytes = [];
+    let allInteriorLightsBytes = [];
 
     if (!!frontExteriorLight && frontExteriorLight.length > 0) {
       const frontExteriorLightOptions = {
         inactive: 0x00,
         active: 0x01,
         active_with_full_beam: 0x02,
+        dlr: 0x03,
+        automatic: 0x04,
       };
 
       allFrontBytes = this.buildProperty(
@@ -54,18 +62,6 @@ export default class LightsCommand extends BaseCommand {
       );
     }
 
-    if (!!interiorLight && interiorLight.length > 0) {
-      const interiorLightOptions = {
-        inactive: 0x00,
-        active: 0x01,
-      };
-
-      allInteriorBytes = this.buildProperty(
-        0x03,
-        interiorLightOptions[interiorLight]
-      );
-    }
-
     if (!!ambientLight && ambientLight.length > 0) {
       const red = hexToInt(ambientLight.slice(1, 3));
       const green = hexToInt(ambientLight.slice(3, 5));
@@ -74,14 +70,87 @@ export default class LightsCommand extends BaseCommand {
       allAmbientBytes = this.buildProperty(0x04, [red, green, blue]);
     }
 
+    if (Array.isArray(fogLights) && fogLights.length > 0) {
+      const fogLightsPositions = {
+        front: 0x00,
+        rear: 0x01,
+      };
+
+      const fogLightsOptions = {
+        inactive: 0x00,
+        active: 0x01,
+      };
+
+      allFogLightsBytes = fogLights.reduce(
+        (fogLightBytes, { location, state }) =>
+          fogLightBytes.concat(
+            this.buildProperty(0x07, [
+              fogLightsPositions[location],
+              fogLightsOptions[state],
+            ])
+          ),
+        []
+      );
+    }
+
+    if (Array.isArray(readingLamps) && readingLamps.length > 0) {
+      const readingLampsPositions = {
+        front_left: 0x00,
+        front_right: 0x01,
+        rear_right: 0x02,
+        rear_left: 0x03,
+      };
+
+      const readingLampsOptions = {
+        inactive: 0x00,
+        active: 0x01,
+      };
+
+      allReadingLampsBytes = readingLamps.reduce(
+        (readingLampBytes, { location, state }) =>
+          readingLampBytes.concat(
+            this.buildProperty(0x08, [
+              readingLampsPositions[location],
+              readingLampsOptions[state],
+            ])
+          ),
+        []
+      );
+    }
+
+    if (Array.isArray(interiorLights) && interiorLights.length > 0) {
+      const interiorLightsPositions = {
+        front: 0x00,
+        rear: 0x01,
+      };
+
+      const interiorLightsOptions = {
+        inactive: 0x00,
+        active: 0x01,
+      };
+
+      allInteriorLightsBytes = interiorLights.reduce(
+        (interiorLightBytes, { location, state }) =>
+          interiorLightBytes.concat(
+            this.buildProperty(0x09, [
+              interiorLightsPositions[location],
+              interiorLightsOptions[state],
+            ])
+          ),
+        []
+      );
+    }
+
     return new Command([
       0x00,
       0x36,
       0x12,
       ...allFrontBytes,
       ...allRearBytes,
-      ...allInteriorBytes,
       ...allAmbientBytes,
+      ...allFogLightsBytes,
+      ...allReadingLampsBytes,
+      ...allInteriorLightsBytes,
     ]);
   }
 }
