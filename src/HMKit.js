@@ -8,6 +8,11 @@ import Api from './Api';
 import ApiClient from './ApiClient';
 import InvalidArgumentError from './InvalidArgumentError';
 
+const API_URLS = {
+  hmxv: 'https://xv-platform.high-mobility.com/v1/',
+  test: 'https://sandbox.api.high-mobility.com/v1/',
+};
+
 export default class HMKit {
   static InvalidArgumentError = InvalidArgumentError;
 
@@ -21,9 +26,8 @@ export default class HMKit {
     }
 
     this.clientPrivateKey = clientPrivateKey;
-    this.issuer = 'tmcs';
 
-    this.api = new Api('https://high-mobility.com/hm_cloud/api/v1/');
+    this.api = new Api(this.getApiUrl());
     this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
@@ -34,6 +38,14 @@ export default class HMKit {
   staging() {
     this.api = new Api('https://hm-devcenter4.herokuapp.com/hm_cloud/api/v1/');
     return this;
+  }
+
+  getApiUrl() {
+    if (this.clientCertificate && this.clientCertificate.issuer) {
+      return API_URLS[this.clientCertificate.issuer] || API_URLS.test;
+    }
+
+    return API_URLS.test;
   }
 
   downloadAccessCertificate(...args) {
