@@ -13,7 +13,6 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual({
       frontExteriorLight: expect.any(String),
       rearExteriorLight: expect.any(String),
-      interiorLight: expect.any(String),
       ambientLight: expect.any(String),
       reverseLight: expect.any(String),
       emergencyBrakeLight: expect.any(String),
@@ -40,7 +39,6 @@ describe(`LightsCommand`, () => {
       hmkit.commands.LightsCommand.control(
         'active_with_full_beam',
         'inactive',
-        'inactive',
         '#254f4c',
         [
           { location: 'front', state: 'inactive' },
@@ -64,7 +62,6 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         frontExteriorLight: 'active_with_full_beam',
         rearExteriorLight: 'inactive',
-        interiorLight: 'inactive',
         ambientLight: '#254f4c',
         reverseLight: 'inactive',
         emergencyBrakeLight: 'inactive',
@@ -88,7 +85,6 @@ describe(`LightsCommand`, () => {
       vehicleSerial,
       hmkit.commands.LightsCommand.control(
         'inactive',
-        'inactive',
         '',
         '',
         [],
@@ -101,7 +97,6 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         frontExteriorLight: 'inactive',
         rearExteriorLight: 'inactive',
-        interiorLight: expect.any(String),
         ambientLight: expect.any(String),
         fogLights: [
           { location: 'front', state: expect.any(String) },
@@ -123,7 +118,6 @@ describe(`LightsCommand`, () => {
       vehicleSerial,
       hmkit.commands.LightsCommand.control(
         null,
-        null,
         'active',
         '#ffffff',
         null,
@@ -136,7 +130,6 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         frontExteriorLight: expect.any(String),
         rearExteriorLight: expect.any(String),
-        interiorLight: 'active',
         ambientLight: '#ffffff',
         fogLights: [
           { location: 'front', state: expect.any(String) },
@@ -198,27 +191,6 @@ describe(`LightsCommand`, () => {
     );
   });
 
-  it('should control interior light separately', async () => {
-    const oldData = (await hmkit.telematics.sendCommand(
-      vehicleSerial,
-      hmkit.commands.LightsCommand.getState()
-    )).parse();
-
-    const response = await hmkit.telematics.sendCommand(
-      vehicleSerial,
-      hmkit.commands.LightsCommand.control(undefined, undefined, 'active')
-    );
-
-    expect(response.parse()).toBeInstanceOf(LightsResponse);
-
-    expect(response.parse()).toEqual(
-      expect.objectContaining({
-        ...oldData,
-        interiorLight: 'active',
-      })
-    );
-  });
-
   it('should control ambient light separately', async () => {
     const oldData = (await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -228,7 +200,6 @@ describe(`LightsCommand`, () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.LightsCommand.control(
-        undefined,
         undefined,
         undefined,
         '#ff0000'
@@ -254,7 +225,6 @@ describe(`LightsCommand`, () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.LightsCommand.control(
-        undefined,
         undefined,
         undefined,
         undefined,
@@ -291,7 +261,6 @@ describe(`LightsCommand`, () => {
         undefined,
         undefined,
         undefined,
-        undefined,
         [
           { location: 'front_left', state: 'active' },
           { location: 'front_right', state: 'active' },
@@ -324,7 +293,6 @@ describe(`LightsCommand`, () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.LightsCommand.control(
-        undefined,
         undefined,
         undefined,
         undefined,

@@ -14,7 +14,6 @@ describe(`LightsResponse`, () => {
     expect(response.parse()).toEqual({
       frontExteriorLight: 'active_with_full_beam',
       rearExteriorLight: 'active',
-      interiorLight: 'inactive',
       ambientLight: '#ffffff',
       reverseLight: 'inactive',
       emergencyBrakeLight: 'inactive',

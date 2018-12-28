@@ -1,19 +1,18 @@
 import PropertyResponse from '../PropertyResponse';
 import OptionalProperty from '../OptionalProperty';
 import Property from '../Property';
-import { switchDecoder, activeInactiveDecoder } from '../helpers';
+import { switchDecoder } from '../helpers';
 import { hexArrayToHex } from '../encoding';
 
 export default class LightsResponse extends PropertyResponse {
   static identifier = [0x00, 0x36];
 
   /**
-   * @property {String} frontExteriorLight (string) Front exterior light state
-   * @property {String} rearExteriorLight (string) Rear exterior light state
-   * @property {String} interiorLight (string) Interior light state
+   * @property {String} frontExteriorLight (string 'inactive|active|active_with_full_beam|dlr|automatic') Front exterior light state
+   * @property {String} rearExteriorLight (string 'inactive|active') Rear exterior light state
    * @property {String} ambientLight (string) Ambient light color
-   * @property {String} reverseLight (string) Reverse light state
-   * @property {String} emergencyBrakeLight (string) Emergency brake light state
+   * @property {String} reverseLight (string 'inactive|active') Reverse light state
+   * @property {String} emergencyBrakeLight (string 'inactive|active') Emergency brake light state
    * @property {Array} fogLights (array) Fog lights ([{ location: (string 'front|rear'), state: (string 'inactive|active') }])
    * @property {Array} readingLamps (Array Reading lamps { location: (string 'front_left|front_right|rear_right|rear_left'), state: (string 'inactive|active')}`)
    * @property {Array} interiorLights (array) Interior lights ([{ location: (string 'front|rear'), state: (string 'inactive|active') }])
@@ -23,15 +22,13 @@ export default class LightsResponse extends PropertyResponse {
     {
       frontExteriorLight: 'inactive',
       rearExteriorLight: 'inactive',
-      interiorLight: 'inactive',
       ambientLight: '#254f4c',
       reverseLight: 'active',
       emergencyBrakeLight: 'active',
       fogLights: [{
         location: 'front'
         state: 'active'
-      },
-      {
+      }, {
         location: 'rear'
         state: 'inactive'
       }],
@@ -51,8 +48,7 @@ export default class LightsResponse extends PropertyResponse {
       interiorLights: [{
         location: 'front'
         state: 'active'
-      },
-      {
+      }, {
         location: 'rear'
         state: 'inactive'
       }]
@@ -72,12 +68,6 @@ export default class LightsResponse extends PropertyResponse {
         })
       ),
       new Property(0x02, 'rearExteriorLight').setDecoder(
-        switchDecoder({
-          0x00: 'inactive',
-          0x01: 'active',
-        })
-      ),
-      new Property(0x03, 'interiorLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
