@@ -516,15 +516,17 @@ HMKit.commands.FuelingCommand.getState()
   reference-id="fueling-command-get-state"
 %}
 
-<h3 id="fueling-command-open-gas-flap">openGasFlap()</h3>
+<h3 id="fueling-command-control-gas-flap">controlGasFlap()</h3>
 
 {% capture code %}
-HMKit.commands.FuelingCommand.openGasFlap()
+HMKit.commands.FuelingCommand.controlGasFlap(lock, position)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
-  reference-id="fueling-command-open-gas-flap"
+  reference-id="fueling-command-control-gas-flap"
+  parameters-name="lock, position"
+  parameters-description="(string: 'unlocked'&comma; 'locked) Lock or unlock gas flap, (string: 'closed'&comma; 'opened'&comma; 'intermediate') Close or open gas flap"
 %}
 
 <h2 id="graphics-command">GraphicsCommand</h2>
@@ -775,14 +777,14 @@ HMKit.commands.LightsCommand.getState()
 <h3 id="lights-command-control">control()</h3>
 
 {% capture code %}
-HMKit.commands.LightsCommand.control(frontExteriorLight, rearExteriorLight, interiorLight, ambientLight)
+HMKit.commands.LightsCommand.control(frontExteriorLight, rearExteriorLight, ambientLight, fogLights, readingLamps, interiorLights)
 {% endcapture %}
 
 {%
   include code-reference-snippet.html
   reference-id="lights-command-control"
-  parameters-name="frontExteriorLight, rearExteriorLight, interiorLight, ambientLight"
-  parameters-description="(string: 'inactive'&comma; 'active'&comma; 'active_with_full_beam') Front exterior light, (string: 'inactive'&comma; 'active') Rear exterior light, (string: 'inactive'&comma; 'active') Interior light, (string&comma; hex color: '#rrggbb') Ambient light"
+  parameters-name="frontExteriorLight, rearExteriorLight, ambientLight, fogLights, readingLamps, interiorLights"
+  parameters-description="(string: 'inactive|active|active_with_full_beam|dlr|automatic') Front exterior light, (string: 'inactive|active') Rear exterior light, (string) Ambient light, (Array) Fog lights [{ location: (string: 'front|rear')&comma; state: (string: 'inactive|active') }], (Array) Reading lamps [{ location: (string: 'front_left|front_right|rear_right|rear_left')&comma; state: (string: 'inactive|active') }], (Array) Interior lights [{ location: (string: 'front|rear')&comma; state: (string: 'inactive|active') }]"
 %}
 
 <h2 id="maintenance-command">MaintenanceCommand</h2>

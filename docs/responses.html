@@ -812,8 +812,8 @@ parameters-description="(object `{versionMajor: (number)&comma; versionMinor: (s
 
 {%
 include code-node-sdk-response.html
-parameters-name="gasFlap"
-parameters-description="(string 'open|closed') Gas flap status"
+parameters-name="gasFlapLock, gasFlapPosition"
+parameters-description="(string 'unlocked|locked') Gas flap lock, (string 'closed|opened|intermediate') Gas flap position"
 %}
 
 
@@ -821,7 +821,8 @@ parameters-description="(string 'open|closed') Gas flap status"
 <h4>Example</h4>
 {% capture code %}
 <FuelingResponse> {
- gasFlap: 'open'
+ gasFlapLock: 'unlocked',
+ gasFlapPosition: 'closed'
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -977,8 +978,8 @@ parameters-description="(number) Outside illuminance in lux&comma; formatted as 
 
 {%
 include code-node-sdk-response.html
-parameters-name="frontExteriorLight, rearExteriorLight, interiorLight, ambientLight, reverseLight, emergencyBrakeLight"
-parameters-description="(string) Front exterior light state, (string) Rear exterior light state, (string) Interior light state, (string) Ambient light color, (string) Reverse light state, (string) Emergency brake light state"
+parameters-name="frontExteriorLight, rearExteriorLight, ambientLight, reverseLight, emergencyBrakeLight, fogLights, readingLamps, interiorLights"
+parameters-description="(string 'inactive|active|active_with_full_beam|dlr|automatic') Front exterior light state, (string 'inactive|active') Rear exterior light state, (string) Ambient light color, (string 'inactive|active') Reverse light state, (string 'inactive|active') Emergency brake light state, (array) Fog lights ([{ location: (string 'front|rear')&comma; state: (string 'inactive|active') }]), (Array Reading lamps { location: (string 'front_left|front_right|rear_right|rear_left')&comma; state: (string 'inactive|active')}`), (array) Interior lights ([{ location: (string 'front|rear')&comma; state: (string 'inactive|active') }])"
 %}
 
 
@@ -988,10 +989,36 @@ parameters-description="(string) Front exterior light state, (string) Rear exter
 <LightsResponse> {
  frontExteriorLight: 'inactive',
  rearExteriorLight: 'inactive',
- interiorLight: 'inactive',
  ambientLight: '#254f4c',
  reverseLight: 'active',
- emergencyBrakeLight: 'active'
+ emergencyBrakeLight: 'active',
+ fogLights: [{
+   location: 'front'
+   state: 'active'
+ }, {
+   location: 'rear'
+   state: 'inactive'
+ }],
+ readingLamps: [{
+   location: 'front_left',
+   state: 'inactive'
+ }, {
+   location: 'front_right',
+   state: 'inactive'
+ }, {
+   location: 'rear_right',
+   state: 'inactive'
+ }, {
+   location: 'rear_left',
+   state: 'inactive'
+ }],
+ interiorLights: [{
+   location: 'front'
+   state: 'active'
+ }, {
+   location: 'rear'
+   state: 'inactive'
+ }]
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1502,8 +1529,8 @@ parameters-description="(object) Coordinates ({ latitude: (double)&comma; longit
 
 {%
 include code-node-sdk-response.html
-parameters-name="vin, powertrain, modelName, name, licensePlate, salesDesignation, modelYear, colorName, powerInKw, numberOfDoors, numberOfSeats, engineVolume, engineMaxTorque, gearbox, displayUnit, driverSeatLocation, equipments, states"
-parameters-description="(string) The unique Vehicle Identification Number, (string 'unknown|all_electric|combustion_engine|phev|hydrogen|hydrogen_hybrid') Powertrain, (string) Model name, (string) Car's name, (string) License plate, (string) Sales designation, (number) Model year, (string) Color name, (number) Power in kw, (number) Number of doors, (number) Number of seats, (number) The engine volume displacement in liters, (number) The maximum engine torque in Nm, (string 'manual|automatic|semi_automatic') Gearbox, (string 'km|miles') Display unit, (string 'left|right|center') Driver seat location, (array) List of equipments, (array '{capabilityIdentifier: (string)&comma; state: (object)}') Capability states"
+parameters-name="vin, powertrain, modelName, name, licensePlate, salesDesignation, modelYear, colorName, powerInKw, numberOfDoors, numberOfSeats, engineVolume, engineMaxTorque, gearbox, displayUnit, driverSeatLocation, equipments, brand, states"
+parameters-description="(string) The unique Vehicle Identification Number, (string 'unknown|all_electric|combustion_engine|phev|hydrogen|hydrogen_hybrid') Powertrain, (string) Model name, (string) Car's name, (string) License plate, (string) Sales designation, (number) Model year, (string) Color name, (number) Power in kw, (number) Number of doors, (number) Number of seats, (number) The engine volume displacement in liters, (number) The maximum engine torque in Nm, (string 'manual|automatic|semi_automatic') Gearbox, (string 'km|miles') Display unit, (string 'left|right|center') Driver seat location, (array) List of equipments, (string) Brand name, (array '{capabilityIdentifier: (string)&comma; state: (object)}') Capability states"
 %}
 
 
@@ -1528,6 +1555,7 @@ parameters-description="(string) The unique Vehicle Identification Number, (stri
  displayUnit: 'km',
  driverSeatLocation: 'left',
  equipments: ['side skirts', 'front apron', 'rear apron'],
+ brand: 'Mercedes',
  states: [
    {
      capabilityIdentifier: 'trunk',
