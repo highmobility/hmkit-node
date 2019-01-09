@@ -17,18 +17,24 @@ describe(`DoorLocksCommand`, () => {
         { doorLocation: 'front_right', lockState: expect.any(String) },
         { doorLocation: 'rear_right', lockState: expect.any(String) },
         { doorLocation: 'rear_left', lockState: expect.any(String) },
+        { doorLocation: 'hatch', lockState: expect.any(String) },
+        { doorLocation: 'all', lockState: expect.any(String) },
       ],
       locks: [
         { doorLocation: 'front_left', lockState: expect.any(String) },
         { doorLocation: 'front_right', lockState: expect.any(String) },
         { doorLocation: 'rear_right', lockState: expect.any(String) },
         { doorLocation: 'rear_left', lockState: expect.any(String) },
+        { doorLocation: 'hatch', lockState: expect.any(String) },
+        { doorLocation: 'all', lockState: expect.any(String) },
       ],
       positions: [
         { doorLocation: 'front_left', position: expect.any(String) },
         { doorLocation: 'front_right', position: expect.any(String) },
         { doorLocation: 'rear_right', position: expect.any(String) },
         { doorLocation: 'rear_left', position: expect.any(String) },
+        { doorLocation: 'hatch', position: expect.any(String) },
+        { doorLocation: 'all', position: expect.any(String) },
       ],
     });
   });
@@ -47,12 +53,16 @@ describe(`DoorLocksCommand`, () => {
           { doorLocation: 'front_right', lockState: 'unlocked' },
           { doorLocation: 'rear_right', lockState: 'unlocked' },
           { doorLocation: 'rear_left', lockState: 'unlocked' },
+          { doorLocation: 'hatch', lockState: 'unlocked' },
+          { doorLocation: 'all', lockState: 'unlocked' },
         ]),
         locks: expect.objectContaining([
           { doorLocation: 'front_left', lockState: 'unlocked' },
           { doorLocation: 'front_right', lockState: 'unlocked' },
           { doorLocation: 'rear_right', lockState: 'unlocked' },
           { doorLocation: 'rear_left', lockState: 'unlocked' },
+          { doorLocation: 'hatch', lockState: 'unlocked' },
+          { doorLocation: 'all', lockState: 'unlocked' },
         ]),
       })
     );
@@ -72,12 +82,16 @@ describe(`DoorLocksCommand`, () => {
           { doorLocation: 'front_right', lockState: 'locked' },
           { doorLocation: 'rear_right', lockState: 'locked' },
           { doorLocation: 'rear_left', lockState: 'locked' },
+          { doorLocation: 'hatch', lockState: 'locked' },
+          { doorLocation: 'all', lockState: 'locked' },
         ]),
         locks: expect.objectContaining([
           { doorLocation: 'front_left', lockState: 'locked' },
           { doorLocation: 'front_right', lockState: 'locked' },
           { doorLocation: 'rear_right', lockState: 'locked' },
           { doorLocation: 'rear_left', lockState: 'locked' },
+          { doorLocation: 'hatch', lockState: 'locked' },
+          { doorLocation: 'all', lockState: 'locked' },
         ]),
       })
     );

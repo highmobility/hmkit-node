@@ -1,5 +1,6 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
+import { validate, Joi } from '../validate';
 
 export default class FuelingCommand extends BaseCommand {
   /**
@@ -12,8 +13,8 @@ export default class FuelingCommand extends BaseCommand {
   /**
    * @function controlGasFlap
    *
-   * @property {string} lock (string: 'unlocked', 'locked) Lock or unlock gas flap
-   * @property {string} position (string: 'closed', 'opened', 'intermediate') Close or open gas flap
+   * @property {string} lock (string: 'unlocked|locked') Lock or unlock gas flap
+   * @property {string} position (string: 'closed|opened|intermediate') Close or open gas flap
    */
   static controlGasFlap(lock: string, position: string) {
     let lockBytes = [];
@@ -25,6 +26,15 @@ export default class FuelingCommand extends BaseCommand {
         locked: 0x01,
       };
 
+      validate([
+        {
+          value: lock,
+          name: 'Lock',
+          condition: Joi.string().required().valid(Object.keys(lockStates)),
+        },
+      ]);
+
+
       lockBytes = this.buildProperty(0x02, lockStates[lock]);
     }
 
@@ -34,6 +44,14 @@ export default class FuelingCommand extends BaseCommand {
         opened: 0x01,
         intermediate: 0x02,
       };
+
+      validate([
+        {
+          value: position,
+          name: 'Position',
+          condition: Joi.string().required().valid(Object.keys(positions)),
+        },
+      ]);
 
       positionBytes = this.buildProperty(0x03, positions[position]);
     }
