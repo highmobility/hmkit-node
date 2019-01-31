@@ -23,7 +23,7 @@ export default class VehicleLocationResponse extends PropertyResponse {
       altitude: 133.5
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -36,6 +36,6 @@ export default class VehicleLocationResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

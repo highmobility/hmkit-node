@@ -35,7 +35,7 @@ export default class UsageResponse extends PropertyResponse {
     }
    */
 
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -106,7 +106,7 @@ export default class UsageResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   activationPeriodDecoder(bytes: Array<Number>) {

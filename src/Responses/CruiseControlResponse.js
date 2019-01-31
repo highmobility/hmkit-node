@@ -21,7 +21,7 @@ export default class CruiseControlResponse extends PropertyResponse {
       accTargetSpeed: 0,
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -49,6 +49,6 @@ export default class CruiseControlResponse extends PropertyResponse {
       new Property(0x05, 'accTargetSpeed').setDecoder(bytesSum),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

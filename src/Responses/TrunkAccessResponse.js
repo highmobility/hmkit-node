@@ -15,7 +15,7 @@ export default class TrunkAccessResponse extends PropertyResponse {
       trunkPosition: 'closed',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -33,6 +33,6 @@ export default class TrunkAccessResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

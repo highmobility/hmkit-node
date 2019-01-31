@@ -45,7 +45,7 @@ export default class SeatsResponse extends PropertyResponse {
     }
 
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -91,7 +91,7 @@ export default class SeatsResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   personDetectedDecoder(data: Array<Number>) {

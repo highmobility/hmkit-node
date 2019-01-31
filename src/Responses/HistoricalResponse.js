@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-computed-key */
 import PropertyResponse from '../PropertyResponse';
+import Response from './Response';
 import CapabilityProperty from '../CapabilityProperty';
 import OptionalProperty from '../OptionalProperty';
 import CAPABILITY_IDENTIFIERS from '../CAPABILITY_IDENTIFIERS';
@@ -25,7 +26,7 @@ export default class HistoricalResponse extends PropertyResponse {
     }
    */
 
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -39,12 +40,22 @@ export default class HistoricalResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   getCapabilityStateDecoder(identifier) {
-    return bytes => ({
-      state: new Response([...identifier, ...bytes]).parse(),
-    });
+    return bytes => {
+      const response = new Response([...identifier, ...bytes], {
+        withUniversalProperties: true,
+      }).parse();
+
+      const date = response.date;
+      delete response.date;
+
+      return {
+        state: response,
+        date,
+      };
+    };
   }
 }

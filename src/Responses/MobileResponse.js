@@ -13,7 +13,7 @@ export default class MobileResponse extends PropertyResponse {
       connection: 'connected',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -25,6 +25,6 @@ export default class MobileResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

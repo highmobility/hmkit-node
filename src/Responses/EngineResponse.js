@@ -15,7 +15,7 @@ export default class EngineResponse extends PropertyResponse {
       accessoriesIgnition: 'powered_off'
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -33,6 +33,6 @@ export default class EngineResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

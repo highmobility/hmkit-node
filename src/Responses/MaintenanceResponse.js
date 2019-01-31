@@ -43,7 +43,7 @@ export default class MaintenanceResponse extends PropertyResponse {
       brakeFluidChangeDate: 2018-10-22T12:10:33.000Z
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -72,7 +72,7 @@ export default class MaintenanceResponse extends PropertyResponse {
       new Property(0x0c, 'brakeFluidChangeDate').setDecoder(dateDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   conditionBasedServicesDecoder(bytes: Array<Number>) {

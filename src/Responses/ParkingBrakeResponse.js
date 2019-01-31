@@ -13,13 +13,13 @@ export default class ParkingBrakeResponse extends PropertyResponse {
       parkingBrake: 'inactive',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
       new Property(0x01, 'parkingBrake').setDecoder(activeInactiveDecoder()),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

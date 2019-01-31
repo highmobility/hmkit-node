@@ -13,7 +13,7 @@ export default class ValetModeResponse extends PropertyResponse {
       valetMode: 'deactivated',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -25,6 +25,6 @@ export default class ValetModeResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

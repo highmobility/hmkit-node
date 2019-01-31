@@ -53,7 +53,7 @@ export default class TachographResponse extends PropertyResponse {
       vehicleSpeed: 0,
     }
   */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -103,7 +103,7 @@ export default class TachographResponse extends PropertyResponse {
       new Property(0x07, 'vehicleSpeed').setDecoder(bytesSum),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   driverWorkingStateDecoder(data: Array<Number>) {

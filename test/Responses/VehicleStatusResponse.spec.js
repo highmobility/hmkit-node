@@ -12,195 +12,544 @@ describe(`VehicleStatusResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(VehicleStatusResponse);
     expect(response.parse()).toEqual({
-      "vin": "1HMDB4B30H54E6961", "powertrain": "unknown",
-      "modelName": "Mission E", "name": "Mikk AA8", "licensePlate": "asd12354",
-      "modelYear": 2018,
-      "colorName": "Black", "powerInKw": 600, "numberOfDoors": 4, "numberOfSeats": 5, "engineVolume": 100, "engineMaxTorque": 5000, "gearbox": "automatic",
-      "displayUnit": "km", "driverSeatLocation": "left", "equipments": ["side skirts", "front apron", "rear apron"], "brand": "Mercedes", "states": [
+      vin: '1HMDB4B30H54E6961',
+      powertrain: 'unknown',
+      modelName: 'Mission E',
+      name: 'Mikk AA8',
+      licensePlate: 'asd12354',
+      modelYear: 2018,
+      colorName: 'Black',
+      powerInKw: 600,
+      numberOfDoors: 4,
+      numberOfSeats: 5,
+      engineVolume: 100,
+      engineMaxTorque: 5000,
+      gearbox: 'automatic',
+      displayUnit: 'km',
+      driverSeatLocation: 'left',
+      equipments: ['side skirts', 'front apron', 'rear apron'],
+      brand: 'Mercedes',
+      states: [
         {
-          "capabilityIdentifier": "door_locks", "state": {
-            "insideLocks": [{ "doorLocation": "front_left", "lockState": "locked" },
-            { "doorLocation": "front_right", "lockState": "locked" }, { "doorLocation": "rear_right", "lockState": "locked" },
-            { "doorLocation": "rear_left", "lockState": "locked" }], "locks": [{ "doorLocation": "front_left", "lockState": "locked" },
-            { "doorLocation": "front_right", "lockState": "locked" }, { "doorLocation": "rear_right", "lockState": "locked" },
-            { "doorLocation": "rear_left", "lockState": "locked" }], "positions": [{ "doorLocation": "front_left", "position": "closed" },
-            { "doorLocation": "front_right", "position": "closed" }, { "doorLocation": "rear_right", "position": "closed" },
-            { "doorLocation": "rear_left", "position": "closed" }]
-          }
-        }, { "capabilityIdentifier": "trunk", "state": { "trunkLock": "unlocked", "trunkPosition": "closed" } },
-        {
-          "capabilityIdentifier": "charging", "state": {
-            "estimatedRange": 30, "batteryLevel": 0.8, "batteryCurrentAC": -0.6,
-            "batteryCurrentDC": -0.6, "chargerVoltageAC": 0, "chargerVoltageDC": 0, "chargeLimit": 0.5, "timeToCompleteCharge": 0,
-            "chargingRateKW": 0, "chargePortState": "closed", "chargeMode": "timer_based", "maxChargingCurrent": 25, "plugType": "type_2",
-            "chargingWindowChosen": "not_chosen", "departureTimes": [{ "activeState": "inactive", "hour": 11, "minute": 33 }], "reductionTimes": [
-              { "startStop": "start", "hour": 11, "minute": 33 }], "batteryTemperature": 38.4, "timers": [{
-                "timerType": "preferred_start_time",
-                "time": new Date("2018-02-11T12:13:00.000Z")
-              }, { "timerType": "preferred_end_time", "time": new Date("2018-02-11T12:14:00.000Z") },
-              { "timerType": "departure_time", "time": new Date("2018-02-11T12:15:00.000Z") }], "pluggedIn": "disconnected", "activeState": "not_charging"
-          }
-        }, {
-          "capabilityIdentifier": "climate", "state": {
-            "insideTemperature": 23, "outsideTemperature": 18, "driverTemperatureSetting": 22,
-            "passengerTemperatureSetting": 23, "hvacState": "inactive", "defoggingState": "inactive", "defrostingState": "inactive",
-            "ionisingState": "inactive", "defrostingTemperature": 23, "hvacWeekdayStartingTimes": [{ "weekday": "tuesday", "hour": 8, "minute": 30 },
-            { "weekday": "sunday", "hour": 8, "minute": 45 }], "rearTemperatureSetting": 24
-          }
-        }, { "capabilityIdentifier": "rooftop_control", "state": { "dimming": 22, "position": 33, "convertibleRoof": "closed_secured", "sunroofTilt": "tilted", "sunroofState": "open" } },
-        { "capabilityIdentifier": "honk_horn_flash_lights", "state": { "flashers": "inactive" } }, { "capabilityIdentifier": "valet_mode", "state": { "valetMode": "deactivated" } },
-        { "capabilityIdentifier": "vehicle_location", "state": { "coordinates": { "latitude": 52.516506, "longitude": 13.381815 }, "heading": 52.520008, "altitude": 133.5 } },
-        { "capabilityIdentifier": "navi_destination", "state": { "coordinates": { "latitude": 52.52, "longitude": 13.42 }, "destinationName": "Narnia" } }, {
-          "capabilityIdentifier": "diagnostics", "state":
-            {
-              "mileage": 3000, "engineOilTemperature": 18, "speed": 0, "engineRPM": 0, "fuelLevel": 0.8, "estimatedRange": 200, "washerFluidLevel": "low",
-              "batteryVoltage": 12, "adblueLevel": 0, "distanceSinceReset": 0, "distanceSinceStart": 0, "fuelVolume": 0, "antiLockBraking": "inactive",
-              "engineCoolantTemperature": 23, "engineTotalOperatingHours": 24, "engineTotalFuelConsumption": 600, "brakeFluidLevel": "low", "engineTorque": 0.2, "engineLoad": 0.1, "wheelBasedSpeed": 0, "batteryLevel": 0.8, "checkControlMessages": [{ "id": 10, "remainingMinutes": 0, "text": "", "status": "" }
-              ], "tirePressures": [{ "location": "front_left", "pressure": 2.3 },
+          capabilityIdentifier: 'charging',
+          state: {
+            estimatedRange: 30,
+            batteryLevel: 0.8,
+            batteryCurrentAC: -0.6,
+            batteryCurrentDC: -0.6,
+            chargerVoltageAC: 0,
+            chargerVoltageDC: 0,
+            chargeLimit: 0.5,
+            timeToCompleteCharge: 0,
+            chargingRateKW: 0,
+            chargePortState: 'closed',
+            chargeMode: 'timer_based',
+            maxChargingCurrent: 25,
+            plugType: 'type_2',
+            chargingWindowChosen: 'not_chosen',
+            departureTimes: [{ activeState: 'inactive', hour: 11, minute: 33 }],
+            reductionTimes: [{ startStop: 'start', hour: 11, minute: 33 }],
+            batteryTemperature: 38.4,
+            timers: [
               {
-                "location": "front_right", "pressure": 2.3
+                timerType: 'preferred_start_time',
+                time: new Date('2018-02-11T12:13:00.000Z'),
               },
-              { "location": "rear_right", "pressure": 2.3 },
-              { "location": "rear_left", "pressure": 2.3 }
-              ], "tireTemperatures": [{ "location": "front_left", "temperature": 40 },
-              { "location": "front_right", "temperature": 40 },
-              { "location": "rear_right", "temperature": 40 }, {
-                "location": "rear_left", "temperature": 40
-              }], "wheelRpms": [{ "location": "front_left", "rpm": 0 }, {
-                "location": "front_right", "rpm": 0
-              }, {
-                "location": "rear_right", "rpm": 0
-              },
-              { "location": "rear_left", "rpm": 0 }
-              ], "troubleCodes": [
-                { "occurences": 0, "id": "", "ecuId": "", "status": "" }
-              ], "mileageMeters": 3000
-            }
-        }, {
-          "capabilityIdentifier": "maintenance", "state": {
-            "daysToNextService": 400, "kilometersToNextService": 30000, "cbsReportsCount": 0,
-            "monthsToExhaustInspection": 0, "teleserviceAvailability": "pending",
-            "serviceDistanceThreshold": 0, "serviceTimeThreshold": 0, "automaticTeleserviceCallDate": new Date("2018-10-22T12:10:33.000Z"),
-            "teleserviceBatteryCallDate": new Date("2018-10-22T12:10:33.000Z"),
-            "nextInspectionDate": new Date("2018-10-22T12:10:33.000Z"),
-            "conditionBasedServices": [
               {
-                "year": 2018, "month": 8,
-                "cbsIdentifier": 123,
-                "dueStatus": "ok",
-                "cbsText": "",
-                "description": ""
-              }
-            ], "brakeFluidChangeDate": new Date("2018-10-22T12:10:33.000Z")
-          }
-        }, {
-          "capabilityIdentifier": "engine",
-          "state": {
-            "ignition": "engine_on",
-            "accessoriesIgnition": "powered_off"
-          }
-        }, {
-          "capabilityIdentifier": "lights",
-          "state": {
-            "frontExteriorLight": "automatic", "rearExteriorLight": "active", "ambientLight": "#ff0000", "reverseLight": "inactive", "emergencyBrakeLight": "inactive",
-            "fogLights": [{ "location": "front", "state": "active" }, { "location": "rear", "state": "active" }], "readingLamps": [{ "location": "front_left", "state": "active" },
-            { "location": "front_right", "state": "active" }, { "location": "rear_right", "state": "active" }, { "location": "rear_left", "state": "active" }], "interiorLights": [
-              { "location": "front", "state": "active" }, { "location": "rear", "state": "active" }]
-          }
-        }, { "capabilityIdentifier": "fueling", "state": { "gasFlapLock": "unlocked", "gasFlapPosition": "intermediate" } }, {
-          "capabilityIdentifier": "windscreen", "state": {
-            "wipers": "active",
-            "wipersIntensity": "level_3", "windscreenDamage": "damage_smaller_than_1_inch", "windscreenZoneMatrix": { "rows": 3, "columns": 2 }, "windscreenDamageZone": {
-              "rows": 2,
-              "columns": 3
-            }, "windscreenNeedsReplacement": "replacement_needed", "windscreenDamageConfidence": 0, "windscreenDamageDetectionTime": new Date("2000-01-01T00:00:00.000Z")
-          }
-        }, {
-          "capabilityIdentifier": "windows", "state": {
-            "windowsOpenPercentages": [{ "windowLocation": "front_left", "openPercentage": 0 }, { "windowLocation": "front_right", "openPercentage": 0 }, {
-              "windowLocation": "rear_right",
-              "openPercentage": 0
-            }, { "windowLocation": "rear_left", "openPercentage": 0 }, { "windowLocation": "hatch", "openPercentage": 0 }], "windowsPositions": [
-              { "windowLocation": "front_left", "windowPosition": "closed" },
-              { "windowLocation": "front_right", "windowPosition": "closed" }, { "windowLocation": "rear_right", "windowPosition": "closed" }, {
-                "windowLocation": "rear_left",
-                "windowPosition": "closed"
-              }, { "windowLocation": "hatch", "windowPosition": "closed" }]
-          }
-        }, {
-          "capabilityIdentifier": "theft_alarm", "state": { "theftAlarm": "triggered" }
-        }, {
-          "capabilityIdentifier": "parking_ticket", "state": {
-            "parkingTicketState": "started", "operatorName": "Berlin Parking", "operatorTicketID": "6489423333asd", "ticketStartTime": new Date("2018-02-14T18:30:01.000Z"),
-            "ticketEndTime": new Date("2018-02-17T12:05:02.000Z")
-          }
-        }, { "capabilityIdentifier": "vehicle_time", "state": { "vehicleTime": new Date("2018-12-28T09:33:06.000Z") } }, {
-          "capabilityIdentifier": "offroad", "state": { "routeIncline": 0, "wheelSuspension": 0 }
-        }, {
-          "capabilityIdentifier":
-            "chassis_settings", "state": {
-              "drivingMode": "sport", "sportChrono": "inactive", "currentSpringRates": [
-                { "axle": "front_axle", "springRate": -26 }, { "axle": "rear_axle", "springRate": 27 }], "maximumSpringRates": [
-                  { "axle": "front_axle", "springRate": 37 }, { "axle": "rear_axle", "springRate": 37 }], "minimumSpringRates": [
-                    { "axle": "front_axle", "springRate": 17 }, { "axle": "rear_axle", "springRate": 17 }], "currentChassisPosition": -29, "maximumChassisPosition": 55, "minimumChassisPosition": -28
-            }
-        }, { "capabilityIdentifier": "light_conditions", "state": { "outsideLight": 10000, "insideLight": 1000 } },
-        { "capabilityIdentifier": "weather_conditions", "state": { "rainIntensity": 0 } }, {
-          "capabilityIdentifier": "seats",
-          "state": {
-            "personsDetected": [{ "seatPosition": "front_left", "personDetected": "not_detected" },
-            { "seatPosition": "front_right", "personDetected": "not_detected" }, { "seatPosition": "rear_right", "personDetected": "not_detected" },
-            { "seatPosition": "rear_left", "personDetected": "not_detected" }, { "seatPosition": "rear_center", "personDetected": "not_detected" }],
-            "seatbeltsFastened": [{ "seatPosition": "front_left", "seatbeltFastened": "not_fastened" }, { "seatPosition": "front_right", "seatbeltFastened": "not_fastened" },
-            { "seatPosition": "rear_right", "seatbeltFastened": "not_fastened" }, { "seatPosition": "rear_left", "seatbeltFastened": "not_fastened" },
-            { "seatPosition": "rear_center", "seatbeltFastened": "not_fastened" }]
-          }
-        }, {
-          "capabilityIdentifier": "race", "state": {
-            "accelerations": [{ "type": "longitudinal_acceleration", "gForce": 0 },
-            { "type": "lateral_acceleration", "gForce": 0 }, { "type": "front_lateral_acceleration", "gForce": 0 }, { "type": "rear_lateral_acceleration", "gForce": 0 }],
-            "understeering": 0, "oversteering": 0, "gasPedalPosition": 0, "steeringAngle": 0, "brakePressure": 0, "yawRate": 0, "rearSuspensionSteering": 0,
-            "electronicStabilityProgram": "inactive", "brakeTorqueVectorings": [{ "axle": "front_axle", "vectoring": "inactive" },
-            { "axle": "rear_axle", "vectoring": "inactive" }], "gearMode": "manual", "selectedGear": 0, "brakePedalPosition": 0,
-            "brakePedalSwitch": "inactive", "clutchPedalSwitch": "inactive", "acceleratorPedalIdleSwitch": "inactive",
-            "acceleratorPedalKickdownSwitch": "inactive", "vehicleMoving": "not_moving"
-          }
-        }, {
-          "capabilityIdentifier": "parking_brake", "state": { "parkingBrake": "inactive" }
+                timerType: 'preferred_end_time',
+                time: new Date('2018-02-11T12:14:00.000Z'),
+              },
+              {
+                timerType: 'departure_time',
+                time: new Date('2018-02-11T12:15:00.000Z'),
+              },
+            ],
+            pluggedIn: 'disconnected',
+            activeState: 'not_charging',
+          },
         },
         {
-          "capabilityIdentifier": "wi_fi", "state": {
-            "wifiEnabled": "disabled", "networkConnected": "disconnected",
-            "networkSSID": "", "networkSecurity": "wpa"
-          }
-        }, {
-          "capabilityIdentifier": "home_charger", "state":
-            {
-              "charging": "disconnected", "authenticationMechanism": "pin", "plugType": "type_1", "chargingPower": 0,
-              "solarCharging": "deactivated", "hotspotEnabled": "disabled", "hotspotSSID": "", "wiFiHotspotSecurity":
-                "none", "wiFiHotspotPassword": "", "authentication": "unauthenticated", "chargeCurrentDC": 0.6,
-              "maximumChargeCurrent": 50, "minimumChargeCurrent": 0,
-              "coordinates": { "latitude": 52.516506, "longitude": 13.381815 }, "priceTariffs": [{ "pricingType": "starting_fee", "price": 2.5, "currency": "EUR" }, { "pricingType": "per_minute", "price": 0, "currency": "" }, { "pricingType": "per_kwh", "price": 1.3, "currency": "USD" }]
-            }
-        }, { "capabilityIdentifier": "dashboard_lights", "state": { "dashboardLights": [{ "lightName": "high_beam", "state": "inactive" }, { "lightName": "low_beam", "state": "inactive" }, { "lightName": "hazard_warning", "state": "inactive" }, { "lightName": "brake_failure", "state": "inactive" }, { "lightName": "hatch_open", "state": "inactive" }, { "lightName": "fuel_level", "state": "inactive" }, { "lightName": "engine_coolant_temperature", "state": "inactive" }, { "lightName": "battery_charging_condition", "state": "inactive" }, { "lightName": "engine_oil", "state": "inactive" }, { "lightName": "position_lights", "state": "inactive" }, { "lightName": "front_fog_light", "state": "inactive" }, { "lightName": "rear_fog_light", "state": "inactive" }, { "lightName": "park_heating", "state": "inactive" }, { "lightName": "engine_indicator", "state": "inactive" }, { "lightName": "service_call", "state": "inactive" }, { "lightName": "transmission_fluid_temperature", "state": "inactive" }, { "lightName": "transmission_failure", "state": "inactive" }, { "lightName": "anti_lock_brake_failure", "state": "inactive" }, { "lightName": "worn_brake_linings", "state": "inactive" }, { "lightName": "windscreen_washer_fluid", "state": "inactive" }, { "lightName": "tire_failure", "state": "inactive" }, { "lightName": "engine_oil_level", "state": "inactive" }, { "lightName": "engine_coolant_level", "state": "inactive" }, { "lightName": "steering_failure", "state": "inactive" }, { "lightName": "esc_indication", "state": "inactive" }, { "lightName": "brake_lights", "state": "inactive" }, { "lightName": "adblue_level", "state": "inactive" }, { "lightName": "fuel_filter_diff_pressure", "state": "inactive" }, { "lightName": "seat_belt", "state": "inactive" }, { "lightName": "advanced_braking", "state": "inactive" }, { "lightName": "acc", "state": "inactive" }, { "lightName": "trailer_connected", "state": "inactive" }, { "lightName": "airbag", "state": "inactive" }, { "lightName": "esc_switched_off", "state": "inactive" }, { "lightName": "lane_departure_warning_off", "state": "inactive" }] } }, { "capabilityIdentifier": "cruise_control", "state": { "cruiseControl": "active", "limiter": "not_set", "targetSpeed": 88, "acc": "inactive", "accTargetSpeed": 0 } }, { "capabilityIdentifier": "start_stop", "state": { "startStop": "inactive" } }, { "capabilityIdentifier": "tachograph", "state": { "driverWorkingStates": [{ "driverNumber": 1, "workingState": "resting" }, { "driverNumber": 2, "workingState": "resting" }], "driverTimeStates": [{ "driverNumber": 1, "timeState": "normal" }, { "driverNumber": 2, "timeState": "normal" }], "driverCards": [{ "driverNumber": 1, "card": "not_present" }, { "driverNumber": 2, "card": "not_present" }], "vehicleMotion": "not_detected", "vehicleOverspeed": "no_overspeed", "vehicleDirection": "forward", "vehicleSpeed": 0 } }, { "capabilityIdentifier": "power_takeoff", "state": { "powerTakeoff": "inactive", "powerTakeoffEngaged": "not_engaged" } }, { "capabilityIdentifier": "mobile", "state": { "connection": "disconnected" } }, { "capabilityIdentifier": "hood", "state": { "position": "closed" } }, {
-          "capabilityIdentifier": "usage", "state": {
-            "averageWeeklyDistance": 300, "averageWeeklyDistanceLongRun": 300, "accelerationEvaluation": 0.5, "drivingStyleEvaluation": 0.5,
-            "drivingModesActivationPeriods": [{ "drivingMode": "regular", "period": 0.4 }, { "drivingMode": "eco", "period": 0.4 }, { "drivingMode": "sport", "period": 0.4 },
-            { "drivingMode": "sport_plus", "period": 0.4 }, { "drivingMode": "eco_plus", "period": 0.4 }], "drivingModesEnergyConsumptions": [
-              { "drivingMode": "regular", "consumption": 33.2 },
-              { "drivingMode": "eco", "consumption": 33.2 },
-              { "drivingMode": "sport", "consumption": 33.2 },
-              { "drivingMode": "sport_plus", "consumption": 33.2 },
-              { "drivingMode": "eco_plus", "consumption": 33.2 }],
-            "lastTripEnergyConsumption": 101.3,
-            "lastTripFuelConsumption": 22.5, "mileageAfterLastTrip": 95632,
-            "lastTripElectricPortion": 20, "lastTripAverageEnergyRecuperation": 5.68,
-            "lastTripBatteryRemaining": 0.5,
-            "lastTripDate": new Date("2018-10-22T12:10:33.000Z"),
-            "averageFuelConsumption": 6.2, "currentFuelConsumption": 8.7
-          }
-        }]
-    }
-    );
+          capabilityIdentifier: 'chassis_settings',
+          state: {
+            drivingMode: 'sport',
+            sportChrono: 'inactive',
+            currentSpringRates: [
+              { axle: 'front_axle', springRate: -26 },
+              { axle: 'rear_axle', springRate: 27 },
+            ],
+            maximumSpringRates: [
+              { axle: 'front_axle', springRate: 37 },
+              { axle: 'rear_axle', springRate: 37 },
+            ],
+            minimumSpringRates: [
+              { axle: 'front_axle', springRate: 17 },
+              { axle: 'rear_axle', springRate: 17 },
+            ],
+            currentChassisPosition: -29,
+            maximumChassisPosition: 55,
+            minimumChassisPosition: -28,
+          },
+        },
+        {
+          capabilityIdentifier: 'climate',
+          state: {
+            insideTemperature: 23,
+            outsideTemperature: 18,
+            driverTemperatureSetting: 22,
+            passengerTemperatureSetting: 23,
+            hvacState: 'inactive',
+            defoggingState: 'inactive',
+            defrostingState: 'inactive',
+            ionisingState: 'inactive',
+            defrostingTemperature: 23,
+            hvacWeekdayStartingTimes: [
+              { weekday: 'tuesday', hour: 8, minute: 30 },
+              { weekday: 'sunday', hour: 8, minute: 45 },
+            ],
+            rearTemperatureSetting: 24,
+          },
+        },
+        {
+          capabilityIdentifier: 'cruise_control',
+          state: {
+            cruiseControl: 'active',
+            limiter: 'not_set',
+            targetSpeed: 88,
+            acc: 'inactive',
+            accTargetSpeed: 0,
+          },
+        },
+        {
+          capabilityIdentifier: 'dashboard_lights',
+          state: {
+            dashboardLights: [
+              { lightName: 'high_beam', state: 'inactive' },
+              { lightName: 'low_beam', state: 'inactive' },
+              { lightName: 'hazard_warning', state: 'inactive' },
+              { lightName: 'brake_failure', state: 'inactive' },
+              { lightName: 'hatch_open', state: 'inactive' },
+              { lightName: 'fuel_level', state: 'inactive' },
+              { lightName: 'engine_coolant_temperature', state: 'inactive' },
+              { lightName: 'battery_charging_condition', state: 'inactive' },
+              { lightName: 'engine_oil', state: 'inactive' },
+              { lightName: 'position_lights', state: 'inactive' },
+              { lightName: 'front_fog_light', state: 'inactive' },
+              { lightName: 'rear_fog_light', state: 'inactive' },
+              { lightName: 'park_heating', state: 'inactive' },
+              { lightName: 'engine_indicator', state: 'inactive' },
+              { lightName: 'service_call', state: 'inactive' },
+              {
+                lightName: 'transmission_fluid_temperature',
+                state: 'inactive',
+              },
+              { lightName: 'transmission_failure', state: 'inactive' },
+              { lightName: 'anti_lock_brake_failure', state: 'inactive' },
+              { lightName: 'worn_brake_linings', state: 'inactive' },
+              { lightName: 'windscreen_washer_fluid', state: 'inactive' },
+              { lightName: 'tire_failure', state: 'inactive' },
+              { lightName: 'engine_oil_level', state: 'inactive' },
+              { lightName: 'engine_coolant_level', state: 'inactive' },
+              { lightName: 'steering_failure', state: 'inactive' },
+              { lightName: 'esc_indication', state: 'inactive' },
+              { lightName: 'brake_lights', state: 'inactive' },
+              { lightName: 'adblue_level', state: 'inactive' },
+              { lightName: 'fuel_filter_diff_pressure', state: 'inactive' },
+              { lightName: 'seat_belt', state: 'inactive' },
+              { lightName: 'advanced_braking', state: 'inactive' },
+              { lightName: 'acc', state: 'inactive' },
+              { lightName: 'trailer_connected', state: 'inactive' },
+              { lightName: 'airbag', state: 'inactive' },
+              { lightName: 'esc_switched_off', state: 'inactive' },
+              { lightName: 'lane_departure_warning_off', state: 'inactive' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'diagnostics',
+          state: {
+            mileage: 3000,
+            engineOilTemperature: 18,
+            speed: 0,
+            engineRPM: 0,
+            fuelLevel: 0.8,
+            estimatedRange: 200,
+            washerFluidLevel: 'low',
+            batteryVoltage: 12,
+            adblueLevel: 0,
+            distanceSinceReset: 0,
+            distanceSinceStart: 0,
+            fuelVolume: 0,
+            antiLockBraking: 'inactive',
+            engineCoolantTemperature: 23,
+            engineTotalOperatingHours: 24,
+            engineTotalFuelConsumption: 600,
+            brakeFluidLevel: 'low',
+            engineTorque: 0.2,
+            engineLoad: 0.1,
+            wheelBasedSpeed: 0,
+            batteryLevel: 0.8,
+            checkControlMessages: [
+              { id: 10, remainingMinutes: 0, text: '', status: '' },
+            ],
+            tirePressures: [
+              { location: 'front_left', pressure: 2.3 },
+              { location: 'front_right', pressure: 2.3 },
+              { location: 'rear_right', pressure: 2.3 },
+              { location: 'rear_left', pressure: 2.3 },
+            ],
+            tireTemperatures: [
+              { location: 'front_left', temperature: 40 },
+              { location: 'front_right', temperature: 40 },
+              { location: 'rear_right', temperature: 40 },
+              { location: 'rear_left', temperature: 40 },
+            ],
+            wheelRpms: [
+              { location: 'front_left', rpm: 0 },
+              { location: 'front_right', rpm: 0 },
+              { location: 'rear_right', rpm: 0 },
+              { location: 'rear_left', rpm: 0 },
+            ],
+            troubleCodes: [{ occurences: 0, id: '', ecuId: '', status: '' }],
+            mileageMeters: 3000,
+          },
+        },
+        {
+          capabilityIdentifier: 'door_locks',
+          state: {
+            insideLocks: [
+              { doorLocation: 'front_left', lockState: 'locked' },
+              { doorLocation: 'front_right', lockState: 'locked' },
+              { doorLocation: 'rear_right', lockState: 'locked' },
+              { doorLocation: 'rear_left', lockState: 'locked' },
+            ],
+            locks: [
+              { doorLocation: 'front_left', lockState: 'locked' },
+              { doorLocation: 'front_right', lockState: 'locked' },
+              { doorLocation: 'rear_right', lockState: 'locked' },
+              { doorLocation: 'rear_left', lockState: 'locked' },
+            ],
+            positions: [
+              { doorLocation: 'front_left', position: 'closed' },
+              { doorLocation: 'front_right', position: 'closed' },
+              { doorLocation: 'rear_right', position: 'closed' },
+              { doorLocation: 'rear_left', position: 'closed' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'engine',
+          state: { ignition: 'engine_on', accessoriesIgnition: 'powered_off' },
+        },
+        {
+          capabilityIdentifier: 'fueling',
+          state: { gasFlapLock: 'unlocked', gasFlapPosition: 'intermediate' },
+        },
+        {
+          capabilityIdentifier: 'home_charger',
+          state: {
+            charging: 'disconnected',
+            authenticationMechanism: 'pin',
+            plugType: 'type_1',
+            chargingPower: 0,
+            solarCharging: 'deactivated',
+            hotspotEnabled: 'disabled',
+            hotspotSSID: '',
+            wiFiHotspotSecurity: 'none',
+            wiFiHotspotPassword: '',
+            authentication: 'unauthenticated',
+            chargeCurrentDC: 0.6,
+            maximumChargeCurrent: 50,
+            minimumChargeCurrent: 0,
+            coordinates: { latitude: 52.516506, longitude: 13.381815 },
+            priceTariffs: [
+              { pricingType: 'starting_fee', price: 2.5, currency: 'EUR' },
+              { pricingType: 'per_minute', price: 0, currency: '' },
+              { pricingType: 'per_kwh', price: 1.3, currency: 'USD' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'honk_horn_flash_lights',
+          state: { flashers: 'inactive' },
+        },
+        { capabilityIdentifier: 'hood', state: { position: 'closed' } },
+        {
+          capabilityIdentifier: 'light_conditions',
+          state: { outsideLight: 10000, insideLight: 1000 },
+        },
+        {
+          capabilityIdentifier: 'lights',
+          state: {
+            frontExteriorLight: 'automatic',
+            rearExteriorLight: 'active',
+            ambientLight: '#ff0000',
+            reverseLight: 'inactive',
+            emergencyBrakeLight: 'inactive',
+            fogLights: [
+              { location: 'front', state: 'active' },
+              { location: 'rear', state: 'active' },
+            ],
+            readingLamps: [
+              { location: 'front_left', state: 'active' },
+              { location: 'front_right', state: 'active' },
+              { location: 'rear_right', state: 'active' },
+              { location: 'rear_left', state: 'active' },
+            ],
+            interiorLights: [
+              { location: 'front', state: 'active' },
+              { location: 'rear', state: 'active' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'maintenance',
+          state: {
+            daysToNextService: 400,
+            kilometersToNextService: 30000,
+            cbsReportsCount: 0,
+            monthsToExhaustInspection: 0,
+            teleserviceAvailability: 'pending',
+            serviceDistanceThreshold: 0,
+            serviceTimeThreshold: 0,
+            automaticTeleserviceCallDate: new Date('2018-10-22T12:10:33.000Z'),
+            teleserviceBatteryCallDate: new Date('2018-10-22T12:10:33.000Z'),
+            nextInspectionDate: new Date('2018-10-22T12:10:33.000Z'),
+            conditionBasedServices: [
+              {
+                year: 2018,
+                month: 8,
+                cbsIdentifier: 123,
+                dueStatus: 'ok',
+                cbsText: '',
+                description: '',
+              },
+            ],
+            brakeFluidChangeDate: new Date('2018-10-22T12:10:33.000Z'),
+          },
+        },
+        {
+          capabilityIdentifier: 'mobile',
+          state: { connection: 'disconnected' },
+        },
+        {
+          capabilityIdentifier: 'navi_destination',
+          state: {
+            coordinates: { latitude: 52.52, longitude: 13.42 },
+            destinationName: 'Narnia',
+          },
+        },
+        {
+          capabilityIdentifier: 'offroad',
+          state: { routeIncline: 0, wheelSuspension: 0 },
+        },
+        {
+          capabilityIdentifier: 'parking_brake',
+          state: { parkingBrake: 'inactive' },
+        },
+        {
+          capabilityIdentifier: 'parking_ticket',
+          state: {
+            parkingTicketState: 'started',
+            operatorName: 'Berlin Parking',
+            operatorTicketID: '6489423333asd',
+            ticketStartTime: new Date('2018-02-14T18:30:01.000Z'),
+            ticketEndTime: new Date('2018-02-17T12:05:02.000Z'),
+          },
+        },
+        {
+          capabilityIdentifier: 'power_takeoff',
+          state: {
+            powerTakeoff: 'inactive',
+            powerTakeoffEngaged: 'not_engaged',
+          },
+        },
+        {
+          capabilityIdentifier: 'race',
+          state: {
+            accelerations: [
+              { type: 'longitudinal_acceleration', gForce: 0 },
+              { type: 'lateral_acceleration', gForce: 0 },
+              { type: 'front_lateral_acceleration', gForce: 0 },
+              { type: 'rear_lateral_acceleration', gForce: 0 },
+            ],
+            understeering: 0,
+            oversteering: 0,
+            gasPedalPosition: 0,
+            steeringAngle: 0,
+            brakePressure: 0,
+            yawRate: 0,
+            rearSuspensionSteering: 0,
+            electronicStabilityProgram: 'inactive',
+            brakeTorqueVectorings: [
+              { axle: 'front_axle', vectoring: 'inactive' },
+              { axle: 'rear_axle', vectoring: 'inactive' },
+            ],
+            gearMode: 'manual',
+            selectedGear: 0,
+            brakePedalPosition: 0,
+            brakePedalSwitch: 'inactive',
+            clutchPedalSwitch: 'inactive',
+            acceleratorPedalIdleSwitch: 'inactive',
+            acceleratorPedalKickdownSwitch: 'inactive',
+            vehicleMoving: 'not_moving',
+          },
+        },
+        {
+          capabilityIdentifier: 'rooftop_control',
+          state: {
+            dimming: 22,
+            position: 33,
+            convertibleRoof: 'closed_secured',
+            sunroofTilt: 'tilted',
+            sunroofState: 'open',
+          },
+        },
+        {
+          capabilityIdentifier: 'seats',
+          state: {
+            personsDetected: [
+              { seatPosition: 'front_left', personDetected: 'not_detected' },
+              { seatPosition: 'front_right', personDetected: 'not_detected' },
+              { seatPosition: 'rear_right', personDetected: 'not_detected' },
+              { seatPosition: 'rear_left', personDetected: 'not_detected' },
+              { seatPosition: 'rear_center', personDetected: 'not_detected' },
+            ],
+            seatbeltsFastened: [
+              { seatPosition: 'front_left', seatbeltFastened: 'not_fastened' },
+              { seatPosition: 'front_right', seatbeltFastened: 'not_fastened' },
+              { seatPosition: 'rear_right', seatbeltFastened: 'not_fastened' },
+              { seatPosition: 'rear_left', seatbeltFastened: 'not_fastened' },
+              { seatPosition: 'rear_center', seatbeltFastened: 'not_fastened' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'start_stop',
+          state: { startStop: 'inactive' },
+        },
+        {
+          capabilityIdentifier: 'tachograph',
+          state: {
+            driverWorkingStates: [
+              { driverNumber: 1, workingState: 'resting' },
+              { driverNumber: 2, workingState: 'resting' },
+            ],
+            driverTimeStates: [
+              { driverNumber: 1, timeState: 'normal' },
+              { driverNumber: 2, timeState: 'normal' },
+            ],
+            driverCards: [
+              { driverNumber: 1, card: 'not_present' },
+              { driverNumber: 2, card: 'not_present' },
+            ],
+            vehicleMotion: 'not_detected',
+            vehicleOverspeed: 'no_overspeed',
+            vehicleDirection: 'forward',
+            vehicleSpeed: 0,
+          },
+        },
+        {
+          capabilityIdentifier: 'theft_alarm',
+          state: { theftAlarm: 'triggered' },
+        },
+        {
+          capabilityIdentifier: 'vehicle_time',
+          state: { vehicleTime: new Date('2018-12-28T09:33:06.000Z') },
+        },
+        {
+          capabilityIdentifier: 'trunk',
+          state: { trunkLock: 'unlocked', trunkPosition: 'closed' },
+        },
+        {
+          capabilityIdentifier: 'usage',
+          state: {
+            averageWeeklyDistance: 300,
+            averageWeeklyDistanceLongRun: 300,
+            accelerationEvaluation: 0.5,
+            drivingStyleEvaluation: 0.5,
+            drivingModesActivationPeriods: [
+              { drivingMode: 'regular', period: 0.4 },
+              { drivingMode: 'eco', period: 0.4 },
+              { drivingMode: 'sport', period: 0.4 },
+              { drivingMode: 'sport_plus', period: 0.4 },
+              { drivingMode: 'eco_plus', period: 0.4 },
+            ],
+            drivingModesEnergyConsumptions: [
+              { drivingMode: 'regular', consumption: 33.2 },
+              { drivingMode: 'eco', consumption: 33.2 },
+              { drivingMode: 'sport', consumption: 33.2 },
+              { drivingMode: 'sport_plus', consumption: 33.2 },
+              { drivingMode: 'eco_plus', consumption: 33.2 },
+            ],
+            lastTripEnergyConsumption: 101.3,
+            lastTripFuelConsumption: 22.5,
+            mileageAfterLastTrip: 95632,
+            lastTripElectricPortion: 20,
+            lastTripAverageEnergyRecuperation: 5.68,
+            lastTripBatteryRemaining: 0.5,
+            lastTripDate: new Date('2018-10-22T12:10:33.000Z'),
+            averageFuelConsumption: 6.2,
+            currentFuelConsumption: 8.7,
+          },
+        },
+        {
+          capabilityIdentifier: 'valet_mode',
+          state: { valetMode: 'deactivated' },
+        },
+        {
+          capabilityIdentifier: 'vehicle_location',
+          state: {
+            coordinates: { latitude: 52.516506, longitude: 13.381815 },
+            heading: 52.520008,
+            altitude: 133.5,
+          },
+        },
+        {
+          capabilityIdentifier: 'weather_conditions',
+          state: { rainIntensity: 0 },
+        },
+        {
+          capabilityIdentifier: 'wi_fi',
+          state: {
+            wifiEnabled: 'disabled',
+            networkConnected: 'disconnected',
+            networkSSID: '',
+            networkSecurity: 'wpa',
+          },
+        },
+        {
+          capabilityIdentifier: 'windows',
+          state: {
+            windowsOpenPercentages: [
+              { windowLocation: 'front_left', openPercentage: 0 },
+              { windowLocation: 'front_right', openPercentage: 0 },
+              { windowLocation: 'rear_right', openPercentage: 0 },
+              { windowLocation: 'rear_left', openPercentage: 0 },
+              { windowLocation: 'hatch', openPercentage: 0 },
+            ],
+            windowsPositions: [
+              { windowLocation: 'front_left', windowPosition: 'closed' },
+              { windowLocation: 'front_right', windowPosition: 'closed' },
+              { windowLocation: 'rear_right', windowPosition: 'closed' },
+              { windowLocation: 'rear_left', windowPosition: 'closed' },
+              { windowLocation: 'hatch', windowPosition: 'closed' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'windscreen',
+          state: {
+            wipers: 'active',
+            wipersIntensity: 'level_3',
+            windscreenDamage: 'damage_smaller_than_1_inch',
+            windscreenZoneMatrix: { rows: 3, columns: 2 },
+            windscreenDamageZone: { rows: 2, columns: 3 },
+            windscreenNeedsReplacement: 'replacement_needed',
+            windscreenDamageConfidence: 0,
+            windscreenDamageDetectionTime: new Date('2000-01-01T00:00:00.000Z'),
+          },
+        },
+      ],
+    });
   });
 });

@@ -36,7 +36,7 @@ export default class FailureMessageResponse extends PropertyResponse {
       },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -45,7 +45,7 @@ export default class FailureMessageResponse extends PropertyResponse {
       new Property(0x03, 'reason').setDecoder(this.reasonDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   failedCapabilityDecoder(bytes: Array<Number>) {

@@ -1,5 +1,6 @@
 import Property from './Property';
-import { bytesSum } from './helpers';
+import { bytesSum, dateDecoder } from './helpers';
+import mergeWith from 'lodash/mergeWith';
 
 export default class PropertyResponse {
   /*
@@ -11,14 +12,36 @@ export default class PropertyResponse {
    * This parses all configured properties and adds them to "this" by their namespace.
    * Properties that do not have value will be ignored.
    */
-  parse(data: Uint8Array, properties: Array<Property>) {
-    this.bindProperties(
-      this.parseProperties(data, properties).filter(
-        property =>
-          (property.value !== null && property.value !== undefined) ||
-          property.subProperties.length > 0
-      )
+  parse(
+    data: Uint8Array,
+    properties: Array<Property>,
+    config: { withUniversalProperties: Boolean } = {}
+  ) {
+    this.parseProperties(
+      data,
+      config.withUniversalProperties
+        ? this.addUniversalProperties(properties)
+        : properties
+    ).forEach(parsedProp => {
+      mergeWith(this, parsedProp, this.customiser);
+    });
+  }
+
+  addUniversalProperties(properties: Array<Property>) {
+    const timestampProperty = new Property(0xa2, 'date').setDecoder(
+      dateDecoder
     );
+
+    return properties.concat(timestampProperty);
+  }
+
+  // TODO: Improve this temp shieeeet
+  customiser(objValue, srcValue) {
+    if (Array.isArray(objValue)) {
+      return objValue.concat(srcValue);
+    }
+
+    return srcValue;
   }
 
   /*
@@ -48,6 +71,7 @@ export default class PropertyResponse {
    * TODO: Maybe split this function into more readable chunks. This function does too much at the moment.
    */
   parseProperties(data: Uint8Array, properties: Array<Property>) {
+    const parsedProperties = [];
     const propertiesData = [...data.slice(3, data.length)];
 
     if (propertiesData.length > 0) {
@@ -66,14 +90,14 @@ export default class PropertyResponse {
         const property = this.findProperty(identifier, properties);
 
         if (!!property) {
-          property.parseValue(propertyData);
+          parsedProperties.push(property.parseValue(propertyData));
         }
 
         counter += 3 + propertyDataLength;
       }
     }
 
-    return properties;
+    return parsedProperties;
   }
 
   /*

@@ -20,7 +20,7 @@ export default class WiFiResponse extends PropertyResponse {
       networkSecurity: 'wpa',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -47,6 +47,6 @@ export default class WiFiResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

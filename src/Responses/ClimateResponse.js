@@ -62,7 +62,7 @@ export default class ClimateResponse extends PropertyResponse {
       rearTemperatureSetting: 22
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -111,7 +111,7 @@ export default class ClimateResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   weekdayDecoder(data: Array<Number>) {

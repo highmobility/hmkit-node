@@ -12,11 +12,11 @@ export default class WeatherConditionsResponse extends PropertyResponse {
       rainIntensity: 0,
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [new Property(0x01, 'rainIntensity')];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

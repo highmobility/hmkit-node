@@ -33,7 +33,7 @@ export default class WindscreenResponse extends PropertyResponse {
       windscreenDamageDetectionTime: '2000-01-01T00:00:00.000Z',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -75,6 +75,6 @@ export default class WindscreenResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }
