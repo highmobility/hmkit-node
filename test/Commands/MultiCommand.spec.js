@@ -23,6 +23,13 @@ describe(`MultiCommand`, () => {
     expect(response.parse()).toEqual({
       states: [
         {
+          capabilityIdentifier: 'engine',
+          state: {
+            ignition: 'engine_on',
+            accessoriesIgnition: expect.any(String),
+          },
+        },
+        {
           capabilityIdentifier: 'rooftop_control',
           state: {
             dimming: 22,
@@ -30,13 +37,6 @@ describe(`MultiCommand`, () => {
             convertibleRoof: 'closed_secured',
             sunroofTilt: 'tilted',
             sunroofState: 'open',
-          },
-        },
-        {
-          capabilityIdentifier: 'engine',
-          state: {
-            ignition: 'engine_on',
-            accessoriesIgnition: expect.any(String),
           },
         },
       ],
