@@ -1,6 +1,6 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
-import { dateToBytes, stringToBytes } from '../encoding';
+import { stringToBytes, dateToBytes } from '../encoding';
 import { validate, Joi } from '../validate';
 
 export default class ParkingTicketCommand extends BaseCommand {

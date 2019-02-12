@@ -23,8 +23,8 @@ describe(`RooftopControlCommand`, () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.RooftopControlCommand.control(
-        22,
-        33,
+        0.2,
+        0.3,
         'closed_secured',
         'tilted',
         'open'
@@ -33,8 +33,8 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: 22,
-      position: 33,
+      dimming: 0.2,
+      position: 0.3,
       convertibleRoof: 'closed_secured',
       sunroofTilt: 'tilted',
       sunroofState: 'open',
@@ -47,7 +47,9 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.getState()
     )).parse();
     // Ensure new value is different from old
-    const newDimming = oldData.dimming >= 99 ? 1 : oldData.dimming + 1;
+    const newDimming = Number(
+      (oldData.dimming >= 0.99 ? 0.01 : oldData.dimming + 0.01).toFixed(2)
+    );
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -69,7 +71,8 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.getState()
     )).parse();
     // Ensure new value is different from old
-    const newPosition = oldData.position >= 99 ? 1 : oldData.position + 1;
+    const newPosition =
+      oldData.position >= 0.99 ? 0.01 : oldData.position + 0.01;
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,

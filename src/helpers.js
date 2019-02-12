@@ -55,6 +55,10 @@ export function dateDecoder(bytes: Array<Number>) {
   return null;
 }
 
+export function timestampDecoder(bytes: Array<Number>) {
+  return new Date(bytesSum(bytes));
+}
+
 export function coordinatesDecoder(data: Array<Number>) {
   return {
     latitude: getRoundedIeee754DoubleToBase10(6)(
@@ -90,7 +94,7 @@ export function matrixZoneDecoder(bytes: Array<Number>) {
 }
 
 export function progressDecoder(bytes: Array<Number>) {
-  return bytes[0] / 100;
+  return Math.round(ieee754DoubleToBase10(bytes) * 100) / 100;
 }
 
 export function activeInactiveDecoder() {
@@ -98,10 +102,6 @@ export function activeInactiveDecoder() {
     0x00: 'inactive',
     0x01: 'active',
   });
-}
-
-export function percentToInteger(value: Number) {
-  return value > 0.0 && value < 1.0 ? value * 100 : value;
 }
 
 export function isArray(value: Any) {

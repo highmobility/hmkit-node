@@ -4,7 +4,6 @@ import {
   switchDecoder,
   dateDecoder,
   matrixZoneDecoder,
-  percentToInteger,
   progressDecoder,
 } from '../src/helpers';
 
@@ -58,10 +57,5 @@ describe(`helpers`, () => {
   it(`should decode progress correctly`, () => {
     const progress = progressDecoder([0x5a]);
     expect(progress).toEqual(0.9);
-  });
-
-  it(`should convert percent to integer`, () => {
-    expect(percentToInteger(0.5)).toEqual(50);
-    expect(percentToInteger(20)).toEqual(20);
   });
 });

@@ -6,17 +6,17 @@ describe(`RooftopControlResponse`, () => {
   it(`should return RooftopControlResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        `0025010100011802000123030001000400010105000100a20008120b170f152e0078`
+        `0025010100083fd999999999999a0200083fe3333333333333030001010400010005000101a2000813020c0e14280078`
       )
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: 24,
-      position: 35,
-      convertibleRoof: 'closed',
-      sunroofTilt: 'tilted',
-      sunroofState: 'closed',
+      dimming: 0.4,
+      position: 0.6,
+      convertibleRoof: 'open',
+      sunroofTilt: 'closed',
+      sunroofState: 'open',
     });
   });
 });

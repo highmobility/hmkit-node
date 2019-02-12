@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { bytesSum, switchDecoder, dateDecoder } from '../helpers';
+import { bytesSum, switchDecoder, timestampDecoder } from '../helpers';
 import { bytesToString } from '../encoding';
 
 export default class MaintenanceResponse extends PropertyResponse {
@@ -62,14 +62,16 @@ export default class MaintenanceResponse extends PropertyResponse {
       new Property(0x06, 'serviceDistanceThreshold').setDecoder(bytesSum),
       new Property(0x07, 'serviceTimeThreshold').setDecoder(bytesSum),
       new Property(0x08, 'automaticTeleserviceCallDate').setDecoder(
-        dateDecoder
+        timestampDecoder
       ),
-      new Property(0x09, 'teleserviceBatteryCallDate').setDecoder(dateDecoder),
-      new Property(0x0a, 'nextInspectionDate').setDecoder(dateDecoder),
+      new Property(0x09, 'teleserviceBatteryCallDate').setDecoder(
+        timestampDecoder
+      ),
+      new Property(0x0a, 'nextInspectionDate').setDecoder(timestampDecoder),
       new Property(0x0b, 'conditionBasedServices').setDecoder(
         this.conditionBasedServicesDecoder
       ),
-      new Property(0x0c, 'brakeFluidChangeDate').setDecoder(dateDecoder),
+      new Property(0x0c, 'brakeFluidChangeDate').setDecoder(timestampDecoder),
     ];
 
     this.parse(data, properties);
