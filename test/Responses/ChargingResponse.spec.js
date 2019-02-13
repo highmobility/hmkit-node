@@ -6,40 +6,40 @@ describe(`ChargingResponse`, () => {
   it(`should return ChargingResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        `002301020002001e0300083fd999999999999a040004bf19999a050004bf19999a06000400000000070004000000000800083fe199999999999a09000200000a0004000000000b0001000c0001010e000441c800000f00010110000100110003000d27130003000d271400044219999a150009000000016184c860e0150009010000016184c94b40150009020000016184ca35a01600010017000100a2000800000168e224216a`
+        `002301020005010002001e03000b0100083fe999999999999a040007010004bf19999a050007010004bf19999a060007010004408000000700070100044040000008000b0100083fe199999999999a09000501000200030a000701000440c000000b0004010001010c0004010001000e000701000441c800000f00040100010110000401000101110006010003010e21130006010003000e211400070100044219999a15000c01000900000001663efc96a815000c01000901000001669baf0ea815000c010009020000016681ef42a81600040100010017000401000100a2000b01000800000168e6ed2835`
       )
     );
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
       estimatedRange: 30,
-      batteryLevel: 0.4,
+      batteryLevel: 0.8,
       batteryCurrentAC: -0.6,
       batteryCurrentDC: -0.6,
-      chargerVoltageAC: 0,
-      chargerVoltageDC: 0,
+      chargerVoltageAC: 4,
+      chargerVoltageDC: 3,
       chargeLimit: 0.55,
-      timeToCompleteCharge: 0,
-      chargingRateKW: 0,
-      chargePortState: 'closed',
-      chargeMode: 'timer_based',
+      timeToCompleteCharge: 3,
+      chargingRateKW: 6,
+      chargePortState: 'open',
+      chargeMode: 'immediate',
       maxChargingCurrent: 25,
       plugType: 'type_2',
-      chargingWindowChosen: 'not_chosen',
-      departureTimes: [{ activeState: 'inactive', hour: 13, minute: 39 }],
-      reductionTimes: [{ startStop: 'start', hour: 13, minute: 39 }],
+      chargingWindowChosen: 'chosen',
+      departureTimes: [{ activeState: 'active', hour: 14, minute: 33 }],
+      reductionTimes: [{ startStop: 'start', hour: 14, minute: 33 }],
       batteryTemperature: 38.4,
       timers: [
         {
           timerType: 'preferred_start_time',
-          time: new Date('2018-02-11T12:13:00.000Z'),
+          time: new Date('2018-10-04T12:10:33.000Z'),
         },
         {
           timerType: 'preferred_end_time',
-          time: new Date('2018-02-11T12:14:00.000Z'),
+          time: new Date('2018-10-22T12:10:33.000Z'),
         },
         {
           timerType: 'departure_time',
-          time: new Date('2018-02-11T12:15:00.000Z'),
+          time: new Date('2018-10-17T12:10:33.000Z'),
         },
       ],
       pluggedIn: 'disconnected',

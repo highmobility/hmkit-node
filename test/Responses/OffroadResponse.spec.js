@@ -6,14 +6,14 @@ describe(`OffroadResponse`, () => {
   it(`should return OffroadResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '005201010002003c0200083fe999999999999aa2000813020c0f193b0078'
+        '005201010005010002000002000b0100080000000000000000a2000b01000800000168e72ea9ab'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(OffroadResponse);
     expect(response.parse()).toEqual({
-      routeIncline: 60,
-      wheelSuspension: 0.8,
+      routeIncline: 0,
+      wheelSuspension: 0,
     });
   });
 });

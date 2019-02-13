@@ -6,7 +6,7 @@ describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '002001020002000002000201000200020200020002030003000200000300020100030002020003000203000400020000040002010004000202010400020300a20008120a110e360700b4'
+        '002001020005010002000002000501000201000200050100020200020005010002030002000501000204000200050100020500030005010002000003000501000201000300050100020200030005010002030003000501000204000300050100020500040005010002000004000501000201000400050100020200040005010002030004000501000204000400050100020500a2000b01000800000168e702fd39'
       )
     );
 
@@ -17,18 +17,24 @@ describe(`DoorLocksResponse`, () => {
         { doorLocation: 'front_right', lockState: 'unlocked' },
         { doorLocation: 'rear_right', lockState: 'unlocked' },
         { doorLocation: 'rear_left', lockState: 'unlocked' },
+        { doorLocation: 'hatch', lockState: 'unlocked' },
+        { doorLocation: 'all', lockState: 'unlocked' },
       ],
       locks: [
         { doorLocation: 'front_left', lockState: 'unlocked' },
         { doorLocation: 'front_right', lockState: 'unlocked' },
         { doorLocation: 'rear_right', lockState: 'unlocked' },
         { doorLocation: 'rear_left', lockState: 'unlocked' },
+        { doorLocation: 'hatch', lockState: 'unlocked' },
+        { doorLocation: 'all', lockState: 'unlocked' },
       ],
       positions: [
         { doorLocation: 'front_left', position: 'closed' },
         { doorLocation: 'front_right', position: 'closed' },
-        { doorLocation: 'rear_right', position: 'open' },
+        { doorLocation: 'rear_right', position: 'closed' },
         { doorLocation: 'rear_left', position: 'closed' },
+        { doorLocation: 'hatch', position: 'closed' },
+        { doorLocation: 'all', position: 'closed' },
       ],
     });
   });

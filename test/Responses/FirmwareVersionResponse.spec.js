@@ -6,19 +6,15 @@ describe(`FirmwareVersionResponse`, () => {
   it(`should return FirmwareVersionResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '000301010003010F2102000C6274737461636B2D7561727403000976312E352D70726F64'
+        '00030101000601000302020402000e01000b686d2d656d756c61746f7203001501001276322e322e342d646576656c6f706d656e74a2000b01000800000168e70cfc6e'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(FirmwareVersionResponse);
     expect(response.parse()).toEqual({
-      carSDKVersion: {
-        versionMajor: 1,
-        versionMinor: 15,
-        versionPatch: 33,
-      },
-      carSDKBuildName: 'btstack-uart',
-      applicationVersion: 'v1.5-prod',
+      carSDKVersion: { versionMajor: 2, versionMinor: 2, versionPatch: 4 },
+      carSDKBuildName: 'hm-emulator',
+      applicationVersion: 'v2.2.4-development',
     });
   });
 });
