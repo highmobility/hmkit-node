@@ -6,7 +6,7 @@ describe(`MultiResponse`, () => {
   it(`should return MultiResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '00110199000b00350101000101020001009900170025010100011602000121030001030400010105000101a20008120b170f26290078'
+        '001101990014010011003501010004010001010200040100010099003701003400250101000b010008403600000000000002000b0100084040800000000000030004010001030400040100010105000401000101a2000b01000800000168ec40c85c'
       )
     );
 
@@ -25,10 +25,7 @@ describe(`MultiResponse`, () => {
         },
         {
           capabilityIdentifier: 'engine',
-          state: {
-            ignition: 'engine_on',
-            accessoriesIgnition: 'powered_off',
-          },
+          state: { ignition: 'engine_on', accessoriesIgnition: 'powered_off' },
         },
       ],
     });
