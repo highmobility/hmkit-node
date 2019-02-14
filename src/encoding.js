@@ -2,6 +2,10 @@ import atob from 'atob';
 import btoa from 'btoa';
 import ieee754 from 'ieee754';
 
+export const PROPERTY_DATA_ID = 0x01;
+export const PROPERTY_TIMESTAMP_ID = 0x02;
+export const PROPERTY_FAILURE_ID = 0x03;
+
 export function percentageToDouble(value: Number) {
   return base10ToIeee754Double(value);
 }

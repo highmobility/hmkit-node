@@ -1,9 +1,10 @@
 import Property from './Property';
 import { bytesSum } from './helpers';
-
-const PROPERTY_DATA_ID = 0x01;
-const PROPERTY_TIMESTAMP_ID = 0x02;
-const PROPERTY_FAILURE_ID = 0x03;
+import {
+  PROPERTY_DATA_ID,
+  PROPERTY_TIMESTAMP_ID,
+  PROPERTY_FAILURE_ID,
+} from './encoding';
 
 export default class PropertyResponse {
   /*

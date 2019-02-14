@@ -82,7 +82,7 @@ describe(`ChargingCommand`, () => {
   it(`should set charge limit`, async () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.ChargingCommand.setChargeLimit(50)
+      hmkit.commands.ChargingCommand.setChargeLimit(0.5)
     );
 
     expect(response.parse()).toBeInstanceOf(ChargingResponse);

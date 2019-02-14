@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { dateDecoder } from '../helpers';
+import { timestampDecoder } from '../helpers';
 
 export default class VehicleTimeResponse extends PropertyResponse {
   static identifier = [0x00, 0x50];
@@ -17,7 +17,7 @@ export default class VehicleTimeResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'vehicleTime').setDecoder(dateDecoder),
+      new Property(0x01, 'vehicleTime').setDecoder(timestampDecoder),
     ];
 
     this.parse(data, properties);

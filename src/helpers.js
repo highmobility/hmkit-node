@@ -34,27 +34,6 @@ export function switchDecoder(options: Object) {
     bytes.length > 0 && bytes[0] in options ? options[bytes[0]] : null;
 }
 
-export function dateDecoder(bytes: Array<Number>) {
-  if (bytes.length === 5) {
-    const date = new Date();
-
-    date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
-    date.setUTCHours(bytes[3], bytes[4], 0, 0);
-
-    return date;
-  } else if (bytes.length === 8) {
-    const utcOffset = (bytesSum(bytes.slice(6, 8)) << 16) >> 16;
-    const date = new Date();
-
-    date.setUTCFullYear(2000 + bytes[0], bytes[1] - 1, bytes[2]);
-    date.setUTCHours(bytes[3], bytes[4] - utcOffset, bytes[5], 0);
-
-    return date;
-  }
-
-  return null;
-}
-
 export function timestampDecoder(bytes: Array<Number>) {
   return new Date(bytesSum(bytes));
 }
