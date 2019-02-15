@@ -16,7 +16,7 @@ async function app() {
 
     const response = await hmkit.telematics.sendCommand(
       accessCertificate.getVehicleSerial(),
-      hmkit.commands.WindscreenCommand.getState()
+      hmkit.commands.DiagnosticsCommand.getState()
     );
 
     console.log(uint8ArrayToHex(response.bytes())); // [0, 53, 1, 1]
