@@ -1,9 +1,9 @@
-import Property from './Property';
+import PropertyDecoder from './PropertyDecoder';
 
 /**
  * Capabilities have a 2 byte identifier
  */
-export default class CapabilityProperty extends Property {
+export default class CapabilityPropertyDecoder extends PropertyDecoder {
   parseValue = (data: Array<number>) => {
     if (this.subProperties.length > 0 && data.length > 0) {
       const subProperty = this.findSubProperty(data.slice(0, 2));

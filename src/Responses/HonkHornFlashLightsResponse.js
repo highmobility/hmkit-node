@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class HonkHornFlashLightsResponse extends PropertyResponse {
@@ -17,7 +17,7 @@ export default class HonkHornFlashLightsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'flashers').setDecoder(
+      new PropertyDecoder(0x01, 'flashers').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'emergency_flasher_active',

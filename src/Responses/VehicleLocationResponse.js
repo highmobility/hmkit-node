@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import {
   coordinatesDecoder,
   getRoundedIeee754DoubleToBase10,
@@ -27,11 +27,11 @@ export default class VehicleLocationResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x04, 'coordinates').setDecoder(coordinatesDecoder),
-      new Property(0x05, 'heading').setDecoder(bytes =>
+      new PropertyDecoder(0x04, 'coordinates').setDecoder(coordinatesDecoder),
+      new PropertyDecoder(0x05, 'heading').setDecoder(bytes =>
         getRoundedIeee754DoubleToBase10(6)(bytes, 8)
       ),
-      new Property(0x06, 'altitude').setDecoder(bytes =>
+      new PropertyDecoder(0x06, 'altitude').setDecoder(bytes =>
         getRoundedIeee754DoubleToBase10(6)(bytes, 8)
       ),
     ];

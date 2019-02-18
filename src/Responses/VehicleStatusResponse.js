@@ -1,8 +1,8 @@
 import PropertyResponse from '../PropertyResponse';
-import OptionalProperty from '../OptionalProperty';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import Response from './Response';
-import CapabilityProperty from '../CapabilityProperty';
-import Property from '../Property';
+import CapabilityPropertyDecoder from '../CapabilityPropertyDecoder';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesSum, getRoundedIeee754ToBase10, switchDecoder } from '../helpers';
 import { bytesToString } from '../encoding';
 import CAPABILITY_IDENTIFIERS from '../CAPABILITY_IDENTIFIERS';
@@ -74,8 +74,8 @@ export default class VehicleStatusResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'vin').setDecoder(bytesToString),
-      new Property(0x02, 'powertrain').setDecoder(
+      new PropertyDecoder(0x01, 'vin').setDecoder(bytesToString),
+      new PropertyDecoder(0x02, 'powertrain').setDecoder(
         switchDecoder({
           0x00: 'unknown',
           0x01: 'all_electric',
@@ -85,45 +85,45 @@ export default class VehicleStatusResponse extends PropertyResponse {
           0x05: 'hydrogen_hybrid',
         })
       ),
-      new Property(0x03, 'modelName').setDecoder(bytesToString),
-      new Property(0x04, 'name').setDecoder(bytesToString),
-      new Property(0x05, 'licensePlate').setDecoder(bytesToString),
-      new Property(0x06, 'salesDesignation').setDecoder(bytesToString),
-      new Property(0x07, 'modelYear').setDecoder(bytesSum),
-      new Property(0x08, 'colorName').setDecoder(bytesToString),
-      new Property(0x09, 'powerInKw').setDecoder(bytesSum),
-      new Property(0x0a, 'numberOfDoors').setDecoder(bytesSum),
-      new Property(0x0b, 'numberOfSeats').setDecoder(bytesSum),
-      new Property(0x0c, 'engineVolume').setDecoder(
+      new PropertyDecoder(0x03, 'modelName').setDecoder(bytesToString),
+      new PropertyDecoder(0x04, 'name').setDecoder(bytesToString),
+      new PropertyDecoder(0x05, 'licensePlate').setDecoder(bytesToString),
+      new PropertyDecoder(0x06, 'salesDesignation').setDecoder(bytesToString),
+      new PropertyDecoder(0x07, 'modelYear').setDecoder(bytesSum),
+      new PropertyDecoder(0x08, 'colorName').setDecoder(bytesToString),
+      new PropertyDecoder(0x09, 'powerInKw').setDecoder(bytesSum),
+      new PropertyDecoder(0x0a, 'numberOfDoors').setDecoder(bytesSum),
+      new PropertyDecoder(0x0b, 'numberOfSeats').setDecoder(bytesSum),
+      new PropertyDecoder(0x0c, 'engineVolume').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0d, 'engineMaxTorque').setDecoder(bytesSum),
-      new Property(0x0e, 'gearbox').setDecoder(
+      new PropertyDecoder(0x0d, 'engineMaxTorque').setDecoder(bytesSum),
+      new PropertyDecoder(0x0e, 'gearbox').setDecoder(
         switchDecoder({
           0x00: 'manual',
           0x01: 'automatic',
           0x02: 'semi_automatic',
         })
       ),
-      new Property(0x0f, 'displayUnit').setDecoder(
+      new PropertyDecoder(0x0f, 'displayUnit').setDecoder(
         switchDecoder({
           0x00: 'km',
           0x01: 'miles',
         })
       ),
-      new Property(0x10, 'driverSeatLocation').setDecoder(
+      new PropertyDecoder(0x10, 'driverSeatLocation').setDecoder(
         switchDecoder({
           0x00: 'left',
           0x01: 'right',
           0x02: 'center',
         })
       ),
-      new Property(0x11, 'equipments').array().setDecoder(bytesToString),
-      new Property(0x12, 'brand').setDecoder(bytesToString),
-      new CapabilityProperty(0x99, 'states').setOptionalSubProperties(
+      new PropertyDecoder(0x11, 'equipments').array().setDecoder(bytesToString),
+      new PropertyDecoder(0x12, 'brand').setDecoder(bytesToString),
+      new CapabilityPropertyDecoder(0x99, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
         Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {
-          return new OptionalProperty(identifier, name).setDecoder(
+          return new OptionalPropertyDecoder(identifier, name).setDecoder(
             this.getCapabilityStateDecoder(identifier)
           );
         })

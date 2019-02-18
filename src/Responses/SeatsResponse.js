@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 
 export default class SeatsResponse extends PropertyResponse {
   static identifier = [0x00, 0x56];
@@ -49,42 +49,42 @@ export default class SeatsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x02, 'personsDetected').setOptionalSubProperties(
+      new PropertyDecoder(0x02, 'personsDetected').setOptionalSubProperties(
         'seatPosition',
         [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x04, 'rear_center').setDecoder(
+          new OptionalPropertyDecoder(0x04, 'rear_center').setDecoder(
             this.personDetectedDecoder
           ),
         ]
       ),
-      new Property(0x03, 'seatbeltsFastened').setOptionalSubProperties(
+      new PropertyDecoder(0x03, 'seatbeltsFastened').setOptionalSubProperties(
         'seatPosition',
         [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x04, 'rear_center').setDecoder(
+          new OptionalPropertyDecoder(0x04, 'rear_center').setDecoder(
             this.seatbeltFastenedDecoder
           ),
         ]

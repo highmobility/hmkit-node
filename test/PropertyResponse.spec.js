@@ -1,5 +1,5 @@
 import PropertyResponse from '../src/PropertyResponse';
-import Property from '../src/Property';
+import PropertyDecoder from '../src/PropertyDecoder';
 import { switchDecoder } from '../src/helpers';
 import { hexToUint8Array } from '../src/encoding';
 
@@ -8,7 +8,7 @@ describe(`PropertyResponse`, () => {
     const data = hexToUint8Array('0035010000');
 
     const properties = [
-      new Property(0x01, 'engine').setDecoder(
+      new PropertyDecoder(0x01, 'engine').setDecoder(
         switchDecoder({
           0x00: 'off',
           0x01: 'on',

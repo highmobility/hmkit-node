@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { switchDecoder, bytesSum } from '../helpers';
 
 export default class TachographResponse extends PropertyResponse {
@@ -57,50 +57,58 @@ export default class TachographResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'driverWorkingStates').setOptionalSubProperties(
+      new PropertyDecoder(0x01, 'driverWorkingStates').setOptionalSubProperties(
         'driverNumber',
         [
-          new OptionalProperty(0x01, 1).setDecoder(
+          new OptionalPropertyDecoder(0x01, 1).setDecoder(
             this.driverWorkingStateDecoder
           ),
-          new OptionalProperty(0x02, 2).setDecoder(
+          new OptionalPropertyDecoder(0x02, 2).setDecoder(
             this.driverWorkingStateDecoder
           ),
         ]
       ),
-      new Property(0x02, 'driverTimeStates').setOptionalSubProperties(
+      new PropertyDecoder(0x02, 'driverTimeStates').setOptionalSubProperties(
         'driverNumber',
         [
-          new OptionalProperty(0x01, 1).setDecoder(this.driverTimeStateDecoder),
-          new OptionalProperty(0x02, 2).setDecoder(this.driverTimeStateDecoder),
+          new OptionalPropertyDecoder(0x01, 1).setDecoder(
+            this.driverTimeStateDecoder
+          ),
+          new OptionalPropertyDecoder(0x02, 2).setDecoder(
+            this.driverTimeStateDecoder
+          ),
         ]
       ),
-      new Property(0x03, 'driverCards').setOptionalSubProperties(
+      new PropertyDecoder(0x03, 'driverCards').setOptionalSubProperties(
         'driverNumber',
         [
-          new OptionalProperty(0x01, 1).setDecoder(this.driverCardDecoder),
-          new OptionalProperty(0x02, 2).setDecoder(this.driverCardDecoder),
+          new OptionalPropertyDecoder(0x01, 1).setDecoder(
+            this.driverCardDecoder
+          ),
+          new OptionalPropertyDecoder(0x02, 2).setDecoder(
+            this.driverCardDecoder
+          ),
         ]
       ),
-      new Property(0x04, 'vehicleMotion').setDecoder(
+      new PropertyDecoder(0x04, 'vehicleMotion').setDecoder(
         switchDecoder({
           0x00: 'not_detected',
           0x01: 'detected',
         })
       ),
-      new Property(0x05, 'vehicleOverspeed').setDecoder(
+      new PropertyDecoder(0x05, 'vehicleOverspeed').setDecoder(
         switchDecoder({
           0x00: 'no_overspeed',
           0x01: 'overspeed',
         })
       ),
-      new Property(0x06, 'vehicleDirection').setDecoder(
+      new PropertyDecoder(0x06, 'vehicleDirection').setDecoder(
         switchDecoder({
           0x00: 'forward',
           0x01: 'reverse',
         })
       ),
-      new Property(0x07, 'vehicleSpeed').setDecoder(bytesSum),
+      new PropertyDecoder(0x07, 'vehicleSpeed').setDecoder(bytesSum),
     ];
 
     this.parse(data, properties);

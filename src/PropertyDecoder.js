@@ -1,4 +1,4 @@
-export default class Property {
+export default class PropertyDecoder {
   constructor(identifier: number, namespace: string) {
     this.identifier = identifier;
     this.namespace = namespace;

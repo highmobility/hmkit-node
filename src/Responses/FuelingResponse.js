@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class FuelingResponse extends PropertyResponse {
@@ -18,13 +18,13 @@ export default class FuelingResponse extends PropertyResponse {
   constructor(data: Uint8Array) {
     super();
     const properties = [
-      new Property(0x02, 'gasFlapLock').setDecoder(
+      new PropertyDecoder(0x02, 'gasFlapLock').setDecoder(
         switchDecoder({
           0x00: 'unlocked',
           0x01: 'locked',
         })
       ),
-      new Property(0x03, 'gasFlapPosition').setDecoder(
+      new PropertyDecoder(0x03, 'gasFlapPosition').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'opened',

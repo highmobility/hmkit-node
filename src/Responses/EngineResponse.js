@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class EngineResponse extends PropertyResponse {
@@ -19,13 +19,13 @@ export default class EngineResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'ignition').setDecoder(
+      new PropertyDecoder(0x01, 'ignition').setDecoder(
         switchDecoder({
           0x00: 'engine_off',
           0x01: 'engine_on',
         })
       ),
-      new Property(0x02, 'accessoriesIgnition').setDecoder(
+      new PropertyDecoder(0x02, 'accessoriesIgnition').setDecoder(
         switchDecoder({
           0x00: 'powered_off',
           0x01: 'powered_on',

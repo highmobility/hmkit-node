@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { uint8toInt8 } from '../encoding';
 import { switchDecoder } from '../helpers';
 
@@ -50,7 +50,7 @@ export default class ChassisSettingsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'drivingMode').setDecoder(
+      new PropertyDecoder(0x01, 'drivingMode').setDecoder(
         switchDecoder({
           0x00: 'regular',
           0x01: 'eco',
@@ -60,58 +60,58 @@ export default class ChassisSettingsResponse extends PropertyResponse {
         })
       ),
 
-      new Property(0x02, 'sportChrono').setDecoder(
+      new PropertyDecoder(0x02, 'sportChrono').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
 
-      new Property(0x05, 'currentSpringRates').setOptionalSubProperties(
+      new PropertyDecoder(0x05, 'currentSpringRates').setOptionalSubProperties(
         'axle',
         [
-          new OptionalProperty(0x00, 'front_axle').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_axle').setDecoder(
             this.axleDataDecoder('springRate')
           ),
-          new OptionalProperty(0x01, 'rear_axle').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'rear_axle').setDecoder(
             this.axleDataDecoder('springRate')
           ),
         ]
       ),
 
-      new Property(0x06, 'maximumSpringRates').setOptionalSubProperties(
+      new PropertyDecoder(0x06, 'maximumSpringRates').setOptionalSubProperties(
         'axle',
         [
-          new OptionalProperty(0x00, 'front_axle').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_axle').setDecoder(
             this.axleDataDecoder('springRate')
           ),
-          new OptionalProperty(0x01, 'rear_axle').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'rear_axle').setDecoder(
             this.axleDataDecoder('springRate')
           ),
         ]
       ),
 
-      new Property(0x07, 'minimumSpringRates').setOptionalSubProperties(
+      new PropertyDecoder(0x07, 'minimumSpringRates').setOptionalSubProperties(
         'axle',
         [
-          new OptionalProperty(0x00, 'front_axle').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_axle').setDecoder(
             this.axleDataDecoder('springRate')
           ),
-          new OptionalProperty(0x01, 'rear_axle').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'rear_axle').setDecoder(
             this.axleDataDecoder('springRate')
           ),
         ]
       ),
 
-      new Property(0x08, 'currentChassisPosition').setDecoder(bytes =>
+      new PropertyDecoder(0x08, 'currentChassisPosition').setDecoder(bytes =>
         uint8toInt8(bytes[0])
       ),
 
-      new Property(0x09, 'maximumChassisPosition').setDecoder(bytes =>
+      new PropertyDecoder(0x09, 'maximumChassisPosition').setDecoder(bytes =>
         uint8toInt8(bytes[0])
       ),
 
-      new Property(0x0a, 'minimumChassisPosition').setDecoder(bytes =>
+      new PropertyDecoder(0x0a, 'minimumChassisPosition').setDecoder(bytes =>
         uint8toInt8(bytes[0])
       ),
     ];

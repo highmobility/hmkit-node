@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class HoodResponse extends PropertyResponse {
@@ -17,7 +17,7 @@ export default class HoodResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'position').setDecoder(
+      new PropertyDecoder(0x01, 'position').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',

@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesToString } from '../encoding';
 import { switchDecoder, timestampDecoder } from '../helpers';
 
@@ -26,16 +26,16 @@ export default class ParkingTicketResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'parkingTicketState').setDecoder(
+      new PropertyDecoder(0x01, 'parkingTicketState').setDecoder(
         switchDecoder({
           0x00: 'ended',
           0x01: 'started',
         })
       ),
-      new Property(0x02, 'operatorName').setDecoder(bytesToString),
-      new Property(0x03, 'operatorTicketID').setDecoder(bytesToString),
-      new Property(0x04, 'ticketStartTime').setDecoder(timestampDecoder),
-      new Property(0x05, 'ticketEndTime').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x02, 'operatorName').setDecoder(bytesToString),
+      new PropertyDecoder(0x03, 'operatorTicketID').setDecoder(bytesToString),
+      new PropertyDecoder(0x04, 'ticketStartTime').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x05, 'ticketEndTime').setDecoder(timestampDecoder),
     ];
 
     this.parse(data, properties);

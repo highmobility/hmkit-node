@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class DoorLocksResponse extends PropertyResponse {
@@ -78,29 +78,29 @@ export default class DoorLocksResponse extends PropertyResponse {
 
     /* prettier-ignore */
     const properties = [
-      new Property(0x02, 'insideLocks').setOptionalSubProperties('doorLocation', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x04, 'hatch').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x05, 'all').setDecoder(this.lockDecoder),
+      new PropertyDecoder(0x02, 'insideLocks').setOptionalSubProperties('doorLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.lockDecoder),
       ]),
-      new Property(0x03, 'locks').setOptionalSubProperties('doorLocation', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x04, 'hatch').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x05, 'all').setDecoder(this.lockDecoder),
+      new PropertyDecoder(0x03, 'locks').setOptionalSubProperties('doorLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.lockDecoder),
       ]),
-      new Property(0x04, 'positions').setOptionalSubProperties('doorLocation', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x04, 'hatch').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x05, 'all').setDecoder(this.positionDecoder),
+      new PropertyDecoder(0x04, 'positions').setOptionalSubProperties('doorLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.positionDecoder),
       ]),
     ];
     /* prettier-ignore-end */

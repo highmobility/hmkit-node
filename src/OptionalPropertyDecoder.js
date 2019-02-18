@@ -1,6 +1,6 @@
-import Property from './Property';
+import PropertyDecoder from './PropertyDecoder';
 
-export default class OptionalProperty extends Property {
+export default class OptionalPropertyDecoder extends PropertyDecoder {
   constructor(identifier: Number, identifierValue: Any) {
     super(identifier, null);
     this.identifierValue = identifierValue;

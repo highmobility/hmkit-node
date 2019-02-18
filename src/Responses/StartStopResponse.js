@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class StartStopResponse extends PropertyResponse {
@@ -17,7 +17,7 @@ export default class StartStopResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'startStop').setDecoder(
+      new PropertyDecoder(0x01, 'startStop').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',

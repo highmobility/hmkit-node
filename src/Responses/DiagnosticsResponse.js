@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesToString } from '../encoding';
 import {
   bytesSum,
@@ -8,7 +8,7 @@ import {
   progressDecoder,
   getRoundedIeee754ToBase10,
 } from '../helpers';
-import OptionalProperty from '../OptionalProperty';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 
 export default class DiagnosticsResponse extends PropertyResponse {
   static identifier = [0x00, 0x33];
@@ -123,92 +123,112 @@ export default class DiagnosticsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'mileage').setDecoder(bytesSum),
-      new Property(0x02, 'engineOilTemperature').setDecoder(bytesSum),
-      new Property(0x03, 'speed').setDecoder(bytesSum),
-      new Property(0x04, 'engineRPM').setDecoder(bytesSum),
-      new Property(0x05, 'fuelLevel').setDecoder(progressDecoder),
-      new Property(0x06, 'estimatedRange').setDecoder(bytesSum),
-      new Property(0x09, 'washerFluidLevel').setDecoder(
+      new PropertyDecoder(0x01, 'mileage').setDecoder(bytesSum),
+      new PropertyDecoder(0x02, 'engineOilTemperature').setDecoder(bytesSum),
+      new PropertyDecoder(0x03, 'speed').setDecoder(bytesSum),
+      new PropertyDecoder(0x04, 'engineRPM').setDecoder(bytesSum),
+      new PropertyDecoder(0x05, 'fuelLevel').setDecoder(progressDecoder),
+      new PropertyDecoder(0x06, 'estimatedRange').setDecoder(bytesSum),
+      new PropertyDecoder(0x09, 'washerFluidLevel').setDecoder(
         switchDecoder({
           0x00: 'low',
           0x01: 'filled',
         })
       ),
-      new Property(0x0b, 'batteryVoltage').setDecoder(
+      new PropertyDecoder(0x0b, 'batteryVoltage').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0c, 'adblueLevel').setDecoder(
+      new PropertyDecoder(0x0c, 'adblueLevel').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0d, 'distanceSinceReset').setDecoder(bytesSum),
-      new Property(0x0e, 'distanceSinceStart').setDecoder(bytesSum),
-      new Property(0x0f, 'fuelVolume').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x10, 'antiLockBraking').setDecoder(
+      new PropertyDecoder(0x0d, 'distanceSinceReset').setDecoder(bytesSum),
+      new PropertyDecoder(0x0e, 'distanceSinceStart').setDecoder(bytesSum),
+      new PropertyDecoder(0x0f, 'fuelVolume').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new PropertyDecoder(0x10, 'antiLockBraking').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x11, 'engineCoolantTemperature').setDecoder(uint8Decoder),
-      new Property(0x12, 'engineTotalOperatingHours').setDecoder(
+      new PropertyDecoder(0x11, 'engineCoolantTemperature').setDecoder(
+        uint8Decoder
+      ),
+      new PropertyDecoder(0x12, 'engineTotalOperatingHours').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x13, 'engineTotalFuelConsumption').setDecoder(
+      new PropertyDecoder(0x13, 'engineTotalFuelConsumption').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x14, 'brakeFluidLevel').setDecoder(
+      new PropertyDecoder(0x14, 'brakeFluidLevel').setDecoder(
         switchDecoder({
           0x00: 'low',
           0x01: 'filled',
         })
       ),
-      new Property(0x15, 'engineTorque').setDecoder(progressDecoder),
-      new Property(0x16, 'engineLoad').setDecoder(progressDecoder),
-      new Property(0x17, 'wheelBasedSpeed').setDecoder(bytesSum),
-      new Property(0x18, 'batteryLevel').setDecoder(progressDecoder),
-      new Property(0x19, 'checkControlMessages').setDecoder(
+      new PropertyDecoder(0x15, 'engineTorque').setDecoder(progressDecoder),
+      new PropertyDecoder(0x16, 'engineLoad').setDecoder(progressDecoder),
+      new PropertyDecoder(0x17, 'wheelBasedSpeed').setDecoder(bytesSum),
+      new PropertyDecoder(0x18, 'batteryLevel').setDecoder(progressDecoder),
+      new PropertyDecoder(0x19, 'checkControlMessages').setDecoder(
         this.checkControlMessagesDecoder
       ),
-      new Property(0x1a, 'tirePressures').setOptionalSubProperties('location', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(
-          this.pressureDecoder
-        ),
-        new OptionalProperty(0x01, 'front_right').setDecoder(
-          this.pressureDecoder
-        ),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(
-          this.pressureDecoder
-        ),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(
-          this.pressureDecoder
-        ),
-      ]),
-      new Property(0x1b, 'tireTemperatures').setOptionalSubProperties(
+      new PropertyDecoder(0x1a, 'tirePressures').setOptionalSubProperties(
         'location',
         [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
+            this.pressureDecoder
+          ),
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
+            this.pressureDecoder
+          ),
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
+            this.pressureDecoder
+          ),
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
+            this.pressureDecoder
+          ),
+        ]
+      ),
+      new PropertyDecoder(0x1b, 'tireTemperatures').setOptionalSubProperties(
+        'location',
+        [
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
             this.temperatureDecoder
           ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
             this.temperatureDecoder
           ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
             this.temperatureDecoder
           ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
             this.temperatureDecoder
           ),
         ]
       ),
-      new Property(0x1c, 'wheelRpms').setOptionalSubProperties('location', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.rpmDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.rpmDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.rpmDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.rpmDecoder),
-      ]),
-      new Property(0x1d, 'troubleCodes').setDecoder(this.troubleCodesDecoder),
-      new Property(0x1e, 'mileageMeters').setDecoder(bytesSum),
+      new PropertyDecoder(0x1c, 'wheelRpms').setOptionalSubProperties(
+        'location',
+        [
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
+            this.rpmDecoder
+          ),
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
+            this.rpmDecoder
+          ),
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
+            this.rpmDecoder
+          ),
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
+            this.rpmDecoder
+          ),
+        ]
+      ),
+      new PropertyDecoder(0x1d, 'troubleCodes').setDecoder(
+        this.troubleCodesDecoder
+      ),
+      new PropertyDecoder(0x1e, 'mileageMeters').setDecoder(bytesSum),
     ];
 
     this.parse(data, properties);

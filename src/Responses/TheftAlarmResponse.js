@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class TheftAlarmResponse extends PropertyResponse {
@@ -17,7 +17,7 @@ export default class TheftAlarmResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'theftAlarm').setDecoder(
+      new PropertyDecoder(0x01, 'theftAlarm').setDecoder(
         switchDecoder({
           0x00: 'not_armed',
           0x01: 'armed',

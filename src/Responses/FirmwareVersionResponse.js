@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesToString } from '../encoding';
 
 export default class FirmwareVersionResponse extends PropertyResponse {
@@ -25,9 +25,11 @@ export default class FirmwareVersionResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'carSDKVersion').setDecoder(this.carSDKVersionDecoder),
-      new Property(0x02, 'carSDKBuildName').setDecoder(bytesToString),
-      new Property(0x03, 'applicationVersion').setDecoder(bytesToString),
+      new PropertyDecoder(0x01, 'carSDKVersion').setDecoder(
+        this.carSDKVersionDecoder
+      ),
+      new PropertyDecoder(0x02, 'carSDKBuildName').setDecoder(bytesToString),
+      new PropertyDecoder(0x03, 'applicationVersion').setDecoder(bytesToString),
     ];
 
     this.parse(data, properties);

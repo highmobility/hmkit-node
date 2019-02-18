@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesSum, switchDecoder, timestampDecoder } from '../helpers';
 import { bytesToString } from '../encoding';
 
@@ -47,11 +47,13 @@ export default class MaintenanceResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'daysToNextService').setDecoder(bytesSum),
-      new Property(0x02, 'kilometersToNextService').setDecoder(bytesSum),
-      new Property(0x03, 'cbsReportsCount').setDecoder(bytesSum),
-      new Property(0x04, 'monthsToExhaustInspection').setDecoder(bytesSum),
-      new Property(0x05, 'teleserviceAvailability').setDecoder(
+      new PropertyDecoder(0x01, 'daysToNextService').setDecoder(bytesSum),
+      new PropertyDecoder(0x02, 'kilometersToNextService').setDecoder(bytesSum),
+      new PropertyDecoder(0x03, 'cbsReportsCount').setDecoder(bytesSum),
+      new PropertyDecoder(0x04, 'monthsToExhaustInspection').setDecoder(
+        bytesSum
+      ),
+      new PropertyDecoder(0x05, 'teleserviceAvailability').setDecoder(
         switchDecoder({
           0x00: 'pending',
           0x01: 'idle',
@@ -59,19 +61,25 @@ export default class MaintenanceResponse extends PropertyResponse {
           0x03: 'error',
         })
       ),
-      new Property(0x06, 'serviceDistanceThreshold').setDecoder(bytesSum),
-      new Property(0x07, 'serviceTimeThreshold').setDecoder(bytesSum),
-      new Property(0x08, 'automaticTeleserviceCallDate').setDecoder(
+      new PropertyDecoder(0x06, 'serviceDistanceThreshold').setDecoder(
+        bytesSum
+      ),
+      new PropertyDecoder(0x07, 'serviceTimeThreshold').setDecoder(bytesSum),
+      new PropertyDecoder(0x08, 'automaticTeleserviceCallDate').setDecoder(
         timestampDecoder
       ),
-      new Property(0x09, 'teleserviceBatteryCallDate').setDecoder(
+      new PropertyDecoder(0x09, 'teleserviceBatteryCallDate').setDecoder(
         timestampDecoder
       ),
-      new Property(0x0a, 'nextInspectionDate').setDecoder(timestampDecoder),
-      new Property(0x0b, 'conditionBasedServices').setDecoder(
+      new PropertyDecoder(0x0a, 'nextInspectionDate').setDecoder(
+        timestampDecoder
+      ),
+      new PropertyDecoder(0x0b, 'conditionBasedServices').setDecoder(
         this.conditionBasedServicesDecoder
       ),
-      new Property(0x0c, 'brakeFluidChangeDate').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x0c, 'brakeFluidChangeDate').setDecoder(
+        timestampDecoder
+      ),
     ];
 
     this.parse(data, properties);

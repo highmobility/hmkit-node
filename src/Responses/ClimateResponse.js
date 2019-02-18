@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { activeInactiveDecoder, getRoundedIeee754ToBase10 } from '../helpers';
 
 export default class ClimateResponse extends PropertyResponse {
@@ -66,47 +66,63 @@ export default class ClimateResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'insideTemperature').setDecoder(
+      new PropertyDecoder(0x01, 'insideTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x02, 'outsideTemperature').setDecoder(
+      new PropertyDecoder(0x02, 'outsideTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x03, 'driverTemperatureSetting').setDecoder(
+      new PropertyDecoder(0x03, 'driverTemperatureSetting').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x04, 'passengerTemperatureSetting').setDecoder(
+      new PropertyDecoder(0x04, 'passengerTemperatureSetting').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x05, 'hvacState').setDecoder(activeInactiveDecoder()),
-      new Property(0x06, 'defoggingState').setDecoder(activeInactiveDecoder()),
-      new Property(0x07, 'defrostingState').setDecoder(activeInactiveDecoder()),
-      new Property(0x08, 'ionisingState').setDecoder(activeInactiveDecoder()),
-      new Property(0x09, 'defrostingTemperature').setDecoder(
+      new PropertyDecoder(0x05, 'hvacState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x06, 'defoggingState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x07, 'defrostingState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x08, 'ionisingState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x09, 'defrostingTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0b, 'hvacWeekdayStartingTimes').setOptionalSubProperties(
-        'weekday',
-        [
-          new OptionalProperty(0x00, 'monday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x01, 'tuesday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x02, 'wednesday').setDecoder(
-            this.weekdayDecoder
-          ),
-          new OptionalProperty(0x03, 'thursday').setDecoder(
-            this.weekdayDecoder
-          ),
-          new OptionalProperty(0x04, 'friday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x05, 'saturday').setDecoder(
-            this.weekdayDecoder
-          ),
-          new OptionalProperty(0x06, 'sunday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x07, 'automatic').setDecoder(
-            this.weekdayDecoder
-          ),
-        ]
-      ),
-      new Property(0x0c, 'rearTemperatureSetting').setDecoder(
+      new PropertyDecoder(
+        0x0b,
+        'hvacWeekdayStartingTimes'
+      ).setOptionalSubProperties('weekday', [
+        new OptionalPropertyDecoder(0x00, 'monday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x01, 'tuesday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x02, 'wednesday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x03, 'thursday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x04, 'friday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x05, 'saturday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x06, 'sunday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x07, 'automatic').setDecoder(
+          this.weekdayDecoder
+        ),
+      ]),
+      new PropertyDecoder(0x0c, 'rearTemperatureSetting').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
     ];

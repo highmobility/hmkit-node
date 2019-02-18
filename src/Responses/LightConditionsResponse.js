@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { getRoundedIeee754ToBase10 } from '../helpers';
 
 export default class LightConditionsResponse extends PropertyResponse {
@@ -19,10 +19,10 @@ export default class LightConditionsResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'outsideLight').setDecoder(
+      new PropertyDecoder(0x01, 'outsideLight').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x02, 'insideLight').setDecoder(
+      new PropertyDecoder(0x02, 'insideLight').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
     ];

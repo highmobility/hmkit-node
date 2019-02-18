@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder, progressDecoder } from '../helpers';
 
 export default class RooftopControlResponse extends PropertyResponse {
@@ -25,9 +25,9 @@ export default class RooftopControlResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new Property(0x01, 'dimming').setDecoder(progressDecoder),
-      new Property(0x02, 'position').setDecoder(progressDecoder),
-      new Property(0x03, 'convertibleRoof').setDecoder(
+      new PropertyDecoder(0x01, 'dimming').setDecoder(progressDecoder),
+      new PropertyDecoder(0x02, 'position').setDecoder(progressDecoder),
+      new PropertyDecoder(0x03, 'convertibleRoof').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',
@@ -40,14 +40,14 @@ export default class RooftopControlResponse extends PropertyResponse {
           0x08: 'loading_position_immediate',
         })
       ),
-      new Property(0x04, 'sunroofTilt').setDecoder(
+      new PropertyDecoder(0x04, 'sunroofTilt').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'tilted',
           0x02: 'half_tilted',
         })
       ),
-      new Property(0x05, 'sunroofState').setDecoder(
+      new PropertyDecoder(0x05, 'sunroofState').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',
