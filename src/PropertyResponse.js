@@ -1,4 +1,4 @@
-import Property from './Property';
+import PropertyDecoder from './PropertyDecoder';
 import { bytesSum } from './helpers';
 import {
   PROPERTY_DATA_ID,
@@ -16,7 +16,7 @@ export default class PropertyResponse {
    * This parses all configured properties and adds them to "this" by their namespace.
    * Properties that do not have value will be ignored.
    */
-  parse(data: Uint8Array, properties: Array<Property>) {
+  parse(data: Uint8Array, properties: Array<PropertyDecoder>) {
     this.bindProperties(
       this.parseProperties(data, properties).filter(
         property =>

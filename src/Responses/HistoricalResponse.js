@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-computed-key */
 import PropertyResponse from '../PropertyResponse';
-import CapabilityProperty from '../CapabilityProperty';
-import OptionalProperty from '../OptionalProperty';
+import CapabilityPropertyDecoder from '../CapabilityPropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import CAPABILITY_IDENTIFIERS from '../CAPABILITY_IDENTIFIERS';
 
 export default class HistoricalResponse extends PropertyResponse {
@@ -29,10 +29,10 @@ export default class HistoricalResponse extends PropertyResponse {
     super();
 
     const properties = [
-      new CapabilityProperty(0x01, 'states').setOptionalSubProperties(
+      new CapabilityPropertyDecoder(0x01, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
         Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {
-          return new OptionalProperty(identifier, name).setDecoder(
+          return new OptionalPropertyDecoder(identifier, name).setDecoder(
             this.getCapabilityStateDecoder(identifier)
           );
         })

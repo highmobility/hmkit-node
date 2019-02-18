@@ -1,5 +1,5 @@
-import CapabilityProperty from '../src/CapabilityProperty';
-import OptionalProperty from '../src/OptionalProperty';
+import CapabilityPropertyDecoder from '../src/CapabilityPropertyDecoder';
+import OptionalPropertyDecoder from '../src/OptionalPropertyDecoder';
 import CAPABILITY_IDENTIFIERS from '../src/CAPABILITY_IDENTIFIERS';
 
 function getCapabilityDecoder(capability) {
@@ -10,15 +10,15 @@ function getCapabilityDecoder(capability) {
   });
 }
 
-describe(`CapabilityProperty`, () => {
+describe(`CapabilityPropertyDecoder`, () => {
   it(`should initialize`, () => {
-    const capabilityProperty = new CapabilityProperty(
+    const capabilityProperty = new CapabilityPropertyDecoder(
       0x01,
       'capabilities'
     ).setOptionalSubProperties(
       'capabilityIdentifier',
       Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) =>
-        new OptionalProperty(identifier, name).setDecoder(
+        new OptionalPropertyDecoder(identifier, name).setDecoder(
           getCapabilityDecoder(name)
         )
       )
@@ -40,7 +40,7 @@ describe(`CapabilityProperty`, () => {
   });
 
   it(`should decode itself properly`, () => {
-    const capabilityProperty = new CapabilityProperty(
+    const capabilityProperty = new CapabilityPropertyDecoder(
       0x01,
       'capabilities'
     ).setDecoder(data => data);
@@ -51,13 +51,13 @@ describe(`CapabilityProperty`, () => {
   });
 
   it(`should ignore missing subproperties`, () => {
-    const capabilityProperty = new CapabilityProperty(
+    const capabilityProperty = new CapabilityPropertyDecoder(
       0x01,
       'capabilities'
     ).setOptionalSubProperties(
       'capabilityIdentifier',
       Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) =>
-        new OptionalProperty(identifier, name).setDecoder(
+        new OptionalPropertyDecoder(identifier, name).setDecoder(
           getCapabilityDecoder(name)
         )
       )
