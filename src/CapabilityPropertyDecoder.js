@@ -9,14 +9,27 @@ export default class CapabilityPropertyDecoder extends PropertyDecoder {
       const subProperty = this.findSubProperty(data.slice(0, 2));
 
       if (!!subProperty) {
-        subProperty.parseValue(data.slice(2, data.length));
+        if (this.subPropertiesIdentifierNamespace !== null) {
+          return {
+            [this.namespace]: [
+              {
+                [this.subPropertiesIdentifierNamespace]:
+                  subProperty.identifierValue,
+                ...subProperty.parseValue(data.slice(2, data.length)),
+              },
+            ],
+          };
+        }
+
+        return {
+          [this.namespace]: subProperty.parseValue(data.slice(2, data.length)),
+        };
       }
 
-      return null;
+      return { [this.namespace]: null };
     }
 
-    this.value = this.decode(data);
-    return this.value;
+    return { [this.namespace]: this.decode(data) };
   };
 
   findSubProperty = (identifiers: Array<number>) =>

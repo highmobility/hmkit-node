@@ -13,7 +13,7 @@ export default class HonkHornFlashLightsResponse extends PropertyResponse {
       flashers: 'inactive',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -27,6 +27,6 @@ export default class HonkHornFlashLightsResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

@@ -19,7 +19,7 @@ export default class NaviDestinationResponse extends PropertyResponse {
       destinationName: 'Narnia',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -27,6 +27,6 @@ export default class NaviDestinationResponse extends PropertyResponse {
       new PropertyDecoder(0x02, 'destinationName').setDecoder(bytesToString),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

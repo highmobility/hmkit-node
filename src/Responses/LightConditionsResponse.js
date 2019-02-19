@@ -15,7 +15,7 @@ export default class LightConditionsResponse extends PropertyResponse {
       insideLight: 1000,
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -27,6 +27,6 @@ export default class LightConditionsResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

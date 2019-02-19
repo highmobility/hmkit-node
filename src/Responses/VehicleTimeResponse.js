@@ -13,13 +13,13 @@ export default class VehicleTimeResponse extends PropertyResponse {
       vehicleTime: 2018-02-17T12:05:02.000Z
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
       new PropertyDecoder(0x01, 'vehicleTime').setDecoder(timestampDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

@@ -73,7 +73,7 @@ export default class DoorLocksResponse extends PropertyResponse {
     }
 
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     /* prettier-ignore */
@@ -105,7 +105,7 @@ export default class DoorLocksResponse extends PropertyResponse {
     ];
     /* prettier-ignore-end */
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   positionDecoder(data: Array<Number>) {

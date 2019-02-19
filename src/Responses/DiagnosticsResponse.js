@@ -119,7 +119,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
       mileageMeters: 10000
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -231,7 +231,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new PropertyDecoder(0x1e, 'mileageMeters').setDecoder(bytesSum),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   pressureDecoder(bytes: Array<Number>) {

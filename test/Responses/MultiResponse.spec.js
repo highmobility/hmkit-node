@@ -14,6 +14,13 @@ describe(`MultiResponse`, () => {
     expect(response.parse()).toEqual({
       states: [
         {
+          capabilityIdentifier: 'engine',
+          state: {
+            ignition: 'engine_on',
+            accessoriesIgnition: 'powered_off',
+          },
+        },
+        {
           capabilityIdentifier: 'rooftop_control',
           state: {
             dimming: 22,
@@ -22,10 +29,6 @@ describe(`MultiResponse`, () => {
             sunroofTilt: 'tilted',
             sunroofState: 'open',
           },
-        },
-        {
-          capabilityIdentifier: 'engine',
-          state: { ignition: 'engine_on', accessoriesIgnition: 'powered_off' },
         },
       ],
     });

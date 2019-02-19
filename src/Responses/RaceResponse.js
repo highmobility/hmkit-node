@@ -76,7 +76,7 @@ export default class RaceResponse extends PropertyResponse {
       vehicleMoving: 'moving'
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -174,7 +174,7 @@ export default class RaceResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   axleDecoder(bytes: Array<Number>) {

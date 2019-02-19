@@ -155,7 +155,7 @@ export default class DashboardLightsResponse extends PropertyResponse {
       ]
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
     /* prettier-ignore */
     const properties = [
@@ -198,7 +198,7 @@ export default class DashboardLightsResponse extends PropertyResponse {
       ])
     ];
     /* prettier-ignore-end */
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   lightStateDecoder(data: Array<Number>) {

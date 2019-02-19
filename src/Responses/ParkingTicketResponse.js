@@ -22,7 +22,7 @@ export default class ParkingTicketResponse extends PropertyResponse {
       ticketEndTime: 2018-02-17T12:05:02.000Z,
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -38,6 +38,6 @@ export default class ParkingTicketResponse extends PropertyResponse {
       new PropertyDecoder(0x05, 'ticketEndTime').setDecoder(timestampDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

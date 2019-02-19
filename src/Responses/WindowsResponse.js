@@ -46,7 +46,7 @@ export default class WindowsResponse extends PropertyResponse {
       }]
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -93,7 +93,7 @@ export default class WindowsResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   openPercentageDecoder(bytes: Array<Number>) {

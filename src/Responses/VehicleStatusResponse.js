@@ -70,7 +70,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
     }
    */
 
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -130,7 +130,7 @@ export default class VehicleStatusResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   getCapabilityStateDecoder(identifier) {

@@ -13,13 +13,13 @@ export default class WeatherConditionsResponse extends PropertyResponse {
       rainIntensity: 0.5,
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
       new PropertyDecoder(0x01, 'rainIntensity').setDecoder(progressDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

@@ -15,8 +15,9 @@ export default class FuelingResponse extends PropertyResponse {
       gasFlapPosition: 'closed'
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
+
     const properties = [
       new PropertyDecoder(0x02, 'gasFlapLock').setDecoder(
         switchDecoder({
@@ -33,6 +34,6 @@ export default class FuelingResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

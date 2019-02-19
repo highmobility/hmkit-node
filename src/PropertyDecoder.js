@@ -41,23 +41,28 @@ export default class PropertyDecoder {
   parseValue = (data: Array<number>) => {
     if (this.subProperties.length > 0 && data.length > 0) {
       const subProperty = this.findSubProperty(data[0]);
-
       if (!!subProperty) {
-        subProperty.parseValue(data.slice(1, data.length));
+        if (this.subPropertiesIdentifierNamespace !== null) {
+          return {
+            [this.namespace]: [
+              {
+                [this.subPropertiesIdentifierNamespace]:
+                  subProperty.identifierValue,
+                ...subProperty.parseValue(data.slice(1, data.length)),
+              },
+            ],
+          };
+        }
+        return subProperty.parseValue(data.slice(1, data.length));
       }
 
-      return null;
+      return { [this.namespace]: null };
+    } else if (this.isArray) {
+      return { [this.namespace]: [this.decode(data)] };
+    } else if (this.namespace) {
+      return { [this.namespace]: this.decode(data) };
     }
-
-    if (this.isArray) {
-      if (!Array.isArray(this.value)) this.value = [];
-
-      this.value.push(this.decode(data));
-    } else {
-      this.value = this.decode(data);
-    }
-
-    return this.value;
+    return this.decode(data);
   };
 
   decode = (data: Array<number>) => {

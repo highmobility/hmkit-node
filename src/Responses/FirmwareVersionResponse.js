@@ -21,7 +21,7 @@ export default class FirmwareVersionResponse extends PropertyResponse {
       applicationVersion: 'v2.1.0-production'
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -32,7 +32,7 @@ export default class FirmwareVersionResponse extends PropertyResponse {
       new PropertyDecoder(0x03, 'applicationVersion').setDecoder(bytesToString),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   carSDKVersionDecoder(bytes: Uint8Array) {

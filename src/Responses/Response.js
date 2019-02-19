@@ -42,8 +42,9 @@ import CapabilitiesResponse from './CapabilitiesResponse';
 import VehicleStatusResponse from './VehicleStatusResponse';
 
 export default class Response {
-  constructor(data: Array<Number>) {
+  constructor(data: Array<Number>, config: Object = {}) {
     this.rawData = data;
+    this.config = config;
 
     this.checkRawDataLength();
 
@@ -118,7 +119,7 @@ export default class Response {
         return bytes;
       }
 
-      parsedValue = new Parser(bytes);
+      parsedValue = new Parser(bytes, this.config);
       return parsedValue;
     };
   })();

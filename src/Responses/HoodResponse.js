@@ -13,7 +13,7 @@ export default class HoodResponse extends PropertyResponse {
       position: 'closed',
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -26,6 +26,6 @@ export default class HoodResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

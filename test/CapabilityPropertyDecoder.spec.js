@@ -24,17 +24,18 @@ describe(`CapabilityPropertyDecoder`, () => {
       )
     );
 
-    capabilityProperty.parseValue([0x00, 0x20, 0x00, 0x01, 0x12]);
-
     expect(
-      capabilityProperty.subProperties.find(
-        ({ identifier }) => identifier[1] === 0x20
-      ).value
+      capabilityProperty.parseValue([0x00, 0x20, 0x00, 0x01, 0x12])
     ).toEqual({
-      supportedMessageTypes: [
-        'get_lock_state',
-        'lock_state',
-        'lock_unlock_doors',
+      capabilities: [
+        {
+          capabilityIdentifier: 'door_locks',
+          supportedMessageTypes: [
+            'get_lock_state',
+            'lock_state',
+            'lock_unlock_doors',
+          ],
+        },
       ],
     });
   });
@@ -47,7 +48,7 @@ describe(`CapabilityPropertyDecoder`, () => {
 
     expect(
       capabilityProperty.parseValue([0x00, 0x01, 0x02, 0x03, 0x04])
-    ).toEqual(expect.arrayContaining([0x00, 0x01, 0x02, 0x03, 0x04]));
+    ).toEqual({ capabilities: [0, 1, 2, 3, 4] });
   });
 
   it(`should ignore missing subproperties`, () => {

@@ -15,7 +15,7 @@ export default class OffroadResponse extends PropertyResponse {
       wheelSuspension: 0,
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -25,7 +25,7 @@ export default class OffroadResponse extends PropertyResponse {
       new PropertyDecoder(0x02, 'wheelSuspension').setDecoder(progressDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   routeInclineDecoder(bytes: Array<Number>) {

@@ -63,7 +63,7 @@ export default class HomeChargerResponse extends PropertyResponse {
     }
 
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
@@ -147,7 +147,7 @@ export default class HomeChargerResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   priceTariffDecoder(bytes: Array<Number>) {
