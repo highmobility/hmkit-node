@@ -1,5 +1,4 @@
 import PropertyDecoder from './PropertyDecoder';
-import Property from './Property';
 import { bytesSum, dateDecoder } from './helpers';
 import {
   PROPERTY_DATA_ID,
@@ -20,7 +19,7 @@ export default class PropertyResponse {
    */
   parse(
     data: Uint8Array,
-    properties: Array<Property>,
+    properties: Array<PropertyDecoder>,
     config: { withUniversalProperties: Boolean } = {}
   ) {
     this.parseProperties(
@@ -33,8 +32,8 @@ export default class PropertyResponse {
     });
   }
 
-  addUniversalProperties(properties: Array<Property>) {
-    const timestampProperty = new Property(0xa2, 'date').setDecoder(
+  addUniversalProperties(properties: Array<PropertyDecoder>) {
+    const timestampProperty = new PropertyDecoder(0xa2, 'date').setDecoder(
       dateDecoder
     );
 
@@ -48,20 +47,6 @@ export default class PropertyResponse {
     }
 
     return srcValue;
-  }
-
-  /*
-   * bindProperties()
-   *
-   * properties - parsed properties with values that will be binded.
-   *
-   * Binds properties to "this" by their namespace.
-   * This function can be used in extending class to override binding.
-   */
-  bindProperties(properties: Array<PropertyDecoder>) {
-    properties.forEach(property => {
-      this[property.namespace] = new Property(property.getValue());
-    });
   }
 
   /*
