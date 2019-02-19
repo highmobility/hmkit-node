@@ -5,7 +5,7 @@ import { hexToUint8Array } from '../src/encoding';
 
 describe(`PropertyResponse`, () => {
   it(`should parse properties correctly`, () => {
-    const data = hexToUint8Array('00350101000101');
+    const data = hexToUint8Array('00350101000401000101');
 
     const properties = [
       new PropertyDecoder(0x01, 'engine').setDecoder(
