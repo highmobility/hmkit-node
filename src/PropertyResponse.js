@@ -1,4 +1,5 @@
 import PropertyDecoder from './PropertyDecoder';
+import Property from './Property';
 import { bytesSum } from './helpers';
 import {
   PROPERTY_DATA_ID,
@@ -34,9 +35,9 @@ export default class PropertyResponse {
    * Binds properties to "this" by their namespace.
    * This function can be used in extending class to override binding.
    */
-  bindProperties(properties: Array<Property>) {
+  bindProperties(properties: Array<PropertyDecoder>) {
     properties.forEach(property => {
-      this[property.namespace] = property.getValue();
+      this[property.namespace] = new Property(property.getValue());
     });
   }
 
@@ -52,7 +53,7 @@ export default class PropertyResponse {
    * TODO: Add data length validation and individual property length validation
    * TODO: Maybe split this function into more readable chunks. This function does too much at the moment.
    */
-  parseProperties(data: Uint8Array, properties: Array<Property>) {
+  parseProperties(data: Uint8Array, properties: Array<PropertyDecoder>) {
     const propertiesData = [...data.slice(3, data.length)];
 
     if (propertiesData.length > 0) {
@@ -126,7 +127,7 @@ export default class PropertyResponse {
    * Returns property with correct identifier or null if property was not found.
    * If property is not found, parent function should definitely throw/show error.
    */
-  findProperty(identifier: Number, properties: Array<Property>) {
+  findProperty(identifier: Number, properties: Array<PropertyDecoder>) {
     return properties.find(property => property.identifier === identifier);
   }
 }

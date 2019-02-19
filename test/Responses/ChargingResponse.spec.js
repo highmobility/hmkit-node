@@ -11,39 +11,43 @@ describe(`ChargingResponse`, () => {
     );
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
-      estimatedRange: 30,
-      batteryLevel: 0.8,
-      batteryCurrentAC: -0.6,
-      batteryCurrentDC: -0.6,
-      chargerVoltageAC: 4,
-      chargerVoltageDC: 3,
-      chargeLimit: 0.55,
-      timeToCompleteCharge: 3,
-      chargingRateKW: 6,
-      chargePortState: 'open',
-      chargeMode: 'immediate',
-      maxChargingCurrent: 25,
-      plugType: 'type_2',
-      chargingWindowChosen: 'chosen',
-      departureTimes: [{ activeState: 'active', hour: 14, minute: 33 }],
-      reductionTimes: [{ startStop: 'start', hour: 14, minute: 33 }],
-      batteryTemperature: 38.4,
-      timers: [
-        {
-          timerType: 'preferred_start_time',
-          time: new Date('2018-10-04T12:10:33.000Z'),
-        },
-        {
-          timerType: 'preferred_end_time',
-          time: new Date('2018-10-22T12:10:33.000Z'),
-        },
-        {
-          timerType: 'departure_time',
-          time: new Date('2018-10-17T12:10:33.000Z'),
-        },
-      ],
-      pluggedIn: 'disconnected',
-      activeState: 'not_charging',
+      estimatedRange: { value: 30 },
+      batteryLevel: { value: 0.8 },
+      batteryCurrentAC: { value: -0.6 },
+      batteryCurrentDC: { value: -0.6 },
+      chargerVoltageAC: { value: 4 },
+      chargerVoltageDC: { value: 3 },
+      chargeLimit: { value: 0.55 },
+      timeToCompleteCharge: { value: 3 },
+      chargingRateKW: { value: 6 },
+      chargePortState: { value: 'open' },
+      chargeMode: { value: 'immediate' },
+      maxChargingCurrent: { value: 25 },
+      plugType: { value: 'type_2' },
+      chargingWindowChosen: { value: 'chosen' },
+      departureTimes: {
+        value: [{ activeState: 'active', hour: 14, minute: 33 }],
+      },
+      reductionTimes: { value: [{ startStop: 'start', hour: 14, minute: 33 }] },
+      batteryTemperature: { value: 38.4 },
+      timers: {
+        value: [
+          {
+            timerType: 'preferred_start_time',
+            time: new Date('2018-10-04T12:10:33.000Z'),
+          },
+          {
+            timerType: 'preferred_end_time',
+            time: new Date('2018-10-22T12:10:33.000Z'),
+          },
+          {
+            timerType: 'departure_time',
+            time: new Date('2018-10-17T12:10:33.000Z'),
+          },
+        ],
+      },
+      pluggedIn: { value: 'disconnected' },
+      activeState: { value: 'not_charging' },
     });
   });
 });
