@@ -15,14 +15,17 @@ export default class CapabilityPropertyDecoder extends PropertyDecoder {
               {
                 [this.subPropertiesIdentifierNamespace]:
                   subProperty.identifierValue,
-                ...subProperty.parseValue(data.slice(2, data.length)),
+                ...subProperty.parseValue(data.slice(2, data.length), false),
               },
             ],
           };
         }
 
         return {
-          [this.namespace]: subProperty.parseValue(data.slice(2, data.length)),
+          [this.namespace]: subProperty.parseValue(
+            data.slice(2, data.length),
+            false
+          ),
         };
       }
 

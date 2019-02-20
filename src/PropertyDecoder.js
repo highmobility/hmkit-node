@@ -1,3 +1,5 @@
+import Property from './Property';
+
 export default class PropertyDecoder {
   constructor(identifier: number, namespace: string) {
     this.identifier = identifier;
@@ -13,57 +15,45 @@ export default class PropertyDecoder {
     return this;
   };
 
-  getValue = () => {
-    if (
-      this.subProperties.length > 0 &&
-      this.subPropertiesIdentifierNamespace !== null
-    ) {
-      const value = [];
-
-      this.subProperties.forEach(subProperty => {
-        const subPropertyValue = subProperty.getValue();
-
-        if (subPropertyValue !== undefined && subPropertyValue !== null) {
-          value.push({
-            [this.subPropertiesIdentifierNamespace]:
-              subProperty.identifierValue,
-            ...subPropertyValue,
-          });
-        }
-      });
-
-      return value;
-    }
-
-    return this.value;
-  };
-
-  parseValue = (data: Array<number>) => {
+  parseValue = (data: Array<number>, isRoot = true) => {
     if (this.subProperties.length > 0 && data.length > 0) {
       const subProperty = this.findSubProperty(data[0]);
       if (!!subProperty) {
         if (this.subPropertiesIdentifierNamespace !== null) {
           return {
             [this.namespace]: [
-              {
-                [this.subPropertiesIdentifierNamespace]:
-                  subProperty.identifierValue,
-                ...subProperty.parseValue(data.slice(1, data.length)),
-              },
+              this.handlePropertyWrap(
+                {
+                  [this.subPropertiesIdentifierNamespace]:
+                    subProperty.identifierValue,
+                  ...subProperty.parseValue(data.slice(1, data.length), false),
+                },
+                isRoot
+              ),
             ],
           };
         }
-        return subProperty.parseValue(data.slice(1, data.length));
-      }
 
-      return { [this.namespace]: null };
+        return this.handlePropertyWrap(
+          subProperty.parseValue(data.slice(1, data.length), false),
+          isRoot
+        );
+      }
+      return { [this.namespace]: this.handlePropertyWrap(null, isRoot) };
     } else if (this.isArray) {
-      return { [this.namespace]: [this.decode(data)] };
+      return {
+        [this.namespace]: [this.handlePropertyWrap(this.decode(data), isRoot)],
+      };
     } else if (this.namespace) {
-      return { [this.namespace]: this.decode(data) };
+      return {
+        [this.namespace]: this.handlePropertyWrap(this.decode(data), isRoot),
+      };
     }
-    return this.decode(data);
+    return this.handlePropertyWrap(this.decode(data), isRoot);
   };
+
+  handlePropertyWrap = (decodedValue, isRoot) =>
+    isRoot ? new Property(decodedValue) : decodedValue;
 
   decode = (data: Array<number>) => {
     if (!!this.decoder) {
