@@ -1,7 +1,7 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
-import { percentToInteger } from '../helpers';
 import { validate, Joi } from '../validate';
+import { percentageToDouble } from '../encoding';
 
 export default class RooftopControlCommand extends BaseCommand {
   /**
@@ -30,12 +30,12 @@ export default class RooftopControlCommand extends BaseCommand {
     const dimmingBytes =
       typeof dimming !== 'number'
         ? []
-        : [0x01, 0x00, 0x01, percentToInteger(dimming)];
+        : this.buildProperty(0x01, percentageToDouble(dimming));
 
     const positionBytes =
       typeof position !== 'number'
         ? []
-        : [0x02, 0x00, 0x01, percentToInteger(position)];
+        : this.buildProperty(0x02, percentageToDouble(position));
 
     let convertibleRoofBytes = [];
     let sunroofTiltBytes = [];

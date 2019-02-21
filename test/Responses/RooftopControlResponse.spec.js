@@ -6,16 +6,16 @@ describe(`RooftopControlResponse`, () => {
   it(`should return RooftopControlResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        `0025010100011802000123030001000400010105000100a20008120b170f152e0078`
+        `00250101000b010008000000000000000002000b0100080000000000000000030004010001000400040100010005000401000100a2000b01000800000168e732e1c1`
       )
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: 24,
-      position: 35,
+      dimming: 0,
+      position: 0,
       convertibleRoof: 'closed',
-      sunroofTilt: 'tilted',
+      sunroofTilt: 'closed',
       sunroofState: 'closed',
     });
   });

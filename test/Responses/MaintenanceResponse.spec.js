@@ -6,7 +6,7 @@ describe(`MaintenanceResponse`, () => {
   it(`should return MaintenanceResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0034010100020190020003007530030001000400010005000100060002000007000100080008120a160f0a2100b4090008120a160f0a2100b40a0008120a160f0a2100b40b00191208007b0000087465737454657874000864657363546578740c0008120a160f0a2100b4a20008120b07122c170078'
+        '003401010005010002019002000601000300753003000401000100040004010001000500040100010006000501000200000700040100010008000b010008000001669baf11a909000b010008000001669baf11a90a000b010008000001669baf11a90b000c0100091208007b00000000000c000b010008000001669baf11a9a2000b01000800000168e72abf4a'
       )
     );
     expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
@@ -18,20 +18,20 @@ describe(`MaintenanceResponse`, () => {
       teleserviceAvailability: 'pending',
       serviceDistanceThreshold: 0,
       serviceTimeThreshold: 0,
-      automaticTeleserviceCallDate: new Date('2018-10-22T12:10:33.000Z'),
-      teleserviceBatteryCallDate: new Date('2018-10-22T12:10:33.000Z'),
-      nextInspectionDate: new Date('2018-10-22T12:10:33.000Z'),
+      automaticTeleserviceCallDate: new Date('2018-10-22T12:10:33.769Z'),
+      teleserviceBatteryCallDate: new Date('2018-10-22T12:10:33.769Z'),
+      nextInspectionDate: new Date('2018-10-22T12:10:33.769Z'),
       conditionBasedServices: [
         {
           year: 2018,
           month: 8,
           cbsIdentifier: 123,
           dueStatus: 'ok',
-          cbsText: 'testText',
-          description: 'descText',
+          cbsText: '',
+          description: '',
         },
       ],
-      brakeFluidChangeDate: new Date('2018-10-22T12:10:33.000Z'),
+      brakeFluidChangeDate: new Date('2018-10-22T12:10:33.769Z'),
     });
   });
 });

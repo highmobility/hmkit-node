@@ -6,19 +6,19 @@ describe(`HomeChargerResponse`, () => {
   it(`should return HomeChargerResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0060010100010002000100030001000400040000000005000100080001000900000a0001000b00000d0001000e00043f19999a0f00044248000010000400000000110010404a421cde5d1809402ac37d41743e9612000800402000004555521200080100000000000000120008023fa66666555344a20008120b060e1d180078'
+        '0060010100040100010102000401000100030004010001030400070100040000000005000401000100080004010001000900090100063132333132330a0004010001000b00030100000d0004010001000e00070100043f19999a0f00070100044248000010000701000400000000110013010010404a421cde5d1809402ac37d41743e9612000b0100080040a0000045555212000b0100080140a0000045555212000b0100080200000000455552a2000b01000800000168e7123931'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual({
-      charging: 'disconnected',
+      charging: 'plugged_in',
       authenticationMechanism: 'pin',
-      plugType: 'type_1',
+      plugType: 'chademo',
       chargingPower: 0,
       solarCharging: 'deactivated',
       hotspotEnabled: 'disabled',
-      hotspotSSID: '',
+      hotspotSSID: '123123',
       wiFiHotspotSecurity: 'none',
       wiFiHotspotPassword: '',
       authentication: 'unauthenticated',
@@ -27,9 +27,9 @@ describe(`HomeChargerResponse`, () => {
       minimumChargeCurrent: 0,
       coordinates: { latitude: 52.516506, longitude: 13.381815 },
       priceTariffs: [
-        { pricingType: 'starting_fee', price: 2.5, currency: 'EUR' },
-        { pricingType: 'per_minute', price: 0, currency: '' },
-        { pricingType: 'per_kwh', price: 1.3, currency: 'USD' },
+        { pricingType: 'starting_fee', price: 5, currency: 'EUR' },
+        { pricingType: 'per_minute', price: 5, currency: 'EUR' },
+        { pricingType: 'per_kwh', price: 0, currency: 'EUR' },
       ],
     });
   });

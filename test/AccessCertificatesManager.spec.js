@@ -41,19 +41,20 @@ describe(`AccessCertificatesManager`, () => {
     hmkit.certificates.accessCertificates = [];
 
     await hmkit.downloadAccessCertificate(accessToken);
-    expect(hmkit.certificates.get('DEBF2383C2B0E0AD03')).toBeInstanceOf(
+
+    expect(hmkit.certificates.get('1DED8E162D7924ADD3')).toBeInstanceOf(
       AccessCertificate
     );
 
     hmkit.certificates.accessCertificates = [];
     await hmkit.downloadAccessCertificate(accessToken);
-    expect(hmkit.certificates.get('DEBF2383C2B0E0AD03')).toBeInstanceOf(
+    expect(hmkit.certificates.get('1DED8E162D7924ADD3')).toBeInstanceOf(
       AccessCertificate
     );
 
     hmkit.certificates.accessCertificates = [];
     hmkit.certificates.certCache.destroy();
-    expect(hmkit.certificates.get('DEBF2383C2B0E0AD03')).toBeNull();
+    expect(hmkit.certificates.get('1DED8E162D7924ADD3')).toBeNull();
   });
 
   it(`should download access certificate`, async () => {

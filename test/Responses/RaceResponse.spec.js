@@ -6,7 +6,7 @@ describe(`RaceResponse`, () => {
   it(`should return RaceResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '005701010005000000000001000501000000000100050200000000010005030000000002000100030001000400010005000100060004000000000700040000000008000100090001000a000200000a000201000b0001000c0001000d0001000e0001000f000100100001001100010012000100a20008120a1d10190f0078'
+        '005701010008010005000000000001000801000501000000000100080100050200000000010008010005030000000002000b010008000000000000000003000b010008000000000000000004000b010008000000000000000005000401000100060007010004000000000700070100040000000008000401000100090004010001000a000501000200000a000501000201000b0004010001000c0004010001000d000b01000800000000000000000e0004010001000f000401000100100004010001001100040100010012000401000100a2000b01000800000168e7325da0'
       )
     );
 
@@ -14,22 +14,10 @@ describe(`RaceResponse`, () => {
 
     expect(response.parse()).toEqual({
       accelerations: [
-        {
-          type: 'longitudinal_acceleration',
-          gForce: 0,
-        },
-        {
-          type: 'lateral_acceleration',
-          gForce: 0,
-        },
-        {
-          type: 'front_lateral_acceleration',
-          gForce: 0,
-        },
-        {
-          type: 'rear_lateral_acceleration',
-          gForce: 0,
-        },
+        { type: 'longitudinal_acceleration', gForce: 0 },
+        { type: 'lateral_acceleration', gForce: 0 },
+        { type: 'front_lateral_acceleration', gForce: 0 },
+        { type: 'rear_lateral_acceleration', gForce: 0 },
       ],
       understeering: 0,
       oversteering: 0,
@@ -40,14 +28,8 @@ describe(`RaceResponse`, () => {
       rearSuspensionSteering: 0,
       electronicStabilityProgram: 'inactive',
       brakeTorqueVectorings: [
-        {
-          axle: 'front_axle',
-          vectoring: 'inactive',
-        },
-        {
-          axle: 'rear_axle',
-          vectoring: 'inactive',
-        },
+        { axle: 'front_axle', vectoring: 'inactive' },
+        { axle: 'rear_axle', vectoring: 'inactive' },
       ],
       gearMode: 'manual',
       selectedGear: 0,

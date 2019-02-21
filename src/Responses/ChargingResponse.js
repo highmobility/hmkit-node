@@ -3,7 +3,7 @@ import Property from '../Property';
 import OptionalProperty from '../OptionalProperty';
 import {
   bytesSum,
-  dateDecoder,
+  timestampDecoder,
   getRoundedIeee754ToBase10,
   switchDecoder,
   progressDecoder,
@@ -42,7 +42,7 @@ export default class ChargingResponse extends PropertyResponse {
       batteryCurrentDC: -0.6,
       chargerVoltageAC: 0,
       chargerVoltageDC: 0,
-      chargeLimit: 1,
+      chargeLimit: 0.8,
       timeToCompleteCharge: 0,
       chargingRateKW: 0,
       chargePortState: 'closed',
@@ -172,7 +172,7 @@ export default class ChargingResponse extends PropertyResponse {
 
   timerTimeDecoder(...args) {
     return {
-      time: dateDecoder(...args),
+      time: timestampDecoder(...args),
     };
   }
 

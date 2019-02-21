@@ -1,5 +1,6 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
+import { percentageToDouble } from '../encoding';
 
 export default class WindowsCommand extends BaseCommand {
   /**
@@ -74,7 +75,7 @@ export default class WindowsCommand extends BaseCommand {
         ...openPercentages.map(({ windowLocation, openPercentage }) =>
           this.buildProperty(0x01, [
             this.getWindowLocationByte(windowLocation),
-            openPercentage * 100,
+            ...percentageToDouble(openPercentage),
           ])
         )
       );

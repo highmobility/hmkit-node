@@ -19,7 +19,8 @@ describe(`Response`, () => {
   });
 
   it(`should return cached version if parse is called multiple times`, () => {
-    const response = new Response(hexToUint8Array('00350101000100'));
+    const response = new Response(hexToUint8Array('00350101000401000100'));
+
     const parsed1 = response.parse();
     const parsed2 = response.parse();
 

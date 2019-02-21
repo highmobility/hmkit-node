@@ -4,7 +4,11 @@ import { hexToUint8Array } from '../../src/encoding';
 
 describe(`EngineResponse`, () => {
   it(`should return EngineResponse`, () => {
-    const response = new Response(hexToUint8Array('0035010100010002000100'));
+    const response = new Response(
+      hexToUint8Array(
+        '0035010100040100010002000401000100a2000b01000800000168e703ff30'
+      )
+    );
 
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual({

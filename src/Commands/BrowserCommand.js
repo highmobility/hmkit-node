@@ -1,8 +1,9 @@
 import Command from './Command';
-import { intToTwoBytes, stringToBytes } from '../encoding';
+import BaseCommand from './BaseCommand';
+import { stringToBytes } from '../encoding';
 import { validate, Joi } from '../validate';
 
-export default class BrowserCommand {
+export default class BrowserCommand extends BaseCommand {
   /**
    * @function loadUrl
    *
@@ -17,15 +18,11 @@ export default class BrowserCommand {
       },
     ]);
 
-    const urlBytes = stringToBytes(url);
-
     return new Command([
       0x00,
       0x49,
       0x00,
-      0x01,
-      ...intToTwoBytes(urlBytes.length),
-      ...urlBytes,
+      ...this.buildProperty(0x01, stringToBytes(url)),
     ]);
   }
 }

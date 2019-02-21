@@ -1,7 +1,7 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
 import { bytesToString } from '../encoding';
-import { switchDecoder, dateDecoder } from '../helpers';
+import { switchDecoder, timestampDecoder } from '../helpers';
 
 export default class ParkingTicketResponse extends PropertyResponse {
   static identifier = [0x00, 0x47];
@@ -34,8 +34,8 @@ export default class ParkingTicketResponse extends PropertyResponse {
       ),
       new Property(0x02, 'operatorName').setDecoder(bytesToString),
       new Property(0x03, 'operatorTicketID').setDecoder(bytesToString),
-      new Property(0x04, 'ticketStartTime').setDecoder(dateDecoder),
-      new Property(0x05, 'ticketEndTime').setDecoder(dateDecoder),
+      new Property(0x04, 'ticketStartTime').setDecoder(timestampDecoder),
+      new Property(0x05, 'ticketEndTime').setDecoder(timestampDecoder),
     ];
 
     this.parse(data, properties);

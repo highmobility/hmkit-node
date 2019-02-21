@@ -5,7 +5,7 @@ import {
   progressDecoder,
   bytesSum,
   getRoundedIeee754ToBase10,
-  dateDecoder,
+  timestampDecoder,
 } from '../helpers';
 
 export default class UsageResponse extends PropertyResponse {
@@ -90,14 +90,14 @@ export default class UsageResponse extends PropertyResponse {
         getRoundedIeee754ToBase10(1)
       ),
       new Property(0x09, 'mileageAfterLastTrip').setDecoder(bytesSum),
-      new Property(0x0a, 'lastTripElectricPortion').setDecoder(bytesSum),
+      new Property(0x0a, 'lastTripElectricPortion').setDecoder(progressDecoder),
       new Property(0x0b, 'lastTripAverageEnergyRecuperation').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
       new Property(0x0c, 'lastTripBatteryRemaining').setDecoder(
         progressDecoder
       ),
-      new Property(0x0d, 'lastTripDate').setDecoder(dateDecoder),
+      new Property(0x0d, 'lastTripDate').setDecoder(timestampDecoder),
       new Property(0x0e, 'averageFuelConsumption').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),

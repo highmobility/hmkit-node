@@ -5,12 +5,14 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`VehicleTimeResponse`, () => {
   it(`should return VehicleTimeResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00500101000811010A102033FF88')
+      hexToUint8Array(
+        '00500101000b01000800000168ec154403a2000b01000800000168ec1872e7'
+      )
     );
 
     expect(response.parse()).toBeInstanceOf(VehicleTimeResponse);
     expect(response.parse()).toEqual({
-      vehicleTime: new Date('2017-01-10T18:32:51.000Z'),
+      vehicleTime: new Date('2019-02-14T12:57:23.203Z'),
     });
   });
 });
