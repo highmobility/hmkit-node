@@ -22,18 +22,17 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {Number} chargeLimit (number) Charge limit 0..1 (0 = 0%, 1 = 100%)
    * @property {Number} timeToCompleteCharge (number) Time to complete charge in min
    * @property {Number} chargingRateKW (number) Charging rate (kW)
-   * @property {String} chargePortState (string) Charge port state
-   * @property {String} chargeMode (string) Charge mode
+   * @property {String} chargePortState (string: 'closed|open') Charge port state
+   * @property {String} chargeMode (string: 'immediate|timer_based|inductive') Charge mode
    * @property {Number} maxChargingCurrent (number) Maximum charging current in 4-bytes per IEEE 754
-   * @property {String} plugType (string) Plug state
-   * @property {String} chargingWindowChosen (string) Charging window chosen
+   * @property {String} plugType (string: 'type_1|type_2|ccs|chademo') Plug state
+   * @property {String} chargingWindowChosen (string: 'not_chosen|chosen') Charging window chosen
    * @property {Array} departureTimes (array) Departure times [{ activeState: (boolean), hour: (number), minute: (number)}]
    * @property {Array} reductionTimes (array) Reduction of charging-current times [{ startStop: (string), hour: (number), minute: (number) }]
    * @property {Number} batteryTemperature (number) Battery temperature in Celsius in 4-bytes per IEEE 754
    * @property {Array} timers (array) Charging timers [{ timerType: (string), time: (date) }]
    * @property {String} pluggedIn (string) Plugged in
-   * @property {String} activeState (string) Charging state
-   *
+   * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
    * @example ChargingResponse
     {
       estimatedRange: 30,
