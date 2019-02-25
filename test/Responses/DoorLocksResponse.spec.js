@@ -17,7 +17,6 @@ describe(`DoorLocksResponse`, () => {
         { doorLocation: 'front_right', lockState: 'unlocked' },
         { doorLocation: 'rear_right', lockState: 'unlocked' },
         { doorLocation: 'rear_left', lockState: 'unlocked' },
-        { doorLocation: 'hatch', lockState: 'unlocked' },
         { doorLocation: 'all', lockState: 'unlocked' },
       ],
       locks: [
@@ -25,7 +24,6 @@ describe(`DoorLocksResponse`, () => {
         { doorLocation: 'front_right', lockState: 'unlocked' },
         { doorLocation: 'rear_right', lockState: 'unlocked' },
         { doorLocation: 'rear_left', lockState: 'unlocked' },
-        { doorLocation: 'hatch', lockState: 'unlocked' },
         { doorLocation: 'all', lockState: 'unlocked' },
       ],
       positions: [
@@ -33,7 +31,6 @@ describe(`DoorLocksResponse`, () => {
         { doorLocation: 'front_right', position: 'closed' },
         { doorLocation: 'rear_right', position: 'closed' },
         { doorLocation: 'rear_left', position: 'closed' },
-        { doorLocation: 'hatch', position: 'closed' },
         { doorLocation: 'all', position: 'closed' },
       ],
     });

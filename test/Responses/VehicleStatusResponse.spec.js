@@ -38,7 +38,6 @@ describe(`VehicleStatusResponse`, () => {
               { doorLocation: 'front_right', lockState: 'locked' },
               { doorLocation: 'rear_right', lockState: 'locked' },
               { doorLocation: 'rear_left', lockState: 'locked' },
-              { doorLocation: 'hatch', lockState: 'locked' },
               { doorLocation: 'all', lockState: 'locked' },
             ],
             locks: [
@@ -46,7 +45,6 @@ describe(`VehicleStatusResponse`, () => {
               { doorLocation: 'front_right', lockState: 'locked' },
               { doorLocation: 'rear_right', lockState: 'locked' },
               { doorLocation: 'rear_left', lockState: 'locked' },
-              { doorLocation: 'hatch', lockState: 'locked' },
               { doorLocation: 'all', lockState: 'locked' },
             ],
             positions: [
@@ -54,7 +52,6 @@ describe(`VehicleStatusResponse`, () => {
               { doorLocation: 'front_right', position: 'closed' },
               { doorLocation: 'rear_right', position: 'closed' },
               { doorLocation: 'rear_left', position: 'closed' },
-              { doorLocation: 'hatch', position: 'closed' },
               { doorLocation: 'all', position: 'closed' },
             ],
           },
