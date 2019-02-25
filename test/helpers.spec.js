@@ -2,9 +2,7 @@ import {
   bytesSum,
   chunkArray,
   switchDecoder,
-  dateDecoder,
   matrixZoneDecoder,
-  percentToInteger,
   progressDecoder,
 } from '../src/helpers';
 
@@ -41,27 +39,22 @@ describe(`helpers`, () => {
     expect(decoder([])).toBeNull();
   });
 
-  it(`should decode date correctly`, () => {
-    const decodedDate = dateDecoder([0x01, 0x01, 0x01, 0x01, 0x01]);
-    const invalidDate = dateDecoder([0x01, 0x01, 0x01]);
-
-    expect(decodedDate).toEqual(new Date('2001-01-01T01:01:00.000Z'));
-
-    expect(invalidDate).toEqual(null);
-  });
-
   it(`should decode matrix correctly`, () => {
     const matrix = matrixZoneDecoder([0x00]);
     expect(matrix).toEqual({ columns: 0, rows: 0 });
   });
 
   it(`should decode progress correctly`, () => {
-    const progress = progressDecoder([0x5a]);
+    const progress = progressDecoder([
+      0x3f,
+      0xec,
+      0xcc,
+      0xcc,
+      0xcc,
+      0xcc,
+      0xcc,
+      0xcd,
+    ]);
     expect(progress).toEqual(0.9);
-  });
-
-  it(`should convert percent to integer`, () => {
-    expect(percentToInteger(0.5)).toEqual(50);
-    expect(percentToInteger(20)).toEqual(20);
   });
 });

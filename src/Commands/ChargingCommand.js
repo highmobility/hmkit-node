@@ -1,6 +1,6 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
-import { dateToBytes } from '../encoding';
+import { dateToBytes, percentageToDouble } from '../encoding';
 import { validate, Joi } from '../validate';
 
 export default class ChargingCommand extends BaseCommand {
@@ -42,7 +42,12 @@ export default class ChargingCommand extends BaseCommand {
       },
     ]);
 
-    return new Command([0x00, 0x23, 0x13, ...this.buildProperty(0x01, limit)]);
+    return new Command([
+      0x00,
+      0x23,
+      0x13,
+      ...this.buildProperty(0x01, percentageToDouble(limit)),
+    ]);
   }
 
   /**
@@ -62,7 +67,7 @@ export default class ChargingCommand extends BaseCommand {
   /**
    * @function setChargeMode
    *
-   * @property {String} chargeMode (string: 'immediate', 'timer_based') Charge mode
+   * @property {String} chargeMode (string: 'immediate|timer_based|inductive') Charge mode
    */
   static setChargeMode(chargeMode: string) {
     validate([
@@ -70,7 +75,7 @@ export default class ChargingCommand extends BaseCommand {
         value: chargeMode,
         name: 'Charge mode',
         condition: Joi.string()
-          .valid('immediate', 'timer_based')
+          .valid('immediate', 'timer_based', 'inductive')
           .required(),
       },
     ]);

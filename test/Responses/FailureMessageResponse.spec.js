@@ -5,7 +5,7 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`FailureMessageResponse`, () => {
   it(`should return FailureMessageResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00020101000200450200010003000101')
+      hexToUint8Array('00020101000501000200450200040100010003000401000101')
     );
 
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
@@ -25,7 +25,9 @@ describe(`FailureMessageResponse`, () => {
   });
 
   it(`should return FailureMessageResponse with no Auto API info`, () => {
-    const response = new Response(hexToUint8Array('0002010200010003000101'));
+    const response = new Response(
+      hexToUint8Array('0002010200040100010003000401000101')
+    );
 
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
     expect(response.parse().autoApi).toBeUndefined();

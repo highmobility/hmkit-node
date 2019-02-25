@@ -1,5 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
+import { progressDecoder } from '../helpers';
 
 export default class OffroadResponse extends PropertyResponse {
   static identifier = [0x00, 0x52];
@@ -19,7 +20,7 @@ export default class OffroadResponse extends PropertyResponse {
 
     const properties = [
       new Property(0x01, 'routeIncline').setDecoder(this.routeInclineDecoder),
-      new Property(0x02, 'wheelSuspension'),
+      new Property(0x02, 'wheelSuspension').setDecoder(progressDecoder),
     ];
 
     this.parse(data, properties);

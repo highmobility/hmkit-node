@@ -15,6 +15,7 @@ describe(`RooftopControlCommand`, () => {
       position: expect.any(Number),
       convertibleRoof: expect.any(String),
       sunroofTilt: expect.any(String),
+      sunroofState: expect.any(String),
     });
   });
 
@@ -22,19 +23,21 @@ describe(`RooftopControlCommand`, () => {
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
       hmkit.commands.RooftopControlCommand.control(
-        22,
-        33,
+        0.2,
+        0.3,
         'closed_secured',
-        'tilted'
+        'tilted',
+        'open'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: 22,
-      position: 33,
+      dimming: 0.2,
+      position: 0.3,
       convertibleRoof: 'closed_secured',
       sunroofTilt: 'tilted',
+      sunroofState: 'open',
     });
   });
 
@@ -44,7 +47,9 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.getState()
     )).parse();
     // Ensure new value is different from old
-    const newDimming = oldData.dimming >= 99 ? 1 : oldData.dimming + 1;
+    const newDimming = Number(
+      (oldData.dimming >= 0.99 ? 0.01 : oldData.dimming + 0.01).toFixed(2)
+    );
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -56,6 +61,7 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
+      sunroofState: oldData.sunroofState,
     });
   });
 
@@ -65,7 +71,8 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.getState()
     )).parse();
     // Ensure new value is different from old
-    const newPosition = oldData.position >= 99 ? 1 : oldData.position + 1;
+    const newPosition =
+      oldData.position >= 0.99 ? 0.01 : oldData.position + 0.01;
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -78,6 +85,7 @@ describe(`RooftopControlCommand`, () => {
       position: newPosition,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
+      sunroofState: oldData.sunroofState,
     });
   });
 
@@ -104,6 +112,7 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: newRoofState,
       sunroofTilt: oldData.sunroofTilt,
+      sunroofState: oldData.sunroofState,
     });
   });
 
@@ -133,6 +142,38 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: newSunroofTilt,
+      sunroofState: oldData.sunroofState,
+    });
+  });
+
+  it('should control sunroof state separately', async () => {
+    const oldData = (await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.getState()
+    )).parse();
+
+    const newSunroofState =
+      oldData.sunroofState === 'closed' ? 'open' : 'closed';
+
+    const response = await hmkit.telematics.sendCommand(
+      vehicleSerial,
+      hmkit.commands.RooftopControlCommand.control(
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        newSunroofState
+      )
+    );
+
+    expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
+
+    expect(response.parse()).toEqual({
+      dimming: oldData.dimming,
+      position: oldData.position,
+      convertibleRoof: oldData.convertibleRoof,
+      sunroofTilt: oldData.sunroofTilt,
+      sunroofState: newSunroofState,
     });
   });
 });

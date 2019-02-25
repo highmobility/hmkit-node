@@ -580,8 +580,8 @@ parameters-description="(array) Dashbaord lights ([{lightName: (String)&comma; s
 
 {%
 include code-node-sdk-response.html
-parameters-name="mileage, engineOilTemperature, speed, engineRPM, fuelLevel, estimatedRange, washerFluidLevel, batteryVoltage, adblueLevel, distanceSinceReset, distanceSinceStart, fuelVolume, antiLockBraking, engineCoolantTemperature, engineTotalOperatingHours, engineTotalFuelConsumption, brakeFluidLevel, engineTorque, engineLoad, wheelBasedSpeed, batteryLevel, checkControlMessages, tirePressures, tireTemperatures, wheelRpms, troubleCodes"
-parameters-description="(number) The car mileage (odometer) in km, (number) Engine oil temperature in Celsius&comma; whereas can be negative, (number) The car speed on km/h&comma; whereas can be negative, (number) RPM of the Engine, (number) Fuel level percentage between 0-1, (number) Estimated range, (string) Washer fluid level, (number) Battery voltage per IEEE 754 formatting, (number) AdBlue level in liters formatted in 4-bytes per IEEE 754, (number) The distance driven in km since reset, (number) The distance driven in km since trip start, (number) The fuel volume measured in liters, (string) Anti-lock braking system (ABS), (number) Engine coolant temperature in Celsius&comma; whereas can be negative, (number) The accumulated time of engine operation per IEEE 754 formatting, (number) The accumulated lifespan fuel consumption in liters per IEEE 754 formatting, (string) Brake fluid level, (number) Current engine torque percentage between 0-1, (number) Current engine load percentage between 0-1, (number) The vehicle speed in km/h measured at the wheel base&comma; whereas can be negative, (number) Battery level 0..1 (0 = 0%&comma; 1 = 100%), (array) Check control message ([{ id: (number)&comma; remainingMinutes: (number)&comma; text: (string)&comma; status: (string) }]), (Object) Tire pressures [{ location: (string)&comma; pressure: (number) }], (Object) Tire pressures [{ location: (string)&comma; temperature: (number) }], (Object) Tire pressures [{ location: (string)&comma; rpm: (number) }], (array) Trouble codes [{ occurences: (number)&comma; id: (string)&comma; ecuId: (string)&comma; status: (string) }]"
+parameters-name="mileage, engineOilTemperature, speed, engineRPM, fuelLevel, estimatedRange, washerFluidLevel, batteryVoltage, adblueLevel, distanceSinceReset, distanceSinceStart, fuelVolume, antiLockBraking, engineCoolantTemperature, engineTotalOperatingHours, engineTotalFuelConsumption, brakeFluidLevel, engineTorque, engineLoad, wheelBasedSpeed, batteryLevel, checkControlMessages, tirePressures, tireTemperatures, wheelRpms, troubleCodes, mileageMeters"
+parameters-description="(number) The car mileage (odometer) in km, (number) Engine oil temperature in Celsius&comma; whereas can be negative, (number) The car speed on km/h&comma; whereas can be negative, (number) RPM of the Engine, (number) Fuel level percentage between 0-1, (number) Estimated range, (string) Washer fluid level, (number) Battery voltage per IEEE 754 formatting, (number) AdBlue level in liters formatted in 4-bytes per IEEE 754, (number) The distance driven in km since reset, (number) The distance driven in km since trip start, (number) The fuel volume measured in liters, (string) Anti-lock braking system (ABS), (number) Engine coolant temperature in Celsius&comma; whereas can be negative, (number) The accumulated time of engine operation per IEEE 754 formatting, (number) The accumulated lifespan fuel consumption in liters per IEEE 754 formatting, (string) Brake fluid level, (number) Current engine torque percentage between 0-1, (number) Current engine load percentage between 0-1, (number) The vehicle speed in km/h measured at the wheel base&comma; whereas can be negative, (number) Battery level 0..1 (0 = 0%&comma; 1 = 100%), (array) Check control message ([{ id: (number)&comma; remainingMinutes: (number)&comma; text: (string)&comma; status: (string) }]), (Object) Tire pressures [{ location: (string)&comma; pressure: (number) }], (Object) Tire pressures [{ location: (string)&comma; temperature: (number) }], (Object) Tire pressures [{ location: (string)&comma; rpm: (number) }], (array) Trouble codes [{ occurences: (number)&comma; id: (string)&comma; ecuId: (string)&comma; status: (string) }], (number) Mileage in meters"
 %}
 
 
@@ -660,7 +660,8 @@ parameters-description="(number) The car mileage (odometer) in km, (number) Engi
    id: 'test id',
    ecuId: 'test ECU id',
    status: 'Alert',
- }]
+ }],
+ mileageMeters: 10000
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -811,8 +812,8 @@ parameters-description="(object `{versionMajor: (number)&comma; versionMinor: (s
 
 {%
 include code-node-sdk-response.html
-parameters-name="gasFlap"
-parameters-description="(string 'open|closed') Gas flap status"
+parameters-name="gasFlapLock, gasFlapPosition"
+parameters-description="(string 'unlocked|locked') Gas flap lock, (string 'closed|opened|intermediate') Gas flap position"
 %}
 
 
@@ -820,7 +821,8 @@ parameters-description="(string 'open|closed') Gas flap status"
 <h4>Example</h4>
 {% capture code %}
 <FuelingResponse> {
- gasFlap: 'open'
+ gasFlapLock: 'unlocked',
+ gasFlapPosition: 'closed'
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -976,8 +978,8 @@ parameters-description="(number) Outside illuminance in lux&comma; formatted as 
 
 {%
 include code-node-sdk-response.html
-parameters-name="frontExteriorLight, rearExteriorLight, interiorLight, ambientLight, reverseLight, emergencyBrakeLight"
-parameters-description="(string) Front exterior light state, (string) Rear exterior light state, (string) Interior light state, (string) Ambient light color, (string) Reverse light state, (string) Emergency brake light state"
+parameters-name="frontExteriorLight, rearExteriorLight, ambientLight, reverseLight, emergencyBrakeLight, fogLights, readingLamps, interiorLights"
+parameters-description="(string 'inactive|active|active_with_full_beam|dlr|automatic') Front exterior light state, (string 'inactive|active') Rear exterior light state, (string) Ambient light color, (string 'inactive|active') Reverse light state, (string 'inactive|active') Emergency brake light state, (array) Fog lights ([{ location: (string 'front|rear')&comma; state: (string 'inactive|active') }]), (Array Reading lamps { location: (string 'front_left|front_right|rear_right|rear_left')&comma; state: (string 'inactive|active')}`), (array) Interior lights ([{ location: (string 'front|rear')&comma; state: (string 'inactive|active') }])"
 %}
 
 
@@ -987,10 +989,36 @@ parameters-description="(string) Front exterior light state, (string) Rear exter
 <LightsResponse> {
  frontExteriorLight: 'inactive',
  rearExteriorLight: 'inactive',
- interiorLight: 'inactive',
  ambientLight: '#254f4c',
  reverseLight: 'active',
- emergencyBrakeLight: 'active'
+ emergencyBrakeLight: 'active',
+ fogLights: [{
+   location: 'front'
+   state: 'active'
+ }, {
+   location: 'rear'
+   state: 'inactive'
+ }],
+ readingLamps: [{
+   location: 'front_left',
+   state: 'inactive'
+ }, {
+   location: 'front_right',
+   state: 'inactive'
+ }, {
+   location: 'rear_right',
+   state: 'inactive'
+ }, {
+   location: 'rear_left',
+   state: 'inactive'
+ }],
+ interiorLights: [{
+   location: 'front'
+   state: 'active'
+ }, {
+   location: 'rear'
+   state: 'inactive'
+ }]
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1003,7 +1031,7 @@ parameters-description="(string) Front exterior light state, (string) Rear exter
 {%
 include code-node-sdk-response.html
 parameters-name="daysToNextService, kilometersToNextService, cbsReportsCount, monthsToExhaustInspection, teleserviceAvailability, serviceDistanceThreshold, serviceTimeThreshold, automaticTeleserviceCallDate, teleserviceBatteryCallDate, nextInspectionDate, conditionBasedServices, brakeFluidChangeDate"
-parameters-description="(number) Number of days until next servicing of the car&comma; whereas negative is overdue, (number) Amount of kilometers until next servicing of the car, (number) The number of CBS reports, (number) Number of months until exhaust inspection, (string: 'pending|idle|successful|error') Teleservice availability, (number) Distance threshold for Service, (number) Time threshold&comma; in weeks&comma; for Service, (date) Automatic teleservice call date, (date) Teleservice battery call date, (date) Next inspection date, (Array) Condition based services ([{ year: (number)&comma; month: (number)&comma; cbsIdentifier: (number)&comma; dueStatus: (string: 'ok|pending|overdue'&comma; cbsText: (string)) }]), (Date) Brake fluid change date"
+parameters-description="(number) Number of days until next servicing of the car&comma; whereas negative is overdue, (number) Amount of kilometers until next servicing of the car, (number) The number of CBS reports, (number) Number of months until exhaust inspection, (string: 'pending|idle|successful|error') Teleservice availability, (number) Distance threshold for Service, (number) Time threshold&comma; in weeks&comma; for Service, (date) Automatic teleservice call date, (date) Teleservice battery call date, (date) Next inspection date, (Array) Condition based services ([{ year: (number)&comma; month: (number)&comma; cbsIdentifier: (number)&comma; dueStatus: (string: 'ok|pending|overdue')&comma; cbsText: (string)&comma; description: (string) }]), (Date) Brake fluid change date"
 %}
 
 
@@ -1026,7 +1054,8 @@ parameters-description="(number) Number of days until next servicing of the car&
    month: 8,
    cbsIdentifier: 123,
    dueStatus: 'overdue',
-   cbsText: 'Test'
+   cbsText: 'Test',
+   description: 'asdasd'
  }],
  brakeFluidChangeDate: 2018-10-22T12:10:33.000Z
 }
@@ -1236,8 +1265,8 @@ parameters-description="(object '{type: (string)&comma; gForce: (number)}') Acce
 
 {%
 include code-node-sdk-response.html
-parameters-name="dimming, position, convertibleRoof, sunroofTilt"
-parameters-description="(number) Percentage value between 0-100 whereas 100 is opaque, (number) Percentage value between 0-100 whereas 100 is fully open, (string 'closed | open | emergency_locked | closed_secured | open_secured | hard_top_mounted | intermediate_position | loading_position | loading_position_immediate') Convertible roof state, (string 'closed|tilted|half_tilted') Sunroof tilt state"
+parameters-name="dimming, position, convertibleRoof, sunroofTilt, sunroofState"
+parameters-description="(number) Percentage value between 0-100 whereas 100 is opaque, (number) Percentage value between 0-100 whereas 100 is fully open, (string 'closed | open | emergency_locked | closed_secured | open_secured | hard_top_mounted | intermediate_position | loading_position | loading_position_immediate') Convertible roof state, (string 'closed|tilted|half_tilted') Sunroof tilt state, (string 'closed|open|intermediate') Sunroof state"
 %}
 
 
@@ -1248,7 +1277,8 @@ parameters-description="(number) Percentage value between 0-100 whereas 100 is o
  dimming: 23,
  position: 34,
  convertibleRoof: 'closed',
- sunroofTilt: 'closed'
+ sunroofTilt: 'closed',
+ sunroofState: 'open'
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1499,8 +1529,8 @@ parameters-description="(object) Coordinates ({ latitude: (double)&comma; longit
 
 {%
 include code-node-sdk-response.html
-parameters-name="vin, powertrain, modelName, name, licensePlate, salesDesignation, modelYear, colorName, powerInKw, numberOfDoors, numberOfSeats, engineVolume, engineMaxTorque, gearbox, states"
-parameters-description="(string) The unique Vehicle Identification Number, (string 'unknown|all_electric|combustion_engine|phev|hydrogen|hydrogen_hybrid') Powertrain, (string) Model name, (string) Car's name, (string) License plate, (string) Sales designation, (number) Model year, (string) Color name, (number) Power in kw, (number) Number of doors, (number) Number of seats, (number) The engine volume displacement in liters, (number) The maximum engine torque in Nm, (string 'manual|automatic|semi_automatic') Gearbox, (array '{capabilityIdentifier: (string)&comma; state: (object)}') Capability states"
+parameters-name="vin, powertrain, modelName, name, licensePlate, salesDesignation, modelYear, colorName, powerInKw, numberOfDoors, numberOfSeats, engineVolume, engineMaxTorque, gearbox, displayUnit, driverSeatLocation, equipments, brand, states"
+parameters-description="(string) The unique Vehicle Identification Number, (string 'unknown|all_electric|combustion_engine|phev|hydrogen|hydrogen_hybrid') Powertrain, (string) Model name, (string) Car's name, (string) License plate, (string) Sales designation, (number) Model year, (string) Color name, (number) Power in kw, (number) Number of doors, (number) Number of seats, (number) The engine volume displacement in liters, (number) The maximum engine torque in Nm, (string 'manual|automatic|semi_automatic') Gearbox, (string 'km|miles') Display unit, (string 'left|right|center') Driver seat location, (array) List of equipments, (string) Brand name, (array '{capabilityIdentifier: (string)&comma; state: (object)}') Capability states"
 %}
 
 
@@ -1522,6 +1552,10 @@ parameters-description="(string) The unique Vehicle Identification Number, (stri
  engineVolume: 4395,
  engineMaxTorque: 520,
  gearbox: 'semi_automatic',
+ displayUnit: 'km',
+ driverSeatLocation: 'left',
+ equipments: ['side skirts', 'front apron', 'rear apron'],
+ brand: 'Mercedes',
  states: [
    {
      capabilityIdentifier: 'trunk',

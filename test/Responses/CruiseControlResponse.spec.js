@@ -5,7 +5,9 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`CruiseControlResponse`, () => {
   it(`should return CruiseControlResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00620101000100020001000300020000040001000500020000')
+      hexToUint8Array(
+        '00620101000401000100020004010001000300050100020000040004010001000500050100020000a2000b01000800000168e6fff148'
+      )
     );
     expect(response.parse()).toBeInstanceOf(CruiseControlResponse);
 

@@ -1,4 +1,4 @@
-import { uint8ArrayToHex } from './encoding';
+import { uint8ArrayToHex, bytesToString } from './encoding';
 
 export default class ClientCertificate {
   constructor(bytes: Uint8Array) {
@@ -14,7 +14,7 @@ export default class ClientCertificate {
 
   parse(bytes: Uint8Array) {
     return {
-      issuer: uint8ArrayToHex(bytes.slice(0, 4)).toUpperCase(),
+      issuer: bytesToString(bytes.slice(0, 4)),
       appIdentifier: uint8ArrayToHex(bytes.slice(4, 16)).toUpperCase(),
       clientSerial: uint8ArrayToHex(bytes.slice(16, 25)).toUpperCase(),
       publicKey: uint8ArrayToHex(bytes.slice(25, 89)).toUpperCase(),

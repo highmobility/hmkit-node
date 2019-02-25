@@ -15,7 +15,7 @@ describe(`NotificationCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(EmptyResponse);
     expect(command.toString().toUpperCase()).toBe(
-      '0038000100115374617274206E617669676174696F6E3F020003004E6F02000401596573'
+      '0038000100140100115374617274206E617669676174696F6E3F020006010003004E6F02000701000401596573'
     );
   });
 

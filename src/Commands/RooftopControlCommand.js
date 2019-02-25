@@ -1,7 +1,7 @@
 import Command from './Command';
 import BaseCommand from './BaseCommand';
-import { percentToInteger } from '../helpers';
 import { validate, Joi } from '../validate';
+import { percentageToDouble } from '../encoding';
 
 export default class RooftopControlCommand extends BaseCommand {
   /**
@@ -18,25 +18,28 @@ export default class RooftopControlCommand extends BaseCommand {
    * @property {Number} position (number) Position from 0 (0%) to 1 (100%).
    * @property {String} convertibleRoof (string 'closed|open|emergency_locked|closed_secured|open_secured|hard_top_mounted|intermediate_position|loading_position|loading_position_immediate') Convertible roof state
    * @property {String} sunroofTilt (string 'closed|tilted|half_tilted') Sunroof tilt state
+   * @property {String} sunroofState (string 'closed|open|intermediate') Sunroof state
    */
   static control(
     dimming: ?number,
     position: ?number,
     convertibleRoof: ?string,
-    sunroofTilt: ?string
+    sunroofTilt: ?string,
+    sunroofState: ?string
   ) {
     const dimmingBytes =
       typeof dimming !== 'number'
         ? []
-        : [0x01, 0x00, 0x01, percentToInteger(dimming)];
+        : this.buildProperty(0x01, percentageToDouble(dimming));
 
     const positionBytes =
       typeof position !== 'number'
         ? []
-        : [0x02, 0x00, 0x01, percentToInteger(position)];
+        : this.buildProperty(0x02, percentageToDouble(position));
 
     let convertibleRoofBytes = [];
     let sunroofTiltBytes = [];
+    let sunroofStateBytes = [];
 
     if (!!convertibleRoof) {
       const convertibleRoofOptions = {
@@ -86,6 +89,27 @@ export default class RooftopControlCommand extends BaseCommand {
       );
     }
 
+    if (!!sunroofState) {
+      const sunroofStateOptions = {
+        closed: 0x00,
+        open: 0x01,
+        intermediate: 0x02,
+      };
+
+      validate([
+        {
+          value: sunroofState,
+          name: 'Sunroof state',
+          condition: Joi.string().valid(...Object.keys(sunroofStateOptions)),
+        },
+      ]);
+
+      sunroofStateBytes = this.buildProperty(
+        0x05,
+        sunroofStateOptions[sunroofState]
+      );
+    }
+
     return new Command([
       0x00,
       0x25,
@@ -94,6 +118,7 @@ export default class RooftopControlCommand extends BaseCommand {
       ...positionBytes,
       ...convertibleRoofBytes,
       ...sunroofTiltBytes,
+      ...sunroofStateBytes,
     ]);
   }
 }

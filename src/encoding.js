@@ -2,6 +2,14 @@ import atob from 'atob';
 import btoa from 'btoa';
 import ieee754 from 'ieee754';
 
+export const PROPERTY_DATA_ID = 0x01;
+export const PROPERTY_TIMESTAMP_ID = 0x02;
+export const PROPERTY_FAILURE_ID = 0x03;
+
+export function percentageToDouble(value: Number) {
+  return base10ToIeee754Double(value);
+}
+
 export function base64ToUint8(base64String) {
   return new Uint8Array(
     atob(base64String)
@@ -119,17 +127,7 @@ export function intToTwoBytes(int) {
 }
 
 export function dateToBytes(date: Date) {
-  // TODO: Siin peaks OFFSET'i ka kuidagi saama (teoorias pole tähtsust)
-  return [
-    date.getUTCFullYear() - 2000,
-    date.getUTCMonth() + 1,
-    date.getUTCDate(),
-    date.getUTCHours(),
-    date.getUTCMinutes(),
-    date.getUTCSeconds(),
-    0x00,
-    0x00,
-  ];
+  return decimalToHexArray(date.getTime());
 }
 
 // This also removes null bytes

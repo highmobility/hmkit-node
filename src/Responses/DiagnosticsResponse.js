@@ -40,6 +40,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
    * @property {Object} tireTemperatures (Object) Tire pressures [{ location: (string), temperature: (number) }]
    * @property {Object} wheelRpms (Object) Tire pressures [{ location: (string), rpm: (number) }]
    * @property {Array} troubleCodes (array) Trouble codes [{ occurences: (number), id: (string), ecuId: (string), status: (string) }]
+   * @property {Number} mileageMeters (number) Mileage in meters
    *
    * @example DiagnosticsResponse
     {
@@ -114,7 +115,8 @@ export default class DiagnosticsResponse extends PropertyResponse {
         id: 'test id',
         ecuId: 'test ECU id',
         status: 'Alert',
-      }]
+      }],
+      mileageMeters: 10000
     }
    */
   constructor(data: Uint8Array) {
@@ -206,6 +208,7 @@ export default class DiagnosticsResponse extends PropertyResponse {
         new OptionalProperty(0x03, 'rear_left').setDecoder(this.rpmDecoder),
       ]),
       new Property(0x1d, 'troubleCodes').setDecoder(this.troubleCodesDecoder),
+      new Property(0x1e, 'mileageMeters').setDecoder(bytesSum),
     ];
 
     this.parse(data, properties);

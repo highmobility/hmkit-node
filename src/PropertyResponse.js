@@ -1,5 +1,10 @@
 import Property from './Property';
 import { bytesSum } from './helpers';
+import {
+  PROPERTY_DATA_ID,
+  PROPERTY_TIMESTAMP_ID,
+  PROPERTY_FAILURE_ID,
+} from './encoding';
 
 export default class PropertyResponse {
   /*
@@ -55,21 +60,56 @@ export default class PropertyResponse {
 
       while (counter < propertiesData.length) {
         const identifier = propertiesData[counter];
-        const propertyDataLength = bytesSum(
+        const propertyComponentsLength = bytesSum(
           propertiesData.slice(counter + 1, counter + 3)
         );
-        const propertyData = propertiesData.slice(
+        const propertyComponentsData = propertiesData.slice(
           counter + 3,
-          counter + 3 + propertyDataLength
+          counter + 3 + propertyComponentsLength
         );
 
         const property = this.findProperty(identifier, properties);
 
         if (!!property) {
-          property.parseValue(propertyData);
+          let componentCounter = 0;
+
+          while (componentCounter < propertyComponentsData.length) {
+            const componentIdentifier =
+              propertyComponentsData[componentCounter];
+            const propertyComponentLength = bytesSum(
+              propertyComponentsData.slice(
+                componentCounter + 1,
+                componentCounter + 3
+              )
+            );
+
+            const propertyComponentData = propertyComponentsData.slice(
+              componentCounter + 3,
+              componentCounter + 3 + propertyComponentLength
+            );
+
+            switch (componentIdentifier) {
+              case PROPERTY_DATA_ID: {
+                property.parseValue(propertyComponentData);
+                break;
+              }
+              case PROPERTY_TIMESTAMP_ID: {
+                // TODO: Handle proeprty timestamp
+                break;
+              }
+              case PROPERTY_FAILURE_ID: {
+                // TODO: Handle property failure
+                break;
+              }
+              default:
+                break;
+            }
+
+            componentCounter += 3 + propertyComponentLength;
+          }
         }
 
-        counter += 3 + propertyDataLength;
+        counter += 3 + propertyComponentsLength;
       }
     }
 

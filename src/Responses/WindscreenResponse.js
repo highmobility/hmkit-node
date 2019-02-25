@@ -1,6 +1,11 @@
 import PropertyResponse from '../PropertyResponse';
 import Property from '../Property';
-import { switchDecoder, matrixZoneDecoder, dateDecoder } from '../helpers';
+import {
+  switchDecoder,
+  matrixZoneDecoder,
+  timestampDecoder,
+  progressDecoder,
+} from '../helpers';
 
 export default class WindscreenResponse extends PropertyResponse {
   static identifier = [0x00, 0x42];
@@ -69,9 +74,11 @@ export default class WindscreenResponse extends PropertyResponse {
           0x02: 'replacement_needed',
         })
       ),
-      new Property(0x07, 'windscreenDamageConfidence'),
+      new Property(0x07, 'windscreenDamageConfidence').setDecoder(
+        progressDecoder
+      ),
       new Property(0x08, 'windscreenDamageDetectionTime').setDecoder(
-        dateDecoder
+        timestampDecoder
       ),
     ];
 
