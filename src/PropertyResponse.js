@@ -82,6 +82,7 @@ export default class PropertyResponse {
 
         if (!!property) {
           let componentCounter = 0;
+          const componentBytes = {};
 
           while (componentCounter < propertyComponentsData.length) {
             const componentIdentifier =
@@ -100,17 +101,15 @@ export default class PropertyResponse {
 
             switch (componentIdentifier) {
               case PROPERTY_DATA_ID: {
-                parsedProperties.push(
-                  property.parseValue(propertyComponentData)
-                );
+                componentBytes.data = propertyComponentData;
                 break;
               }
               case PROPERTY_TIMESTAMP_ID: {
-                // TODO: Handle proeprty timestamp
+                componentBytes.time = propertyComponentData;
                 break;
               }
               case PROPERTY_FAILURE_ID: {
-                // TODO: Handle property failure
+                componentBytes.error = propertyComponentData;
                 break;
               }
               default:
@@ -119,6 +118,14 @@ export default class PropertyResponse {
 
             componentCounter += 3 + propertyComponentLength;
           }
+
+          parsedProperties.push(
+            property.parseComponents(
+              componentBytes.data,
+              componentBytes.time,
+              componentBytes.error
+            )
+          );
         }
 
         counter += 3 + propertyComponentsLength;

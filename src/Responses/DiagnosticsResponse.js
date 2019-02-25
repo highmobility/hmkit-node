@@ -171,9 +171,9 @@ export default class DiagnosticsResponse extends PropertyResponse {
       new PropertyDecoder(0x16, 'engineLoad').setDecoder(progressDecoder),
       new PropertyDecoder(0x17, 'wheelBasedSpeed').setDecoder(bytesSum),
       new PropertyDecoder(0x18, 'batteryLevel').setDecoder(progressDecoder),
-      new PropertyDecoder(0x19, 'checkControlMessages').setDecoder(
-        this.checkControlMessagesDecoder
-      ),
+      new PropertyDecoder(0x19, 'checkControlMessages')
+        .setDecoder(this.checkControlMessagesDecoder)
+        .array(),
       new PropertyDecoder(0x1a, 'tirePressures').setOptionalSubProperties(
         'location',
         [
@@ -225,9 +225,9 @@ export default class DiagnosticsResponse extends PropertyResponse {
           ),
         ]
       ),
-      new PropertyDecoder(0x1d, 'troubleCodes').setDecoder(
-        this.troubleCodesDecoder
-      ),
+      new PropertyDecoder(0x1d, 'troubleCodes')
+        .setDecoder(this.troubleCodesDecoder)
+        .array(),
       new PropertyDecoder(0x1e, 'mileageMeters').setDecoder(bytesSum),
     ];
 
@@ -260,14 +260,12 @@ export default class DiagnosticsResponse extends PropertyResponse {
       bytes.slice(9 + textLength, 10 + textLength + statusLength)
     );
 
-    return [
-      {
-        id: bytesSum(bytes.slice(0, 2)),
-        remainingMinutes: bytesSum(bytes.slice(2, 6)),
-        text,
-        status,
-      },
-    ];
+    return {
+      id: bytesSum(bytes.slice(0, 2)),
+      remainingMinutes: bytesSum(bytes.slice(2, 6)),
+      text,
+      status,
+    };
   }
 
   troubleCodesDecoder(bytes: Array<Number>) {
@@ -275,20 +273,18 @@ export default class DiagnosticsResponse extends PropertyResponse {
     const ecuIdLength = bytes[2 + idLength];
     const statusLength = bytes[3 + idLength + ecuIdLength];
 
-    return [
-      {
-        occurences: bytes[0],
-        id: bytesToString(bytes.slice(2, 2 + idLength)),
-        ecuId: bytesToString(
-          bytes.slice(3 + idLength, 3 + idLength + ecuIdLength)
-        ),
-        status: bytesToString(
-          bytes.slice(
-            4 + idLength + ecuIdLength,
-            4 + idLength + ecuIdLength + statusLength
-          )
-        ),
-      },
-    ];
+    return {
+      occurences: bytes[0],
+      id: bytesToString(bytes.slice(2, 2 + idLength)),
+      ecuId: bytesToString(
+        bytes.slice(3 + idLength, 3 + idLength + ecuIdLength)
+      ),
+      status: bytesToString(
+        bytes.slice(
+          4 + idLength + ecuIdLength,
+          4 + idLength + ecuIdLength + statusLength
+        )
+      ),
+    };
   }
 }

@@ -1,4 +1,5 @@
 import Property from './Property';
+import { timestampDecoder } from './helpers';
 
 export default class PropertyDecoder {
   constructor(identifier: number, namespace: string) {
@@ -15,8 +16,13 @@ export default class PropertyDecoder {
     return this;
   };
 
-  parseValue = (data: Array<number>, isRoot = true) => {
-    if (this.subProperties.length > 0 && data.length > 0) {
+  parseComponents = (
+    data: Array<Number>,
+    timestamp: Array<Number>,
+    error: Array<Number>,
+    isRoot = true
+  ) => {
+    if (this.subProperties.length > 0) {
       const subProperty = this.findSubProperty(data[0]);
       if (!!subProperty) {
         if (this.subPropertiesIdentifierNamespace !== null) {
@@ -26,8 +32,15 @@ export default class PropertyDecoder {
                 {
                   [this.subPropertiesIdentifierNamespace]:
                     subProperty.identifierValue,
-                  ...subProperty.parseValue(data.slice(1, data.length), false),
+                  ...subProperty.parseComponents(
+                    data.slice(1, data.length),
+                    timestamp,
+                    error,
+                    false
+                  ),
                 },
+                timestamp,
+                error,
                 isRoot
               ),
             ],
@@ -35,25 +48,50 @@ export default class PropertyDecoder {
         }
 
         return this.handlePropertyWrap(
-          subProperty.parseValue(data.slice(1, data.length), false),
+          subProperty.parseComponents(
+            data.slice(1, data.length),
+            timestamp,
+            error,
+            false
+          ),
+          timestamp,
+          error,
           isRoot
         );
       }
-      return { [this.namespace]: this.handlePropertyWrap(null, isRoot) };
+
+      return {
+        [this.namespace]: this.handlePropertyWrap(
+          null,
+          timestamp,
+          error,
+          isRoot
+        ),
+      };
     } else if (this.isArray) {
       return {
-        [this.namespace]: [this.handlePropertyWrap(this.decode(data), isRoot)],
+        [this.namespace]: [
+          this.handlePropertyWrap(this.decode(data), timestamp, error, isRoot),
+        ],
       };
     } else if (this.namespace) {
       return {
-        [this.namespace]: this.handlePropertyWrap(this.decode(data), isRoot),
+        [this.namespace]: this.handlePropertyWrap(
+          this.decode(data),
+          timestamp,
+          error,
+          isRoot
+        ),
       };
     }
-    return this.handlePropertyWrap(this.decode(data), isRoot);
+
+    return this.handlePropertyWrap(this.decode(data), timestamp, error, isRoot);
   };
 
-  handlePropertyWrap = (decodedValue, isRoot) =>
-    isRoot ? new Property(decodedValue) : decodedValue;
+  handlePropertyWrap = (decodedValue, timestamp, error, isRoot) =>
+    isRoot
+      ? new Property(decodedValue, timestampDecoder(timestamp), error)
+      : decodedValue;
 
   decode = (data: Array<number>) => {
     if (!!this.decoder) {

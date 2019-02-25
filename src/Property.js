@@ -1,5 +1,7 @@
 export default class Property {
-  constructor(data) {
+  constructor(data, timestamp, error) {
     this.data = data;
+    this.timestamp = timestamp;
+    this.error = error;
   }
 }
