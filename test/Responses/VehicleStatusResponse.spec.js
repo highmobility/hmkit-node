@@ -702,6 +702,36 @@ describe(`VehicleStatusResponse`, () => {
       brand: 'Porsche',
       states: [
         {
+          capabilityIdentifier: 'door_locks',
+          state: {
+            insideLocks: [
+              { doorLocation: 'front_left', lockState: 'locked' },
+              { doorLocation: 'front_right', lockState: 'locked' },
+              { doorLocation: 'rear_right', lockState: 'locked' },
+              { doorLocation: 'rear_left', lockState: 'locked' },
+              { doorLocation: 'all', lockState: 'locked' },
+            ],
+            locks: [
+              { doorLocation: 'front_left', lockState: 'locked' },
+              { doorLocation: 'front_right', lockState: 'locked' },
+              { doorLocation: 'rear_right', lockState: 'locked' },
+              { doorLocation: 'rear_left', lockState: 'locked' },
+              { doorLocation: 'all', lockState: 'locked' },
+            ],
+            positions: [
+              { doorLocation: 'front_left', position: 'closed' },
+              { doorLocation: 'front_right', position: 'closed' },
+              { doorLocation: 'rear_right', position: 'closed' },
+              { doorLocation: 'rear_left', position: 'closed' },
+              { doorLocation: 'all', position: 'closed' },
+            ],
+          },
+        },
+        {
+          capabilityIdentifier: 'trunk',
+          state: { trunkLock: 'unlocked', trunkPosition: 'closed' },
+        },
+        {
           capabilityIdentifier: 'charging',
           state: {
             estimatedRange: 30,
@@ -882,35 +912,6 @@ describe(`VehicleStatusResponse`, () => {
             ],
             troubleCodes: [{ occurences: 0, id: '', ecuId: '', status: '' }],
             mileageMeters: 3000,
-          },
-        },
-        {
-          capabilityIdentifier: 'door_locks',
-          state: {
-            insideLocks: [
-              { doorLocation: 'front_left', lockState: 'unlocked' },
-              { doorLocation: 'front_right', lockState: 'unlocked' },
-              { doorLocation: 'rear_right', lockState: 'unlocked' },
-              { doorLocation: 'rear_left', lockState: 'unlocked' },
-              { doorLocation: 'hatch', lockState: 'unlocked' },
-              { doorLocation: 'all', lockState: 'unlocked' },
-            ],
-            locks: [
-              { doorLocation: 'front_left', lockState: 'unlocked' },
-              { doorLocation: 'front_right', lockState: 'unlocked' },
-              { doorLocation: 'rear_right', lockState: 'unlocked' },
-              { doorLocation: 'rear_left', lockState: 'unlocked' },
-              { doorLocation: 'hatch', lockState: 'unlocked' },
-              { doorLocation: 'all', lockState: 'unlocked' },
-            ],
-            positions: [
-              { doorLocation: 'front_left', position: 'closed' },
-              { doorLocation: 'front_right', position: 'closed' },
-              { doorLocation: 'rear_right', position: 'closed' },
-              { doorLocation: 'rear_left', position: 'closed' },
-              { doorLocation: 'hatch', position: 'closed' },
-              { doorLocation: 'all', position: 'closed' },
-            ],
           },
         },
         {

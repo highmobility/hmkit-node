@@ -7,9 +7,9 @@ export default class DoorLocksResponse extends PropertyResponse {
   static identifier = [0x00, 0x20];
 
   /**
-   * @property {Array} insideLocks (array) Inside door locks ([{ doorLocation: (string 'front_left|front_right|rear_right|rear_left|hatch|all'), lockState: (string 'unlocked|locked') }])
-   * @property {Array} locks (array) Door locks ([{ doorLocation: (string 'front_left|front_right|rear_right|rear_left|hatch|all'), lockState: (string 'unlocked|locked') }])
-   * @property {Array} positions (Array { doorLocation: (string 'front_left|front_right|rear_right|rear_left|hatch|all'), position: (string 'open|closed')}`) Positions
+   * @property {Array} insideLocks (array) Inside door locks ([{ doorLocation: (string 'front_left|front_right|rear_right|rear_left|all'), lockState: (string 'unlocked|locked') }])
+   * @property {Array} locks (array) Door locks ([{ doorLocation: (string 'front_left|front_right|rear_right|rear_left|all'), lockState: (string 'unlocked|locked') }])
+   * @property {Array} positions (Array { doorLocation: (string 'front_left|front_right|rear_right|rear_left|all'), position: (string 'open|closed')}`) Positions
    *
    * @example DoorLocksResponse
     {
@@ -24,9 +24,6 @@ export default class DoorLocksResponse extends PropertyResponse {
         lockState: 'unlocked'
       }, {
         doorLocation: 'rear_left',
-        lockState: 'unlocked'
-      }, {
-        doorLocation: 'hatch',
         lockState: 'unlocked'
       }, {
         doorLocation: 'all',
@@ -45,9 +42,6 @@ export default class DoorLocksResponse extends PropertyResponse {
         doorLocation: 'rear_left',
         lockState: 'unlocked'
       }, {
-        doorLocation: 'hatch',
-        lockState: 'unlocked'
-      }, {
         doorLocation: 'all',
         lockState: 'unlocked'
       }],
@@ -62,9 +56,6 @@ export default class DoorLocksResponse extends PropertyResponse {
         position: 'open'
       }, {
         doorLocation: 'rear_left',
-        position: 'closed'
-      }, {
-        doorLocation: 'hatch',
         position: 'closed'
       }, {
         doorLocation: 'all',
@@ -83,7 +74,6 @@ export default class DoorLocksResponse extends PropertyResponse {
         new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.lockDecoder),
         new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.lockDecoder),
         new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.lockDecoder),
-        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(this.lockDecoder),
         new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.lockDecoder),
       ]),
       new PropertyDecoder(0x03, 'locks').setOptionalSubProperties('doorLocation', [
@@ -91,7 +81,6 @@ export default class DoorLocksResponse extends PropertyResponse {
         new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.lockDecoder),
         new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.lockDecoder),
         new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.lockDecoder),
-        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(this.lockDecoder),
         new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.lockDecoder),
       ]),
       new PropertyDecoder(0x04, 'positions').setOptionalSubProperties('doorLocation', [
@@ -99,7 +88,6 @@ export default class DoorLocksResponse extends PropertyResponse {
         new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.positionDecoder),
         new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.positionDecoder),
         new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.positionDecoder),
-        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(this.positionDecoder),
         new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.positionDecoder),
       ]),
     ];

@@ -67,7 +67,7 @@ export default class ChargingCommand extends BaseCommand {
   /**
    * @function setChargeMode
    *
-   * @property {String} chargeMode (string: 'immediate', 'timer_based') Charge mode
+   * @property {String} chargeMode (string: 'immediate|timer_based|inductive') Charge mode
    */
   static setChargeMode(chargeMode: string) {
     validate([
@@ -75,7 +75,7 @@ export default class ChargingCommand extends BaseCommand {
         value: chargeMode,
         name: 'Charge mode',
         condition: Joi.string()
-          .valid('immediate', 'timer_based')
+          .valid('immediate', 'timer_based', 'inductive')
           .required(),
       },
     ]);
