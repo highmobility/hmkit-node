@@ -11,27 +11,33 @@ describe(`MaintenanceResponse`, () => {
     );
     expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
     expect(response.parse()).toEqual({
-      daysToNextService: 400,
-      kilometersToNextService: 30000,
-      cbsReportsCount: 0,
-      monthsToExhaustInspection: 0,
-      teleserviceAvailability: 'pending',
-      serviceDistanceThreshold: 0,
-      serviceTimeThreshold: 0,
-      automaticTeleserviceCallDate: new Date('2018-10-22T12:10:33.769Z'),
-      teleserviceBatteryCallDate: new Date('2018-10-22T12:10:33.769Z'),
-      nextInspectionDate: new Date('2018-10-22T12:10:33.769Z'),
+      daysToNextService: { data: 400 },
+      kilometersToNextService: { data: 30000 },
+      cbsReportsCount: { data: 0 },
+      monthsToExhaustInspection: { data: 0 },
+      teleserviceAvailability: { data: 'pending' },
+      serviceDistanceThreshold: { data: 0 },
+      serviceTimeThreshold: { data: 0 },
+      automaticTeleserviceCallDate: {
+        data: new Date('2018-10-22T12:10:33.769Z'),
+      },
+      teleserviceBatteryCallDate: {
+        data: new Date('2018-10-22T12:10:33.769Z'),
+      },
+      nextInspectionDate: { data: new Date('2018-10-22T12:10:33.769Z') },
       conditionBasedServices: [
         {
-          year: 2018,
-          month: 8,
-          cbsIdentifier: 123,
-          dueStatus: 'ok',
-          cbsText: '',
-          description: '',
+          data: {
+            year: 2018,
+            month: 8,
+            cbsIdentifier: 123,
+            dueStatus: 'ok',
+            cbsText: '',
+            description: '',
+          },
         },
       ],
-      brakeFluidChangeDate: new Date('2018-10-22T12:10:33.769Z'),
+      brakeFluidChangeDate: { data: new Date('2018-10-22T12:10:33.769Z') },
     });
   });
 });

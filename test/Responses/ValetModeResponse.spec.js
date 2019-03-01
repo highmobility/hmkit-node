@@ -10,7 +10,7 @@ describe(`ValetModeResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
     expect(response.parse()).toEqual({
-      valetMode: 'deactivated',
+      valetMode: { data: 'deactivated' },
     });
   });
 });

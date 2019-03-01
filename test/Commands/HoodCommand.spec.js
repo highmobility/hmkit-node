@@ -11,7 +11,7 @@ describe(`HoodCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HoodResponse);
     expect(response.parse()).toEqual({
-      position: expect.any(String),
+      position: { data: expect.any(String) },
     });
   });
 });

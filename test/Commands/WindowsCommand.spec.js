@@ -14,18 +14,62 @@ describe(`WindowsCommand`, () => {
 
     expect(response.parse()).toEqual({
       windowsOpenPercentages: expect.objectContaining([
-        { windowLocation: 'front_left', openPercentage: expect.any(Number) },
-        { windowLocation: 'front_right', openPercentage: expect.any(Number) },
-        { windowLocation: 'rear_right', openPercentage: expect.any(Number) },
-        { windowLocation: 'rear_left', openPercentage: expect.any(Number) },
-        { windowLocation: 'hatch', openPercentage: expect.any(Number) },
+        {
+          data: {
+            windowLocation: 'front_left',
+            openPercentage: expect.any(Number),
+          },
+        },
+        {
+          data: {
+            windowLocation: 'front_right',
+            openPercentage: expect.any(Number),
+          },
+        },
+        {
+          data: {
+            windowLocation: 'rear_right',
+            openPercentage: expect.any(Number),
+          },
+        },
+        {
+          data: {
+            windowLocation: 'rear_left',
+            openPercentage: expect.any(Number),
+          },
+        },
+        {
+          data: { windowLocation: 'hatch', openPercentage: expect.any(Number) },
+        },
       ]),
       windowsPositions: expect.objectContaining([
-        { windowLocation: 'front_left', windowPosition: expect.any(String) },
-        { windowLocation: 'front_right', windowPosition: expect.any(String) },
-        { windowLocation: 'rear_right', windowPosition: expect.any(String) },
-        { windowLocation: 'rear_left', windowPosition: expect.any(String) },
-        { windowLocation: 'hatch', windowPosition: expect.any(String) },
+        {
+          data: {
+            windowLocation: 'front_left',
+            windowPosition: expect.any(String),
+          },
+        },
+        {
+          data: {
+            windowLocation: 'front_right',
+            windowPosition: expect.any(String),
+          },
+        },
+        {
+          data: {
+            windowLocation: 'rear_right',
+            windowPosition: expect.any(String),
+          },
+        },
+        {
+          data: {
+            windowLocation: 'rear_left',
+            windowPosition: expect.any(String),
+          },
+        },
+        {
+          data: { windowLocation: 'hatch', windowPosition: expect.any(String) },
+        },
       ]),
     });
   });
@@ -85,46 +129,66 @@ describe(`WindowsCommand`, () => {
     expect(response.parse()).toEqual({
       windowsOpenPercentages: [
         {
-          windowLocation: 'front_left',
-          openPercentage: 1,
+          data: {
+            windowLocation: 'front_left',
+            openPercentage: 1,
+          },
         },
         {
-          windowLocation: 'front_right',
-          openPercentage: 1,
+          data: {
+            windowLocation: 'front_right',
+            openPercentage: 1,
+          },
         },
         {
-          windowLocation: 'rear_right',
-          openPercentage: 1,
+          data: {
+            windowLocation: 'rear_right',
+            openPercentage: 1,
+          },
         },
         {
-          windowLocation: 'rear_left',
-          openPercentage: 1,
+          data: {
+            windowLocation: 'rear_left',
+            openPercentage: 1,
+          },
         },
         {
-          windowLocation: 'hatch',
-          openPercentage: 1,
+          data: {
+            windowLocation: 'hatch',
+            openPercentage: 1,
+          },
         },
       ],
       windowsPositions: [
         {
-          windowLocation: 'front_left',
-          windowPosition: 'opened',
+          data: {
+            windowLocation: 'front_left',
+            windowPosition: 'opened',
+          },
         },
         {
-          windowLocation: 'front_right',
-          windowPosition: 'opened',
+          data: {
+            windowLocation: 'front_right',
+            windowPosition: 'opened',
+          },
         },
         {
-          windowLocation: 'rear_right',
-          windowPosition: 'opened',
+          data: {
+            windowLocation: 'rear_right',
+            windowPosition: 'opened',
+          },
         },
         {
-          windowLocation: 'rear_left',
-          windowPosition: 'opened',
+          data: {
+            windowLocation: 'rear_left',
+            windowPosition: 'opened',
+          },
         },
         {
-          windowLocation: 'hatch',
-          windowPosition: 'opened',
+          data: {
+            windowLocation: 'hatch',
+            windowPosition: 'opened',
+          },
         },
       ],
     });
@@ -183,46 +247,66 @@ describe(`WindowsCommand`, () => {
     expect(response2.parse()).toEqual({
       windowsOpenPercentages: [
         {
-          windowLocation: 'front_left',
-          openPercentage: 0,
+          data: {
+            windowLocation: 'front_left',
+            openPercentage: 0,
+          },
         },
         {
-          windowLocation: 'front_right',
-          openPercentage: 0,
+          data: {
+            windowLocation: 'front_right',
+            openPercentage: 0,
+          },
         },
         {
-          windowLocation: 'rear_right',
-          openPercentage: 0,
+          data: {
+            windowLocation: 'rear_right',
+            openPercentage: 0,
+          },
         },
         {
-          windowLocation: 'rear_left',
-          openPercentage: 0,
+          data: {
+            windowLocation: 'rear_left',
+            openPercentage: 0,
+          },
         },
         {
-          windowLocation: 'hatch',
-          openPercentage: 0,
+          data: {
+            windowLocation: 'hatch',
+            openPercentage: 0,
+          },
         },
       ],
       windowsPositions: [
         {
-          windowLocation: 'front_left',
-          windowPosition: 'closed',
+          data: {
+            windowLocation: 'front_left',
+            windowPosition: 'closed',
+          },
         },
         {
-          windowLocation: 'front_right',
-          windowPosition: 'closed',
+          data: {
+            windowLocation: 'front_right',
+            windowPosition: 'closed',
+          },
         },
         {
-          windowLocation: 'rear_right',
-          windowPosition: 'closed',
+          data: {
+            windowLocation: 'rear_right',
+            windowPosition: 'closed',
+          },
         },
         {
-          windowLocation: 'rear_left',
-          windowPosition: 'closed',
+          data: {
+            windowLocation: 'rear_left',
+            windowPosition: 'closed',
+          },
         },
         {
-          windowLocation: 'hatch',
-          windowPosition: 'closed',
+          data: {
+            windowLocation: 'hatch',
+            windowPosition: 'closed',
+          },
         },
       ],
     });

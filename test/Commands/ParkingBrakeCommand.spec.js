@@ -11,7 +11,7 @@ describe(`ParkingBrakeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual({
-      parkingBrake: expect.any(String),
+      parkingBrake: { data: expect.any(String) },
     });
   });
 
@@ -23,7 +23,7 @@ describe(`ParkingBrakeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual({
-      parkingBrake: 'active',
+      parkingBrake: { data: 'active' },
     });
   });
 
@@ -35,7 +35,7 @@ describe(`ParkingBrakeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual({
-      parkingBrake: 'inactive',
+      parkingBrake: { data: 'inactive' },
     });
   });
 });

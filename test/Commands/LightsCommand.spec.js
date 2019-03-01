@@ -11,24 +11,24 @@ describe(`LightsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(LightsResponse);
     expect(response.parse()).toEqual({
-      frontExteriorLight: expect.any(String),
-      rearExteriorLight: expect.any(String),
-      ambientLight: expect.any(String),
-      reverseLight: expect.any(String),
-      emergencyBrakeLight: expect.any(String),
+      frontExteriorLight: { data: expect.any(String) },
+      rearExteriorLight: { data: expect.any(String) },
+      ambientLight: { data: expect.any(String) },
+      reverseLight: { data: expect.any(String) },
+      emergencyBrakeLight: { data: expect.any(String) },
       fogLights: [
-        { location: 'front', state: expect.any(String) },
-        { location: 'rear', state: expect.any(String) },
+        { data: { location: 'front', state: expect.any(String) } },
+        { data: { location: 'rear', state: expect.any(String) } },
       ],
       readingLamps: [
-        { location: 'front_left', state: expect.any(String) },
-        { location: 'front_right', state: expect.any(String) },
-        { location: 'rear_right', state: expect.any(String) },
-        { location: 'rear_left', state: expect.any(String) },
+        { data: { location: 'front_left', state: expect.any(String) } },
+        { data: { location: 'front_right', state: expect.any(String) } },
+        { data: { location: 'rear_right', state: expect.any(String) } },
+        { data: { location: 'rear_left', state: expect.any(String) } },
       ],
       interiorLights: [
-        { location: 'front', state: expect.any(String) },
-        { location: 'rear', state: expect.any(String) },
+        { data: { location: 'front', state: expect.any(String) } },
+        { data: { location: 'rear', state: expect.any(String) } },
       ],
     });
   });
@@ -60,57 +60,50 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(LightsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        frontExteriorLight: 'active_with_full_beam',
-        rearExteriorLight: 'inactive',
-        ambientLight: '#254f4c',
-        reverseLight: 'inactive',
-        emergencyBrakeLight: 'inactive',
+        frontExteriorLight: { data: 'active_with_full_beam' },
+        rearExteriorLight: { data: 'inactive' },
+        ambientLight: { data: '#254f4c' },
+        reverseLight: { data: 'inactive' },
+        emergencyBrakeLight: { data: 'inactive' },
         fogLights: [
-          { location: 'front', state: 'inactive' },
-          { location: 'rear', state: 'inactive' },
+          { data: { location: 'front', state: 'inactive' } },
+          { data: { location: 'rear', state: 'inactive' } },
         ],
         readingLamps: [
-          { location: 'front_left', state: 'inactive' },
-          { location: 'front_right', state: 'inactive' },
-          { location: 'rear_right', state: 'inactive' },
-          { location: 'rear_left', state: 'inactive' },
+          { data: { location: 'front_left', state: 'inactive' } },
+          { data: { location: 'front_right', state: 'inactive' } },
+          { data: { location: 'rear_right', state: 'inactive' } },
+          { data: { location: 'rear_left', state: 'inactive' } },
         ],
         interiorLights: [
-          { location: 'front', state: 'inactive' },
-          { location: 'rear', state: 'inactive' },
+          { data: { location: 'front', state: 'inactive' } },
+          { data: { location: 'rear', state: 'inactive' } },
         ],
       })
     );
     const response2 = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.LightsCommand.control(
-        'inactive',
-        '',
-        '',
-        [],
-        [],
-        []
-      )
+      hmkit.commands.LightsCommand.control('inactive', '', '', [], [], [])
     );
     expect(response2.parse()).toBeInstanceOf(LightsResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        frontExteriorLight: 'inactive',
-        rearExteriorLight: 'inactive',
-        ambientLight: expect.any(String),
+        frontExteriorLight: { data: 'inactive' },
+        rearExteriorLight: { data: 'inactive' },
+        ambientLight: { data: expect.any(String) },
         fogLights: [
-          { location: 'front', state: expect.any(String) },
-          { location: 'rear', state: expect.any(String) },
+          { data: { location: 'front', state: expect.any(String) } },
+          { data: { location: 'rear', state: expect.any(String) } },
         ],
         readingLamps: [
-          { location: 'front_left', state: expect.any(String) },
-          { location: 'front_right', state: expect.any(String) },
-          { location: 'rear_right', state: expect.any(String) },
-          { location: 'rear_left', state: expect.any(String) },
+          { data: { location: 'front_left', state: expect.any(String) } },
+          { data: { location: 'front_right', state: expect.any(String) } },
+          { data: { location: 'rear_right', state: expect.any(String) } },
+          { data: { location: 'rear_left', state: expect.any(String) } },
         ],
         interiorLights: [
-          { location: 'front', state: expect.any(String) },
-          { location: 'rear', state: expect.any(String) },
+          { data: { location: 'front', state: expect.any(String) } },
+          { data: { location: 'rear', state: expect.any(String) } },
         ],
       })
     );
@@ -128,22 +121,22 @@ describe(`LightsCommand`, () => {
     expect(response3.parse()).toBeInstanceOf(LightsResponse);
     expect(response3.parse()).toEqual(
       expect.objectContaining({
-        frontExteriorLight: expect.any(String),
-        rearExteriorLight: expect.any(String),
-        ambientLight: '#ffffff',
+        frontExteriorLight: { data: expect.any(String) },
+        rearExteriorLight: { data: expect.any(String) },
+        ambientLight: { data: '#ffffff' },
         fogLights: [
-          { location: 'front', state: expect.any(String) },
-          { location: 'rear', state: expect.any(String) },
+          { data: { location: 'front', state: expect.any(String) } },
+          { data: { location: 'rear', state: expect.any(String) } },
         ],
         readingLamps: [
-          { location: 'front_left', state: expect.any(String) },
-          { location: 'front_right', state: expect.any(String) },
-          { location: 'rear_right', state: expect.any(String) },
-          { location: 'rear_left', state: expect.any(String) },
+          { data: { location: 'front_left', state: expect.any(String) } },
+          { data: { location: 'front_right', state: expect.any(String) } },
+          { data: { location: 'rear_right', state: expect.any(String) } },
+          { data: { location: 'rear_left', state: expect.any(String) } },
         ],
         interiorLights: [
-          { location: 'front', state: expect.any(String) },
-          { location: 'rear', state: expect.any(String) },
+          { data: { location: 'front', state: expect.any(String) } },
+          { data: { location: 'rear', state: expect.any(String) } },
         ],
       })
     );
@@ -165,7 +158,7 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ...oldData,
-        frontExteriorLight: 'automatic',
+        frontExteriorLight: { data: 'automatic' },
       })
     );
   });
@@ -186,7 +179,7 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ...oldData,
-        rearExteriorLight: 'active',
+        rearExteriorLight: { data: 'active' },
       })
     );
   });
@@ -199,11 +192,7 @@ describe(`LightsCommand`, () => {
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.LightsCommand.control(
-        undefined,
-        undefined,
-        '#ff0000'
-      )
+      hmkit.commands.LightsCommand.control(undefined, undefined, '#ff0000')
     );
 
     expect(response.parse()).toBeInstanceOf(LightsResponse);
@@ -211,7 +200,7 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ...oldData,
-        ambientLight: '#ff0000',
+        ambientLight: { data: '#ff0000' },
       })
     );
   });
@@ -224,15 +213,10 @@ describe(`LightsCommand`, () => {
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
-      hmkit.commands.LightsCommand.control(
-        undefined,
-        undefined,
-        undefined,
-        [
-          { location: 'front', state: 'active' },
-          { location: 'rear', state: 'active' },
-        ]
-      )
+      hmkit.commands.LightsCommand.control(undefined, undefined, undefined, [
+        { location: 'front', state: 'active' },
+        { location: 'rear', state: 'active' },
+      ])
     );
 
     expect(response.parse()).toBeInstanceOf(LightsResponse);
@@ -241,8 +225,8 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         ...oldData,
         fogLights: [
-          { location: 'front', state: 'active' },
-          { location: 'rear', state: 'active' },
+          { data: { location: 'front', state: 'active' } },
+          { data: { location: 'rear', state: 'active' } },
         ],
       })
     );
@@ -275,10 +259,10 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         ...oldData,
         readingLamps: [
-          { location: 'front_left', state: expect.any(String) },
-          { location: 'front_right', state: expect.any(String) },
-          { location: 'rear_right', state: expect.any(String) },
-          { location: 'rear_left', state: 'active' },
+          { data: { location: 'front_left', state: expect.any(String) } },
+          { data: { location: 'front_right', state: expect.any(String) } },
+          { data: { location: 'rear_right', state: expect.any(String) } },
+          { data: { location: 'rear_left', state: 'active' } },
         ],
       })
     );
@@ -310,8 +294,8 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         ...oldData,
         interiorLights: [
-          { location: 'front', state: 'active' },
-          { location: 'rear', state: 'active' },
+          { data: { location: 'front', state: 'active' } },
+          { data: { location: 'rear', state: 'active' } },
         ],
       })
     );

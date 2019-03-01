@@ -13,8 +13,8 @@ describe(`PowerTakeOffResponse`, () => {
     expect(response.parse()).toBeInstanceOf(PowerTakeOffResponse);
 
     expect(response.parse()).toEqual({
-      powerTakeoff: 'inactive',
-      powerTakeoffEngaged: 'not_engaged',
+      powerTakeoff: { data: 'inactive' },
+      powerTakeoffEngaged: { data: 'not_engaged' },
     });
   });
 });

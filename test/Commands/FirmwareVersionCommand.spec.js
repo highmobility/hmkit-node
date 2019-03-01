@@ -12,12 +12,14 @@ describe(`FirmwareVersionCommand`, () => {
     expect(response.parse()).toBeInstanceOf(FirmwareVersionResponse);
     expect(response.parse()).toEqual({
       carSDKVersion: {
-        versionMajor: expect.any(Number),
-        versionMinor: expect.any(Number),
-        versionPatch: expect.any(Number),
+        data: {
+          versionMajor: expect.any(Number),
+          versionMinor: expect.any(Number),
+          versionPatch: expect.any(Number),
+        },
       },
-      carSDKBuildName: expect.any(String),
-      applicationVersion: expect.any(String),
+      carSDKBuildName: { data: expect.any(String) },
+      applicationVersion: { data: expect.any(String) },
     });
   });
 });

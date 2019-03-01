@@ -12,7 +12,7 @@ describe(`VehicleTimeResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(VehicleTimeResponse);
     expect(response.parse()).toEqual({
-      vehicleTime: new Date('2019-02-14T12:57:23.203Z'),
+      vehicleTime: { data: new Date('2019-02-14T12:57:23.203Z') },
     });
   });
 });

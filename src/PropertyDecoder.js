@@ -24,6 +24,7 @@ export default class PropertyDecoder {
   ) => {
     if (this.subProperties.length > 0) {
       const subProperty = this.findSubProperty(data[0]);
+
       if (!!subProperty) {
         if (this.subPropertiesIdentifierNamespace !== null) {
           return {
@@ -60,14 +61,7 @@ export default class PropertyDecoder {
         );
       }
 
-      return {
-        [this.namespace]: this.handlePropertyWrap(
-          null,
-          timestamp,
-          error,
-          isRoot
-        ),
-      };
+      return undefined;
     } else if (this.isArray) {
       return {
         [this.namespace]: [
@@ -90,7 +84,11 @@ export default class PropertyDecoder {
 
   handlePropertyWrap = (decodedValue, timestamp, error, isRoot) =>
     isRoot
-      ? new Property(decodedValue, timestampDecoder(timestamp), error)
+      ? new Property(
+          decodedValue,
+          timestamp ? timestampDecoder(timestamp) : undefined,
+          error
+        )
       : decodedValue;
 
   decode = (data: Array<number>) => {

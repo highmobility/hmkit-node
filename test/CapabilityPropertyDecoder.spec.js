@@ -25,7 +25,7 @@ describe(`CapabilityPropertyDecoder`, () => {
     );
 
     expect(
-      capabilityProperty.parseValue([0x00, 0x20, 0x00, 0x01, 0x12])
+      capabilityProperty.parseComponents([0x00, 0x20, 0x00, 0x01, 0x12])
     ).toEqual({
       capabilities: [
         {
@@ -38,17 +38,6 @@ describe(`CapabilityPropertyDecoder`, () => {
         },
       ],
     });
-  });
-
-  it(`should decode itself properly`, () => {
-    const capabilityProperty = new CapabilityPropertyDecoder(
-      0x01,
-      'capabilities'
-    ).setDecoder(data => data);
-
-    expect(
-      capabilityProperty.parseValue([0x00, 0x01, 0x02, 0x03, 0x04])
-    ).toEqual({ capabilities: [0, 1, 2, 3, 4] });
   });
 
   it(`should ignore missing subproperties`, () => {
@@ -64,7 +53,7 @@ describe(`CapabilityPropertyDecoder`, () => {
       )
     );
 
-    capabilityProperty.parseValue([0x00, 0xff, 0x00, 0x01, 0x02]);
+    capabilityProperty.parseComponents([0x00, 0xff, 0x00, 0x01, 0x02]);
 
     expect(
       capabilityProperty.subProperties.find(

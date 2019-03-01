@@ -11,6 +11,6 @@ describe(`WeatherConditionsResponse`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(WeatherConditionsResponse);
-    expect(response.parse()).toEqual({ rainIntensity: 0.5 });
+    expect(response.parse()).toEqual({ rainIntensity: { data: 0.5 } });
   });
 });

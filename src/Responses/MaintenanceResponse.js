@@ -74,9 +74,9 @@ export default class MaintenanceResponse extends PropertyResponse {
       new PropertyDecoder(0x0a, 'nextInspectionDate').setDecoder(
         timestampDecoder
       ),
-      new PropertyDecoder(0x0b, 'conditionBasedServices').setDecoder(
-        this.conditionBasedServicesDecoder
-      ),
+      new PropertyDecoder(0x0b, 'conditionBasedServices')
+        .setDecoder(this.conditionBasedServicesDecoder)
+        .array(),
       new PropertyDecoder(0x0c, 'brakeFluidChangeDate').setDecoder(
         timestampDecoder
       ),
@@ -95,19 +95,17 @@ export default class MaintenanceResponse extends PropertyResponse {
       bytes.slice(9 + cbsTextLength, 9 + cbsTextLength + descriptionLength)
     );
 
-    return [
-      {
-        year: bytes[0] + 2000,
-        month: bytes[1],
-        cbsIdentifier: bytesSum(bytes.slice(2, 4)),
-        dueStatus: switchDecoder({
-          0x00: 'ok',
-          0x01: 'pending',
-          0x02: 'overdue',
-        })([bytes[4]]),
-        cbsText,
-        description,
-      },
-    ];
+    return {
+      year: bytes[0] + 2000,
+      month: bytes[1],
+      cbsIdentifier: bytesSum(bytes.slice(2, 4)),
+      dueStatus: switchDecoder({
+        0x00: 'ok',
+        0x01: 'pending',
+        0x02: 'overdue',
+      })([bytes[4]]),
+      cbsText,
+      description,
+    };
   }
 }

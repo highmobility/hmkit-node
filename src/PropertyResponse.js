@@ -1,10 +1,5 @@
 import PropertyDecoder from './PropertyDecoder';
-import { bytesSum, dateDecoder } from './helpers';
-import {
-  PROPERTY_DATA_ID,
-  PROPERTY_TIMESTAMP_ID,
-  PROPERTY_FAILURE_ID,
-} from './encoding';
+import { bytesSum, dateDecoder, parsePropertyComponents } from './helpers';
 import mergeWith from 'lodash/mergeWith';
 
 export default class PropertyResponse {
@@ -81,51 +76,18 @@ export default class PropertyResponse {
         const property = this.findProperty(identifier, properties);
 
         if (!!property) {
-          let componentCounter = 0;
-          const componentBytes = {};
-
-          while (componentCounter < propertyComponentsData.length) {
-            const componentIdentifier =
-              propertyComponentsData[componentCounter];
-            const propertyComponentLength = bytesSum(
-              propertyComponentsData.slice(
-                componentCounter + 1,
-                componentCounter + 3
-              )
-            );
-
-            const propertyComponentData = propertyComponentsData.slice(
-              componentCounter + 3,
-              componentCounter + 3 + propertyComponentLength
-            );
-
-            switch (componentIdentifier) {
-              case PROPERTY_DATA_ID: {
-                componentBytes.data = propertyComponentData;
-                break;
-              }
-              case PROPERTY_TIMESTAMP_ID: {
-                componentBytes.time = propertyComponentData;
-                break;
-              }
-              case PROPERTY_FAILURE_ID: {
-                componentBytes.error = propertyComponentData;
-                break;
-              }
-              default:
-                break;
-            }
-
-            componentCounter += 3 + propertyComponentLength;
-          }
-
-          parsedProperties.push(
-            property.parseComponents(
-              componentBytes.data,
-              componentBytes.time,
-              componentBytes.error
-            )
+          const componentBytes = parsePropertyComponents(
+            propertyComponentsData
           );
+
+          const parsedProperty = property.parseComponents(
+            componentBytes.data,
+            componentBytes.time,
+            componentBytes.error
+          );
+
+          if (parsedProperty !== undefined)
+            parsedProperties.push(parsedProperty);
         }
 
         counter += 3 + propertyComponentsLength;

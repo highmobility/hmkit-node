@@ -3,7 +3,48 @@ import {
   ieee754ToBase10,
   pad,
   uint8toInt8,
+  PROPERTY_DATA_ID,
+  PROPERTY_TIMESTAMP_ID,
+  PROPERTY_FAILURE_ID,
 } from './encoding';
+
+export function parsePropertyComponents(propertyComponentsData: Array<Number>) {
+  let componentCounter = 0;
+  const componentBytes = {};
+
+  while (componentCounter < propertyComponentsData.length) {
+    const componentIdentifier = propertyComponentsData[componentCounter];
+    const propertyComponentLength = bytesSum(
+      propertyComponentsData.slice(componentCounter + 1, componentCounter + 3)
+    );
+
+    const propertyComponentData = propertyComponentsData.slice(
+      componentCounter + 3,
+      componentCounter + 3 + propertyComponentLength
+    );
+
+    switch (componentIdentifier) {
+      case PROPERTY_DATA_ID: {
+        componentBytes.data = propertyComponentData;
+        break;
+      }
+      case PROPERTY_TIMESTAMP_ID: {
+        componentBytes.time = propertyComponentData;
+        break;
+      }
+      case PROPERTY_FAILURE_ID: {
+        componentBytes.error = propertyComponentData;
+        break;
+      }
+      default:
+        break;
+    }
+
+    componentCounter += 3 + propertyComponentLength;
+  }
+
+  return componentBytes;
+}
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = bytes

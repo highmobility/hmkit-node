@@ -11,8 +11,8 @@ describe(`FuelingCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(FuelingResponse);
     expect(response.parse()).toEqual({
-      gasFlapLock: expect.any(String),
-      gasFlapPosition: expect.any(String),
+      gasFlapLock: { data: expect.any(String) },
+      gasFlapPosition: { data: expect.any(String) },
     });
   });
 
@@ -28,8 +28,8 @@ describe(`FuelingCommand`, () => {
     );
     expect(response.parse()).toBeInstanceOf(FuelingResponse);
     expect(response.parse()).toEqual({
-      gasFlapLock: 'locked',
-      gasFlapPosition: 'opened',
+      gasFlapLock: { data: 'locked' },
+      gasFlapPosition: { data: 'opened' },
     });
   });
 
@@ -45,8 +45,8 @@ describe(`FuelingCommand`, () => {
     );
     expect(lockedResponse.parse()).toBeInstanceOf(FuelingResponse);
     expect(lockedResponse.parse()).toEqual({
-      gasFlapLock: 'locked',
-      gasFlapPosition: expect.any(String),
+      gasFlapLock: { data: 'locked' },
+      gasFlapPosition: { data: expect.any(String) },
     });
 
     const unlockedResponse = await hmkit.telematics.sendCommand(
@@ -55,8 +55,8 @@ describe(`FuelingCommand`, () => {
     );
     expect(unlockedResponse.parse()).toBeInstanceOf(FuelingResponse);
     expect(unlockedResponse.parse()).toEqual({
-      gasFlapLock: 'unlocked',
-      gasFlapPosition: expect.any(String),
+      gasFlapLock: { data: 'unlocked' },
+      gasFlapPosition: { data: expect.any(String) },
     });
   });
 
@@ -72,8 +72,8 @@ describe(`FuelingCommand`, () => {
     );
     expect(closedResponse.parse()).toBeInstanceOf(FuelingResponse);
     expect(closedResponse.parse()).toEqual({
-      gasFlapLock: expect.any(String),
-      gasFlapPosition: 'closed',
+      gasFlapLock: { data: expect.any(String) },
+      gasFlapPosition: { data: 'closed' },
     });
 
     const openedResponse = await hmkit.telematics.sendCommand(
@@ -82,8 +82,8 @@ describe(`FuelingCommand`, () => {
     );
     expect(openedResponse.parse()).toBeInstanceOf(FuelingResponse);
     expect(openedResponse.parse()).toEqual({
-      gasFlapLock: expect.any(String),
-      gasFlapPosition: 'opened',
+      gasFlapLock: { data: expect.any(String) },
+      gasFlapPosition: { data: 'opened' },
     });
 
     const intermediateResponse = await hmkit.telematics.sendCommand(
@@ -92,8 +92,8 @@ describe(`FuelingCommand`, () => {
     );
     expect(intermediateResponse.parse()).toBeInstanceOf(FuelingResponse);
     expect(intermediateResponse.parse()).toEqual({
-      gasFlapLock: expect.any(String),
-      gasFlapPosition: 'intermediate',
+      gasFlapLock: { data: expect.any(String) },
+      gasFlapPosition: { data: 'intermediate' },
     });
   });
 });

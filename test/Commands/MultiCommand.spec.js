@@ -25,18 +25,18 @@ describe(`MultiCommand`, () => {
         {
           capabilityIdentifier: 'engine',
           state: {
-            ignition: 'engine_on',
-            accessoriesIgnition: expect.any(String),
+            ignition: { data: 'engine_on' },
+            accessoriesIgnition: { data: expect.any(String) },
           },
         },
         {
           capabilityIdentifier: 'rooftop_control',
           state: {
-            dimming: 22,
-            position: 33,
-            convertibleRoof: 'closed_secured',
-            sunroofTilt: 'tilted',
-            sunroofState: 'open',
+            dimming: { data: 22 },
+            position: { data: 33 },
+            convertibleRoof: { data: 'closed_secured' },
+            sunroofTilt: { data: 'tilted' },
+            sunroofState: { data: 'open' },
           },
         },
       ],

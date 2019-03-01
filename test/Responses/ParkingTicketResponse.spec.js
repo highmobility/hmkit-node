@@ -12,11 +12,11 @@ describe(`ParkingTicketResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual({
-      parkingTicketState: 'ended',
-      operatorName: '',
-      operatorTicketID: '',
-      ticketStartTime: new Date('2019-02-13T13:36:25.118Z'),
-      ticketEndTime: new Date('2019-02-13T13:36:25.118Z'),
+      parkingTicketState: { data: 'ended' },
+      operatorName: { data: '' },
+      operatorTicketID: { data: '' },
+      ticketStartTime: { data: new Date('2019-02-13T13:36:25.118Z') },
+      ticketEndTime: { data: new Date('2019-02-13T13:36:25.118Z') },
     });
   });
 });

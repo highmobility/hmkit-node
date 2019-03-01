@@ -14,18 +14,18 @@ describe(`WindowsResponse`, () => {
 
     expect(response.parse()).toEqual({
       windowsOpenPercentages: [
-        { windowLocation: 'front_left', openPercentage: 0 },
-        { windowLocation: 'front_right', openPercentage: 0 },
-        { windowLocation: 'rear_right', openPercentage: 0 },
-        { windowLocation: 'rear_left', openPercentage: 0 },
-        { windowLocation: 'hatch', openPercentage: 0 },
+        { data: { windowLocation: 'front_left', openPercentage: 0 } },
+        { data: { windowLocation: 'front_right', openPercentage: 0 } },
+        { data: { windowLocation: 'rear_right', openPercentage: 0 } },
+        { data: { windowLocation: 'rear_left', openPercentage: 0 } },
+        { data: { windowLocation: 'hatch', openPercentage: 0 } },
       ],
       windowsPositions: [
-        { windowLocation: 'front_left', windowPosition: 'closed' },
-        { windowLocation: 'front_right', windowPosition: 'closed' },
-        { windowLocation: 'rear_right', windowPosition: 'closed' },
-        { windowLocation: 'rear_left', windowPosition: 'closed' },
-        { windowLocation: 'hatch', windowPosition: 'closed' },
+        { data: { windowLocation: 'front_left', windowPosition: 'closed' } },
+        { data: { windowLocation: 'front_right', windowPosition: 'closed' } },
+        { data: { windowLocation: 'rear_right', windowPosition: 'closed' } },
+        { data: { windowLocation: 'rear_left', windowPosition: 'closed' } },
+        { data: { windowLocation: 'hatch', windowPosition: 'closed' } },
       ],
     });
   });

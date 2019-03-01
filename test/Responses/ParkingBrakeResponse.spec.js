@@ -9,6 +9,6 @@ describe(`ParkingBrakeResponse`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
-    expect(response.parse()).toEqual({ parkingBrake: 'inactive' });
+    expect(response.parse()).toEqual({ parkingBrake: { data: 'inactive' } });
   });
 });

@@ -12,10 +12,10 @@ describe(`WiFiCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wifiEnabled: expect.any(String),
-        networkConnected: expect.any(String),
-        networkSSID: expect.any(String),
-        networkSecurity: expect.any(String),
+        wifiEnabled: { data: expect.any(String) },
+        networkConnected: { data: expect.any(String) },
+        networkSSID: { data: expect.any(String) },
+        networkSecurity: { data: expect.any(String) },
       })
     );
   });
@@ -32,10 +32,10 @@ describe(`WiFiCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
     expect(response.parse()).toEqual({
-      wifiEnabled: 'enabled',
-      networkConnected: 'connected',
-      networkSSID: 'goodNetwork',
-      networkSecurity: 'wpa',
+      wifiEnabled: { data: 'enabled' },
+      networkConnected: { data: 'connected' },
+      networkSSID: { data: 'goodNetwork' },
+      networkSecurity: { data: 'wpa' },
     });
   });
 
@@ -47,10 +47,10 @@ describe(`WiFiCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
     expect(response.parse()).toEqual({
-      wifiEnabled: 'enabled',
-      networkConnected: 'connected',
-      networkSSID: 'goodNetwork',
-      networkSecurity: 'wpa',
+      wifiEnabled: { data: 'enabled' },
+      networkConnected: { data: 'connected' },
+      networkSSID: { data: 'goodNetwork' },
+      networkSecurity: { data: 'wpa' },
     });
   });
 
@@ -63,8 +63,8 @@ describe(`WiFiCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wifiEnabled: expect.any(String),
-        networkConnected: expect.any(String),
+        wifiEnabled: { data: expect.any(String) },
+        networkConnected: { data: expect.any(String) },
       })
     );
   });
@@ -78,7 +78,7 @@ describe(`WiFiCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wifiEnabled: 'disabled',
+        wifiEnabled: { data: 'disabled' },
       })
     );
 
@@ -90,7 +90,7 @@ describe(`WiFiCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(WiFiResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        wifiEnabled: 'enabled',
+        wifiEnabled: { data: 'enabled' },
       })
     );
 
@@ -102,7 +102,7 @@ describe(`WiFiCommand`, () => {
     expect(response3.parse()).toBeInstanceOf(WiFiResponse);
     expect(response3.parse()).toEqual(
       expect.objectContaining({
-        wifiEnabled: 'disabled',
+        wifiEnabled: { data: 'disabled' },
       })
     );
   });

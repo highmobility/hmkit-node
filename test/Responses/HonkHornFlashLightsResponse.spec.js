@@ -9,6 +9,6 @@ describe(`HonkHornFlashLightsResponse`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
-    expect(response.parse()).toEqual({ flashers: 'inactive' });
+    expect(response.parse()).toEqual({ flashers: { data: 'inactive' } });
   });
 });

@@ -12,8 +12,8 @@ describe(`EngineResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual({
-      ignition: 'engine_off',
-      accessoriesIgnition: 'powered_off',
+      ignition: { data: 'engine_off' },
+      accessoriesIgnition: { data: 'powered_off' },
     });
   });
 });

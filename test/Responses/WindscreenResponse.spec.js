@@ -13,14 +13,16 @@ describe(`WindscreenResponse`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
 
     expect(response.parse()).toEqual({
-      wipers: 'inactive',
-      wipersIntensity: 'level_0',
-      windscreenDamage: 'no_impact_detected',
-      windscreenZoneMatrix: { rows: 3, columns: 2 },
-      windscreenDamageZone: { rows: 2, columns: 2 },
-      windscreenNeedsReplacement: 'unknown',
-      windscreenDamageConfidence: 0,
-      windscreenDamageDetectionTime: new Date('2000-01-01T00:00:00.000Z'),
+      wipers: { data: 'inactive' },
+      wipersIntensity: { data: 'level_0' },
+      windscreenDamage: { data: 'no_impact_detected' },
+      windscreenZoneMatrix: { data: { rows: 3, columns: 2 } },
+      windscreenDamageZone: { data: { rows: 2, columns: 2 } },
+      windscreenNeedsReplacement: { data: 'unknown' },
+      windscreenDamageConfidence: { data: 0 },
+      windscreenDamageDetectionTime: {
+        data: new Date('2000-01-01T00:00:00.000Z'),
+      },
     });
   });
 });

@@ -13,25 +13,25 @@ describe(`DoorLocksResponse`, () => {
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
     expect(response.parse()).toEqual({
       insideLocks: [
-        { doorLocation: 'front_left', lockState: 'unlocked' },
-        { doorLocation: 'front_right', lockState: 'unlocked' },
-        { doorLocation: 'rear_right', lockState: 'unlocked' },
-        { doorLocation: 'rear_left', lockState: 'unlocked' },
-        { doorLocation: 'all', lockState: 'unlocked' },
+        { data: { doorLocation: 'front_left', lockState: 'unlocked' } },
+        { data: { doorLocation: 'front_right', lockState: 'unlocked' } },
+        { data: { doorLocation: 'rear_right', lockState: 'unlocked' } },
+        { data: { doorLocation: 'rear_left', lockState: 'unlocked' } },
+        { data: { doorLocation: 'all', lockState: 'unlocked' } },
       ],
       locks: [
-        { doorLocation: 'front_left', lockState: 'unlocked' },
-        { doorLocation: 'front_right', lockState: 'unlocked' },
-        { doorLocation: 'rear_right', lockState: 'unlocked' },
-        { doorLocation: 'rear_left', lockState: 'unlocked' },
-        { doorLocation: 'all', lockState: 'unlocked' },
+        { data: { doorLocation: 'front_left', lockState: 'unlocked' } },
+        { data: { doorLocation: 'front_right', lockState: 'unlocked' } },
+        { data: { doorLocation: 'rear_right', lockState: 'unlocked' } },
+        { data: { doorLocation: 'rear_left', lockState: 'unlocked' } },
+        { data: { doorLocation: 'all', lockState: 'unlocked' } },
       ],
       positions: [
-        { doorLocation: 'front_left', position: 'closed' },
-        { doorLocation: 'front_right', position: 'closed' },
-        { doorLocation: 'rear_right', position: 'closed' },
-        { doorLocation: 'rear_left', position: 'closed' },
-        { doorLocation: 'all', position: 'closed' },
+        { data: { doorLocation: 'front_left', position: 'closed' } },
+        { data: { doorLocation: 'front_right', position: 'closed' } },
+        { data: { doorLocation: 'rear_right', position: 'closed' } },
+        { data: { doorLocation: 'rear_left', position: 'closed' } },
+        { data: { doorLocation: 'all', position: 'closed' } },
       ],
     });
   });

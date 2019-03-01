@@ -12,8 +12,8 @@ describe(`EngineResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(FuelingResponse);
     expect(response.parse()).toEqual({
-      gasFlapLock: 'unlocked',
-      gasFlapPosition: 'closed',
+      gasFlapLock: { data: 'unlocked' },
+      gasFlapPosition: { data: 'closed' },
     });
   });
 });

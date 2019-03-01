@@ -12,10 +12,12 @@ describe(`NaviDestinationCommand`, () => {
     expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        latitude: expect.any(Number),
-        longitude: expect.any(Number),
+        data: {
+          latitude: expect.any(Number),
+          longitude: expect.any(Number),
+        },
       },
-      destinationName: expect.any(String),
+      destinationName: { data: expect.any(String) },
     });
   });
 
@@ -32,10 +34,12 @@ describe(`NaviDestinationCommand`, () => {
     expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        latitude: 52.52,
-        longitude: 13.42,
+        data: {
+          latitude: 52.52,
+          longitude: 13.42,
+        },
       },
-      destinationName: 'Narnia',
+      destinationName: { data: 'Narnia' },
     });
   });
 
@@ -48,10 +52,12 @@ describe(`NaviDestinationCommand`, () => {
     expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        latitude: 52.52,
-        longitude: 13.42,
+        data: {
+          latitude: 52.52,
+          longitude: 13.42,
+        },
       },
-      destinationName: expect.any(String),
+      destinationName: { data: expect.any(String) },
     });
   });
 });
