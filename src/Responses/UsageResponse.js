@@ -30,8 +30,71 @@ export default class UsageResponse extends PropertyResponse {
    *
    * @example UsageResponse
     {
-      currentFuelConsumption: 8.7,
-      averageFuelConsumption: 6.2,
+      averageWeeklyDistance: { data: 300 },
+      averageWeeklyDistanceLongRun: { data: 300 },
+      accelerationEvaluation: { data: 0.5 },
+      drivingStyleEvaluation: { data: 0.5 },
+      drivingModesActivationPeriods: [{
+        data: {
+          drivingMode: 'regular',
+          period: 0.4,
+        },
+      }, {
+        data: {
+          drivingMode: 'eco',
+          period: 0.4,
+        },
+      }, {
+        data: {
+          drivingMode: 'sport',
+          period: 0.4,
+        },
+      }, {
+        data: {
+          drivingMode: 'sport_plus',
+          period: 0.4,
+        },
+      }, {
+        data: {
+          drivingMode: 'eco_plus',
+          period: 0.4,
+        },
+      }],
+      drivingModesEnergyConsumptions: [{
+        data: {
+          drivingMode: 'regular',
+          consumption: 33.2,
+        },
+      }, {
+        data: {
+          drivingMode: 'eco',
+          consumption: 33.2,
+        },
+      }, {
+        data: {
+          drivingMode: 'sport',
+          consumption: 33.2,
+        },
+      }, {
+        data: {
+          drivingMode: 'sport_plus',
+          consumption: 33.2,
+        },
+      }, {
+        data: {
+          drivingMode: 'eco_plus',
+          consumption: 33.2,
+        },
+      }],
+      lastTripEnergyConsumption: { data: 101.3 },
+      lastTripFuelConsumption: { data: 22.5 },
+      mileageAfterLastTrip: { data: 95632 },
+      lastTripElectricPortion: { data: 0.2 },
+      lastTripAverageEnergyRecuperation: { data: 5.68 },
+      lastTripBatteryRemaining: { data: 0.5 },
+      lastTripDate: { data: '2018-10-22T12:10:33.769Z' },
+      averageFuelConsumption: { data: 6.2 },
+      currentFuelConsumption: { data: 8.7 },
     }
    */
 

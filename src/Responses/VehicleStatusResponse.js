@@ -33,40 +33,40 @@ export default class VehicleStatusResponse extends PropertyResponse {
    *
    * @example VehicleStatusResponse
     {
-      vin: 'JF2SHBDC7CH451869',
-      powertrain: 'all_electric',
-      modelName: 'Type X',
-      name: 'My Car',
-      licensePlate: 'ABC123',
-      salesDesignation: 'Package+',
-      modelYear: 2017,
-      colorName: 'Estoril Blau',
-      powerInKw: 220,
-      numberOfDoors: 5,
-      numberOfSeats: 5,
-      engineVolume: 4395,
-      engineMaxTorque: 520,
-      gearbox: 'semi_automatic',
-      displayUnit: 'km',
-      driverSeatLocation: 'left',
-      equipments: ['side skirts', 'front apron', 'rear apron'],
-      brand: 'Mercedes',
-      states: [
-        {
-          capabilityIdentifier: 'trunk',
-          state: {
-            trunkLock: 'unlocked',
-            trunkPosition: 'open',
-          },
+      vin: { data: 'JF2SHBDC7CH451869' },
+      powertrain: { data: 'all_electric' },
+      modelName: { data: 'Type X' },
+      name: { data: 'My Car' },
+      licensePlate: { data: 'ABC123' },
+      salesDesignation: { data: 'Package+' },
+      modelYear: { data: 2017 },
+      colorName: { data: 'Estoril Blau' },
+      powerInKw: { data: 220 },
+      numberOfDoors: { data: 4 },
+      numberOfSeats: { data: 4 },
+      engineVolume: { data: 4395 },
+      engineMaxTorque: { data: 520 },
+      gearbox: { data: 'manual' },
+      displayUnit: { data: 'km' },
+      driverSeatLocation: { data: 'left' },
+      equipments: [{ data: 'side skirts' }],
+      brand: { data: 'Porsche' },
+      states: [{
+        capabilityIdentifier: 'trunk',
+        state: {
+          trunkLock: { data: 'locked' },
+          trunkPosition: { data: 'closed' },
         },
-        {
-          capabilityIdentifier: 'rooftop_control',
-          state: {
-            dimming: 100,
-            position: 0,
-          },
+      }, {
+        capabilityIdentifier: 'rooftop_control',
+        state: {
+          dimming: { data: 0 },
+          position: { data: 100 },
+          convertibleRoof: { data: 'open' },
+          sunroofTilt: { data: 'closed' },
+          sunroofState: { data: 'open' },
         },
-      ],
+      }],
     }
    */
 

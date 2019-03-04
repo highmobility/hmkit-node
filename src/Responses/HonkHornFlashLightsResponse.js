@@ -10,7 +10,9 @@ export default class HonkHornFlashLightsResponse extends PropertyResponse {
    *
    * @example HonkHornFlashLightsResponse
     {
-      flashers: 'inactive',
+      flashers: {
+        data: 'inactive'
+      }
     }
    */
   constructor(data: Uint8Array, config: Object) {

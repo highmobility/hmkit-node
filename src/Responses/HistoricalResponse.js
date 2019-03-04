@@ -18,8 +18,12 @@ export default class HistoricalResponse extends PropertyResponse {
           capabilityIdentifier: 'trunk',
           date: 2018-02-14T18:30:01.000Z,
           state: {
-            trunkLock: 'unlocked',
-            trunkPosition: 'open',
+            trunkLock: {
+              data: 'unlocked'
+            },
+            trunkPosition: {
+              data: 'open'
+            },
           }
         }
       ]
@@ -32,11 +36,11 @@ export default class HistoricalResponse extends PropertyResponse {
     const properties = [
       new CapabilityPropertyDecoder(0x01, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
-        Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {
-          return new OptionalPropertyDecoder(identifier, name).setDecoder(
+        Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) =>
+          new OptionalPropertyDecoder(identifier, name).setDecoder(
             this.getCapabilityStateDecoder(identifier)
-          );
-        })
+          )
+        )
       ),
     ];
 

@@ -14,10 +14,10 @@ export default class WiFiResponse extends PropertyResponse {
    *
    * @example WifiResponse
     {
-      wifiEnabled: 'enabled',
-      networkConnected: 'disconnected',
-      networkSSID: 'TOTALLYFREEWIFI',
-      networkSecurity: 'wpa',
+      wifiEnabled: { data: 'enabled' },
+      networkConnected: { data: 'disconnected' },
+      networkSSID: { data: 'TOTALLYFREEWIFI' },
+      networkSecurity: { data: 'wpa' },
     }
    */
   constructor(data: Uint8Array, config: Object) {

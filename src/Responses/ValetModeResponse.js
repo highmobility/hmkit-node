@@ -10,7 +10,9 @@ export default class ValetModeResponse extends PropertyResponse {
    *
    * @example ValetModeResponse
     {
-      valetMode: 'deactivated',
+      valetMode: {
+        data: 'deactivated',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

@@ -11,8 +11,12 @@ export default class FuelingResponse extends PropertyResponse {
    *
    * @example FuelingResponse
     {
-      gasFlapLock: 'unlocked',
-      gasFlapPosition: 'closed'
+      gasFlapLock: {
+        data: 'unlocked'
+      },
+      gasFlapPosition: {
+        data: 'opened'
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

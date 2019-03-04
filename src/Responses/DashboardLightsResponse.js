@@ -11,152 +11,187 @@ export default class DashboardLightsResponse extends PropertyResponse {
    *
    * @example DashboardLightsResponse
     {
-      dashboardLights: [
-        {
+      dashboardLights: [{
+        data: {
           lightName: 'high_beam',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'low_beam',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'hazard_warning',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'brake_failure',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'hatch_open',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'fuel_level',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'engine_coolant_temperature',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'battery_charging_condition',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'engine_oil',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'position_lights',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'front_fog_light',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'rear_fog_light',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'park_heating',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'engine_indicator',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'service_call',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'transmission_fluid_temperature',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'transmission_failure',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'anti_lock_brake_failure',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'worn_brake_linings',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'windscreen_washer_fluid',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'tire_failure',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'engine_oil_level',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'engine_coolant_level',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'steering_failure',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'esc_indication',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'brake_lights',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'adblue_level',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'fuel_filter_diff_pressure',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'seat_belt',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'advanced_braking',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'acc',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'trailer_connected',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'airbag',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'esc_switched_off',
-          state: 'inactive',
-        },
-        {
+          state: 'inactive'
+        }
+      }, {
+        data: {
           lightName: 'lane_departure_warning_off',
-          state: 'inactive',
-        },
-      ]
+          state: 'inactive'
+        }
+      }],
     }
    */
   constructor(data: Uint8Array, config: Object) {
     super();
+
     /* prettier-ignore */
     const properties = [
       new PropertyDecoder(0x01, 'dashboardLights').setOptionalSubProperties('lightName', [

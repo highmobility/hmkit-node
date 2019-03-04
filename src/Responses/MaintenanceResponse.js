@@ -22,25 +22,49 @@ export default class MaintenanceResponse extends PropertyResponse {
    *
    * @example MaintenanceResponse
     {
-      daysToNextService: 400,
-      kilometersToNextService: 30000,
-      cbsReportsCount: 0,
-      monthsToExhaustInspection: 0,
-      teleserviceAvailability: 'pending',
-      serviceDistanceThreshold: 0,
-      serviceTimeThreshold: 0,
-      automaticTeleserviceCallDate: 2018-10-22T12:10:33.000Z,
-      teleserviceBatteryCallDate: 2018-10-22T12:10:33.000Z,
-      nextInspectionDate: 2018-10-22T12:10:33.000Z,
+      daysToNextService: {
+        data: 400,
+      },
+      kilometersToNextService: {
+        data: 30000,
+      },
+      cbsReportsCount: {
+        data: 0,
+      },
+      monthsToExhaustInspection: {
+        data: 0,
+      },
+      teleserviceAvailability: {
+        data: 'pending',
+      },
+      serviceDistanceThreshold: {
+        data: 0,
+      },
+      serviceTimeThreshold: {
+        data: 0,
+      },
+      automaticTeleserviceCallDate: {
+        data: '2018-10-22T12:10:33.769Z',
+      },
+      teleserviceBatteryCallDate: {
+        data: '2018-10-22T12:10:33.769Z',
+      },
+      nextInspectionDate: {
+        data: '2018-10-22T12:10:33.769Z',
+      },
       conditionBasedServices: [{
-        year: 2018,
-        month: 8,
-        cbsIdentifier: 123,
-        dueStatus: 'overdue',
-        cbsText: 'Test',
-        description: 'asdasd'
+        data: {
+          year: 2018,
+          month: 8,
+          cbsIdentifier: 123,
+          dueStatus: 'ok',
+          cbsText: '',
+          description: '',
+        },
       }],
-      brakeFluidChangeDate: 2018-10-22T12:10:33.000Z
+      brakeFluidChangeDate: {
+        data: '2018-10-22T12:10:33.769Z',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

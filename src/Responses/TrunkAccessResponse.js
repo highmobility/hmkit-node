@@ -11,8 +11,8 @@ export default class TrunkAccessResponse extends PropertyResponse {
    *
    * @example TrunkAccessResponse
     {
-      trunkLock: 'locked',
-      trunkPosition: 'closed',
+      trunkLock: { data: 'locked' },
+      trunkPosition: { data: 'closed' },
     }
    */
   constructor(data: Uint8Array, config: Object) {

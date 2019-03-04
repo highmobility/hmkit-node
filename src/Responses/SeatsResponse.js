@@ -9,41 +9,51 @@ export default class SeatsResponse extends PropertyResponse {
    * @property {Array} personsDetected (array) Persons detected ([{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center'), personDetected: (string: 'not_detected|detected')}])
    * @property {Array} seatbeltsFastened (array) Seatbelts fastened ([{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center', seatbeltFastened: (string: 'not_fastened|fastened')) }])
    *
-   * @example SeatsResponse {
+   * @example SeatsResponse
+    {
       personsDetected: [{
-        seatPosition: 'front_left',
-        personDetected: 'detected'
+        data: {
+          seatPosition: 'front_left',
+          personDetected: 'not_detected'
+        },
       }, {
-        seatPosition: 'front_right',
-        personDetected: 'detected'
+        data: {
+          seatPosition: 'front_right',
+          personDetected: 'not_detected'
+        },
       }, {
-        seatPosition: 'rear_right',
-        personDetected: 'detected'
+        data: {
+          seatPosition: 'rear_right',
+          personDetected: 'not_detected'
+        },
       }, {
-        seatPosition: 'rear_left',
-        personDetected: 'detected'
-      }, {
-        seatPosition: 'rear_center',
-        personDetected: 'not_detected'
+        data: {
+          seatPosition: 'rear_left',
+          personDetected: 'not_detected'
+        }
       }],
       seatbeltsFastened: [{
-        seatPosition: 'front_left',
-        seatbeltFastened: 'fastened'
+        data: {
+          seatPosition: 'front_left',
+          seatbeltFastened: 'not_fastened',
+        },
       }, {
-        seatPosition: 'front_right',
-        seatbeltFastened: 'fastened'
+        data: {
+          seatPosition: 'front_right',
+          seatbeltFastened: 'not_fastened',
+        },
       }, {
-        seatPosition: 'rear_right',
-        seatbeltFastened: 'fastened'
+        data: {
+          seatPosition: 'rear_right',
+          seatbeltFastened: 'not_fastened',
+        },
       }, {
-        seatPosition: 'rear_left',
-        seatbeltFastened: 'fastened'
-      }, {
-        seatPosition: 'rear_center',
-        seatbeltFastened: 'not_fastened'
-      }]
+        data: {
+          seatPosition: 'rear_left',
+          seatbeltFastened: 'not_fastened'
+        },
+      }],
     }
-
    */
   constructor(data: Uint8Array, config: Object) {
     super();

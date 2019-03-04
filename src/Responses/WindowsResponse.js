@@ -13,37 +13,57 @@ export default class WindowsResponse extends PropertyResponse {
    * @example WindowsResponse
     {
       windowsOpenPercentages: [{
-        windowLocation: 'front_left',
-        openPercentage: 0
+        data: {
+          windowLocation: 'front_left',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'front_right',
-        openPercentage: 0
+        data: {
+          windowLocation: 'front_right',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'rear_right',
-        openPercentage: 0
+        data: {
+          windowLocation: 'rear_right',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'rear_left',
-        openPercentage: 0
+        data: {
+          windowLocation: 'rear_left',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'hatch',
-        openPercentage: 0
+        data: {
+          windowLocation: 'hatch',
+          openPercentage: 0.6,
+        },
       }],
       windowsPositions: [{
-        windowLocation: 'front_left',
-        windowPosition: 'closed'
+        data: {
+          windowLocation: 'front_left',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'front_right',
-        windowPosition: 'closed'
+        data: {
+          windowLocation: 'front_right',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'rear_right',
-        windowPosition: 'closed'
+        data: {
+          windowLocation: 'rear_right',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'rear_left',
-        windowPosition: 'closed'
+        data: {
+          windowLocation: 'rear_left',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'hatch',
-        windowPosition: 'closed'
-      }]
+        data: {
+          windowLocation: 'hatch',
+          windowPosition: 'closed',
+        },
+      }],
     }
    */
   constructor(data: Uint8Array, config: Object) {

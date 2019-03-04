@@ -10,7 +10,9 @@ export default class StartStopResponse extends PropertyResponse {
    *
    * @example StartStopResponse
     {
-      startStop: 'active'
+      startStop: {
+        data: 'inactive',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

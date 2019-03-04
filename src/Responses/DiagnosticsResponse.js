@@ -44,79 +44,107 @@ export default class DiagnosticsResponse extends PropertyResponse {
    *
    * @example DiagnosticsResponse
     {
-      mileage: 3000,
-      engineOilTemperature: 18,
-      speed: 0,
-      engineRPM: 0,
-      fuelLevel: 0.8,
-      estimatedRange: 200,
-      washerFluidLevel: 'low',
-      batteryVoltage: 12,
-      adblueLevel: 0,
-      distanceSinceReset: 0,
-      distanceSinceStart: 0,
-      fuelVolume: 0,
-      antiLockBraking: 'inactive',
-      engineCoolantTemperature: 23,
-      engineTotalOperatingHours: 24,
-      engineTotalFuelConsumption: 600,
-      brakeFluidLevel: 'low',
-      engineTorque: 0.2,
-      engineLoad: 0.1,
-      wheelBasedSpeed: 0,
-      batteryLevel: 0.8,
+      mileage: { data: 3000 },
+      engineOilTemperature: { data: 18 },
+      speed: { data: 0 },
+      engineRPM: { data: 0 },
+      fuelLevel: { data: 0.8 },
+      estimatedRange: { data: 200 },
+      washerFluidLevel: { data: 'low' },
+      batteryVoltage: { data: 12 },
+      adblueLevel: { data: 0 },
+      distanceSinceReset: { data: 0 },
+      distanceSinceStart: { data: 0 },
+      fuelVolume: { data: 0 },
+      antiLockBraking: { data: 'inactive' },
+      engineCoolantTemperature: { data: 23 },
+      engineTotalOperatingHours: { data: 24 },
+      engineTotalFuelConsumption: { data: 600 },
+      brakeFluidLevel: { data: 'low' },
+      engineTorque: { data: 0.2 },
+      engineLoad: { data: 0.1 },
+      wheelBasedSpeed: { data: 0 },
+      batteryLevel: { data: 0.8 },
       checkControlMessages: [{
-        id: 10,
-        remainingMinutes: 342344,
-        text: 'Check engine',
-        status: 'Alert'
+        data: {
+          id: 10,
+          remainingMinutes: 0,
+          text: '',
+          status: ''
+        }
       }],
       tirePressures: [{
-        location: 'front_left',
-        pressure: 2.3
+        data: {
+          location: 'front_left',
+          pressure: 2.3
+        }
       }, {
-        location: 'front_right',
-        pressure: 2.3
+        data: {
+          location: 'front_right',
+          pressure: 2.3
+        }
       }, {
-        location: 'rear_right',
-        pressure: 2.3
+        data: {
+          location: 'rear_right',
+          pressure: 2.3
+        }
       }, {
-        location: 'rear_left',
-        pressure: 2.3
+        data: {
+          location: 'rear_left',
+          pressure: 2.3
+        }
       }],
       tireTemperatures: [{
-        location: 'front_left',
-        temperature: 40
+        data: {
+          location: 'front_left',
+          temperature: 40
+        }
       }, {
-        location: 'front_right',
-        temperature: 40
+        data: {
+          location: 'front_right',
+          temperature: 40
+        }
       }, {
-        location: 'rear_right',
-        temperature: 40
+        data: {
+          location: 'rear_right',
+          temperature: 40
+        }
       }, {
-        location: 'rear_left',
-        temperature: 40
+        data: {
+          location: 'rear_left',
+          temperature: 40
+        }
       }],
       wheelRpms: [{
-        location: 'front_left',
-        rpm: 0
+        data: {
+          location: 'front_left',
+          rpm: 0
+        }
       }, {
-        location: 'front_right',
-        rpm: 0
+        data: {
+          location: 'front_right',
+          rpm: 0
+        }
       }, {
-        location: 'rear_right',
-        rpm: 0
+        data: {
+          location: 'rear_right',
+          rpm: 0
+        }
       }, {
-        location: 'rear_left',
-        rpm: 0
+        data: {
+          location: 'rear_left',
+          rpm: 0
+        }
       }],
       troubleCodes: [{
-        occurences: 5,
-        id: 'test id',
-        ecuId: 'test ECU id',
-        status: 'Alert',
+        data: {
+          occurences: 0,
+          id: '',
+          ecuId: '',
+          status: ''
+        }
       }],
-      mileageMeters: 10000
+      mileageMeters: { data: 3000 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

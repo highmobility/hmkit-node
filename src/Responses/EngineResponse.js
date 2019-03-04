@@ -11,8 +11,12 @@ export default class EngineResponse extends PropertyResponse {
    *
    * @example EngineResponse
     {
-      ignition: 'engine_off',
-      accessoriesIgnition: 'powered_off'
+      ignition: {
+        data: 'engine_off'
+      },
+      accessoriesIgnition: {
+        data: 'powered_off'
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

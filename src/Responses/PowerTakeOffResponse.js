@@ -11,8 +11,12 @@ export default class PowerTakeOffResponse extends PropertyResponse {
    *
    * @example PowerTakeOffResponse
     {
-      powerTakeoff: 'inactive',
-      powerTakeoffEngaged: 'not_engaged'
+      powerTakeoff: {
+        data: 'inactive',
+      },
+      powerTakeoffEngaged: {
+        data: 'not_engaged',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

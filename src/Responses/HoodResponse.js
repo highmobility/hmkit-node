@@ -10,7 +10,9 @@ export default class HoodResponse extends PropertyResponse {
    *
    * @example HoodResponse
     {
-      position: 'closed',
+      position: {
+        data: 'closed'
+      }
     }
    */
   constructor(data: Uint8Array, config: Object) {

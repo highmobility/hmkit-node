@@ -11,8 +11,12 @@ export default class LightConditionsResponse extends PropertyResponse {
    *
    * @example LightConditionsResponse
     {
-      outsideLight: 10000,
-      insideLight: 1000,
+      outsideLight: {
+        data: 10000
+      },
+      insideLight: {
+        data: 1000
+      }
     }
    */
   constructor(data: Uint8Array, config: Object) {

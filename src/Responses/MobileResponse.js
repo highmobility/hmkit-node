@@ -10,7 +10,9 @@ export default class MobileResponse extends PropertyResponse {
    *
    * @example MobileResponse
     {
-      connection: 'connected',
+      connection: {
+        data: 'disconnected',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

@@ -15,11 +15,21 @@ export default class ParkingTicketResponse extends PropertyResponse {
    *
    * @example ParkingTicketResponse
     {
-      parkingTicketState: 'started',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: '6489423333asd',
-      ticketStartTime: 2018-02-14T18:30:01.000Z,
-      ticketEndTime: 2018-02-17T12:05:02.000Z,
+      parkingTicketState: {
+        data: 'ended',
+      },
+      operatorName: {
+        data: 'Berlin Parking',
+      },
+      operatorTicketID: {
+        data: '64894233',
+      },
+      ticketStartTime: {
+        data: '2018-04-12T23:20:50.000Z',
+      },
+      ticketEndTime: {
+        data: '2019-03-04T09:25:58.360Z',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

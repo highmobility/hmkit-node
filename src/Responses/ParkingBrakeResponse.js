@@ -10,7 +10,9 @@ export default class ParkingBrakeResponse extends PropertyResponse {
    *
    * @example ParkingBrakeResponse
     {
-      parkingBrake: 'inactive',
+      parkingBrake: {
+        data: 'inactive',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

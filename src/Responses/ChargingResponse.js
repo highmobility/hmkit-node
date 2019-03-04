@@ -35,43 +35,53 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
    * @example ChargingResponse
     {
-      estimatedRange: 30,
-      batteryLevel: 0.8,
-      batteryCurrentAC: -0.6,
-      batteryCurrentDC: -0.6,
-      chargerVoltageAC: 0,
-      chargerVoltageDC: 0,
-      chargeLimit: 0.8,
-      timeToCompleteCharge: 0,
-      chargingRateKW: 0,
-      chargePortState: 'closed',
-      chargeMode: 'immediate',
-      maxChargingCurrent: 25,
-      plugType: 'type_2',
-      chargingWindowChosen: 'not_chosen',
+      estimatedRange: { data: 30 },
+      batteryLevel: { data: 0.8 },
+      batteryCurrentAC: { data: -0.6 },
+      batteryCurrentDC: { data: -0.6 },
+      chargerVoltageAC: { data: 0 },
+      chargerVoltageDC: { data: 0 },
+      chargeLimit: { data: 100 },
+      timeToCompleteCharge: { data: 0 },
+      chargingRateKW: { data: 0 },
+      chargePortState: { data: 'closed' },
+      chargeMode: { data: 'immediate' },
+      maxChargingCurrent: { data: 25 },
+      plugType: { data: 'type_2' },
+      chargingWindowChosen: { data: 'not_chosen' },
       departureTimes: [{
-        activeState: 'inactive',
-        hour: 18,
-        minute: 10
+        data: {
+          activeState: 'inactive',
+          hour: 13,
+          minute: 51
+        }
       }],
       reductionTimes: [{
-        startStop: 'reset',
-        hour: 18,
-        minute: 10
+        data: {
+          startStop: 'start',
+          hour: 2,
+          minute: 5
+        }
       }],
-      batteryTemperature: 38.4,
+      batteryTemperature: { data: 38.4 },
       timers: [{
-        timerType: 'preferred_start_time',
-        time: 2018-10-17T07:27:52.000Z
+        data: {
+          timerType: 'preferred_start_time',
+          time: '2018-02-11T12:13:00.000Z',
+        },
       }, {
-        timerType: 'preferred_end_time',
-        time: 2018-10-17T07:27:52.000Z
+        data: {
+          timerType: 'preferred_end_time',
+          time: '2018-02-11T12:14:00.000Z',
+        },
       }, {
-        timerType: 'departure_time',
-        time: 2018-10-17T07:27:52.000Z
+        data: {
+          timerType: 'departure_time',
+          time: '2018-02-10T13:45:33.157Z',
+        },
       }],
-      pluggedIn: 'disconnected',
-      activeState: 'not_charging'
+      pluggedIn: { data: 'disconnected' },
+      activeState: { data: 'not_charging' },
     }
    */
 

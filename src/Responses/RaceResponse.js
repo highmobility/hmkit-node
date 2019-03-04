@@ -34,46 +34,54 @@ export default class RaceResponse extends PropertyResponse {
    *
    * @example RaceResponse
     {
-      accelerations: [
-        {
+      accelerations: [{
+        data: {
           type: 'longitudinal_acceleration',
           gForce: 0,
         },
-        {
+      }, {
+        data: {
           type: 'lateral_acceleration',
           gForce: 0,
         },
-        {
+      }, {
+        data: {
           type: 'front_lateral_acceleration',
           gForce: 0,
         },
-        {
+      }, {
+        data: {
           type: 'rear_lateral_acceleration',
           gForce: 0,
         },
-      ],
-      understeering: 0,
-      oversteering: 0,
-      gasPedalPosition: 0,
-      steeringAngle: 0,
-      brakePressure: 0,
-      yawRate: 0,
-      rearSuspensionSteering: 0,
-      electronicStabilityProgram: 'inactive',
-      brakeTorqueVectorings: [
-        {
+      }],
+      understeering: { data: 0 },
+      oversteering: { data: 0 },
+      gasPedalPosition: { data: 0 },
+      steeringAngle: { data: 0 },
+      brakePressure: { data: 0 },
+      yawRate: { data: 0 },
+      rearSuspensionSteering: { data: 0 },
+      electronicStabilityProgram: { data: 'inactive' },
+      brakeTorqueVectorings: [{
+        data: {
           axle: 'front_axle',
-          vectoring: 'active',
+          vectoring: 'inactive',
         },
-        {
+      }, {
+        data: {
           axle: 'rear_axle',
           vectoring: 'inactive',
         },
-      ],
-      gearMode: 'manual',
-      selectedGear: 0,
-      brakePedalPosition: 0,
-      vehicleMoving: 'moving'
+      }],
+      gearMode: { data: 'manual' },
+      selectedGear: { data: 0 },
+      brakePedalPosition: { data: 0 },
+      brakePedalSwitch: { data: 'inactive' },
+      clutchPedalSwitch: { data: 'inactive' },
+      acceleratorPedalIdleSwitch: { data: 'inactive' },
+      acceleratorPedalKickdownSwitch: { data: 'inactive' },
+      vehicleMoving: { data: 'not_moving' },
     }
    */
   constructor(data: Uint8Array, config: Object) {

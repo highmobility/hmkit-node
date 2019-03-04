@@ -11,8 +11,12 @@ export default class OffroadResponse extends PropertyResponse {
    *
    * @example OffroadResponse
     {
-      routeIncline: 0,
-      wheelSuspension: 0,
+      routeIncline: {
+        data: 0,
+      },
+      wheelSuspension: {
+        data: 0,
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

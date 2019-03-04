@@ -10,7 +10,9 @@ export default class TheftAlarmResponse extends PropertyResponse {
    *
    * @example TheftAlarmResponse
     {
-      theftAlarm: 'triggered',
+      theftAlarm: {
+        data: 'triggered',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

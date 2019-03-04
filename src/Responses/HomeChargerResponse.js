@@ -30,38 +30,45 @@ export default class HomeChargerResponse extends PropertyResponse {
    *
    * @example HomeChargerResponse
     {
-      charging: 'disconnected',
-      authenticationMechanism: 'pin',
-      plugType: 'type_1',
-      chargingPower: 0,
-      solarCharging: 'deactivated',
-      hotspotEnabled: 'disabled',
-      hotspotSSID: 'SSID123123',
-      wiFiHotspotSecurity: 'none',
-      wiFiHotspotPassword: 'PASSWORD',
-      authentication: 'unauthenticated',
-      chargeCurrentDC: 0.6,
-      maximumChargeCurrent: 50,
-      minimumChargeCurrent: 0,
+      charging: { data: 'disconnected' },
+      authenticationMechanism: { data: 'pin' },
+      plugType: { data: 'type_1' },
+      chargingPower: { data: 0 },
+      solarCharging: { data: 'deactivated' },
+      hotspotEnabled: { data: 'disabled' },
+      hotspotSSID: { data: '' },
+      wiFiHotspotSecurity: { data: 'none' },
+      wiFiHotspotPassword: { data: '' },
+      authentication: { data: 'unauthenticated' },
+      chargeCurrentDC: { data: 0.5 },
+      maximumChargeCurrent: { data: 50 },
+      minimumChargeCurrent: { data: 0 },
       coordinates: {
-        latitude: 52.52,
-        longitude: 13.41
+        data: {
+          latitude: 52.516506,
+          longitude: 13.381815,
+        },
       },
       priceTariffs: [{
-        pricingType: 'starting_fee',
-        price: 2,
-        currency: 'EUR'
+        data: {
+          pricingType: 'starting_fee',
+          price: 4.5,
+          currency: 'EUR',
+        },
       }, {
-        pricingType: 'per_minute',
-        price: 1,
-        currency: 'EUR'
+        data: {
+          pricingType: 'per_minute',
+          price: 0,
+          currency: '',
+        },
       }, {
-        pricingType: 'per_kwh',
-        price: 3,
-        currency: 'EUR'
-      }]
-    }
-
+        data: {
+          pricingType: 'per_kwh',
+          price: 1.3,
+          currency: 'USD',
+        },
+      },
+    ]}
    */
   constructor(data: Uint8Array, config: Object) {
     super();

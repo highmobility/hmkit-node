@@ -10,7 +10,9 @@ export default class VehicleTimeResponse extends PropertyResponse {
    *
    * @example VehicleTimeResponse
     {
-      vehicleTime: 2018-02-17T12:05:02.000Z
+      vehicleTime: {
+        data: '2019-03-01T11:51:36.263Z',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

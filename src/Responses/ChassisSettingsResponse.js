@@ -17,33 +17,46 @@ export default class ChassisSettingsResponse extends PropertyResponse {
    * @property {Number} maximumChassisPosition (number) Maximum chassis position
    * @property {Number} minimumChassisPosition (number) Minimum chassis position
    *
-   * @example ChassisSettingsResponse {
-      drivingMode: 'sport',
-      sportChrono: 'inactive',
+   * @example ChassisSettingsResponse
+    {
+      drivingMode: { data: 'sport_plus' },
+      sportChrono: { data: 'inactive' },
       currentSpringRates: [{
-        axle: 'front_axle',
-        springRate: 21
+        data: {
+          axle: 'front_axle',
+          springRate: 21
+        }
       }, {
-        axle: 'rear_axle',
-        springRate: 21
+        data: {
+          axle: 'rear_axle',
+          springRate: 25
+        }
       }],
       maximumSpringRates: [{
-        axle: 'front_axle',
-        springRate: 40
+        data: {
+          axle: 'front_axle',
+          springRate: 37
+        }
       }, {
-        axle: 'rear_axle',
-        springRate: 37
+        data: {
+          axle: 'rear_axle',
+          springRate: 37
+        }
       }],
       minimumSpringRates: [{
-        axle: 'front_axle',
-        springRate: 17
+        data: {
+          axle: 'front_axle',
+          springRate: 17
+        }
       }, {
-        axle: 'rear_axle',
-        springRate: 17
+        data: {
+          axle: 'rear_axle',
+          springRate: 17
+        }
       }],
-      currentChassisPosition: -29,
-      maximumChassisPosition: 55,
-      minimumChassisPosition: -28
+      currentChassisPosition: { data: 26 },
+      maximumChassisPosition: { data: 55 },
+      minimumChassisPosition: { data: -28 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

@@ -10,7 +10,9 @@ export default class WeatherConditionsResponse extends PropertyResponse {
    *
    * @example WeatherConditionsResponse
     {
-      rainIntensity: 0.5,
+      rainIntensity: {
+        data: 0.5
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {

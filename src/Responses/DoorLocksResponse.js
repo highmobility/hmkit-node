@@ -14,55 +14,84 @@ export default class DoorLocksResponse extends PropertyResponse {
    * @example DoorLocksResponse
     {
       insideLocks: [{
-        doorLocation: 'front_left',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'front_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'front_right',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'front_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_right',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'rear_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_left',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'rear_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'all',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'all',
+          lockState: 'locked',
+        },
       }],
       locks: [{
-        doorLocation: 'front_left',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'front_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'front_right',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'front_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_right',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'rear_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_left',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'rear_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'all',
-        lockState: 'unlocked'
+        data: {
+          doorLocation: 'all',
+          lockState: 'locked',
+        },
       }],
       positions: [{
-        doorLocation: 'front_left',
-        position: 'closed'
+        data: {
+          doorLocation: 'front_left',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'front_right',
-        position: 'closed'
+        data: {
+          doorLocation: 'front_right',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'rear_right',
-        position: 'open'
+        data: {
+          doorLocation: 'rear_right',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'rear_left',
-        position: 'closed'
+        data: {
+          doorLocation: 'rear_left',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'all',
-        position: 'closed'
-      }]
+        data: {
+          doorLocation: 'all',
+          position: 'closed',
+        },
+      }],
     }
-
    */
   constructor(data: Uint8Array, config: Object) {
     super();

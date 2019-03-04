@@ -20,38 +20,64 @@ export default class LightsResponse extends PropertyResponse {
    *
    * @example LightsResponse
     {
-      frontExteriorLight: 'inactive',
-      rearExteriorLight: 'inactive',
-      ambientLight: '#254f4c',
-      reverseLight: 'active',
-      emergencyBrakeLight: 'active',
+      frontExteriorLight: {
+        data: 'inactive',
+      },
+      rearExteriorLight: {
+        data: 'inactive',
+      },
+      ambientLight: {
+        data: '#000000',
+      },
+      reverseLight: {
+        data: 'inactive',
+      },
+      emergencyBrakeLight: {
+        data: 'inactive',
+      },
       fogLights: [{
-        location: 'front'
-        state: 'active'
+        data: {
+          location: 'front',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear'
-        state: 'inactive'
+        data: {
+          location: 'rear',
+          state: 'inactive',
+        },
       }],
       readingLamps: [{
-        location: 'front_left',
-        state: 'inactive'
+        data: {
+          location: 'front_left',
+          state: 'inactive',
+        },
       }, {
-        location: 'front_right',
-        state: 'inactive'
+        data: {
+          location: 'front_right',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear_right',
-        state: 'inactive'
+        data: {
+          location: 'rear_right',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear_left',
-        state: 'inactive'
+        data: {
+          location: 'rear_left',
+          state: 'inactive',
+        },
       }],
       interiorLights: [{
-        location: 'front'
-        state: 'active'
+        data: {
+          location: 'front',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear'
-        state: 'inactive'
-      }]
+        data: {
+          location: 'rear',
+          state: 'inactive',
+        },
+      }],
     }
    */
   constructor(data: Uint8Array, config: Object) {

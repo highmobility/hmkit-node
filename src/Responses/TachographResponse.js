@@ -17,40 +17,43 @@ export default class TachographResponse extends PropertyResponse {
    *
    * @example TachographResponse
     {
-      driverWorkingStates: [
-        {
+      driverWorkingStates: [{
+        data: {
           driverNumber: 1,
           workingState: 'resting',
         },
-        {
+      }, {
+        data: {
           driverNumber: 2,
           workingState: 'resting',
         },
-      ],
-      driverTimeStates: [
-        {
+      }],
+      driverTimeStates: [{
+        data: {
           driverNumber: 1,
           timeState: 'normal',
         },
-        {
+      }, {
+        data: {
           driverNumber: 2,
           timeState: 'normal',
         },
-      ],
-      driverCards: [
-        {
+      }],
+      driverCards: [{
+        data: {
           driverNumber: 1,
           card: 'not_present',
         },
-        {
+      }, {
+        data: {
           driverNumber: 2,
           card: 'not_present',
         },
-      ],
-      vehicleMotion: 'not_detected',
-      vehicleOverspeed: 'no_overspeed',
-      vehicleDirection: 'forward',
-      vehicleSpeed: 0,
+      }],
+      vehicleMotion: { data: 'not_detected' },
+      vehicleOverspeed: { data: 'no_overspeed' },
+      vehicleDirection: { data: 'forward' },
+      vehicleSpeed: { data: 0 },
     }
   */
   constructor(data: Uint8Array, config: Object) {

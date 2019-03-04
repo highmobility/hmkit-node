@@ -13,10 +13,14 @@ export default class NaviDestinationResponse extends PropertyResponse {
    * @example NaviDestinationResponse
     {
       coordinates: {
-        latitude: 52.52,
-        longitude: 13.42,
+        data: {
+          latitude: 52.520008,
+          longitude: 13.404953,
+        },
       },
-      destinationName: 'Narnia',
+      destinationName: {
+        data: 'Narnia',
+      },
     }
    */
   constructor(data: Uint8Array, config: Object) {
