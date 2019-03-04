@@ -32,7 +32,7 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {Number} batteryTemperature (number) Battery temperature in Celsius in 4-bytes per IEEE 754
    * @property {Array} timers (array) Charging timers [{ timerType: (string), time: (date) }]
    * @property {String} pluggedIn (string) Plugged in
-   * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
+   * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
    * @example ChargingResponse
     {
       estimatedRange: 30,
