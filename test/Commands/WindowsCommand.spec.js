@@ -221,23 +221,23 @@ describe(`WindowsCommand`, () => {
         [
           {
             windowLocation: 'front_left',
-            windowPosition: 'close',
+            windowPosition: 'closed',
           },
           {
             windowLocation: 'front_right',
-            windowPosition: 'close',
+            windowPosition: 'closed',
           },
           {
             windowLocation: 'rear_right',
-            windowPosition: 'close',
+            windowPosition: 'closed',
           },
           {
             windowLocation: 'rear_left',
-            windowPosition: 'close',
+            windowPosition: 'closed',
           },
           {
             windowLocation: 'hatch',
-            windowPosition: 'close',
+            windowPosition: 'closed',
           },
         ]
       )
@@ -426,15 +426,15 @@ describe(`WindowsCommand`, () => {
         },
         {
           windowLocation: 'front_left',
-          windowPosition: 'close',
+          windowPosition: 'closed',
         },
         {
           windowLocation: 'rear_left',
-          windowPosition: 'close',
+          windowPosition: 'closed',
         },
         {
           windowLocation: 'hatch',
-          windowPosition: 'close',
+          windowPosition: 'closed',
         },
       ])
     ).toEqual([
@@ -503,13 +503,13 @@ describe(`WindowsCommand`, () => {
     ).toEqual(0x04);
   });
 
-  it(`should get correct window open/close byte`, () => {
+  it(`should get correct window open/closed byte`, () => {
     expect(
       hmkit.commands.WindowsCommand.getWindowOpenCloseByte('open')
     ).toEqual(0x01);
 
     expect(
-      hmkit.commands.WindowsCommand.getWindowOpenCloseByte('close')
+      hmkit.commands.WindowsCommand.getWindowOpenCloseByte('closed')
     ).toEqual(0x00);
   });
 });

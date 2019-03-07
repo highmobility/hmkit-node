@@ -25,7 +25,7 @@ describe(`EngineCommand`, () => {
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        ignition: { data: 'engine_on' },
+        ignition: { data: 'on' },
       })
     );
   });
@@ -39,7 +39,7 @@ describe(`EngineCommand`, () => {
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        ignition: { data: 'engine_off' },
+        ignition: { data: 'off' },
       })
     );
   });
