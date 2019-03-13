@@ -240,53 +240,53 @@ parameters-description="(number) Estimated range in km, (number) Battery level 0
 <h4>Example</h4>
 {% capture code %}
 <ChargingResponse> {
- estimatedRange: { data: 30 },
- batteryLevel: { data: 0.8 },
- batteryCurrentAC: { data: -0.6 },
- batteryCurrentDC: { data: -0.6 },
- chargerVoltageAC: { data: 0 },
- chargerVoltageDC: { data: 0 },
- chargeLimit: { data: 100 },
- timeToCompleteCharge: { data: 0 },
- chargingRateKW: { data: 0 },
- chargePortState: { data: 'closed' },
- chargeMode: { data: 'immediate' },
- maxChargingCurrent: { data: 25 },
- plugType: { data: 'type_2' },
- chargingWindowChosen: { data: 'not_chosen' },
+ estimatedRange: { value: 30 },
+ batteryLevel: { value: 0.8 },
+ batteryCurrentAC: { value: -0.6 },
+ batteryCurrentDC: { value: -0.6 },
+ chargerVoltageAC: { value: 0 },
+ chargerVoltageDC: { value: 0 },
+ chargeLimit: { value: 100 },
+ timeToCompleteCharge: { value: 0 },
+ chargingRateKW: { value: 0 },
+ chargePortState: { value: 'closed' },
+ chargeMode: { value: 'immediate' },
+ maxChargingCurrent: { value: 25 },
+ plugType: { value: 'type_2' },
+ chargingWindowChosen: { value: 'not_chosen' },
  departureTimes: [{
-   data: {
+   value: {
      activeState: 'inactive',
      hour: 13,
      minute: 51
    }
  }],
  reductionTimes: [{
-   data: {
+   value: {
      startStop: 'start',
      hour: 2,
      minute: 5
    }
  }],
- batteryTemperature: { data: 38.4 },
+ batteryTemperature: { value: 38.4 },
  timers: [{
-   data: {
+   value: {
      timerType: 'preferred_start_time',
      time: '2018-02-11T12:13:00.000Z',
    },
  }, {
-   data: {
+   value: {
      timerType: 'preferred_end_time',
      time: '2018-02-11T12:14:00.000Z',
    },
  }, {
-   data: {
+   value: {
      timerType: 'departure_time',
      time: '2018-02-10T13:45:33.157Z',
    },
  }],
- pluggedIn: { data: 'disconnected' },
- activeState: { data: 'not_charging' },
+ pluggedIn: { value: 'disconnected' },
+ activeState: { value: 'not_charging' },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -307,44 +307,44 @@ parameters-description="(string) Driving mode, (string) Sport chrono, (array) Cu
 <h4>Example</h4>
 {% capture code %}
 <ChassisSettingsResponse> {
- drivingMode: { data: 'sport_plus' },
- sportChrono: { data: 'inactive' },
+ drivingMode: { value: 'sport_plus' },
+ sportChrono: { value: 'inactive' },
  currentSpringRates: [{
-   data: {
+   value: {
      axle: 'front_axle',
      springRate: 21
    }
  }, {
-   data: {
+   value: {
      axle: 'rear_axle',
      springRate: 25
    }
  }],
  maximumSpringRates: [{
-   data: {
+   value: {
      axle: 'front_axle',
      springRate: 37
    }
  }, {
-   data: {
+   value: {
      axle: 'rear_axle',
      springRate: 37
    }
  }],
  minimumSpringRates: [{
-   data: {
+   value: {
      axle: 'front_axle',
      springRate: 17
    }
  }, {
-   data: {
+   value: {
      axle: 'rear_axle',
      springRate: 17
    }
  }],
- currentChassisPosition: { data: 26 },
- maximumChassisPosition: { data: 55 },
- minimumChassisPosition: { data: -28 },
+ currentChassisPosition: { value: 26 },
+ maximumChassisPosition: { value: 55 },
+ minimumChassisPosition: { value: -28 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -365,29 +365,29 @@ parameters-description="(number) Temperature in celsius formatted in 4-bytes per
 <h4>Example</h4>
 {% capture code %}
 <ClimateResponse> {
- insideTemperature: { data: 23 },
- outsideTemperature: { data: 18 },
- driverTemperatureSetting: { data: 22 },
- passengerTemperatureSetting: { data: 23 },
- defoggingState: { data: 'inactive' },
- defrostingState: { data: 'inactive' },
- ionisingState: { data: 'inactive' },
- defrostingTemperature: { data: 23 },
- hvacState: { data: 'inactive' },
+ insideTemperature: { value: 23 },
+ outsideTemperature: { value: 18 },
+ driverTemperatureSetting: { value: 22 },
+ passengerTemperatureSetting: { value: 23 },
+ defoggingState: { value: 'inactive' },
+ defrostingState: { value: 'inactive' },
+ ionisingState: { value: 'inactive' },
+ defrostingTemperature: { value: 23 },
+ hvacState: { value: 'inactive' },
  hvacWeekdayStartingTimes: [{
-   data: {
+   value: {
      weekday: 'monday',
      hour: 18,
      minute: 30
    }
  }, {
-   data: {
+   value: {
      weekday: 'friday',
      hour: 18,
      minute: 30
    }
  }],
- rearTemperatureSetting: { data: 24 },
+ rearTemperatureSetting: { value: 24 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -408,11 +408,11 @@ parameters-description="(string) Cruise control state, (string) Limiter state, T
 <h4>Example</h4>
 {% capture code %}
 <CruiseControlResponse> {
- cruiseControl: { data: 'active' },
- limiter: { data: 'not_set' },
- targetSpeed: { data: 90 },
- acc: { data: 'inactive' },
- accTargetSpeed: { data: 0 },
+ cruiseControl: { value: 'active' },
+ limiter: { value: 'not_set' },
+ targetSpeed: { value: 90 },
+ acc: { value: 'inactive' },
+ accTargetSpeed: { value: 0 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -434,177 +434,177 @@ parameters-description="(array) Dashbaord lights ([{lightName: (String)&comma; s
 {% capture code %}
 <DashboardLightsResponse> {
  dashboardLights: [{
-   data: {
+   value: {
      lightName: 'high_beam',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'low_beam',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'hazard_warning',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'brake_failure',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'hatch_open',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'fuel_level',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'engine_coolant_temperature',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'battery_charging_condition',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'engine_oil',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'position_lights',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'front_fog_light',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'rear_fog_light',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'park_heating',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'engine_indicator',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'service_call',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'transmission_fluid_temperature',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'transmission_failure',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'anti_lock_brake_failure',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'worn_brake_linings',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'windscreen_washer_fluid',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'tire_failure',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'engine_oil_level',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'engine_coolant_level',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'steering_failure',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'esc_indication',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'brake_lights',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'adblue_level',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'fuel_filter_diff_pressure',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'seat_belt',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'advanced_braking',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'acc',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'trailer_connected',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'airbag',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'esc_switched_off',
      state: 'inactive'
    }
  }, {
-   data: {
+   value: {
      lightName: 'lane_departure_warning_off',
      state: 'inactive'
    }
@@ -629,29 +629,29 @@ parameters-description="(number) The car mileage (odometer) in km, (number) Engi
 <h4>Example</h4>
 {% capture code %}
 <DiagnosticsResponse> {
- mileage: { data: 3000 },
- engineOilTemperature: { data: 18 },
- speed: { data: 0 },
- engineRPM: { data: 0 },
- fuelLevel: { data: 0.8 },
- estimatedRange: { data: 200 },
- washerFluidLevel: { data: 'low' },
- batteryVoltage: { data: 12 },
- adblueLevel: { data: 0 },
- distanceSinceReset: { data: 0 },
- distanceSinceStart: { data: 0 },
- fuelVolume: { data: 0 },
- antiLockBraking: { data: 'inactive' },
- engineCoolantTemperature: { data: 23 },
- engineTotalOperatingHours: { data: 24 },
- engineTotalFuelConsumption: { data: 600 },
- brakeFluidLevel: { data: 'low' },
- engineTorque: { data: 0.2 },
- engineLoad: { data: 0.1 },
- wheelBasedSpeed: { data: 0 },
- batteryLevel: { data: 0.8 },
+ mileage: { value: 3000 },
+ engineOilTemperature: { value: 18 },
+ speed: { value: 0 },
+ engineRPM: { value: 0 },
+ fuelLevel: { value: 0.8 },
+ estimatedRange: { value: 200 },
+ washerFluidLevel: { value: 'low' },
+ batteryVoltage: { value: 12 },
+ adblueLevel: { value: 0 },
+ distanceSinceReset: { value: 0 },
+ distanceSinceStart: { value: 0 },
+ fuelVolume: { value: 0 },
+ antiLockBraking: { value: 'inactive' },
+ engineCoolantTemperature: { value: 23 },
+ engineTotalOperatingHours: { value: 24 },
+ engineTotalFuelConsumption: { value: 600 },
+ brakeFluidLevel: { value: 'low' },
+ engineTorque: { value: 0.2 },
+ engineLoad: { value: 0.1 },
+ wheelBasedSpeed: { value: 0 },
+ batteryLevel: { value: 0.8 },
  checkControlMessages: [{
-   data: {
+   value: {
      id: 10,
      remainingMinutes: 0,
      text: '',
@@ -659,77 +659,77 @@ parameters-description="(number) The car mileage (odometer) in km, (number) Engi
    }
  }],
  tirePressures: [{
-   data: {
+   value: {
      location: 'front_left',
      pressure: 2.3
    }
  }, {
-   data: {
+   value: {
      location: 'front_right',
      pressure: 2.3
    }
  }, {
-   data: {
+   value: {
      location: 'rear_right',
      pressure: 2.3
    }
  }, {
-   data: {
+   value: {
      location: 'rear_left',
      pressure: 2.3
    }
  }],
  tireTemperatures: [{
-   data: {
+   value: {
      location: 'front_left',
      temperature: 40
    }
  }, {
-   data: {
+   value: {
      location: 'front_right',
      temperature: 40
    }
  }, {
-   data: {
+   value: {
      location: 'rear_right',
      temperature: 40
    }
  }, {
-   data: {
+   value: {
      location: 'rear_left',
      temperature: 40
    }
  }],
  wheelRpms: [{
-   data: {
+   value: {
      location: 'front_left',
      rpm: 0
    }
  }, {
-   data: {
+   value: {
      location: 'front_right',
      rpm: 0
    }
  }, {
-   data: {
+   value: {
      location: 'rear_right',
      rpm: 0
    }
  }, {
-   data: {
+   value: {
      location: 'rear_left',
      rpm: 0
    }
  }],
  troubleCodes: [{
-   data: {
+   value: {
      occurences: 0,
      id: '',
      ecuId: '',
      status: ''
    }
  }],
- mileageMeters: { data: 3000 },
+ mileageMeters: { value: 3000 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -751,79 +751,79 @@ parameters-description="(array) Inside door locks ([{ doorLocation: (string 'fro
 {% capture code %}
 <DoorLocksResponse> {
  insideLocks: [{
-   data: {
+   value: {
      doorLocation: 'front_left',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'front_right',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'rear_right',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'rear_left',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'all',
      lockState: 'locked',
    },
  }],
  locks: [{
-   data: {
+   value: {
      doorLocation: 'front_left',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'front_right',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'rear_right',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'rear_left',
      lockState: 'locked',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'all',
      lockState: 'locked',
    },
  }],
  positions: [{
-   data: {
+   value: {
      doorLocation: 'front_left',
      position: 'closed',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'front_right',
      position: 'closed',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'rear_right',
      position: 'closed',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'rear_left',
      position: 'closed',
    },
  }, {
-   data: {
+   value: {
      doorLocation: 'all',
      position: 'closed',
    },
@@ -849,10 +849,10 @@ parameters-description="(string 'on|off') Engine ignition state, (string 'on|off
 {% capture code %}
 <EngineResponse> {
  ignition: {
-   data: 'off'
+   value: 'off'
  },
  accessoriesIgnition: {
-   data: 'off'
+   value: 'off'
  },
 }
 {% endcapture %}
@@ -906,17 +906,17 @@ parameters-description="(object `{versionMajor: (number)&comma; versionMinor: (s
 {% capture code %}
 <FirmwareVersionResponse> {
  carSDKVersion: {
-   data: {
+   value: {
      versionMajor: 2,
      versionMinor: 2,
      versionPatch: 5
    },
  },
  carSDKBuildName: {
-   data: 'hm-emulator'
+   value: 'hm-emulator'
  },
  applicationVersion: {
-   data: 'v2.2.5-development'
+   value: 'v2.2.5-development'
  },
 }
 {% endcapture %}
@@ -939,10 +939,10 @@ parameters-description="(string 'unlocked|locked') Gas flap lock, (string 'close
 {% capture code %}
 <FuelingResponse> {
  gasFlapLock: {
-   data: 'unlocked'
+   value: 'unlocked'
  },
  gasFlapPosition: {
-   data: 'opened'
+   value: 'opened'
  },
 }
 {% endcapture %}
@@ -970,10 +970,10 @@ parameters-description="(array) Capability states ([{ capabilityIdentifier: (str
      date: 2018-02-14T18:30:01.000Z,
      state: {
        trunkLock: {
-         data: 'unlocked'
+         value: 'unlocked'
        },
        trunkPosition: {
-         data: 'open'
+         value: 'open'
        },
      }
    }
@@ -998,39 +998,39 @@ parameters-description="(string: 'disconnected|plugged_in|charging') Charging, (
 <h4>Example</h4>
 {% capture code %}
 <HomeChargerResponse> {
- charging: { data: 'disconnected' },
- authenticationMechanism: { data: 'pin' },
- plugType: { data: 'type_1' },
- chargingPower: { data: 0 },
- solarCharging: { data: 'deactivated' },
- hotspotEnabled: { data: 'disabled' },
- hotspotSSID: { data: '' },
- wiFiHotspotSecurity: { data: 'none' },
- wiFiHotspotPassword: { data: '' },
- authentication: { data: 'unauthenticated' },
- chargeCurrentDC: { data: 0.5 },
- maximumChargeCurrent: { data: 50 },
- minimumChargeCurrent: { data: 0 },
+ charging: { value: 'disconnected' },
+ authenticationMechanism: { value: 'pin' },
+ plugType: { value: 'type_1' },
+ chargingPower: { value: 0 },
+ solarCharging: { value: 'deactivated' },
+ hotspotEnabled: { value: 'disabled' },
+ hotspotSSID: { value: '' },
+ wiFiHotspotSecurity: { value: 'none' },
+ wiFiHotspotPassword: { value: '' },
+ authentication: { value: 'unauthenticated' },
+ chargeCurrentDC: { value: 0.5 },
+ maximumChargeCurrent: { value: 50 },
+ minimumChargeCurrent: { value: 0 },
  coordinates: {
-   data: {
+   value: {
      latitude: 52.516506,
      longitude: 13.381815,
    },
  },
  priceTariffs: [{
-   data: {
+   value: {
      pricingType: 'starting_fee',
      price: 4.5,
      currency: 'EUR',
    },
  }, {
-   data: {
+   value: {
      pricingType: 'per_minute',
      price: 0,
      currency: '',
    },
  }, {
-   data: {
+   value: {
      pricingType: 'per_kwh',
      price: 1.3,
      currency: 'USD',
@@ -1057,7 +1057,7 @@ parameters-description="(string 'inactive|emergency_flasher_active|left_flasher_
 {% capture code %}
 <HonkHornFlashLightsResponse> {
  flashers: {
-   data: 'inactive'
+   value: 'inactive'
  }
 }
 {% endcapture %}
@@ -1080,7 +1080,7 @@ parameters-description="(string: 'closed|open|intermediate') Hood position"
 {% capture code %}
 <HoodResponse> {
  position: {
-   data: 'closed'
+   value: 'closed'
  }
 }
 {% endcapture %}
@@ -1103,10 +1103,10 @@ parameters-description="(number) Outside illuminance in lux&comma; formatted as 
 {% capture code %}
 <LightConditionsResponse> {
  outsideLight: {
-   data: 10000
+   value: 10000
  },
  insideLight: {
-   data: 1000
+   value: 1000
  }
 }
 {% endcapture %}
@@ -1129,59 +1129,59 @@ parameters-description="(string 'inactive|active|active_with_full_beam|dlr|autom
 {% capture code %}
 <LightsResponse> {
  frontExteriorLight: {
-   data: 'inactive',
+   value: 'inactive',
  },
  rearExteriorLight: {
-   data: 'inactive',
+   value: 'inactive',
  },
  ambientLight: {
-   data: '#000000',
+   value: '#000000',
  },
  reverseLight: {
-   data: 'inactive',
+   value: 'inactive',
  },
  emergencyBrakeLight: {
-   data: 'inactive',
+   value: 'inactive',
  },
  fogLights: [{
-   data: {
+   value: {
      location: 'front',
      state: 'inactive',
    },
  }, {
-   data: {
+   value: {
      location: 'rear',
      state: 'inactive',
    },
  }],
  readingLamps: [{
-   data: {
+   value: {
      location: 'front_left',
      state: 'inactive',
    },
  }, {
-   data: {
+   value: {
      location: 'front_right',
      state: 'inactive',
    },
  }, {
-   data: {
+   value: {
      location: 'rear_right',
      state: 'inactive',
    },
  }, {
-   data: {
+   value: {
      location: 'rear_left',
      state: 'inactive',
    },
  }],
  interiorLights: [{
-   data: {
+   value: {
      location: 'front',
      state: 'inactive',
    },
  }, {
-   data: {
+   value: {
      location: 'rear',
      state: 'inactive',
    },
@@ -1207,37 +1207,37 @@ parameters-description="(number) Number of days until next servicing of the car&
 {% capture code %}
 <MaintenanceResponse> {
  daysToNextService: {
-   data: 400,
+   value: 400,
  },
  kilometersToNextService: {
-   data: 30000,
+   value: 30000,
  },
  cbsReportsCount: {
-   data: 0,
+   value: 0,
  },
  monthsToExhaustInspection: {
-   data: 0,
+   value: 0,
  },
  teleserviceAvailability: {
-   data: 'pending',
+   value: 'pending',
  },
  serviceDistanceThreshold: {
-   data: 0,
+   value: 0,
  },
  serviceTimeThreshold: {
-   data: 0,
+   value: 0,
  },
  automaticTeleserviceCallDate: {
-   data: '2018-10-22T12:10:33.769Z',
+   value: '2018-10-22T12:10:33.769Z',
  },
  teleserviceBatteryCallDate: {
-   data: '2018-10-22T12:10:33.769Z',
+   value: '2018-10-22T12:10:33.769Z',
  },
  nextInspectionDate: {
-   data: '2018-10-22T12:10:33.769Z',
+   value: '2018-10-22T12:10:33.769Z',
  },
  conditionBasedServices: [{
-   data: {
+   value: {
      year: 2018,
      month: 8,
      cbsIdentifier: 123,
@@ -1247,7 +1247,7 @@ parameters-description="(number) Number of days until next servicing of the car&
    },
  }],
  brakeFluidChangeDate: {
-   data: '2018-10-22T12:10:33.769Z',
+   value: '2018-10-22T12:10:33.769Z',
  },
 }
 {% endcapture %}
@@ -1270,7 +1270,7 @@ parameters-description="(string: 'disconnected|connected') Connection state"
 {% capture code %}
 <MobileResponse> {
  connection: {
-   data: 'disconnected',
+   value: 'disconnected',
  },
 }
 {% endcapture %}
@@ -1293,13 +1293,13 @@ parameters-description="(object) Coordinates ({ latitude: (double)&comma; longit
 {% capture code %}
 <NaviDestinationResponse> {
  coordinates: {
-   data: {
+   value: {
      latitude: 52.520008,
      longitude: 13.404953,
    },
  },
  destinationName: {
-   data: 'Narnia',
+   value: 'Narnia',
  },
 }
 {% endcapture %}
@@ -1322,10 +1322,10 @@ parameters-description="(number) Route elevation incline in degrees, (number) Wh
 {% capture code %}
 <OffroadResponse> {
  routeIncline: {
-   data: 0,
+   value: 0,
  },
  wheelSuspension: {
-   data: 0,
+   value: 0,
  },
 }
 {% endcapture %}
@@ -1348,7 +1348,7 @@ parameters-description="(string 'active|inactive') Parking brake"
 {% capture code %}
 <ParkingBrakeResponse> {
  parkingBrake: {
-   data: 'inactive',
+   value: 'inactive',
  },
 }
 {% endcapture %}
@@ -1371,19 +1371,19 @@ parameters-description="(string) Parking Ticket state, (string) Operator name by
 {% capture code %}
 <ParkingTicketResponse> {
  parkingTicketState: {
-   data: 'ended',
+   value: 'ended',
  },
  operatorName: {
-   data: 'Berlin Parking',
+   value: 'Berlin Parking',
  },
  operatorTicketID: {
-   data: '64894233',
+   value: '64894233',
  },
  ticketStartTime: {
-   data: '2018-04-12T23:20:50.000Z',
+   value: '2018-04-12T23:20:50.000Z',
  },
  ticketEndTime: {
-   data: '2019-03-04T09:25:58.360Z',
+   value: '2019-03-04T09:25:58.360Z',
  },
 }
 {% endcapture %}
@@ -1406,10 +1406,10 @@ parameters-description="(string 'inactive|active') Power Take-Off, (string 'not_
 {% capture code %}
 <PowerTakeOffResponse> {
  powerTakeoff: {
-   data: 'inactive',
+   value: 'inactive',
  },
  powerTakeoffEngaged: {
-   data: 'not_engaged',
+   value: 'not_engaged',
  },
 }
 {% endcapture %}
@@ -1432,53 +1432,53 @@ parameters-description="(object '{type: (string)&comma; gForce: (number)}') Acce
 {% capture code %}
 <RaceResponse> {
  accelerations: [{
-   data: {
+   value: {
      type: 'longitudinal_acceleration',
      gForce: 0,
    },
  }, {
-   data: {
+   value: {
      type: 'lateral_acceleration',
      gForce: 0,
    },
  }, {
-   data: {
+   value: {
      type: 'front_lateral_acceleration',
      gForce: 0,
    },
  }, {
-   data: {
+   value: {
      type: 'rear_lateral_acceleration',
      gForce: 0,
    },
  }],
- understeering: { data: 0 },
- oversteering: { data: 0 },
- gasPedalPosition: { data: 0 },
- steeringAngle: { data: 0 },
- brakePressure: { data: 0 },
- yawRate: { data: 0 },
- rearSuspensionSteering: { data: 0 },
- electronicStabilityProgram: { data: 'inactive' },
+ understeering: { value: 0 },
+ oversteering: { value: 0 },
+ gasPedalPosition: { value: 0 },
+ steeringAngle: { value: 0 },
+ brakePressure: { value: 0 },
+ yawRate: { value: 0 },
+ rearSuspensionSteering: { value: 0 },
+ electronicStabilityProgram: { value: 'inactive' },
  brakeTorqueVectorings: [{
-   data: {
+   value: {
      axle: 'front_axle',
      vectoring: 'inactive',
    },
  }, {
-   data: {
+   value: {
      axle: 'rear_axle',
      vectoring: 'inactive',
    },
  }],
- gearMode: { data: 'manual' },
- selectedGear: { data: 0 },
- brakePedalPosition: { data: 0 },
- brakePedalSwitch: { data: 'inactive' },
- clutchPedalSwitch: { data: 'inactive' },
- acceleratorPedalIdleSwitch: { data: 'inactive' },
- acceleratorPedalKickdownSwitch: { data: 'inactive' },
- vehicleMoving: { data: 'not_moving' },
+ gearMode: { value: 'manual' },
+ selectedGear: { value: 0 },
+ brakePedalPosition: { value: 0 },
+ brakePedalSwitch: { value: 'inactive' },
+ clutchPedalSwitch: { value: 'inactive' },
+ acceleratorPedalIdleSwitch: { value: 'inactive' },
+ acceleratorPedalKickdownSwitch: { value: 'inactive' },
+ vehicleMoving: { value: 'not_moving' },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1499,11 +1499,11 @@ parameters-description="(number) Percentage value between 0-1 whereas 1 is opaqu
 <h4>Example</h4>
 {% capture code %}
 <RooftopControlResponse> {
- dimming: { data: 0 },
- position: { data: 100 },
- convertibleRoof: { data: 'open' },
- sunroofTilt: { data: 'closed' },
- sunroofState: { data: 'open' },
+ dimming: { value: 0 },
+ position: { value: 100 },
+ convertibleRoof: { value: 'open' },
+ sunroofTilt: { value: 'closed' },
+ sunroofState: { value: 'open' },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1525,43 +1525,43 @@ parameters-description="(array) Persons detected ([{ seatPosition: (string: 'fro
 {% capture code %}
 <SeatsResponse> {
  personsDetected: [{
-   data: {
+   value: {
      seatPosition: 'front_left',
      personDetected: 'not_detected'
    },
  }, {
-   data: {
+   value: {
      seatPosition: 'front_right',
      personDetected: 'not_detected'
    },
  }, {
-   data: {
+   value: {
      seatPosition: 'rear_right',
      personDetected: 'not_detected'
    },
  }, {
-   data: {
+   value: {
      seatPosition: 'rear_left',
      personDetected: 'not_detected'
    }
  }],
  seatbeltsFastened: [{
-   data: {
+   value: {
      seatPosition: 'front_left',
      seatbeltFastened: 'not_fastened',
    },
  }, {
-   data: {
+   value: {
      seatPosition: 'front_right',
      seatbeltFastened: 'not_fastened',
    },
  }, {
-   data: {
+   value: {
      seatPosition: 'rear_right',
      seatbeltFastened: 'not_fastened',
    },
  }, {
-   data: {
+   value: {
      seatPosition: 'rear_left',
      seatbeltFastened: 'not_fastened'
    },
@@ -1587,7 +1587,7 @@ parameters-description="(string 'inactive|active') StartStop state"
 {% capture code %}
 <StartStopResponse> {
  startStop: {
-   data: 'inactive',
+   value: 'inactive',
  },
 }
 {% endcapture %}
@@ -1610,42 +1610,42 @@ parameters-description="(object) Driver working states ({ driverNumber: (Number)
 {% capture code %}
 <TachographResponse> {
  driverWorkingStates: [{
-   data: {
+   value: {
      driverNumber: 1,
      workingState: 'resting',
    },
  }, {
-   data: {
+   value: {
      driverNumber: 2,
      workingState: 'resting',
    },
  }],
  driverTimeStates: [{
-   data: {
+   value: {
      driverNumber: 1,
      timeState: 'normal',
    },
  }, {
-   data: {
+   value: {
      driverNumber: 2,
      timeState: 'normal',
    },
  }],
  driverCards: [{
-   data: {
+   value: {
      driverNumber: 1,
      card: 'not_present',
    },
  }, {
-   data: {
+   value: {
      driverNumber: 2,
      card: 'not_present',
    },
  }],
- vehicleMotion: { data: 'not_detected' },
- vehicleOverspeed: { data: 'no_overspeed' },
- vehicleDirection: { data: 'forward' },
- vehicleSpeed: { data: 0 },
+ vehicleMotion: { value: 'not_detected' },
+ vehicleOverspeed: { value: 'no_overspeed' },
+ vehicleDirection: { value: 'forward' },
+ vehicleSpeed: { value: 0 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1667,7 +1667,7 @@ parameters-description="(string 'not_armed|armed|triggered') Theft alarm state"
 {% capture code %}
 <TheftAlarmResponse> {
  theftAlarm: {
-   data: 'triggered',
+   value: 'triggered',
  },
 }
 {% endcapture %}
@@ -1689,71 +1689,71 @@ parameters-description="(number) Average weekly distance in km, (number) Average
 <h4>Example</h4>
 {% capture code %}
 <UsageResponse> {
- averageWeeklyDistance: { data: 300 },
- averageWeeklyDistanceLongRun: { data: 300 },
- accelerationEvaluation: { data: 0.5 },
- drivingStyleEvaluation: { data: 0.5 },
+ averageWeeklyDistance: { value: 300 },
+ averageWeeklyDistanceLongRun: { value: 300 },
+ accelerationEvaluation: { value: 0.5 },
+ drivingStyleEvaluation: { value: 0.5 },
  drivingModesActivationPeriods: [{
-   data: {
+   value: {
      drivingMode: 'regular',
      period: 0.4,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'eco',
      period: 0.4,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'sport',
      period: 0.4,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'sport_plus',
      period: 0.4,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'eco_plus',
      period: 0.4,
    },
  }],
  drivingModesEnergyConsumptions: [{
-   data: {
+   value: {
      drivingMode: 'regular',
      consumption: 33.2,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'eco',
      consumption: 33.2,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'sport',
      consumption: 33.2,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'sport_plus',
      consumption: 33.2,
    },
  }, {
-   data: {
+   value: {
      drivingMode: 'eco_plus',
      consumption: 33.2,
    },
  }],
- lastTripEnergyConsumption: { data: 101.3 },
- lastTripFuelConsumption: { data: 22.5 },
- mileageAfterLastTrip: { data: 95632 },
- lastTripElectricPortion: { data: 0.2 },
- lastTripAverageEnergyRecuperation: { data: 5.68 },
- lastTripBatteryRemaining: { data: 0.5 },
- lastTripDate: { data: '2018-10-22T12:10:33.769Z' },
- averageFuelConsumption: { data: 6.2 },
- currentFuelConsumption: { data: 8.7 },
+ lastTripEnergyConsumption: { value: 101.3 },
+ lastTripFuelConsumption: { value: 22.5 },
+ mileageAfterLastTrip: { value: 95632 },
+ lastTripElectricPortion: { value: 0.2 },
+ lastTripAverageEnergyRecuperation: { value: 5.68 },
+ lastTripBatteryRemaining: { value: 0.5 },
+ lastTripDate: { value: '2018-10-22T12:10:33.769Z' },
+ averageFuelConsumption: { value: 6.2 },
+ currentFuelConsumption: { value: 8.7 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1774,8 +1774,8 @@ parameters-description="(string 'unlocked|locked') Lock State, (string 'closed|o
 <h4>Example</h4>
 {% capture code %}
 <TrunkAccessResponse> {
- trunkLock: { data: 'locked' },
- trunkPosition: { data: 'closed' },
+ trunkLock: { value: 'locked' },
+ trunkPosition: { value: 'closed' },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1797,7 +1797,7 @@ parameters-description="(string 'deactivated|activated') Valet mode state"
 {% capture code %}
 <ValetModeResponse> {
  valetMode: {
-   data: 'deactivated',
+   value: 'deactivated',
  },
 }
 {% endcapture %}
@@ -1820,13 +1820,13 @@ parameters-description="(object) Coordinates ({ latitude: (double)&comma; longit
 {% capture code %}
 <VehicleLocationResponse> {
  coordinates: {
-   data: {
+   value: {
      latitude: 52.516506,
      longitude: 13.381815,
    },
  },
- heading: { data: 52.520008 },
- altitude: { data: 133.5 },
+ heading: { value: 52.520008 },
+ altitude: { value: 133.5 },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1847,38 +1847,38 @@ parameters-description="(string) The unique Vehicle Identification Number, (stri
 <h4>Example</h4>
 {% capture code %}
 <VehicleStatusResponse> {
- vin: { data: 'JF2SHBDC7CH451869' },
- powertrain: { data: 'all_electric' },
- modelName: { data: 'Type X' },
- name: { data: 'My Car' },
- licensePlate: { data: 'ABC123' },
- salesDesignation: { data: 'Package+' },
- modelYear: { data: 2017 },
- colorName: { data: 'Estoril Blau' },
- powerInKw: { data: 220 },
- numberOfDoors: { data: 4 },
- numberOfSeats: { data: 4 },
- engineVolume: { data: 4395 },
- engineMaxTorque: { data: 520 },
- gearbox: { data: 'manual' },
- displayUnit: { data: 'km' },
- driverSeatLocation: { data: 'left' },
- equipments: [{ data: 'side skirts' }],
- brand: { data: 'Porsche' },
+ vin: { value: 'JF2SHBDC7CH451869' },
+ powertrain: { value: 'all_electric' },
+ modelName: { value: 'Type X' },
+ name: { value: 'My Car' },
+ licensePlate: { value: 'ABC123' },
+ salesDesignation: { value: 'Package+' },
+ modelYear: { value: 2017 },
+ colorName: { value: 'Estoril Blau' },
+ powerInKw: { value: 220 },
+ numberOfDoors: { value: 4 },
+ numberOfSeats: { value: 4 },
+ engineVolume: { value: 4395 },
+ engineMaxTorque: { value: 520 },
+ gearbox: { value: 'manual' },
+ displayUnit: { value: 'km' },
+ driverSeatLocation: { value: 'left' },
+ equipments: [{ value: 'side skirts' }],
+ brand: { value: 'Porsche' },
  states: [{
    capabilityIdentifier: 'trunk',
    state: {
-     trunkLock: { data: 'locked' },
-     trunkPosition: { data: 'closed' },
+     trunkLock: { value: 'locked' },
+     trunkPosition: { value: 'closed' },
    },
  }, {
    capabilityIdentifier: 'rooftop_control',
    state: {
-     dimming: { data: 0 },
-     position: { data: 100 },
-     convertibleRoof: { data: 'open' },
-     sunroofTilt: { data: 'closed' },
-     sunroofState: { data: 'open' },
+     dimming: { value: 0 },
+     position: { value: 100 },
+     convertibleRoof: { value: 'open' },
+     sunroofTilt: { value: 'closed' },
+     sunroofState: { value: 'open' },
    },
  }],
 }
@@ -1902,7 +1902,7 @@ parameters-description="(date) Vehicle time"
 {% capture code %}
 <VehicleTimeResponse> {
  vehicleTime: {
-   data: '2019-03-01T11:51:36.263Z',
+   value: '2019-03-01T11:51:36.263Z',
  },
 }
 {% endcapture %}
@@ -1925,7 +1925,7 @@ parameters-description="(number) Rain intensity percentage between 0-100"
 {% capture code %}
 <WeatherConditionsResponse> {
  rainIntensity: {
-   data: 0.5
+   value: 0.5
  },
 }
 {% endcapture %}
@@ -1947,10 +1947,10 @@ parameters-description="(string 'enabled|disabled') Wi-Fi enabled, (string 'conn
 <h4>Example</h4>
 {% capture code %}
 <WifiResponse> {
- wifiEnabled: { data: 'enabled' },
- networkConnected: { data: 'disconnected' },
- networkSSID: { data: 'TOTALLYFREEWIFI' },
- networkSecurity: { data: 'wpa' },
+ wifiEnabled: { value: 'enabled' },
+ networkConnected: { value: 'disconnected' },
+ networkSSID: { value: 'TOTALLYFREEWIFI' },
+ networkSecurity: { value: 'wpa' },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1972,53 +1972,53 @@ parameters-description="Windows open percentages ([{ windowLocation: (string: 'f
 {% capture code %}
 <WindowsResponse> {
  windowsOpenPercentages: [{
-   data: {
+   value: {
      windowLocation: 'front_left',
      openPercentage: 0.6,
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'front_right',
      openPercentage: 0.6,
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'rear_right',
      openPercentage: 0.6,
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'rear_left',
      openPercentage: 0.6,
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'hatch',
      openPercentage: 0.6,
    },
  }],
  windowsPositions: [{
-   data: {
+   value: {
      windowLocation: 'front_left',
      windowPosition: 'closed',
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'front_right',
      windowPosition: 'closed',
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'rear_right',
      windowPosition: 'closed',
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'rear_left',
      windowPosition: 'closed',
    },
  }, {
-   data: {
+   value: {
      windowLocation: 'hatch',
      windowPosition: 'closed',
    },
@@ -2043,24 +2043,24 @@ parameters-description="(string 'inactive|active|automatic') Wipers state, (stri
 <h4>Example</h4>
 {% capture code %}
 <WindscreenResponse> {
- wipers: { data: 'active' },
- wipersIntensity: { data: 'level_3' },
- windscreenDamage: { data: 'damage_smaller_than_1_inch' },
+ wipers: { value: 'active' },
+ wipersIntensity: { value: 'level_3' },
+ windscreenDamage: { value: 'damage_smaller_than_1_inch' },
  windscreenZoneMatrix: {
-   data: {
+   value: {
      rows: 3,
      columns: 2,
    },
  },
  windscreenDamageZone: {
-   data: {
+   value: {
      rows: 3,
      columns: 3,
    },
  },
- windscreenNeedsReplacement: { data: 'replacement_needed' },
- windscreenDamageConfidence: { data: 0 },
- windscreenDamageDetectionTime: { data: '2000-01-01T00:00:00.000Z' },
+ windscreenNeedsReplacement: { value: 'replacement_needed' },
+ windscreenDamageConfidence: { value: 0 },
+ windscreenDamageDetectionTime: { value: '2000-01-01T00:00:00.000Z' },
 }
 {% endcapture %}
 {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
