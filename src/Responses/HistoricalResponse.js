@@ -19,10 +19,10 @@ export default class HistoricalResponse extends PropertyResponse {
           date: 2018-02-14T18:30:01.000Z,
           state: {
             trunkLock: {
-              data: 'unlocked'
+              value: 'unlocked'
             },
             trunkPosition: {
-              data: 'open'
+              value: 'open'
             },
           }
         }
@@ -53,7 +53,7 @@ export default class HistoricalResponse extends PropertyResponse {
         withUniversalProperties: true,
       }).parse();
 
-      const date = response.date;
+      const date = response.date.data;
       delete response.date;
 
       return {

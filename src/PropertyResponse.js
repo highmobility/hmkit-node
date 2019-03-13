@@ -1,5 +1,5 @@
 import PropertyDecoder from './PropertyDecoder';
-import { bytesSum, dateDecoder, parsePropertyComponents } from './helpers';
+import { bytesSum, timestampDecoder, parsePropertyComponents } from './helpers';
 import mergeWith from 'lodash/mergeWith';
 
 export default class PropertyResponse {
@@ -29,7 +29,7 @@ export default class PropertyResponse {
 
   addUniversalProperties(properties: Array<PropertyDecoder>) {
     const timestampProperty = new PropertyDecoder(0xa2, 'date').setDecoder(
-      dateDecoder
+      timestampDecoder
     );
 
     return properties.concat(timestampProperty);

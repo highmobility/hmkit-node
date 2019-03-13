@@ -10,7 +10,7 @@ describe(`HonkHornFlashLightsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
     expect(response.parse()).toEqual({
-      flashers: { data: expect.any(String) },
+      flashers: { value: expect.any(String) },
     });
   });
 
@@ -40,7 +40,7 @@ describe(`HonkHornFlashLightsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
     expect(response.parse()).toEqual({
-      flashers: { data: 'emergency_flasher_active' },
+      flashers: { value: 'emergency_flasher_active' },
     });
   });
 
@@ -51,6 +51,6 @@ describe(`HonkHornFlashLightsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
-    expect(response.parse()).toEqual({ flashers: { data: 'inactive' } });
+    expect(response.parse()).toEqual({ flashers: { value: 'inactive' } });
   });
 });

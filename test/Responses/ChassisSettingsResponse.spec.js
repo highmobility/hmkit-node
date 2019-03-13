@@ -12,17 +12,17 @@ describe(`ChassisSettingsResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual({
-      drivingMode: { data: 'eco' },
-      sportChrono: { data: 'inactive' },
+      drivingMode: { value: 'eco' },
+      sportChrono: { value: 'inactive' },
       currentSpringRates: [
         {
-          data: {
+          value: {
             axle: 'front_axle',
             springRate: 21,
           },
         },
         {
-          data: {
+          value: {
             axle: 'rear_axle',
             springRate: 21,
           },
@@ -30,13 +30,13 @@ describe(`ChassisSettingsResponse`, () => {
       ],
       maximumSpringRates: [
         {
-          data: {
+          value: {
             axle: 'front_axle',
             springRate: 37,
           },
         },
         {
-          data: {
+          value: {
             axle: 'rear_axle',
             springRate: 37,
           },
@@ -44,21 +44,21 @@ describe(`ChassisSettingsResponse`, () => {
       ],
       minimumSpringRates: [
         {
-          data: {
+          value: {
             axle: 'front_axle',
             springRate: 17,
           },
         },
         {
-          data: {
+          value: {
             axle: 'rear_axle',
             springRate: 17,
           },
         },
       ],
-      currentChassisPosition: { data: 25 },
-      maximumChassisPosition: { data: 55 },
-      minimumChassisPosition: { data: -28 },
+      currentChassisPosition: { value: 25 },
+      maximumChassisPosition: { value: 55 },
+      minimumChassisPosition: { value: -28 },
     });
   });
 });

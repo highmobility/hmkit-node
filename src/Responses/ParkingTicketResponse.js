@@ -16,19 +16,19 @@ export default class ParkingTicketResponse extends PropertyResponse {
    * @example ParkingTicketResponse
     {
       parkingTicketState: {
-        data: 'ended',
+        value: 'ended',
       },
       operatorName: {
-        data: 'Berlin Parking',
+        value: 'Berlin Parking',
       },
       operatorTicketID: {
-        data: '64894233',
+        value: '64894233',
       },
       ticketStartTime: {
-        data: '2018-04-12T23:20:50.000Z',
+        value: '2018-04-12T23:20:50.000Z',
       },
       ticketEndTime: {
-        data: '2019-03-04T09:25:58.360Z',
+        value: '2019-03-04T09:25:58.360Z',
       },
     }
    */

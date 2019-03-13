@@ -12,47 +12,47 @@ describe(`ChargingResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual({
-      estimatedRange: { data: 30 },
-      batteryLevel: { data: 0.8 },
-      batteryCurrentAC: { data: -0.6 },
-      batteryCurrentDC: { data: -0.6 },
-      chargerVoltageAC: { data: 4 },
-      chargerVoltageDC: { data: 3 },
-      chargeLimit: { data: 0.55 },
-      timeToCompleteCharge: { data: 3 },
-      chargingRateKW: { data: 6 },
-      chargePortState: { data: 'open' },
-      chargeMode: { data: 'immediate' },
-      maxChargingCurrent: { data: 25 },
-      plugType: { data: 'type_2' },
-      chargingWindowChosen: { data: 'chosen' },
+      estimatedRange: { value: 30 },
+      batteryLevel: { value: 0.8 },
+      batteryCurrentAC: { value: -0.6 },
+      batteryCurrentDC: { value: -0.6 },
+      chargerVoltageAC: { value: 4 },
+      chargerVoltageDC: { value: 3 },
+      chargeLimit: { value: 0.55 },
+      timeToCompleteCharge: { value: 3 },
+      chargingRateKW: { value: 6 },
+      chargePortState: { value: 'open' },
+      chargeMode: { value: 'immediate' },
+      maxChargingCurrent: { value: 25 },
+      plugType: { value: 'type_2' },
+      chargingWindowChosen: { value: 'chosen' },
       departureTimes: [
-        { data: { activeState: 'active', hour: 14, minute: 33 } },
+        { value: { activeState: 'active', hour: 14, minute: 33 } },
       ],
-      reductionTimes: [{ data: { startStop: 'start', hour: 14, minute: 33 } }],
-      batteryTemperature: { data: 38.4 },
+      reductionTimes: [{ value: { startStop: 'start', hour: 14, minute: 33 } }],
+      batteryTemperature: { value: 38.4 },
       timers: [
         {
-          data: {
+          value: {
             timerType: 'preferred_start_time',
             time: new Date('2018-10-04T12:10:33.000Z'),
           },
         },
         {
-          data: {
+          value: {
             timerType: 'preferred_end_time',
             time: new Date('2018-10-22T12:10:33.000Z'),
           },
         },
         {
-          data: {
+          value: {
             timerType: 'departure_time',
             time: new Date('2018-10-17T12:10:33.000Z'),
           },
         },
       ],
-      pluggedIn: { data: 'disconnected' },
-      activeState: { data: 'not_charging' },
+      pluggedIn: { value: 'disconnected' },
+      activeState: { value: 'not_charging' },
     });
   });
 });

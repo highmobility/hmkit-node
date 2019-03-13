@@ -12,8 +12,8 @@ describe(`LightConditionsResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(LightConditionsResponse);
     expect(response.parse()).toEqual({
-      outsideLight: { data: 10000 },
-      insideLight: { data: 1000 },
+      outsideLight: { value: 10000 },
+      insideLight: { value: 1000 },
     });
   });
 });

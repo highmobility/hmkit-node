@@ -11,7 +11,7 @@ export default class VehicleTimeResponse extends PropertyResponse {
    * @example VehicleTimeResponse
     {
       vehicleTime: {
-        data: '2019-03-01T11:51:36.263Z',
+        value: '2019-03-01T11:51:36.263Z',
       },
     }
    */

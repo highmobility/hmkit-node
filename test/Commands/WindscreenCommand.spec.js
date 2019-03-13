@@ -11,24 +11,24 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
 
     expect(response.parse()).toEqual({
-      wipers: { data: expect.any(String) },
-      wipersIntensity: { data: expect.any(String) },
-      windscreenDamage: { data: expect.any(String) },
+      wipers: { value: expect.any(String) },
+      wipersIntensity: { value: expect.any(String) },
+      windscreenDamage: { value: expect.any(String) },
       windscreenZoneMatrix: {
-        data: {
+        value: {
           rows: expect.any(Number),
           columns: expect.any(Number),
         },
       },
       windscreenDamageZone: {
-        data: {
+        value: {
           rows: expect.any(Number),
           columns: expect.any(Number),
         },
       },
-      windscreenNeedsReplacement: { data: expect.any(String) },
-      windscreenDamageConfidence: { data: expect.any(Number) },
-      windscreenDamageDetectionTime: { data: expect.any(Date) },
+      windscreenNeedsReplacement: { value: expect.any(String) },
+      windscreenDamageConfidence: { value: expect.any(Number) },
+      windscreenDamageDetectionTime: { value: expect.any(Date) },
     });
   });
 
@@ -45,9 +45,9 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        windscreenDamage: { data: 'damage_smaller_than_1_inch' },
+        windscreenDamage: { value: 'damage_smaller_than_1_inch' },
         windscreenDamageZone: {
-          data: {
+          value: {
             rows: 2,
             columns: 3,
           },
@@ -65,7 +65,7 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        windscreenNeedsReplacement: { data: 'replacement_needed' },
+        windscreenNeedsReplacement: { value: 'replacement_needed' },
       })
     );
   });
@@ -79,7 +79,7 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wipers: { data: 'automatic' },
+        wipers: { value: 'automatic' },
       })
     );
   });
@@ -93,8 +93,8 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wipers: { data: 'active' },
-        wipersIntensity: { data: 'level_3' },
+        wipers: { value: 'active' },
+        wipersIntensity: { value: 'level_3' },
       })
     );
   });

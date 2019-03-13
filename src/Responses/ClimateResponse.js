@@ -21,29 +21,29 @@ export default class ClimateResponse extends PropertyResponse {
    *
    * @example ClimateResponse
     {
-      insideTemperature: { data: 23 },
-      outsideTemperature: { data: 18 },
-      driverTemperatureSetting: { data: 22 },
-      passengerTemperatureSetting: { data: 23 },
-      defoggingState: { data: 'inactive' },
-      defrostingState: { data: 'inactive' },
-      ionisingState: { data: 'inactive' },
-      defrostingTemperature: { data: 23 },
-      hvacState: { data: 'inactive' },
+      insideTemperature: { value: 23 },
+      outsideTemperature: { value: 18 },
+      driverTemperatureSetting: { value: 22 },
+      passengerTemperatureSetting: { value: 23 },
+      defoggingState: { value: 'inactive' },
+      defrostingState: { value: 'inactive' },
+      ionisingState: { value: 'inactive' },
+      defrostingTemperature: { value: 23 },
+      hvacState: { value: 'inactive' },
       hvacWeekdayStartingTimes: [{
-        data: {
+        value: {
           weekday: 'monday',
           hour: 18,
           minute: 30
         }
       }, {
-        data: {
+        value: {
           weekday: 'friday',
           hour: 18,
           minute: 30
         }
       }],
-      rearTemperatureSetting: { data: 24 },
+      rearTemperatureSetting: { value: 24 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

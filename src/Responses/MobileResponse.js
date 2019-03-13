@@ -11,7 +11,7 @@ export default class MobileResponse extends PropertyResponse {
    * @example MobileResponse
     {
       connection: {
-        data: 'disconnected',
+        value: 'disconnected',
       },
     }
    */

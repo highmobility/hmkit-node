@@ -11,7 +11,7 @@ export default class WeatherConditionsResponse extends PropertyResponse {
    * @example WeatherConditionsResponse
     {
       rainIntensity: {
-        data: 0.5
+        value: 0.5
       },
     }
    */

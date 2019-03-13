@@ -11,7 +11,7 @@ export default class ValetModeResponse extends PropertyResponse {
    * @example ValetModeResponse
     {
       valetMode: {
-        data: 'deactivated',
+        value: 'deactivated',
       },
     }
    */

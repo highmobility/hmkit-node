@@ -14,11 +14,11 @@ export default class RooftopControlResponse extends PropertyResponse {
    *
    * @example RooftopControlResponse
     {
-      dimming: { data: 0 },
-      position: { data: 100 },
-      convertibleRoof: { data: 'open' },
-      sunroofTilt: { data: 'closed' },
-      sunroofState: { data: 'open' },
+      dimming: { value: 0 },
+      position: { value: 100 },
+      convertibleRoof: { value: 'open' },
+      sunroofTilt: { value: 'closed' },
+      sunroofState: { value: 'open' },
     }
    */
   constructor(data: Uint8Array, config: Object) {

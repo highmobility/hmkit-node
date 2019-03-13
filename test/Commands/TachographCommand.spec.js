@@ -14,13 +14,13 @@ describe(`TachographCommand`, () => {
     expect(response.parse()).toEqual({
       driverWorkingStates: [
         {
-          data: {
+          value: {
             driverNumber: 1,
             workingState: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             driverNumber: 2,
             workingState: expect.any(String),
           },
@@ -28,13 +28,13 @@ describe(`TachographCommand`, () => {
       ],
       driverTimeStates: [
         {
-          data: {
+          value: {
             driverNumber: 1,
             timeState: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             driverNumber: 2,
             timeState: expect.any(String),
           },
@@ -42,22 +42,22 @@ describe(`TachographCommand`, () => {
       ],
       driverCards: [
         {
-          data: {
+          value: {
             driverNumber: 1,
             card: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             driverNumber: 2,
             card: expect.any(String),
           },
         },
       ],
-      vehicleMotion: { data: expect.any(String) },
-      vehicleOverspeed: { data: expect.any(String) },
-      vehicleDirection: { data: expect.any(String) },
-      vehicleSpeed: { data: expect.any(Number) },
+      vehicleMotion: { value: expect.any(String) },
+      vehicleOverspeed: { value: expect.any(String) },
+      vehicleDirection: { value: expect.any(String) },
+      vehicleSpeed: { value: expect.any(Number) },
     });
   });
 });

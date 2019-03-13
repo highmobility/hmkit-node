@@ -14,79 +14,79 @@ export default class DoorLocksResponse extends PropertyResponse {
    * @example DoorLocksResponse
     {
       insideLocks: [{
-        data: {
+        value: {
           doorLocation: 'front_left',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'front_right',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'rear_right',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'rear_left',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'all',
           lockState: 'locked',
         },
       }],
       locks: [{
-        data: {
+        value: {
           doorLocation: 'front_left',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'front_right',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'rear_right',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'rear_left',
           lockState: 'locked',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'all',
           lockState: 'locked',
         },
       }],
       positions: [{
-        data: {
+        value: {
           doorLocation: 'front_left',
           position: 'closed',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'front_right',
           position: 'closed',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'rear_right',
           position: 'closed',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'rear_left',
           position: 'closed',
         },
       }, {
-        data: {
+        value: {
           doorLocation: 'all',
           position: 'closed',
         },

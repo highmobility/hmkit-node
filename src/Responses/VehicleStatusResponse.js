@@ -33,38 +33,38 @@ export default class VehicleStatusResponse extends PropertyResponse {
    *
    * @example VehicleStatusResponse
     {
-      vin: { data: 'JF2SHBDC7CH451869' },
-      powertrain: { data: 'all_electric' },
-      modelName: { data: 'Type X' },
-      name: { data: 'My Car' },
-      licensePlate: { data: 'ABC123' },
-      salesDesignation: { data: 'Package+' },
-      modelYear: { data: 2017 },
-      colorName: { data: 'Estoril Blau' },
-      powerInKw: { data: 220 },
-      numberOfDoors: { data: 4 },
-      numberOfSeats: { data: 4 },
-      engineVolume: { data: 4395 },
-      engineMaxTorque: { data: 520 },
-      gearbox: { data: 'manual' },
-      displayUnit: { data: 'km' },
-      driverSeatLocation: { data: 'left' },
-      equipments: [{ data: 'side skirts' }],
-      brand: { data: 'Porsche' },
+      vin: { value: 'JF2SHBDC7CH451869' },
+      powertrain: { value: 'all_electric' },
+      modelName: { value: 'Type X' },
+      name: { value: 'My Car' },
+      licensePlate: { value: 'ABC123' },
+      salesDesignation: { value: 'Package+' },
+      modelYear: { value: 2017 },
+      colorName: { value: 'Estoril Blau' },
+      powerInKw: { value: 220 },
+      numberOfDoors: { value: 4 },
+      numberOfSeats: { value: 4 },
+      engineVolume: { value: 4395 },
+      engineMaxTorque: { value: 520 },
+      gearbox: { value: 'manual' },
+      displayUnit: { value: 'km' },
+      driverSeatLocation: { value: 'left' },
+      equipments: [{ value: 'side skirts' }],
+      brand: { value: 'Porsche' },
       states: [{
         capabilityIdentifier: 'trunk',
         state: {
-          trunkLock: { data: 'locked' },
-          trunkPosition: { data: 'closed' },
+          trunkLock: { value: 'locked' },
+          trunkPosition: { value: 'closed' },
         },
       }, {
         capabilityIdentifier: 'rooftop_control',
         state: {
-          dimming: { data: 0 },
-          position: { data: 100 },
-          convertibleRoof: { data: 'open' },
-          sunroofTilt: { data: 'closed' },
-          sunroofState: { data: 'open' },
+          dimming: { value: 0 },
+          position: { value: 100 },
+          convertibleRoof: { value: 'open' },
+          sunroofTilt: { value: 'closed' },
+          sunroofState: { value: 'open' },
         },
       }],
     }
@@ -122,11 +122,11 @@ export default class VehicleStatusResponse extends PropertyResponse {
       new PropertyDecoder(0x12, 'brand').setDecoder(bytesToString),
       new CapabilityPropertyDecoder(0x99, 'states').setOptionalSubProperties(
         'capabilityIdentifier',
-        Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) => {
-          return new OptionalPropertyDecoder(identifier, name).setDecoder(
+        Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) =>
+          new OptionalPropertyDecoder(identifier, name).setDecoder(
             this.getCapabilityStateDecoder(identifier)
-          );
-        })
+          )
+        )
       ),
     ];
 

@@ -11,7 +11,7 @@ export default class TheftAlarmResponse extends PropertyResponse {
    * @example TheftAlarmResponse
     {
       theftAlarm: {
-        data: 'triggered',
+        value: 'triggered',
       },
     }
    */

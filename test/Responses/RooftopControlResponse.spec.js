@@ -12,11 +12,11 @@ describe(`RooftopControlResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: { data: 0 },
-      position: { data: 0 },
-      convertibleRoof: { data: 'closed' },
-      sunroofTilt: { data: 'closed' },
-      sunroofState: { data: 'closed' },
+      dimming: { value: 0 },
+      position: { value: 0 },
+      convertibleRoof: { value: 'closed' },
+      sunroofTilt: { value: 'closed' },
+      sunroofState: { value: 'closed' },
     });
   });
 });

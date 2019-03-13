@@ -13,17 +13,17 @@ export default class FirmwareVersionResponse extends PropertyResponse {
    * @example FirmwareVersionResponse
     {
       carSDKVersion: {
-        data: {
+        value: {
           versionMajor: 2,
           versionMinor: 2,
           versionPatch: 5
         },
       },
       carSDKBuildName: {
-        data: 'hm-emulator'
+        value: 'hm-emulator'
       },
       applicationVersion: {
-        data: 'v2.2.5-development'
+        value: 'v2.2.5-development'
       },
     }
    */

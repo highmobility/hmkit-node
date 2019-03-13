@@ -12,10 +12,10 @@ export default class EngineResponse extends PropertyResponse {
    * @example EngineResponse
     {
       ignition: {
-        data: 'off'
+        value: 'off'
       },
       accessoriesIgnition: {
-        data: 'off'
+        value: 'off'
       },
     }
    */

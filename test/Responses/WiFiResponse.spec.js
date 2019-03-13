@@ -12,10 +12,10 @@ describe(`WiFiResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(WiFiResponse);
     expect(response.parse()).toEqual({
-      wifiEnabled: { data: 'disabled' },
-      networkConnected: { data: 'disconnected' },
-      networkSSID: { data: '' },
-      networkSecurity: { data: 'none' },
+      wifiEnabled: { value: 'disabled' },
+      networkConnected: { value: 'disconnected' },
+      networkSSID: { value: '' },
+      networkSecurity: { value: 'none' },
     });
   });
 });

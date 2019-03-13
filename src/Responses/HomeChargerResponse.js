@@ -30,39 +30,39 @@ export default class HomeChargerResponse extends PropertyResponse {
    *
    * @example HomeChargerResponse
     {
-      charging: { data: 'disconnected' },
-      authenticationMechanism: { data: 'pin' },
-      plugType: { data: 'type_1' },
-      chargingPower: { data: 0 },
-      solarCharging: { data: 'deactivated' },
-      hotspotEnabled: { data: 'disabled' },
-      hotspotSSID: { data: '' },
-      wiFiHotspotSecurity: { data: 'none' },
-      wiFiHotspotPassword: { data: '' },
-      authentication: { data: 'unauthenticated' },
-      chargeCurrentDC: { data: 0.5 },
-      maximumChargeCurrent: { data: 50 },
-      minimumChargeCurrent: { data: 0 },
+      charging: { value: 'disconnected' },
+      authenticationMechanism: { value: 'pin' },
+      plugType: { value: 'type_1' },
+      chargingPower: { value: 0 },
+      solarCharging: { value: 'deactivated' },
+      hotspotEnabled: { value: 'disabled' },
+      hotspotSSID: { value: '' },
+      wiFiHotspotSecurity: { value: 'none' },
+      wiFiHotspotPassword: { value: '' },
+      authentication: { value: 'unauthenticated' },
+      chargeCurrentDC: { value: 0.5 },
+      maximumChargeCurrent: { value: 50 },
+      minimumChargeCurrent: { value: 0 },
       coordinates: {
-        data: {
+        value: {
           latitude: 52.516506,
           longitude: 13.381815,
         },
       },
       priceTariffs: [{
-        data: {
+        value: {
           pricingType: 'starting_fee',
           price: 4.5,
           currency: 'EUR',
         },
       }, {
-        data: {
+        value: {
           pricingType: 'per_minute',
           price: 0,
           currency: '',
         },
       }, {
-        data: {
+        value: {
           pricingType: 'per_kwh',
           price: 1.3,
           currency: 'USD',

@@ -10,6 +10,6 @@ describe(`StartStopResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(StartStopResponse);
 
-    expect(response.parse()).toEqual({ startStop: { data: 'inactive' } });
+    expect(response.parse()).toEqual({ startStop: { value: 'inactive' } });
   });
 });

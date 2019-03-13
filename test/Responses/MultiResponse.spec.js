@@ -16,18 +16,18 @@ describe(`MultiResponse`, () => {
         {
           capabilityIdentifier: 'engine',
           state: {
-            ignition: { data: 'engine_on' },
-            accessoriesIgnition: { data: 'powered_off' },
+            ignition: { value: 'on' },
+            accessoriesIgnition: { value: 'off' },
           },
         },
         {
           capabilityIdentifier: 'rooftop_control',
           state: {
-            dimming: { data: 22 },
-            position: { data: 33 },
-            convertibleRoof: { data: 'closed_secured' },
-            sunroofTilt: { data: 'tilted' },
-            sunroofState: { data: 'open' },
+            dimming: { value: 22 },
+            position: { value: 33 },
+            convertibleRoof: { value: 'closed_secured' },
+            sunroofTilt: { value: 'tilted' },
+            sunroofState: { value: 'open' },
           },
         },
       ],

@@ -11,7 +11,7 @@ export default class ParkingBrakeResponse extends PropertyResponse {
    * @example ParkingBrakeResponse
     {
       parkingBrake: {
-        data: 'inactive',
+        value: 'inactive',
       },
     }
    */

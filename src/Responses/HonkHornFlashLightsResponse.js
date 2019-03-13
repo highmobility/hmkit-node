@@ -11,7 +11,7 @@ export default class HonkHornFlashLightsResponse extends PropertyResponse {
    * @example HonkHornFlashLightsResponse
     {
       flashers: {
-        data: 'inactive'
+        value: 'inactive'
       }
     }
    */

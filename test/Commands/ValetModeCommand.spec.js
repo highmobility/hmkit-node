@@ -20,7 +20,7 @@ describe(`ValetModeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
     expect(response.parse()).toEqual({
-      valetMode: { data: 'activated' },
+      valetMode: { value: 'activated' },
     });
   });
 
@@ -32,7 +32,7 @@ describe(`ValetModeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ValetModeResponse);
     expect(response.parse()).toEqual({
-      valetMode: { data: 'deactivated' },
+      valetMode: { value: 'deactivated' },
     });
   });
 });

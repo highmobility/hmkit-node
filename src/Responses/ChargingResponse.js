@@ -35,53 +35,53 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
    * @example ChargingResponse
     {
-      estimatedRange: { data: 30 },
-      batteryLevel: { data: 0.8 },
-      batteryCurrentAC: { data: -0.6 },
-      batteryCurrentDC: { data: -0.6 },
-      chargerVoltageAC: { data: 0 },
-      chargerVoltageDC: { data: 0 },
-      chargeLimit: { data: 100 },
-      timeToCompleteCharge: { data: 0 },
-      chargingRateKW: { data: 0 },
-      chargePortState: { data: 'closed' },
-      chargeMode: { data: 'immediate' },
-      maxChargingCurrent: { data: 25 },
-      plugType: { data: 'type_2' },
-      chargingWindowChosen: { data: 'not_chosen' },
+      estimatedRange: { value: 30 },
+      batteryLevel: { value: 0.8 },
+      batteryCurrentAC: { value: -0.6 },
+      batteryCurrentDC: { value: -0.6 },
+      chargerVoltageAC: { value: 0 },
+      chargerVoltageDC: { value: 0 },
+      chargeLimit: { value: 100 },
+      timeToCompleteCharge: { value: 0 },
+      chargingRateKW: { value: 0 },
+      chargePortState: { value: 'closed' },
+      chargeMode: { value: 'immediate' },
+      maxChargingCurrent: { value: 25 },
+      plugType: { value: 'type_2' },
+      chargingWindowChosen: { value: 'not_chosen' },
       departureTimes: [{
-        data: {
+        value: {
           activeState: 'inactive',
           hour: 13,
           minute: 51
         }
       }],
       reductionTimes: [{
-        data: {
+        value: {
           startStop: 'start',
           hour: 2,
           minute: 5
         }
       }],
-      batteryTemperature: { data: 38.4 },
+      batteryTemperature: { value: 38.4 },
       timers: [{
-        data: {
+        value: {
           timerType: 'preferred_start_time',
           time: '2018-02-11T12:13:00.000Z',
         },
       }, {
-        data: {
+        value: {
           timerType: 'preferred_end_time',
           time: '2018-02-11T12:14:00.000Z',
         },
       }, {
-        data: {
+        value: {
           timerType: 'departure_time',
           time: '2018-02-10T13:45:33.157Z',
         },
       }],
-      pluggedIn: { data: 'disconnected' },
-      activeState: { data: 'not_charging' },
+      pluggedIn: { value: 'disconnected' },
+      activeState: { value: 'not_charging' },
     }
    */
 

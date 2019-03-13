@@ -19,6 +19,6 @@ describe(`PropertyResponse`, () => {
     const propertyResponse = new PropertyResponse();
     const parsedProperties = propertyResponse.parseProperties(data, properties);
 
-    expect(parsedProperties).toEqual([{ engine: { data: 'on' } }]);
+    expect(parsedProperties).toEqual([{ engine: { value: 'on' } }]);
   });
 });

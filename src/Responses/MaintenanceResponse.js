@@ -23,37 +23,37 @@ export default class MaintenanceResponse extends PropertyResponse {
    * @example MaintenanceResponse
     {
       daysToNextService: {
-        data: 400,
+        value: 400,
       },
       kilometersToNextService: {
-        data: 30000,
+        value: 30000,
       },
       cbsReportsCount: {
-        data: 0,
+        value: 0,
       },
       monthsToExhaustInspection: {
-        data: 0,
+        value: 0,
       },
       teleserviceAvailability: {
-        data: 'pending',
+        value: 'pending',
       },
       serviceDistanceThreshold: {
-        data: 0,
+        value: 0,
       },
       serviceTimeThreshold: {
-        data: 0,
+        value: 0,
       },
       automaticTeleserviceCallDate: {
-        data: '2018-10-22T12:10:33.769Z',
+        value: '2018-10-22T12:10:33.769Z',
       },
       teleserviceBatteryCallDate: {
-        data: '2018-10-22T12:10:33.769Z',
+        value: '2018-10-22T12:10:33.769Z',
       },
       nextInspectionDate: {
-        data: '2018-10-22T12:10:33.769Z',
+        value: '2018-10-22T12:10:33.769Z',
       },
       conditionBasedServices: [{
-        data: {
+        value: {
           year: 2018,
           month: 8,
           cbsIdentifier: 123,
@@ -63,7 +63,7 @@ export default class MaintenanceResponse extends PropertyResponse {
         },
       }],
       brakeFluidChangeDate: {
-        data: '2018-10-22T12:10:33.769Z',
+        value: '2018-10-22T12:10:33.769Z',
       },
     }
    */

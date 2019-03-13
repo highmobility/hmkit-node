@@ -13,53 +13,53 @@ export default class WindowsResponse extends PropertyResponse {
    * @example WindowsResponse
     {
       windowsOpenPercentages: [{
-        data: {
+        value: {
           windowLocation: 'front_left',
           openPercentage: 0.6,
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'front_right',
           openPercentage: 0.6,
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'rear_right',
           openPercentage: 0.6,
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'rear_left',
           openPercentage: 0.6,
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'hatch',
           openPercentage: 0.6,
         },
       }],
       windowsPositions: [{
-        data: {
+        value: {
           windowLocation: 'front_left',
           windowPosition: 'closed',
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'front_right',
           windowPosition: 'closed',
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'rear_right',
           windowPosition: 'closed',
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'rear_left',
           windowPosition: 'closed',
         },
       }, {
-        data: {
+        value: {
           windowLocation: 'hatch',
           windowPosition: 'closed',
         },

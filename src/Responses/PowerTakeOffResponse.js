@@ -12,10 +12,10 @@ export default class PowerTakeOffResponse extends PropertyResponse {
    * @example PowerTakeOffResponse
     {
       powerTakeoff: {
-        data: 'inactive',
+        value: 'inactive',
       },
       powerTakeoffEngaged: {
-        data: 'not_engaged',
+        value: 'not_engaged',
       },
     }
    */

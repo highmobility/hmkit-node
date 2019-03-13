@@ -35,53 +35,53 @@ export default class RaceResponse extends PropertyResponse {
    * @example RaceResponse
     {
       accelerations: [{
-        data: {
+        value: {
           type: 'longitudinal_acceleration',
           gForce: 0,
         },
       }, {
-        data: {
+        value: {
           type: 'lateral_acceleration',
           gForce: 0,
         },
       }, {
-        data: {
+        value: {
           type: 'front_lateral_acceleration',
           gForce: 0,
         },
       }, {
-        data: {
+        value: {
           type: 'rear_lateral_acceleration',
           gForce: 0,
         },
       }],
-      understeering: { data: 0 },
-      oversteering: { data: 0 },
-      gasPedalPosition: { data: 0 },
-      steeringAngle: { data: 0 },
-      brakePressure: { data: 0 },
-      yawRate: { data: 0 },
-      rearSuspensionSteering: { data: 0 },
-      electronicStabilityProgram: { data: 'inactive' },
+      understeering: { value: 0 },
+      oversteering: { value: 0 },
+      gasPedalPosition: { value: 0 },
+      steeringAngle: { value: 0 },
+      brakePressure: { value: 0 },
+      yawRate: { value: 0 },
+      rearSuspensionSteering: { value: 0 },
+      electronicStabilityProgram: { value: 'inactive' },
       brakeTorqueVectorings: [{
-        data: {
+        value: {
           axle: 'front_axle',
           vectoring: 'inactive',
         },
       }, {
-        data: {
+        value: {
           axle: 'rear_axle',
           vectoring: 'inactive',
         },
       }],
-      gearMode: { data: 'manual' },
-      selectedGear: { data: 0 },
-      brakePedalPosition: { data: 0 },
-      brakePedalSwitch: { data: 'inactive' },
-      clutchPedalSwitch: { data: 'inactive' },
-      acceleratorPedalIdleSwitch: { data: 'inactive' },
-      acceleratorPedalKickdownSwitch: { data: 'inactive' },
-      vehicleMoving: { data: 'not_moving' },
+      gearMode: { value: 'manual' },
+      selectedGear: { value: 0 },
+      brakePedalPosition: { value: 0 },
+      brakePedalSwitch: { value: 'inactive' },
+      clutchPedalSwitch: { value: 'inactive' },
+      acceleratorPedalIdleSwitch: { value: 'inactive' },
+      acceleratorPedalKickdownSwitch: { value: 'inactive' },
+      vehicleMoving: { value: 'not_moving' },
     }
    */
   constructor(data: Uint8Array, config: Object) {

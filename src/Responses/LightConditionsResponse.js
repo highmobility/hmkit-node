@@ -12,10 +12,10 @@ export default class LightConditionsResponse extends PropertyResponse {
    * @example LightConditionsResponse
     {
       outsideLight: {
-        data: 10000
+        value: 10000
       },
       insideLight: {
-        data: 1000
+        value: 1000
       }
     }
    */

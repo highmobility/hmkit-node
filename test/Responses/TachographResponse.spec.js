@@ -14,21 +14,21 @@ describe(`TachographResponse`, () => {
 
     expect(response.parse()).toEqual({
       driverWorkingStates: [
-        { data: { driverNumber: 1, workingState: 'resting' } },
-        { data: { driverNumber: 2, workingState: 'resting' } },
+        { value: { driverNumber: 1, workingState: 'resting' } },
+        { value: { driverNumber: 2, workingState: 'resting' } },
       ],
       driverTimeStates: [
-        { data: { driverNumber: 1, timeState: 'normal' } },
-        { data: { driverNumber: 2, timeState: 'normal' } },
+        { value: { driverNumber: 1, timeState: 'normal' } },
+        { value: { driverNumber: 2, timeState: 'normal' } },
       ],
       driverCards: [
-        { data: { driverNumber: 1, card: 'not_present' } },
-        { data: { driverNumber: 2, card: 'not_present' } },
+        { value: { driverNumber: 1, card: 'not_present' } },
+        { value: { driverNumber: 2, card: 'not_present' } },
       ],
-      vehicleMotion: { data: 'not_detected' },
-      vehicleOverspeed: { data: 'no_overspeed' },
-      vehicleDirection: { data: 'forward' },
-      vehicleSpeed: { data: 0 },
+      vehicleMotion: { value: 'not_detected' },
+      vehicleOverspeed: { value: 'no_overspeed' },
+      vehicleDirection: { value: 'forward' },
+      vehicleSpeed: { value: 0 },
     });
   });
 });

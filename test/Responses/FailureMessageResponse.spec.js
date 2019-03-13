@@ -11,15 +11,15 @@ describe(`FailureMessageResponse`, () => {
     expect(response.parse()).toBeInstanceOf(FailureMessageResponse);
     expect(response.parse()).toEqual({
       autoApi: {
-        data: {
+        value: {
           lsb: 69,
           namespace: 'windows',
           label: 'Windows',
         },
       },
-      type: { data: 0 },
+      type: { value: 0 },
       reason: {
-        data: {
+        value: {
           key: 1,
           value:
             'Unauthorised - User has not been authenticated or lacks permissions',

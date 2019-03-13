@@ -12,19 +12,19 @@ describe(`MaintenanceCommand`, () => {
     expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        daysToNextService: { data: expect.any(Number) },
-        kilometersToNextService: { data: expect.any(Number) },
-        cbsReportsCount: { data: expect.any(Number) },
-        monthsToExhaustInspection: { data: expect.any(Number) },
-        teleserviceAvailability: { data: expect.any(String) },
-        serviceDistanceThreshold: { data: expect.any(Number) },
-        serviceTimeThreshold: { data: expect.any(Number) },
-        automaticTeleserviceCallDate: { data: expect.any(Date) },
-        teleserviceBatteryCallDate: { data: expect.any(Date) },
-        nextInspectionDate: { data: expect.any(Date) },
+        daysToNextService: { value: expect.any(Number) },
+        kilometersToNextService: { value: expect.any(Number) },
+        cbsReportsCount: { value: expect.any(Number) },
+        monthsToExhaustInspection: { value: expect.any(Number) },
+        teleserviceAvailability: { value: expect.any(String) },
+        serviceDistanceThreshold: { value: expect.any(Number) },
+        serviceTimeThreshold: { value: expect.any(Number) },
+        automaticTeleserviceCallDate: { value: expect.any(Date) },
+        teleserviceBatteryCallDate: { value: expect.any(Date) },
+        nextInspectionDate: { value: expect.any(Date) },
         conditionBasedServices: [
           {
-            data: {
+            value: {
               year: expect.any(Number),
               month: expect.any(Number),
               cbsIdentifier: expect.any(Number),
@@ -34,7 +34,7 @@ describe(`MaintenanceCommand`, () => {
             },
           },
         ],
-        brakeFluidChangeDate: { data: expect.any(Date) },
+        brakeFluidChangeDate: { value: expect.any(Date) },
       })
     );
   });

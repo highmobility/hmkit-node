@@ -22,24 +22,24 @@ export default class WindscreenResponse extends PropertyResponse {
    *
    * @example WindscreenResponse
     {
-      wipers: { data: 'active' },
-      wipersIntensity: { data: 'level_3' },
-      windscreenDamage: { data: 'damage_smaller_than_1_inch' },
+      wipers: { value: 'active' },
+      wipersIntensity: { value: 'level_3' },
+      windscreenDamage: { value: 'damage_smaller_than_1_inch' },
       windscreenZoneMatrix: {
-        data: {
+        value: {
           rows: 3,
           columns: 2,
         },
       },
       windscreenDamageZone: {
-        data: {
+        value: {
           rows: 3,
           columns: 3,
         },
       },
-      windscreenNeedsReplacement: { data: 'replacement_needed' },
-      windscreenDamageConfidence: { data: 0 },
-      windscreenDamageDetectionTime: { data: '2000-01-01T00:00:00.000Z' },
+      windscreenNeedsReplacement: { value: 'replacement_needed' },
+      windscreenDamageConfidence: { value: 0 },
+      windscreenDamageDetectionTime: { value: '2000-01-01T00:00:00.000Z' },
     }
    */
   constructor(data: Uint8Array, config: Object) {

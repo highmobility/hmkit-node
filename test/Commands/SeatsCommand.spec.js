@@ -14,25 +14,25 @@ describe(`SeatsCommand`, () => {
     expect(response.parse()).toEqual({
       personsDetected: expect.objectContaining([
         {
-          data: {
+          value: {
             seatPosition: 'front_left',
             personDetected: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             seatPosition: 'front_right',
             personDetected: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             seatPosition: 'rear_right',
             personDetected: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             seatPosition: 'rear_left',
             personDetected: expect.any(String),
           },
@@ -40,25 +40,25 @@ describe(`SeatsCommand`, () => {
       ]),
       seatbeltsFastened: expect.objectContaining([
         {
-          data: {
+          value: {
             seatPosition: 'front_left',
             seatbeltFastened: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             seatPosition: 'front_right',
             seatbeltFastened: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             seatPosition: 'rear_right',
             seatbeltFastened: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             seatPosition: 'rear_left',
             seatbeltFastened: expect.any(String),
           },

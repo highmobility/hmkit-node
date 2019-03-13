@@ -12,8 +12,8 @@ describe(`PowerTakeOffCommand`, () => {
     expect(response.parse()).toBeInstanceOf(PowerTakeOffResponse);
 
     expect(response.parse()).toEqual({
-      powerTakeoff: { data: expect.any(String) },
-      powerTakeoffEngaged: { data: expect.any(String) },
+      powerTakeoff: { value: expect.any(String) },
+      powerTakeoffEngaged: { value: expect.any(String) },
     });
   });
 
@@ -26,7 +26,7 @@ describe(`PowerTakeOffCommand`, () => {
     expect(response.parse()).toBeInstanceOf(PowerTakeOffResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        powerTakeoff: { data: 'active' },
+        powerTakeoff: { value: 'active' },
       })
     );
   });
@@ -40,7 +40,7 @@ describe(`PowerTakeOffCommand`, () => {
     expect(response.parse()).toBeInstanceOf(PowerTakeOffResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        powerTakeoff: { data: 'inactive' },
+        powerTakeoff: { value: 'inactive' },
       })
     );
   });

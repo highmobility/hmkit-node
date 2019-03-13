@@ -11,140 +11,146 @@ describe(`DiagnosticsResponse`, () => {
     );
     expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
     expect(response.parse()).toEqual({
-      mileage: { data: 3000, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      mileage: { value: 3000, timestamp: new Date('2019-02-25T11:55:48.142Z') },
       engineOilTemperature: {
-        data: 18,
+        value: 18,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
-      speed: { data: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
-      engineRPM: { data: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
-      fuelLevel: { data: 0.8, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      speed: { value: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      engineRPM: { value: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      fuelLevel: {
+        value: 0.8,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
       estimatedRange: {
-        data: 200,
+        value: 200,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       washerFluidLevel: {
-        data: 'low',
+        value: 'low',
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       batteryVoltage: {
-        data: 12,
+        value: 12,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
-      adblueLevel: { data: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      adblueLevel: {
+        value: 0,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
       distanceSinceReset: {
-        data: 0,
+        value: 0,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       distanceSinceStart: {
-        data: 0,
+        value: 0,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
-      fuelVolume: { data: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      fuelVolume: { value: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
       antiLockBraking: {
-        data: 'inactive',
+        value: 'inactive',
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       engineCoolantTemperature: {
-        data: 23,
+        value: 23,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       engineTotalOperatingHours: {
-        data: 24,
+        value: 24,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       engineTotalFuelConsumption: {
-        data: 600,
+        value: 600,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       brakeFluidLevel: {
-        data: 'low',
+        value: 'low',
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       engineTorque: {
-        data: 0.2,
+        value: 0.2,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       engineLoad: {
-        data: 0.1,
+        value: 0.1,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       wheelBasedSpeed: {
-        data: 0,
+        value: 0,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       batteryLevel: {
-        data: 0.8,
+        value: 0.8,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
       checkControlMessages: [
         {
-          data: { id: 10, remainingMinutes: 0, text: '', status: '' },
+          value: { id: 10, remainingMinutes: 0, text: '', status: '' },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
       ],
       tirePressures: [
         {
-          data: { location: 'front_left', pressure: 2.3 },
+          value: { location: 'front_left', pressure: 2.3 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'front_right', pressure: 2.3 },
+          value: { location: 'front_right', pressure: 2.3 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'rear_right', pressure: 2.3 },
+          value: { location: 'rear_right', pressure: 2.3 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'rear_left', pressure: 2.3 },
+          value: { location: 'rear_left', pressure: 2.3 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
       ],
       tireTemperatures: [
         {
-          data: { location: 'front_left', temperature: 40 },
+          value: { location: 'front_left', temperature: 40 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'front_right', temperature: 40 },
+          value: { location: 'front_right', temperature: 40 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'rear_right', temperature: 40 },
+          value: { location: 'rear_right', temperature: 40 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'rear_left', temperature: 40 },
+          value: { location: 'rear_left', temperature: 40 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
       ],
       wheelRpms: [
         {
-          data: { location: 'front_left', rpm: 0 },
+          value: { location: 'front_left', rpm: 0 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'front_right', rpm: 0 },
+          value: { location: 'front_right', rpm: 0 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'rear_right', rpm: 0 },
+          value: { location: 'rear_right', rpm: 0 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
         {
-          data: { location: 'rear_left', rpm: 0 },
+          value: { location: 'rear_left', rpm: 0 },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
       ],
       troubleCodes: [
         {
-          data: { occurences: 0, id: '', ecuId: '', status: '' },
+          value: { occurences: 0, id: '', ecuId: '', status: '' },
           timestamp: new Date('2019-02-25T11:55:48.142Z'),
         },
       ],
       mileageMeters: {
-        data: 3000,
+        value: 3000,
         timestamp: new Date('2019-02-25T11:55:48.142Z'),
       },
     });

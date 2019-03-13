@@ -14,60 +14,60 @@ describe(`RaceCommand`, () => {
     expect(response.parse()).toEqual({
       accelerations: expect.objectContaining([
         {
-          data: {
+          value: {
             type: 'longitudinal_acceleration',
             gForce: expect.any(Number),
           },
         },
         {
-          data: {
+          value: {
             type: 'lateral_acceleration',
             gForce: expect.any(Number),
           },
         },
         {
-          data: {
+          value: {
             type: 'front_lateral_acceleration',
             gForce: expect.any(Number),
           },
         },
         {
-          data: {
+          value: {
             type: 'rear_lateral_acceleration',
             gForce: expect.any(Number),
           },
         },
       ]),
-      understeering: { data: expect.any(Number) },
-      oversteering: { data: expect.any(Number) },
-      gasPedalPosition: { data: expect.any(Number) },
-      steeringAngle: { data: expect.any(Number) },
-      brakePressure: { data: expect.any(Number) },
-      yawRate: { data: expect.any(Number) },
-      rearSuspensionSteering: { data: expect.any(Number) },
-      electronicStabilityProgram: { data: expect.any(String) },
+      understeering: { value: expect.any(Number) },
+      oversteering: { value: expect.any(Number) },
+      gasPedalPosition: { value: expect.any(Number) },
+      steeringAngle: { value: expect.any(Number) },
+      brakePressure: { value: expect.any(Number) },
+      yawRate: { value: expect.any(Number) },
+      rearSuspensionSteering: { value: expect.any(Number) },
+      electronicStabilityProgram: { value: expect.any(String) },
       brakeTorqueVectorings: expect.objectContaining([
         {
-          data: {
+          value: {
             axle: 'front_axle',
             vectoring: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             axle: 'rear_axle',
             vectoring: expect.any(String),
           },
         },
       ]),
-      gearMode: { data: expect.any(String) },
-      selectedGear: { data: expect.any(Number) },
-      brakePedalPosition: { data: expect.any(Number) },
-      brakePedalSwitch: { data: expect.any(String) },
-      clutchPedalSwitch: { data: expect.any(String) },
-      acceleratorPedalIdleSwitch: { data: expect.any(String) },
-      acceleratorPedalKickdownSwitch: { data: expect.any(String) },
-      vehicleMoving: { data: expect.any(String) },
+      gearMode: { value: expect.any(String) },
+      selectedGear: { value: expect.any(Number) },
+      brakePedalPosition: { value: expect.any(Number) },
+      brakePedalSwitch: { value: expect.any(String) },
+      clutchPedalSwitch: { value: expect.any(String) },
+      acceleratorPedalIdleSwitch: { value: expect.any(String) },
+      acceleratorPedalKickdownSwitch: { value: expect.any(String) },
+      vehicleMoving: { value: expect.any(String) },
     });
   });
 });

@@ -12,8 +12,8 @@ describe(`NaviDestinationResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(NaviDestinationResponse);
     expect(response.parse()).toEqual({
-      coordinates: { data: { latitude: 52.516506, longitude: 13.381815 } },
-      destinationName: { data: 'Alexanderplatz, 10178 Berlin, Germany' },
+      coordinates: { value: { latitude: 52.516506, longitude: 13.381815 } },
+      destinationName: { value: 'Alexanderplatz, 10178 Berlin, Germany' },
     });
   });
 });

@@ -19,44 +19,44 @@ export default class ChassisSettingsResponse extends PropertyResponse {
    *
    * @example ChassisSettingsResponse
     {
-      drivingMode: { data: 'sport_plus' },
-      sportChrono: { data: 'inactive' },
+      drivingMode: { value: 'sport_plus' },
+      sportChrono: { value: 'inactive' },
       currentSpringRates: [{
-        data: {
+        value: {
           axle: 'front_axle',
           springRate: 21
         }
       }, {
-        data: {
+        value: {
           axle: 'rear_axle',
           springRate: 25
         }
       }],
       maximumSpringRates: [{
-        data: {
+        value: {
           axle: 'front_axle',
           springRate: 37
         }
       }, {
-        data: {
+        value: {
           axle: 'rear_axle',
           springRate: 37
         }
       }],
       minimumSpringRates: [{
-        data: {
+        value: {
           axle: 'front_axle',
           springRate: 17
         }
       }, {
-        data: {
+        value: {
           axle: 'rear_axle',
           springRate: 17
         }
       }],
-      currentChassisPosition: { data: 26 },
-      maximumChassisPosition: { data: 55 },
-      minimumChassisPosition: { data: -28 },
+      currentChassisPosition: { value: 26 },
+      maximumChassisPosition: { value: 55 },
+      minimumChassisPosition: { value: -28 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

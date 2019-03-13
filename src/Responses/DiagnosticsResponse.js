@@ -44,29 +44,29 @@ export default class DiagnosticsResponse extends PropertyResponse {
    *
    * @example DiagnosticsResponse
     {
-      mileage: { data: 3000 },
-      engineOilTemperature: { data: 18 },
-      speed: { data: 0 },
-      engineRPM: { data: 0 },
-      fuelLevel: { data: 0.8 },
-      estimatedRange: { data: 200 },
-      washerFluidLevel: { data: 'low' },
-      batteryVoltage: { data: 12 },
-      adblueLevel: { data: 0 },
-      distanceSinceReset: { data: 0 },
-      distanceSinceStart: { data: 0 },
-      fuelVolume: { data: 0 },
-      antiLockBraking: { data: 'inactive' },
-      engineCoolantTemperature: { data: 23 },
-      engineTotalOperatingHours: { data: 24 },
-      engineTotalFuelConsumption: { data: 600 },
-      brakeFluidLevel: { data: 'low' },
-      engineTorque: { data: 0.2 },
-      engineLoad: { data: 0.1 },
-      wheelBasedSpeed: { data: 0 },
-      batteryLevel: { data: 0.8 },
+      mileage: { value: 3000 },
+      engineOilTemperature: { value: 18 },
+      speed: { value: 0 },
+      engineRPM: { value: 0 },
+      fuelLevel: { value: 0.8 },
+      estimatedRange: { value: 200 },
+      washerFluidLevel: { value: 'low' },
+      batteryVoltage: { value: 12 },
+      adblueLevel: { value: 0 },
+      distanceSinceReset: { value: 0 },
+      distanceSinceStart: { value: 0 },
+      fuelVolume: { value: 0 },
+      antiLockBraking: { value: 'inactive' },
+      engineCoolantTemperature: { value: 23 },
+      engineTotalOperatingHours: { value: 24 },
+      engineTotalFuelConsumption: { value: 600 },
+      brakeFluidLevel: { value: 'low' },
+      engineTorque: { value: 0.2 },
+      engineLoad: { value: 0.1 },
+      wheelBasedSpeed: { value: 0 },
+      batteryLevel: { value: 0.8 },
       checkControlMessages: [{
-        data: {
+        value: {
           id: 10,
           remainingMinutes: 0,
           text: '',
@@ -74,77 +74,77 @@ export default class DiagnosticsResponse extends PropertyResponse {
         }
       }],
       tirePressures: [{
-        data: {
+        value: {
           location: 'front_left',
           pressure: 2.3
         }
       }, {
-        data: {
+        value: {
           location: 'front_right',
           pressure: 2.3
         }
       }, {
-        data: {
+        value: {
           location: 'rear_right',
           pressure: 2.3
         }
       }, {
-        data: {
+        value: {
           location: 'rear_left',
           pressure: 2.3
         }
       }],
       tireTemperatures: [{
-        data: {
+        value: {
           location: 'front_left',
           temperature: 40
         }
       }, {
-        data: {
+        value: {
           location: 'front_right',
           temperature: 40
         }
       }, {
-        data: {
+        value: {
           location: 'rear_right',
           temperature: 40
         }
       }, {
-        data: {
+        value: {
           location: 'rear_left',
           temperature: 40
         }
       }],
       wheelRpms: [{
-        data: {
+        value: {
           location: 'front_left',
           rpm: 0
         }
       }, {
-        data: {
+        value: {
           location: 'front_right',
           rpm: 0
         }
       }, {
-        data: {
+        value: {
           location: 'rear_right',
           rpm: 0
         }
       }, {
-        data: {
+        value: {
           location: 'rear_left',
           rpm: 0
         }
       }],
       troubleCodes: [{
-        data: {
+        value: {
           occurences: 0,
           id: '',
           ecuId: '',
           status: ''
         }
       }],
-      mileageMeters: { data: 3000 },
+      mileageMeters: { value: 3000 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

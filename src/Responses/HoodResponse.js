@@ -11,7 +11,7 @@ export default class HoodResponse extends PropertyResponse {
    * @example HoodResponse
     {
       position: {
-        data: 'closed'
+        value: 'closed'
       }
     }
    */

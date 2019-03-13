@@ -12,23 +12,23 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
 
     expect(response.parse()).toEqual({
-      estimatedRange: { data: expect.any(Number) },
-      batteryLevel: { data: expect.any(Number) },
-      batteryCurrentAC: { data: expect.any(Number) },
-      batteryCurrentDC: { data: expect.any(Number) },
-      chargerVoltageAC: { data: expect.any(Number) },
-      chargerVoltageDC: { data: expect.any(Number) },
-      chargeLimit: { data: expect.any(Number) },
-      timeToCompleteCharge: { data: expect.any(Number) },
-      chargingRateKW: { data: expect.any(Number) },
-      chargePortState: { data: expect.any(String) },
-      chargeMode: { data: expect.any(String) },
-      maxChargingCurrent: { data: expect.any(Number) },
-      plugType: { data: expect.any(String) },
-      chargingWindowChosen: { data: expect.any(String) },
+      estimatedRange: { value: expect.any(Number) },
+      batteryLevel: { value: expect.any(Number) },
+      batteryCurrentAC: { value: expect.any(Number) },
+      batteryCurrentDC: { value: expect.any(Number) },
+      chargerVoltageAC: { value: expect.any(Number) },
+      chargerVoltageDC: { value: expect.any(Number) },
+      chargeLimit: { value: expect.any(Number) },
+      timeToCompleteCharge: { value: expect.any(Number) },
+      chargingRateKW: { value: expect.any(Number) },
+      chargePortState: { value: expect.any(String) },
+      chargeMode: { value: expect.any(String) },
+      maxChargingCurrent: { value: expect.any(Number) },
+      plugType: { value: expect.any(String) },
+      chargingWindowChosen: { value: expect.any(String) },
       departureTimes: [
         {
-          data: {
+          value: {
             activeState: expect.any(String),
             hour: expect.any(Number),
             minute: expect.any(Number),
@@ -37,36 +37,36 @@ describe(`ChargingCommand`, () => {
       ],
       reductionTimes: [
         {
-          data: {
+          value: {
             startStop: expect.any(String),
             hour: expect.any(Number),
             minute: expect.any(Number),
           },
         },
       ],
-      batteryTemperature: { data: expect.any(Number) },
+      batteryTemperature: { value: expect.any(Number) },
       timers: [
         {
-          data: {
+          value: {
             timerType: 'preferred_start_time',
             time: expect.any(Date),
           },
         },
         {
-          data: {
+          value: {
             timerType: 'preferred_end_time',
             time: expect.any(Date),
           },
         },
         {
-          data: {
+          value: {
             timerType: 'departure_time',
             time: expect.any(Date),
           },
         },
       ],
-      pluggedIn: { data: expect.any(String) },
-      activeState: { data: expect.any(String) },
+      pluggedIn: { value: expect.any(String) },
+      activeState: { value: expect.any(String) },
     });
   });
 
@@ -79,7 +79,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        activeState: { data: 'charging' },
+        activeState: { value: 'charging' },
       })
     );
   });
@@ -93,7 +93,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        activeState: { data: 'not_charging' },
+        activeState: { value: 'not_charging' },
       })
     );
   });
@@ -107,7 +107,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeLimit: { data: 0.5 },
+        chargeLimit: { value: 0.5 },
       })
     );
   });
@@ -121,7 +121,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargePortState: { data: 'open' },
+        chargePortState: { value: 'open' },
       })
     );
   });
@@ -135,7 +135,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargePortState: { data: 'closed' },
+        chargePortState: { value: 'closed' },
       })
     );
   });
@@ -149,7 +149,7 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeMode: { data: 'timer_based' },
+        chargeMode: { value: 'timer_based' },
       })
     );
   });
@@ -178,19 +178,19 @@ describe(`ChargingCommand`, () => {
       expect.objectContaining({
         timers: [
           {
-            data: {
+            value: {
               timerType: 'preferred_start_time',
               time: new Date(Date.UTC(2018, 1, 11, 12, 13)),
             },
           },
           {
-            data: {
+            value: {
               timerType: 'preferred_end_time',
               time: new Date(Date.UTC(2018, 1, 11, 12, 14)),
             },
           },
           {
-            data: {
+            value: {
               timerType: 'departure_time',
               time: new Date(Date.UTC(2018, 1, 11, 12, 15)),
             },

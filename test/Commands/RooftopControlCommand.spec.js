@@ -11,11 +11,11 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: { data: expect.any(Number) },
-      position: { data: expect.any(Number) },
-      convertibleRoof: { data: expect.any(String) },
-      sunroofTilt: { data: expect.any(String) },
-      sunroofState: { data: expect.any(String) },
+      dimming: { value: expect.any(Number) },
+      position: { value: expect.any(Number) },
+      convertibleRoof: { value: expect.any(String) },
+      sunroofTilt: { value: expect.any(String) },
+      sunroofState: { value: expect.any(String) },
     });
   });
 
@@ -33,11 +33,11 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: { data: 0.2 },
-      position: { data: 0.3 },
-      convertibleRoof: { data: 'closed_secured' },
-      sunroofTilt: { data: 'tilted' },
-      sunroofState: { data: 'open' },
+      dimming: { value: 0.2 },
+      position: { value: 0.3 },
+      convertibleRoof: { value: 'closed_secured' },
+      sunroofTilt: { value: 'tilted' },
+      sunroofState: { value: 'open' },
     });
   });
 
@@ -60,7 +60,7 @@ describe(`RooftopControlCommand`, () => {
     );
 
     expect(response.parse()).toEqual({
-      dimming: { data: newDimming },
+      dimming: { value: newDimming },
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
@@ -85,7 +85,7 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
-      position: { data: newPosition },
+      position: { value: newPosition },
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
       sunroofState: oldData.sunroofState,
@@ -114,7 +114,7 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
       position: oldData.position,
-      convertibleRoof: { data: newRoofState },
+      convertibleRoof: { value: newRoofState },
       sunroofTilt: oldData.sunroofTilt,
       sunroofState: oldData.sunroofState,
     });
@@ -145,7 +145,7 @@ describe(`RooftopControlCommand`, () => {
       dimming: oldData.dimming,
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
-      sunroofTilt: { data: newSunroofTilt },
+      sunroofTilt: { value: newSunroofTilt },
       sunroofState: oldData.sunroofState,
     });
   });
@@ -177,7 +177,7 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
-      sunroofState: { data: newSunroofState },
+      sunroofState: { value: newSunroofState },
     });
   });
 });

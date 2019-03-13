@@ -12,10 +12,10 @@ export default class OffroadResponse extends PropertyResponse {
    * @example OffroadResponse
     {
       routeIncline: {
-        data: 0,
+        value: 0,
       },
       wheelSuspension: {
-        data: 0,
+        value: 0,
       },
     }
    */

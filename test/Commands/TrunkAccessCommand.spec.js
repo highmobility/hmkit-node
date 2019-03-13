@@ -11,8 +11,8 @@ describe(`TrunkAccessCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual({
-      trunkLock: { data: expect.any(String) },
-      trunkPosition: { data: expect.any(String) },
+      trunkLock: { value: expect.any(String) },
+      trunkPosition: { value: expect.any(String) },
     });
   });
 
@@ -25,8 +25,8 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { data: 'unlocked' },
-        trunkPosition: { data: expect.any(String) },
+        trunkLock: { value: 'unlocked' },
+        trunkPosition: { value: expect.any(String) },
       })
     );
   });
@@ -40,8 +40,8 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { data: 'unlocked' },
-        trunkPosition: { data: 'open' },
+        trunkLock: { value: 'unlocked' },
+        trunkPosition: { value: 'open' },
       })
     );
   });
@@ -55,8 +55,8 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { data: expect.any(String) },
-        trunkPosition: { data: 'closed' },
+        trunkLock: { value: expect.any(String) },
+        trunkPosition: { value: 'closed' },
       })
     );
   });
@@ -70,8 +70,8 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { data: 'locked' },
-        trunkPosition: { data: expect.any(String) },
+        trunkLock: { value: 'locked' },
+        trunkPosition: { value: expect.any(String) },
       })
     );
   });
@@ -85,8 +85,8 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { data: 'locked' },
-        trunkPosition: { data: 'open' },
+        trunkLock: { value: 'locked' },
+        trunkPosition: { value: 'open' },
       })
     );
 
@@ -98,8 +98,8 @@ describe(`TrunkAccessCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { data: 'unlocked' },
-        trunkPosition: { data: 'closed' },
+        trunkLock: { value: 'unlocked' },
+        trunkPosition: { value: 'closed' },
       })
     );
   });

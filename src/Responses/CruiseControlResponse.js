@@ -14,11 +14,11 @@ export default class CruiseControlResponse extends PropertyResponse {
    *
    * @example CruiseControlResponse
     {
-      cruiseControl: { data: 'active' },
-      limiter: { data: 'not_set' },
-      targetSpeed: { data: 90 },
-      acc: { data: 'inactive' },
-      accTargetSpeed: { data: 0 },
+      cruiseControl: { value: 'active' },
+      limiter: { value: 'not_set' },
+      targetSpeed: { value: 90 },
+      acc: { value: 'inactive' },
+      accTargetSpeed: { value: 0 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

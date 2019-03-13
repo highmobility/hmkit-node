@@ -14,18 +14,18 @@ describe(`WindowsResponse`, () => {
 
     expect(response.parse()).toEqual({
       windowsOpenPercentages: [
-        { data: { windowLocation: 'front_left', openPercentage: 0 } },
-        { data: { windowLocation: 'front_right', openPercentage: 0 } },
-        { data: { windowLocation: 'rear_right', openPercentage: 0 } },
-        { data: { windowLocation: 'rear_left', openPercentage: 0 } },
-        { data: { windowLocation: 'hatch', openPercentage: 0 } },
+        { value: { windowLocation: 'front_left', openPercentage: 0 } },
+        { value: { windowLocation: 'front_right', openPercentage: 0 } },
+        { value: { windowLocation: 'rear_right', openPercentage: 0 } },
+        { value: { windowLocation: 'rear_left', openPercentage: 0 } },
+        { value: { windowLocation: 'hatch', openPercentage: 0 } },
       ],
       windowsPositions: [
-        { data: { windowLocation: 'front_left', windowPosition: 'closed' } },
-        { data: { windowLocation: 'front_right', windowPosition: 'closed' } },
-        { data: { windowLocation: 'rear_right', windowPosition: 'closed' } },
-        { data: { windowLocation: 'rear_left', windowPosition: 'closed' } },
-        { data: { windowLocation: 'hatch', windowPosition: 'closed' } },
+        { value: { windowLocation: 'front_left', windowPosition: 'closed' } },
+        { value: { windowLocation: 'front_right', windowPosition: 'closed' } },
+        { value: { windowLocation: 'rear_right', windowPosition: 'closed' } },
+        { value: { windowLocation: 'rear_left', windowPosition: 'closed' } },
+        { value: { windowLocation: 'hatch', windowPosition: 'closed' } },
       ],
     });
   });

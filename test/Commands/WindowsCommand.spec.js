@@ -15,60 +15,66 @@ describe(`WindowsCommand`, () => {
     expect(response.parse()).toEqual({
       windowsOpenPercentages: expect.objectContaining([
         {
-          data: {
+          value: {
             windowLocation: 'front_left',
             openPercentage: expect.any(Number),
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'front_right',
             openPercentage: expect.any(Number),
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_right',
             openPercentage: expect.any(Number),
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_left',
             openPercentage: expect.any(Number),
           },
         },
         {
-          data: { windowLocation: 'hatch', openPercentage: expect.any(Number) },
+          value: {
+            windowLocation: 'hatch',
+            openPercentage: expect.any(Number),
+          },
         },
       ]),
       windowsPositions: expect.objectContaining([
         {
-          data: {
+          value: {
             windowLocation: 'front_left',
             windowPosition: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'front_right',
             windowPosition: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_right',
             windowPosition: expect.any(String),
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_left',
             windowPosition: expect.any(String),
           },
         },
         {
-          data: { windowLocation: 'hatch', windowPosition: expect.any(String) },
+          value: {
+            windowLocation: 'hatch',
+            windowPosition: expect.any(String),
+          },
         },
       ]),
     });
@@ -129,31 +135,31 @@ describe(`WindowsCommand`, () => {
     expect(response.parse()).toEqual({
       windowsOpenPercentages: [
         {
-          data: {
+          value: {
             windowLocation: 'front_left',
             openPercentage: 1,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'front_right',
             openPercentage: 1,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_right',
             openPercentage: 1,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_left',
             openPercentage: 1,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'hatch',
             openPercentage: 1,
           },
@@ -161,31 +167,31 @@ describe(`WindowsCommand`, () => {
       ],
       windowsPositions: [
         {
-          data: {
+          value: {
             windowLocation: 'front_left',
             windowPosition: 'opened',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'front_right',
             windowPosition: 'opened',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_right',
             windowPosition: 'opened',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_left',
             windowPosition: 'opened',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'hatch',
             windowPosition: 'opened',
           },
@@ -247,31 +253,31 @@ describe(`WindowsCommand`, () => {
     expect(response2.parse()).toEqual({
       windowsOpenPercentages: [
         {
-          data: {
+          value: {
             windowLocation: 'front_left',
             openPercentage: 0,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'front_right',
             openPercentage: 0,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_right',
             openPercentage: 0,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_left',
             openPercentage: 0,
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'hatch',
             openPercentage: 0,
           },
@@ -279,31 +285,31 @@ describe(`WindowsCommand`, () => {
       ],
       windowsPositions: [
         {
-          data: {
+          value: {
             windowLocation: 'front_left',
             windowPosition: 'closed',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'front_right',
             windowPosition: 'closed',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_right',
             windowPosition: 'closed',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'rear_left',
             windowPosition: 'closed',
           },
         },
         {
-          data: {
+          value: {
             windowLocation: 'hatch',
             windowPosition: 'closed',
           },

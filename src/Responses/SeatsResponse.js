@@ -12,43 +12,43 @@ export default class SeatsResponse extends PropertyResponse {
    * @example SeatsResponse
     {
       personsDetected: [{
-        data: {
+        value: {
           seatPosition: 'front_left',
           personDetected: 'not_detected'
         },
       }, {
-        data: {
+        value: {
           seatPosition: 'front_right',
           personDetected: 'not_detected'
         },
       }, {
-        data: {
+        value: {
           seatPosition: 'rear_right',
           personDetected: 'not_detected'
         },
       }, {
-        data: {
+        value: {
           seatPosition: 'rear_left',
           personDetected: 'not_detected'
         }
       }],
       seatbeltsFastened: [{
-        data: {
+        value: {
           seatPosition: 'front_left',
           seatbeltFastened: 'not_fastened',
         },
       }, {
-        data: {
+        value: {
           seatPosition: 'front_right',
           seatbeltFastened: 'not_fastened',
         },
       }, {
-        data: {
+        value: {
           seatPosition: 'rear_right',
           seatbeltFastened: 'not_fastened',
         },
       }, {
-        data: {
+        value: {
           seatPosition: 'rear_left',
           seatbeltFastened: 'not_fastened'
         },

@@ -12,10 +12,10 @@ export default class FuelingResponse extends PropertyResponse {
    * @example FuelingResponse
     {
       gasFlapLock: {
-        data: 'unlocked'
+        value: 'unlocked'
       },
       gasFlapPosition: {
-        data: 'opened'
+        value: 'opened'
       },
     }
    */

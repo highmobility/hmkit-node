@@ -1,7 +1,7 @@
 export default class Property {
-  constructor(data, timestamp, error) {
-    if (data !== undefined) {
-      this.data = data;
+  constructor(value, timestamp, error) {
+    if (value !== undefined) {
+      this.value = value;
     }
 
     if (timestamp !== undefined) {

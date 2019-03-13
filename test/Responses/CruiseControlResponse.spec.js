@@ -12,11 +12,11 @@ describe(`CruiseControlResponse`, () => {
     expect(response.parse()).toBeInstanceOf(CruiseControlResponse);
 
     expect(response.parse()).toEqual({
-      cruiseControl: { data: 'inactive' },
-      limiter: { data: 'not_set' },
-      targetSpeed: { data: 0 },
-      acc: { data: 'inactive' },
-      accTargetSpeed: { data: 0 },
+      cruiseControl: { value: 'inactive' },
+      limiter: { value: 'not_set' },
+      targetSpeed: { value: 0 },
+      acc: { value: 'inactive' },
+      accTargetSpeed: { value: 0 },
     });
   });
 });

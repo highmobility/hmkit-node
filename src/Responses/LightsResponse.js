@@ -21,59 +21,59 @@ export default class LightsResponse extends PropertyResponse {
    * @example LightsResponse
     {
       frontExteriorLight: {
-        data: 'inactive',
+        value: 'inactive',
       },
       rearExteriorLight: {
-        data: 'inactive',
+        value: 'inactive',
       },
       ambientLight: {
-        data: '#000000',
+        value: '#000000',
       },
       reverseLight: {
-        data: 'inactive',
+        value: 'inactive',
       },
       emergencyBrakeLight: {
-        data: 'inactive',
+        value: 'inactive',
       },
       fogLights: [{
-        data: {
+        value: {
           location: 'front',
           state: 'inactive',
         },
       }, {
-        data: {
+        value: {
           location: 'rear',
           state: 'inactive',
         },
       }],
       readingLamps: [{
-        data: {
+        value: {
           location: 'front_left',
           state: 'inactive',
         },
       }, {
-        data: {
+        value: {
           location: 'front_right',
           state: 'inactive',
         },
       }, {
-        data: {
+        value: {
           location: 'rear_right',
           state: 'inactive',
         },
       }, {
-        data: {
+        value: {
           location: 'rear_left',
           state: 'inactive',
         },
       }],
       interiorLights: [{
-        data: {
+        value: {
           location: 'front',
           state: 'inactive',
         },
       }, {
-        data: {
+        value: {
           location: 'rear',
           state: 'inactive',
         },

@@ -12,24 +12,24 @@ describe(`LightsResponse`, () => {
     expect(response.parse()).toBeInstanceOf(LightsResponse);
 
     expect(response.parse()).toEqual({
-      frontExteriorLight: { data: 'inactive' },
-      rearExteriorLight: { data: 'inactive' },
-      ambientLight: { data: '#0000ff' },
-      reverseLight: { data: 'inactive' },
-      emergencyBrakeLight: { data: 'inactive' },
+      frontExteriorLight: { value: 'inactive' },
+      rearExteriorLight: { value: 'inactive' },
+      ambientLight: { value: '#0000ff' },
+      reverseLight: { value: 'inactive' },
+      emergencyBrakeLight: { value: 'inactive' },
       fogLights: [
-        { data: { location: 'front', state: 'inactive' } },
-        { data: { location: 'rear', state: 'inactive' } },
+        { value: { location: 'front', state: 'inactive' } },
+        { value: { location: 'rear', state: 'inactive' } },
       ],
       readingLamps: [
-        { data: { location: 'front_left', state: 'inactive' } },
-        { data: { location: 'front_right', state: 'inactive' } },
-        { data: { location: 'rear_right', state: 'inactive' } },
-        { data: { location: 'rear_left', state: 'inactive' } },
+        { value: { location: 'front_left', state: 'inactive' } },
+        { value: { location: 'front_right', state: 'inactive' } },
+        { value: { location: 'rear_right', state: 'inactive' } },
+        { value: { location: 'rear_left', state: 'inactive' } },
       ],
       interiorLights: [
-        { data: { location: 'front', state: 'inactive' } },
-        { data: { location: 'rear', state: 'inactive' } },
+        { value: { location: 'front', state: 'inactive' } },
+        { value: { location: 'rear', state: 'inactive' } },
       ],
     });
   });

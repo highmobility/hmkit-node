@@ -11,7 +11,7 @@ export default class StartStopResponse extends PropertyResponse {
    * @example StartStopResponse
     {
       startStop: {
-        data: 'inactive',
+        value: 'inactive',
       },
     }
    */

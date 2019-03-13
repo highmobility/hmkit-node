@@ -16,13 +16,13 @@ export default class VehicleLocationResponse extends PropertyResponse {
    * @example VehicleLocationResponse
     {
       coordinates: {
-        data: {
+        value: {
           latitude: 52.516506,
           longitude: 13.381815,
         },
       },
-      heading: { data: 52.520008 },
-      altitude: { data: 133.5 },
+      heading: { value: 52.520008 },
+      altitude: { value: 133.5 },
     }
    */
   constructor(data: Uint8Array, config: Object) {

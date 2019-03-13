@@ -12,13 +12,13 @@ describe(`VehicleLocationResponse`, () => {
     expect(response.parse()).toBeInstanceOf(VehicleLocationResponse);
     expect(response.parse()).toEqual({
       coordinates: {
-        data: {
+        value: {
           latitude: 52.516506,
           longitude: 13.381815,
         },
       },
-      heading: { data: 52.520008 },
-      altitude: { data: 133.5 },
+      heading: { value: 52.520008 },
+      altitude: { value: 133.5 },
     });
   });
 });

@@ -12,8 +12,8 @@ describe(`TrunkAccessResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual({
-      trunkLock: { data: 'locked' },
-      trunkPosition: { data: 'closed' },
+      trunkLock: { value: 'locked' },
+      trunkPosition: { value: 'closed' },
     });
   });
 });
