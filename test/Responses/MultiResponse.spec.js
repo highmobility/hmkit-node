@@ -14,18 +14,21 @@ describe(`MultiResponse`, () => {
     expect(response.parse()).toEqual({
       states: [
         {
-          capabilityIdentifier: 'rooftop_control',
+          capabilityIdentifier: 'engine',
           state: {
-            dimming: 22,
-            position: 33,
-            convertibleRoof: 'closed_secured',
-            sunroofTilt: 'tilted',
-            sunroofState: 'open',
+            ignition: { value: 'on' },
+            accessoriesIgnition: { value: 'off' },
           },
         },
         {
-          capabilityIdentifier: 'engine',
-          state: { ignition: 'engine_on', accessoriesIgnition: 'powered_off' },
+          capabilityIdentifier: 'rooftop_control',
+          state: {
+            dimming: { value: 22 },
+            position: { value: 33 },
+            convertibleRoof: { value: 'closed_secured' },
+            sunroofTilt: { value: 'tilted' },
+            sunroofState: { value: 'open' },
+          },
         },
       ],
     });

@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class ValetModeResponse extends PropertyResponse {
@@ -10,14 +10,16 @@ export default class ValetModeResponse extends PropertyResponse {
    *
    * @example ValetModeResponse
     {
-      valetMode: 'deactivated',
+      valetMode: {
+        value: 'deactivated',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'valetMode').setDecoder(
+      new PropertyDecoder(0x01, 'valetMode').setDecoder(
         switchDecoder({
           0x00: 'deactivated',
           0x01: 'activated',
@@ -25,6 +27,6 @@ export default class ValetModeResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

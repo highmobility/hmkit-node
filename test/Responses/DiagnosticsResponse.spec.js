@@ -6,55 +6,153 @@ describe(`DiagnosticsResponse`, () => {
   it(`should return DiagnosticsResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '003301010006010003000bb802000501000200120300050100020000040005010002000005000b0100083fe999999999999a06000501000200c8090004010001000b0007010004414000000c0007010004000000000d000501000200000e000501000200000f00070100040000000010000401000100110005010002001712000701000441c00000130007010004441600001400040100010015000b0100083fc999999999999a16000b0100083fb999999999999a170005010002000018000b0100083fe999999999999a19000c010009000a000000000000001a000801000500401333331a000801000501401333331a000801000502401333331a000801000503401333331b000801000500422000001b000801000501422000001b000801000502422000001b000801000503422000001c00060100030000001c00060100030100001c00060100030200001c00060100030300001d0007010004000000001e000701000400000bb8a2000b01000800000168e701114b'
+        '00330101000f010003000bb802000601692482d62e02000e010002001202000601692482d62e03000e010002000002000601692482d62e04000e010002000002000601692482d62e0500140100083fe999999999999a02000601692482d62e06000e01000200c802000601692482d62e09000d0100010002000601692482d62e0b00100100044140000002000601692482d62e0c00100100040000000002000601692482d62e0d000e010002000002000601692482d62e0e000e010002000002000601692482d62e0f00100100040000000002000601692482d62e10000d0100010002000601692482d62e11000e010002001702000601692482d62e12001001000441c0000002000601692482d62e1300100100044416000002000601692482d62e14000d0100010002000601692482d62e1500140100083fc999999999999a02000601692482d62e1600140100083fb999999999999a02000601692482d62e17000e010002000002000601692482d62e1800140100083fe999999999999a02000601692482d62e190015010009000a0000000000000002000601692482d62e1a0011010005004013333302000601692482d62e1a0011010005014013333302000601692482d62e1a0011010005024013333302000601692482d62e1a0011010005034013333302000601692482d62e1b0011010005004220000002000601692482d62e1b0011010005014220000002000601692482d62e1b0011010005024220000002000601692482d62e1b0011010005034220000002000601692482d62e1c000f01000300000002000601692482d62e1c000f01000301000002000601692482d62e1c000f01000302000002000601692482d62e1c000f01000303000002000601692482d62e1d00100100040000000002000601692482d62e1e001001000400000bb802000601692482d62ea2001401000800000169248d4d270200060169248d4d27'
       )
     );
     expect(response.parse()).toBeInstanceOf(DiagnosticsResponse);
     expect(response.parse()).toEqual({
-      mileage: 3000,
-      engineOilTemperature: 18,
-      speed: 0,
-      engineRPM: 0,
-      fuelLevel: 0.8,
-      estimatedRange: 200,
-      washerFluidLevel: 'low',
-      batteryVoltage: 12,
-      adblueLevel: 0,
-      distanceSinceReset: 0,
-      distanceSinceStart: 0,
-      fuelVolume: 0,
-      antiLockBraking: 'inactive',
-      engineCoolantTemperature: 23,
-      engineTotalOperatingHours: 24,
-      engineTotalFuelConsumption: 600,
-      brakeFluidLevel: 'low',
-      engineTorque: 0.2,
-      engineLoad: 0.1,
-      wheelBasedSpeed: 0,
-      batteryLevel: 0.8,
+      mileage: { value: 3000, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      engineOilTemperature: {
+        value: 18,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      speed: { value: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      engineRPM: { value: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      fuelLevel: {
+        value: 0.8,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      estimatedRange: {
+        value: 200,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      washerFluidLevel: {
+        value: 'low',
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      batteryVoltage: {
+        value: 12,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      adblueLevel: {
+        value: 0,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      distanceSinceReset: {
+        value: 0,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      distanceSinceStart: {
+        value: 0,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      fuelVolume: { value: 0, timestamp: new Date('2019-02-25T11:55:48.142Z') },
+      antiLockBraking: {
+        value: 'inactive',
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      engineCoolantTemperature: {
+        value: 23,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      engineTotalOperatingHours: {
+        value: 24,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      engineTotalFuelConsumption: {
+        value: 600,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      brakeFluidLevel: {
+        value: 'low',
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      engineTorque: {
+        value: 0.2,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      engineLoad: {
+        value: 0.1,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      wheelBasedSpeed: {
+        value: 0,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
+      batteryLevel: {
+        value: 0.8,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
       checkControlMessages: [
-        { id: 10, remainingMinutes: 0, text: '', status: '' },
+        {
+          value: { id: 10, remainingMinutes: 0, text: '', status: '' },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
       ],
       tirePressures: [
-        { location: 'front_left', pressure: 2.3 },
-        { location: 'front_right', pressure: 2.3 },
-        { location: 'rear_right', pressure: 2.3 },
-        { location: 'rear_left', pressure: 2.3 },
+        {
+          value: { location: 'front_left', pressure: 2.3 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'front_right', pressure: 2.3 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'rear_right', pressure: 2.3 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'rear_left', pressure: 2.3 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
       ],
       tireTemperatures: [
-        { location: 'front_left', temperature: 40 },
-        { location: 'front_right', temperature: 40 },
-        { location: 'rear_right', temperature: 40 },
-        { location: 'rear_left', temperature: 40 },
+        {
+          value: { location: 'front_left', temperature: 40 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'front_right', temperature: 40 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'rear_right', temperature: 40 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'rear_left', temperature: 40 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
       ],
       wheelRpms: [
-        { location: 'front_left', rpm: 0 },
-        { location: 'front_right', rpm: 0 },
-        { location: 'rear_right', rpm: 0 },
-        { location: 'rear_left', rpm: 0 },
+        {
+          value: { location: 'front_left', rpm: 0 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'front_right', rpm: 0 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'rear_right', rpm: 0 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+        {
+          value: { location: 'rear_left', rpm: 0 },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
       ],
-      troubleCodes: [{ occurences: 0, id: '', ecuId: '', status: '' }],
-      mileageMeters: 3000,
+      troubleCodes: [
+        {
+          value: { occurences: 0, id: '', ecuId: '', status: '' },
+          timestamp: new Date('2019-02-25T11:55:48.142Z'),
+        },
+      ],
+      mileageMeters: {
+        value: 3000,
+        timestamp: new Date('2019-02-25T11:55:48.142Z'),
+      },
     });
   });
 });

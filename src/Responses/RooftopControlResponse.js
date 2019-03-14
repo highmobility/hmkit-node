@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder, progressDecoder } from '../helpers';
 
 export default class RooftopControlResponse extends PropertyResponse {
@@ -14,20 +14,20 @@ export default class RooftopControlResponse extends PropertyResponse {
    *
    * @example RooftopControlResponse
     {
-      dimming: 0.2,
-      position: 0.3,
-      convertibleRoof: 'closed',
-      sunroofTilt: 'closed',
-      sunroofState: 'open'
+      dimming: { value: 0 },
+      position: { value: 100 },
+      convertibleRoof: { value: 'open' },
+      sunroofTilt: { value: 'closed' },
+      sunroofState: { value: 'open' },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'dimming').setDecoder(progressDecoder),
-      new Property(0x02, 'position').setDecoder(progressDecoder),
-      new Property(0x03, 'convertibleRoof').setDecoder(
+      new PropertyDecoder(0x01, 'dimming').setDecoder(progressDecoder),
+      new PropertyDecoder(0x02, 'position').setDecoder(progressDecoder),
+      new PropertyDecoder(0x03, 'convertibleRoof').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',
@@ -40,14 +40,14 @@ export default class RooftopControlResponse extends PropertyResponse {
           0x08: 'loading_position_immediate',
         })
       ),
-      new Property(0x04, 'sunroofTilt').setDecoder(
+      new PropertyDecoder(0x04, 'sunroofTilt').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'tilted',
           0x02: 'half_tilted',
         })
       ),
-      new Property(0x05, 'sunroofState').setDecoder(
+      new PropertyDecoder(0x05, 'sunroofState').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',
@@ -56,6 +56,6 @@ export default class RooftopControlResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

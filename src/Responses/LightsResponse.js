@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import OptionalProperty from '../OptionalProperty';
-import Property from '../Property';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 import { hexArrayToHex } from '../encoding';
 
@@ -20,45 +20,71 @@ export default class LightsResponse extends PropertyResponse {
    *
    * @example LightsResponse
     {
-      frontExteriorLight: 'inactive',
-      rearExteriorLight: 'inactive',
-      ambientLight: '#254f4c',
-      reverseLight: 'active',
-      emergencyBrakeLight: 'active',
+      frontExteriorLight: {
+        value: 'inactive',
+      },
+      rearExteriorLight: {
+        value: 'inactive',
+      },
+      ambientLight: {
+        value: '#000000',
+      },
+      reverseLight: {
+        value: 'inactive',
+      },
+      emergencyBrakeLight: {
+        value: 'inactive',
+      },
       fogLights: [{
-        location: 'front'
-        state: 'active'
+        value: {
+          location: 'front',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear'
-        state: 'inactive'
+        value: {
+          location: 'rear',
+          state: 'inactive',
+        },
       }],
       readingLamps: [{
-        location: 'front_left',
-        state: 'inactive'
+        value: {
+          location: 'front_left',
+          state: 'inactive',
+        },
       }, {
-        location: 'front_right',
-        state: 'inactive'
+        value: {
+          location: 'front_right',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear_right',
-        state: 'inactive'
+        value: {
+          location: 'rear_right',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear_left',
-        state: 'inactive'
+        value: {
+          location: 'rear_left',
+          state: 'inactive',
+        },
       }],
       interiorLights: [{
-        location: 'front'
-        state: 'active'
+        value: {
+          location: 'front',
+          state: 'inactive',
+        },
       }, {
-        location: 'rear'
-        state: 'inactive'
-      }]
+        value: {
+          location: 'rear',
+          state: 'inactive',
+        },
+      }],
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'frontExteriorLight').setDecoder(
+      new PropertyDecoder(0x01, 'frontExteriorLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
@@ -67,47 +93,69 @@ export default class LightsResponse extends PropertyResponse {
           0x04: 'automatic',
         })
       ),
-      new Property(0x02, 'rearExteriorLight').setDecoder(
+      new PropertyDecoder(0x02, 'rearExteriorLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x04, 'ambientLight').setDecoder(this.ambientLightDecoder),
-      new Property(0x05, 'reverseLight').setDecoder(
+      new PropertyDecoder(0x04, 'ambientLight').setDecoder(
+        this.ambientLightDecoder
+      ),
+      new PropertyDecoder(0x05, 'reverseLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x06, 'emergencyBrakeLight').setDecoder(
+      new PropertyDecoder(0x06, 'emergencyBrakeLight').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x07, 'fogLights').setOptionalSubProperties('location', [
-        new OptionalProperty(0x00, 'front').setDecoder(this.lightsDecoder),
-        new OptionalProperty(0x01, 'rear').setDecoder(this.lightsDecoder),
-      ]),
-      new Property(0x08, 'readingLamps').setOptionalSubProperties('location', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.lightsDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(
-          this.lightsDecoder
-        ),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.lightsDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.lightsDecoder),
-      ]),
-      new Property(0x09, 'interiorLights').setOptionalSubProperties(
+      new PropertyDecoder(0x07, 'fogLights').setOptionalSubProperties(
         'location',
         [
-          new OptionalProperty(0x00, 'front').setDecoder(this.lightsDecoder),
-          new OptionalProperty(0x01, 'rear').setDecoder(this.lightsDecoder),
+          new OptionalPropertyDecoder(0x00, 'front').setDecoder(
+            this.lightsDecoder
+          ),
+          new OptionalPropertyDecoder(0x01, 'rear').setDecoder(
+            this.lightsDecoder
+          ),
+        ]
+      ),
+      new PropertyDecoder(0x08, 'readingLamps').setOptionalSubProperties(
+        'location',
+        [
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
+            this.lightsDecoder
+          ),
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
+            this.lightsDecoder
+          ),
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
+            this.lightsDecoder
+          ),
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
+            this.lightsDecoder
+          ),
+        ]
+      ),
+      new PropertyDecoder(0x09, 'interiorLights').setOptionalSubProperties(
+        'location',
+        [
+          new OptionalPropertyDecoder(0x00, 'front').setDecoder(
+            this.lightsDecoder
+          ),
+          new OptionalPropertyDecoder(0x01, 'rear').setDecoder(
+            this.lightsDecoder
+          ),
         ]
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   lightsDecoder(data: Array<Number>) {

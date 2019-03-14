@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class HoodResponse extends PropertyResponse {
@@ -10,14 +10,16 @@ export default class HoodResponse extends PropertyResponse {
    *
    * @example HoodResponse
     {
-      position: 'closed',
+      position: {
+        value: 'closed'
+      }
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'position').setDecoder(
+      new PropertyDecoder(0x01, 'position').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',
@@ -26,6 +28,6 @@ export default class HoodResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

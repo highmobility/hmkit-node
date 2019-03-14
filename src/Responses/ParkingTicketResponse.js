@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesToString } from '../encoding';
 import { switchDecoder, timestampDecoder } from '../helpers';
 
@@ -15,29 +15,39 @@ export default class ParkingTicketResponse extends PropertyResponse {
    *
    * @example ParkingTicketResponse
     {
-      parkingTicketState: 'started',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: '6489423333asd',
-      ticketStartTime: 2018-02-14T18:30:01.000Z,
-      ticketEndTime: 2018-02-17T12:05:02.000Z,
+      parkingTicketState: {
+        value: 'ended',
+      },
+      operatorName: {
+        value: 'Berlin Parking',
+      },
+      operatorTicketID: {
+        value: '64894233',
+      },
+      ticketStartTime: {
+        value: '2018-04-12T23:20:50.000Z',
+      },
+      ticketEndTime: {
+        value: '2019-03-04T09:25:58.360Z',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'parkingTicketState').setDecoder(
+      new PropertyDecoder(0x01, 'parkingTicketState').setDecoder(
         switchDecoder({
           0x00: 'ended',
           0x01: 'started',
         })
       ),
-      new Property(0x02, 'operatorName').setDecoder(bytesToString),
-      new Property(0x03, 'operatorTicketID').setDecoder(bytesToString),
-      new Property(0x04, 'ticketStartTime').setDecoder(timestampDecoder),
-      new Property(0x05, 'ticketEndTime').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x02, 'operatorName').setDecoder(bytesToString),
+      new PropertyDecoder(0x03, 'operatorTicketID').setDecoder(bytesToString),
+      new PropertyDecoder(0x04, 'ticketStartTime').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x05, 'ticketEndTime').setDecoder(timestampDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

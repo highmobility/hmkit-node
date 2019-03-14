@@ -1,14 +1,14 @@
 import PropertyResponse from '../src/PropertyResponse';
-import Property from '../src/Property';
+import PropertyDecoder from '../src/PropertyDecoder';
 import { switchDecoder } from '../src/helpers';
 import { hexToUint8Array } from '../src/encoding';
 
 describe(`PropertyResponse`, () => {
   it(`should parse properties correctly`, () => {
-    const data = hexToUint8Array('0035010000');
+    const data = hexToUint8Array('00350101000401000101');
 
     const properties = [
-      new Property(0x01, 'engine').setDecoder(
+      new PropertyDecoder(0x01, 'engine').setDecoder(
         switchDecoder({
           0x00: 'off',
           0x01: 'on',
@@ -19,6 +19,6 @@ describe(`PropertyResponse`, () => {
     const propertyResponse = new PropertyResponse();
     const parsedProperties = propertyResponse.parseProperties(data, properties);
 
-    expect(parsedProperties.map(prop => prop.value)).toEqual([undefined]);
+    expect(parsedProperties).toEqual([{ engine: { value: 'on' } }]);
   });
 });

@@ -12,20 +12,20 @@ describe(`ClimateResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual({
-      insideTemperature: 23,
-      outsideTemperature: 18,
-      driverTemperatureSetting: 23,
-      passengerTemperatureSetting: 22,
-      hvacState: 'inactive',
-      defoggingState: 'inactive',
-      defrostingState: 'inactive',
-      ionisingState: 'inactive',
-      defrostingTemperature: 23,
+      insideTemperature: { value: 23 },
+      outsideTemperature: { value: 18 },
+      driverTemperatureSetting: { value: 23 },
+      passengerTemperatureSetting: { value: 22 },
+      hvacState: { value: 'inactive' },
+      defoggingState: { value: 'inactive' },
+      defrostingState: { value: 'inactive' },
+      ionisingState: { value: 'inactive' },
+      defrostingTemperature: { value: 23 },
       hvacWeekdayStartingTimes: [
-        { weekday: 'saturday', hour: 8, minute: 0 },
-        { weekday: 'sunday', hour: 8, minute: 0 },
+        { value: { weekday: 'saturday', hour: 8, minute: 0 } },
+        { value: { weekday: 'sunday', hour: 8, minute: 0 } },
       ],
-      rearTemperatureSetting: 22,
+      rearTemperatureSetting: { value: 22 },
     });
   });
 });

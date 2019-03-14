@@ -11,11 +11,11 @@ describe(`ParkingTicketCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual({
-      parkingTicketState: expect.any(String),
-      operatorName: expect.any(String),
-      operatorTicketID: expect.any(String),
-      ticketStartTime: expect.any(Date),
-      ticketEndTime: expect.any(Date),
+      parkingTicketState: { value: expect.any(String) },
+      operatorName: { value: expect.any(String) },
+      operatorTicketID: { value: expect.any(String) },
+      ticketStartTime: { value: expect.any(Date) },
+      ticketEndTime: { value: expect.any(Date) },
     });
   });
 
@@ -28,7 +28,7 @@ describe(`ParkingTicketCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        parkingTicketState: 'ended',
+        parkingTicketState: { value: 'ended' },
       })
     );
   });
@@ -46,11 +46,11 @@ describe(`ParkingTicketCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual({
-      parkingTicketState: 'started',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: '6489423333asd',
-      ticketStartTime: new Date(Date.UTC(2018, 1, 14, 18, 30, 1)),
-      ticketEndTime: new Date(Date.UTC(2018, 1, 17, 12, 5, 2)),
+      parkingTicketState: { value: 'started' },
+      operatorName: { value: 'Berlin Parking' },
+      operatorTicketID: { value: '6489423333asd' },
+      ticketStartTime: { value: new Date(Date.UTC(2018, 1, 14, 18, 30, 1)) },
+      ticketEndTime: { value: new Date(Date.UTC(2018, 1, 17, 12, 5, 2)) },
     });
   });
 
@@ -66,11 +66,11 @@ describe(`ParkingTicketCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingTicketResponse);
     expect(response.parse()).toEqual({
-      parkingTicketState: 'started',
-      operatorName: 'Berlin Parking',
-      operatorTicketID: '6489423333asd',
-      ticketStartTime: new Date(Date.UTC(2018, 1, 14, 18, 30, 1)),
-      ticketEndTime: expect.any(Date),
+      parkingTicketState: { value: 'started' },
+      operatorName: { value: 'Berlin Parking' },
+      operatorTicketID: { value: '6489423333asd' },
+      ticketStartTime: { value: new Date(Date.UTC(2018, 1, 14, 18, 30, 1)) },
+      ticketEndTime: { value: expect.any(Date) },
     });
   });
 });

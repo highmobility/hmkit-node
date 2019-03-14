@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import {
   activeInactiveDecoder,
   getRoundedIeee754ToBase10,
@@ -7,7 +7,7 @@ import {
   switchDecoder,
 } from '../helpers';
 import { uint8toInt8 } from '../encoding';
-import OptionalProperty from '../OptionalProperty';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 
 export default class RaceResponse extends PropertyResponse {
   static identifier = [0x00, 0x57];
@@ -34,86 +34,108 @@ export default class RaceResponse extends PropertyResponse {
    *
    * @example RaceResponse
     {
-      accelerations: [
-        {
+      accelerations: [{
+        value: {
           type: 'longitudinal_acceleration',
           gForce: 0,
         },
-        {
+      }, {
+        value: {
           type: 'lateral_acceleration',
           gForce: 0,
         },
-        {
+      }, {
+        value: {
           type: 'front_lateral_acceleration',
           gForce: 0,
         },
-        {
+      }, {
+        value: {
           type: 'rear_lateral_acceleration',
           gForce: 0,
         },
-      ],
-      understeering: 0,
-      oversteering: 0,
-      gasPedalPosition: 0,
-      steeringAngle: 0,
-      brakePressure: 0,
-      yawRate: 0,
-      rearSuspensionSteering: 0,
-      electronicStabilityProgram: 'inactive',
-      brakeTorqueVectorings: [
-        {
+      }],
+      understeering: { value: 0 },
+      oversteering: { value: 0 },
+      gasPedalPosition: { value: 0 },
+      steeringAngle: { value: 0 },
+      brakePressure: { value: 0 },
+      yawRate: { value: 0 },
+      rearSuspensionSteering: { value: 0 },
+      electronicStabilityProgram: { value: 'inactive' },
+      brakeTorqueVectorings: [{
+        value: {
           axle: 'front_axle',
-          vectoring: 'active',
+          vectoring: 'inactive',
         },
-        {
+      }, {
+        value: {
           axle: 'rear_axle',
           vectoring: 'inactive',
         },
-      ],
-      gearMode: 'manual',
-      selectedGear: 0,
-      brakePedalPosition: 0,
-      vehicleMoving: 'moving'
+      }],
+      gearMode: { value: 'manual' },
+      selectedGear: { value: 0 },
+      brakePedalPosition: { value: 0 },
+      brakePedalSwitch: { value: 'inactive' },
+      clutchPedalSwitch: { value: 'inactive' },
+      acceleratorPedalIdleSwitch: { value: 'inactive' },
+      acceleratorPedalKickdownSwitch: { value: 'inactive' },
+      vehicleMoving: { value: 'not_moving' },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'accelerations').setOptionalSubProperties('type', [
-        new OptionalProperty(0x00, 'longitudinal_acceleration').setDecoder(
-          this.accelerationDecoder
-        ),
-        new OptionalProperty(0x01, 'lateral_acceleration').setDecoder(
-          this.accelerationDecoder
-        ),
-        new OptionalProperty(0x02, 'front_lateral_acceleration').setDecoder(
-          this.accelerationDecoder
-        ),
-        new OptionalProperty(0x03, 'rear_lateral_acceleration').setDecoder(
-          this.accelerationDecoder
-        ),
-      ]),
-      new Property(0x02, 'understeering').setDecoder(progressDecoder),
-      new Property(0x03, 'oversteering').setDecoder(progressDecoder),
-      new Property(0x04, 'gasPedalPosition').setDecoder(progressDecoder),
-      new Property(0x05, 'steeringAngle').setDecoder(uint8toInt8),
-      new Property(0x06, 'brakePressure').setDecoder(
-        getRoundedIeee754ToBase10(2)
-      ),
-      new Property(0x07, 'yawRate').setDecoder(getRoundedIeee754ToBase10(2)),
-      new Property(0x08, 'rearSuspensionSteering').setDecoder(uint8toInt8),
-      new Property(0x09, 'electronicStabilityProgram').setDecoder(
-        activeInactiveDecoder()
-      ),
-      new Property(0x0a, 'brakeTorqueVectorings').setOptionalSubProperties(
-        'axle',
+      new PropertyDecoder(0x01, 'accelerations').setOptionalSubProperties(
+        'type',
         [
-          new OptionalProperty(0x00, 'front_axle').setDecoder(this.axleDecoder),
-          new OptionalProperty(0x01, 'rear_axle').setDecoder(this.axleDecoder),
+          new OptionalPropertyDecoder(
+            0x00,
+            'longitudinal_acceleration'
+          ).setDecoder(this.accelerationDecoder),
+          new OptionalPropertyDecoder(0x01, 'lateral_acceleration').setDecoder(
+            this.accelerationDecoder
+          ),
+          new OptionalPropertyDecoder(
+            0x02,
+            'front_lateral_acceleration'
+          ).setDecoder(this.accelerationDecoder),
+          new OptionalPropertyDecoder(
+            0x03,
+            'rear_lateral_acceleration'
+          ).setDecoder(this.accelerationDecoder),
         ]
       ),
-      new Property(0x0b, 'gearMode').setDecoder(
+      new PropertyDecoder(0x02, 'understeering').setDecoder(progressDecoder),
+      new PropertyDecoder(0x03, 'oversteering').setDecoder(progressDecoder),
+      new PropertyDecoder(0x04, 'gasPedalPosition').setDecoder(progressDecoder),
+      new PropertyDecoder(0x05, 'steeringAngle').setDecoder(uint8toInt8),
+      new PropertyDecoder(0x06, 'brakePressure').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new PropertyDecoder(0x07, 'yawRate').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new PropertyDecoder(0x08, 'rearSuspensionSteering').setDecoder(
+        uint8toInt8
+      ),
+      new PropertyDecoder(0x09, 'electronicStabilityProgram').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(
+        0x0a,
+        'brakeTorqueVectorings'
+      ).setOptionalSubProperties('axle', [
+        new OptionalPropertyDecoder(0x00, 'front_axle').setDecoder(
+          this.axleDecoder
+        ),
+        new OptionalPropertyDecoder(0x01, 'rear_axle').setDecoder(
+          this.axleDecoder
+        ),
+      ]),
+      new PropertyDecoder(0x0b, 'gearMode').setDecoder(
         switchDecoder({
           0x00: 'manual',
           0x01: 'park',
@@ -124,33 +146,35 @@ export default class RaceResponse extends PropertyResponse {
           0x06: 'sport',
         })
       ),
-      new Property(0x0c, 'selectedGear'),
-      new Property(0x0d, 'brakePedalPosition').setDecoder(progressDecoder),
-      new Property(0x0e, 'brakePedalSwitch').setDecoder(
+      new PropertyDecoder(0x0c, 'selectedGear'),
+      new PropertyDecoder(0x0d, 'brakePedalPosition').setDecoder(
+        progressDecoder
+      ),
+      new PropertyDecoder(0x0e, 'brakePedalSwitch').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x0f, 'clutchPedalSwitch').setDecoder(
+      new PropertyDecoder(0x0f, 'clutchPedalSwitch').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x10, 'acceleratorPedalIdleSwitch').setDecoder(
+      new PropertyDecoder(0x10, 'acceleratorPedalIdleSwitch').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x11, 'acceleratorPedalKickdownSwitch').setDecoder(
+      new PropertyDecoder(0x11, 'acceleratorPedalKickdownSwitch').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x12, 'vehicleMoving').setDecoder(
+      new PropertyDecoder(0x12, 'vehicleMoving').setDecoder(
         switchDecoder({
           0x00: 'not_moving',
           0x01: 'moving',
@@ -158,7 +182,7 @@ export default class RaceResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   axleDecoder(bytes: Array<Number>) {

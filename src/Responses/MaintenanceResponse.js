@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesSum, switchDecoder, timestampDecoder } from '../helpers';
 import { bytesToString } from '../encoding';
 
@@ -22,36 +22,62 @@ export default class MaintenanceResponse extends PropertyResponse {
    *
    * @example MaintenanceResponse
     {
-      daysToNextService: 400,
-      kilometersToNextService: 30000,
-      cbsReportsCount: 0,
-      monthsToExhaustInspection: 0,
-      teleserviceAvailability: 'pending',
-      serviceDistanceThreshold: 0,
-      serviceTimeThreshold: 0,
-      automaticTeleserviceCallDate: 2018-10-22T12:10:33.000Z,
-      teleserviceBatteryCallDate: 2018-10-22T12:10:33.000Z,
-      nextInspectionDate: 2018-10-22T12:10:33.000Z,
+      daysToNextService: {
+        value: 400,
+      },
+      kilometersToNextService: {
+        value: 30000,
+      },
+      cbsReportsCount: {
+        value: 0,
+      },
+      monthsToExhaustInspection: {
+        value: 0,
+      },
+      teleserviceAvailability: {
+        value: 'pending',
+      },
+      serviceDistanceThreshold: {
+        value: 0,
+      },
+      serviceTimeThreshold: {
+        value: 0,
+      },
+      automaticTeleserviceCallDate: {
+        value: '2018-10-22T12:10:33.769Z',
+      },
+      teleserviceBatteryCallDate: {
+        value: '2018-10-22T12:10:33.769Z',
+      },
+      nextInspectionDate: {
+        value: '2018-10-22T12:10:33.769Z',
+      },
       conditionBasedServices: [{
-        year: 2018,
-        month: 8,
-        cbsIdentifier: 123,
-        dueStatus: 'overdue',
-        cbsText: 'Test',
-        description: 'asdasd'
+        value: {
+          year: 2018,
+          month: 8,
+          cbsIdentifier: 123,
+          dueStatus: 'ok',
+          cbsText: '',
+          description: '',
+        },
       }],
-      brakeFluidChangeDate: 2018-10-22T12:10:33.000Z
+      brakeFluidChangeDate: {
+        value: '2018-10-22T12:10:33.769Z',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'daysToNextService').setDecoder(bytesSum),
-      new Property(0x02, 'kilometersToNextService').setDecoder(bytesSum),
-      new Property(0x03, 'cbsReportsCount').setDecoder(bytesSum),
-      new Property(0x04, 'monthsToExhaustInspection').setDecoder(bytesSum),
-      new Property(0x05, 'teleserviceAvailability').setDecoder(
+      new PropertyDecoder(0x01, 'daysToNextService').setDecoder(bytesSum),
+      new PropertyDecoder(0x02, 'kilometersToNextService').setDecoder(bytesSum),
+      new PropertyDecoder(0x03, 'cbsReportsCount').setDecoder(bytesSum),
+      new PropertyDecoder(0x04, 'monthsToExhaustInspection').setDecoder(
+        bytesSum
+      ),
+      new PropertyDecoder(0x05, 'teleserviceAvailability').setDecoder(
         switchDecoder({
           0x00: 'pending',
           0x01: 'idle',
@@ -59,22 +85,28 @@ export default class MaintenanceResponse extends PropertyResponse {
           0x03: 'error',
         })
       ),
-      new Property(0x06, 'serviceDistanceThreshold').setDecoder(bytesSum),
-      new Property(0x07, 'serviceTimeThreshold').setDecoder(bytesSum),
-      new Property(0x08, 'automaticTeleserviceCallDate').setDecoder(
+      new PropertyDecoder(0x06, 'serviceDistanceThreshold').setDecoder(
+        bytesSum
+      ),
+      new PropertyDecoder(0x07, 'serviceTimeThreshold').setDecoder(bytesSum),
+      new PropertyDecoder(0x08, 'automaticTeleserviceCallDate').setDecoder(
         timestampDecoder
       ),
-      new Property(0x09, 'teleserviceBatteryCallDate').setDecoder(
+      new PropertyDecoder(0x09, 'teleserviceBatteryCallDate').setDecoder(
         timestampDecoder
       ),
-      new Property(0x0a, 'nextInspectionDate').setDecoder(timestampDecoder),
-      new Property(0x0b, 'conditionBasedServices').setDecoder(
-        this.conditionBasedServicesDecoder
+      new PropertyDecoder(0x0a, 'nextInspectionDate').setDecoder(
+        timestampDecoder
       ),
-      new Property(0x0c, 'brakeFluidChangeDate').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x0b, 'conditionBasedServices')
+        .setDecoder(this.conditionBasedServicesDecoder)
+        .array(),
+      new PropertyDecoder(0x0c, 'brakeFluidChangeDate').setDecoder(
+        timestampDecoder
+      ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   conditionBasedServicesDecoder(bytes: Array<Number>) {
@@ -87,19 +119,17 @@ export default class MaintenanceResponse extends PropertyResponse {
       bytes.slice(9 + cbsTextLength, 9 + cbsTextLength + descriptionLength)
     );
 
-    return [
-      {
-        year: bytes[0] + 2000,
-        month: bytes[1],
-        cbsIdentifier: bytesSum(bytes.slice(2, 4)),
-        dueStatus: switchDecoder({
-          0x00: 'ok',
-          0x01: 'pending',
-          0x02: 'overdue',
-        })([bytes[4]]),
-        cbsText,
-        description,
-      },
-    ];
+    return {
+      year: bytes[0] + 2000,
+      month: bytes[1],
+      cbsIdentifier: bytesSum(bytes.slice(2, 4)),
+      dueStatus: switchDecoder({
+        0x00: 'ok',
+        0x01: 'pending',
+        0x02: 'overdue',
+      })([bytes[4]]),
+      cbsText,
+      description,
+    };
   }
 }

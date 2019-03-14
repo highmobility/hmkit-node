@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { activeInactiveDecoder } from '../helpers';
 
 export default class ParkingBrakeResponse extends PropertyResponse {
@@ -10,16 +10,20 @@ export default class ParkingBrakeResponse extends PropertyResponse {
    *
    * @example ParkingBrakeResponse
     {
-      parkingBrake: 'inactive',
+      parkingBrake: {
+        value: 'inactive',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'parkingBrake').setDecoder(activeInactiveDecoder()),
+      new PropertyDecoder(0x01, 'parkingBrake').setDecoder(
+        activeInactiveDecoder()
+      ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

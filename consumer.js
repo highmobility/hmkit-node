@@ -16,11 +16,11 @@ async function app() {
 
     const response = await hmkit.telematics.sendCommand(
       accessCertificate.getVehicleSerial(),
-      hmkit.commands.DiagnosticsCommand.getState()
+      hmkit.commands.VehicleStatusCommand.get()
     );
 
     console.log(uint8ArrayToHex(response.bytes())); // [0, 53, 1, 1]
-    console.log(response.parse()); // EngineResponse { engine: 'on' }
+    console.log(JSON.stringify(response.parse())); // EngineResponse { engine: 'on' }
   } catch (e) {
     console.log('CATCHED', e);
   }

@@ -11,38 +11,46 @@ describe(`HomeChargerCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual({
-      charging: expect.any(String),
-      authenticationMechanism: expect.any(String),
-      plugType: expect.any(String),
-      chargingPower: expect.any(Number),
-      solarCharging: expect.any(String),
-      hotspotEnabled: expect.any(String),
-      hotspotSSID: expect.any(String),
-      wiFiHotspotSecurity: expect.any(String),
-      wiFiHotspotPassword: expect.any(String),
-      authentication: expect.any(String),
-      chargeCurrentDC: expect.any(Number),
-      maximumChargeCurrent: expect.any(Number),
-      minimumChargeCurrent: expect.any(Number),
+      charging: { value: expect.any(String) },
+      authenticationMechanism: { value: expect.any(String) },
+      plugType: { value: expect.any(String) },
+      chargingPower: { value: expect.any(Number) },
+      solarCharging: { value: expect.any(String) },
+      hotspotEnabled: { value: expect.any(String) },
+      hotspotSSID: { value: expect.any(String) },
+      wiFiHotspotSecurity: { value: expect.any(String) },
+      wiFiHotspotPassword: { value: expect.any(String) },
+      authentication: { value: expect.any(String) },
+      chargeCurrentDC: { value: expect.any(Number) },
+      maximumChargeCurrent: { value: expect.any(Number) },
+      minimumChargeCurrent: { value: expect.any(Number) },
       coordinates: {
-        latitude: expect.any(Number),
-        longitude: expect.any(Number),
+        value: {
+          latitude: expect.any(Number),
+          longitude: expect.any(Number),
+        },
       },
       priceTariffs: [
         {
-          pricingType: 'starting_fee',
-          price: expect.any(Number),
-          currency: expect.any(String),
+          value: {
+            pricingType: 'starting_fee',
+            price: expect.any(Number),
+            currency: expect.any(String),
+          },
         },
         {
-          pricingType: 'per_minute',
-          price: expect.any(Number),
-          currency: expect.any(String),
+          value: {
+            pricingType: 'per_minute',
+            price: expect.any(Number),
+            currency: expect.any(String),
+          },
         },
         {
-          pricingType: 'per_kwh',
-          price: expect.any(Number),
-          currency: expect.any(String),
+          value: {
+            pricingType: 'per_kwh',
+            price: expect.any(Number),
+            currency: expect.any(String),
+          },
         },
       ],
     });
@@ -57,7 +65,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeCurrentDC: 0.5,
+        chargeCurrentDC: { value: 0.5 },
       })
     );
 
@@ -69,7 +77,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        chargeCurrentDC: 0.6,
+        chargeCurrentDC: { value: 0.6 },
       })
     );
   });
@@ -95,14 +103,18 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toMatchObject({
       priceTariffs: expect.arrayContaining([
         {
-          pricingType: 'starting_fee',
-          currency: 'EUR',
-          price: 2.5,
+          value: {
+            pricingType: 'starting_fee',
+            currency: 'EUR',
+            price: 2.5,
+          },
         },
         {
-          pricingType: 'per_kwh',
-          currency: 'USD',
-          price: 1.3,
+          value: {
+            pricingType: 'per_kwh',
+            currency: 'USD',
+            price: 1.3,
+          },
         },
       ]),
     });
@@ -117,7 +129,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        solarCharging: 'activated',
+        solarCharging: { value: 'activated' },
       })
     );
   });
@@ -131,7 +143,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        solarCharging: 'deactivated',
+        solarCharging: { value: 'deactivated' },
       })
     );
   });
@@ -145,7 +157,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        hotspotEnabled: 'enabled',
+        hotspotEnabled: { value: 'enabled' },
       })
     );
   });
@@ -159,7 +171,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        hotspotEnabled: 'disabled',
+        hotspotEnabled: { value: 'disabled' },
       })
     );
   });
@@ -173,7 +185,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        authentication: 'authenticated',
+        authentication: { value: 'authenticated' },
       })
     );
   });
@@ -187,7 +199,7 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        authentication: 'unauthenticated',
+        authentication: { value: 'unauthenticated' },
       })
     );
   });

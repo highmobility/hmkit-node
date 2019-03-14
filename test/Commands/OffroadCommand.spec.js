@@ -11,8 +11,8 @@ describe(`OffroadCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(OffroadResponse);
     expect(response.parse()).toEqual({
-      routeIncline: expect.any(Number),
-      wheelSuspension: expect.any(Number),
+      routeIncline: { value: expect.any(Number) },
+      wheelSuspension: { value: expect.any(Number) },
     });
   });
 });

@@ -27,7 +27,7 @@ describe(`Response`, () => {
     expect(parsed1).toBe(parsed2);
     expect(parsed2).toBeInstanceOf(EngineResponse);
     expect(parsed2).toEqual({
-      ignition: 'engine_off',
+      ignition: { value: 'off' },
     });
   });
 

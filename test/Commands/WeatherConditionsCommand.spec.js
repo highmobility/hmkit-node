@@ -11,7 +11,7 @@ describe(`WeatherConditionsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(WeatherConditionsResponse);
     expect(response.parse()).toEqual({
-      rainIntensity: expect.any(Number),
+      rainIntensity: { value: expect.any(Number) },
     });
   });
 });

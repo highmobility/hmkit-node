@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-computed-key */
 import PropertyResponse from '../PropertyResponse';
-import CapabilityProperty from '../CapabilityProperty';
-import OptionalProperty from '../OptionalProperty';
+import CapabilityPropertyDecoder from '../CapabilityPropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import CAPABILITY_IDENTIFIERS from '../CAPABILITY_IDENTIFIERS';
 
 export default class CapabilitiesResponse extends PropertyResponse {
@@ -85,21 +85,24 @@ export default class CapabilitiesResponse extends PropertyResponse {
       ]
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new CapabilityProperty(0x01, 'capabilities').setOptionalSubProperties(
+      new CapabilityPropertyDecoder(
+        0x01,
+        'capabilities'
+      ).setOptionalSubProperties(
         'capabilityIdentifier',
         Object.entries(CAPABILITY_IDENTIFIERS).map(([name, { identifier }]) =>
-          new OptionalProperty(identifier, name).setDecoder(
+          new OptionalPropertyDecoder(identifier, name).setDecoder(
             this.getCapabilityDecoder(name)
           )
         )
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   getCapabilityDecoder(capability) {

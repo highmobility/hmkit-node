@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class MobileResponse extends PropertyResponse {
@@ -10,14 +10,16 @@ export default class MobileResponse extends PropertyResponse {
    *
    * @example MobileResponse
     {
-      connection: 'connected',
+      connection: {
+        value: 'disconnected',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'connection').setDecoder(
+      new PropertyDecoder(0x01, 'connection').setDecoder(
         switchDecoder({
           0x00: 'disconnected',
           0x01: 'connected',
@@ -25,6 +27,6 @@ export default class MobileResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

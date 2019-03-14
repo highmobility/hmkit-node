@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 
 export default class SeatsResponse extends PropertyResponse {
   static identifier = [0x00, 0x56];
@@ -9,89 +9,99 @@ export default class SeatsResponse extends PropertyResponse {
    * @property {Array} personsDetected (array) Persons detected ([{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center'), personDetected: (string: 'not_detected|detected')}])
    * @property {Array} seatbeltsFastened (array) Seatbelts fastened ([{ seatPosition: (string: 'front_left|front_right|rear_right|rear_left|rear_center', seatbeltFastened: (string: 'not_fastened|fastened')) }])
    *
-   * @example SeatsResponse {
+   * @example SeatsResponse
+    {
       personsDetected: [{
-        seatPosition: 'front_left',
-        personDetected: 'detected'
+        value: {
+          seatPosition: 'front_left',
+          personDetected: 'not_detected'
+        },
       }, {
-        seatPosition: 'front_right',
-        personDetected: 'detected'
+        value: {
+          seatPosition: 'front_right',
+          personDetected: 'not_detected'
+        },
       }, {
-        seatPosition: 'rear_right',
-        personDetected: 'detected'
+        value: {
+          seatPosition: 'rear_right',
+          personDetected: 'not_detected'
+        },
       }, {
-        seatPosition: 'rear_left',
-        personDetected: 'detected'
-      }, {
-        seatPosition: 'rear_center',
-        personDetected: 'not_detected'
+        value: {
+          seatPosition: 'rear_left',
+          personDetected: 'not_detected'
+        }
       }],
       seatbeltsFastened: [{
-        seatPosition: 'front_left',
-        seatbeltFastened: 'fastened'
+        value: {
+          seatPosition: 'front_left',
+          seatbeltFastened: 'not_fastened',
+        },
       }, {
-        seatPosition: 'front_right',
-        seatbeltFastened: 'fastened'
+        value: {
+          seatPosition: 'front_right',
+          seatbeltFastened: 'not_fastened',
+        },
       }, {
-        seatPosition: 'rear_right',
-        seatbeltFastened: 'fastened'
+        value: {
+          seatPosition: 'rear_right',
+          seatbeltFastened: 'not_fastened',
+        },
       }, {
-        seatPosition: 'rear_left',
-        seatbeltFastened: 'fastened'
-      }, {
-        seatPosition: 'rear_center',
-        seatbeltFastened: 'not_fastened'
-      }]
+        value: {
+          seatPosition: 'rear_left',
+          seatbeltFastened: 'not_fastened'
+        },
+      }],
     }
-
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x02, 'personsDetected').setOptionalSubProperties(
+      new PropertyDecoder(0x02, 'personsDetected').setOptionalSubProperties(
         'seatPosition',
         [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
             this.personDetectedDecoder
           ),
-          new OptionalProperty(0x04, 'rear_center').setDecoder(
+          new OptionalPropertyDecoder(0x04, 'rear_center').setDecoder(
             this.personDetectedDecoder
           ),
         ]
       ),
-      new Property(0x03, 'seatbeltsFastened').setOptionalSubProperties(
+      new PropertyDecoder(0x03, 'seatbeltsFastened').setOptionalSubProperties(
         'seatPosition',
         [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
             this.seatbeltFastenedDecoder
           ),
-          new OptionalProperty(0x04, 'rear_center').setDecoder(
+          new OptionalPropertyDecoder(0x04, 'rear_center').setDecoder(
             this.seatbeltFastenedDecoder
           ),
         ]
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   personDetectedDecoder(data: Array<Number>) {

@@ -15,144 +15,214 @@ describe(`DashboardLightsResponse`, () => {
       expect.objectContaining({
         dashboardLights: [
           {
-            lightName: 'high_beam',
-            state: 'inactive',
+            value: {
+              lightName: 'high_beam',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'low_beam',
-            state: 'inactive',
+            value: {
+              lightName: 'low_beam',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'hazard_warning',
-            state: 'inactive',
+            value: {
+              lightName: 'hazard_warning',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'brake_failure',
-            state: 'inactive',
+            value: {
+              lightName: 'brake_failure',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'hatch_open',
-            state: 'inactive',
+            value: {
+              lightName: 'hatch_open',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'fuel_level',
-            state: 'inactive',
+            value: {
+              lightName: 'fuel_level',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'engine_coolant_temperature',
-            state: 'inactive',
+            value: {
+              lightName: 'engine_coolant_temperature',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'battery_charging_condition',
-            state: 'inactive',
+            value: {
+              lightName: 'battery_charging_condition',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'engine_oil',
-            state: 'inactive',
+            value: {
+              lightName: 'engine_oil',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'position_lights',
-            state: 'inactive',
+            value: {
+              lightName: 'position_lights',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'front_fog_light',
-            state: 'inactive',
+            value: {
+              lightName: 'front_fog_light',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'rear_fog_light',
-            state: 'inactive',
+            value: {
+              lightName: 'rear_fog_light',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'park_heating',
-            state: 'inactive',
+            value: {
+              lightName: 'park_heating',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'engine_indicator',
-            state: 'inactive',
+            value: {
+              lightName: 'engine_indicator',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'service_call',
-            state: 'inactive',
+            value: {
+              lightName: 'service_call',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'transmission_fluid_temperature',
-            state: 'inactive',
+            value: {
+              lightName: 'transmission_fluid_temperature',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'transmission_failure',
-            state: 'inactive',
+            value: {
+              lightName: 'transmission_failure',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'anti_lock_brake_failure',
-            state: 'inactive',
+            value: {
+              lightName: 'anti_lock_brake_failure',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'worn_brake_linings',
-            state: 'inactive',
+            value: {
+              lightName: 'worn_brake_linings',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'windscreen_washer_fluid',
-            state: 'inactive',
+            value: {
+              lightName: 'windscreen_washer_fluid',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'tire_failure',
-            state: 'inactive',
+            value: {
+              lightName: 'tire_failure',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'engine_oil_level',
-            state: 'inactive',
+            value: {
+              lightName: 'engine_oil_level',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'engine_coolant_level',
-            state: 'inactive',
+            value: {
+              lightName: 'engine_coolant_level',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'steering_failure',
-            state: 'inactive',
+            value: {
+              lightName: 'steering_failure',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'esc_indication',
-            state: 'inactive',
+            value: {
+              lightName: 'esc_indication',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'brake_lights',
-            state: 'inactive',
+            value: {
+              lightName: 'brake_lights',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'adblue_level',
-            state: 'inactive',
+            value: {
+              lightName: 'adblue_level',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'fuel_filter_diff_pressure',
-            state: 'inactive',
+            value: {
+              lightName: 'fuel_filter_diff_pressure',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'seat_belt',
-            state: 'inactive',
+            value: {
+              lightName: 'seat_belt',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'advanced_braking',
-            state: 'inactive',
+            value: {
+              lightName: 'advanced_braking',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'acc',
-            state: 'inactive',
+            value: {
+              lightName: 'acc',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'trailer_connected',
-            state: 'inactive',
+            value: {
+              lightName: 'trailer_connected',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'airbag',
-            state: 'inactive',
+            value: {
+              lightName: 'airbag',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'esc_switched_off',
-            state: 'inactive',
+            value: {
+              lightName: 'esc_switched_off',
+              state: 'inactive',
+            },
           },
           {
-            lightName: 'lane_departure_warning_off',
-            state: 'inactive',
+            value: {
+              lightName: 'lane_departure_warning_off',
+              state: 'inactive',
+            },
           },
         ],
       })

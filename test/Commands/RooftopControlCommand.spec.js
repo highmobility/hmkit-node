@@ -11,11 +11,11 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: expect.any(Number),
-      position: expect.any(Number),
-      convertibleRoof: expect.any(String),
-      sunroofTilt: expect.any(String),
-      sunroofState: expect.any(String),
+      dimming: { value: expect.any(Number) },
+      position: { value: expect.any(Number) },
+      convertibleRoof: { value: expect.any(String) },
+      sunroofTilt: { value: expect.any(String) },
+      sunroofState: { value: expect.any(String) },
     });
   });
 
@@ -33,11 +33,11 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: 0.2,
-      position: 0.3,
-      convertibleRoof: 'closed_secured',
-      sunroofTilt: 'tilted',
-      sunroofState: 'open',
+      dimming: { value: 0.2 },
+      position: { value: 0.3 },
+      convertibleRoof: { value: 'closed_secured' },
+      sunroofTilt: { value: 'tilted' },
+      sunroofState: { value: 'open' },
     });
   });
 
@@ -48,7 +48,10 @@ describe(`RooftopControlCommand`, () => {
     )).parse();
     // Ensure new value is different from old
     const newDimming = Number(
-      (oldData.dimming >= 0.99 ? 0.01 : oldData.dimming + 0.01).toFixed(2)
+      (oldData.dimming.data >= 0.99
+        ? 0.01
+        : oldData.dimming.data + 0.01
+      ).toFixed(2)
     );
 
     const response = await hmkit.telematics.sendCommand(
@@ -57,7 +60,7 @@ describe(`RooftopControlCommand`, () => {
     );
 
     expect(response.parse()).toEqual({
-      dimming: newDimming,
+      dimming: { value: newDimming },
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
@@ -72,7 +75,7 @@ describe(`RooftopControlCommand`, () => {
     )).parse();
     // Ensure new value is different from old
     const newPosition =
-      oldData.position >= 0.99 ? 0.01 : oldData.position + 0.01;
+      oldData.position.data >= 0.99 ? 0.01 : oldData.position.data + 0.01;
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -82,7 +85,7 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
-      position: newPosition,
+      position: { value: newPosition },
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
       sunroofState: oldData.sunroofState,
@@ -95,7 +98,8 @@ describe(`RooftopControlCommand`, () => {
       hmkit.commands.RooftopControlCommand.getState()
     )).parse();
 
-    const newRoofState = oldData.convertibleRoof === 'open' ? 'closed' : 'open';
+    const newRoofState =
+      oldData.convertibleRoof.data === 'open' ? 'closed' : 'open';
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -110,7 +114,7 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
       position: oldData.position,
-      convertibleRoof: newRoofState,
+      convertibleRoof: { value: newRoofState },
       sunroofTilt: oldData.sunroofTilt,
       sunroofState: oldData.sunroofState,
     });
@@ -123,7 +127,7 @@ describe(`RooftopControlCommand`, () => {
     )).parse();
 
     const newSunroofTilt =
-      oldData.convertibleRoof === 'closed' ? 'tilted' : 'closed';
+      oldData.convertibleRoof.data === 'closed' ? 'tilted' : 'closed';
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -141,7 +145,7 @@ describe(`RooftopControlCommand`, () => {
       dimming: oldData.dimming,
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
-      sunroofTilt: newSunroofTilt,
+      sunroofTilt: { value: newSunroofTilt },
       sunroofState: oldData.sunroofState,
     });
   });
@@ -153,7 +157,7 @@ describe(`RooftopControlCommand`, () => {
     )).parse();
 
     const newSunroofState =
-      oldData.sunroofState === 'closed' ? 'open' : 'closed';
+      oldData.sunroofState.data === 'closed' ? 'open' : 'closed';
 
     const response = await hmkit.telematics.sendCommand(
       vehicleSerial,
@@ -173,7 +177,7 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
-      sunroofState: newSunroofState,
+      sunroofState: { value: newSunroofState },
     });
   });
 });

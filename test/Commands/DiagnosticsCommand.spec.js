@@ -13,62 +13,116 @@ describe(`DiagnosticsCommand`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        mileage: expect.any(Number),
-        engineOilTemperature: expect.any(Number),
-        speed: expect.any(Number),
-        engineRPM: expect.any(Number),
-        fuelLevel: expect.any(Number),
-        estimatedRange: expect.any(Number),
-        washerFluidLevel: expect.any(String),
-        batteryVoltage: expect.any(Number),
-        adblueLevel: expect.any(Number),
-        distanceSinceReset: expect.any(Number),
-        distanceSinceStart: expect.any(Number),
-        fuelVolume: expect.any(Number),
-        antiLockBraking: expect.any(String),
-        engineCoolantTemperature: expect.any(Number),
-        engineTotalOperatingHours: expect.any(Number),
-        engineTotalFuelConsumption: expect.any(Number),
-        brakeFluidLevel: expect.any(String),
-        engineTorque: expect.any(Number),
-        engineLoad: expect.any(Number),
-        wheelBasedSpeed: expect.any(Number),
-        batteryLevel: expect.any(Number),
+        mileage: { value: expect.any(Number) },
+        engineOilTemperature: {
+          value: expect.any(Number),
+        },
+        speed: { value: expect.any(Number) },
+        engineRPM: { value: expect.any(Number) },
+        fuelLevel: { value: expect.any(Number) },
+        estimatedRange: {
+          value: expect.any(Number),
+        },
+        washerFluidLevel: {
+          value: expect.any(String),
+        },
+        batteryVoltage: {
+          value: expect.any(Number),
+        },
+        adblueLevel: { value: expect.any(Number) },
+        distanceSinceReset: {
+          value: expect.any(Number),
+        },
+        distanceSinceStart: {
+          value: expect.any(Number),
+        },
+        fuelVolume: { value: expect.any(Number) },
+        antiLockBraking: {
+          value: expect.any(String),
+        },
+        engineCoolantTemperature: {
+          value: expect.any(Number),
+        },
+        engineTotalOperatingHours: {
+          value: expect.any(Number),
+        },
+        engineTotalFuelConsumption: {
+          value: expect.any(Number),
+        },
+        brakeFluidLevel: {
+          value: expect.any(String),
+        },
+        engineTorque: { value: expect.any(Number) },
+        engineLoad: { value: expect.any(Number) },
+        wheelBasedSpeed: {
+          value: expect.any(Number),
+        },
+        batteryLevel: { value: expect.any(Number) },
         checkControlMessages: expect.objectContaining([
           {
-            id: expect.any(Number),
-            remainingMinutes: expect.any(Number),
-            status: expect.any(String),
-            text: expect.any(String),
+            value: {
+              id: expect.any(Number),
+              remainingMinutes: expect.any(Number),
+              text: expect.any(String),
+              status: expect.any(String),
+            },
           },
         ]),
         tirePressures: [
-          { location: 'front_left', pressure: expect.any(Number) },
-          { location: 'front_right', pressure: expect.any(Number) },
-          { location: 'rear_right', pressure: expect.any(Number) },
-          { location: 'rear_left', pressure: expect.any(Number) },
+          {
+            value: { location: 'front_left', pressure: expect.any(Number) },
+          },
+          {
+            value: { location: 'front_right', pressure: expect.any(Number) },
+          },
+          {
+            value: { location: 'rear_right', pressure: expect.any(Number) },
+          },
+          {
+            value: { location: 'rear_left', pressure: expect.any(Number) },
+          },
         ],
         tireTemperatures: [
-          { location: 'front_left', temperature: expect.any(Number) },
-          { location: 'front_right', temperature: expect.any(Number) },
-          { location: 'rear_right', temperature: expect.any(Number) },
-          { location: 'rear_left', temperature: expect.any(Number) },
+          {
+            value: { location: 'front_left', temperature: expect.any(Number) },
+          },
+          {
+            value: { location: 'front_right', temperature: expect.any(Number) },
+          },
+          {
+            value: { location: 'rear_right', temperature: expect.any(Number) },
+          },
+          {
+            value: { location: 'rear_left', temperature: expect.any(Number) },
+          },
         ],
         wheelRpms: [
-          { location: 'front_left', rpm: expect.any(Number) },
-          { location: 'front_right', rpm: expect.any(Number) },
-          { location: 'rear_right', rpm: expect.any(Number) },
-          { location: 'rear_left', rpm: expect.any(Number) },
+          {
+            value: { location: 'front_left', rpm: expect.any(Number) },
+          },
+          {
+            value: { location: 'front_right', rpm: expect.any(Number) },
+          },
+          {
+            value: { location: 'rear_right', rpm: expect.any(Number) },
+          },
+          {
+            value: { location: 'rear_left', rpm: expect.any(Number) },
+          },
         ],
         troubleCodes: expect.objectContaining([
           {
-            occurences: expect.any(Number),
-            id: expect.any(String),
-            ecuId: expect.any(String),
-            status: expect.any(String),
+            value: {
+              occurences: expect.any(Number),
+              id: expect.any(String),
+              ecuId: expect.any(String),
+              status: expect.any(String),
+            },
           },
         ]),
-        mileageMeters: expect.any(Number),
+        mileageMeters: {
+          value: expect.any(Number),
+        },
       })
     );
   });

@@ -12,24 +12,24 @@ describe(`LightsResponse`, () => {
     expect(response.parse()).toBeInstanceOf(LightsResponse);
 
     expect(response.parse()).toEqual({
-      frontExteriorLight: 'inactive',
-      rearExteriorLight: 'inactive',
-      ambientLight: '#0000ff',
-      reverseLight: 'inactive',
-      emergencyBrakeLight: 'inactive',
+      frontExteriorLight: { value: 'inactive' },
+      rearExteriorLight: { value: 'inactive' },
+      ambientLight: { value: '#0000ff' },
+      reverseLight: { value: 'inactive' },
+      emergencyBrakeLight: { value: 'inactive' },
       fogLights: [
-        { location: 'front', state: 'inactive' },
-        { location: 'rear', state: 'inactive' },
+        { value: { location: 'front', state: 'inactive' } },
+        { value: { location: 'rear', state: 'inactive' } },
       ],
       readingLamps: [
-        { location: 'front_left', state: 'inactive' },
-        { location: 'front_right', state: 'inactive' },
-        { location: 'rear_right', state: 'inactive' },
-        { location: 'rear_left', state: 'inactive' },
+        { value: { location: 'front_left', state: 'inactive' } },
+        { value: { location: 'front_right', state: 'inactive' } },
+        { value: { location: 'rear_right', state: 'inactive' } },
+        { value: { location: 'rear_left', state: 'inactive' } },
       ],
       interiorLights: [
-        { location: 'front', state: 'inactive' },
-        { location: 'rear', state: 'inactive' },
+        { value: { location: 'front', state: 'inactive' } },
+        { value: { location: 'rear', state: 'inactive' } },
       ],
     });
   });
