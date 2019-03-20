@@ -11,8 +11,14 @@ describe(`OffroadCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(OffroadResponse);
     expect(response.parse()).toEqual({
-      routeIncline: { value: expect.any(Number) },
-      wheelSuspension: { value: expect.any(Number) },
+      routeIncline: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      wheelSuspension: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

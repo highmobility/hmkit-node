@@ -11,8 +11,14 @@ describe(`EngineCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual({
-      ignition: { value: expect.any(String) },
-      accessoriesIgnition: { value: expect.any(String) },
+      ignition: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      accessoriesIgnition: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -25,7 +31,10 @@ describe(`EngineCommand`, () => {
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        ignition: { value: 'on' },
+        ignition: {
+          value: 'on',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -39,7 +48,10 @@ describe(`EngineCommand`, () => {
     expect(response.parse()).toBeInstanceOf(EngineResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        ignition: { value: 'off' },
+        ignition: {
+          value: 'off',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });

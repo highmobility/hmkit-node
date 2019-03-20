@@ -16,8 +16,12 @@ describe(`NaviDestinationCommand`, () => {
           latitude: expect.any(Number),
           longitude: expect.any(Number),
         },
+        timestamp: expect.any(Date),
       },
-      destinationName: { value: expect.any(String) },
+      destinationName: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -38,8 +42,12 @@ describe(`NaviDestinationCommand`, () => {
           latitude: 52.52,
           longitude: 13.42,
         },
+        timestamp: expect.any(Date),
       },
-      destinationName: { value: 'Narnia' },
+      destinationName: {
+        value: 'Narnia',
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -56,8 +64,12 @@ describe(`NaviDestinationCommand`, () => {
           latitude: 52.52,
           longitude: 13.42,
         },
+        timestamp: expect.any(Date),
       },
-      destinationName: { value: expect.any(String) },
+      destinationName: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

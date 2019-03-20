@@ -14,38 +14,114 @@ describe(`DoorLocksCommand`, () => {
     expect(response.parse()).toEqual({
       insideLocks: [
         {
-          value: { doorLocation: 'front_left', lockState: expect.any(String) },
+          value: {
+            doorLocation: 'front_left',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
         {
-          value: { doorLocation: 'front_right', lockState: expect.any(String) },
+          value: {
+            doorLocation: 'front_right',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
         {
-          value: { doorLocation: 'rear_right', lockState: expect.any(String) },
+          value: {
+            doorLocation: 'rear_right',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
-        { value: { doorLocation: 'rear_left', lockState: expect.any(String) } },
-        { value: { doorLocation: 'all', lockState: expect.any(String) } },
+        {
+          value: {
+            doorLocation: 'rear_left',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            doorLocation: 'all',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
       ],
       locks: [
         {
-          value: { doorLocation: 'front_left', lockState: expect.any(String) },
+          value: {
+            doorLocation: 'front_left',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
         {
-          value: { doorLocation: 'front_right', lockState: expect.any(String) },
+          value: {
+            doorLocation: 'front_right',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
         {
-          value: { doorLocation: 'rear_right', lockState: expect.any(String) },
+          value: {
+            doorLocation: 'rear_right',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
-        { value: { doorLocation: 'rear_left', lockState: expect.any(String) } },
-        { value: { doorLocation: 'all', lockState: expect.any(String) } },
+        {
+          value: {
+            doorLocation: 'rear_left',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            doorLocation: 'all',
+            lockState: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
       ],
       positions: [
-        { value: { doorLocation: 'front_left', position: expect.any(String) } },
         {
-          value: { doorLocation: 'front_right', position: expect.any(String) },
+          value: {
+            doorLocation: 'front_left',
+            position: expect.any(String),
+          },
+          timestamp: expect.any(Date),
         },
-        { value: { doorLocation: 'rear_right', position: expect.any(String) } },
-        { value: { doorLocation: 'rear_left', position: expect.any(String) } },
-        { value: { doorLocation: 'all', position: expect.any(String) } },
+        {
+          value: {
+            doorLocation: 'front_right',
+            position: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            doorLocation: 'rear_right',
+            position: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            doorLocation: 'rear_left',
+            position: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            doorLocation: 'all',
+            position: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
       ],
     });
   });
@@ -60,18 +136,78 @@ describe(`DoorLocksCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         insideLocks: expect.objectContaining([
-          { value: { doorLocation: 'front_left', lockState: 'unlocked' } },
-          { value: { doorLocation: 'front_right', lockState: 'unlocked' } },
-          { value: { doorLocation: 'rear_right', lockState: 'unlocked' } },
-          { value: { doorLocation: 'rear_left', lockState: 'unlocked' } },
-          { value: { doorLocation: 'all', lockState: 'unlocked' } },
+          {
+            value: {
+              doorLocation: 'front_left',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'front_right',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_right',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_left',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'all',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
         ]),
         locks: expect.objectContaining([
-          { value: { doorLocation: 'front_left', lockState: 'unlocked' } },
-          { value: { doorLocation: 'front_right', lockState: 'unlocked' } },
-          { value: { doorLocation: 'rear_right', lockState: 'unlocked' } },
-          { value: { doorLocation: 'rear_left', lockState: 'unlocked' } },
-          { value: { doorLocation: 'all', lockState: 'unlocked' } },
+          {
+            value: {
+              doorLocation: 'front_left',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'front_right',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_right',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_left',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'all',
+              lockState: 'unlocked',
+            },
+            timestamp: expect.any(Date),
+          },
         ]),
       })
     );
@@ -87,18 +223,78 @@ describe(`DoorLocksCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         insideLocks: expect.objectContaining([
-          { value: { doorLocation: 'front_left', lockState: 'locked' } },
-          { value: { doorLocation: 'front_right', lockState: 'locked' } },
-          { value: { doorLocation: 'rear_right', lockState: 'locked' } },
-          { value: { doorLocation: 'rear_left', lockState: 'locked' } },
-          { value: { doorLocation: 'all', lockState: 'locked' } },
+          {
+            value: {
+              doorLocation: 'front_left',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'front_right',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_right',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_left',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'all',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
         ]),
         locks: expect.objectContaining([
-          { value: { doorLocation: 'front_left', lockState: 'locked' } },
-          { value: { doorLocation: 'front_right', lockState: 'locked' } },
-          { value: { doorLocation: 'rear_right', lockState: 'locked' } },
-          { value: { doorLocation: 'rear_left', lockState: 'locked' } },
-          { value: { doorLocation: 'all', lockState: 'locked' } },
+          {
+            value: {
+              doorLocation: 'front_left',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'front_right',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_right',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'rear_left',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              doorLocation: 'all',
+              lockState: 'locked',
+            },
+            timestamp: expect.any(Date),
+          },
         ]),
       })
     );

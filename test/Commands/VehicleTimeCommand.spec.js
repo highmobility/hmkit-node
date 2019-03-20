@@ -11,7 +11,10 @@ describe(`VehicleTimeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(VehicleTimeResponse);
     expect(response.parse()).toEqual({
-      vehicleTime: { value: expect.any(Date) },
+      vehicleTime: {
+        value: expect.any(Date),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

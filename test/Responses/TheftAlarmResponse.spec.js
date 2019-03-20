@@ -5,10 +5,16 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`TheftAlarmResponse`, () => {
   it(`should return TheftAlarmResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00460101000401000100a2000b01000800000168e735d8b3')
+      hexToUint8Array('00460101000d0100010002000601699ab1f8ad')
     );
 
     expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
-    expect(response.parse()).toEqual({ theftAlarm: { value: 'not_armed' } });
+
+    expect(response.parse()).toEqual({
+      theftAlarm: {
+        value: 'not_armed',
+        timestamp: new Date('2019-03-20T10:42:28.653Z'),
+      },
+    });
   });
 });

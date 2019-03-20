@@ -6,32 +6,123 @@ describe(`DoorLocksResponse`, () => {
   it(`should return DoorLocksResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '002001020005010002000002000501000201000200050100020200020005010002030002000501000204000200050100020500030005010002000003000501000201000300050100020200030005010002030003000501000204000300050100020500040005010002000004000501000201000400050100020200040005010002030004000501000204000400050100020500a2000b01000800000168e702fd39'
+        '00200102000e010002000002000601699ab1f8b002000e010002010002000601699ab1f8b002000e010002020002000601699ab1f8b002000e010002030002000601699ab1f8b002000e010002050002000601699ab1f8b003000e010002000002000601699ab1f8b003000e010002010002000601699ab1f8b003000e010002020002000601699ab1f8b003000e010002030002000601699ab1f8b003000e010002050002000601699ab1f8b004000e010002000002000601699ab1f8b004000e010002010002000601699ab1f8b004000e010002020002000601699ab1f8b004000e010002030002000601699ab1f8b004000e010002050002000601699ab1f8b0'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(DoorLocksResponse);
+
     expect(response.parse()).toEqual({
       insideLocks: [
-        { value: { doorLocation: 'front_left', lockState: 'unlocked' } },
-        { value: { doorLocation: 'front_right', lockState: 'unlocked' } },
-        { value: { doorLocation: 'rear_right', lockState: 'unlocked' } },
-        { value: { doorLocation: 'rear_left', lockState: 'unlocked' } },
-        { value: { doorLocation: 'all', lockState: 'unlocked' } },
+        {
+          value: {
+            doorLocation: 'front_left',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'front_right',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'rear_right',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'rear_left',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'all',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
       ],
       locks: [
-        { value: { doorLocation: 'front_left', lockState: 'unlocked' } },
-        { value: { doorLocation: 'front_right', lockState: 'unlocked' } },
-        { value: { doorLocation: 'rear_right', lockState: 'unlocked' } },
-        { value: { doorLocation: 'rear_left', lockState: 'unlocked' } },
-        { value: { doorLocation: 'all', lockState: 'unlocked' } },
+        {
+          value: {
+            doorLocation: 'front_left',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'front_right',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'rear_right',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'rear_left',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'all',
+            lockState: 'unlocked',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
       ],
       positions: [
-        { value: { doorLocation: 'front_left', position: 'closed' } },
-        { value: { doorLocation: 'front_right', position: 'closed' } },
-        { value: { doorLocation: 'rear_right', position: 'closed' } },
-        { value: { doorLocation: 'rear_left', position: 'closed' } },
-        { value: { doorLocation: 'all', position: 'closed' } },
+        {
+          value: {
+            doorLocation: 'front_left',
+            position: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'front_right',
+            position: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'rear_right',
+            position: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'rear_left',
+            position: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            doorLocation: 'all',
+            position: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
       ],
     });
   });

@@ -19,30 +19,35 @@ describe(`WindowsCommand`, () => {
             windowLocation: 'front_left',
             openPercentage: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'front_right',
             openPercentage: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_right',
             openPercentage: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_left',
             openPercentage: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'hatch',
             openPercentage: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
       ]),
       windowsPositions: expect.objectContaining([
@@ -51,30 +56,35 @@ describe(`WindowsCommand`, () => {
             windowLocation: 'front_left',
             windowPosition: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'front_right',
             windowPosition: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_right',
             windowPosition: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_left',
             windowPosition: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'hatch',
             windowPosition: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ]),
     });
@@ -139,30 +149,35 @@ describe(`WindowsCommand`, () => {
             windowLocation: 'front_left',
             openPercentage: 1,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'front_right',
             openPercentage: 1,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_right',
             openPercentage: 1,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_left',
             openPercentage: 1,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'hatch',
             openPercentage: 1,
           },
+          timestamp: expect.any(Date),
         },
       ],
       windowsPositions: [
@@ -171,30 +186,35 @@ describe(`WindowsCommand`, () => {
             windowLocation: 'front_left',
             windowPosition: 'opened',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'front_right',
             windowPosition: 'opened',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_right',
             windowPosition: 'opened',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_left',
             windowPosition: 'opened',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'hatch',
             windowPosition: 'opened',
           },
+          timestamp: expect.any(Date),
         },
       ],
     });
@@ -257,30 +277,35 @@ describe(`WindowsCommand`, () => {
             windowLocation: 'front_left',
             openPercentage: 0,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'front_right',
             openPercentage: 0,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_right',
             openPercentage: 0,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_left',
             openPercentage: 0,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'hatch',
             openPercentage: 0,
           },
+          timestamp: expect.any(Date),
         },
       ],
       windowsPositions: [
@@ -289,30 +314,35 @@ describe(`WindowsCommand`, () => {
             windowLocation: 'front_left',
             windowPosition: 'closed',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'front_right',
             windowPosition: 'closed',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_right',
             windowPosition: 'closed',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'rear_left',
             windowPosition: 'closed',
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             windowLocation: 'hatch',
             windowPosition: 'closed',
           },
+          timestamp: expect.any(Date),
         },
       ],
     });

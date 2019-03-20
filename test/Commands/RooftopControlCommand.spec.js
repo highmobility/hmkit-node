@@ -11,11 +11,26 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: { value: expect.any(Number) },
-      position: { value: expect.any(Number) },
-      convertibleRoof: { value: expect.any(String) },
-      sunroofTilt: { value: expect.any(String) },
-      sunroofState: { value: expect.any(String) },
+      dimming: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      position: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      convertibleRoof: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      sunroofTilt: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      sunroofState: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -33,11 +48,26 @@ describe(`RooftopControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
-      dimming: { value: 0.2 },
-      position: { value: 0.3 },
-      convertibleRoof: { value: 'closed_secured' },
-      sunroofTilt: { value: 'tilted' },
-      sunroofState: { value: 'open' },
+      dimming: {
+        value: 0.2,
+        timestamp: expect.any(Date),
+      },
+      position: {
+        value: 0.3,
+        timestamp: expect.any(Date),
+      },
+      convertibleRoof: {
+        value: 'closed_secured',
+        timestamp: expect.any(Date),
+      },
+      sunroofTilt: {
+        value: 'tilted',
+        timestamp: expect.any(Date),
+      },
+      sunroofState: {
+        value: 'open',
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -60,7 +90,10 @@ describe(`RooftopControlCommand`, () => {
     );
 
     expect(response.parse()).toEqual({
-      dimming: { value: newDimming },
+      dimming: {
+        value: newDimming,
+        timestamp: expect.any(Date),
+      },
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
@@ -85,7 +118,10 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
-      position: { value: newPosition },
+      position: {
+        value: newPosition,
+        timestamp: expect.any(Date),
+      },
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
       sunroofState: oldData.sunroofState,
@@ -114,7 +150,10 @@ describe(`RooftopControlCommand`, () => {
     expect(response.parse()).toEqual({
       dimming: oldData.dimming,
       position: oldData.position,
-      convertibleRoof: { value: newRoofState },
+      convertibleRoof: {
+        value: newRoofState,
+        timestamp: expect.any(Date),
+      },
       sunroofTilt: oldData.sunroofTilt,
       sunroofState: oldData.sunroofState,
     });
@@ -145,7 +184,10 @@ describe(`RooftopControlCommand`, () => {
       dimming: oldData.dimming,
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
-      sunroofTilt: { value: newSunroofTilt },
+      sunroofTilt: {
+        value: newSunroofTilt,
+        timestamp: expect.any(Date),
+      },
       sunroofState: oldData.sunroofState,
     });
   });
@@ -177,7 +219,10 @@ describe(`RooftopControlCommand`, () => {
       position: oldData.position,
       convertibleRoof: oldData.convertibleRoof,
       sunroofTilt: oldData.sunroofTilt,
-      sunroofState: { value: newSunroofState },
+      sunroofState: {
+        value: newSunroofState,
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

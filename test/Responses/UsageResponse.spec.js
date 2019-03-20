@@ -6,39 +6,139 @@ describe(`UsageResponse`, () => {
   it(`should return UsageResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '006801010005010002012c020005010002012c03000b0100083fe000000000000004000b0100083fe000000000000005000c010009003fd999999999999a05000c010009013fd999999999999a05000c010009023fd999999999999a05000c010009033fd999999999999a05000c010009043fd999999999999a060008010005004204cccd060008010005014204cccd060008010005024204cccd060008010005034204cccd060008010005044204cccd07000701000442ca999a08000701000441b400000900060100030175900a000b0100083fc999999999999a0b000701000440b5c28f0c000b0100083fe00000000000000d000b010008000001669baf11a90e000701000440c666660f0007010004410b3333a2000b01000800000168e7380ebf'
+        '00680101000e010002012c02000601699ab1f8ac02000e010002012c02000601699ab1f8ac0300140100083fe000000000000002000601699ab1f8ac0400140100083fe000000000000002000601699ab1f8ac050015010009003fd999999999999a02000601699ab1f8ac050015010009013fd999999999999a02000601699ab1f8ac050015010009023fd999999999999a02000601699ab1f8ac050015010009033fd999999999999a02000601699ab1f8ac050015010009043fd999999999999a02000601699ab1f8ac060011010005004204cccd02000601699ab1f8ac060011010005014204cccd02000601699ab1f8ac060011010005024204cccd02000601699ab1f8ac060011010005034204cccd02000601699ab1f8ac060011010005044204cccd02000601699ab1f8ac07001001000442ca999a02000601699ab1f8ac08001001000441b4000002000601699ab1f8ac09000f01000301759002000601699ab1f8ac0a00140100083fc999999999999a02000601699ab1f8ac0b001001000440b5c28f02000601699ab1f8ac0c00140100083fe000000000000002000601699ab1f8ac0d0014010008000001669baf11a902000601699ab1f8ac0e001001000440c6666602000601699ab1f8ac0f0010010004410b333302000601699ab1f8ac'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(UsageResponse);
+
     expect(response.parse()).toEqual({
-      averageWeeklyDistance: { value: 300 },
-      averageWeeklyDistanceLongRun: { value: 300 },
-      accelerationEvaluation: { value: 0.5 },
-      drivingStyleEvaluation: { value: 0.5 },
+      averageWeeklyDistance: {
+        value: 300,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      averageWeeklyDistanceLongRun: {
+        value: 300,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      accelerationEvaluation: {
+        value: 0.5,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      drivingStyleEvaluation: {
+        value: 0.5,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
       drivingModesActivationPeriods: [
-        { value: { drivingMode: 'regular', period: 0.4 } },
-        { value: { drivingMode: 'eco', period: 0.4 } },
-        { value: { drivingMode: 'sport', period: 0.4 } },
-        { value: { drivingMode: 'sport_plus', period: 0.4 } },
-        { value: { drivingMode: 'eco_plus', period: 0.4 } },
+        {
+          value: {
+            drivingMode: 'regular',
+            period: 0.4,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'eco',
+            period: 0.4,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'sport',
+            period: 0.4,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'sport_plus',
+            period: 0.4,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'eco_plus',
+            period: 0.4,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
       ],
       drivingModesEnergyConsumptions: [
-        { value: { drivingMode: 'regular', consumption: 33.2 } },
-        { value: { drivingMode: 'eco', consumption: 33.2 } },
-        { value: { drivingMode: 'sport', consumption: 33.2 } },
-        { value: { drivingMode: 'sport_plus', consumption: 33.2 } },
-        { value: { drivingMode: 'eco_plus', consumption: 33.2 } },
+        {
+          value: {
+            drivingMode: 'regular',
+            consumption: 33.2,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'eco',
+            consumption: 33.2,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'sport',
+            consumption: 33.2,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'sport_plus',
+            consumption: 33.2,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
+        {
+          value: {
+            drivingMode: 'eco_plus',
+            consumption: 33.2,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.652Z'),
+        },
       ],
-      lastTripEnergyConsumption: { value: 101.3 },
-      lastTripFuelConsumption: { value: 22.5 },
-      mileageAfterLastTrip: { value: 95632 },
-      lastTripElectricPortion: { value: 0.2 },
-      lastTripAverageEnergyRecuperation: { value: 5.68 },
-      lastTripBatteryRemaining: { value: 0.5 },
-      lastTripDate: { value: new Date('2018-10-22T12:10:33.769Z') },
-      averageFuelConsumption: { value: 6.2 },
-      currentFuelConsumption: { value: 8.7 },
+      lastTripEnergyConsumption: {
+        value: 101.3,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      lastTripFuelConsumption: {
+        value: 22.5,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      mileageAfterLastTrip: {
+        value: 95632,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      lastTripElectricPortion: {
+        value: 0.2,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      lastTripAverageEnergyRecuperation: {
+        value: 5.68,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      lastTripBatteryRemaining: {
+        value: 0.5,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      lastTripDate: {
+        value: new Date('2018-10-22T12:10:33.769Z'),
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      averageFuelConsumption: {
+        value: 6.2,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
+      currentFuelConsumption: {
+        value: 8.7,
+        timestamp: new Date('2019-03-20T10:42:28.652Z'),
+      },
     });
   });
 });
