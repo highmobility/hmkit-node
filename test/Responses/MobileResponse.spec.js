@@ -8,6 +8,6 @@ describe(`MobileResponse`, () => {
       hexToUint8Array('00660101000401000100a2000b01000800000168e72bb435')
     );
     expect(response.parse()).toBeInstanceOf(MobileResponse);
-    expect(response.parse()).toEqual({ connection: 'disconnected' });
+    expect(response.parse()).toEqual({ connection: { value: 'disconnected' } });
   });
 });

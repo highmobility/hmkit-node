@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { timestampDecoder } from '../helpers';
 
 export default class VehicleTimeResponse extends PropertyResponse {
@@ -10,16 +10,18 @@ export default class VehicleTimeResponse extends PropertyResponse {
    *
    * @example VehicleTimeResponse
     {
-      vehicleTime: 2018-02-17T12:05:02.000Z
+      vehicleTime: {
+        value: '2019-03-01T11:51:36.263Z',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'vehicleTime').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x01, 'vehicleTime').setDecoder(timestampDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

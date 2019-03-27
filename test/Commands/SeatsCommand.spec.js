@@ -14,38 +14,54 @@ describe(`SeatsCommand`, () => {
     expect(response.parse()).toEqual({
       personsDetected: expect.objectContaining([
         {
-          seatPosition: 'front_left',
-          personDetected: expect.any(String),
+          value: {
+            seatPosition: 'front_left',
+            personDetected: expect.any(String),
+          },
         },
         {
-          seatPosition: 'front_right',
-          personDetected: expect.any(String),
+          value: {
+            seatPosition: 'front_right',
+            personDetected: expect.any(String),
+          },
         },
         {
-          seatPosition: 'rear_right',
-          personDetected: expect.any(String),
+          value: {
+            seatPosition: 'rear_right',
+            personDetected: expect.any(String),
+          },
         },
         {
-          seatPosition: 'rear_left',
-          personDetected: expect.any(String),
+          value: {
+            seatPosition: 'rear_left',
+            personDetected: expect.any(String),
+          },
         },
       ]),
       seatbeltsFastened: expect.objectContaining([
         {
-          seatPosition: 'front_left',
-          seatbeltFastened: expect.any(String),
+          value: {
+            seatPosition: 'front_left',
+            seatbeltFastened: expect.any(String),
+          },
         },
         {
-          seatPosition: 'front_right',
-          seatbeltFastened: expect.any(String),
+          value: {
+            seatPosition: 'front_right',
+            seatbeltFastened: expect.any(String),
+          },
         },
         {
-          seatPosition: 'rear_right',
-          seatbeltFastened: expect.any(String),
+          value: {
+            seatPosition: 'rear_right',
+            seatbeltFastened: expect.any(String),
+          },
         },
         {
-          seatPosition: 'rear_left',
-          seatbeltFastened: expect.any(String),
+          value: {
+            seatPosition: 'rear_left',
+            seatbeltFastened: expect.any(String),
+          },
         },
       ]),
     });

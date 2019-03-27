@@ -12,28 +12,32 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
 
     expect(response.parse()).toEqual({
-      insideTemperature: expect.any(Number),
-      outsideTemperature: expect.any(Number),
-      driverTemperatureSetting: expect.any(Number),
-      passengerTemperatureSetting: expect.any(Number),
-      hvacState: expect.any(String),
-      defoggingState: expect.any(String),
-      defrostingState: expect.any(String),
-      ionisingState: expect.any(String),
-      defrostingTemperature: expect.any(Number),
+      insideTemperature: { value: expect.any(Number) },
+      outsideTemperature: { value: expect.any(Number) },
+      driverTemperatureSetting: { value: expect.any(Number) },
+      passengerTemperatureSetting: { value: expect.any(Number) },
+      hvacState: { value: expect.any(String) },
+      defoggingState: { value: expect.any(String) },
+      defrostingState: { value: expect.any(String) },
+      ionisingState: { value: expect.any(String) },
+      defrostingTemperature: { value: expect.any(Number) },
       hvacWeekdayStartingTimes: [
         {
-          weekday: expect.any(String),
-          hour: expect.any(Number),
-          minute: expect.any(Number),
+          value: {
+            weekday: expect.any(String),
+            hour: expect.any(Number),
+            minute: expect.any(Number),
+          },
         },
         {
-          weekday: expect.any(String),
-          hour: expect.any(Number),
-          minute: expect.any(Number),
+          value: {
+            weekday: expect.any(String),
+            hour: expect.any(Number),
+            minute: expect.any(Number),
+          },
         },
       ],
-      rearTemperatureSetting: expect.any(Number),
+      rearTemperatureSetting: { value: expect.any(Number) },
     });
   });
 
@@ -50,8 +54,8 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         hvacWeekdayStartingTimes: [
-          { weekday: 'monday', hour: 18, minute: 30 },
-          { weekday: 'friday', hour: 18, minute: 30 },
+          { value: { weekday: 'monday', hour: 18, minute: 30 } },
+          { value: { weekday: 'friday', hour: 18, minute: 30 } },
         ],
       })
     );
@@ -68,8 +72,8 @@ describe(`ClimateCommand`, () => {
     expect(response2.parse()).toEqual(
       expect.objectContaining({
         hvacWeekdayStartingTimes: [
-          { weekday: 'tuesday', hour: 8, minute: 30 },
-          { weekday: 'sunday', hour: 8, minute: 45 },
+          { value: { weekday: 'tuesday', hour: 8, minute: 30 } },
+          { value: { weekday: 'sunday', hour: 8, minute: 45 } },
         ],
       })
     );
@@ -84,7 +88,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        hvacState: 'active',
+        hvacState: { value: 'active' },
       })
     );
   });
@@ -98,7 +102,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        hvacState: 'inactive',
+        hvacState: { value: 'inactive' },
       })
     );
   });
@@ -112,7 +116,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        defoggingState: 'active',
+        defoggingState: { value: 'active' },
       })
     );
   });
@@ -126,7 +130,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        defoggingState: 'inactive',
+        defoggingState: { value: 'inactive' },
       })
     );
   });
@@ -140,7 +144,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        defrostingState: 'active',
+        defrostingState: { value: 'active' },
       })
     );
   });
@@ -154,7 +158,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        defrostingState: 'inactive',
+        defrostingState: { value: 'inactive' },
       })
     );
   });
@@ -168,7 +172,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        ionisingState: 'active',
+        ionisingState: { value: 'active' },
       })
     );
   });
@@ -182,7 +186,7 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        ionisingState: 'inactive',
+        ionisingState: { value: 'inactive' },
       })
     );
   });
@@ -196,9 +200,9 @@ describe(`ClimateCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ClimateResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        driverTemperatureSetting: 24,
-        passengerTemperatureSetting: 25,
-        rearTemperatureSetting: 26,
+        driverTemperatureSetting: { value: 24 },
+        passengerTemperatureSetting: { value: 25 },
+        rearTemperatureSetting: { value: 26 },
       })
     );
 
@@ -210,9 +214,9 @@ describe(`ClimateCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(ClimateResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        driverTemperatureSetting: 22,
-        passengerTemperatureSetting: 23,
-        rearTemperatureSetting: 24,
+        driverTemperatureSetting: { value: 22 },
+        passengerTemperatureSetting: { value: 23 },
+        rearTemperatureSetting: { value: 24 },
       })
     );
   });

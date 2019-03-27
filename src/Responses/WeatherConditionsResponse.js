@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { progressDecoder } from '../helpers';
 
 export default class WeatherConditionsResponse extends PropertyResponse {
@@ -10,16 +10,18 @@ export default class WeatherConditionsResponse extends PropertyResponse {
    *
    * @example WeatherConditionsResponse
     {
-      rainIntensity: 0.5,
+      rainIntensity: {
+        value: 0.5
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'rainIntensity').setDecoder(progressDecoder),
+      new PropertyDecoder(0x01, 'rainIntensity').setDecoder(progressDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

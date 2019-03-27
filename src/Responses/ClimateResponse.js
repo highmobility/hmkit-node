@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { activeInactiveDecoder, getRoundedIeee754ToBase10 } from '../helpers';
 
 export default class ClimateResponse extends PropertyResponse {
@@ -21,97 +21,97 @@ export default class ClimateResponse extends PropertyResponse {
    *
    * @example ClimateResponse
     {
-      insideTemperature: 23,
-      outsideTemperature: 18,
-      driverTemperatureSetting: 23,
-      passengerTemperatureSetting: 22,
-      hvacState: 'inactive',
-      defoggingState: 'inactive',
-      defrostingState: 'inactive',
-      ionisingState: 'inactive',
-      defrostingTemperature: 23,
+      insideTemperature: { value: 23 },
+      outsideTemperature: { value: 18 },
+      driverTemperatureSetting: { value: 22 },
+      passengerTemperatureSetting: { value: 23 },
+      defoggingState: { value: 'inactive' },
+      defrostingState: { value: 'inactive' },
+      ionisingState: { value: 'inactive' },
+      defrostingTemperature: { value: 23 },
+      hvacState: { value: 'inactive' },
       hvacWeekdayStartingTimes: [{
-        weekday: 'monday',
-        hour: 8,
-        minute: 0
+        value: {
+          weekday: 'monday',
+          hour: 18,
+          minute: 30
+        }
       }, {
-        weekday: 'tuesday',
-        hour: 8,
-        minute: 0
-      }, {
-        weekday: 'wednesday',
-        hour: 8,
-        minute: 0
-      }, {
-        weekday: 'thursday',
-        hour: 8,
-        minute: 0
-      }, {
-        weekday: 'friday',
-        hour: 8,
-        minute: 0
-      }, {
-        weekday: 'saturday',
-        hour: 8,
-        minute: 0
-      }, {
-        weekday: 'sunday',
-        hour: 8,
-        minute: 0
+        value: {
+          weekday: 'friday',
+          hour: 18,
+          minute: 30
+        }
       }],
-      rearTemperatureSetting: 22
+      rearTemperatureSetting: { value: 24 },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'insideTemperature').setDecoder(
+      new PropertyDecoder(0x01, 'insideTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x02, 'outsideTemperature').setDecoder(
+      new PropertyDecoder(0x02, 'outsideTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x03, 'driverTemperatureSetting').setDecoder(
+      new PropertyDecoder(0x03, 'driverTemperatureSetting').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x04, 'passengerTemperatureSetting').setDecoder(
+      new PropertyDecoder(0x04, 'passengerTemperatureSetting').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x05, 'hvacState').setDecoder(activeInactiveDecoder()),
-      new Property(0x06, 'defoggingState').setDecoder(activeInactiveDecoder()),
-      new Property(0x07, 'defrostingState').setDecoder(activeInactiveDecoder()),
-      new Property(0x08, 'ionisingState').setDecoder(activeInactiveDecoder()),
-      new Property(0x09, 'defrostingTemperature').setDecoder(
+      new PropertyDecoder(0x05, 'hvacState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x06, 'defoggingState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x07, 'defrostingState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x08, 'ionisingState').setDecoder(
+        activeInactiveDecoder()
+      ),
+      new PropertyDecoder(0x09, 'defrostingTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0b, 'hvacWeekdayStartingTimes').setOptionalSubProperties(
-        'weekday',
-        [
-          new OptionalProperty(0x00, 'monday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x01, 'tuesday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x02, 'wednesday').setDecoder(
-            this.weekdayDecoder
-          ),
-          new OptionalProperty(0x03, 'thursday').setDecoder(
-            this.weekdayDecoder
-          ),
-          new OptionalProperty(0x04, 'friday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x05, 'saturday').setDecoder(
-            this.weekdayDecoder
-          ),
-          new OptionalProperty(0x06, 'sunday').setDecoder(this.weekdayDecoder),
-          new OptionalProperty(0x07, 'automatic').setDecoder(
-            this.weekdayDecoder
-          ),
-        ]
-      ),
-      new Property(0x0c, 'rearTemperatureSetting').setDecoder(
+      new PropertyDecoder(
+        0x0b,
+        'hvacWeekdayStartingTimes'
+      ).setOptionalSubProperties('weekday', [
+        new OptionalPropertyDecoder(0x00, 'monday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x01, 'tuesday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x02, 'wednesday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x03, 'thursday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x04, 'friday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x05, 'saturday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x06, 'sunday').setDecoder(
+          this.weekdayDecoder
+        ),
+        new OptionalPropertyDecoder(0x07, 'automatic').setDecoder(
+          this.weekdayDecoder
+        ),
+      ]),
+      new PropertyDecoder(0x0c, 'rearTemperatureSetting').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   weekdayDecoder(data: Array<Number>) {

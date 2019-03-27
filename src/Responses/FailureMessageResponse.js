@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import autoApis from '../autoApis';
 
 const FAILURE_REASONS = {
@@ -36,16 +36,18 @@ export default class FailureMessageResponse extends PropertyResponse {
       },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'autoApi').setDecoder(this.failedCapabilityDecoder),
-      new Property(0x02, 'type'),
-      new Property(0x03, 'reason').setDecoder(this.reasonDecoder),
+      new PropertyDecoder(0x01, 'autoApi').setDecoder(
+        this.failedCapabilityDecoder
+      ),
+      new PropertyDecoder(0x02, 'type'),
+      new PropertyDecoder(0x03, 'reason').setDecoder(this.reasonDecoder),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   failedCapabilityDecoder(bytes: Array<Number>) {

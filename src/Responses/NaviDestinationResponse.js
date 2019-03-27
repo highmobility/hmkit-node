@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { coordinatesDecoder } from '../helpers';
 import { bytesToString } from '../encoding';
 
@@ -13,20 +13,24 @@ export default class NaviDestinationResponse extends PropertyResponse {
    * @example NaviDestinationResponse
     {
       coordinates: {
-        latitude: 52.52,
-        longitude: 13.42,
+        value: {
+          latitude: 52.520008,
+          longitude: 13.404953,
+        },
       },
-      destinationName: 'Narnia',
+      destinationName: {
+        value: 'Narnia',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x07, 'coordinates').setDecoder(coordinatesDecoder),
-      new Property(0x02, 'destinationName').setDecoder(bytesToString),
+      new PropertyDecoder(0x07, 'coordinates').setDecoder(coordinatesDecoder),
+      new PropertyDecoder(0x02, 'destinationName').setDecoder(bytesToString),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

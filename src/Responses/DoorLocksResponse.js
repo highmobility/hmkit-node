@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class DoorLocksResponse extends PropertyResponse {
@@ -14,86 +14,115 @@ export default class DoorLocksResponse extends PropertyResponse {
    * @example DoorLocksResponse
     {
       insideLocks: [{
-        doorLocation: 'front_left',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'front_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'front_right',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'front_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_right',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'rear_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_left',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'rear_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'all',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'all',
+          lockState: 'locked',
+        },
       }],
       locks: [{
-        doorLocation: 'front_left',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'front_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'front_right',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'front_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_right',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'rear_right',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'rear_left',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'rear_left',
+          lockState: 'locked',
+        },
       }, {
-        doorLocation: 'all',
-        lockState: 'unlocked'
+        value: {
+          doorLocation: 'all',
+          lockState: 'locked',
+        },
       }],
       positions: [{
-        doorLocation: 'front_left',
-        position: 'closed'
+        value: {
+          doorLocation: 'front_left',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'front_right',
-        position: 'closed'
+        value: {
+          doorLocation: 'front_right',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'rear_right',
-        position: 'open'
+        value: {
+          doorLocation: 'rear_right',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'rear_left',
-        position: 'closed'
+        value: {
+          doorLocation: 'rear_left',
+          position: 'closed',
+        },
       }, {
-        doorLocation: 'all',
-        position: 'closed'
-      }]
+        value: {
+          doorLocation: 'all',
+          position: 'closed',
+        },
+      }],
     }
-
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     /* prettier-ignore */
     const properties = [
-      new Property(0x02, 'insideLocks').setOptionalSubProperties('doorLocation', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x05, 'all').setDecoder(this.lockDecoder),
+      new PropertyDecoder(0x02, 'insideLocks').setOptionalSubProperties('doorLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.lockDecoder),
       ]),
-      new Property(0x03, 'locks').setOptionalSubProperties('doorLocation', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.lockDecoder),
-        new OptionalProperty(0x05, 'all').setDecoder(this.lockDecoder),
+      new PropertyDecoder(0x03, 'locks').setOptionalSubProperties('doorLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.lockDecoder),
+        new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.lockDecoder),
       ]),
-      new Property(0x04, 'positions').setOptionalSubProperties('doorLocation', [
-        new OptionalProperty(0x00, 'front_left').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x01, 'front_right').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x02, 'rear_right').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x03, 'rear_left').setDecoder(this.positionDecoder),
-        new OptionalProperty(0x05, 'all').setDecoder(this.positionDecoder),
+      new PropertyDecoder(0x04, 'positions').setOptionalSubProperties('doorLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(this.positionDecoder),
+        new OptionalPropertyDecoder(0x05, 'all').setDecoder(this.positionDecoder),
       ]),
     ];
     /* prettier-ignore-end */
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   positionDecoder(data: Array<Number>) {

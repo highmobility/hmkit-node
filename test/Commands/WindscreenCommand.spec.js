@@ -11,20 +11,24 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
 
     expect(response.parse()).toEqual({
-      wipers: expect.any(String),
-      wipersIntensity: expect.any(String),
-      windscreenDamage: expect.any(String),
+      wipers: { value: expect.any(String) },
+      wipersIntensity: { value: expect.any(String) },
+      windscreenDamage: { value: expect.any(String) },
       windscreenZoneMatrix: {
-        rows: expect.any(Number),
-        columns: expect.any(Number),
+        value: {
+          rows: expect.any(Number),
+          columns: expect.any(Number),
+        },
       },
       windscreenDamageZone: {
-        rows: expect.any(Number),
-        columns: expect.any(Number),
+        value: {
+          rows: expect.any(Number),
+          columns: expect.any(Number),
+        },
       },
-      windscreenNeedsReplacement: expect.any(String),
-      windscreenDamageConfidence: expect.any(Number),
-      windscreenDamageDetectionTime: expect.any(Date),
+      windscreenNeedsReplacement: { value: expect.any(String) },
+      windscreenDamageConfidence: { value: expect.any(Number) },
+      windscreenDamageDetectionTime: { value: expect.any(Date) },
     });
   });
 
@@ -41,10 +45,12 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        windscreenDamage: 'damage_smaller_than_1_inch',
+        windscreenDamage: { value: 'damage_smaller_than_1_inch' },
         windscreenDamageZone: {
-          rows: 2,
-          columns: 3,
+          value: {
+            rows: 2,
+            columns: 3,
+          },
         },
       })
     );
@@ -59,7 +65,7 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        windscreenNeedsReplacement: 'replacement_needed',
+        windscreenNeedsReplacement: { value: 'replacement_needed' },
       })
     );
   });
@@ -73,7 +79,7 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wipers: 'automatic',
+        wipers: { value: 'automatic' },
       })
     );
   });
@@ -87,8 +93,8 @@ describe(`WindscreenCommand`, () => {
     expect(response.parse()).toBeInstanceOf(WindscreenResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        wipers: 'active',
-        wipersIntensity: 'level_3',
+        wipers: { value: 'active' },
+        wipersIntensity: { value: 'level_3' },
       })
     );
   });

@@ -12,27 +12,29 @@ describe(`MaintenanceCommand`, () => {
     expect(response.parse()).toBeInstanceOf(MaintenanceResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        daysToNextService: expect.any(Number),
-        kilometersToNextService: expect.any(Number),
-        cbsReportsCount: expect.any(Number),
-        monthsToExhaustInspection: expect.any(Number),
-        teleserviceAvailability: expect.any(String),
-        serviceDistanceThreshold: expect.any(Number),
-        serviceTimeThreshold: expect.any(Number),
-        automaticTeleserviceCallDate: expect.any(Date),
-        teleserviceBatteryCallDate: expect.any(Date),
-        nextInspectionDate: expect.any(Date),
+        daysToNextService: { value: expect.any(Number) },
+        kilometersToNextService: { value: expect.any(Number) },
+        cbsReportsCount: { value: expect.any(Number) },
+        monthsToExhaustInspection: { value: expect.any(Number) },
+        teleserviceAvailability: { value: expect.any(String) },
+        serviceDistanceThreshold: { value: expect.any(Number) },
+        serviceTimeThreshold: { value: expect.any(Number) },
+        automaticTeleserviceCallDate: { value: expect.any(Date) },
+        teleserviceBatteryCallDate: { value: expect.any(Date) },
+        nextInspectionDate: { value: expect.any(Date) },
         conditionBasedServices: [
           {
-            year: expect.any(Number),
-            month: expect.any(Number),
-            cbsIdentifier: expect.any(Number),
-            dueStatus: expect.any(String),
-            cbsText: expect.any(String),
-            description: expect.any(String),
+            value: {
+              year: expect.any(Number),
+              month: expect.any(Number),
+              cbsIdentifier: expect.any(Number),
+              dueStatus: expect.any(String),
+              cbsText: expect.any(String),
+              description: expect.any(String),
+            },
           },
         ],
-        brakeFluidChangeDate: expect.any(Date),
+        brakeFluidChangeDate: { value: expect.any(Date) },
       })
     );
   });

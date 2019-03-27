@@ -12,9 +12,11 @@ describe(`FirmwareVersionResponse`, () => {
 
     expect(response.parse()).toBeInstanceOf(FirmwareVersionResponse);
     expect(response.parse()).toEqual({
-      carSDKVersion: { versionMajor: 2, versionMinor: 2, versionPatch: 4 },
-      carSDKBuildName: 'hm-emulator',
-      applicationVersion: 'v2.2.4-development',
+      carSDKVersion: {
+        value: { versionMajor: 2, versionMinor: 2, versionPatch: 4 },
+      },
+      carSDKBuildName: { value: 'hm-emulator' },
+      applicationVersion: { value: 'v2.2.4-development' },
     });
   });
 });

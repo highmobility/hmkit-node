@@ -14,38 +14,50 @@ describe(`TachographCommand`, () => {
     expect(response.parse()).toEqual({
       driverWorkingStates: [
         {
-          driverNumber: 1,
-          workingState: expect.any(String),
+          value: {
+            driverNumber: 1,
+            workingState: expect.any(String),
+          },
         },
         {
-          driverNumber: 2,
-          workingState: expect.any(String),
+          value: {
+            driverNumber: 2,
+            workingState: expect.any(String),
+          },
         },
       ],
       driverTimeStates: [
         {
-          driverNumber: 1,
-          timeState: expect.any(String),
+          value: {
+            driverNumber: 1,
+            timeState: expect.any(String),
+          },
         },
         {
-          driverNumber: 2,
-          timeState: expect.any(String),
+          value: {
+            driverNumber: 2,
+            timeState: expect.any(String),
+          },
         },
       ],
       driverCards: [
         {
-          driverNumber: 1,
-          card: expect.any(String),
+          value: {
+            driverNumber: 1,
+            card: expect.any(String),
+          },
         },
         {
-          driverNumber: 2,
-          card: expect.any(String),
+          value: {
+            driverNumber: 2,
+            card: expect.any(String),
+          },
         },
       ],
-      vehicleMotion: expect.any(String),
-      vehicleOverspeed: expect.any(String),
-      vehicleDirection: expect.any(String),
-      vehicleSpeed: expect.any(Number),
+      vehicleMotion: { value: expect.any(String) },
+      vehicleOverspeed: { value: expect.any(String) },
+      vehicleDirection: { value: expect.any(String) },
+      vehicleSpeed: { value: expect.any(Number) },
     });
   });
 });

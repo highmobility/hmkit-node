@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import {
   bytesSum,
   timestampDecoder,
@@ -32,89 +32,99 @@ export default class ChargingResponse extends PropertyResponse {
    * @property {Number} batteryTemperature (number) Battery temperature in Celsius in 4-bytes per IEEE 754
    * @property {Array} timers (array) Charging timers [{ timerType: (string), time: (date) }]
    * @property {String} pluggedIn (string) Plugged in
-   * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
+   * @property {String} activeState (string: 'not_charging | charging | charging_complete | initialising | charging_paused | charging_error') Charging state
    * @example ChargingResponse
     {
-      estimatedRange: 30,
-      batteryLevel: 0.8,
-      batteryCurrentAC: -0.6,
-      batteryCurrentDC: -0.6,
-      chargerVoltageAC: 0,
-      chargerVoltageDC: 0,
-      chargeLimit: 0.8,
-      timeToCompleteCharge: 0,
-      chargingRateKW: 0,
-      chargePortState: 'closed',
-      chargeMode: 'immediate',
-      maxChargingCurrent: 25,
-      plugType: 'type_2',
-      chargingWindowChosen: 'not_chosen',
+      estimatedRange: { value: 30 },
+      batteryLevel: { value: 0.8 },
+      batteryCurrentAC: { value: -0.6 },
+      batteryCurrentDC: { value: -0.6 },
+      chargerVoltageAC: { value: 0 },
+      chargerVoltageDC: { value: 0 },
+      chargeLimit: { value: 100 },
+      timeToCompleteCharge: { value: 0 },
+      chargingRateKW: { value: 0 },
+      chargePortState: { value: 'closed' },
+      chargeMode: { value: 'immediate' },
+      maxChargingCurrent: { value: 25 },
+      plugType: { value: 'type_2' },
+      chargingWindowChosen: { value: 'not_chosen' },
       departureTimes: [{
-        activeState: 'inactive',
-        hour: 18,
-        minute: 10
+        value: {
+          activeState: 'inactive',
+          hour: 13,
+          minute: 51
+        }
       }],
       reductionTimes: [{
-        startStop: 'reset',
-        hour: 18,
-        minute: 10
+        value: {
+          startStop: 'start',
+          hour: 2,
+          minute: 5
+        }
       }],
-      batteryTemperature: 38.4,
+      batteryTemperature: { value: 38.4 },
       timers: [{
-        timerType: 'preferred_start_time',
-        time: 2018-10-17T07:27:52.000Z
+        value: {
+          timerType: 'preferred_start_time',
+          time: '2018-02-11T12:13:00.000Z',
+        },
       }, {
-        timerType: 'preferred_end_time',
-        time: 2018-10-17T07:27:52.000Z
+        value: {
+          timerType: 'preferred_end_time',
+          time: '2018-02-11T12:14:00.000Z',
+        },
       }, {
-        timerType: 'departure_time',
-        time: 2018-10-17T07:27:52.000Z
+        value: {
+          timerType: 'departure_time',
+          time: '2018-02-10T13:45:33.157Z',
+        },
       }],
-      pluggedIn: 'disconnected',
-      activeState: 'not_charging'
+      pluggedIn: { value: 'disconnected' },
+      activeState: { value: 'not_charging' },
     }
    */
 
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x02, 'estimatedRange').setDecoder(bytesSum),
-      new Property(0x03, 'batteryLevel').setDecoder(progressDecoder),
-      new Property(0x04, 'batteryCurrentAC').setDecoder(
+      new PropertyDecoder(0x02, 'estimatedRange').setDecoder(bytesSum),
+      new PropertyDecoder(0x03, 'batteryLevel').setDecoder(progressDecoder),
+      new PropertyDecoder(0x04, 'batteryCurrentAC').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x05, 'batteryCurrentDC').setDecoder(
+      new PropertyDecoder(0x05, 'batteryCurrentDC').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x06, 'chargerVoltageAC').setDecoder(
+      new PropertyDecoder(0x06, 'chargerVoltageAC').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x07, 'chargerVoltageDC').setDecoder(
+      new PropertyDecoder(0x07, 'chargerVoltageDC').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x08, 'chargeLimit').setDecoder(progressDecoder),
-      new Property(0x09, 'timeToCompleteCharge').setDecoder(bytesSum),
-      new Property(0x0a, 'chargingRateKW').setDecoder(
+      new PropertyDecoder(0x08, 'chargeLimit').setDecoder(progressDecoder),
+      new PropertyDecoder(0x09, 'timeToCompleteCharge').setDecoder(bytesSum),
+      new PropertyDecoder(0x0a, 'chargingRateKW').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0b, 'chargePortState').setDecoder(
+      new PropertyDecoder(0x0b, 'chargePortState').setDecoder(
         switchDecoder({
           0x00: 'closed',
           0x01: 'open',
         })
       ),
-      new Property(0x0c, 'chargeMode').setDecoder(
+      new PropertyDecoder(0x0c, 'chargeMode').setDecoder(
         switchDecoder({
           0x00: 'immediate',
           0x01: 'timer_based',
           0x02: 'inductive',
         })
       ),
-      new Property(0x0e, 'maxChargingCurrent').setDecoder(
+      new PropertyDecoder(0x0e, 'maxChargingCurrent').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0f, 'plugType').setDecoder(
+      new PropertyDecoder(0x0f, 'plugType').setDecoder(
         switchDecoder({
           0x00: 'type_1',
           0x01: 'type_2',
@@ -122,39 +132,42 @@ export default class ChargingResponse extends PropertyResponse {
           0x03: 'chademo',
         })
       ),
-      new Property(0x10, 'chargingWindowChosen').setDecoder(
+      new PropertyDecoder(0x10, 'chargingWindowChosen').setDecoder(
         switchDecoder({
           0x00: 'not_chosen',
           0x01: 'chosen',
         })
       ),
-      new Property(0x11, 'departureTimes')
+      new PropertyDecoder(0x11, 'departureTimes')
         .array()
         .setDecoder(this.departureTimeDecoder),
-      new Property(0x13, 'reductionTimes')
+      new PropertyDecoder(0x13, 'reductionTimes')
         .array()
         .setDecoder(this.reductionTimeDecoder),
-      new Property(0x14, 'batteryTemperature').setDecoder(
+      new PropertyDecoder(0x14, 'batteryTemperature').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x15, 'timers').setOptionalSubProperties('timerType', [
-        new OptionalProperty(0x00, 'preferred_start_time').setDecoder(
-          this.timerTimeDecoder
-        ),
-        new OptionalProperty(0x01, 'preferred_end_time').setDecoder(
-          this.timerTimeDecoder
-        ),
-        new OptionalProperty(0x02, 'departure_time').setDecoder(
-          this.timerTimeDecoder
-        ),
-      ]),
-      new Property(0x16, 'pluggedIn').setDecoder(
+      new PropertyDecoder(0x15, 'timers').setOptionalSubProperties(
+        'timerType',
+        [
+          new OptionalPropertyDecoder(0x00, 'preferred_start_time').setDecoder(
+            this.timerTimeDecoder
+          ),
+          new OptionalPropertyDecoder(0x01, 'preferred_end_time').setDecoder(
+            this.timerTimeDecoder
+          ),
+          new OptionalPropertyDecoder(0x02, 'departure_time').setDecoder(
+            this.timerTimeDecoder
+          ),
+        ]
+      ),
+      new PropertyDecoder(0x16, 'pluggedIn').setDecoder(
         switchDecoder({
           0x00: 'disconnected',
           0x01: 'plugged_in',
         })
       ),
-      new Property(0x17, 'activeState').setDecoder(
+      new PropertyDecoder(0x17, 'activeState').setDecoder(
         switchDecoder({
           0x00: 'not_charging',
           0x01: 'charging',
@@ -166,7 +179,7 @@ export default class ChargingResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   timerTimeDecoder(...args) {

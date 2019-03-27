@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import { progressDecoder, switchDecoder } from '../helpers';
 
 export default class WindowsResponse extends PropertyResponse {
@@ -13,85 +13,107 @@ export default class WindowsResponse extends PropertyResponse {
    * @example WindowsResponse
     {
       windowsOpenPercentages: [{
-        windowLocation: 'front_left',
-        openPercentage: 0
+        value: {
+          windowLocation: 'front_left',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'front_right',
-        openPercentage: 0
+        value: {
+          windowLocation: 'front_right',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'rear_right',
-        openPercentage: 0
+        value: {
+          windowLocation: 'rear_right',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'rear_left',
-        openPercentage: 0
+        value: {
+          windowLocation: 'rear_left',
+          openPercentage: 0.6,
+        },
       }, {
-        windowLocation: 'hatch',
-        openPercentage: 0
+        value: {
+          windowLocation: 'hatch',
+          openPercentage: 0.6,
+        },
       }],
       windowsPositions: [{
-        windowLocation: 'front_left',
-        windowPosition: 'closed'
+        value: {
+          windowLocation: 'front_left',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'front_right',
-        windowPosition: 'closed'
+        value: {
+          windowLocation: 'front_right',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'rear_right',
-        windowPosition: 'closed'
+        value: {
+          windowLocation: 'rear_right',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'rear_left',
-        windowPosition: 'closed'
+        value: {
+          windowLocation: 'rear_left',
+          windowPosition: 'closed',
+        },
       }, {
-        windowLocation: 'hatch',
-        windowPosition: 'closed'
-      }]
+        value: {
+          windowLocation: 'hatch',
+          windowPosition: 'closed',
+        },
+      }],
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x02, 'windowsOpenPercentages').setOptionalSubProperties(
-        'windowLocation',
-        [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
-            this.openPercentageDecoder
-          ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
-            this.openPercentageDecoder
-          ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
-            this.openPercentageDecoder
-          ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
-            this.openPercentageDecoder
-          ),
-          new OptionalProperty(0x04, 'hatch').setDecoder(
-            this.openPercentageDecoder
-          ),
-        ]
-      ),
+      new PropertyDecoder(
+        0x02,
+        'windowsOpenPercentages'
+      ).setOptionalSubProperties('windowLocation', [
+        new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
+          this.openPercentageDecoder
+        ),
+        new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
+          this.openPercentageDecoder
+        ),
+        new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
+          this.openPercentageDecoder
+        ),
+        new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
+          this.openPercentageDecoder
+        ),
+        new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(
+          this.openPercentageDecoder
+        ),
+      ]),
 
-      new Property(0x03, 'windowsPositions').setOptionalSubProperties(
+      new PropertyDecoder(0x03, 'windowsPositions').setOptionalSubProperties(
         'windowLocation',
         [
-          new OptionalProperty(0x00, 'front_left').setDecoder(
+          new OptionalPropertyDecoder(0x00, 'front_left').setDecoder(
             this.positionDecoder
           ),
-          new OptionalProperty(0x01, 'front_right').setDecoder(
+          new OptionalPropertyDecoder(0x01, 'front_right').setDecoder(
             this.positionDecoder
           ),
-          new OptionalProperty(0x02, 'rear_right').setDecoder(
+          new OptionalPropertyDecoder(0x02, 'rear_right').setDecoder(
             this.positionDecoder
           ),
-          new OptionalProperty(0x03, 'rear_left').setDecoder(
+          new OptionalPropertyDecoder(0x03, 'rear_left').setDecoder(
             this.positionDecoder
           ),
-          new OptionalProperty(0x04, 'hatch').setDecoder(this.positionDecoder),
+          new OptionalPropertyDecoder(0x04, 'hatch').setDecoder(
+            this.positionDecoder
+          ),
         ]
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   openPercentageDecoder(bytes: Array<Number>) {

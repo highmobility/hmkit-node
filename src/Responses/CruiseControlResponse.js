@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder, bytesSum } from '../helpers';
 
 export default class CruiseControlResponse extends PropertyResponse {
@@ -14,24 +14,24 @@ export default class CruiseControlResponse extends PropertyResponse {
    *
    * @example CruiseControlResponse
     {
-      cruiseControl: 'inactive',
-      limiter: 'not_set',
-      targetSpeed: 0,
-      acc: 'inactive',
-      accTargetSpeed: 0,
+      cruiseControl: { value: 'active' },
+      limiter: { value: 'not_set' },
+      targetSpeed: { value: 90 },
+      acc: { value: 'inactive' },
+      accTargetSpeed: { value: 0 },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'cruiseControl').setDecoder(
+      new PropertyDecoder(0x01, 'cruiseControl').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x02, 'limiter').setDecoder(
+      new PropertyDecoder(0x02, 'limiter').setDecoder(
         switchDecoder({
           0x00: 'not_set',
           0x01: 'higher_speed_requested',
@@ -39,16 +39,16 @@ export default class CruiseControlResponse extends PropertyResponse {
           0x03: 'speed_fixed',
         })
       ),
-      new Property(0x03, 'targetSpeed').setDecoder(bytesSum),
-      new Property(0x04, 'acc').setDecoder(
+      new PropertyDecoder(0x03, 'targetSpeed').setDecoder(bytesSum),
+      new PropertyDecoder(0x04, 'acc').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x05, 'accTargetSpeed').setDecoder(bytesSum),
+      new PropertyDecoder(0x05, 'accTargetSpeed').setDecoder(bytesSum),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

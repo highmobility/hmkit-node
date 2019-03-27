@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class StartStopResponse extends PropertyResponse {
@@ -10,14 +10,16 @@ export default class StartStopResponse extends PropertyResponse {
    *
    * @example StartStopResponse
     {
-      startStop: 'active'
+      startStop: {
+        value: 'inactive',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'startStop').setDecoder(
+      new PropertyDecoder(0x01, 'startStop').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
@@ -25,6 +27,6 @@ export default class StartStopResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

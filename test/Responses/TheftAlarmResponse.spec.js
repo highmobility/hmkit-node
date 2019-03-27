@@ -9,6 +9,6 @@ describe(`TheftAlarmResponse`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
-    expect(response.parse()).toEqual({ theftAlarm: 'not_armed' });
+    expect(response.parse()).toEqual({ theftAlarm: { value: 'not_armed' } });
   });
 });

@@ -11,42 +11,55 @@ describe(`ChassisSettingsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
+
     expect(response.parse()).toEqual({
-      drivingMode: expect.any(String),
-      sportChrono: expect.any(String),
+      drivingMode: { value: expect.any(String) },
+      sportChrono: { value: expect.any(String) },
       currentSpringRates: [
         {
-          axle: 'front_axle',
-          springRate: expect.any(Number),
+          value: {
+            axle: 'front_axle',
+            springRate: expect.any(Number),
+          },
         },
         {
-          axle: 'rear_axle',
-          springRate: expect.any(Number),
+          value: {
+            axle: 'rear_axle',
+            springRate: expect.any(Number),
+          },
         },
       ],
       maximumSpringRates: [
         {
-          axle: 'front_axle',
-          springRate: expect.any(Number),
+          value: {
+            axle: 'front_axle',
+            springRate: expect.any(Number),
+          },
         },
         {
-          axle: 'rear_axle',
-          springRate: expect.any(Number),
+          value: {
+            axle: 'rear_axle',
+            springRate: expect.any(Number),
+          },
         },
       ],
       minimumSpringRates: [
         {
-          axle: 'front_axle',
-          springRate: expect.any(Number),
+          value: {
+            axle: 'front_axle',
+            springRate: expect.any(Number),
+          },
         },
         {
-          axle: 'rear_axle',
-          springRate: expect.any(Number),
+          value: {
+            axle: 'rear_axle',
+            springRate: expect.any(Number),
+          },
         },
       ],
-      currentChassisPosition: expect.any(Number),
-      maximumChassisPosition: expect.any(Number),
-      minimumChassisPosition: expect.any(Number),
+      currentChassisPosition: { value: expect.any(Number) },
+      maximumChassisPosition: { value: expect.any(Number) },
+      minimumChassisPosition: { value: expect.any(Number) },
     });
   });
 
@@ -59,7 +72,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        drivingMode: 'sport',
+        drivingMode: { value: 'sport' },
       })
     );
   });
@@ -73,7 +86,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        sportChrono: 'active',
+        sportChrono: { value: 'active' },
       })
     );
   });
@@ -87,7 +100,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        sportChrono: 'inactive',
+        sportChrono: { value: 'inactive' },
       })
     );
   });
@@ -101,7 +114,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        sportChrono: 'inactive',
+        sportChrono: { value: 'inactive' },
       })
     );
   });
@@ -117,8 +130,10 @@ describe(`ChassisSettingsCommand`, () => {
       expect.objectContaining({
         currentSpringRates: expect.arrayContaining([
           {
-            axle: 'front_axle',
-            springRate: -26,
+            value: {
+              axle: 'front_axle',
+              springRate: -26,
+            },
           },
         ]),
       })
@@ -136,8 +151,10 @@ describe(`ChassisSettingsCommand`, () => {
       expect.objectContaining({
         currentSpringRates: expect.arrayContaining([
           {
-            axle: 'rear_axle',
-            springRate: 27,
+            value: {
+              axle: 'rear_axle',
+              springRate: 27,
+            },
           },
         ]),
       })
@@ -153,7 +170,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        currentChassisPosition: -29,
+        currentChassisPosition: { value: -29 },
       })
     );
   });

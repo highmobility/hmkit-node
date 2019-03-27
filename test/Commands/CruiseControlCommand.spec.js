@@ -11,11 +11,11 @@ describe(`CruiseControlCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(CruiseControlResponse);
     expect(response.parse()).toEqual({
-      cruiseControl: expect.any(String),
-      limiter: expect.any(String),
-      targetSpeed: expect.any(Number),
-      acc: expect.any(String),
-      accTargetSpeed: expect.any(Number),
+      cruiseControl: { value: expect.any(String) },
+      limiter: { value: expect.any(String) },
+      targetSpeed: { value: expect.any(Number) },
+      acc: { value: expect.any(String) },
+      accTargetSpeed: { value: expect.any(Number) },
     });
   });
 
@@ -29,8 +29,8 @@ describe(`CruiseControlCommand`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        cruiseControl: 'active',
-        targetSpeed: 88,
+        cruiseControl: { value: 'active' },
+        targetSpeed: { value: 88 },
       })
     );
   });
@@ -45,7 +45,7 @@ describe(`CruiseControlCommand`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        cruiseControl: 'inactive',
+        cruiseControl: { value: 'inactive' },
       })
     );
   });
@@ -60,7 +60,7 @@ describe(`CruiseControlCommand`, () => {
 
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        cruiseControl: 'active',
+        cruiseControl: { value: 'active' },
       })
     );
   });

@@ -1,6 +1,6 @@
 {
   "name": "hmkit",
-  "version": "0.8.0",
+  "version": "10.0.0-beta",
   "description": "High Mobility SDK for Node.js",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -46,6 +46,8 @@
     "eslint-plugin-react": "^7.7.0",
     "ieee754": "^1.1.8",
     "joi": "^14.0.2",
+    "lodash": "^4.17.11",
+    "lodash-fp": "^0.10.4",
     "node-fetch": "^1.7.2",
     "rimraf": "^2.6.1",
     "semver": "^5.6.0"

@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { switchDecoder } from '../helpers';
 
 export default class PowerTakeOffResponse extends PropertyResponse {
@@ -11,21 +11,25 @@ export default class PowerTakeOffResponse extends PropertyResponse {
    *
    * @example PowerTakeOffResponse
     {
-      powerTakeoff: 'inactive',
-      powerTakeoffEngaged: 'not_engaged'
+      powerTakeoff: {
+        value: 'inactive',
+      },
+      powerTakeoffEngaged: {
+        value: 'not_engaged',
+      },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'powerTakeoff').setDecoder(
+      new PropertyDecoder(0x01, 'powerTakeoff').setDecoder(
         switchDecoder({
           0x00: 'inactive',
           0x01: 'active',
         })
       ),
-      new Property(0x02, 'powerTakeoffEngaged').setDecoder(
+      new PropertyDecoder(0x02, 'powerTakeoffEngaged').setDecoder(
         switchDecoder({
           0x00: 'not_engaged',
           0x01: 'engaged',
@@ -33,6 +37,6 @@ export default class PowerTakeOffResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

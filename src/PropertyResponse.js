@@ -1,10 +1,6 @@
-import Property from './Property';
-import { bytesSum } from './helpers';
-import {
-  PROPERTY_DATA_ID,
-  PROPERTY_TIMESTAMP_ID,
-  PROPERTY_FAILURE_ID,
-} from './encoding';
+import PropertyDecoder from './PropertyDecoder';
+import { bytesSum, timestampDecoder, parsePropertyComponents } from './helpers';
+import mergeWith from 'lodash/mergeWith';
 
 export default class PropertyResponse {
   /*
@@ -16,28 +12,36 @@ export default class PropertyResponse {
    * This parses all configured properties and adds them to "this" by their namespace.
    * Properties that do not have value will be ignored.
    */
-  parse(data: Uint8Array, properties: Array<Property>) {
-    this.bindProperties(
-      this.parseProperties(data, properties).filter(
-        property =>
-          (property.value !== null && property.value !== undefined) ||
-          property.subProperties.length > 0
-      )
-    );
+  parse(
+    data: Uint8Array,
+    properties: Array<PropertyDecoder>,
+    config: { withUniversalProperties: Boolean } = {}
+  ) {
+    this.parseProperties(
+      data,
+      config.withUniversalProperties
+        ? this.addUniversalProperties(properties)
+        : properties
+    ).forEach(parsedProp => {
+      mergeWith(this, parsedProp, this.customiser);
+    });
   }
 
-  /*
-   * bindProperties()
-   *
-   * properties - parsed properties with values that will be binded.
-   *
-   * Binds properties to "this" by their namespace.
-   * This function can be used in extending class to override binding.
-   */
-  bindProperties(properties: Array<Property>) {
-    properties.forEach(property => {
-      this[property.namespace] = property.getValue();
-    });
+  addUniversalProperties(properties: Array<PropertyDecoder>) {
+    const timestampProperty = new PropertyDecoder(0xa2, 'date').setDecoder(
+      timestampDecoder
+    );
+
+    return properties.concat(timestampProperty);
+  }
+
+  // TODO: Improve this temp shieeeet
+  customiser(objValue, srcValue) {
+    if (Array.isArray(objValue)) {
+      return objValue.concat(srcValue);
+    }
+
+    return srcValue;
   }
 
   /*
@@ -52,7 +56,8 @@ export default class PropertyResponse {
    * TODO: Add data length validation and individual property length validation
    * TODO: Maybe split this function into more readable chunks. This function does too much at the moment.
    */
-  parseProperties(data: Uint8Array, properties: Array<Property>) {
+  parseProperties(data: Uint8Array, properties: Array<PropertyDecoder>) {
+    const parsedProperties = [];
     const propertiesData = [...data.slice(3, data.length)];
 
     if (propertiesData.length > 0) {
@@ -71,49 +76,25 @@ export default class PropertyResponse {
         const property = this.findProperty(identifier, properties);
 
         if (!!property) {
-          let componentCounter = 0;
+          const componentBytes = parsePropertyComponents(
+            propertyComponentsData
+          );
 
-          while (componentCounter < propertyComponentsData.length) {
-            const componentIdentifier =
-              propertyComponentsData[componentCounter];
-            const propertyComponentLength = bytesSum(
-              propertyComponentsData.slice(
-                componentCounter + 1,
-                componentCounter + 3
-              )
-            );
+          const parsedProperty = property.parseComponents(
+            componentBytes.data,
+            componentBytes.time,
+            componentBytes.error
+          );
 
-            const propertyComponentData = propertyComponentsData.slice(
-              componentCounter + 3,
-              componentCounter + 3 + propertyComponentLength
-            );
-
-            switch (componentIdentifier) {
-              case PROPERTY_DATA_ID: {
-                property.parseValue(propertyComponentData);
-                break;
-              }
-              case PROPERTY_TIMESTAMP_ID: {
-                // TODO: Handle proeprty timestamp
-                break;
-              }
-              case PROPERTY_FAILURE_ID: {
-                // TODO: Handle property failure
-                break;
-              }
-              default:
-                break;
-            }
-
-            componentCounter += 3 + propertyComponentLength;
-          }
+          if (parsedProperty !== undefined)
+            parsedProperties.push(parsedProperty);
         }
 
         counter += 3 + propertyComponentsLength;
       }
     }
 
-    return properties;
+    return parsedProperties;
   }
 
   /*
@@ -126,7 +107,7 @@ export default class PropertyResponse {
    * Returns property with correct identifier or null if property was not found.
    * If property is not found, parent function should definitely throw/show error.
    */
-  findProperty(identifier: Number, properties: Array<Property>) {
+  findProperty(identifier: Number, properties: Array<PropertyDecoder>) {
     return properties.find(property => property.identifier === identifier);
   }
 }

@@ -1,5 +1,5 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
+import PropertyDecoder from '../PropertyDecoder';
 import { bytesToString } from '../encoding';
 import { switchDecoder } from '../helpers';
 
@@ -14,30 +14,30 @@ export default class WiFiResponse extends PropertyResponse {
    *
    * @example WifiResponse
     {
-      wifiEnabled: 'enabled',
-      networkConnected: 'disconnected',
-      networkSSID: 'TOTALLYFREEWIFI',
-      networkSecurity: 'wpa',
+      wifiEnabled: { value: 'enabled' },
+      networkConnected: { value: 'disconnected' },
+      networkSSID: { value: 'TOTALLYFREEWIFI' },
+      networkSecurity: { value: 'wpa' },
     }
    */
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'wifiEnabled').setDecoder(
+      new PropertyDecoder(0x01, 'wifiEnabled').setDecoder(
         switchDecoder({
           0x00: 'disabled',
           0x01: 'enabled',
         })
       ),
-      new Property(0x02, 'networkConnected').setDecoder(
+      new PropertyDecoder(0x02, 'networkConnected').setDecoder(
         switchDecoder({
           0x00: 'disconnected',
           0x01: 'connected',
         })
       ),
-      new Property(0x03, 'networkSSID').setDecoder(bytesToString),
-      new Property(0x04, 'networkSecurity').setDecoder(
+      new PropertyDecoder(0x03, 'networkSSID').setDecoder(bytesToString),
+      new PropertyDecoder(0x04, 'networkSecurity').setDecoder(
         switchDecoder({
           0x00: 'none',
           0x01: 'wep',
@@ -47,6 +47,6 @@ export default class WiFiResponse extends PropertyResponse {
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 }

@@ -1,6 +1,6 @@
 import PropertyResponse from '../PropertyResponse';
-import Property from '../Property';
-import OptionalProperty from '../OptionalProperty';
+import PropertyDecoder from '../PropertyDecoder';
+import OptionalPropertyDecoder from '../OptionalPropertyDecoder';
 import {
   progressDecoder,
   bytesSum,
@@ -30,83 +30,154 @@ export default class UsageResponse extends PropertyResponse {
    *
    * @example UsageResponse
     {
-      currentFuelConsumption: 8.7,
-      averageFuelConsumption: 6.2,
+      averageWeeklyDistance: { value: 300 },
+      averageWeeklyDistanceLongRun: { value: 300 },
+      accelerationEvaluation: { value: 0.5 },
+      drivingStyleEvaluation: { value: 0.5 },
+      drivingModesActivationPeriods: [{
+        value: {
+          drivingMode: 'regular',
+          period: 0.4,
+        },
+      }, {
+        value: {
+          drivingMode: 'eco',
+          period: 0.4,
+        },
+      }, {
+        value: {
+          drivingMode: 'sport',
+          period: 0.4,
+        },
+      }, {
+        value: {
+          drivingMode: 'sport_plus',
+          period: 0.4,
+        },
+      }, {
+        value: {
+          drivingMode: 'eco_plus',
+          period: 0.4,
+        },
+      }],
+      drivingModesEnergyConsumptions: [{
+        value: {
+          drivingMode: 'regular',
+          consumption: 33.2,
+        },
+      }, {
+        value: {
+          drivingMode: 'eco',
+          consumption: 33.2,
+        },
+      }, {
+        value: {
+          drivingMode: 'sport',
+          consumption: 33.2,
+        },
+      }, {
+        value: {
+          drivingMode: 'sport_plus',
+          consumption: 33.2,
+        },
+      }, {
+        value: {
+          drivingMode: 'eco_plus',
+          consumption: 33.2,
+        },
+      }],
+      lastTripEnergyConsumption: { value: 101.3 },
+      lastTripFuelConsumption: { value: 22.5 },
+      mileageAfterLastTrip: { value: 95632 },
+      lastTripElectricPortion: { value: 0.2 },
+      lastTripAverageEnergyRecuperation: { value: 5.68 },
+      lastTripBatteryRemaining: { value: 0.5 },
+      lastTripDate: { value: '2018-10-22T12:10:33.769Z' },
+      averageFuelConsumption: { value: 6.2 },
+      currentFuelConsumption: { value: 8.7 },
     }
    */
 
-  constructor(data: Uint8Array) {
+  constructor(data: Uint8Array, config: Object) {
     super();
 
     const properties = [
-      new Property(0x01, 'averageWeeklyDistance').setDecoder(bytesSum),
-      new Property(0x02, 'averageWeeklyDistanceLongRun').setDecoder(bytesSum),
-      new Property(0x03, 'accelerationEvaluation').setDecoder(progressDecoder),
-      new Property(0x04, 'drivingStyleEvaluation').setDecoder(progressDecoder),
-      new Property(
+      new PropertyDecoder(0x01, 'averageWeeklyDistance').setDecoder(bytesSum),
+      new PropertyDecoder(0x02, 'averageWeeklyDistanceLongRun').setDecoder(
+        bytesSum
+      ),
+      new PropertyDecoder(0x03, 'accelerationEvaluation').setDecoder(
+        progressDecoder
+      ),
+      new PropertyDecoder(0x04, 'drivingStyleEvaluation').setDecoder(
+        progressDecoder
+      ),
+      new PropertyDecoder(
         0x05,
         'drivingModesActivationPeriods'
       ).setOptionalSubProperties('drivingMode', [
-        new OptionalProperty(0x00, 'regular').setDecoder(
+        new OptionalPropertyDecoder(0x00, 'regular').setDecoder(
           this.activationPeriodDecoder
         ),
-        new OptionalProperty(0x01, 'eco').setDecoder(
+        new OptionalPropertyDecoder(0x01, 'eco').setDecoder(
           this.activationPeriodDecoder
         ),
-        new OptionalProperty(0x02, 'sport').setDecoder(
+        new OptionalPropertyDecoder(0x02, 'sport').setDecoder(
           this.activationPeriodDecoder
         ),
-        new OptionalProperty(0x03, 'sport_plus').setDecoder(
+        new OptionalPropertyDecoder(0x03, 'sport_plus').setDecoder(
           this.activationPeriodDecoder
         ),
-        new OptionalProperty(0x04, 'eco_plus').setDecoder(
+        new OptionalPropertyDecoder(0x04, 'eco_plus').setDecoder(
           this.activationPeriodDecoder
         ),
       ]),
-      new Property(
+      new PropertyDecoder(
         0x06,
         'drivingModesEnergyConsumptions'
       ).setOptionalSubProperties('drivingMode', [
-        new OptionalProperty(0x00, 'regular').setDecoder(
+        new OptionalPropertyDecoder(0x00, 'regular').setDecoder(
           this.energyConsumptionDecoder
         ),
-        new OptionalProperty(0x01, 'eco').setDecoder(
+        new OptionalPropertyDecoder(0x01, 'eco').setDecoder(
           this.energyConsumptionDecoder
         ),
-        new OptionalProperty(0x02, 'sport').setDecoder(
+        new OptionalPropertyDecoder(0x02, 'sport').setDecoder(
           this.energyConsumptionDecoder
         ),
-        new OptionalProperty(0x03, 'sport_plus').setDecoder(
+        new OptionalPropertyDecoder(0x03, 'sport_plus').setDecoder(
           this.energyConsumptionDecoder
         ),
-        new OptionalProperty(0x04, 'eco_plus').setDecoder(
+        new OptionalPropertyDecoder(0x04, 'eco_plus').setDecoder(
           this.energyConsumptionDecoder
         ),
       ]),
-      new Property(0x07, 'lastTripEnergyConsumption').setDecoder(
+      new PropertyDecoder(0x07, 'lastTripEnergyConsumption').setDecoder(
         getRoundedIeee754ToBase10(1)
       ),
-      new Property(0x08, 'lastTripFuelConsumption').setDecoder(
+      new PropertyDecoder(0x08, 'lastTripFuelConsumption').setDecoder(
         getRoundedIeee754ToBase10(1)
       ),
-      new Property(0x09, 'mileageAfterLastTrip').setDecoder(bytesSum),
-      new Property(0x0a, 'lastTripElectricPortion').setDecoder(progressDecoder),
-      new Property(0x0b, 'lastTripAverageEnergyRecuperation').setDecoder(
-        getRoundedIeee754ToBase10(2)
-      ),
-      new Property(0x0c, 'lastTripBatteryRemaining').setDecoder(
+      new PropertyDecoder(0x09, 'mileageAfterLastTrip').setDecoder(bytesSum),
+      new PropertyDecoder(0x0a, 'lastTripElectricPortion').setDecoder(
         progressDecoder
       ),
-      new Property(0x0d, 'lastTripDate').setDecoder(timestampDecoder),
-      new Property(0x0e, 'averageFuelConsumption').setDecoder(
+      new PropertyDecoder(0x0b, 'lastTripAverageEnergyRecuperation').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
-      new Property(0x0f, 'currentFuelConsumption').setDecoder(
+      new PropertyDecoder(0x0c, 'lastTripBatteryRemaining').setDecoder(
+        progressDecoder
+      ),
+      new PropertyDecoder(0x0d, 'lastTripDate').setDecoder(timestampDecoder),
+      new PropertyDecoder(0x0e, 'averageFuelConsumption').setDecoder(
+        getRoundedIeee754ToBase10(2)
+      ),
+      new PropertyDecoder(0x0f, 'currentFuelConsumption').setDecoder(
         getRoundedIeee754ToBase10(2)
       ),
     ];
 
-    this.parse(data, properties);
+    this.parse(data, properties, config);
   }
 
   activationPeriodDecoder(bytes: Array<Number>) {
