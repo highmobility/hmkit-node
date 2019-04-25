@@ -42,13 +42,6 @@ describe(`DoorLocksResponse`, () => {
           },
           timestamp: new Date('2019-03-20T10:42:28.656Z'),
         },
-        {
-          value: {
-            doorLocation: 'all',
-            lockState: 'unlocked',
-          },
-          timestamp: new Date('2019-03-20T10:42:28.656Z'),
-        },
       ],
       locks: [
         {
@@ -79,13 +72,6 @@ describe(`DoorLocksResponse`, () => {
           },
           timestamp: new Date('2019-03-20T10:42:28.656Z'),
         },
-        {
-          value: {
-            doorLocation: 'all',
-            lockState: 'unlocked',
-          },
-          timestamp: new Date('2019-03-20T10:42:28.656Z'),
-        },
       ],
       positions: [
         {
@@ -112,13 +98,6 @@ describe(`DoorLocksResponse`, () => {
         {
           value: {
             doorLocation: 'rear_left',
-            position: 'closed',
-          },
-          timestamp: new Date('2019-03-20T10:42:28.656Z'),
-        },
-        {
-          value: {
-            doorLocation: 'all',
             position: 'closed',
           },
           timestamp: new Date('2019-03-20T10:42:28.656Z'),

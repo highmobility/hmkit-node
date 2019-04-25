@@ -621,10 +621,6 @@ describe(`VehicleStatusResponse`, () => {
                 value: { doorLocation: 'rear_left', lockState: 'unlocked' },
                 timestamp: new Date('2019-03-20T13:12:30.720Z'),
               },
-              {
-                value: { doorLocation: 'all', lockState: 'unlocked' },
-                timestamp: new Date('2019-03-20T13:12:30.720Z'),
-              },
             ],
             locks: [
               {
@@ -643,10 +639,6 @@ describe(`VehicleStatusResponse`, () => {
                 value: { doorLocation: 'rear_left', lockState: 'unlocked' },
                 timestamp: new Date('2019-03-20T13:12:30.720Z'),
               },
-              {
-                value: { doorLocation: 'all', lockState: 'unlocked' },
-                timestamp: new Date('2019-03-20T13:12:30.720Z'),
-              },
             ],
             positions: [
               {
@@ -663,10 +655,6 @@ describe(`VehicleStatusResponse`, () => {
               },
               {
                 value: { doorLocation: 'rear_left', position: 'closed' },
-                timestamp: new Date('2019-03-20T13:12:30.720Z'),
-              },
-              {
-                value: { doorLocation: 'all', position: 'closed' },
                 timestamp: new Date('2019-03-20T13:12:30.720Z'),
               },
             ],

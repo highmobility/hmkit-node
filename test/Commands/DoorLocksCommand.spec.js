@@ -41,13 +41,6 @@ describe(`DoorLocksCommand`, () => {
           },
           timestamp: expect.any(Date),
         },
-        {
-          value: {
-            doorLocation: 'all',
-            lockState: expect.any(String),
-          },
-          timestamp: expect.any(Date),
-        },
       ],
       locks: [
         {
@@ -78,13 +71,6 @@ describe(`DoorLocksCommand`, () => {
           },
           timestamp: expect.any(Date),
         },
-        {
-          value: {
-            doorLocation: 'all',
-            lockState: expect.any(String),
-          },
-          timestamp: expect.any(Date),
-        },
       ],
       positions: [
         {
@@ -111,13 +97,6 @@ describe(`DoorLocksCommand`, () => {
         {
           value: {
             doorLocation: 'rear_left',
-            position: expect.any(String),
-          },
-          timestamp: expect.any(Date),
-        },
-        {
-          value: {
-            doorLocation: 'all',
             position: expect.any(String),
           },
           timestamp: expect.any(Date),
@@ -164,13 +143,6 @@ describe(`DoorLocksCommand`, () => {
             },
             timestamp: expect.any(Date),
           },
-          {
-            value: {
-              doorLocation: 'all',
-              lockState: 'unlocked',
-            },
-            timestamp: expect.any(Date),
-          },
         ]),
         locks: expect.objectContaining([
           {
@@ -197,13 +169,6 @@ describe(`DoorLocksCommand`, () => {
           {
             value: {
               doorLocation: 'rear_left',
-              lockState: 'unlocked',
-            },
-            timestamp: expect.any(Date),
-          },
-          {
-            value: {
-              doorLocation: 'all',
               lockState: 'unlocked',
             },
             timestamp: expect.any(Date),
@@ -251,13 +216,6 @@ describe(`DoorLocksCommand`, () => {
             },
             timestamp: expect.any(Date),
           },
-          {
-            value: {
-              doorLocation: 'all',
-              lockState: 'locked',
-            },
-            timestamp: expect.any(Date),
-          },
         ]),
         locks: expect.objectContaining([
           {
@@ -284,13 +242,6 @@ describe(`DoorLocksCommand`, () => {
           {
             value: {
               doorLocation: 'rear_left',
-              lockState: 'locked',
-            },
-            timestamp: expect.any(Date),
-          },
-          {
-            value: {
-              doorLocation: 'all',
               lockState: 'locked',
             },
             timestamp: expect.any(Date),
