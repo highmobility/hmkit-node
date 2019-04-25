@@ -11,7 +11,10 @@ describe(`ParkingBrakeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual({
-      parkingBrake: { value: expect.any(String) },
+      parkingBrake: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -23,7 +26,10 @@ describe(`ParkingBrakeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual({
-      parkingBrake: { value: 'active' },
+      parkingBrake: {
+        value: 'active',
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -35,7 +41,10 @@ describe(`ParkingBrakeCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
     expect(response.parse()).toEqual({
-      parkingBrake: { value: 'inactive' },
+      parkingBrake: {
+        value: 'inactive',
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

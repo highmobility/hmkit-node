@@ -11,24 +11,64 @@ describe(`HomeChargerCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual({
-      charging: { value: expect.any(String) },
-      authenticationMechanism: { value: expect.any(String) },
-      plugType: { value: expect.any(String) },
-      chargingPower: { value: expect.any(Number) },
-      solarCharging: { value: expect.any(String) },
-      hotspotEnabled: { value: expect.any(String) },
-      hotspotSSID: { value: expect.any(String) },
-      wiFiHotspotSecurity: { value: expect.any(String) },
-      wiFiHotspotPassword: { value: expect.any(String) },
-      authentication: { value: expect.any(String) },
-      chargeCurrentDC: { value: expect.any(Number) },
-      maximumChargeCurrent: { value: expect.any(Number) },
-      minimumChargeCurrent: { value: expect.any(Number) },
+      charging: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      authenticationMechanism: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      plugType: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      chargingPower: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      solarCharging: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      hotspotEnabled: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      hotspotSSID: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      wiFiHotspotSecurity: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      wiFiHotspotPassword: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      authentication: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      chargeCurrentDC: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      maximumChargeCurrent: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      minimumChargeCurrent: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
       coordinates: {
         value: {
           latitude: expect.any(Number),
           longitude: expect.any(Number),
         },
+        timestamp: expect.any(Date),
       },
       priceTariffs: [
         {
@@ -37,6 +77,7 @@ describe(`HomeChargerCommand`, () => {
             price: expect.any(Number),
             currency: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
@@ -44,6 +85,7 @@ describe(`HomeChargerCommand`, () => {
             price: expect.any(Number),
             currency: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
@@ -51,6 +93,7 @@ describe(`HomeChargerCommand`, () => {
             price: expect.any(Number),
             currency: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ],
     });
@@ -65,7 +108,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeCurrentDC: { value: 0.5 },
+        chargeCurrentDC: {
+          value: 0.5,
+          timestamp: expect.any(Date),
+        },
       })
     );
 
@@ -77,7 +123,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        chargeCurrentDC: { value: 0.6 },
+        chargeCurrentDC: {
+          value: 0.6,
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -108,6 +157,7 @@ describe(`HomeChargerCommand`, () => {
             currency: 'EUR',
             price: 2.5,
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
@@ -115,6 +165,7 @@ describe(`HomeChargerCommand`, () => {
             currency: 'USD',
             price: 1.3,
           },
+          timestamp: expect.any(Date),
         },
       ]),
     });
@@ -129,7 +180,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        solarCharging: { value: 'activated' },
+        solarCharging: {
+          value: 'activated',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -143,7 +197,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        solarCharging: { value: 'deactivated' },
+        solarCharging: {
+          value: 'deactivated',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -157,7 +214,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        hotspotEnabled: { value: 'enabled' },
+        hotspotEnabled: {
+          value: 'enabled',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -171,7 +231,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        hotspotEnabled: { value: 'disabled' },
+        hotspotEnabled: {
+          value: 'disabled',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -185,7 +248,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        authentication: { value: 'authenticated' },
+        authentication: {
+          value: 'authenticated',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -199,7 +265,10 @@ describe(`HomeChargerCommand`, () => {
     expect(response.parse()).toBeInstanceOf(HomeChargerResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        authentication: { value: 'unauthenticated' },
+        authentication: {
+          value: 'unauthenticated',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });

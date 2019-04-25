@@ -18,12 +18,14 @@ describe(`TachographCommand`, () => {
             driverNumber: 1,
             workingState: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             driverNumber: 2,
             workingState: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ],
       driverTimeStates: [
@@ -32,12 +34,14 @@ describe(`TachographCommand`, () => {
             driverNumber: 1,
             timeState: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             driverNumber: 2,
             timeState: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ],
       driverCards: [
@@ -46,18 +50,32 @@ describe(`TachographCommand`, () => {
             driverNumber: 1,
             card: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             driverNumber: 2,
             card: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ],
-      vehicleMotion: { value: expect.any(String) },
-      vehicleOverspeed: { value: expect.any(String) },
-      vehicleDirection: { value: expect.any(String) },
-      vehicleSpeed: { value: expect.any(Number) },
+      vehicleMotion: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      vehicleOverspeed: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      vehicleDirection: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      vehicleSpeed: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

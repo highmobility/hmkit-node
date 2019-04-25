@@ -6,14 +6,21 @@ describe(`TrunkAccessResponse`, () => {
   it(`should return TrunkAccessResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0021010100040100010102000401000100a2000b01000800000168e73657c7'
+        '00210101000d0100010102000601699ab1f8ad02000d0100010002000601699ab1f8ad'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
+
     expect(response.parse()).toEqual({
-      trunkLock: { value: 'locked' },
-      trunkPosition: { value: 'closed' },
+      trunkLock: {
+        value: 'locked',
+        timestamp: new Date('2019-03-20T10:42:28.653Z'),
+      },
+      trunkPosition: {
+        value: 'closed',
+        timestamp: new Date('2019-03-20T10:42:28.653Z'),
+      },
     });
   });
 });

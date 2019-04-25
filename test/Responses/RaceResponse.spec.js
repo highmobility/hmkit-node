@@ -6,7 +6,7 @@ describe(`RaceResponse`, () => {
   it(`should return RaceResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '005701010008010005000000000001000801000501000000000100080100050200000000010008010005030000000002000b010008000000000000000003000b010008000000000000000004000b010008000000000000000005000401000100060007010004000000000700070100040000000008000401000100090004010001000a000501000200000a000501000201000b0004010001000c0004010001000d000b01000800000000000000000e0004010001000f000401000100100004010001001100040100010012000401000100a2000b01000800000168e7325da0'
+        '005701010011010005000000000002000601699ab1f8ae010011010005010000000002000601699ab1f8ae010011010005020000000002000601699ab1f8ae010011010005030000000002000601699ab1f8ae020014010008000000000000000002000601699ab1f8ae030014010008000000000000000002000601699ab1f8ae040014010008000000000000000002000601699ab1f8ae05000d0100010002000601699ab1f8ae0600100100040000000002000601699ab1f8ae0700100100040000000002000601699ab1f8ae08000d0100010002000601699ab1f8ae09000d0100010002000601699ab1f8ae0a000e010002000002000601699ab1f8ae0a000e010002010002000601699ab1f8ae0b000d0100010002000601699ab1f8ae0c000d0100010002000601699ab1f8ae0d0014010008000000000000000002000601699ab1f8ae0e000d0100010002000601699ab1f8ae0f000d0100010002000601699ab1f8ae10000d0100010002000601699ab1f8ae11000d0100010002000601699ab1f8ae12000d0100010002000601699ab1f8ae'
       )
     );
 
@@ -14,31 +14,115 @@ describe(`RaceResponse`, () => {
 
     expect(response.parse()).toEqual({
       accelerations: [
-        { value: { type: 'longitudinal_acceleration', gForce: 0 } },
-        { value: { type: 'lateral_acceleration', gForce: 0 } },
-        { value: { type: 'front_lateral_acceleration', gForce: 0 } },
-        { value: { type: 'rear_lateral_acceleration', gForce: 0 } },
+        {
+          value: {
+            type: 'longitudinal_acceleration',
+            gForce: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.654Z'),
+        },
+        {
+          value: {
+            type: 'lateral_acceleration',
+            gForce: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.654Z'),
+        },
+        {
+          value: {
+            type: 'front_lateral_acceleration',
+            gForce: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.654Z'),
+        },
+        {
+          value: {
+            type: 'rear_lateral_acceleration',
+            gForce: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.654Z'),
+        },
       ],
-      understeering: { value: 0 },
-      oversteering: { value: 0 },
-      gasPedalPosition: { value: 0 },
-      steeringAngle: { value: 0 },
-      brakePressure: { value: 0 },
-      yawRate: { value: 0 },
-      rearSuspensionSteering: { value: 0 },
-      electronicStabilityProgram: { value: 'inactive' },
+      understeering: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      oversteering: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      gasPedalPosition: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      steeringAngle: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      brakePressure: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      yawRate: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      rearSuspensionSteering: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      electronicStabilityProgram: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
       brakeTorqueVectorings: [
-        { value: { axle: 'front_axle', vectoring: 'inactive' } },
-        { value: { axle: 'rear_axle', vectoring: 'inactive' } },
+        {
+          value: {
+            axle: 'front_axle',
+            vectoring: 'inactive',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.654Z'),
+        },
+        {
+          value: {
+            axle: 'rear_axle',
+            vectoring: 'inactive',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.654Z'),
+        },
       ],
-      gearMode: { value: 'manual' },
-      selectedGear: { value: 0 },
-      brakePedalPosition: { value: 0 },
-      brakePedalSwitch: { value: 'inactive' },
-      clutchPedalSwitch: { value: 'inactive' },
-      acceleratorPedalIdleSwitch: { value: 'inactive' },
-      acceleratorPedalKickdownSwitch: { value: 'inactive' },
-      vehicleMoving: { value: 'not_moving' },
+      gearMode: {
+        value: 'manual',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      selectedGear: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      brakePedalPosition: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      brakePedalSwitch: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      clutchPedalSwitch: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      acceleratorPedalIdleSwitch: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      acceleratorPedalKickdownSwitch: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
+      vehicleMoving: {
+        value: 'not_moving',
+        timestamp: new Date('2019-03-20T10:42:28.654Z'),
+      },
     });
   });
 });

@@ -11,24 +11,87 @@ describe(`LightsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(LightsResponse);
     expect(response.parse()).toEqual({
-      frontExteriorLight: { value: expect.any(String) },
-      rearExteriorLight: { value: expect.any(String) },
-      ambientLight: { value: expect.any(String) },
-      reverseLight: { value: expect.any(String) },
-      emergencyBrakeLight: { value: expect.any(String) },
+      frontExteriorLight: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      rearExteriorLight: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      ambientLight: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      reverseLight: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      emergencyBrakeLight: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
       fogLights: [
-        { value: { location: 'front', state: expect.any(String) } },
-        { value: { location: 'rear', state: expect.any(String) } },
+        {
+          value: {
+            location: 'front',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            location: 'rear',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
       ],
       readingLamps: [
-        { value: { location: 'front_left', state: expect.any(String) } },
-        { value: { location: 'front_right', state: expect.any(String) } },
-        { value: { location: 'rear_right', state: expect.any(String) } },
-        { value: { location: 'rear_left', state: expect.any(String) } },
+        {
+          value: {
+            location: 'front_left',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            location: 'front_right',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            location: 'rear_right',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            location: 'rear_left',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
       ],
       interiorLights: [
-        { value: { location: 'front', state: expect.any(String) } },
-        { value: { location: 'rear', state: expect.any(String) } },
+        {
+          value: {
+            location: 'front',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
+        {
+          value: {
+            location: 'rear',
+            state: expect.any(String),
+          },
+          timestamp: expect.any(Date),
+        },
       ],
     });
   });
@@ -60,24 +123,87 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(LightsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        frontExteriorLight: { value: 'active_with_full_beam' },
-        rearExteriorLight: { value: 'inactive' },
-        ambientLight: { value: '#254f4c' },
-        reverseLight: { value: 'inactive' },
-        emergencyBrakeLight: { value: 'inactive' },
+        frontExteriorLight: {
+          value: 'active_with_full_beam',
+          timestamp: expect.any(Date),
+        },
+        rearExteriorLight: {
+          value: 'inactive',
+          timestamp: expect.any(Date),
+        },
+        ambientLight: {
+          value: '#254f4c',
+          timestamp: expect.any(Date),
+        },
+        reverseLight: {
+          value: 'inactive',
+          timestamp: expect.any(Date),
+        },
+        emergencyBrakeLight: {
+          value: 'inactive',
+          timestamp: expect.any(Date),
+        },
         fogLights: [
-          { value: { location: 'front', state: 'inactive' } },
-          { value: { location: 'rear', state: 'inactive' } },
+          {
+            value: {
+              location: 'front',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
         ],
         readingLamps: [
-          { value: { location: 'front_left', state: 'inactive' } },
-          { value: { location: 'front_right', state: 'inactive' } },
-          { value: { location: 'rear_right', state: 'inactive' } },
-          { value: { location: 'rear_left', state: 'inactive' } },
+          {
+            value: {
+              location: 'front_left',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'front_right',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_right',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_left',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
         ],
         interiorLights: [
-          { value: { location: 'front', state: 'inactive' } },
-          { value: { location: 'rear', state: 'inactive' } },
+          {
+            value: {
+              location: 'front',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: 'inactive',
+            },
+            timestamp: expect.any(Date),
+          },
         ],
       })
     );
@@ -88,22 +214,79 @@ describe(`LightsCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(LightsResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        frontExteriorLight: { value: 'inactive' },
-        rearExteriorLight: { value: 'inactive' },
-        ambientLight: { value: expect.any(String) },
+        frontExteriorLight: {
+          value: 'inactive',
+          timestamp: expect.any(Date),
+        },
+        rearExteriorLight: {
+          value: 'inactive',
+          timestamp: expect.any(Date),
+        },
+        ambientLight: {
+          value: expect.any(String),
+          timestamp: expect.any(Date),
+        },
         fogLights: [
-          { value: { location: 'front', state: expect.any(String) } },
-          { value: { location: 'rear', state: expect.any(String) } },
+          {
+            value: {
+              location: 'front',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
         ],
         readingLamps: [
-          { value: { location: 'front_left', state: expect.any(String) } },
-          { value: { location: 'front_right', state: expect.any(String) } },
-          { value: { location: 'rear_right', state: expect.any(String) } },
-          { value: { location: 'rear_left', state: expect.any(String) } },
+          {
+            value: {
+              location: 'front_left',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'front_right',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_right',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_left',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
         ],
         interiorLights: [
-          { value: { location: 'front', state: expect.any(String) } },
-          { value: { location: 'rear', state: expect.any(String) } },
+          {
+            value: {
+              location: 'front',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
         ],
       })
     );
@@ -121,22 +304,79 @@ describe(`LightsCommand`, () => {
     expect(response3.parse()).toBeInstanceOf(LightsResponse);
     expect(response3.parse()).toEqual(
       expect.objectContaining({
-        frontExteriorLight: { value: expect.any(String) },
-        rearExteriorLight: { value: expect.any(String) },
-        ambientLight: { value: '#ffffff' },
+        frontExteriorLight: {
+          value: expect.any(String),
+          timestamp: expect.any(Date),
+        },
+        rearExteriorLight: {
+          value: expect.any(String),
+          timestamp: expect.any(Date),
+        },
+        ambientLight: {
+          value: '#ffffff',
+          timestamp: expect.any(Date),
+        },
         fogLights: [
-          { value: { location: 'front', state: expect.any(String) } },
-          { value: { location: 'rear', state: expect.any(String) } },
+          {
+            value: {
+              location: 'front',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
         ],
         readingLamps: [
-          { value: { location: 'front_left', state: expect.any(String) } },
-          { value: { location: 'front_right', state: expect.any(String) } },
-          { value: { location: 'rear_right', state: expect.any(String) } },
-          { value: { location: 'rear_left', state: expect.any(String) } },
+          {
+            value: {
+              location: 'front_left',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'front_right',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_right',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_left',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
         ],
         interiorLights: [
-          { value: { location: 'front', state: expect.any(String) } },
-          { value: { location: 'rear', state: expect.any(String) } },
+          {
+            value: {
+              location: 'front',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
         ],
       })
     );
@@ -158,7 +398,10 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ...oldData,
-        frontExteriorLight: { value: 'automatic' },
+        frontExteriorLight: {
+          value: 'automatic',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -179,7 +422,10 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ...oldData,
-        rearExteriorLight: { value: 'active' },
+        rearExteriorLight: {
+          value: 'active',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -200,7 +446,10 @@ describe(`LightsCommand`, () => {
     expect(response.parse()).toEqual(
       expect.objectContaining({
         ...oldData,
-        ambientLight: { value: '#ff0000' },
+        ambientLight: {
+          value: '#ff0000',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -225,8 +474,20 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         ...oldData,
         fogLights: [
-          { value: { location: 'front', state: 'active' } },
-          { value: { location: 'rear', state: 'active' } },
+          {
+            value: {
+              location: 'front',
+              state: 'active',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: 'active',
+            },
+            timestamp: expect.any(Date),
+          },
         ],
       })
     );
@@ -259,10 +520,34 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         ...oldData,
         readingLamps: [
-          { value: { location: 'front_left', state: expect.any(String) } },
-          { value: { location: 'front_right', state: expect.any(String) } },
-          { value: { location: 'rear_right', state: expect.any(String) } },
-          { value: { location: 'rear_left', state: 'active' } },
+          {
+            value: {
+              location: 'front_left',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'front_right',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_right',
+              state: expect.any(String),
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear_left',
+              state: 'active',
+            },
+            timestamp: expect.any(Date),
+          },
         ],
       })
     );
@@ -294,8 +579,20 @@ describe(`LightsCommand`, () => {
       expect.objectContaining({
         ...oldData,
         interiorLights: [
-          { value: { location: 'front', state: 'active' } },
-          { value: { location: 'rear', state: 'active' } },
+          {
+            value: {
+              location: 'front',
+              state: 'active',
+            },
+            timestamp: expect.any(Date),
+          },
+          {
+            value: {
+              location: 'rear',
+              state: 'active',
+            },
+            timestamp: expect.any(Date),
+          },
         ],
       })
     );

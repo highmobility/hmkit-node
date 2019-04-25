@@ -6,15 +6,21 @@ describe(`PowerTakeOffResponse`, () => {
   it(`should return PowerTakeOffResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '0065010100040100010002000401000100a2000b01000800000168e7315a68'
+        '00650101000d0100010002000601699ab1f8af02000d0100010002000601699ab1f8af'
       )
     );
 
     expect(response.parse()).toBeInstanceOf(PowerTakeOffResponse);
 
     expect(response.parse()).toEqual({
-      powerTakeoff: { value: 'inactive' },
-      powerTakeoffEngaged: { value: 'not_engaged' },
+      powerTakeoff: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
+      powerTakeoffEngaged: {
+        value: 'not_engaged',
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
     });
   });
 });

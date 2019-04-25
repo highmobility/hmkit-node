@@ -11,7 +11,10 @@ describe(`HoodCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HoodResponse);
     expect(response.parse()).toEqual({
-      position: { value: expect.any(String) },
+      position: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

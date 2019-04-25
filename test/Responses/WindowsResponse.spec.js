@@ -6,7 +6,7 @@ describe(`WindowsResponse`, () => {
   it(`should return WindowsResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        '00450102000c01000900000000000000000002000c01000901000000000000000002000c01000902000000000000000002000c01000903000000000000000002000c01000904000000000000000003000501000200000300050100020100030005010002020003000501000203000300050100020400a2000b01000800000168e741f36a'
+        '00450102001501000900000000000000000002000601699ab1f8b002001501000901000000000000000002000601699ab1f8b002001501000902000000000000000002000601699ab1f8b002001501000903000000000000000002000601699ab1f8b002001501000904000000000000000002000601699ab1f8b003000e010002000002000601699ab1f8b003000e010002010002000601699ab1f8b003000e010002020002000601699ab1f8b003000e010002030002000601699ab1f8b003000e010002040002000601699ab1f8b0'
       )
     );
 
@@ -14,18 +14,78 @@ describe(`WindowsResponse`, () => {
 
     expect(response.parse()).toEqual({
       windowsOpenPercentages: [
-        { value: { windowLocation: 'front_left', openPercentage: 0 } },
-        { value: { windowLocation: 'front_right', openPercentage: 0 } },
-        { value: { windowLocation: 'rear_right', openPercentage: 0 } },
-        { value: { windowLocation: 'rear_left', openPercentage: 0 } },
-        { value: { windowLocation: 'hatch', openPercentage: 0 } },
+        {
+          value: {
+            windowLocation: 'front_left',
+            openPercentage: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'front_right',
+            openPercentage: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'rear_right',
+            openPercentage: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'rear_left',
+            openPercentage: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'hatch',
+            openPercentage: 0,
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
       ],
       windowsPositions: [
-        { value: { windowLocation: 'front_left', windowPosition: 'closed' } },
-        { value: { windowLocation: 'front_right', windowPosition: 'closed' } },
-        { value: { windowLocation: 'rear_right', windowPosition: 'closed' } },
-        { value: { windowLocation: 'rear_left', windowPosition: 'closed' } },
-        { value: { windowLocation: 'hatch', windowPosition: 'closed' } },
+        {
+          value: {
+            windowLocation: 'front_left',
+            windowPosition: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'front_right',
+            windowPosition: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'rear_right',
+            windowPosition: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'rear_left',
+            windowPosition: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
+        {
+          value: {
+            windowLocation: 'hatch',
+            windowPosition: 'closed',
+          },
+          timestamp: new Date('2019-03-20T10:42:28.656Z'),
+        },
       ],
     });
   });

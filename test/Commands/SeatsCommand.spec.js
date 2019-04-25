@@ -18,24 +18,28 @@ describe(`SeatsCommand`, () => {
             seatPosition: 'front_left',
             personDetected: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             seatPosition: 'front_right',
             personDetected: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             seatPosition: 'rear_right',
             personDetected: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             seatPosition: 'rear_left',
             personDetected: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ]),
       seatbeltsFastened: expect.objectContaining([
@@ -44,24 +48,28 @@ describe(`SeatsCommand`, () => {
             seatPosition: 'front_left',
             seatbeltFastened: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             seatPosition: 'front_right',
             seatbeltFastened: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             seatPosition: 'rear_right',
             seatbeltFastened: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             seatPosition: 'rear_left',
             seatbeltFastened: expect.any(String),
           },
+          timestamp: expect.any(Date),
         },
       ]),
     });
