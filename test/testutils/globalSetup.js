@@ -7,7 +7,12 @@ module.exports = async () => {
   const { TEST_EMAIL, TEST_PASSWORD } = process.env;
 
   if (TEST_EMAIL && TEST_PASSWORD) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: [
+        '--no-sandbox',
+        '--disable-dev-shm-usage',
+      ]
+    });
     const page = await browser.newPage();
 
     // Log in

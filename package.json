@@ -12,6 +12,7 @@
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
     "test:setup": "npm run build:commonjs && node --napi-modules test/testutils/initialSetup.js",
+    "test:bamboo": "npm run test:setup && JEST_FILE=test/.results/jest.json npm test",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
@@ -35,7 +36,8 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
     },
-    "testRegex": "(/test/.*\\.spec.js)$"
+    "testRegex": "(/test/.*\\.spec.js)$",
+    "testResultsProcessor": "jest-bamboo-formatter"
   },
   "dependencies": {
     "atob": "^2.0.3",
@@ -47,6 +49,7 @@
     "cross-env": "^5.0.5",
     "eslint-plugin-react": "^7.7.0",
     "ieee754": "^1.1.8",
+    "jest-bamboo-formatter": "^1.0.1",
     "joi": "^14.0.2",
     "lodash": "^4.17.11",
     "lodash-fp": "^0.10.4",
