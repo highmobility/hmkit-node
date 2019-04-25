@@ -30,6 +30,8 @@
     "setupFiles": [
       "<rootDir>/test/testutils/setupTests.js"
     ],
+    "globalSetup": "<rootDir>/test/testutils/globalSetup.js",
+    "globalTeardown": "<rootDir>/test/testutils/globalTeardown.js",
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
     },
@@ -75,6 +77,7 @@
     "json-loader": "^0.5.7",
     "node-loader": "^0.6.0",
     "prettier": "^1.5.3",
+    "puppeteer": "^1.14.0",
     "yamljs": "^0.3.0"
   }
 }
