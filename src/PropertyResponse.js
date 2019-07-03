@@ -59,7 +59,6 @@ export default class PropertyResponse {
   parseProperties(data: Uint8Array, properties: Array<PropertyDecoder>) {
     const parsedProperties = [];
     const propertiesData = [...data.slice(3, data.length)];
-
     if (propertiesData.length > 0) {
       let counter = 0;
 

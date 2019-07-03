@@ -53,7 +53,7 @@ export default class HistoricalResponse extends PropertyResponse {
         withUniversalProperties: true,
       }).parse();
 
-      const date = response.date.data;
+      const date = response.date.value;
       delete response.date;
 
       return {
