@@ -5,10 +5,16 @@ import { hexToUint8Array } from '../../src/encoding';
 describe(`ParkingBrakeResponse`, () => {
   it(`should return ParkingBrakeResponse`, () => {
     const response = new Response(
-      hexToUint8Array('00580101000401000100a2000b01000800000168e72ff2c5')
+      hexToUint8Array('00580101000d0100010002000601699ab1f8af')
     );
 
     expect(response.parse()).toBeInstanceOf(ParkingBrakeResponse);
-    expect(response.parse()).toEqual({ parkingBrake: { value: 'inactive' } });
+
+    expect(response.parse()).toEqual({
+      parkingBrake: {
+        value: 'inactive',
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
+    });
   });
 });

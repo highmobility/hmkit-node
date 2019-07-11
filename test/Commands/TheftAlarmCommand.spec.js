@@ -20,7 +20,10 @@ describe(`TheftAlarmCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
     expect(response.parse()).toEqual({
-      theftAlarm: { value: 'not_armed' },
+      theftAlarm: {
+        value: 'not_armed',
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -32,7 +35,10 @@ describe(`TheftAlarmCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
     expect(response.parse()).toEqual({
-      theftAlarm: { value: 'armed' },
+      theftAlarm: {
+        value: 'armed',
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -44,7 +50,10 @@ describe(`TheftAlarmCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(TheftAlarmResponse);
     expect(response.parse()).toEqual({
-      theftAlarm: { value: 'triggered' },
+      theftAlarm: {
+        value: 'triggered',
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

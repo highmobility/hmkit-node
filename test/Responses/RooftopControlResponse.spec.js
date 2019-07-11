@@ -6,17 +6,33 @@ describe(`RooftopControlResponse`, () => {
   it(`should return RooftopControlResponse`, () => {
     const response = new Response(
       hexToUint8Array(
-        `00250101000b010008000000000000000002000b0100080000000000000000030004010001000400040100010005000401000100a2000b01000800000168e732e1c1`
+        `002501010014010008000000000000000002000601699ab1f8af020014010008000000000000000002000601699ab1f8af03000d0100010002000601699ab1f8af04000d0100010002000601699ab1f8af05000d0100010002000601699ab1f8af`
       )
     );
 
     expect(response.parse()).toBeInstanceOf(RooftopControlResponse);
+
     expect(response.parse()).toEqual({
-      dimming: { value: 0 },
-      position: { value: 0 },
-      convertibleRoof: { value: 'closed' },
-      sunroofTilt: { value: 'closed' },
-      sunroofState: { value: 'closed' },
+      dimming: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
+      position: {
+        value: 0,
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
+      convertibleRoof: {
+        value: 'closed',
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
+      sunroofTilt: {
+        value: 'closed',
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
+      sunroofState: {
+        value: 'closed',
+        timestamp: new Date('2019-03-20T10:42:28.655Z'),
+      },
     });
   });
 });

@@ -25,18 +25,39 @@ describe(`MultiCommand`, () => {
         {
           capabilityIdentifier: 'engine',
           state: {
-            ignition: { value: 'on' },
-            accessoriesIgnition: { value: expect.any(String) },
+            ignition: {
+              value: 'on',
+              timestamp: expect.any(Date),
+            },
+            accessoriesIgnition: {
+              value: expect.any(String),
+              timestamp: expect.any(Date),
+            },
           },
         },
         {
           capabilityIdentifier: 'rooftop_control',
           state: {
-            dimming: { value: 22 },
-            position: { value: 33 },
-            convertibleRoof: { value: 'closed_secured' },
-            sunroofTilt: { value: 'tilted' },
-            sunroofState: { value: 'open' },
+            dimming: {
+              value: 22,
+              timestamp: expect.any(Date),
+            },
+            position: {
+              value: 33,
+              timestamp: expect.any(Date),
+            },
+            convertibleRoof: {
+              value: 'closed_secured',
+              timestamp: expect.any(Date),
+            },
+            sunroofTilt: {
+              value: 'tilted',
+              timestamp: expect.any(Date),
+            },
+            sunroofState: {
+              value: 'open',
+              timestamp: expect.any(Date),
+            },
           },
         },
       ],

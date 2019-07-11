@@ -12,7 +12,10 @@ describe(`StartStopCommand`, () => {
     expect(response.parse()).toBeInstanceOf(StartStopResponse);
 
     expect(response.parse()).toEqual({
-      startStop: { value: expect.any(String) },
+      startStop: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -23,7 +26,12 @@ describe(`StartStopCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(StartStopResponse);
-    expect(response.parse()).toEqual({ startStop: { value: 'active' } });
+    expect(response.parse()).toEqual({
+      startStop: {
+        value: 'active',
+        timestamp: expect.any(Date),
+      },
+    });
   });
 
   it(`should deactivate start-stop`, async () => {
@@ -33,6 +41,11 @@ describe(`StartStopCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(StartStopResponse);
-    expect(response.parse()).toEqual({ startStop: { value: 'inactive' } });
+    expect(response.parse()).toEqual({
+      startStop: {
+        value: 'inactive',
+        timestamp: expect.any(Date),
+      },
+    });
   });
 });

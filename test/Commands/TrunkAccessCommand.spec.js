@@ -11,8 +11,14 @@ describe(`TrunkAccessCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual({
-      trunkLock: { value: expect.any(String) },
-      trunkPosition: { value: expect.any(String) },
+      trunkLock: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      trunkPosition: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -25,8 +31,14 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { value: 'unlocked' },
-        trunkPosition: { value: expect.any(String) },
+        trunkLock: {
+          value: 'unlocked',
+          timestamp: expect.any(Date),
+        },
+        trunkPosition: {
+          value: expect.any(String),
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -40,8 +52,14 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { value: 'unlocked' },
-        trunkPosition: { value: 'open' },
+        trunkLock: {
+          value: 'unlocked',
+          timestamp: expect.any(Date),
+        },
+        trunkPosition: {
+          value: 'open',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -55,8 +73,14 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { value: expect.any(String) },
-        trunkPosition: { value: 'closed' },
+        trunkLock: {
+          value: expect.any(String),
+          timestamp: expect.any(Date),
+        },
+        trunkPosition: {
+          value: 'closed',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -70,8 +94,14 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { value: 'locked' },
-        trunkPosition: { value: expect.any(String) },
+        trunkLock: {
+          value: 'locked',
+          timestamp: expect.any(Date),
+        },
+        trunkPosition: {
+          value: expect.any(String),
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -85,8 +115,14 @@ describe(`TrunkAccessCommand`, () => {
     expect(response.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { value: 'locked' },
-        trunkPosition: { value: 'open' },
+        trunkLock: {
+          value: 'locked',
+          timestamp: expect.any(Date),
+        },
+        trunkPosition: {
+          value: 'open',
+          timestamp: expect.any(Date),
+        },
       })
     );
 
@@ -98,8 +134,14 @@ describe(`TrunkAccessCommand`, () => {
     expect(response2.parse()).toBeInstanceOf(TrunkAccessResponse);
     expect(response2.parse()).toEqual(
       expect.objectContaining({
-        trunkLock: { value: 'unlocked' },
-        trunkPosition: { value: 'closed' },
+        trunkLock: {
+          value: 'unlocked',
+          timestamp: expect.any(Date),
+        },
+        trunkPosition: {
+          value: 'closed',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });

@@ -10,7 +10,10 @@ describe(`HonkHornFlashLightsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
     expect(response.parse()).toEqual({
-      flashers: { value: expect.any(String) },
+      flashers: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -40,7 +43,10 @@ describe(`HonkHornFlashLightsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
     expect(response.parse()).toEqual({
-      flashers: { value: 'emergency_flasher_active' },
+      flashers: {
+        value: 'emergency_flasher_active',
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -51,6 +57,11 @@ describe(`HonkHornFlashLightsCommand`, () => {
     );
 
     expect(response.parse()).toBeInstanceOf(HonkHornFlashLightsResponse);
-    expect(response.parse()).toEqual({ flashers: { value: 'inactive' } });
+    expect(response.parse()).toEqual({
+      flashers: {
+        value: 'inactive',
+        timestamp: expect.any(Date),
+      },
+    });
   });
 });

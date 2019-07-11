@@ -11,8 +11,14 @@ describe(`LightConditionsCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(LightConditionsResponse);
     expect(response.parse()).toEqual({
-      outsideLight: { value: expect.any(Number) },
-      insideLight: { value: expect.any(Number) },
+      outsideLight: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      insideLight: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

@@ -13,20 +13,22 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
 
     expect(response.parse()).toEqual({
-      drivingMode: { value: expect.any(String) },
-      sportChrono: { value: expect.any(String) },
+      drivingMode: { value: expect.any(String), timestamp: expect.any(Date) },
+      sportChrono: { value: expect.any(String), timestamp: expect.any(Date) },
       currentSpringRates: [
         {
           value: {
             axle: 'front_axle',
             springRate: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             axle: 'rear_axle',
             springRate: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
       ],
       maximumSpringRates: [
@@ -35,12 +37,14 @@ describe(`ChassisSettingsCommand`, () => {
             axle: 'front_axle',
             springRate: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             axle: 'rear_axle',
             springRate: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
       ],
       minimumSpringRates: [
@@ -49,17 +53,28 @@ describe(`ChassisSettingsCommand`, () => {
             axle: 'front_axle',
             springRate: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             axle: 'rear_axle',
             springRate: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
       ],
-      currentChassisPosition: { value: expect.any(Number) },
-      maximumChassisPosition: { value: expect.any(Number) },
-      minimumChassisPosition: { value: expect.any(Number) },
+      currentChassisPosition: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      maximumChassisPosition: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      minimumChassisPosition: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -72,7 +87,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        drivingMode: { value: 'sport' },
+        drivingMode: { value: 'sport', timestamp: expect.any(Date) },
       })
     );
   });
@@ -86,7 +101,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        sportChrono: { value: 'active' },
+        sportChrono: { value: 'active', timestamp: expect.any(Date) },
       })
     );
   });
@@ -100,7 +115,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        sportChrono: { value: 'inactive' },
+        sportChrono: { value: 'inactive', timestamp: expect.any(Date) },
       })
     );
   });
@@ -114,7 +129,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        sportChrono: { value: 'inactive' },
+        sportChrono: { value: 'inactive', timestamp: expect.any(Date) },
       })
     );
   });
@@ -134,6 +149,7 @@ describe(`ChassisSettingsCommand`, () => {
               axle: 'front_axle',
               springRate: -26,
             },
+            timestamp: expect.any(Date),
           },
         ]),
       })
@@ -155,6 +171,7 @@ describe(`ChassisSettingsCommand`, () => {
               axle: 'rear_axle',
               springRate: 27,
             },
+            timestamp: expect.any(Date),
           },
         ]),
       })
@@ -170,7 +187,7 @@ describe(`ChassisSettingsCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChassisSettingsResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        currentChassisPosition: { value: -29 },
+        currentChassisPosition: { value: -29, timestamp: expect.any(Date) },
       })
     );
   });

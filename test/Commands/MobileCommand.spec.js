@@ -11,7 +11,10 @@ describe(`MobileCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(MobileResponse);
     expect(response.parse()).toEqual({
-      connection: { value: expect.any(String) },
+      connection: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 });

@@ -12,20 +12,62 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
 
     expect(response.parse()).toEqual({
-      estimatedRange: { value: expect.any(Number) },
-      batteryLevel: { value: expect.any(Number) },
-      batteryCurrentAC: { value: expect.any(Number) },
-      batteryCurrentDC: { value: expect.any(Number) },
-      chargerVoltageAC: { value: expect.any(Number) },
-      chargerVoltageDC: { value: expect.any(Number) },
-      chargeLimit: { value: expect.any(Number) },
-      timeToCompleteCharge: { value: expect.any(Number) },
-      chargingRateKW: { value: expect.any(Number) },
-      chargePortState: { value: expect.any(String) },
-      chargeMode: { value: expect.any(String) },
-      maxChargingCurrent: { value: expect.any(Number) },
-      plugType: { value: expect.any(String) },
-      chargingWindowChosen: { value: expect.any(String) },
+      estimatedRange: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      batteryLevel: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      batteryCurrentAC: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      batteryCurrentDC: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      chargerVoltageAC: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      chargerVoltageDC: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      chargeLimit: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      timeToCompleteCharge: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      chargingRateKW: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      chargePortState: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      chargeMode: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      maxChargingCurrent: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
+      plugType: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      chargingWindowChosen: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
       departureTimes: [
         {
           value: {
@@ -33,6 +75,7 @@ describe(`ChargingCommand`, () => {
             hour: expect.any(Number),
             minute: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
       ],
       reductionTimes: [
@@ -42,31 +85,44 @@ describe(`ChargingCommand`, () => {
             hour: expect.any(Number),
             minute: expect.any(Number),
           },
+          timestamp: expect.any(Date),
         },
       ],
-      batteryTemperature: { value: expect.any(Number) },
+      batteryTemperature: {
+        value: expect.any(Number),
+        timestamp: expect.any(Date),
+      },
       timers: [
         {
           value: {
             timerType: 'preferred_start_time',
             time: expect.any(Date),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             timerType: 'preferred_end_time',
             time: expect.any(Date),
           },
+          timestamp: expect.any(Date),
         },
         {
           value: {
             timerType: 'departure_time',
             time: expect.any(Date),
           },
+          timestamp: expect.any(Date),
         },
       ],
-      pluggedIn: { value: expect.any(String) },
-      activeState: { value: expect.any(String) },
+      pluggedIn: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
+      activeState: {
+        value: expect.any(String),
+        timestamp: expect.any(Date),
+      },
     });
   });
 
@@ -79,7 +135,10 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        activeState: { value: 'charging' },
+        activeState: {
+          value: 'charging',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -93,7 +152,10 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        activeState: { value: 'not_charging' },
+        activeState: {
+          value: 'not_charging',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -107,7 +169,10 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeLimit: { value: 0.5 },
+        chargeLimit: {
+          value: 0.5,
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -121,7 +186,10 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargePortState: { value: 'open' },
+        chargePortState: {
+          value: 'open',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -135,7 +203,10 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargePortState: { value: 'closed' },
+        chargePortState: {
+          value: 'closed',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -149,7 +220,10 @@ describe(`ChargingCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ChargingResponse);
     expect(response.parse()).toEqual(
       expect.objectContaining({
-        chargeMode: { value: 'timer_based' },
+        chargeMode: {
+          value: 'timer_based',
+          timestamp: expect.any(Date),
+        },
       })
     );
   });
@@ -182,18 +256,21 @@ describe(`ChargingCommand`, () => {
               timerType: 'preferred_start_time',
               time: new Date(Date.UTC(2018, 1, 11, 12, 13)),
             },
+            timestamp: expect.any(Date),
           },
           {
             value: {
               timerType: 'preferred_end_time',
               time: new Date(Date.UTC(2018, 1, 11, 12, 14)),
             },
+            timestamp: expect.any(Date),
           },
           {
             value: {
               timerType: 'departure_time',
               time: new Date(Date.UTC(2018, 1, 11, 12, 15)),
             },
+            timestamp: expect.any(Date),
           },
         ],
       })
