@@ -1,0 +1,3 @@
+[submodule "auto-api"]
+	path = auto-api
+	url = https://github.com/highmobility/auto-api.git

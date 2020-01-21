@@ -1,0 +1,2881 @@
+---
+layout: resources/documentation/cloud-sdks/node-js
+header: 'Node.js Responses'
+permalink: /documentation/cloud-sdks/node-js/responses/
+search-title: 'Node.js Responses'
+category: cloud
+toc-options:
+  -
+    text: CapabilitiesResponse
+    href: '#CapabilitiesResponse_response'
+  -
+    text: ChargingResponse
+    href: '#ChargingResponse_response'
+  -
+    text: ChassisSettingsResponse
+    href: '#ChassisSettingsResponse_response'
+  -
+    text: ClimateResponse
+    href: '#ClimateResponse_response'
+  -
+    text: DashboardLightsResponse
+    href: '#DashboardLightsResponse_response'
+  -
+    text: DiagnosticsResponse
+    href: '#DiagnosticsResponse_response'
+  -
+    text: DoorsResponse
+    href: '#DoorsResponse_response'
+  -
+    text: EngineStartStopResponse
+    href: '#EngineStartStopResponse_response'
+  -
+    text: EngineResponse
+    href: '#EngineResponse_response'
+  -
+    text: FailureMessageResponse
+    href: '#FailureMessageResponse_response'
+  -
+    text: FirmwareVersionResponse
+    href: '#FirmwareVersionResponse_response'
+  -
+    text: FuelingResponse
+    href: '#FuelingResponse_response'
+  -
+    text: HistoricalResponse
+    href: '#HistoricalResponse_response'
+  -
+    text: HomeChargerResponse
+    href: '#HomeChargerResponse_response'
+  -
+    text: HonkHornFlashLightsResponse
+    href: '#HonkHornFlashLightsResponse_response'
+  -
+    text: HoodResponse
+    href: '#HoodResponse_response'
+  -
+    text: IgnitionResponse
+    href: '#IgnitionResponse_response'
+  -
+    text: LightConditionsResponse
+    href: '#LightConditionsResponse_response'
+  -
+    text: LightsResponse
+    href: '#LightsResponse_response'
+  -
+    text: MaintenanceResponse
+    href: '#MaintenanceResponse_response'
+  -
+    text: MessagingResponse
+    href: '#MessagingResponse_response'
+  -
+    text: MobileResponse
+    href: '#MobileResponse_response'
+  -
+    text: MultiCommandResponse
+    href: '#MultiCommandResponse_response'
+  -
+    text: NaviDestinationResponse
+    href: '#NaviDestinationResponse_response'
+  -
+    text: NotificationsResponse
+    href: '#NotificationsResponse_response'
+  -
+    text: OffroadResponse
+    href: '#OffroadResponse_response'
+  -
+    text: ParkingBrakeResponse
+    href: '#ParkingBrakeResponse_response'
+  -
+    text: ParkingTicketResponse
+    href: '#ParkingTicketResponse_response'
+  -
+    text: PowerTakeoffResponse
+    href: '#PowerTakeoffResponse_response'
+  -
+    text: RaceResponse
+    href: '#RaceResponse_response'
+  -
+    text: RooftopControlResponse
+    href: '#RooftopControlResponse_response'
+  -
+    text: SeatsResponse
+    href: '#SeatsResponse_response'
+  -
+    text: TachographResponse
+    href: '#TachographResponse_response'
+  -
+    text: TheftAlarmResponse
+    href: '#TheftAlarmResponse_response'
+  -
+    text: TrunkResponse
+    href: '#TrunkResponse_response'
+  -
+    text: UsageResponse
+    href: '#UsageResponse_response'
+  -
+    text: ValetModeResponse
+    href: '#ValetModeResponse_response'
+  -
+    text: VehicleLocationResponse
+    href: '#VehicleLocationResponse_response'
+  -
+    text: VehicleStatusResponse
+    href: '#VehicleStatusResponse_response'
+  -
+    text: VehicleTimeResponse
+    href: '#VehicleTimeResponse_response'
+  -
+    text: WeatherConditionsResponse
+    href: '#WeatherConditionsResponse_response'
+  -
+    text: WiFiResponse
+    href: '#WiFiResponse_response'
+  -
+    text: WindowsResponse
+    href: '#WindowsResponse_response'
+  -
+    text: WindscreenResponse
+    href: '#WindscreenResponse_response'
+---
+<p class="introductory-text">More info at <a href="/learn/documentation/auto-api/api-structure/tutorial/">Auto API</a>.</p>
+{% include toc-header.html expand=true %}
+
+<h2 id="capabilities_response">CapabilitiesResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="capabilities"
+  parameters-description="(Array<Object>) (custom) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<CapabilitiesResponse> {
+  "capabilities": [
+    {
+      "value": {
+        "capabilityID": 32,
+        "supportedPropertyIDs": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "value": {
+        "capabilityID": 35,
+        "supportedPropertyIDs": [
+          2,
+          8,
+          17
+        ]
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="charging_response">ChargingResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="estimatedRange,batteryLevel,batteryCurrentAC,batteryCurrentDC,chargerVoltageAC,chargerVoltageDC,chargeLimit,timeToCompleteCharge,chargingRateKW,chargePortState,chargeMode,maxChargingCurrent,plugType,chargingWindowChosen,departureTimes,reductionTimes,batteryTemperature,timers,pluggedIn,status"
+  parameters-description="(Number) (uinteger) Estimated range in km,(Number) (double) Battery level percentage between 0.0-1.0,(Number) (float) Battery active current,(Number) (float) Battery direct current,(Number) (float) Charger voltage,(Number) (float) Charger voltage,(Number) (double) Charge limit percentage between 0.0-1.0,(Number) (uinteger) Time until charging completed in minutes,(Number) (float) Charge rate in kW when charging,(String) (enum) ,(String) (enum) ,(Number) (float) Maximum charging current,(String) (enum) ,(String) (enum) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Number) (float) Battery temperature in Celsius,(Array<Object>) (custom) ,(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<ChargingResponse> {
+  "estimatedRange": {
+    "value": 432
+  },
+  "batteryLevel": {
+    "value": 0.5
+  },
+  "batteryCurrentAC": {
+    "value": -0.6
+  },
+  "batteryCurrentDC": {
+    "value": -0.6
+  },
+  "chargerVoltageAC": {
+    "value": 400
+  },
+  "chargerVoltageDC": {
+    "value": 400
+  },
+  "chargeLimit": {
+    "value": 0.9
+  },
+  "timeToCompleteCharge": {
+    "value": 60
+  },
+  "chargingRateKW": {
+    "value": 3.5
+  },
+  "chargePortState": {
+    "value": "open"
+  },
+  "chargeMode": {
+    "value": "timer_based"
+  },
+  "maxChargingCurrent": {
+    "value": 25
+  },
+  "plugType": {
+    "value": "type_2"
+  },
+  "chargingWindowChosen": {
+    "value": "not_chosen"
+  },
+  "departureTimes": [
+    {
+      "value": {
+        "state": "active",
+        "time": {
+          "hour": 16,
+          "minute": 32
+        }
+      }
+    },
+    {
+      "value": {
+        "state": "inactive",
+        "time": {
+          "hour": 0,
+          "minute": 51
+        }
+      }
+    }
+  ],
+  "reductionTimes": [
+    {
+      "value": {
+        "startStop": "start",
+        "time": {
+          "hour": 17,
+          "minute": 33
+        }
+      }
+    },
+    {
+      "value": {
+        "startStop": "stop",
+        "time": {
+          "hour": 0,
+          "minute": 52
+        }
+      }
+    }
+  ],
+  "batteryTemperature": {
+    "value": 38.4
+  },
+  "timers": [
+    {
+      "value": {
+        "timerType": "preferred_start_time",
+        "date": "1972-12-09T13:01:56.744Z"
+      }
+    },
+    {
+      "value": {
+        "timerType": "preferred_end_time",
+        "date": "1970-03-09T02:18:40.280Z"
+      }
+    },
+    {
+      "value": {
+        "timerType": "departure_date",
+        "date": "1970-03-09T02:18:40.280Z"
+      }
+    }
+  ],
+  "pluggedIn": {
+    "value": "plugged_in"
+  },
+  "status": {
+    "value": "charging"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="chassis_settings_response">ChassisSettingsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="drivingMode,sportChrono,currentSpringRates,maximumSpringRates,minimumSpringRates,currentChassisPosition,maximumChassisPosition,minimumChassisPosition"
+  parameters-description="(String) (enum) ,(String) (enum) ,(Array<Object>) (custom) The current values for the spring rates,(Array<Object>) (custom) The maximum possible values for the spring rates,(Array<Object>) (custom) The minimum possible values for the spring rates,(Number) (integer) The chassis position in mm calculated from the lowest point,(Number) (integer) The maximum possible value for the chassis position,(Number) (integer) The minimum possible value for the chassis position"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<ChassisSettingsResponse> {
+  "drivingMode": {
+    "value": "eco"
+  },
+  "sportChrono": {
+    "value": "active"
+  },
+  "currentSpringRates": [
+    {
+      "value": {
+        "axle": "front",
+        "springRate": 21
+      }
+    },
+    {
+      "value": {
+        "axle": "rear",
+        "springRate": 23
+      }
+    }
+  ],
+  "maximumSpringRates": [
+    {
+      "value": {
+        "axle": "front",
+        "springRate": 37
+      }
+    },
+    {
+      "value": {
+        "axle": "rear",
+        "springRate": 39
+      }
+    }
+  ],
+  "minimumSpringRates": [
+    {
+      "value": {
+        "axle": "front",
+        "springRate": 16
+      }
+    },
+    {
+      "value": {
+        "axle": "rear",
+        "springRate": 18
+      }
+    }
+  ],
+  "currentChassisPosition": {
+    "value": 25
+  },
+  "maximumChassisPosition": {
+    "value": 55
+  },
+  "minimumChassisPosition": {
+    "value": -28
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="climate_response">ClimateResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="insideTemperature,outsideTemperature,driverTemperatureSetting,passengerTemperatureSetting,hvacState,defoggingState,defrostingState,ionisingState,defrostingTemperatureSetting,hvacWeekdayStartingTimes,rearTemperatureSetting"
+  parameters-description="(Number) (float) The inside temperature in celsius,(Number) (float) The outside temperature in celsius,(Number) (float) The driver temperature setting in celsius,(Number) (float) The passenger temperature setting in celsius,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (float) The defrosting temperature setting in celsius,(Array<Object>) (custom) ,(Number) (float) The rear temperature in celsius"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<ClimateResponse> {
+  "insideTemperature": {
+    "value": 19
+  },
+  "outsideTemperature": {
+    "value": 12
+  },
+  "driverTemperatureSetting": {
+    "value": 21.5
+  },
+  "passengerTemperatureSetting": {
+    "value": 21.5
+  },
+  "hvacState": {
+    "value": "active"
+  },
+  "defoggingState": {
+    "value": "inactive"
+  },
+  "defrostingState": {
+    "value": "inactive"
+  },
+  "ionisingState": {
+    "value": "inactive"
+  },
+  "defrostingTemperatureSetting": {
+    "value": 21.5
+  },
+  "hvacWeekdayStartingTimes": [
+    {
+      "value": {
+        "weekday": "monday",
+        "time": {
+          "hour": 16,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "tuesday",
+        "time": {
+          "hour": 16,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "wednesday",
+        "time": {
+          "hour": 16,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "thursday",
+        "time": {
+          "hour": 16,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "friday",
+        "time": {
+          "hour": 16,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "saturday",
+        "time": {
+          "hour": 18,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "sunday",
+        "time": {
+          "hour": 19,
+          "minute": 0
+        }
+      }
+    },
+    {
+      "value": {
+        "weekday": "automatic",
+        "time": {
+          "hour": 16,
+          "minute": 0
+        }
+      }
+    }
+  ],
+  "rearTemperatureSetting": {
+    "value": 21.5
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="dashboard_lights_response">DashboardLightsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="dashboardLights"
+  parameters-description="(Array<Object>) (custom) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<DashboardLightsResponse> {
+  "dashboardLights": [
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "low_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "hazard_warning",
+        "state": "info"
+      }
+    },
+    {
+      "value": {
+        "name": "brake_failure",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "hatch_open",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "fuel_level",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "engine_coolant_temperature",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "battery_charging_condition",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "engine_oil",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "position_lights",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "red"
+      }
+    },
+    {
+      "value": {
+        "name": "transmission_failure",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "anti_lock_brake_failure",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "worn_brake_linings",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "windscreen_washer_fluid",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "tire_failure",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "engine_oil_level",
+        "state": "yellow"
+      }
+    },
+    {
+      "value": {
+        "name": "engine_coolant_level",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "steering_failure",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "esc_indication",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "brake_lights",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "high_beam",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "airbag",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "esc_switched_off",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "name": "lane_departure_warning_off",
+        "state": "inactive"
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="diagnostics_response">DiagnosticsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="mileage,engineOilTemperature,speed,engineRPM,fuelLevel,estimatedRange,washerFluidLevel,batteryVoltage,adBlueLevel,distanceSinceReset,distanceSinceStart,fuelVolume,antiLockBraking,engineCoolantTemperature,engineTotalOperatingHours,engineTotalFuelConsumption,brakeFluidLevel,engineTorque,engineLoad,wheelBasedSpeed,batteryLevel,checkControlMessages,tirePressures,tireTemperatures,wheelRPMs,troubleCodes,mileageMeters"
+  parameters-description="(Number) (uinteger) The car mileage (odometer) in km,(Number) (integer) Engine oil temperature in Celsius&comma; whereas can be negative,(Number) (integer) The vehicle speed in km/h&comma; whereas can be negative,(Number) (uinteger) Engine RPM (revolutions per minute),(Number) (double) Fuel level percentage between 0.0-1.0,(Number) (integer) Estimated range (with combustion engine),(String) (enum) ,(Number) (float) Battery voltage,(Number) (float) AdBlue level in liters,(Number) (uinteger) The distance driven in km since reset,(Number) (uinteger) The distance driven in km since trip start,(Number) (float) The fuel volume measured in liters,(String) (enum) ,(Number) (integer) Engine coolant temperature in Celsius&comma; whereas can be negative,(Number) (float) The accumulated time of engine operation,(Number) (float) The accumulated lifespan fuel consumption in liters,(String) (enum) ,(Number) (double) Current engine torque percentage between 0.0-1.0,(Number) (double) Current engine load percentage between 0.0-1.0,(Number) (integer) The vehicle speed in km/h measured at the wheel base&comma; whereas can be negative,(Number) (double) Battery level in %&comma; value between 0.0 and 1.0,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Number) (uinteger) The car mileage (odometer) in meters"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<DiagnosticsResponse> {
+  "mileage": {
+    "value": 150000
+  },
+  "engineOilTemperature": {
+    "value": 99
+  },
+  "speed": {
+    "value": 60
+  },
+  "engineRPM": {
+    "value": 2500
+  },
+  "fuelLevel": {
+    "value": 0.9
+  },
+  "estimatedRange": {
+    "value": 265
+  },
+  "washerFluidLevel": {
+    "value": "filled"
+  },
+  "batteryVoltage": {
+    "value": 12
+  },
+  "adBlueLevel": {
+    "value": 0.5
+  },
+  "distanceSinceReset": {
+    "value": 1500
+  },
+  "distanceSinceStart": {
+    "value": 10
+  },
+  "fuelVolume": {
+    "value": 35.5
+  },
+  "antiLockBraking": {
+    "value": "active"
+  },
+  "engineCoolantTemperature": {
+    "value": 20
+  },
+  "engineTotalOperatingHours": {
+    "value": 1500.65
+  },
+  "engineTotalFuelConsumption": {
+    "value": 27587
+  },
+  "brakeFluidLevel": {
+    "value": "low"
+  },
+  "engineTorque": {
+    "value": 0.2
+  },
+  "engineLoad": {
+    "value": 0.1
+  },
+  "wheelBasedSpeed": {
+    "value": 65
+  },
+  "batteryLevel": {
+    "value": 0.56
+  },
+  "checkControlMessages": [
+    {
+      "value": {
+        "ID": 1,
+        "remainingMinutes": 4216,
+        "text": "",
+        "status": "eck engine\u0005Alert"
+      }
+    }
+  ],
+  "tirePressures": [
+    {
+      "value": {
+        "location": "front_left",
+        "pressure": 2.31
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "pressure": 2.31
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "pressure": 2.24
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "pressure": 2.24
+      }
+    }
+  ],
+  "tireTemperatures": [
+    {
+      "value": {
+        "location": "front_left",
+        "temperature": 40
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "temperature": 40
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "temperature": 40
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "temperature": 40
+      }
+    }
+  ],
+  "wheelRPMs": [
+    {
+      "value": {
+        "location": "front_left",
+        "RPM": 32
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "RPM": 32
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "RPM": 32
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "RPM": 32
+      }
+    }
+  ],
+  "troubleCodes": [
+    {
+      "value": {
+        "occurences": 2,
+        "ID": "C1116FA",
+        "ecuID": "RDU_212FR",
+        "status": "PENDING"
+      }
+    },
+    {
+      "value": {
+        "occurences": 2,
+        "ID": "C163AFA",
+        "ecuID": "DTR212",
+        "status": "PENDING"
+      }
+    }
+  ],
+  "mileageMeters": {
+    "value": 150001
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="doors_response">DoorsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="insideLocks,locks,positions,insideLocksState,locksState"
+  parameters-description="(Array<Object>) (custom) Inside lock states for the given doors,(Array<Object>) (custom) Lock states for the given doors,(Array<Object>) (custom) Door positions for the given doors,(String) (enum) Inside locks state for the whole car (combines all specific lock states if available),(String) (enum) Locks state for the whole car (combines all specific lock states if available)"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<DoorsResponse> {
+  "insideLocks": [
+    {
+      "value": {
+        "location": "front_left",
+        "lockState": "locked"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "lockState": "unlocked"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "lockState": "unlocked"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "lockState": "unlocked"
+      }
+    }
+  ],
+  "locks": [
+    {
+      "value": {
+        "location": "front_left",
+        "lockState": "unlocked"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "lockState": "unlocked"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "lockState": "locked"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "lockState": "locked"
+      }
+    }
+  ],
+  "positions": [
+    {
+      "value": {
+        "location": "front_left",
+        "position": "open"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "position": "closed"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "position": "closed"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "position": "closed"
+      }
+    },
+    {
+      "value": {
+        "location": "all",
+        "position": "closed"
+      }
+    }
+  ],
+  "insideLocksState": {
+    "value": "locked"
+  },
+  "locksState": {
+    "value": "unlocked"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="engine_start_stop_response">EngineStartStopResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<EngineStartStopResponse> {
+  "status": {
+    "value": "active"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="engine_response">EngineResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<EngineResponse> {
+  "status": {
+    "value": "off"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="failure_message_response">FailureMessageResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="failedMessageID,failedMessageType,failureReason,failureDescription,failedPropertyIDs"
+  parameters-description="(Number) (uinteger) Capability identifier of the failed message,(Number) (uinteger) Message type of the failed message,(String) (enum) ,(String) (string) Failure description,(Array<Number>) (bytes) Array of failed property identifiers"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<FailureMessageResponse> {
+  "failedMessageID": {
+    "value": 33
+  },
+  "failedMessageType": {
+    "value": 1
+  },
+  "failureReason": {
+    "value": "unauthorised"
+  },
+  "failureDescription": {
+    "value": "Try again"
+  },
+  "failedPropertyIDs": {
+    "value": [
+      1,
+      2
+    ]
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="firmware_version_response">FirmwareVersionResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="hmKitVersion,hmKitBuildName,applicationVersion"
+  parameters-description="(Object) (custom) HMKit version,(String) (string) HMKit version build name,(String) (string) Application version"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<FirmwareVersionResponse> {
+  "hmKitVersion": {
+    "value": {
+      "major": 1,
+      "minor": 15,
+      "patch": 33
+    }
+  },
+  "hmKitBuildName": {
+    "value": "btstack-uart"
+  },
+  "applicationVersion": {
+    "value": "v1.5-prod"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="fueling_response">FuelingResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="gasFlapLock,gasFlapPosition"
+  parameters-description="(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<FuelingResponse> {
+  "gasFlapLock": {
+    "value": "locked"
+  },
+  "gasFlapPosition": {
+    "value": "closed"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="historical_response">HistoricalResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="states"
+  parameters-description="(Array<Array<Number>>) (bytes) The bytes of a Capability state"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<HistoricalResponse> {
+  "states": [
+    {
+      "value": {
+        "doors": {
+          "locksState": {
+            "value": "unlocked"
+          },
+          "positions": [
+            {
+              "value": {
+                "location": "front_left",
+                "position": "open"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "value": {
+        "charging": {
+          "chargingRateKW": {
+            "value": 3.5
+          },
+          "chargePortState": {
+            "value": "open"
+          }
+        }
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="home_charger_response">HomeChargerResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="chargingStatus,authenticationMechanism,plugType,chargingPowerKW,solarCharging,wifiHotspotEnabled,wifiHotspotSSID,wiFiHotspotSecurity,wiFiHotspotPassword,authenticationState,chargeCurrentDC,maximumChargeCurrent,minimumChargeCurrent,coordinates,priceTariffs"
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (float) Charging power in kW,(String) (enum) ,(String) (enum) ,(String) (string) The Wi-Fi Hotspot SSID,(String) (enum) ,(String) (string) The Wi-Fi Hotspot password,(String) (enum) ,(Number) (float) The charge direct current,(Number) (float) The maximum possible charge current,(Number) (float) The minimal possible charge current,(Object) (custom) ,(Array<Object>) (custom) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<HomeChargerResponse> {
+  "chargingStatus": {
+    "value": "charging"
+  },
+  "authenticationMechanism": {
+    "value": "app"
+  },
+  "plugType": {
+    "value": "type_2"
+  },
+  "chargingPowerKW": {
+    "value": 11.5
+  },
+  "solarCharging": {
+    "value": "active"
+  },
+  "wifiHotspotEnabled": {
+    "value": "enabled"
+  },
+  "wifiHotspotSSID": {
+    "value": "Charger 7612"
+  },
+  "wiFiHotspotSecurity": {
+    "value": "wpa2_personal"
+  },
+  "wiFiHotspotPassword": {
+    "value": "ZW3vARNUBe"
+  },
+  "authenticationState": {
+    "value": "authenticated"
+  },
+  "chargeCurrentDC": {
+    "value": 0.5
+  },
+  "maximumChargeCurrent": {
+    "value": 1
+  },
+  "minimumChargeCurrent": {},
+  "coordinates": {
+    "value": {
+      "latitude": 52.520008,
+      "longitude": 13.404954
+    }
+  },
+  "priceTariffs": [
+    {
+      "value": {
+        "pricingType": "starting_fee",
+        "price": 4.5,
+        "currency": "EUR"
+      }
+    },
+    {
+      "value": {
+        "pricingType": "per_minute",
+        "price": 0.3,
+        "currency": "EUR"
+      }
+    },
+    {
+      "value": {
+        "pricingType": "per_kwh",
+        "price": 0.3,
+        "currency": "Ripple"
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="honk_horn_flash_lights_response">HonkHornFlashLightsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="flashers"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<HonkHornFlashLightsResponse> {
+  "flashers": {
+    "value": "left_flasher_active"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="hood_response">HoodResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="position"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<HoodResponse> {
+  "position": {
+    "value": "open"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="ignition_response">IgnitionResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status,accessoriesStatus"
+  parameters-description="(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<IgnitionResponse> {
+  "status": {
+    "value": "off"
+  },
+  "accessoriesStatus": {
+    "value": "on"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="light_conditions_response">LightConditionsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="outsideLight,insideLight"
+  parameters-description="(Number) (float) Measured outside illuminance in lux,(Number) (float) Measured inside illuminance in lux"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<LightConditionsResponse> {
+  "outsideLight": {
+    "value": 111000
+  },
+  "insideLight": {
+    "value": 0.25
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="lights_response">LightsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="frontExteriorLight,rearExteriorLight,ambientLightColour,reverseLight,emergencyBrakeLight,fogLights,readingLamps,interiorLights"
+  parameters-description="(String) (enum) ,(String) (enum) ,(Object) (custom) ,(String) (enum) ,(String) (enum) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<LightsResponse> {
+  "frontExteriorLight": {
+    "value": "active_with_full_beam"
+  },
+  "rearExteriorLight": {
+    "value": "active"
+  },
+  "ambientLightColour": {
+    "value": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    }
+  },
+  "reverseLight": {
+    "value": "inactive"
+  },
+  "emergencyBrakeLight": {
+    "value": "inactive"
+  },
+  "fogLights": [
+    {
+      "value": {
+        "location": "front",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "location": "rear",
+        "state": "active"
+      }
+    }
+  ],
+  "readingLamps": [
+    {
+      "value": {
+        "location": "front_left",
+        "state": "active"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "state": "active"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "state": "inactive"
+      }
+    }
+  ],
+  "interiorLights": [
+    {
+      "value": {
+        "location": "front",
+        "state": "inactive"
+      }
+    },
+    {
+      "value": {
+        "location": "rear",
+        "state": "active"
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="maintenance_response">MaintenanceResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="daysToNextService,kilometersToNextService,cbsReportsCount,monthsToExhaustInspection,teleserviceAvailability,serviceDistanceThreshold,serviceTimeThreshold,automaticTeleserviceCallDate,teleserviceBatteryCallDate,nextInspectionDate,conditionBasedServices,brakeFluidChangeDate"
+  parameters-description="(Number) (integer) Number of days until next servicing of the car&comma; whereas negative is overdue,(Number) (uinteger) The amount of kilometers until next servicing of the car,(Number) (uinteger) The number of CBS reports,(Number) (uinteger) Number of months until exhaust inspection,(String) (enum) ,(Number) (uinteger) Distance threshold for Service,(Number) (uinteger) Time threshold&comma; in weeks&comma; for Service,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Array<Object>) (custom) ,(Date) (timestamp) Milliseconds since UNIX Epoch time"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<MaintenanceResponse> {
+  "daysToNextService": {
+    "value": 501
+  },
+  "kilometersToNextService": {
+    "value": 3681
+  },
+  "cbsReportsCount": {
+    "value": 3
+  },
+  "monthsToExhaustInspection": {
+    "value": 5
+  },
+  "teleserviceAvailability": {
+    "value": "successful"
+  },
+  "serviceDistanceThreshold": {
+    "value": 500
+  },
+  "serviceTimeThreshold": {
+    "value": 4
+  },
+  "automaticTeleserviceCallDate": {
+    "value": "2018-11-23T11:33:50.000Z"
+  },
+  "teleserviceBatteryCallDate": {
+    "value": "2018-11-23T10:36:50.000Z"
+  },
+  "nextInspectionDate": {
+    "value": "2018-10-23T14:38:47.000Z"
+  },
+  "conditionBasedServices": [
+    {
+      "value": {
+        "year": 112,
+        "month": 5,
+        "id": 3,
+        "dueStatus": "ok",
+        "text": "",
+        "description": "ake fluid,Next change at specified date at the latest."
+      }
+    }
+  ],
+  "brakeFluidChangeDate": {
+    "value": "2018-12-05T03:22:56.000Z"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="messaging_response">MessagingResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="text,handle"
+  parameters-description="(String) (string) The text,(String) (string) The optional handle of message"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<MessagingResponse> {
+  "text": {
+    "value": "Hey mom!"
+  },
+  "handle": {
+    "value": "Epp"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="mobile_response">MobileResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="connection"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<MobileResponse> {
+  "connection": {
+    "value": "connected"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="multi_command_response">MultiCommandResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="multiStates"
+  parameters-description="(Array<Array<Number>>) (bytes) The incoming states"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<MultiCommandResponse> {
+  "multiStates": [
+    {
+      "value": {
+        "doors": {
+          "locksState": {
+            "value": "unlocked"
+          },
+          "positions": [
+            {
+              "value": {
+                "location": "front_left",
+                "position": "open"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "value": {
+        "charging": {
+          "chargingRateKW": {
+            "value": 3.5
+          },
+          "chargePortState": {
+            "value": "open"
+          }
+        }
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="navi_destination_response">NaviDestinationResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="coordinates,destinationName,dataSlotsFree,dataSlotsMax,arrivalDuration,distanceToDestination"
+  parameters-description="(Object) (custom) ,(String) (string) Destination name,(Number) (uinteger) Remaining number of POI data slots available.,(Number) (uinteger) Maximum number of POI data slots.,(Object) (custom) Remaining time until reaching the destination.,(Number) (uinteger) Remaining distance to reach the destination."
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<NaviDestinationResponse> {
+  "coordinates": {
+    "value": {
+      "latitude": 52.520008,
+      "longitude": 13.404954
+    }
+  },
+  "destinationName": {
+    "value": "Berlin"
+  },
+  "dataSlotsFree": {
+    "value": 14
+  },
+  "dataSlotsMax": {
+    "value": 30
+  },
+  "arrivalDuration": {
+    "value": {
+      "hour": 2,
+      "minute": 32
+    }
+  },
+  "distanceToDestination": {
+    "value": 1337
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="notifications_response">NotificationsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="text,actionItems,activatedAction,clear"
+  parameters-description="(String) (string) Text for the notification,(Array<Object>) (custom) ,(Number) (uinteger) Identifier of the activated action,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<NotificationsResponse> {
+  "text": {
+    "value": "Open Garage"
+  },
+  "actionItems": [
+    {
+      "value": {
+        "id": 0,
+        "name": "Open"
+      }
+    },
+    {
+      "value": {
+        "id": 0,
+        "name": "Cancel"
+      }
+    }
+  ],
+  "activatedAction": {
+    "value": 27
+  },
+  "clear": {
+    "value": "clear"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="offroad_response">OffroadResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="routeIncline,wheelSuspension"
+  parameters-description="(Number) (integer) The route elevation incline in degrees&comma; which is a negative number for decline,(Number) (double) The wheel suspension level percentage&comma; whereas 0.0 is no suspension and 1.0 maximum suspension"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<OffroadResponse> {
+  "routeIncline": {
+    "value": 10
+  },
+  "wheelSuspension": {
+    "value": 0.5
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="parking_brake_response">ParkingBrakeResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<ParkingBrakeResponse> {
+  "status": {
+    "value": "active"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="parking_ticket_response">ParkingTicketResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status,operatorName,operatorTicketID,ticketStartTime,ticketEndTime"
+  parameters-description="(String) (enum) ,(String) (string) Operator name,(String) (string) Operator ticket ID,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Date) (timestamp) Milliseconds since UNIX Epoch time"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<ParkingTicketResponse> {
+  "status": {
+    "value": "ended"
+  },
+  "operatorName": {
+    "value": "Berlin Parking"
+  },
+  "operatorTicketID": {
+    "value": "64894233"
+  },
+  "ticketStartTime": {
+    "value": "2017-01-10T19:34:22.000Z"
+  },
+  "ticketEndTime": {
+    "value": "2019-10-08T11:21:45.000Z"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="power_takeoff_response">PowerTakeoffResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status,engaged"
+  parameters-description="(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<PowerTakeoffResponse> {
+  "status": {
+    "value": "active"
+  },
+  "engaged": {
+    "value": "engaged"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="race_response">RaceResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="accelerations,understeering,oversteering,gasPedalPosition,steeringAngle,brakePressure,yawRate,rearSuspensionSteering,electronicStabilityProgram,brakeTorqueVectorings,gearMode,selectedGear,brakePedalPosition,brakePedalSwitch,clutchPedalSwitch,acceleratorPedalIdleSwitch,acceleratorPedalKickdownSwitch,vehicleMoving"
+  parameters-description="(Array<Object>) (custom) ,(Number) (double) The understeering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 0.3 (30%) marginal&comma; over 30% critical,(Number) (double) The oversteering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 30% marginal&comma; over 30% critical,(Number) (double) The gas pedal position between 0.0-1.0&comma; whereas 1.0 (100%) is full throttle,(Number) (integer) The steering angle in degrees&comma; whereas 0° is straight ahead&comma; positive number to the right and negative number to the left,(Number) (float) Brake pressure in bar&comma; whereas 100 bar is max value&comma; full brake,(Number) (float) Yaw rate in degrees per second [°/s],(Number) (integer) Rear suspension steering in degrees,(String) (enum) ,(Array<Object>) (custom) ,(String) (enum) ,(Number) (integer) The selected gear value&comma; if any,(Number) (double) The brake pedal position between 0.0-1.0&comma; wheras 1.0 (100%) is full brakes,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<RaceResponse> {
+  "accelerations": [
+    {
+      "value": {
+        "direction": "longitudinal",
+        "gForce": 0.864
+      }
+    },
+    {
+      "value": {
+        "direction": "lateral",
+        "gForce": -0.753
+      }
+    },
+    {
+      "value": {
+        "direction": "front_lateral",
+        "gForce": -0.753
+      }
+    },
+    {
+      "value": {
+        "direction": "rear_lateral",
+        "gForce": -0.753
+      }
+    }
+  ],
+  "understeering": {
+    "value": 0.19
+  },
+  "oversteering": {
+    "value": 0.05
+  },
+  "gasPedalPosition": {
+    "value": 0.98
+  },
+  "steeringAngle": {
+    "value": 10
+  },
+  "brakePressure": {
+    "value": 20
+  },
+  "yawRate": {
+    "value": 6.66
+  },
+  "rearSuspensionSteering": {
+    "value": 3
+  },
+  "electronicStabilityProgram": {
+    "value": "active"
+  },
+  "brakeTorqueVectorings": [
+    {
+      "value": {
+        "axle": "front",
+        "state": "active"
+      }
+    },
+    {
+      "value": {
+        "axle": "rear",
+        "state": "inactive"
+      }
+    }
+  ],
+  "gearMode": {
+    "value": "drive"
+  },
+  "selectedGear": {
+    "value": 4
+  },
+  "brakePedalPosition": {
+    "value": 0.12
+  },
+  "brakePedalSwitch": {
+    "value": "active"
+  },
+  "clutchPedalSwitch": {
+    "value": "active"
+  },
+  "acceleratorPedalIdleSwitch": {
+    "value": "active"
+  },
+  "acceleratorPedalKickdownSwitch": {
+    "value": "active"
+  },
+  "vehicleMoving": {
+    "value": "moving"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="rooftop_control_response">RooftopControlResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="dimming,position,convertibleRoofState,sunroofTiltState,sunroofState"
+  parameters-description="(Number) (double) 1.0 (100%) is opaque&comma; 0.0 (0%) is transparent,(Number) (double) 1.0 (100%) is fully open&comma; 0.0 (0%) is closed,(String) (enum) ,(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<RooftopControlResponse> {
+  "dimming": {
+    "value": 1
+  },
+  "position": {
+    "value": 0.5
+  },
+  "convertibleRoofState": {
+    "value": "open"
+  },
+  "sunroofTiltState": {
+    "value": "half_tilted"
+  },
+  "sunroofState": {
+    "value": "open"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="seats_response">SeatsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="personsDetected,seatbeltsState"
+  parameters-description="(Array<Object>) (custom) ,(Array<Object>) (custom) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<SeatsResponse> {
+  "personsDetected": [
+    {
+      "value": {
+        "location": "front_left",
+        "detected": "detected"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "detected": "not_detected"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "detected": "not_detected"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "detected": "not_detected"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_center",
+        "detected": "not_detected"
+      }
+    }
+  ],
+  "seatbeltsState": [
+    {
+      "value": {
+        "location": "front_left",
+        "fastenedState": "fastened"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "fastenedState": "not_fastened"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "fastenedState": "not_fastened"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "fastenedState": "not_fastened"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_center",
+        "fastenedState": "not_fastened"
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="tachograph_response">TachographResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="driversWorkingStates,driversTimeStates,driversCardsPresent,vehicleMotion,vehicleOverspeed,vehicleDirection,vehicleSpeed"
+  parameters-description="(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (integer) The tachograph vehicle speed in km/h"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<TachographResponse> {
+  "driversWorkingStates": [
+    {
+      "value": {
+        "driverNumber": 1,
+        "workingState": "working"
+      }
+    },
+    {
+      "value": {
+        "driverNumber": 2,
+        "workingState": "resting"
+      }
+    }
+  ],
+  "driversTimeStates": [
+    {
+      "value": {
+        "driverNumber": 3,
+        "timeState": "four_reached"
+      }
+    },
+    {
+      "value": {
+        "driverNumber": 4,
+        "timeState": "fifteen_min_before_sixteen"
+      }
+    }
+  ],
+  "driversCardsPresent": [
+    {
+      "value": {
+        "driverNumber": 6,
+        "cardPresent": "present"
+      }
+    },
+    {
+      "value": {
+        "driverNumber": 7,
+        "cardPresent": "not_present"
+      }
+    }
+  ],
+  "vehicleMotion": {
+    "value": "detected"
+  },
+  "vehicleOverspeed": {
+    "value": "no_overspeed"
+  },
+  "vehicleDirection": {
+    "value": "forward"
+  },
+  "vehicleSpeed": {
+    "value": 80
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="theft_alarm_response">TheftAlarmResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<TheftAlarmResponse> {
+  "status": {
+    "value": "armed"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="trunk_response">TrunkResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="lock,position"
+  parameters-description="(String) (enum) ,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<TrunkResponse> {
+  "lock": {
+    "value": "unlocked"
+  },
+  "position": {
+    "value": "open"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="usage_response">UsageResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="averageWeeklyDistance,averageWeeklyDistanceLongRun,accelerationEvaluation,drivingStyleEvaluation,drivingModesActivationPeriods,drivingModesEnergyConsumptions,lastTripEnergyConsumption,lastTripFuelConsumption,mileageAfterLastTrip,lastTripElectricPortion,lastTripAverageEnergyRecuperation,lastTripBatteryRemaining,lastTripDate,averageFuelConsumption,currentFuelConsumption"
+  parameters-description="(Number) (uinteger) Average weekly distance in km,(Number) (uinteger) Average weekyl distance&comma; over long term&comma; in km,(Number) (double) Acceleration evaluation percentage,(Number) (double) Driving style evaluation percentage,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Number) (float) Energy consumption in the last trip in kWh,(Number) (float) Fuel consumption in the last trip in L,(Number) (uinteger) Mileage after the last trip in km,(Number) (double) Portion of the last trip used in electric mode,(Number) (float) Energy recuperation rate for last trip&comma; in kWh / 100 km,(Number) (double) Battery % remaining after last trip,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Number) (float) Average fuel consumption for current trip in liters / 100 km,(Number) (float) Current fuel consumption in liters / 100 km"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<UsageResponse> {
+  "averageWeeklyDistance": {
+    "value": 666
+  },
+  "averageWeeklyDistanceLongRun": {
+    "value": 668
+  },
+  "accelerationEvaluation": {
+    "value": 0.7
+  },
+  "drivingStyleEvaluation": {
+    "value": 0.88
+  },
+  "drivingModesActivationPeriods": [
+    {
+      "value": {
+        "drivingMode": "regular",
+        "period": 0.2
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "eco",
+        "period": 0.3
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "sport",
+        "period": 0.1
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "sport_plus",
+        "period": 0.1
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "ecoPlus",
+        "period": 0.3
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "comfort",
+        "period": 0
+      }
+    }
+  ],
+  "drivingModesEnergyConsumptions": [
+    {
+      "value": {
+        "drivingMode": "regular",
+        "consumption": 20.2
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "eco",
+        "consumption": 33.2
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "sport",
+        "consumption": 54
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "sport_plus",
+        "consumption": 64.8
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "ecoPlus",
+        "consumption": 18
+      }
+    },
+    {
+      "value": {
+        "drivingMode": "comfort",
+        "consumption": 33.6
+      }
+    }
+  ],
+  "lastTripEnergyConsumption": {
+    "value": 101.3
+  },
+  "lastTripFuelConsumption": {
+    "value": 22.5
+  },
+  "mileageAfterLastTrip": {
+    "value": 95632
+  },
+  "lastTripElectricPortion": {
+    "value": 0.7
+  },
+  "lastTripAverageEnergyRecuperation": {
+    "value": 5.68
+  },
+  "lastTripBatteryRemaining": {
+    "value": 0.5
+  },
+  "lastTripDate": {
+    "value": "2018-10-17T12:34:58.000Z"
+  },
+  "averageFuelConsumption": {
+    "value": 6.5
+  },
+  "currentFuelConsumption": {
+    "value": 7.5
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="valet_mode_response">ValetModeResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status"
+  parameters-description="(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<ValetModeResponse> {
+  "status": {
+    "value": "active"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="vehicle_location_response">VehicleLocationResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="coordinates,heading,altitude"
+  parameters-description="(Object) (custom) ,(Number) (double) Heading in degrees,(Number) (double) Altitude in meters above the WGS 84 reference ellipsoid"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<VehicleLocationResponse> {
+  "coordinates": {
+    "value": {
+      "latitude": 52.520008,
+      "longitude": 13.404954
+    }
+  },
+  "heading": {
+    "value": 13.370123
+  },
+  "altitude": {
+    "value": 133.5
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="vehicle_status_response">VehicleStatusResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="vin,powertrain,modelName,name,licensePlate,salesDesignation,modelYear,colourName,powerInKW,numberOfDoors,numberOfSeats,engineVolume,engineMaxTorque,gearbox,displayUnit,driverSeatLocation,equipments,brand,states"
+  parameters-description="(String) (string) The unique Vehicle Identification Number,(String) (enum) ,(String) (string) The car model name,(String) (string) The car name (nickname),(String) (string) The license plate number,(String) (string) The sales designation of the model,(Number) (uinteger) The car model manufacturing year number,(String) (string) The colour name,(Number) (uinteger) The power of the car measured in kW,(Number) (uinteger) The number of doors,(Number) (uinteger) The number of seats,(Number) (float) The engine volume displacement in liters,(Number) (uinteger) The maximum engine torque in Nm,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Array<String>) (string) Names of equipment the vehicle is equipped with,(String) (string) The car brand,(Array<Array<Number>>) (bytes) The bytes of a Capability state"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<VehicleStatusResponse> {
+  "vin": {
+    "value": "JF2SHBDC7CH451869"
+  },
+  "powertrain": {
+    "value": "all_electric"
+  },
+  "modelName": {
+    "value": "Type X"
+  },
+  "name": {
+    "value": "Speedy"
+  },
+  "licensePlate": {
+    "value": "ABC123"
+  },
+  "salesDesignation": {
+    "value": "Package+"
+  },
+  "modelYear": {
+    "value": 2019
+  },
+  "colourName": {
+    "value": "Estoril Blau"
+  },
+  "powerInKW": {
+    "value": 220
+  },
+  "numberOfDoors": {
+    "value": 5
+  },
+  "numberOfSeats": {
+    "value": 5
+  },
+  "engineVolume": {
+    "value": 2.5
+  },
+  "engineMaxTorque": {
+    "value": 245
+  },
+  "gearbox": {
+    "value": "automatic"
+  },
+  "displayUnit": {
+    "value": "km"
+  },
+  "driverSeatLocation": {
+    "value": "left"
+  },
+  "equipments": [
+    {
+      "value": "Parking sensors"
+    },
+    {
+      "value": "Automatic wipers"
+    }
+  ],
+  "brand": {
+    "value": "Tesla"
+  },
+  "states": [
+    {
+      "value": {
+        "doors": {
+          "locksState": {
+            "value": "unlocked"
+          },
+          "positions": [
+            {
+              "value": {
+                "location": "front_left",
+                "position": "open"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "value": {
+        "charging": {
+          "chargingRateKW": {
+            "value": 3.5
+          },
+          "chargePortState": {
+            "value": "open"
+          }
+        }
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="vehicle_time_response">VehicleTimeResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="vehicleTime"
+  parameters-description="(Object) (custom) Vehicle time in a 24h format"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<VehicleTimeResponse> {
+  "vehicleTime": {
+    "value": {
+      "hour": 19,
+      "minute": 55
+    }
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="weather_conditions_response">WeatherConditionsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="rainIntensity"
+  parameters-description="(Number) (double) Measured raining intensity percentage&comma; whereas 0% is no rain and 100% is maximum rain"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<WeatherConditionsResponse> {
+  "rainIntensity": {
+    "value": 1
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="wi_fi_response">WiFiResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="status,networkConnected,networkSSID,networkSecurity"
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) (string) The network SSID,(String) (enum) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<WiFiResponse> {
+  "status": {
+    "value": "enabled"
+  },
+  "networkConnected": {
+    "value": "connected"
+  },
+  "networkSSID": {
+    "value": "HOME"
+  },
+  "networkSecurity": {
+    "value": "wpa2_personal"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="windows_response">WindowsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="openPercentages,positions"
+  parameters-description="(Array<Object>) (custom) ,(Array<Object>) (custom) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<WindowsResponse> {
+  "openPercentages": [
+    {
+      "value": {
+        "location": "front_left",
+        "openPercentage": 0.2
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "openPercentage": 0.5
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "openPercentage": 0.5
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "openPercentage": 0.1
+      }
+    },
+    {
+      "value": {
+        "location": "hatch",
+        "openPercentage": 0.18
+      }
+    }
+  ],
+  "positions": [
+    {
+      "value": {
+        "location": "front_left",
+        "position": "open"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "position": "open"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "position": "closed"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "position": "open"
+      }
+    },
+    {
+      "value": {
+        "location": "hatch",
+        "position": "open"
+      }
+    }
+  ]
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="windscreen_response">WindscreenResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="wipersStatus,wipersIntensity,windscreenDamage,windscreenZoneMatrix,windscreenDamageZone,windscreenNeedsReplacement,windscreenDamageConfidence,windscreenDamageDetectionTime"
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) ,(Object) (custom) Representing the size of the matrix&comma; seen from the inside of the vehicle,(Object) (custom) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index),(String) (enum) ,(Number) (double) Confidence of damage detection&comma; 0% if no impact detected,(Date) (timestamp) Milliseconds since UNIX Epoch time"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<WindscreenResponse> {
+  "wipersStatus": {
+    "value": "automatic"
+  },
+  "wipersIntensity": {
+    "value": "level_3"
+  },
+  "windscreenDamage": {
+    "value": "impact_but_no_damage_detected"
+  },
+  "windscreenZoneMatrix": {
+    "value": {
+      "horizontal": 4,
+      "vertical": 3
+    }
+  },
+  "windscreenDamageZone": {
+    "value": {
+      "horizontal": 1,
+      "vertical": 2
+    }
+  },
+  "windscreenNeedsReplacement": {
+    "value": "no_replacement_needed"
+  },
+  "windscreenDamageConfidence": {
+    "value": 0.95
+  },
+  "windscreenDamageDetectionTime": {
+    "value": "2017-01-10T16:32:05.000Z"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>

@@ -1,0 +1,67 @@
+{
+  "extends": [
+      "@optimistdigital/eslint-config-rules",
+      "prettier"
+  ],
+  "rules": {
+      "flowtype/define-flow-type": 1,
+      "react/jsx-indent": 0,
+      "new-cap": [
+          1,
+          {
+              "capIsNewExceptionPattern": "^(.*.)*[A-Z]{2,}"
+          }
+      ]
+  },
+  "parser": "babel-eslint",
+  "env": {
+      "node": true,
+      "browser": true,
+      "es6": true,
+      "jest": true
+  },
+  "plugins": [
+      "import",
+      "react",
+      "flowtype"
+  ],
+  "settings": {
+      "import/resolver": {
+          "node": {
+              "extensions": [
+                  ".js",
+                  ".jsx",
+                  ".json"
+              ]
+          },
+          "paths": [
+              "imports"
+          ],
+          "moduleDirectory": [
+              "imports",
+              "node_modules"
+          ]
+      }
+  },
+  "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "generators": false,
+          "objectLiteralDuplicateProperties": false,
+          "jsx": true
+      }
+  },
+  "globals": {
+      "__DEVELOPMENT__": true,
+      "__PRODUCTION__": true,
+      "__CLIENT__": true,
+      "__SERVER__": true,
+      "__DEBUG__": true,
+      "socket": true,
+      "ga": true,
+      "google": true,
+      "Modernizr": true,
+      "$": true
+  }
+}

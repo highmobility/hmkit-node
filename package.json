@@ -1,0 +1,88 @@
+{
+  "name": "hmkit",
+  "version": "11.0.1",
+  "description": "High Mobility SDK for Node.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "clean": "rimraf lib dist es coverage",
+    "lint": "eslint src test",
+    "test": "cross-env BABEL_ENV=commonjs node node_modules/jest/bin/jest.js --runInBand --no-cache",
+    "test:no-commands": "npm test -- --testRegex='^((?!Command).)*spec.js$'",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage --collectCoverageFrom='[\"src/**/*.js\"]'",
+    "test:setup": "npm run build:commonjs && node test/testutils/initialSetup.js",
+    "test:bamboo": "npm run test:setup && JEST_FILE=test/.results/jest.json npm test --no-cache",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build": "npm run build:commonjs && npm run build:es",
+    "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
+    "format": "prettier --write \"{src,test}/**/*.js\" ",
+    "generate:docs": "node commands/generateCommandsDocumentation.js && node commands/generateResponsesDocumentation.js"
+  },
+  "entry": "./build/bundle.js",
+  "jest": {
+    "coverageDirectory": "coverage",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "node"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/testutils/setupTests.js"
+    ],
+    "globalSetup": "<rootDir>/test/testutils/globalSetup.js",
+    "globalTeardown": "<rootDir>/test/testutils/globalTeardown.js",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+    },
+    "testRegex": "(/test/.*\\.spec.js)$",
+    "testResultsProcessor": "jest-bamboo-formatter"
+  },
+  "dependencies": {
+    "atob": "^2.0.3",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^20.0.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "btoa": "^1.1.2",
+    "cross-env": "^5.0.5",
+    "eslint-plugin-react": "^7.7.0",
+    "hmcrypto": "highmobility/hm-node-crypto#v0.9.0",
+    "ieee754": "^1.1.8",
+    "jest-bamboo-formatter": "^1.0.1",
+    "joi": "^14.0.2",
+    "lodash": "^4.17.11",
+    "lodash-fp": "^0.10.4",
+    "node-fetch": "^1.7.2",
+    "semver": "^5.6.0"
+  },
+  "devDependencies": {
+    "@optimistdigital/eslint-config-rules": "^1.7.1",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-inline-json-import": "^0.3.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "clean-webpack-plugin": "^0.1.16",
+    "comment-parser": "^0.5.0",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.18.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-flowtype": "^2.46.0",
+    "eslint-plugin-import": "^2.9.0",
+    "heapdump": "^0.3.9",
+    "jest": "^23.1.0",
+    "json-loader": "^0.5.7",
+    "node-loader": "^0.6.0",
+    "prettier": "^1.16.4",
+    "puppeteer": "^1.14.0",
+    "rimraf": "^3.0.0",
+    "yamljs": "^0.3.0"
+  }
+}

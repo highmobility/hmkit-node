@@ -1,0 +1,31 @@
+{
+  "presets": [
+    "flow",
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "uglify": true
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
+
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "inline-json-import"
+  ],
+
+  "env": {
+    "commonjs": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
+}

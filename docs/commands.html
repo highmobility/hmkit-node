@@ -1,0 +1,2641 @@
+---
+layout: resources/documentation/cloud-sdks/node-js
+header: 'Node.js Auto API'
+permalink: /documentation/cloud-sdks/node-js/commands/
+search-title: 'Node.js Auto API'
+category: cloud
+---
+
+<p class="introductory-text">See the Node.js <a href="/learn/documentation/auto-api/api-structure/tutorial/">Auto API</a> page for more information.</p>
+
+<h2 id="browser">Browser</h2>
+
+    <h3 id="browser_load_url">loadUrl({ url })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Browser.loadUrl({ url }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Browser_load_url"
+              parameters-name="url"
+              parameters-description="The URL"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Browser.loadUrl({ url: 'https://about.high-mobility.com' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="capabilities">Capabilities</h2>
+
+    <h3 id="capabilities_get_capabilities">getCapabilities()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Capabilities.getCapabilities(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Capabilities_get_capabilities"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="charging">Charging</h2>
+
+    <h3 id="charging_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="charging_start_stop_charging">startStopCharging({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.startStopCharging({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_start_stop_charging"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Charging.startStopCharging({ status: 'charging' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="charging_set_charge_limit">setChargeLimit({ chargeLimit })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.setChargeLimit({ chargeLimit }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_set_charge_limit"
+              parameters-name="chargeLimit"
+              parameters-description="Charge limit percentage between 0.0-1.0"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Charging.setChargeLimit({ chargeLimit: 0.9 }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="charging_open_close_charging_port">openCloseChargingPort({ chargePortState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.openCloseChargingPort({ chargePortState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_open_close_charging_port"
+              parameters-name="chargePortState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Charging.openCloseChargingPort({ chargePortState: 'open' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="charging_set_charge_mode">setChargeMode({ chargeMode })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.setChargeMode({ chargeMode }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_set_charge_mode"
+              parameters-name="chargeMode"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Charging.setChargeMode({ chargeMode: 'timer_based' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="charging_set_charging_timers">setChargingTimers({ timers })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.setChargingTimers({ timers }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_set_charging_timers"
+              parameters-name="timers"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Charging.setChargingTimers({
+		timers: [
+			{ timerType: 'preferred_start_time', date: '1972-12-09T13:01:56.744Z' },
+			{ timerType: 'preferred_end_time', date: '1970-03-09T02:18:40.280Z' },
+			{ timerType: 'departure_date', date: '1970-03-09T02:18:40.280Z' },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="charging_set_reduction_of_charging_current_times">setReductionOfChargingCurrentTimes({ reductionTimes })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Charging.setReductionOfChargingCurrentTimes({ reductionTimes }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Charging_set_reduction_of_charging_current_times"
+              parameters-name="reductionTimes"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Charging.setReductionOfChargingCurrentTimes({
+		reductionTimes: [
+			{ startStop: 'start', time: { hour: 17, minute: 33 } },
+			{ startStop: 'stop', time: { hour: 0, minute: 52 } },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="chassis_settings">Chassis Settings</h2>
+
+    <h3 id="chassis_settings_get_chassis_settings">getChassisSettings()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ChassisSettings.getChassisSettings(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ChassisSettings_get_chassis_settings"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="chassis_settings_set_driving_mode">setDrivingMode({ drivingMode })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ChassisSettings.setDrivingMode({ drivingMode }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ChassisSettings_set_driving_mode"
+              parameters-name="drivingMode"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ChassisSettings.setDrivingMode({ drivingMode: 'eco' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="chassis_settings_start_stop_sports_chrono">startStopSportsChrono({ sportChrono })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ChassisSettings.startStopSportsChrono({ sportChrono }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ChassisSettings_start_stop_sports_chrono"
+              parameters-name="sportChrono"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ChassisSettings.startStopSportsChrono({
+		sportChrono: 'active',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="chassis_settings_set_spring_rates">setSpringRates({ currentSpringRates })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ChassisSettings.setSpringRates({ currentSpringRates }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ChassisSettings_set_spring_rates"
+              parameters-name="currentSpringRates"
+              parameters-description="The current values for the spring rates"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ChassisSettings.setSpringRates({
+		currentSpringRates: [
+			{ axle: 'front', springRate: 21 },
+			{ axle: 'rear', springRate: 23 },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="chassis_settings_set_chassis_position">setChassisPosition({ currentChassisPosition })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ChassisSettings.setChassisPosition({ currentChassisPosition }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ChassisSettings_set_chassis_position"
+              parameters-name="currentChassisPosition"
+              parameters-description="The chassis position in mm calculated from the lowest point"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ChassisSettings.setChassisPosition({
+		currentChassisPosition: 25,
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="climate">Climate</h2>
+
+    <h3 id="climate_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="climate_change_starting_times">changeStartingTimes({ hvacWeekdayStartingTimes })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.changeStartingTimes({ hvacWeekdayStartingTimes }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_change_starting_times"
+              parameters-name="hvacWeekdayStartingTimes"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Climate.changeStartingTimes({
+		hvacWeekdayStartingTimes: [
+			{ weekday: 'monday', time: { hour: 16, minute: 0 } },
+			{ weekday: 'tuesday', time: { hour: 16, minute: 0 } },
+			{ weekday: 'wednesday', time: { hour: 16, minute: 0 } },
+			{ weekday: 'thursday', time: { hour: 16, minute: 0 } },
+			{ weekday: 'friday', time: { hour: 16, minute: 0 } },
+			{ weekday: 'saturday', time: { hour: 18, minute: 0 } },
+			{ weekday: 'sunday', time: { hour: 19, minute: 0 } },
+			{ weekday: 'automatic', time: { hour: 16, minute: 0 } },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="climate_start_stop_hvac">startStopHvac({ hvacState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.startStopHvac({ hvacState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_start_stop_hvac"
+              parameters-name="hvacState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Climate.startStopHvac({ hvacState: 'active' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="climate_start_stop_defogging">startStopDefogging({ defoggingState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.startStopDefogging({ defoggingState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_start_stop_defogging"
+              parameters-name="defoggingState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Climate.startStopDefogging({ defoggingState: 'inactive' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="climate_start_stop_defrosting">startStopDefrosting({ defrostingState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.startStopDefrosting({ defrostingState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_start_stop_defrosting"
+              parameters-name="defrostingState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Climate.startStopDefrosting({ defrostingState: 'inactive' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="climate_start_stop_ionising">startStopIonising({ ionisingState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.startStopIonising({ ionisingState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_start_stop_ionising"
+              parameters-name="ionisingState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Climate.startStopIonising({ ionisingState: 'inactive' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="climate_set_temperature_settings">setTemperatureSettings({ driverTemperatureSetting, passengerTemperatureSetting, rearTemperatureSetting })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Climate.setTemperatureSettings({ driverTemperatureSetting, passengerTemperatureSetting, rearTemperatureSetting }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Climate_set_temperature_settings"
+              parameters-name="driverTemperatureSetting,passengerTemperatureSetting,rearTemperatureSetting"
+              parameters-description="The driver temperature setting in celsius,The passenger temperature setting in celsius,The rear temperature in celsius"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Climate.setTemperatureSettings({
+		driverTemperatureSetting: 21.5,
+		passengerTemperatureSetting: 21.5,
+		rearTemperatureSetting: 21.5,
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="dashboard_lights">Dashboard Lights</h2>
+
+    <h3 id="dashboard_lights_get_dashboard_lights">getDashboardLights()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.DashboardLights.getDashboardLights(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="DashboardLights_get_dashboard_lights"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="diagnostics">Diagnostics</h2>
+
+    <h3 id="diagnostics_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Diagnostics.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Diagnostics_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="doors">Doors</h2>
+
+    <h3 id="doors_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Doors.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Doors_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="doors_lock_unlock_doors">lockUnlockDoors({ locksState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Doors.lockUnlockDoors({ locksState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Doors_lock_unlock_doors"
+              parameters-name="locksState"
+              parameters-description="Locks state for the whole car (combines all specific lock states if available)"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Doors.lockUnlockDoors({ locksState: 'unlocked' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="engine_start_stop">Engine Start-Stop</h2>
+
+    <h3 id="engine_start_stop_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.EngineStartStop.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="EngineStartStop_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="engine_start_stop_activate_deactivate_start_stop">activateDeactivateStartStop({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.EngineStartStop.activateDeactivateStartStop({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="EngineStartStop_activate_deactivate_start_stop"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.EngineStartStop.activateDeactivateStartStop({
+		status: 'active',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="engine">Engine</h2>
+
+    <h3 id="engine_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Engine.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Engine_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="engine_turn_engine_on_off">turnEngineOnOff({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Engine.turnEngineOnOff({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Engine_turn_engine_on_off"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Engine.turnEngineOnOff({ status: 'off' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="failure_message">Failure Message</h2>
+<h2 id="firmware_version">Firmware Version</h2>
+
+    <h3 id="firmware_version_get_firmware_version">getFirmwareVersion()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.FirmwareVersion.getFirmwareVersion(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="FirmwareVersion_get_firmware_version"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="fueling">Fueling</h2>
+
+    <h3 id="fueling_get_gas_flap_state">getGasFlapState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Fueling.getGasFlapState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Fueling_get_gas_flap_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="fueling_control_gas_flap">controlGasFlap({ gasFlapLock, gasFlapPosition })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Fueling.controlGasFlap({ gasFlapLock, gasFlapPosition }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Fueling_control_gas_flap"
+              parameters-name="gasFlapLock,gasFlapPosition"
+              parameters-description=","
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Fueling.controlGasFlap({
+		gasFlapLock: 'locked',
+		gasFlapPosition: 'closed',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="graphics">Graphics</h2>
+
+    <h3 id="graphics_display_image">displayImage({ imageURL })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Graphics.displayImage({ imageURL }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Graphics_display_image"
+              parameters-name="imageURL"
+              parameters-description="The image URL"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Graphics.displayImage({
+		imageURL: 'https://about.high-mobility.com/assets/images/hm-logo.svg',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="historical">Historical</h2>
+
+    <h3 id="historical_request_states">requestStates({ capabilityID, startDate, endDate })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Historical.requestStates({ capabilityID, startDate, endDate }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Historical_request_states"
+              parameters-name="capabilityID,startDate,endDate"
+              parameters-description="The identifier of the Capability,Milliseconds since UNIX Epoch time,Milliseconds since UNIX Epoch time"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Historical.requestStates({
+		capabilityID: 96,
+		startDate: '2019-10-07T13:04:32.000Z',
+		endDate: '2019-09-27T08:42:30.000Z',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="home_charger">Home Charger</h2>
+
+    <h3 id="home_charger_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HomeCharger.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HomeCharger_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="home_charger_set_charge_current">setChargeCurrent({ chargeCurrentDC })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HomeCharger.setChargeCurrent({ chargeCurrentDC }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HomeCharger_set_charge_current"
+              parameters-name="chargeCurrentDC"
+              parameters-description="The charge direct current"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HomeCharger.setChargeCurrent({ chargeCurrentDC: 0.5 }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="home_charger_set_price_tariffs">setPriceTariffs({ priceTariffs })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HomeCharger.setPriceTariffs({ priceTariffs }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HomeCharger_set_price_tariffs"
+              parameters-name="priceTariffs"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HomeCharger.setPriceTariffs({
+		priceTariffs: [
+			{ pricingType: 'starting_fee', price: 4.5, currency: 'EUR' },
+			{ pricingType: 'per_minute', price: 0.3, currency: 'EUR' },
+			{ pricingType: 'per_kwh', price: 0.3, currency: 'Ripple' },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="home_charger_activate_deactivate_solar_charging">activateDeactivateSolarCharging({ solarCharging })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HomeCharger.activateDeactivateSolarCharging({ solarCharging }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HomeCharger_activate_deactivate_solar_charging"
+              parameters-name="solarCharging"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HomeCharger.activateDeactivateSolarCharging({
+		solarCharging: 'active',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="home_charger_enable_disable_wi_fi_hotspot">enableDisableWiFiHotspot({ wifiHotspotEnabled })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HomeCharger.enableDisableWiFiHotspot({ wifiHotspotEnabled }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HomeCharger_enable_disable_wi_fi_hotspot"
+              parameters-name="wifiHotspotEnabled"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HomeCharger.enableDisableWiFiHotspot({
+		wifiHotspotEnabled: 'enabled',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="home_charger_authenticate_expire">authenticateExpire({ authenticationState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HomeCharger.authenticateExpire({ authenticationState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HomeCharger_authenticate_expire"
+              parameters-name="authenticationState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HomeCharger.authenticateExpire({
+		authenticationState: 'authenticated',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="honk_horn_flash_lights">Honk Horn & Flash Lights</h2>
+
+    <h3 id="honk_horn_flash_lights_get_flashers_state">getFlashersState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HonkHornFlashLights.getFlashersState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HonkHornFlashLights_get_flashers_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="honk_horn_flash_lights_honk_flash">honkFlash({ honkSeconds, flashTimes })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HonkHornFlashLights.honkFlash({ honkSeconds, flashTimes }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HonkHornFlashLights_honk_flash"
+              parameters-name="honkSeconds,flashTimes"
+              parameters-description="Number of seconds to honk the horn,Number of times to flash the lights"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HonkHornFlashLights.honkFlash({
+		honkSeconds: 3,
+		flashTimes: 5,
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="honk_horn_flash_lights_activate_deactivate_emergency_flasher">activateDeactivateEmergencyFlasher({ emergencyFlashersState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.HonkHornFlashLights.activateDeactivateEmergencyFlasher({ emergencyFlashersState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="HonkHornFlashLights_activate_deactivate_emergency_flasher"
+              parameters-name="emergencyFlashersState"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.HonkHornFlashLights.activateDeactivateEmergencyFlasher({
+		emergencyFlashersState: 'active',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="hood">Hood</h2>
+
+    <h3 id="hood_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Hood.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Hood_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="ignition">Ignition</h2>
+
+    <h3 id="ignition_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Ignition.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Ignition_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="ignition_turn_ignition_on_off">turnIgnitionOnOff({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Ignition.turnIgnitionOnOff({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Ignition_turn_ignition_on_off"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Ignition.turnIgnitionOnOff({ status: 'off' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="light_conditions">Light Conditions</h2>
+
+    <h3 id="light_conditions_get_light_conditions">getLightConditions()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.LightConditions.getLightConditions(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="LightConditions_get_light_conditions"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="lights">Lights</h2>
+
+    <h3 id="lights_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Lights.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Lights_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="lights_control_lights">controlLights({ frontExteriorLight, rearExteriorLight, ambientLightColour, fogLights, readingLamps, interiorLights })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Lights.controlLights({ frontExteriorLight, rearExteriorLight, ambientLightColour, fogLights, readingLamps, interiorLights }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Lights_control_lights"
+              parameters-name="frontExteriorLight,rearExteriorLight,ambientLightColour,fogLights,readingLamps,interiorLights"
+              parameters-description=",,,,,"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Lights.controlLights({
+		frontExteriorLight: 'active_with_full_beam',
+		rearExteriorLight: 'active',
+		ambientLightColour: { red: 255, green: 0, blue: 0 },
+		fogLights: [
+			{ location: 'front', state: 'inactive' },
+			{ location: 'rear', state: 'active' },
+		],
+		readingLamps: [
+			{ location: 'front_left', state: 'active' },
+			{ location: 'front_right', state: 'active' },
+			{ location: 'rear_right', state: 'inactive' },
+			{ location: 'rear_left', state: 'inactive' },
+		],
+		interiorLights: [
+			{ location: 'front', state: 'inactive' },
+			{ location: 'rear', state: 'active' },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="maintenance">Maintenance</h2>
+
+    <h3 id="maintenance_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Maintenance.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Maintenance_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="messaging">Messaging</h2>
+
+    <h3 id="messaging_message_received">messageReceived({ text, handle })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Messaging.messageReceived({ text, handle }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Messaging_message_received"
+              parameters-name="text,handle"
+              parameters-description="The text,The optional handle of message"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Messaging.messageReceived({ text: 'Hey mom!', handle: 'Epp' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="mobile">Mobile</h2>
+
+    <h3 id="mobile_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Mobile.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Mobile_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="multi_command">Multi Command</h2>
+
+    <h3 id="multi_command_multi_command">multiCommand({ multiCommands })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.MultiCommand.multiCommand({ multiCommands }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="MultiCommand_multi_command"
+              parameters-name="multiCommands"
+              parameters-description="The outgoing commands"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.MultiCommand.multiCommand({
+		multiCommands: [
+			{ doors: { insideLocksState: { value: 'locked' } } },
+			{ ignition: { status: { value: 'off' } } },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="navi_destination">Navi Destination</h2>
+
+    <h3 id="navi_destination_get_navi_destination">getNaviDestination()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.NaviDestination.getNaviDestination(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="NaviDestination_get_navi_destination"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="navi_destination_set_navi_destination">setNaviDestination({ coordinates, destinationName })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.NaviDestination.setNaviDestination({ coordinates, destinationName }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="NaviDestination_set_navi_destination"
+              parameters-name="coordinates,destinationName"
+              parameters-description=",Destination name"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.NaviDestination.setNaviDestination({
+		coordinates: { latitude: 52.520008, longitude: 13.404954 },
+		destinationName: 'Berlin',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="notifications">Notifications</h2>
+
+    <h3 id="notifications_notification">notification({ text, actionItems })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Notifications.notification({ text, actionItems }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Notifications_notification"
+              parameters-name="text,actionItems"
+              parameters-description="Text for the notification,"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Notifications.notification({
+		text: 'Open Garage',
+		actionItems: [
+			{ id: 0, name: 'Open' },
+			{ id: 0, name: 'Cancel' },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="notifications_action">action({ activatedAction })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Notifications.action({ activatedAction }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Notifications_action"
+              parameters-name="activatedAction"
+              parameters-description="Identifier of the activated action"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Notifications.action({ activatedAction: 27 }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="notifications_clear_notification">clearNotification()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Notifications.clearNotification(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Notifications_clear_notification"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Notifications.clearNotification({}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="offroad">Offroad</h2>
+
+    <h3 id="offroad_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Offroad.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Offroad_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="parking_brake">Parking Brake</h2>
+
+    <h3 id="parking_brake_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ParkingBrake.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ParkingBrake_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="parking_brake_set_parking_brake">setParkingBrake({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ParkingBrake.setParkingBrake({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ParkingBrake_set_parking_brake"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ParkingBrake.setParkingBrake({ status: 'active' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="parking_ticket">Parking Ticket</h2>
+
+    <h3 id="parking_ticket_get_parking_ticket">getParkingTicket()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ParkingTicket.getParkingTicket(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ParkingTicket_get_parking_ticket"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="parking_ticket_start_parking">startParking({ operatorTicketID, ticketStartTime, operatorName, ticketEndTime })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ParkingTicket.startParking({ operatorTicketID, ticketStartTime, operatorName, ticketEndTime }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ParkingTicket_start_parking"
+              parameters-name="operatorTicketID,ticketStartTime,operatorName,ticketEndTime"
+              parameters-description="Operator ticket ID,Milliseconds since UNIX Epoch time,Operator name,Milliseconds since UNIX Epoch time"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ParkingTicket.startParking({
+		operatorTicketID: '64894233',
+		ticketStartTime: '2017-01-10T19:34:22.000Z',
+		operatorName: 'Berlin Parking',
+		ticketEndTime: '2019-10-08T11:21:45.000Z',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="parking_ticket_end_parking">endParking()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ParkingTicket.endParking(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ParkingTicket_end_parking"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ParkingTicket.endParking({}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="power_takeoff">Power Take-Off</h2>
+
+    <h3 id="power_takeoff_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.PowerTakeoff.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="PowerTakeoff_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="power_takeoff_activate_deactivate_power_takeoff">activateDeactivatePowerTakeoff({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.PowerTakeoff.activateDeactivatePowerTakeoff({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="PowerTakeoff_activate_deactivate_power_takeoff"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.PowerTakeoff.activateDeactivatePowerTakeoff({
+		status: 'active',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="race">Race</h2>
+
+    <h3 id="race_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Race.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Race_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="rooftop_control">Rooftop Control</h2>
+
+    <h3 id="rooftop_control_get_rooftop_state">getRooftopState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.RooftopControl.getRooftopState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="RooftopControl_get_rooftop_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="rooftop_control_control_rooftop">controlRooftop({ dimming, position, convertibleRoofState, sunroofTiltState, sunroofState })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.RooftopControl.controlRooftop({ dimming, position, convertibleRoofState, sunroofTiltState, sunroofState }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="RooftopControl_control_rooftop"
+              parameters-name="dimming,position,convertibleRoofState,sunroofTiltState,sunroofState"
+              parameters-description="1.0 (100%) is opaque, 0.0 (0%) is transparent,1.0 (100%) is fully open, 0.0 (0%) is closed,,,"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.RooftopControl.controlRooftop({
+		dimming: 1,
+		position: 0.5,
+		convertibleRoofState: 'open',
+		sunroofTiltState: 'half_tilted',
+		sunroofState: 'open',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="seats">Seats</h2>
+
+    <h3 id="seats_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Seats.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Seats_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="tachograph">Tachograph</h2>
+
+    <h3 id="tachograph_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Tachograph.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Tachograph_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="text_input">Text Input</h2>
+
+    <h3 id="text_input_text_input">textInput({ text })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.TextInput.textInput({ text }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="TextInput_text_input"
+              parameters-name="text"
+              parameters-description="The text"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.TextInput.textInput({ text: 'Rendezvous with Rama' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="theft_alarm">Theft Alarm</h2>
+
+    <h3 id="theft_alarm_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.TheftAlarm.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="TheftAlarm_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="theft_alarm_set_theft_alarm">setTheftAlarm({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.TheftAlarm.setTheftAlarm({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="TheftAlarm_set_theft_alarm"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.TheftAlarm.setTheftAlarm({ status: 'armed' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="trunk">Trunk</h2>
+
+    <h3 id="trunk_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Trunk.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Trunk_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="trunk_control_trunk">controlTrunk({ lock, position })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Trunk.controlTrunk({ lock, position }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Trunk_control_trunk"
+              parameters-name="lock,position"
+              parameters-description=","
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Trunk.controlTrunk({ lock: 'unlocked', position: 'open' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="usage">Usage</h2>
+
+    <h3 id="usage_get_usage">getUsage()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Usage.getUsage(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Usage_get_usage"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="valet_mode">Valet Mode</h2>
+
+    <h3 id="valet_mode_get_valet_mode">getValetMode()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ValetMode.getValetMode(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ValetMode_get_valet_mode"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="valet_mode_activate_deactivate_valet_mode">activateDeactivateValetMode({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.ValetMode.activateDeactivateValetMode({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="ValetMode_activate_deactivate_valet_mode"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.ValetMode.activateDeactivateValetMode({ status: 'active' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="vehicle_location">Vehicle Location</h2>
+
+    <h3 id="vehicle_location_get_vehicle_location">getVehicleLocation()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.VehicleLocation.getVehicleLocation(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="VehicleLocation_get_vehicle_location"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="vehicle_status">Vehicle Status</h2>
+
+    <h3 id="vehicle_status_get_vehicle_status">getVehicleStatus()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.VehicleStatus.getVehicleStatus(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="VehicleStatus_get_vehicle_status"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="vehicle_time">Vehicle Time</h2>
+
+    <h3 id="vehicle_time_get_vehicle_time">getVehicleTime()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.VehicleTime.getVehicleTime(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="VehicleTime_get_vehicle_time"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="video_handover">Video Handover</h2>
+
+    <h3 id="video_handover_video_handover">videoHandover({ url, startingSecond, screen })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.VideoHandover.videoHandover({ url, startingSecond, screen }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="VideoHandover_video_handover"
+              parameters-name="url,startingSecond,screen"
+              parameters-description="URL string,,"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.VideoHandover.videoHandover({
+		url: 'https://bit.ly/2obY7G5',
+		startingSecond: 3,
+		screen: 'rear',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="wake_up">Wake Up</h2>
+
+    <h3 id="wake_up_wake_up">wakeUp()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.WakeUp.wakeUp(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="WakeUp_wake_up"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.WakeUp.wakeUp({}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="weather_conditions">Weather Conditions</h2>
+
+    <h3 id="weather_conditions_get_weather_conditions">getWeatherConditions()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.WeatherConditions.getWeatherConditions(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="WeatherConditions_get_weather_conditions"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+<h2 id="wi_fi">Wi-Fi</h2>
+
+    <h3 id="wi_fi_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.WiFi.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="WiFi_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="wi_fi_connect_to_network">connectToNetwork({ networkSSID, networkSecurity, password })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.WiFi.connectToNetwork({ networkSSID, networkSecurity, password }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="WiFi_connect_to_network"
+              parameters-name="networkSSID,networkSecurity,password"
+              parameters-description="The network SSID,,The network password"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.WiFi.connectToNetwork({
+		networkSSID: 'HOME',
+		networkSecurity: 'wpa2_personal',
+		password: 'great_secret12',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="wi_fi_forget_network">forgetNetwork({ networkSSID })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.WiFi.forgetNetwork({ networkSSID }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="WiFi_forget_network"
+              parameters-name="networkSSID"
+              parameters-description="The network SSID"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.WiFi.forgetNetwork({ networkSSID: 'HOME' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="wi_fi_enable_disable_wi_fi">enableDisableWiFi({ status })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.WiFi.enableDisableWiFi({ status }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="WiFi_enable_disable_wi_fi"
+              parameters-name="status"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.WiFi.enableDisableWiFi({ status: 'enabled' }),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="windows">Windows</h2>
+
+    <h3 id="windows_get_windows">getWindows()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Windows.getWindows(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Windows_get_windows"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="windows_control_windows">controlWindows({ openPercentages, positions })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Windows.controlWindows({ openPercentages, positions }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Windows_control_windows"
+              parameters-name="openPercentages,positions"
+              parameters-description=","
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Windows.controlWindows({
+		openPercentages: [
+			{ location: 'front_left', openPercentage: 0.2 },
+			{ location: 'front_right', openPercentage: 0.5 },
+			{ location: 'rear_right', openPercentage: 0.5 },
+			{ location: 'rear_left', openPercentage: 0.1 },
+			{ location: 'hatch', openPercentage: 0.18 },
+		],
+		positions: [
+			{ location: 'front_left', position: 'open' },
+			{ location: 'front_right', position: 'open' },
+			{ location: 'rear_right', position: 'closed' },
+			{ location: 'rear_left', position: 'open' },
+			{ location: 'hatch', position: 'open' },
+		],
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+<h2 id="windscreen">Windscreen</h2>
+
+    <h3 id="windscreen_get_state">getState()</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Windscreen.getState(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Windscreen_get_state"
+              
+              
+            %}
+        </div>
+        
+<div class="col-right">
+    
+</div>
+
+    </div>
+
+    
+
+    <h3 id="windscreen_set_windscreen_damage">setWindscreenDamage({ windscreenDamage, windscreenDamageZone })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Windscreen.setWindscreenDamage({ windscreenDamage, windscreenDamageZone }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Windscreen_set_windscreen_damage"
+              parameters-name="windscreenDamage,windscreenDamageZone"
+              parameters-description=",Representing the position in the zone, seen from the inside of the vehicle (1-based index)"
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Windscreen.setWindscreenDamage({
+		windscreenDamage: 'impact_but_no_damage_detected',
+		windscreenDamageZone: { horizontal: 1, vertical: 2 },
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="windscreen_set_windscreen_replacement_needed">setWindscreenReplacementNeeded({ windscreenNeedsReplacement })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Windscreen.setWindscreenReplacementNeeded({ windscreenNeedsReplacement }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Windscreen_set_windscreen_replacement_needed"
+              parameters-name="windscreenNeedsReplacement"
+              parameters-description=""
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Windscreen.setWindscreenReplacementNeeded({
+		windscreenNeedsReplacement: 'no_replacement_needed',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    
+
+    <h3 id="windscreen_control_wipers">controlWipers({ wipersStatus, wipersIntensity })</h3>
+    
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.Windscreen.controlWipers({ wipersStatus, wipersIntensity }){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="Windscreen_control_wipers"
+              parameters-name="wipersStatus,wipersIntensity"
+              parameters-description=","
+            %}
+        </div>
+        
+<div class="col-right">
+    <h4>Example</h4>
+
+    {% capture code %}hmkit.telematics.sendCommand(
+	hmkit.commands.Windscreen.controlWipers({
+		wipersStatus: 'automatic',
+		wipersIntensity: 'level_3',
+	}),
+	accessCertificate
+);
+{% endcapture %}
+    
+    {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+    </div>
+
+    

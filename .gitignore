@@ -1,0 +1,10 @@
+.DS_Store
+/node_modules
+/coverage
+/dist
+npm-debug.log
+/es
+/lib
+/.vscode
+/test/memory/*.heapsnapshot
+.idea
