@@ -45,8 +45,8 @@ There are 2 sample apps available on Github.com to showcase different use-cases 
 
 We would love to accept your patches and contributions to this project. Before getting to work, please first discuss the changes that you wish to make with us via [GitHub Issues](https://github.com/highmobility/hmkit-node/issues), [Spectrum](https://spectrum.chat/high-mobility/) or [Slack](https://slack.high-mobility.com/).
 
-See more in [CONTRIBUTING.md](https://github.com/highmobility/hmkit-node/tree/master/CONTRIBUTING.md)
+See more in [CONTRIBUTING.md](https://github.com/highmobility/hmkit-node/blob/master/CONTRIBUTING.md)
 
 ## Licence
 
-This repository is using MIT licence. See more in [LICENCE](https://github.com/highmobility/hmkit-node/tree/master/LICENCE)
+This repository is using MIT licence. See more in [LICENCE](https://github.com/highmobility/hmkit-node/blob/master/LICENSE.md)
