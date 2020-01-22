@@ -8,16 +8,16 @@ The library is designed to give Node.js developers simple access to High Mobilit
 
 # Table of contents
 
-* [Requirements](#requirements)
-* [Integration](#integration)
-* [Getting Started](#getting-started)
-  * [Examples](#examples)
-* [Contributing](#contributing)
-* [Licence](#licence)
+- [Requirements](#requirements)
+- [Integration](#integration)
+- [Getting Started](#getting-started)
+  - [Examples](#examples)
+- [Contributing](#contributing)
+- [Licence](#licence)
 
 ## Requirements
 
-HMKit Node.js SDK requires node v7.6.0 or higher for ES2015 and async function support.
+HMKit Node.js SDK requires node v8.0.0 or higher for ES2015 and async function support.
 
 ## Integration
 
@@ -36,10 +36,10 @@ Check out the [code references](https://high-mobility.com/learn/documentation/cl
 
 There are 2 sample apps available on Github.com to showcase different use-cases for HMKit:
 
-* [Scaffold](https://github.com/highmobility/hm-node-scaffold)
-  * Demonstrates the most basic implementation to use HMKit.
-* [AutoAPI Explorer](https://github.com/highmobility/hm-node-auto-api-explorer)
-  * This project should give you an overview of how to implement [High Mobility's](https://www.high-mobility.com/) OAuth and the HMKit Node.js SDK for working with car data. It consists of two pages: a login page to start the authentication flow, and a dashboard which displays the car's diagnostics state and lets you toggle the door locks.
+- [Scaffold](https://github.com/highmobility/hm-node-scaffold)
+  - Demonstrates the most basic implementation to use HMKit.
+- [AutoAPI Explorer](https://github.com/highmobility/hm-node-auto-api-explorer)
+  - This project should give you an overview of how to implement [High Mobility's](https://www.high-mobility.com/) OAuth and the HMKit Node.js SDK for working with car data. It consists of two pages: a login page to start the authentication flow, and a dashboard which displays the car's diagnostics state and lets you toggle the door locks.
 
 ## Contributing
 
