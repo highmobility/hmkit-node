@@ -1,6 +1,6 @@
 # HMKit Node.js SDK
 
-[![NPM version](https://img.shields.io/npm/v/hmkit.svg)](https://www.npmjs.com/package/hmkit)
+[![NPM version](https://img.shields.io/npm/v/hmkit.svg)](https://www.npmjs.com/package/hmkit) | ![Build Status](https://github.com/highmobility/hmkit-node/workflows/Node%20CI/badge.svg)
 
 The HMKit Node.js SDK makes it easy to work with car data using the _HIGH MOBILITY API_ platform. The SDK implements a strong security layer between your Node.js app and the platform while giving you straightforward native interface to read and write to connected cars.
 
