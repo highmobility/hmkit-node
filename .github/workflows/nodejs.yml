@@ -26,3 +26,4 @@ jobs:
         CI: true
         TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
         TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+        TZ: Europe/Kiev
