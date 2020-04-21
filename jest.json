@@ -1,0 +1,4066 @@
+{
+  "stats": {
+    "tests": 675,
+    "passes": 674,
+    "failures": 1,
+    "duration": 119915,
+    "start": "2020-04-21T10:50:24.276Z",
+    "end": "2020-04-21T10:52:24.191Z"
+  },
+  "failures": [
+    {
+      "title": "Should handle getter PowerTakeoff.getState() command",
+      "fullTitle": "PowerTakeoff Should handle getter PowerTakeoff.getState() command",
+      "duration": 4902,
+      "errorCount": 1,
+      "error": "1 failure: \n1 failed: Error: Failed to fetch access certificate.\n    at /Users/optimist/Code/hmkit-node/src/Core/AccessCertificatesManager.js:121:17\n    at <anonymous>\n    at runMicrotasksCallback (internal/process/next_tick.js:122:5)\n    at _combinedTickCallback (internal/process/next_tick.js:132:7)\n    at process._tickCallback (internal/process/next_tick.js:181:9)"
+    }
+  ],
+  "passes": [
+    {
+      "title": "should send multi command",
+      "fullTitle": "MultiCommand should send multi command",
+      "duration": 2481,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter VehicleStatus.getVehicleStatus() command",
+      "fullTitle": "VehicleStatus Should handle getter VehicleStatus.getVehicleStatus() command",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.getVehicleStatus() response correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.getVehicleStatus() response correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.vin property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.vin property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.vin property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.vin property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.powertrain property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.powertrain property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.powertrain property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.powertrain property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.modelName property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.modelName property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.modelName property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.modelName property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.name property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.name property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.name property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.name property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.licensePlate property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.licensePlate property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.licensePlate property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.licensePlate property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.salesDesignation property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.salesDesignation property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.salesDesignation property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.salesDesignation property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.modelYear property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.modelYear property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.modelYear property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.modelYear property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.colourName property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.colourName property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.colourName property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.colourName property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.powerInKW property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.powerInKW property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.powerInKW property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.powerInKW property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.numberOfDoors property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.numberOfDoors property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.numberOfDoors property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.numberOfDoors property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.numberOfSeats property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.numberOfSeats property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.numberOfSeats property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.numberOfSeats property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.engineVolume property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.engineVolume property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.engineVolume property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.engineVolume property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.engineMaxTorque property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.engineMaxTorque property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.engineMaxTorque property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.engineMaxTorque property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.gearbox property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.gearbox property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.gearbox property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.gearbox property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.displayUnit property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.displayUnit property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.displayUnit property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.displayUnit property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.driverSeatLocation property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.driverSeatLocation property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.driverSeatLocation property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.driverSeatLocation property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.equipments property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.equipments property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.equipments property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.equipments property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.brand property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.brand property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.brand property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.brand property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleStatus.states property in getter",
+      "fullTitle": "VehicleStatus Should include VehicleStatus.states property in getter",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleStatus.states property structure correctly",
+      "fullTitle": "VehicleStatus Should map VehicleStatus.states property structure correctly",
+      "duration": 21317,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Diagnostics.getState() command",
+      "fullTitle": "Diagnostics Should handle getter Diagnostics.getState() command",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.getState() response correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.getState() response correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.mileage property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.mileage property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.mileage property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.mileage property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineOilTemperature property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineOilTemperature property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineOilTemperature property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineOilTemperature property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.speed property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.speed property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.speed property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.speed property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineRPM property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineRPM property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineRPM property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineRPM property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.fuelLevel property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.fuelLevel property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.fuelLevel property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.fuelLevel property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.estimatedRange property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.estimatedRange property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.estimatedRange property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.estimatedRange property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.washerFluidLevel property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.washerFluidLevel property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.washerFluidLevel property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.washerFluidLevel property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.batteryVoltage property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.batteryVoltage property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.batteryVoltage property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.batteryVoltage property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.adBlueLevel property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.adBlueLevel property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.adBlueLevel property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.adBlueLevel property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.distanceSinceReset property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.distanceSinceReset property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.distanceSinceReset property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.distanceSinceReset property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.distanceSinceStart property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.distanceSinceStart property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.distanceSinceStart property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.distanceSinceStart property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.fuelVolume property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.fuelVolume property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.fuelVolume property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.fuelVolume property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.antiLockBraking property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.antiLockBraking property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.antiLockBraking property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.antiLockBraking property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineCoolantTemperature property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineCoolantTemperature property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineCoolantTemperature property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineCoolantTemperature property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineTotalOperatingHours property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineTotalOperatingHours property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineTotalOperatingHours property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineTotalOperatingHours property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineTotalFuelConsumption property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineTotalFuelConsumption property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineTotalFuelConsumption property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineTotalFuelConsumption property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.brakeFluidLevel property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.brakeFluidLevel property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.brakeFluidLevel property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.brakeFluidLevel property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineTorque property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineTorque property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineTorque property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineTorque property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.engineLoad property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.engineLoad property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.engineLoad property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.engineLoad property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.wheelBasedSpeed property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.wheelBasedSpeed property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.wheelBasedSpeed property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.wheelBasedSpeed property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.batteryLevel property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.batteryLevel property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.batteryLevel property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.batteryLevel property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.checkControlMessages property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.checkControlMessages property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.checkControlMessages property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.checkControlMessages property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.tirePressures property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.tirePressures property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.tirePressures property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.tirePressures property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.tireTemperatures property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.tireTemperatures property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.tireTemperatures property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.tireTemperatures property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.wheelRPMs property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.wheelRPMs property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.wheelRPMs property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.wheelRPMs property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.troubleCodes property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.troubleCodes property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.troubleCodes property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.troubleCodes property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Diagnostics.mileageMeters property in getter",
+      "fullTitle": "Diagnostics Should include Diagnostics.mileageMeters property in getter",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Diagnostics.mileageMeters property structure correctly",
+      "fullTitle": "Diagnostics Should map Diagnostics.mileageMeters property structure correctly",
+      "duration": 28105,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Charging.getState() command",
+      "fullTitle": "Charging Should handle getter Charging.getState() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.getState() response correctly",
+      "fullTitle": "Charging Should map Charging.getState() response correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.estimatedRange property in getter",
+      "fullTitle": "Charging Should include Charging.estimatedRange property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.estimatedRange property structure correctly",
+      "fullTitle": "Charging Should map Charging.estimatedRange property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.batteryLevel property in getter",
+      "fullTitle": "Charging Should include Charging.batteryLevel property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.batteryLevel property structure correctly",
+      "fullTitle": "Charging Should map Charging.batteryLevel property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.batteryCurrentAC property in getter",
+      "fullTitle": "Charging Should include Charging.batteryCurrentAC property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.batteryCurrentAC property structure correctly",
+      "fullTitle": "Charging Should map Charging.batteryCurrentAC property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.batteryCurrentDC property in getter",
+      "fullTitle": "Charging Should include Charging.batteryCurrentDC property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.batteryCurrentDC property structure correctly",
+      "fullTitle": "Charging Should map Charging.batteryCurrentDC property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargerVoltageAC property in getter",
+      "fullTitle": "Charging Should include Charging.chargerVoltageAC property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargerVoltageAC property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargerVoltageAC property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargerVoltageDC property in getter",
+      "fullTitle": "Charging Should include Charging.chargerVoltageDC property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargerVoltageDC property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargerVoltageDC property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargeLimit property in getter",
+      "fullTitle": "Charging Should include Charging.chargeLimit property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargeLimit property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargeLimit property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.timeToCompleteCharge property in getter",
+      "fullTitle": "Charging Should include Charging.timeToCompleteCharge property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.timeToCompleteCharge property structure correctly",
+      "fullTitle": "Charging Should map Charging.timeToCompleteCharge property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargingRateKW property in getter",
+      "fullTitle": "Charging Should include Charging.chargingRateKW property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargingRateKW property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargingRateKW property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargePortState property in getter",
+      "fullTitle": "Charging Should include Charging.chargePortState property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargePortState property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargePortState property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargeMode property in getter",
+      "fullTitle": "Charging Should include Charging.chargeMode property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargeMode property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargeMode property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.maxChargingCurrent property in getter",
+      "fullTitle": "Charging Should include Charging.maxChargingCurrent property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.maxChargingCurrent property structure correctly",
+      "fullTitle": "Charging Should map Charging.maxChargingCurrent property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.plugType property in getter",
+      "fullTitle": "Charging Should include Charging.plugType property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.plugType property structure correctly",
+      "fullTitle": "Charging Should map Charging.plugType property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.chargingWindowChosen property in getter",
+      "fullTitle": "Charging Should include Charging.chargingWindowChosen property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.chargingWindowChosen property structure correctly",
+      "fullTitle": "Charging Should map Charging.chargingWindowChosen property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.departureTimes property in getter",
+      "fullTitle": "Charging Should include Charging.departureTimes property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.departureTimes property structure correctly",
+      "fullTitle": "Charging Should map Charging.departureTimes property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.reductionTimes property in getter",
+      "fullTitle": "Charging Should include Charging.reductionTimes property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.reductionTimes property structure correctly",
+      "fullTitle": "Charging Should map Charging.reductionTimes property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.batteryTemperature property in getter",
+      "fullTitle": "Charging Should include Charging.batteryTemperature property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.batteryTemperature property structure correctly",
+      "fullTitle": "Charging Should map Charging.batteryTemperature property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.timers property in getter",
+      "fullTitle": "Charging Should include Charging.timers property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.timers property structure correctly",
+      "fullTitle": "Charging Should map Charging.timers property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.pluggedIn property in getter",
+      "fullTitle": "Charging Should include Charging.pluggedIn property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.pluggedIn property structure correctly",
+      "fullTitle": "Charging Should map Charging.pluggedIn property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Charging.status property in getter",
+      "fullTitle": "Charging Should include Charging.status property in getter",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Charging.status property structure correctly",
+      "fullTitle": "Charging Should map Charging.status property structure correctly",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Charging.startStopCharging() command",
+      "fullTitle": "Charging Should handle setter Charging.startStopCharging() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Charging.startStopCharging() should keep default values",
+      "fullTitle": "Charging Setter Charging.startStopCharging() should keep default values",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Charging.setChargeLimit() command",
+      "fullTitle": "Charging Should handle setter Charging.setChargeLimit() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Charging.setChargeLimit() should keep default values",
+      "fullTitle": "Charging Setter Charging.setChargeLimit() should keep default values",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Charging.openCloseChargingPort() command",
+      "fullTitle": "Charging Should handle setter Charging.openCloseChargingPort() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Charging.openCloseChargingPort() should keep default values",
+      "fullTitle": "Charging Setter Charging.openCloseChargingPort() should keep default values",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Charging.setChargeMode() command",
+      "fullTitle": "Charging Should handle setter Charging.setChargeMode() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Charging.setChargeMode() should keep default values",
+      "fullTitle": "Charging Setter Charging.setChargeMode() should keep default values",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Charging.setChargingTimers() command",
+      "fullTitle": "Charging Should handle setter Charging.setChargingTimers() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Charging.setChargingTimers() should keep default values",
+      "fullTitle": "Charging Setter Charging.setChargingTimers() should keep default values",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Charging.setReductionOfChargingCurrentTimes() command",
+      "fullTitle": "Charging Should handle setter Charging.setReductionOfChargingCurrentTimes() command",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Charging.setReductionOfChargingCurrentTimes() should keep default values",
+      "fullTitle": "Charging Setter Charging.setReductionOfChargingCurrentTimes() should keep default values",
+      "duration": 30198,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter HomeCharger.getState() command",
+      "fullTitle": "HomeCharger Should handle getter HomeCharger.getState() command",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.getState() response correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.getState() response correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.chargingStatus property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.chargingStatus property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.chargingStatus property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.chargingStatus property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.authenticationMechanism property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.authenticationMechanism property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.authenticationMechanism property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.authenticationMechanism property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.plugType property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.plugType property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.plugType property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.plugType property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.chargingPowerKW property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.chargingPowerKW property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.chargingPowerKW property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.chargingPowerKW property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.solarCharging property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.solarCharging property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.solarCharging property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.solarCharging property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.wifiHotspotEnabled property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.wifiHotspotEnabled property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.wifiHotspotEnabled property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.wifiHotspotEnabled property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.wifiHotspotSSID property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.wifiHotspotSSID property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.wifiHotspotSSID property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.wifiHotspotSSID property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.wiFiHotspotSecurity property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.wiFiHotspotSecurity property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.wiFiHotspotSecurity property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.wiFiHotspotSecurity property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.wiFiHotspotPassword property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.wiFiHotspotPassword property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.wiFiHotspotPassword property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.wiFiHotspotPassword property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.authenticationState property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.authenticationState property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.authenticationState property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.authenticationState property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.chargeCurrentDC property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.chargeCurrentDC property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.chargeCurrentDC property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.chargeCurrentDC property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.maximumChargeCurrent property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.maximumChargeCurrent property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.maximumChargeCurrent property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.maximumChargeCurrent property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.minimumChargeCurrent property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.minimumChargeCurrent property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.minimumChargeCurrent property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.minimumChargeCurrent property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.coordinates property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.coordinates property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.coordinates property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.coordinates property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HomeCharger.priceTariffs property in getter",
+      "fullTitle": "HomeCharger Should include HomeCharger.priceTariffs property in getter",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HomeCharger.priceTariffs property structure correctly",
+      "fullTitle": "HomeCharger Should map HomeCharger.priceTariffs property structure correctly",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HomeCharger.setChargeCurrent() command",
+      "fullTitle": "HomeCharger Should handle setter HomeCharger.setChargeCurrent() command",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HomeCharger.setChargeCurrent() should keep default values",
+      "fullTitle": "HomeCharger Setter HomeCharger.setChargeCurrent() should keep default values",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HomeCharger.setPriceTariffs() command",
+      "fullTitle": "HomeCharger Should handle setter HomeCharger.setPriceTariffs() command",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HomeCharger.setPriceTariffs() should keep default values",
+      "fullTitle": "HomeCharger Setter HomeCharger.setPriceTariffs() should keep default values",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HomeCharger.activateDeactivateSolarCharging() command",
+      "fullTitle": "HomeCharger Should handle setter HomeCharger.activateDeactivateSolarCharging() command",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HomeCharger.activateDeactivateSolarCharging() should keep default values",
+      "fullTitle": "HomeCharger Setter HomeCharger.activateDeactivateSolarCharging() should keep default values",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HomeCharger.enableDisableWiFiHotspot() command",
+      "fullTitle": "HomeCharger Should handle setter HomeCharger.enableDisableWiFiHotspot() command",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HomeCharger.enableDisableWiFiHotspot() should keep default values",
+      "fullTitle": "HomeCharger Setter HomeCharger.enableDisableWiFiHotspot() should keep default values",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HomeCharger.authenticateExpire() command",
+      "fullTitle": "HomeCharger Should handle setter HomeCharger.authenticateExpire() command",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HomeCharger.authenticateExpire() should keep default values",
+      "fullTitle": "HomeCharger Setter HomeCharger.authenticateExpire() should keep default values",
+      "duration": 22434,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Climate.getState() command",
+      "fullTitle": "Climate Should handle getter Climate.getState() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.getState() response correctly",
+      "fullTitle": "Climate Should map Climate.getState() response correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.insideTemperature property in getter",
+      "fullTitle": "Climate Should include Climate.insideTemperature property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.insideTemperature property structure correctly",
+      "fullTitle": "Climate Should map Climate.insideTemperature property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.outsideTemperature property in getter",
+      "fullTitle": "Climate Should include Climate.outsideTemperature property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.outsideTemperature property structure correctly",
+      "fullTitle": "Climate Should map Climate.outsideTemperature property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.driverTemperatureSetting property in getter",
+      "fullTitle": "Climate Should include Climate.driverTemperatureSetting property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.driverTemperatureSetting property structure correctly",
+      "fullTitle": "Climate Should map Climate.driverTemperatureSetting property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.passengerTemperatureSetting property in getter",
+      "fullTitle": "Climate Should include Climate.passengerTemperatureSetting property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.passengerTemperatureSetting property structure correctly",
+      "fullTitle": "Climate Should map Climate.passengerTemperatureSetting property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.hvacState property in getter",
+      "fullTitle": "Climate Should include Climate.hvacState property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.hvacState property structure correctly",
+      "fullTitle": "Climate Should map Climate.hvacState property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.defoggingState property in getter",
+      "fullTitle": "Climate Should include Climate.defoggingState property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.defoggingState property structure correctly",
+      "fullTitle": "Climate Should map Climate.defoggingState property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.defrostingState property in getter",
+      "fullTitle": "Climate Should include Climate.defrostingState property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.defrostingState property structure correctly",
+      "fullTitle": "Climate Should map Climate.defrostingState property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.ionisingState property in getter",
+      "fullTitle": "Climate Should include Climate.ionisingState property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.ionisingState property structure correctly",
+      "fullTitle": "Climate Should map Climate.ionisingState property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.defrostingTemperatureSetting property in getter",
+      "fullTitle": "Climate Should include Climate.defrostingTemperatureSetting property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.defrostingTemperatureSetting property structure correctly",
+      "fullTitle": "Climate Should map Climate.defrostingTemperatureSetting property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.hvacWeekdayStartingTimes property in getter",
+      "fullTitle": "Climate Should include Climate.hvacWeekdayStartingTimes property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.hvacWeekdayStartingTimes property structure correctly",
+      "fullTitle": "Climate Should map Climate.hvacWeekdayStartingTimes property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Climate.rearTemperatureSetting property in getter",
+      "fullTitle": "Climate Should include Climate.rearTemperatureSetting property in getter",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Climate.rearTemperatureSetting property structure correctly",
+      "fullTitle": "Climate Should map Climate.rearTemperatureSetting property structure correctly",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Climate.changeStartingTimes() command",
+      "fullTitle": "Climate Should handle setter Climate.changeStartingTimes() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Climate.changeStartingTimes() should keep default values",
+      "fullTitle": "Climate Setter Climate.changeStartingTimes() should keep default values",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Climate.startStopHvac() command",
+      "fullTitle": "Climate Should handle setter Climate.startStopHvac() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Climate.startStopHvac() should keep default values",
+      "fullTitle": "Climate Setter Climate.startStopHvac() should keep default values",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Climate.startStopDefogging() command",
+      "fullTitle": "Climate Should handle setter Climate.startStopDefogging() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Climate.startStopDefogging() should keep default values",
+      "fullTitle": "Climate Setter Climate.startStopDefogging() should keep default values",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Climate.startStopDefrosting() command",
+      "fullTitle": "Climate Should handle setter Climate.startStopDefrosting() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Climate.startStopDefrosting() should keep default values",
+      "fullTitle": "Climate Setter Climate.startStopDefrosting() should keep default values",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Climate.startStopIonising() command",
+      "fullTitle": "Climate Should handle setter Climate.startStopIonising() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Climate.startStopIonising() should keep default values",
+      "fullTitle": "Climate Setter Climate.startStopIonising() should keep default values",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Climate.setTemperatureSettings() command",
+      "fullTitle": "Climate Should handle setter Climate.setTemperatureSettings() command",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Climate.setTemperatureSettings() should keep default values",
+      "fullTitle": "Climate Setter Climate.setTemperatureSettings() should keep default values",
+      "duration": 20193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Race.getState() command",
+      "fullTitle": "Race Should handle getter Race.getState() command",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.getState() response correctly",
+      "fullTitle": "Race Should map Race.getState() response correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.accelerations property in getter",
+      "fullTitle": "Race Should include Race.accelerations property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.accelerations property structure correctly",
+      "fullTitle": "Race Should map Race.accelerations property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.understeering property in getter",
+      "fullTitle": "Race Should include Race.understeering property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.understeering property structure correctly",
+      "fullTitle": "Race Should map Race.understeering property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.oversteering property in getter",
+      "fullTitle": "Race Should include Race.oversteering property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.oversteering property structure correctly",
+      "fullTitle": "Race Should map Race.oversteering property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.gasPedalPosition property in getter",
+      "fullTitle": "Race Should include Race.gasPedalPosition property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.gasPedalPosition property structure correctly",
+      "fullTitle": "Race Should map Race.gasPedalPosition property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.steeringAngle property in getter",
+      "fullTitle": "Race Should include Race.steeringAngle property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.steeringAngle property structure correctly",
+      "fullTitle": "Race Should map Race.steeringAngle property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.brakePressure property in getter",
+      "fullTitle": "Race Should include Race.brakePressure property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.brakePressure property structure correctly",
+      "fullTitle": "Race Should map Race.brakePressure property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.yawRate property in getter",
+      "fullTitle": "Race Should include Race.yawRate property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.yawRate property structure correctly",
+      "fullTitle": "Race Should map Race.yawRate property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.rearSuspensionSteering property in getter",
+      "fullTitle": "Race Should include Race.rearSuspensionSteering property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.rearSuspensionSteering property structure correctly",
+      "fullTitle": "Race Should map Race.rearSuspensionSteering property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.electronicStabilityProgram property in getter",
+      "fullTitle": "Race Should include Race.electronicStabilityProgram property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.electronicStabilityProgram property structure correctly",
+      "fullTitle": "Race Should map Race.electronicStabilityProgram property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.brakeTorqueVectorings property in getter",
+      "fullTitle": "Race Should include Race.brakeTorqueVectorings property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.brakeTorqueVectorings property structure correctly",
+      "fullTitle": "Race Should map Race.brakeTorqueVectorings property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.gearMode property in getter",
+      "fullTitle": "Race Should include Race.gearMode property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.gearMode property structure correctly",
+      "fullTitle": "Race Should map Race.gearMode property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.selectedGear property in getter",
+      "fullTitle": "Race Should include Race.selectedGear property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.selectedGear property structure correctly",
+      "fullTitle": "Race Should map Race.selectedGear property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.brakePedalPosition property in getter",
+      "fullTitle": "Race Should include Race.brakePedalPosition property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.brakePedalPosition property structure correctly",
+      "fullTitle": "Race Should map Race.brakePedalPosition property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.brakePedalSwitch property in getter",
+      "fullTitle": "Race Should include Race.brakePedalSwitch property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.brakePedalSwitch property structure correctly",
+      "fullTitle": "Race Should map Race.brakePedalSwitch property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.clutchPedalSwitch property in getter",
+      "fullTitle": "Race Should include Race.clutchPedalSwitch property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.clutchPedalSwitch property structure correctly",
+      "fullTitle": "Race Should map Race.clutchPedalSwitch property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.acceleratorPedalIdleSwitch property in getter",
+      "fullTitle": "Race Should include Race.acceleratorPedalIdleSwitch property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.acceleratorPedalIdleSwitch property structure correctly",
+      "fullTitle": "Race Should map Race.acceleratorPedalIdleSwitch property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.acceleratorPedalKickdownSwitch property in getter",
+      "fullTitle": "Race Should include Race.acceleratorPedalKickdownSwitch property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.acceleratorPedalKickdownSwitch property structure correctly",
+      "fullTitle": "Race Should map Race.acceleratorPedalKickdownSwitch property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Race.vehicleMoving property in getter",
+      "fullTitle": "Race Should include Race.vehicleMoving property in getter",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Race.vehicleMoving property structure correctly",
+      "fullTitle": "Race Should map Race.vehicleMoving property structure correctly",
+      "duration": 18360,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Usage.getUsage() command",
+      "fullTitle": "Usage Should handle getter Usage.getUsage() command",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.getUsage() response correctly",
+      "fullTitle": "Usage Should map Usage.getUsage() response correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.averageWeeklyDistance property in getter",
+      "fullTitle": "Usage Should include Usage.averageWeeklyDistance property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.averageWeeklyDistance property structure correctly",
+      "fullTitle": "Usage Should map Usage.averageWeeklyDistance property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.averageWeeklyDistanceLongRun property in getter",
+      "fullTitle": "Usage Should include Usage.averageWeeklyDistanceLongRun property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.averageWeeklyDistanceLongRun property structure correctly",
+      "fullTitle": "Usage Should map Usage.averageWeeklyDistanceLongRun property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.accelerationEvaluation property in getter",
+      "fullTitle": "Usage Should include Usage.accelerationEvaluation property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.accelerationEvaluation property structure correctly",
+      "fullTitle": "Usage Should map Usage.accelerationEvaluation property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.drivingStyleEvaluation property in getter",
+      "fullTitle": "Usage Should include Usage.drivingStyleEvaluation property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.drivingStyleEvaluation property structure correctly",
+      "fullTitle": "Usage Should map Usage.drivingStyleEvaluation property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.drivingModesActivationPeriods property in getter",
+      "fullTitle": "Usage Should include Usage.drivingModesActivationPeriods property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.drivingModesActivationPeriods property structure correctly",
+      "fullTitle": "Usage Should map Usage.drivingModesActivationPeriods property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.drivingModesEnergyConsumptions property in getter",
+      "fullTitle": "Usage Should include Usage.drivingModesEnergyConsumptions property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.drivingModesEnergyConsumptions property structure correctly",
+      "fullTitle": "Usage Should map Usage.drivingModesEnergyConsumptions property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.lastTripEnergyConsumption property in getter",
+      "fullTitle": "Usage Should include Usage.lastTripEnergyConsumption property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.lastTripEnergyConsumption property structure correctly",
+      "fullTitle": "Usage Should map Usage.lastTripEnergyConsumption property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.lastTripFuelConsumption property in getter",
+      "fullTitle": "Usage Should include Usage.lastTripFuelConsumption property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.lastTripFuelConsumption property structure correctly",
+      "fullTitle": "Usage Should map Usage.lastTripFuelConsumption property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.mileageAfterLastTrip property in getter",
+      "fullTitle": "Usage Should include Usage.mileageAfterLastTrip property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.mileageAfterLastTrip property structure correctly",
+      "fullTitle": "Usage Should map Usage.mileageAfterLastTrip property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.lastTripElectricPortion property in getter",
+      "fullTitle": "Usage Should include Usage.lastTripElectricPortion property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.lastTripElectricPortion property structure correctly",
+      "fullTitle": "Usage Should map Usage.lastTripElectricPortion property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.lastTripAverageEnergyRecuperation property in getter",
+      "fullTitle": "Usage Should include Usage.lastTripAverageEnergyRecuperation property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.lastTripAverageEnergyRecuperation property structure correctly",
+      "fullTitle": "Usage Should map Usage.lastTripAverageEnergyRecuperation property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.lastTripBatteryRemaining property in getter",
+      "fullTitle": "Usage Should include Usage.lastTripBatteryRemaining property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.lastTripBatteryRemaining property structure correctly",
+      "fullTitle": "Usage Should map Usage.lastTripBatteryRemaining property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.lastTripDate property in getter",
+      "fullTitle": "Usage Should include Usage.lastTripDate property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.lastTripDate property structure correctly",
+      "fullTitle": "Usage Should map Usage.lastTripDate property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.averageFuelConsumption property in getter",
+      "fullTitle": "Usage Should include Usage.averageFuelConsumption property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.averageFuelConsumption property structure correctly",
+      "fullTitle": "Usage Should map Usage.averageFuelConsumption property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Usage.currentFuelConsumption property in getter",
+      "fullTitle": "Usage Should include Usage.currentFuelConsumption property in getter",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Usage.currentFuelConsumption property structure correctly",
+      "fullTitle": "Usage Should map Usage.currentFuelConsumption property structure correctly",
+      "duration": 15149,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Windscreen.getState() command",
+      "fullTitle": "Windscreen Should handle getter Windscreen.getState() command",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.getState() response correctly",
+      "fullTitle": "Windscreen Should map Windscreen.getState() response correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.wipersStatus property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.wipersStatus property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.wipersStatus property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.wipersStatus property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.wipersIntensity property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.wipersIntensity property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.wipersIntensity property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.wipersIntensity property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.windscreenDamage property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.windscreenDamage property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.windscreenDamage property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.windscreenDamage property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.windscreenZoneMatrix property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.windscreenZoneMatrix property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.windscreenZoneMatrix property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.windscreenZoneMatrix property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.windscreenDamageZone property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.windscreenDamageZone property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.windscreenDamageZone property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.windscreenDamageZone property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.windscreenNeedsReplacement property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.windscreenNeedsReplacement property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.windscreenNeedsReplacement property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.windscreenNeedsReplacement property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.windscreenDamageConfidence property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.windscreenDamageConfidence property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.windscreenDamageConfidence property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.windscreenDamageConfidence property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windscreen.windscreenDamageDetectionTime property in getter",
+      "fullTitle": "Windscreen Should include Windscreen.windscreenDamageDetectionTime property in getter",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windscreen.windscreenDamageDetectionTime property structure correctly",
+      "fullTitle": "Windscreen Should map Windscreen.windscreenDamageDetectionTime property structure correctly",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Windscreen.setWindscreenDamage() command",
+      "fullTitle": "Windscreen Should handle setter Windscreen.setWindscreenDamage() command",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Windscreen.setWindscreenDamage() should keep default values",
+      "fullTitle": "Windscreen Setter Windscreen.setWindscreenDamage() should keep default values",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Windscreen.setWindscreenReplacementNeeded() command",
+      "fullTitle": "Windscreen Should handle setter Windscreen.setWindscreenReplacementNeeded() command",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Windscreen.setWindscreenReplacementNeeded() should keep default values",
+      "fullTitle": "Windscreen Setter Windscreen.setWindscreenReplacementNeeded() should keep default values",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Windscreen.controlWipers() command",
+      "fullTitle": "Windscreen Should handle setter Windscreen.controlWipers() command",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Windscreen.controlWipers() should keep default values",
+      "fullTitle": "Windscreen Setter Windscreen.controlWipers() should keep default values",
+      "duration": 13009,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter ChassisSettings.getChassisSettings() command",
+      "fullTitle": "ChassisSettings Should handle getter ChassisSettings.getChassisSettings() command",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.getChassisSettings() response correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.getChassisSettings() response correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.drivingMode property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.drivingMode property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.drivingMode property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.drivingMode property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.sportChrono property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.sportChrono property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.sportChrono property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.sportChrono property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.currentSpringRates property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.currentSpringRates property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.currentSpringRates property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.currentSpringRates property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.maximumSpringRates property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.maximumSpringRates property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.maximumSpringRates property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.maximumSpringRates property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.minimumSpringRates property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.minimumSpringRates property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.minimumSpringRates property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.minimumSpringRates property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.currentChassisPosition property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.currentChassisPosition property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.currentChassisPosition property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.currentChassisPosition property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.maximumChassisPosition property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.maximumChassisPosition property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.maximumChassisPosition property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.maximumChassisPosition property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ChassisSettings.minimumChassisPosition property in getter",
+      "fullTitle": "ChassisSettings Should include ChassisSettings.minimumChassisPosition property in getter",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ChassisSettings.minimumChassisPosition property structure correctly",
+      "fullTitle": "ChassisSettings Should map ChassisSettings.minimumChassisPosition property structure correctly",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ChassisSettings.setDrivingMode() command",
+      "fullTitle": "ChassisSettings Should handle setter ChassisSettings.setDrivingMode() command",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ChassisSettings.setDrivingMode() should keep default values",
+      "fullTitle": "ChassisSettings Setter ChassisSettings.setDrivingMode() should keep default values",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ChassisSettings.startStopSportsChrono() command",
+      "fullTitle": "ChassisSettings Should handle setter ChassisSettings.startStopSportsChrono() command",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ChassisSettings.startStopSportsChrono() should keep default values",
+      "fullTitle": "ChassisSettings Setter ChassisSettings.startStopSportsChrono() should keep default values",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ChassisSettings.setSpringRates() command",
+      "fullTitle": "ChassisSettings Should handle setter ChassisSettings.setSpringRates() command",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ChassisSettings.setSpringRates() should keep default values",
+      "fullTitle": "ChassisSettings Setter ChassisSettings.setSpringRates() should keep default values",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ChassisSettings.setChassisPosition() command",
+      "fullTitle": "ChassisSettings Should handle setter ChassisSettings.setChassisPosition() command",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ChassisSettings.setChassisPosition() should keep default values",
+      "fullTitle": "ChassisSettings Setter ChassisSettings.setChassisPosition() should keep default values",
+      "duration": 14319,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Lights.getState() command",
+      "fullTitle": "Lights Should handle getter Lights.getState() command",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.getState() response correctly",
+      "fullTitle": "Lights Should map Lights.getState() response correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.frontExteriorLight property in getter",
+      "fullTitle": "Lights Should include Lights.frontExteriorLight property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.frontExteriorLight property structure correctly",
+      "fullTitle": "Lights Should map Lights.frontExteriorLight property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.rearExteriorLight property in getter",
+      "fullTitle": "Lights Should include Lights.rearExteriorLight property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.rearExteriorLight property structure correctly",
+      "fullTitle": "Lights Should map Lights.rearExteriorLight property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.ambientLightColour property in getter",
+      "fullTitle": "Lights Should include Lights.ambientLightColour property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.ambientLightColour property structure correctly",
+      "fullTitle": "Lights Should map Lights.ambientLightColour property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.reverseLight property in getter",
+      "fullTitle": "Lights Should include Lights.reverseLight property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.reverseLight property structure correctly",
+      "fullTitle": "Lights Should map Lights.reverseLight property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.emergencyBrakeLight property in getter",
+      "fullTitle": "Lights Should include Lights.emergencyBrakeLight property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.emergencyBrakeLight property structure correctly",
+      "fullTitle": "Lights Should map Lights.emergencyBrakeLight property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.fogLights property in getter",
+      "fullTitle": "Lights Should include Lights.fogLights property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.fogLights property structure correctly",
+      "fullTitle": "Lights Should map Lights.fogLights property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.readingLamps property in getter",
+      "fullTitle": "Lights Should include Lights.readingLamps property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.readingLamps property structure correctly",
+      "fullTitle": "Lights Should map Lights.readingLamps property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Lights.interiorLights property in getter",
+      "fullTitle": "Lights Should include Lights.interiorLights property in getter",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Lights.interiorLights property structure correctly",
+      "fullTitle": "Lights Should map Lights.interiorLights property structure correctly",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Lights.controlLights() command",
+      "fullTitle": "Lights Should handle setter Lights.controlLights() command",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Lights.controlLights() should keep default values",
+      "fullTitle": "Lights Setter Lights.controlLights() should keep default values",
+      "duration": 10714,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter WiFi.getState() command",
+      "fullTitle": "WiFi Should handle getter WiFi.getState() command",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WiFi.getState() response correctly",
+      "fullTitle": "WiFi Should map WiFi.getState() response correctly",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include WiFi.status property in getter",
+      "fullTitle": "WiFi Should include WiFi.status property in getter",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WiFi.status property structure correctly",
+      "fullTitle": "WiFi Should map WiFi.status property structure correctly",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include WiFi.networkConnected property in getter",
+      "fullTitle": "WiFi Should include WiFi.networkConnected property in getter",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WiFi.networkConnected property structure correctly",
+      "fullTitle": "WiFi Should map WiFi.networkConnected property structure correctly",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include WiFi.networkSSID property in getter",
+      "fullTitle": "WiFi Should include WiFi.networkSSID property in getter",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WiFi.networkSSID property structure correctly",
+      "fullTitle": "WiFi Should map WiFi.networkSSID property structure correctly",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include WiFi.networkSecurity property in getter",
+      "fullTitle": "WiFi Should include WiFi.networkSecurity property in getter",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WiFi.networkSecurity property structure correctly",
+      "fullTitle": "WiFi Should map WiFi.networkSecurity property structure correctly",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter WiFi.connectToNetwork() command",
+      "fullTitle": "WiFi Should handle setter WiFi.connectToNetwork() command",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter WiFi.connectToNetwork() should keep default values",
+      "fullTitle": "WiFi Setter WiFi.connectToNetwork() should keep default values",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter WiFi.forgetNetwork() command",
+      "fullTitle": "WiFi Should handle setter WiFi.forgetNetwork() command",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter WiFi.forgetNetwork() should keep default values",
+      "fullTitle": "WiFi Setter WiFi.forgetNetwork() should keep default values",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter WiFi.enableDisableWiFi() command",
+      "fullTitle": "WiFi Should handle setter WiFi.enableDisableWiFi() command",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter WiFi.enableDisableWiFi() should keep default values",
+      "fullTitle": "WiFi Setter WiFi.enableDisableWiFi() should keep default values",
+      "duration": 9755,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Maintenance.getState() command",
+      "fullTitle": "Maintenance Should handle getter Maintenance.getState() command",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.getState() response correctly",
+      "fullTitle": "Maintenance Should map Maintenance.getState() response correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.daysToNextService property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.daysToNextService property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.daysToNextService property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.daysToNextService property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.kilometersToNextService property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.kilometersToNextService property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.kilometersToNextService property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.kilometersToNextService property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.cbsReportsCount property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.cbsReportsCount property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.cbsReportsCount property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.cbsReportsCount property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.monthsToExhaustInspection property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.monthsToExhaustInspection property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.monthsToExhaustInspection property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.monthsToExhaustInspection property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.teleserviceAvailability property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.teleserviceAvailability property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.teleserviceAvailability property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.teleserviceAvailability property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.serviceDistanceThreshold property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.serviceDistanceThreshold property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.serviceDistanceThreshold property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.serviceDistanceThreshold property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.serviceTimeThreshold property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.serviceTimeThreshold property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.serviceTimeThreshold property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.serviceTimeThreshold property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.automaticTeleserviceCallDate property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.automaticTeleserviceCallDate property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.automaticTeleserviceCallDate property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.automaticTeleserviceCallDate property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.teleserviceBatteryCallDate property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.teleserviceBatteryCallDate property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.teleserviceBatteryCallDate property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.teleserviceBatteryCallDate property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.nextInspectionDate property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.nextInspectionDate property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.nextInspectionDate property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.nextInspectionDate property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.conditionBasedServices property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.conditionBasedServices property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.conditionBasedServices property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.conditionBasedServices property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Maintenance.brakeFluidChangeDate property in getter",
+      "fullTitle": "Maintenance Should include Maintenance.brakeFluidChangeDate property in getter",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Maintenance.brakeFluidChangeDate property structure correctly",
+      "fullTitle": "Maintenance Should map Maintenance.brakeFluidChangeDate property structure correctly",
+      "duration": 12965,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter HonkHornFlashLights.getFlashersState() command",
+      "fullTitle": "HonkHornFlashLights Should handle getter HonkHornFlashLights.getFlashersState() command",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HonkHornFlashLights.getFlashersState() response correctly",
+      "fullTitle": "HonkHornFlashLights Should map HonkHornFlashLights.getFlashersState() response correctly",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include HonkHornFlashLights.flashers property in getter",
+      "fullTitle": "HonkHornFlashLights Should include HonkHornFlashLights.flashers property in getter",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map HonkHornFlashLights.flashers property structure correctly",
+      "fullTitle": "HonkHornFlashLights Should map HonkHornFlashLights.flashers property structure correctly",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HonkHornFlashLights.honkFlash() command",
+      "fullTitle": "HonkHornFlashLights Should handle setter HonkHornFlashLights.honkFlash() command",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HonkHornFlashLights.honkFlash() should keep default values",
+      "fullTitle": "HonkHornFlashLights Setter HonkHornFlashLights.honkFlash() should keep default values",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter HonkHornFlashLights.activateDeactivateEmergencyFlasher() command",
+      "fullTitle": "HonkHornFlashLights Should handle setter HonkHornFlashLights.activateDeactivateEmergencyFlasher() command",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter HonkHornFlashLights.activateDeactivateEmergencyFlasher() should keep default values",
+      "fullTitle": "HonkHornFlashLights Setter HonkHornFlashLights.activateDeactivateEmergencyFlasher() should keep default values",
+      "duration": 5239,
+      "errorCount": 0
+    },
+    {
+      "title": "should return empty object when cached cert does not exist",
+      "fullTitle": "CertCache should return empty object when cached cert does not exist",
+      "duration": 168,
+      "errorCount": 0
+    },
+    {
+      "title": "should clear cert cache correctly",
+      "fullTitle": "CertCache should clear cert cache correctly",
+      "duration": 168,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter NaviDestination.getNaviDestination() command",
+      "fullTitle": "NaviDestination Should handle getter NaviDestination.getNaviDestination() command",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.getNaviDestination() response correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.getNaviDestination() response correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include NaviDestination.coordinates property in getter",
+      "fullTitle": "NaviDestination Should include NaviDestination.coordinates property in getter",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.coordinates property structure correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.coordinates property structure correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include NaviDestination.destinationName property in getter",
+      "fullTitle": "NaviDestination Should include NaviDestination.destinationName property in getter",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.destinationName property structure correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.destinationName property structure correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include NaviDestination.dataSlotsFree property in getter",
+      "fullTitle": "NaviDestination Should include NaviDestination.dataSlotsFree property in getter",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.dataSlotsFree property structure correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.dataSlotsFree property structure correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include NaviDestination.dataSlotsMax property in getter",
+      "fullTitle": "NaviDestination Should include NaviDestination.dataSlotsMax property in getter",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.dataSlotsMax property structure correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.dataSlotsMax property structure correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include NaviDestination.arrivalDuration property in getter",
+      "fullTitle": "NaviDestination Should include NaviDestination.arrivalDuration property in getter",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.arrivalDuration property structure correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.arrivalDuration property structure correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include NaviDestination.distanceToDestination property in getter",
+      "fullTitle": "NaviDestination Should include NaviDestination.distanceToDestination property in getter",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map NaviDestination.distanceToDestination property structure correctly",
+      "fullTitle": "NaviDestination Should map NaviDestination.distanceToDestination property structure correctly",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter NaviDestination.setNaviDestination() command",
+      "fullTitle": "NaviDestination Should handle setter NaviDestination.setNaviDestination() command",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter NaviDestination.setNaviDestination() should keep default values",
+      "fullTitle": "NaviDestination Setter NaviDestination.setNaviDestination() should keep default values",
+      "duration": 8829,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter ParkingTicket.getParkingTicket() command",
+      "fullTitle": "ParkingTicket Should handle getter ParkingTicket.getParkingTicket() command",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingTicket.getParkingTicket() response correctly",
+      "fullTitle": "ParkingTicket Should map ParkingTicket.getParkingTicket() response correctly",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ParkingTicket.status property in getter",
+      "fullTitle": "ParkingTicket Should include ParkingTicket.status property in getter",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingTicket.status property structure correctly",
+      "fullTitle": "ParkingTicket Should map ParkingTicket.status property structure correctly",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ParkingTicket.operatorName property in getter",
+      "fullTitle": "ParkingTicket Should include ParkingTicket.operatorName property in getter",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingTicket.operatorName property structure correctly",
+      "fullTitle": "ParkingTicket Should map ParkingTicket.operatorName property structure correctly",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ParkingTicket.operatorTicketID property in getter",
+      "fullTitle": "ParkingTicket Should include ParkingTicket.operatorTicketID property in getter",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingTicket.operatorTicketID property structure correctly",
+      "fullTitle": "ParkingTicket Should map ParkingTicket.operatorTicketID property structure correctly",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ParkingTicket.ticketStartTime property in getter",
+      "fullTitle": "ParkingTicket Should include ParkingTicket.ticketStartTime property in getter",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingTicket.ticketStartTime property structure correctly",
+      "fullTitle": "ParkingTicket Should map ParkingTicket.ticketStartTime property structure correctly",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ParkingTicket.ticketEndTime property in getter",
+      "fullTitle": "ParkingTicket Should include ParkingTicket.ticketEndTime property in getter",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingTicket.ticketEndTime property structure correctly",
+      "fullTitle": "ParkingTicket Should map ParkingTicket.ticketEndTime property structure correctly",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ParkingTicket.startParking() command",
+      "fullTitle": "ParkingTicket Should handle setter ParkingTicket.startParking() command",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ParkingTicket.startParking() should keep default values",
+      "fullTitle": "ParkingTicket Setter ParkingTicket.startParking() should keep default values",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ParkingTicket.endParking() command",
+      "fullTitle": "ParkingTicket Should handle setter ParkingTicket.endParking() command",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ParkingTicket.endParking() should keep default values",
+      "fullTitle": "ParkingTicket Setter ParkingTicket.endParking() should keep default values",
+      "duration": 9072,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Doors.getState() command",
+      "fullTitle": "Doors Should handle getter Doors.getState() command",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Doors.getState() response correctly",
+      "fullTitle": "Doors Should map Doors.getState() response correctly",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Doors.insideLocks property in getter",
+      "fullTitle": "Doors Should include Doors.insideLocks property in getter",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Doors.insideLocks property structure correctly",
+      "fullTitle": "Doors Should map Doors.insideLocks property structure correctly",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Doors.locks property in getter",
+      "fullTitle": "Doors Should include Doors.locks property in getter",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Doors.locks property structure correctly",
+      "fullTitle": "Doors Should map Doors.locks property structure correctly",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Doors.positions property in getter",
+      "fullTitle": "Doors Should include Doors.positions property in getter",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Doors.positions property structure correctly",
+      "fullTitle": "Doors Should map Doors.positions property structure correctly",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Doors.insideLocksState property in getter",
+      "fullTitle": "Doors Should include Doors.insideLocksState property in getter",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Doors.insideLocksState property structure correctly",
+      "fullTitle": "Doors Should map Doors.insideLocksState property structure correctly",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Doors.locksState property in getter",
+      "fullTitle": "Doors Should include Doors.locksState property in getter",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Doors.locksState property structure correctly",
+      "fullTitle": "Doors Should map Doors.locksState property structure correctly",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Doors.lockUnlockDoors() command",
+      "fullTitle": "Doors Should handle setter Doors.lockUnlockDoors() command",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Doors.lockUnlockDoors() should keep default values",
+      "fullTitle": "Doors Setter Doors.lockUnlockDoors() should keep default values",
+      "duration": 7643,
+      "errorCount": 0
+    },
+    {
+      "title": "should return null if no matching access certificate found",
+      "fullTitle": "AccessCertificatesManager should return null if no matching access certificate found",
+      "duration": 825,
+      "errorCount": 0
+    },
+    {
+      "title": "should throw error on failed access certification download",
+      "fullTitle": "AccessCertificatesManager should throw error on failed access certification download",
+      "duration": 825,
+      "errorCount": 0
+    },
+    {
+      "title": "should download cert if cert is not cached already",
+      "fullTitle": "AccessCertificatesManager should download cert if cert is not cached already",
+      "duration": 825,
+      "errorCount": 0
+    },
+    {
+      "title": "should take cert from cache if it does not have one attached to it",
+      "fullTitle": "AccessCertificatesManager should take cert from cache if it does not have one attached to it",
+      "duration": 825,
+      "errorCount": 0
+    },
+    {
+      "title": "should download access certificate",
+      "fullTitle": "AccessCertificatesManager should download access certificate",
+      "duration": 825,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter RooftopControl.getRooftopState() command",
+      "fullTitle": "RooftopControl Should handle getter RooftopControl.getRooftopState() command",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map RooftopControl.getRooftopState() response correctly",
+      "fullTitle": "RooftopControl Should map RooftopControl.getRooftopState() response correctly",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include RooftopControl.dimming property in getter",
+      "fullTitle": "RooftopControl Should include RooftopControl.dimming property in getter",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map RooftopControl.dimming property structure correctly",
+      "fullTitle": "RooftopControl Should map RooftopControl.dimming property structure correctly",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include RooftopControl.position property in getter",
+      "fullTitle": "RooftopControl Should include RooftopControl.position property in getter",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map RooftopControl.position property structure correctly",
+      "fullTitle": "RooftopControl Should map RooftopControl.position property structure correctly",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include RooftopControl.convertibleRoofState property in getter",
+      "fullTitle": "RooftopControl Should include RooftopControl.convertibleRoofState property in getter",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map RooftopControl.convertibleRoofState property structure correctly",
+      "fullTitle": "RooftopControl Should map RooftopControl.convertibleRoofState property structure correctly",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include RooftopControl.sunroofTiltState property in getter",
+      "fullTitle": "RooftopControl Should include RooftopControl.sunroofTiltState property in getter",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map RooftopControl.sunroofTiltState property structure correctly",
+      "fullTitle": "RooftopControl Should map RooftopControl.sunroofTiltState property structure correctly",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include RooftopControl.sunroofState property in getter",
+      "fullTitle": "RooftopControl Should include RooftopControl.sunroofState property in getter",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map RooftopControl.sunroofState property structure correctly",
+      "fullTitle": "RooftopControl Should map RooftopControl.sunroofState property structure correctly",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter RooftopControl.controlRooftop() command",
+      "fullTitle": "RooftopControl Should handle setter RooftopControl.controlRooftop() command",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter RooftopControl.controlRooftop() should keep default values",
+      "fullTitle": "RooftopControl Setter RooftopControl.controlRooftop() should keep default values",
+      "duration": 7802,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Tachograph.getState() command",
+      "fullTitle": "Tachograph Should handle getter Tachograph.getState() command",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.getState() response correctly",
+      "fullTitle": "Tachograph Should map Tachograph.getState() response correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.driversWorkingStates property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.driversWorkingStates property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.driversWorkingStates property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.driversWorkingStates property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.driversTimeStates property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.driversTimeStates property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.driversTimeStates property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.driversTimeStates property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.driversCardsPresent property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.driversCardsPresent property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.driversCardsPresent property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.driversCardsPresent property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.vehicleMotion property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.vehicleMotion property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.vehicleMotion property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.vehicleMotion property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.vehicleOverspeed property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.vehicleOverspeed property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.vehicleOverspeed property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.vehicleOverspeed property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.vehicleDirection property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.vehicleDirection property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.vehicleDirection property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.vehicleDirection property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Tachograph.vehicleSpeed property in getter",
+      "fullTitle": "Tachograph Should include Tachograph.vehicleSpeed property in getter",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Tachograph.vehicleSpeed property structure correctly",
+      "fullTitle": "Tachograph Should map Tachograph.vehicleSpeed property structure correctly",
+      "duration": 8193,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter LightConditions.getLightConditions() command",
+      "fullTitle": "LightConditions Should handle getter LightConditions.getLightConditions() command",
+      "duration": 3191,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map LightConditions.getLightConditions() response correctly",
+      "fullTitle": "LightConditions Should map LightConditions.getLightConditions() response correctly",
+      "duration": 3191,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include LightConditions.outsideLight property in getter",
+      "fullTitle": "LightConditions Should include LightConditions.outsideLight property in getter",
+      "duration": 3191,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map LightConditions.outsideLight property structure correctly",
+      "fullTitle": "LightConditions Should map LightConditions.outsideLight property structure correctly",
+      "duration": 3191,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include LightConditions.insideLight property in getter",
+      "fullTitle": "LightConditions Should include LightConditions.insideLight property in getter",
+      "duration": 3191,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map LightConditions.insideLight property structure correctly",
+      "fullTitle": "LightConditions Should map LightConditions.insideLight property structure correctly",
+      "duration": 3191,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter WeatherConditions.getWeatherConditions() command",
+      "fullTitle": "WeatherConditions Should handle getter WeatherConditions.getWeatherConditions() command",
+      "duration": 2340,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WeatherConditions.getWeatherConditions() response correctly",
+      "fullTitle": "WeatherConditions Should map WeatherConditions.getWeatherConditions() response correctly",
+      "duration": 2340,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include WeatherConditions.rainIntensity property in getter",
+      "fullTitle": "WeatherConditions Should include WeatherConditions.rainIntensity property in getter",
+      "duration": 2340,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map WeatherConditions.rainIntensity property structure correctly",
+      "fullTitle": "WeatherConditions Should map WeatherConditions.rainIntensity property structure correctly",
+      "duration": 2340,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Trunk.getState() command",
+      "fullTitle": "Trunk Should handle getter Trunk.getState() command",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Trunk.getState() response correctly",
+      "fullTitle": "Trunk Should map Trunk.getState() response correctly",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Trunk.lock property in getter",
+      "fullTitle": "Trunk Should include Trunk.lock property in getter",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Trunk.lock property structure correctly",
+      "fullTitle": "Trunk Should map Trunk.lock property structure correctly",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Trunk.position property in getter",
+      "fullTitle": "Trunk Should include Trunk.position property in getter",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Trunk.position property structure correctly",
+      "fullTitle": "Trunk Should map Trunk.position property structure correctly",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Trunk.controlTrunk() command",
+      "fullTitle": "Trunk Should handle setter Trunk.controlTrunk() command",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Trunk.controlTrunk() should keep default values",
+      "fullTitle": "Trunk Setter Trunk.controlTrunk() should keep default values",
+      "duration": 4742,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map PowerTakeoff.getState() response correctly",
+      "fullTitle": "PowerTakeoff Should map PowerTakeoff.getState() response correctly",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include PowerTakeoff.status property in getter",
+      "fullTitle": "PowerTakeoff Should include PowerTakeoff.status property in getter",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map PowerTakeoff.status property structure correctly",
+      "fullTitle": "PowerTakeoff Should map PowerTakeoff.status property structure correctly",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include PowerTakeoff.engaged property in getter",
+      "fullTitle": "PowerTakeoff Should include PowerTakeoff.engaged property in getter",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map PowerTakeoff.engaged property structure correctly",
+      "fullTitle": "PowerTakeoff Should map PowerTakeoff.engaged property structure correctly",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter PowerTakeoff.activateDeactivatePowerTakeoff() command",
+      "fullTitle": "PowerTakeoff Should handle setter PowerTakeoff.activateDeactivatePowerTakeoff() command",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter PowerTakeoff.activateDeactivatePowerTakeoff() should keep default values",
+      "fullTitle": "PowerTakeoff Setter PowerTakeoff.activateDeactivatePowerTakeoff() should keep default values",
+      "duration": 4902,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Windows.getWindows() command",
+      "fullTitle": "Windows Should handle getter Windows.getWindows() command",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windows.getWindows() response correctly",
+      "fullTitle": "Windows Should map Windows.getWindows() response correctly",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windows.openPercentages property in getter",
+      "fullTitle": "Windows Should include Windows.openPercentages property in getter",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windows.openPercentages property structure correctly",
+      "fullTitle": "Windows Should map Windows.openPercentages property structure correctly",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Windows.positions property in getter",
+      "fullTitle": "Windows Should include Windows.positions property in getter",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Windows.positions property structure correctly",
+      "fullTitle": "Windows Should map Windows.positions property structure correctly",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Windows.controlWindows() command",
+      "fullTitle": "Windows Should handle setter Windows.controlWindows() command",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Windows.controlWindows() should keep default values",
+      "fullTitle": "Windows Setter Windows.controlWindows() should keep default values",
+      "duration": 5296,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter EngineStartStop.getState() command",
+      "fullTitle": "EngineStartStop Should handle getter EngineStartStop.getState() command",
+      "duration": 4110,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map EngineStartStop.getState() response correctly",
+      "fullTitle": "EngineStartStop Should map EngineStartStop.getState() response correctly",
+      "duration": 4110,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include EngineStartStop.status property in getter",
+      "fullTitle": "EngineStartStop Should include EngineStartStop.status property in getter",
+      "duration": 4110,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map EngineStartStop.status property structure correctly",
+      "fullTitle": "EngineStartStop Should map EngineStartStop.status property structure correctly",
+      "duration": 4110,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter EngineStartStop.activateDeactivateStartStop() command",
+      "fullTitle": "EngineStartStop Should handle setter EngineStartStop.activateDeactivateStartStop() command",
+      "duration": 4110,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter EngineStartStop.activateDeactivateStartStop() should keep default values",
+      "fullTitle": "EngineStartStop Setter EngineStartStop.activateDeactivateStartStop() should keep default values",
+      "duration": 4110,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Fueling.getGasFlapState() command",
+      "fullTitle": "Fueling Should handle getter Fueling.getGasFlapState() command",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Fueling.getGasFlapState() response correctly",
+      "fullTitle": "Fueling Should map Fueling.getGasFlapState() response correctly",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Fueling.gasFlapLock property in getter",
+      "fullTitle": "Fueling Should include Fueling.gasFlapLock property in getter",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Fueling.gasFlapLock property structure correctly",
+      "fullTitle": "Fueling Should map Fueling.gasFlapLock property structure correctly",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Fueling.gasFlapPosition property in getter",
+      "fullTitle": "Fueling Should include Fueling.gasFlapPosition property in getter",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Fueling.gasFlapPosition property structure correctly",
+      "fullTitle": "Fueling Should map Fueling.gasFlapPosition property structure correctly",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Fueling.controlGasFlap() command",
+      "fullTitle": "Fueling Should handle setter Fueling.controlGasFlap() command",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Fueling.controlGasFlap() should keep default values",
+      "fullTitle": "Fueling Setter Fueling.controlGasFlap() should keep default values",
+      "duration": 4743,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Ignition.getState() command",
+      "fullTitle": "Ignition Should handle getter Ignition.getState() command",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Ignition.getState() response correctly",
+      "fullTitle": "Ignition Should map Ignition.getState() response correctly",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Ignition.status property in getter",
+      "fullTitle": "Ignition Should include Ignition.status property in getter",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Ignition.status property structure correctly",
+      "fullTitle": "Ignition Should map Ignition.status property structure correctly",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Ignition.accessoriesStatus property in getter",
+      "fullTitle": "Ignition Should include Ignition.accessoriesStatus property in getter",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Ignition.accessoriesStatus property structure correctly",
+      "fullTitle": "Ignition Should map Ignition.accessoriesStatus property structure correctly",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Ignition.turnIgnitionOnOff() command",
+      "fullTitle": "Ignition Should handle setter Ignition.turnIgnitionOnOff() command",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter Ignition.turnIgnitionOnOff() should keep default values",
+      "fullTitle": "Ignition Setter Ignition.turnIgnitionOnOff() should keep default values",
+      "duration": 4857,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter FirmwareVersion.getFirmwareVersion() command",
+      "fullTitle": "FirmwareVersion Should handle getter FirmwareVersion.getFirmwareVersion() command",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map FirmwareVersion.getFirmwareVersion() response correctly",
+      "fullTitle": "FirmwareVersion Should map FirmwareVersion.getFirmwareVersion() response correctly",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include FirmwareVersion.hmKitVersion property in getter",
+      "fullTitle": "FirmwareVersion Should include FirmwareVersion.hmKitVersion property in getter",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map FirmwareVersion.hmKitVersion property structure correctly",
+      "fullTitle": "FirmwareVersion Should map FirmwareVersion.hmKitVersion property structure correctly",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include FirmwareVersion.hmKitBuildName property in getter",
+      "fullTitle": "FirmwareVersion Should include FirmwareVersion.hmKitBuildName property in getter",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map FirmwareVersion.hmKitBuildName property structure correctly",
+      "fullTitle": "FirmwareVersion Should map FirmwareVersion.hmKitBuildName property structure correctly",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include FirmwareVersion.applicationVersion property in getter",
+      "fullTitle": "FirmwareVersion Should include FirmwareVersion.applicationVersion property in getter",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map FirmwareVersion.applicationVersion property structure correctly",
+      "fullTitle": "FirmwareVersion Should map FirmwareVersion.applicationVersion property structure correctly",
+      "duration": 4112,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter ParkingBrake.getState() command",
+      "fullTitle": "ParkingBrake Should handle getter ParkingBrake.getState() command",
+      "duration": 3693,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingBrake.getState() response correctly",
+      "fullTitle": "ParkingBrake Should map ParkingBrake.getState() response correctly",
+      "duration": 3693,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ParkingBrake.status property in getter",
+      "fullTitle": "ParkingBrake Should include ParkingBrake.status property in getter",
+      "duration": 3693,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ParkingBrake.status property structure correctly",
+      "fullTitle": "ParkingBrake Should map ParkingBrake.status property structure correctly",
+      "duration": 3693,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ParkingBrake.setParkingBrake() command",
+      "fullTitle": "ParkingBrake Should handle setter ParkingBrake.setParkingBrake() command",
+      "duration": 3693,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ParkingBrake.setParkingBrake() should keep default values",
+      "fullTitle": "ParkingBrake Setter ParkingBrake.setParkingBrake() should keep default values",
+      "duration": 3693,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter VehicleLocation.getVehicleLocation() command",
+      "fullTitle": "VehicleLocation Should handle getter VehicleLocation.getVehicleLocation() command",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleLocation.getVehicleLocation() response correctly",
+      "fullTitle": "VehicleLocation Should map VehicleLocation.getVehicleLocation() response correctly",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleLocation.coordinates property in getter",
+      "fullTitle": "VehicleLocation Should include VehicleLocation.coordinates property in getter",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleLocation.coordinates property structure correctly",
+      "fullTitle": "VehicleLocation Should map VehicleLocation.coordinates property structure correctly",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleLocation.heading property in getter",
+      "fullTitle": "VehicleLocation Should include VehicleLocation.heading property in getter",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleLocation.heading property structure correctly",
+      "fullTitle": "VehicleLocation Should map VehicleLocation.heading property structure correctly",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleLocation.altitude property in getter",
+      "fullTitle": "VehicleLocation Should include VehicleLocation.altitude property in getter",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleLocation.altitude property structure correctly",
+      "fullTitle": "VehicleLocation Should map VehicleLocation.altitude property structure correctly",
+      "duration": 4273,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter ValetMode.getValetMode() command",
+      "fullTitle": "ValetMode Should handle getter ValetMode.getValetMode() command",
+      "duration": 3887,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ValetMode.getValetMode() response correctly",
+      "fullTitle": "ValetMode Should map ValetMode.getValetMode() response correctly",
+      "duration": 3887,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include ValetMode.status property in getter",
+      "fullTitle": "ValetMode Should include ValetMode.status property in getter",
+      "duration": 3887,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map ValetMode.status property structure correctly",
+      "fullTitle": "ValetMode Should map ValetMode.status property structure correctly",
+      "duration": 3887,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter ValetMode.activateDeactivateValetMode() command",
+      "fullTitle": "ValetMode Should handle setter ValetMode.activateDeactivateValetMode() command",
+      "duration": 3887,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter ValetMode.activateDeactivateValetMode() should keep default values",
+      "fullTitle": "ValetMode Setter ValetMode.activateDeactivateValetMode() should keep default values",
+      "duration": 3887,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Offroad.getState() command",
+      "fullTitle": "Offroad Should handle getter Offroad.getState() command",
+      "duration": 3475,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Offroad.getState() response correctly",
+      "fullTitle": "Offroad Should map Offroad.getState() response correctly",
+      "duration": 3475,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Offroad.routeIncline property in getter",
+      "fullTitle": "Offroad Should include Offroad.routeIncline property in getter",
+      "duration": 3475,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Offroad.routeIncline property structure correctly",
+      "fullTitle": "Offroad Should map Offroad.routeIncline property structure correctly",
+      "duration": 3475,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Offroad.wheelSuspension property in getter",
+      "fullTitle": "Offroad Should include Offroad.wheelSuspension property in getter",
+      "duration": 3475,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Offroad.wheelSuspension property structure correctly",
+      "fullTitle": "Offroad Should map Offroad.wheelSuspension property structure correctly",
+      "duration": 3475,
+      "errorCount": 0
+    },
+    {
+      "title": "should initialize",
+      "fullTitle": "AccessCertificate should initialize",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return access certificate object",
+      "fullTitle": "AccessCertificate should return access certificate object",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct vehicle serial number",
+      "fullTitle": "AccessCertificate should return correct vehicle serial number",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct vehicle public key",
+      "fullTitle": "AccessCertificate should return correct vehicle public key",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct client serial",
+      "fullTitle": "AccessCertificate should return correct client serial",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct validity start date",
+      "fullTitle": "AccessCertificate should return correct validity start date",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should throw error on invalid date validation",
+      "fullTitle": "AccessCertificate should throw error on invalid date validation",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should throw error on invalid start date",
+      "fullTitle": "AccessCertificate should throw error on invalid start date",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should throw error on invalid end date",
+      "fullTitle": "AccessCertificate should throw error on invalid end date",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct validity end date",
+      "fullTitle": "AccessCertificate should return correct validity end date",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should return Permissions instance",
+      "fullTitle": "AccessCertificate should return Permissions instance",
+      "duration": 113,
+      "errorCount": 0
+    },
+    {
+      "title": "should pack the container",
+      "fullTitle": "Container should pack the container",
+      "duration": 205,
+      "errorCount": 0
+    },
+    {
+      "title": "should pack the container with optional request id",
+      "fullTitle": "Container should pack the container with optional request id",
+      "duration": 205,
+      "errorCount": 0
+    },
+    {
+      "title": "should unpack the encrypted container",
+      "fullTitle": "Container should unpack the encrypted container",
+      "duration": 205,
+      "errorCount": 0
+    },
+    {
+      "title": "should unpack the encrypted container with optinal request id",
+      "fullTitle": "Container should unpack the encrypted container with optinal request id",
+      "duration": 205,
+      "errorCount": 0
+    },
+    {
+      "title": "should remove escape bytes",
+      "fullTitle": "Container should remove escape bytes",
+      "duration": 205,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter TheftAlarm.getState() command",
+      "fullTitle": "TheftAlarm Should handle getter TheftAlarm.getState() command",
+      "duration": 4075,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map TheftAlarm.getState() response correctly",
+      "fullTitle": "TheftAlarm Should map TheftAlarm.getState() response correctly",
+      "duration": 4075,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include TheftAlarm.status property in getter",
+      "fullTitle": "TheftAlarm Should include TheftAlarm.status property in getter",
+      "duration": 4075,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map TheftAlarm.status property structure correctly",
+      "fullTitle": "TheftAlarm Should map TheftAlarm.status property structure correctly",
+      "duration": 4075,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter TheftAlarm.setTheftAlarm() command",
+      "fullTitle": "TheftAlarm Should handle setter TheftAlarm.setTheftAlarm() command",
+      "duration": 4075,
+      "errorCount": 0
+    },
+    {
+      "title": "Setter TheftAlarm.setTheftAlarm() should keep default values",
+      "fullTitle": "TheftAlarm Setter TheftAlarm.setTheftAlarm() should keep default values",
+      "duration": 4075,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Seats.getState() command",
+      "fullTitle": "Seats Should handle getter Seats.getState() command",
+      "duration": 3733,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Seats.getState() response correctly",
+      "fullTitle": "Seats Should map Seats.getState() response correctly",
+      "duration": 3733,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Seats.personsDetected property in getter",
+      "fullTitle": "Seats Should include Seats.personsDetected property in getter",
+      "duration": 3733,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Seats.personsDetected property structure correctly",
+      "fullTitle": "Seats Should map Seats.personsDetected property structure correctly",
+      "duration": 3733,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Seats.seatbeltsState property in getter",
+      "fullTitle": "Seats Should include Seats.seatbeltsState property in getter",
+      "duration": 3733,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Seats.seatbeltsState property structure correctly",
+      "fullTitle": "Seats Should map Seats.seatbeltsState property structure correctly",
+      "duration": 3733,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Hood.getState() command",
+      "fullTitle": "Hood Should handle getter Hood.getState() command",
+      "duration": 2612,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Hood.getState() response correctly",
+      "fullTitle": "Hood Should map Hood.getState() response correctly",
+      "duration": 2612,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Hood.position property in getter",
+      "fullTitle": "Hood Should include Hood.position property in getter",
+      "duration": 2612,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Hood.position property structure correctly",
+      "fullTitle": "Hood Should map Hood.position property structure correctly",
+      "duration": 2612,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Capabilities.getCapabilities() command",
+      "fullTitle": "Capabilities Should handle getter Capabilities.getCapabilities() command",
+      "duration": 2920,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Capabilities.getCapabilities() response correctly",
+      "fullTitle": "Capabilities Should map Capabilities.getCapabilities() response correctly",
+      "duration": 2920,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Capabilities.capabilities property in getter",
+      "fullTitle": "Capabilities Should include Capabilities.capabilities property in getter",
+      "duration": 2920,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Capabilities.capabilities property structure correctly",
+      "fullTitle": "Capabilities Should map Capabilities.capabilities property structure correctly",
+      "duration": 2920,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter Mobile.getState() command",
+      "fullTitle": "Mobile Should handle getter Mobile.getState() command",
+      "duration": 2639,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Mobile.getState() response correctly",
+      "fullTitle": "Mobile Should map Mobile.getState() response correctly",
+      "duration": 2639,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include Mobile.connection property in getter",
+      "fullTitle": "Mobile Should include Mobile.connection property in getter",
+      "duration": 2639,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map Mobile.connection property structure correctly",
+      "fullTitle": "Mobile Should map Mobile.connection property structure correctly",
+      "duration": 2639,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter DashboardLights.getDashboardLights() command",
+      "fullTitle": "DashboardLights Should handle getter DashboardLights.getDashboardLights() command",
+      "duration": 2516,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map DashboardLights.getDashboardLights() response correctly",
+      "fullTitle": "DashboardLights Should map DashboardLights.getDashboardLights() response correctly",
+      "duration": 2516,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include DashboardLights.dashboardLights property in getter",
+      "fullTitle": "DashboardLights Should include DashboardLights.dashboardLights property in getter",
+      "duration": 2516,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map DashboardLights.dashboardLights property structure correctly",
+      "fullTitle": "DashboardLights Should map DashboardLights.dashboardLights property structure correctly",
+      "duration": 2516,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Notifications.notification() command",
+      "fullTitle": "Notifications Should handle setter Notifications.notification() command",
+      "duration": 2026,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Notifications.action() command",
+      "fullTitle": "Notifications Should handle setter Notifications.action() command",
+      "duration": 2026,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Notifications.clearNotification() command",
+      "fullTitle": "Notifications Should handle setter Notifications.clearNotification() command",
+      "duration": 2026,
+      "errorCount": 0
+    },
+    {
+      "title": "should initialize",
+      "fullTitle": "SDK initialization should initialize",
+      "duration": 170,
+      "errorCount": 0
+    },
+    {
+      "title": "should fail initialization on invalid clientPrivateKey",
+      "fullTitle": "SDK initialization should fail initialization on invalid clientPrivateKey",
+      "duration": 170,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle getter VehicleTime.getVehicleTime() command",
+      "fullTitle": "VehicleTime Should handle getter VehicleTime.getVehicleTime() command",
+      "duration": 2494,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleTime.getVehicleTime() response correctly",
+      "fullTitle": "VehicleTime Should map VehicleTime.getVehicleTime() response correctly",
+      "duration": 2494,
+      "errorCount": 0
+    },
+    {
+      "title": "Should include VehicleTime.vehicleTime property in getter",
+      "fullTitle": "VehicleTime Should include VehicleTime.vehicleTime property in getter",
+      "duration": 2494,
+      "errorCount": 0
+    },
+    {
+      "title": "Should map VehicleTime.vehicleTime property structure correctly",
+      "fullTitle": "VehicleTime Should map VehicleTime.vehicleTime property structure correctly",
+      "duration": 2494,
+      "errorCount": 0
+    },
+    {
+      "title": "should fail",
+      "fullTitle": "ApiClient should fail",
+      "duration": 202,
+      "errorCount": 0
+    },
+    {
+      "title": "should fail",
+      "fullTitle": "ApiClient should fail",
+      "duration": 202,
+      "errorCount": 0
+    },
+    {
+      "title": "should fail to fetch a nonce",
+      "fullTitle": "Telematics should fail to fetch a nonce",
+      "duration": 476,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter TextInput.textInput() command",
+      "fullTitle": "TextInput Should handle setter TextInput.textInput() command",
+      "duration": 978,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Browser.loadUrl() command",
+      "fullTitle": "Browser Should handle setter Browser.loadUrl() command",
+      "duration": 1043,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter WakeUp.wakeUp() command",
+      "fullTitle": "WakeUp Should handle setter WakeUp.wakeUp() command",
+      "duration": 904,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Messaging.messageReceived() command",
+      "fullTitle": "Messaging Should handle setter Messaging.messageReceived() command",
+      "duration": 1066,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Graphics.displayImage() command",
+      "fullTitle": "Graphics Should handle setter Graphics.displayImage() command",
+      "duration": 980,
+      "errorCount": 0
+    },
+    {
+      "title": "should do nothing if there are no errors",
+      "fullTitle": "validate should do nothing if there are no errors",
+      "duration": 136,
+      "errorCount": 0
+    },
+    {
+      "title": "should throw exception on failed validation",
+      "fullTitle": "validate should throw exception on failed validation",
+      "duration": 136,
+      "errorCount": 0
+    },
+    {
+      "title": "should handle missing argument names",
+      "fullTitle": "validate should handle missing argument names",
+      "duration": 136,
+      "errorCount": 0
+    },
+    {
+      "title": "should chunk arrays correctly",
+      "fullTitle": "Helpers should chunk arrays correctly",
+      "duration": 119,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter VideoHandover.videoHandover() command",
+      "fullTitle": "VideoHandover Should handle setter VideoHandover.videoHandover() command",
+      "duration": 1351,
+      "errorCount": 0
+    },
+    {
+      "title": "should initialize",
+      "fullTitle": "ClientCertificate should initialize",
+      "duration": 86,
+      "errorCount": 0
+    },
+    {
+      "title": "should return client certificate object",
+      "fullTitle": "ClientCertificate should return client certificate object",
+      "duration": 86,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct client serial",
+      "fullTitle": "ClientCertificate should return correct client serial",
+      "duration": 86,
+      "errorCount": 0
+    },
+    {
+      "title": "should return correct app identifier",
+      "fullTitle": "ClientCertificate should return correct app identifier",
+      "duration": 86,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert hex array to hex string",
+      "fullTitle": "EncodingUtils should convert hex array to hex string",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should calculate bytes sum correctly",
+      "fullTitle": "EncodingUtils should calculate bytes sum correctly",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert uint to hex and back to uint",
+      "fullTitle": "EncodingUtils should convert uint to hex and back to uint",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert hex to byte arrays",
+      "fullTitle": "EncodingUtils should convert hex to byte arrays",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert int to hex",
+      "fullTitle": "EncodingUtils should convert int to hex",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert ascii to uint8",
+      "fullTitle": "EncodingUtils should convert ascii to uint8",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should return empty uint8 array",
+      "fullTitle": "EncodingUtils should return empty uint8 array",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert bytes to utf8 string",
+      "fullTitle": "EncodingUtils should convert bytes to utf8 string",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert binary to int",
+      "fullTitle": "EncodingUtils should convert binary to int",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert string to bytearray",
+      "fullTitle": "EncodingUtils should convert string to bytearray",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "should convert decimal to hex array",
+      "fullTitle": "EncodingUtils should convert decimal to hex array",
+      "duration": 141,
+      "errorCount": 0
+    },
+    {
+      "title": "dummy test",
+      "fullTitle": "SDK dummy test",
+      "duration": 77,
+      "errorCount": 0
+    },
+    {
+      "title": "Should handle setter Historical.requestStates() command",
+      "fullTitle": "Historical Should handle setter Historical.requestStates() command",
+      "duration": 1216,
+      "errorCount": 0
+    }
+  ],
+  "skipped": []
+}

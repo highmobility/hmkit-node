@@ -1,18 +1,18 @@
 /*
  *  The MIT License
- * 
+ *
  *  Copyright (c) 2014- High-Mobility GmbH (https://high-mobility.com)
- * 
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- * 
+ *
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
- * 
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,9 +20,9 @@
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
- * 
+ *
  *  capabilityTests.js
- * 
+ *
  *  Created by Mikk Õun on 20/01/2020.
  */
 
@@ -55,17 +55,12 @@ export function describeTest(capabilityName, capability) {
       ({ type }) => type === CommandType.Setter
     );
 
-    const getterQuery = getterCommand
-      ? sendCommand(hmkit, getterCommand(), accessToken)
-      : null;
-
     if (getterCommand) {
       // Test correct getter response
       it(`Should handle getter ${capabilityName}.${
         getterCommand.name
       }() command`, async () => {
-        const response = await getterQuery;
-        const parsedResponse = response.parse();
+        const parsedResponse = await sendGetterQueryCommand(getterCommand);
         expect(respClass).toBeDefined();
         expect(parsedResponse).toBeInstanceOf(respClass);
       });
@@ -74,8 +69,7 @@ export function describeTest(capabilityName, capability) {
       it(`Should map ${capabilityName}.${
         getterCommand.name
       }() response correctly`, async () => {
-        const response = await getterQuery;
-        const parsedResponse = response.parse();
+        const parsedResponse = await sendGetterQueryCommand(getterCommand);
         expect(parsedResponse).toEqual(responseValidator);
       });
 
@@ -90,17 +84,14 @@ export function describeTest(capabilityName, capability) {
         it(`Should include ${capabilityName}.${
           property.name_cased
         } property in getter`, async () => {
-          const response = await getterQuery;
-          const parsedResponse = response.parse();
+          const parsedResponse = await sendGetterQueryCommand(getterCommand);
           expect(parsedResponse).toHaveProperty(nameCased);
         });
 
         it(`Should map ${capabilityName}.${
           property.name_cased
         } property structure correctly`, async () => {
-          const response = await getterQuery;
-          const parsedResponse = response.parse();
-
+          const parsedResponse = await sendGetterQueryCommand(getterCommand);
           expect(parsedResponse).toMatchObject({
             [nameCased]: responseValidator[nameCased],
           });
@@ -114,31 +105,21 @@ export function describeTest(capabilityName, capability) {
         setterCommand.nameSnake
       );
 
-      const setterQuery = sendCommand(
-        hmkit,
-        setterCommand(setterArguments),
-        accessToken
-      );
-
       it(`Should handle setter ${capabilityName}.${
         setterCommand.name
       }() command`, async () => {
-        const response = await setterQuery;
-        const parsedResponse = response.parse();
+        const parsedResponse = await sendSetterQueryCommand(setterCommand, setterArguments);
 
         expect(respClass).toBeDefined();
         expect(parsedResponse).toBeInstanceOf(respClass);
       });
 
-      if (getterQuery) {
+      if (getterCommand) {
         it(`Setter ${capabilityName}.${
           setterCommand.name
         }() should keep default values`, async () => {
-          const setterResponse = await setterQuery;
-          const parsedSetterResponse = setterResponse.parse();
-
-          const getterResponse = await getterQuery;
-          const parsedGetterResponse = getterResponse.parse();
+          const parsedSetterResponse = await sendSetterQueryCommand(setterCommand, setterArguments);
+          const parsedGetterResponse = await sendGetterQueryCommand(getterCommand);
 
           expect(parsedSetterResponse).toBeInstanceOf(respClass);
           expect(parsedGetterResponse).toBeInstanceOf(respClass);
@@ -396,4 +377,24 @@ function replaceConstants(state, setterName, capabilityConf) {
   }, state);
 
   return newState;
+}
+
+async function sendGetterQueryCommand(getterCommand) {
+  const getterQuery = getterCommand
+    ? sendCommand(hmkit, getterCommand(), accessToken)
+    : null;
+
+  const response = await getterQuery;
+  return response.parse();
+}
+
+async function sendSetterQueryCommand(setterCommand, setterArguments) {
+  const setterQuery = sendCommand(
+    hmkit,
+    setterCommand(setterArguments),
+    accessToken
+  );
+
+  const response = await setterQuery;
+  return response.parse();
 }
