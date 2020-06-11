@@ -37,8 +37,18 @@ import InvalidArgumentError from './Errors/InvalidArgumentError';
 import AccessCertificate from './Core/AccessCertificate';
 
 const API_URLS = {
-  hmxv: 'https://xv-platform.high-mobility.com/v1/',
-  test: 'https://sandbox.api.high-mobility.com/v1/',
+  prod: {
+    xvhm: 'https://api.high-mobility.com/v1/',
+    test: 'https://sandbox.api.high-mobility.com/v1/',
+  },
+  develop: {
+    xvhm: 'https://api.develop.high-mobility.net/v1',
+    test: 'https://sandbox.api.develop.high-mobility.net/v1/',
+  },
+  staging: {
+    xvhm: 'https://api.staging.high-mobility.net/v1',
+    test: 'https://sandbox.api.staging.high-mobility.net/v1/',
+  }
 };
 
 export default class HMKit {
@@ -55,7 +65,7 @@ export default class HMKit {
 
     this.clientPrivateKey = clientPrivateKey;
 
-    this.api = new Api(this.getApiUrl());
+    this.api = new Api(this.getApiUrl('prod'));
     this.apiClient = new ApiClient();
     this.telematics = new Telematics(this);
     this.commands = new Commands(this);
@@ -63,21 +73,21 @@ export default class HMKit {
   }
 
   develop() {
-    this.api = new Api('https://sandbox.api.develop.high-mobility.net/v1/');
+    this.api = new Api(this.getApiUrl('develop'))
     return this;
   }
 
   staging() {
-    this.api = new Api('https://sandbox.api.staging.high-mobility.net/v1/');
+    this.api = new Api(this.getApiUrl('staging'))
     return this;
   }
 
-  getApiUrl() {
+  getApiUrl(env) {
     if (this.clientCertificate && this.clientCertificate.issuer) {
-      return API_URLS[this.clientCertificate.issuer] || API_URLS.test;
+      return API_URLS[env][this.clientCertificate.issuer] || API_URLS[env].test;
     }
 
-    return API_URLS.test;
+    return API_URLS[env].test;
   }
 
   downloadAccessCertificate(...args) {
