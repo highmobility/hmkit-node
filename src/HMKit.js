@@ -42,11 +42,11 @@ const API_URLS = {
     test: 'https://sandbox.api.high-mobility.com/v1/',
   },
   develop: {
-    xvhm: 'https://api.develop.high-mobility.net/v1',
+    xvhm: 'https://api.develop.high-mobility.net/v1/',
     test: 'https://sandbox.api.develop.high-mobility.net/v1/',
   },
   staging: {
-    xvhm: 'https://api.staging.high-mobility.net/v1',
+    xvhm: 'https://api.staging.high-mobility.net/v1/',
     test: 'https://sandbox.api.staging.high-mobility.net/v1/',
   }
 };
