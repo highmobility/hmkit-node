@@ -12,6 +12,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
+    "consume": "node consumer.js",
     "clean": "rimraf lib dist es coverage",
     "lint": "eslint src test",
     "test": "cross-env BABEL_ENV=commonjs node node_modules/jest/bin/jest.js --runInBand --no-cache",
@@ -25,7 +26,8 @@
     "build": "npm run build:commonjs && npm run build:es",
     "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
     "format": "prettier --write \"{src,test}/**/*.js\" ",
-    "generate:docs": "node commands/generateCommandsDocumentation.js && node commands/generateResponsesDocumentation.js"
+    "generate:docs": "node commands/generateCommandsDocumentation.js && node commands/generateResponsesDocumentation.js",
+    "generate:config": "node ./commands/generateConfiguration.js"
   },
   "entry": "./build/bundle.js",
   "jest": {

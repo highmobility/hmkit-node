@@ -29,7 +29,7 @@
 const YAML = require('yamljs');
 const fs = require('fs');
 
-const CONFIGURATION_FILES = [
+const CAPABILITY_CONFIGURATION_FILES = [
   'browser.yml',
   'capabilities.yml',
   'charging.yml',
@@ -40,7 +40,6 @@ const CONFIGURATION_FILES = [
   'diagnostics.yml',
   'doors.yml',
   'driver_fatigue.yml',
-  'engine_start_stop.yml',
   'engine.yml',
   'failure_message.yml',
   'firmware_version.yml',
@@ -73,7 +72,6 @@ const CONFIGURATION_FILES = [
   'text_input.yml',
   'theft_alarm.yml',
   'trunk.yml',
-  'universal_properties.yml',
   'usage.yml',
   'valet_mode.yml',
   'vehicle_location.yml',
@@ -84,27 +82,35 @@ const CONFIGURATION_FILES = [
   'weather_conditions.yml',
   'wi_fi.yml',
   'windows.yml',
-  'windscreen.yml',
+  'windscreen.yml'
 ];
 
-const TYPES_FILE_NAME = 'custom_types.yml';
-
+const CUSTOM_TYPES_FILE_PATH = `misc/custom_types.yml`;
+const UNIT_TYPES_FILE_PATH = 'misc/unit_types.yml';
 const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/capabilities.json`;
-
 const tokenRegex = new RegExp(`types.`);
 
-function parseConfigurationFiles() {
-  const parsedTypes = parseTypesFile();
+function autoApiPath(path) {
+  return `${__dirname}/../../auto-api/${path}`;
+}
 
-  const parsedCapabilities = CONFIGURATION_FILES.reduce(
+function parseConfigurationFiles() {
+  const customTypes = parseCustomTypesFile();
+  const unitTypes = parseUnitTypesFile();
+
+  const parsedCapabilities = CAPABILITY_CONFIGURATION_FILES.reduce(
     (configurationObject, fileName) => {
-      const mappedCapabilityConf = mapStateProps(
-        mapCustomTypesToCapability(parseYmlFile(fileName), parsedTypes)
-      );
+      const filePath = autoApiPath(`capabilities/${fileName}`);
+      const capability = parseYmlFile(filePath);
+
+      const mappedCapabilityConf = mapStateProps({
+        ...capability,
+        properties: buildCapabilityProperties(capability, customTypes, unitTypes),
+      });
 
       return {
         ...configurationObject,
-        [mappedCapabilityConf.name]: mappedCapabilityConf,
+        [mappedCapabilityConf.name]: mappedCapabilityConf
       };
     },
     {}
@@ -112,75 +118,94 @@ function parseConfigurationFiles() {
 
   fs.writeFileSync(
     CAPABILITIES_DESTINATION_FILE,
-    JSON.stringify(parsedCapabilities)
+    JSON.stringify(parsedCapabilities, null, 2)
   );
 
   console.log('Successfully updated capabilities configuration.');
 }
 
-function mapCustomTypesToCapability(capability, customTypes) {
-  return {
-    ...capability,
-    properties: capability.properties.map(property =>
-      mapPropertyCustomType(property, customTypes)
-    ),
-  };
+function buildCapabilityProperties(capability, customTypes, unitTypes) {
+  return capability.properties.map((property) =>
+    buildCapabilityProperty(property, customTypes, unitTypes)
+  );
 }
 
 function mapStateProps(capability) {
   if (capability.state && capability.state === 'all') {
     return {
       ...capability,
-      state: capability.properties.map(({ id }) => id),
+      state: capability.properties.map(({ id }) => id)
     };
   }
 
   return capability;
 }
 
-function mapPropertyCustomType(property, customTypes) {
+function buildCapabilityProperty(property, customTypes, unitTypes) {
+  const newProperty = { ...property };
+  if (newProperty.unit) {
+    newProperty.unit = { ...unitTypes[property.unit] };
+  }
+
   if (property.type.indexOf('types.') === 0) {
     const customTypeKey = property.type.replace(tokenRegex, '');
 
     const customType = customTypes[customTypeKey];
 
     if (customType.items) {
-      const mappedItems = customType.items.map(propItem =>
-        mapPropertyCustomType(propItem, customTypes)
+      const mappedItems = customType.items.map((propItem) =>
+        buildCapabilityProperty(propItem, customTypes, unitTypes)
       );
 
       return {
         ...customType,
-        ...property,
+        ...newProperty,
         customType: customTypeKey,
         type: customType.type,
-        items: mappedItems,
+        items: mappedItems
       };
     }
 
     return {
       ...customType,
-      ...property,
+      ...newProperty,
       customType: customTypeKey,
-      type: customType.type,
+      type: customType.type
     };
   }
 
-  return property;
+  return newProperty;
 }
 
-function parseTypesFile() {
-  return parseYmlFile(TYPES_FILE_NAME).types.reduce(
+function parseCustomTypesFile() {
+  const filePath = autoApiPath(CUSTOM_TYPES_FILE_PATH);
+
+  return parseYmlFile(filePath).types.reduce(
     (allTypes, type) => ({
       ...allTypes,
-      [type.name]: type,
+      [type.name]: type
     }),
     {}
   );
 }
 
-function parseYmlFile(fileName) {
-  const file = fs.readFileSync(`${__dirname}/../auto-api/${fileName}`, 'utf8');
+function parseUnitTypesFile() {
+  const filePath = autoApiPath(UNIT_TYPES_FILE_PATH);
+
+  return parseYmlFile(filePath).measurement_types.reduce(
+    (allTypes, type) => ({
+      ...allTypes,
+      [type.name]: type
+    }),
+    {}
+  );
+}
+
+function parseYmlFile(filePath) {
+  const file = fs.readFileSync(
+    filePath,
+    'utf8'
+  );
 
   return YAML.parse(file);
 }
