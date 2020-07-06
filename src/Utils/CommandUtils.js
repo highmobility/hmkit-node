@@ -42,12 +42,10 @@ import { validate, Joi } from './ValidationUtils';
 
 const DISABLED_FOR_CATEGORIES = ['universal'];
 
-const AUTO_API_LEVEL = 11;
-
-const GET_STATE_TYPE = 0x00;
-const SET_STATE_TYPE = 0x01;
-const PROPERTY_DATA_ID = 0x01;
-
+export const PROPERTY_DATA_ID = 0x01;
+export const GET_STATE_TYPE = 0x00;
+export const SET_STATE_TYPE = 0x01;
+export const AUTO_API_LEVEL = 11;
 export const CommandType = {
   Getter: 'GET',
   Setter: 'SET',
