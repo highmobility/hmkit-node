@@ -31,7 +31,12 @@ import capabilitiesConfiguration from '../../src/Configuration/capabilities.json
 import ResponseClass from '../../src/Configuration/ResponseClass';
 import EmptyResponse from '../../src/Responses/EmptyResponse';
 import PropertyType from '../../src/Configuration/PropertyType';
-import { CommandType } from '../../src/Utils/CommandUtils';
+import {
+  CommandType,
+  AUTO_API_LEVEL,
+  SET_STATE_TYPE,
+  PROPERTY_DATA_ID,
+} from '../../src/Utils/CommandUtils';
 import { parsePropertyData } from '../../src/Utils/ResponseUtils';
 import { hexToUint8Array } from '../../src/Utils/EncodingUtils';
 
@@ -57,20 +62,45 @@ export function describeTest(capabilityName, capability) {
 
     if (getterCommand) {
       // Test correct getter response
-      it(`Should handle getter ${capabilityName}.${
-        getterCommand.name
-      }() command`, async () => {
+      it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
         const parsedResponse = await sendGetterQueryCommand(getterCommand);
         expect(respClass).toBeDefined();
         expect(parsedResponse).toBeInstanceOf(respClass);
       });
 
       // Test correct getter response state
-      it(`Should map ${capabilityName}.${
-        getterCommand.name
-      }() response correctly`, async () => {
+      it(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
         const parsedResponse = await sendGetterQueryCommand(getterCommand);
         expect(parsedResponse).toEqual(responseValidator);
+      });
+
+      // Test parsing of property data using the example
+      capabilityConfiguration.properties.forEach(property => {
+        it(`Should parse the response for ${property.name} according the the example`, () => {
+          property.examples.forEach(example => {
+            const parsedResponse = parsePropertyData(
+              hexToUint8Array(example.hex),
+              property
+            );
+
+            // Loops through values and adds proper casing to match with the SDK
+            if (example.values) {
+              Object.keys(example.values).forEach(key => {
+                const value = example.values[key];
+                delete example.values[key];
+                const propertyMetaData = (property.items || []).find(
+                  x => x.name === key
+                );
+                const properlyCasedKey = propertyMetaData
+                  ? propertyMetaData.name_cased
+                  : key;
+                example.values[properlyCasedKey] = value;
+              });
+            }
+
+            expect(parsedResponse).toEqual(getExampleValue(example));
+          });
+        });
       });
 
       // Test getter response properties
@@ -81,16 +111,12 @@ export function describeTest(capabilityName, capability) {
 
         const { name_cased: nameCased } = property;
 
-        it(`Should include ${capabilityName}.${
-          property.name_cased
-        } property in getter`, async () => {
+        it(`Should include ${capabilityName}.${property.name_cased} property in getter`, async () => {
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           expect(parsedResponse).toHaveProperty(nameCased);
         });
 
-        it(`Should map ${capabilityName}.${
-          property.name_cased
-        } property structure correctly`, async () => {
+        it(`Should map ${capabilityName}.${property.name_cased} property structure correctly`, async () => {
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           expect(parsedResponse).toMatchObject({
             [nameCased]: responseValidator[nameCased],
@@ -105,21 +131,39 @@ export function describeTest(capabilityName, capability) {
         setterCommand.nameSnake
       );
 
-      it(`Should handle setter ${capabilityName}.${
-        setterCommand.name
-      }() command`, async () => {
-        const parsedResponse = await sendSetterQueryCommand(setterCommand, setterArguments);
+      it(`Should convert the ${capabilityName}.${setterCommand.name} command into the a Uint8Array according to the example`, () => {
+        const actualCommandData = setterCommand(setterArguments).command;
+
+        const expectedCommandData = [
+          AUTO_API_LEVEL,
+          capabilityConfiguration.identifier.msb,
+          capabilityConfiguration.identifier.lsb,
+          SET_STATE_TYPE,
+          ...getSetterExampleData(identifier, setterCommand.nameSnake),
+        ];
+
+        expect(actualCommandData).toEqual(expectedCommandData);
+      });
+
+      it(`Should handle setter ${capabilityName}.${setterCommand.name}() command`, async () => {
+        const parsedResponse = await sendSetterQueryCommand(
+          setterCommand,
+          setterArguments
+        );
 
         expect(respClass).toBeDefined();
         expect(parsedResponse).toBeInstanceOf(respClass);
       });
 
       if (getterCommand) {
-        it(`Setter ${capabilityName}.${
-          setterCommand.name
-        }() should keep default values`, async () => {
-          const parsedSetterResponse = await sendSetterQueryCommand(setterCommand, setterArguments);
-          const parsedGetterResponse = await sendGetterQueryCommand(getterCommand);
+        it(`Setter ${capabilityName}.${setterCommand.name}() should keep default values`, async () => {
+          const parsedSetterResponse = await sendSetterQueryCommand(
+            setterCommand,
+            setterArguments
+          );
+          const parsedGetterResponse = await sendGetterQueryCommand(
+            getterCommand
+          );
 
           expect(parsedSetterResponse).toBeInstanceOf(respClass);
           expect(parsedGetterResponse).toBeInstanceOf(respClass);
@@ -397,4 +441,87 @@ async function sendSetterQueryCommand(setterCommand, setterArguments) {
 
   const response = await setterQuery;
   return response.parse();
+}
+
+/**
+ * Takes the value from the docs example and parses some data types to match
+ * with what the SDK returns (such as ISO strings being converted to strings)
+ */
+function getExampleValue(example) {
+  // https://stackoverflow.com/a/3143231
+  const isValidDate = x => {
+    const DATE_REGEX = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/;
+    return DATE_REGEX.test(x);
+  };
+
+  const parseValue = value => {
+    if (isValidDate(value)) {
+      return new Date(value);
+    }
+    return value;
+  };
+
+  if (example.value != null) {
+    return parseValue(example.value);
+  }
+
+  if (example.values != null) {
+    const output = { ...example.values };
+    Object.keys(output).forEach(key => {
+      output[key] = parseValue(output[key]);
+    });
+    return output;
+  }
+
+  return null;
+}
+
+/**
+ * Returns an Uint8Array containing the setter data from the example docs.
+ */
+function getSetterExampleData(identifier, name) {
+  const capabilityConfiguration = getCapabilityConfiguration(identifier);
+
+  if (!capabilityConfiguration)
+    throw new Error('Missing capability configuration');
+  const setter = capabilityConfiguration.setters.find(set => set.name === name);
+
+  const { mandatory = [], optional = [], constants = [] } = setter;
+
+  return [
+    ...mandatory,
+    ...optional,
+    ...constants.map(x => x.property_id),
+  ].reduce((value, propertyID) => {
+    const property = findPropertyByID(propertyID, capabilityConfiguration);
+
+    return [...value, ...getPropertyData(property)];
+  }, []);
+}
+
+/**
+ * Returns an Uint8Array containing the data for the given property from the example docs.
+ */
+function getPropertyData(property) {
+  const hexValues = (property.multiple
+    ? property.examples
+    : [property.examples[0]]
+  ).map(x => x.hex);
+
+  return hexValues.reduce((acc, hex) => {
+    const dataComponent = [
+      PROPERTY_DATA_ID,
+      ...hexToUint8Array(
+        hexToUint8Array(hex)
+          .length.toString(16)
+          .padStart(4, '0')
+      ),
+      ...hexToUint8Array(hex),
+    ];
+    const propertySize = hexToUint8Array(
+      dataComponent.length.toString(16).padStart(4, '0')
+    );
+
+    return [...acc, property.id, ...propertySize, ...dataComponent];
+  }, []);
 }
