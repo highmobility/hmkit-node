@@ -314,7 +314,73 @@
             },
             "description": "432.1km estimated range"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "name": "battery_level",
@@ -355,7 +421,28 @@
             },
             "description": "Battery alternating current is -0.6A"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 5,
@@ -377,7 +464,28 @@
             },
             "description": "Battery direct current is -0.6A"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 6,
@@ -399,7 +507,28 @@
             },
             "description": "Charger voltage is 400.0V for alternating current"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 7,
@@ -421,7 +550,28 @@
             },
             "description": "Charger voltage is 400.0V for direct current"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "name": "charge_limit",
@@ -458,7 +608,43 @@
             },
             "description": "Time to complete charge is 60.0 minutes"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 10,
@@ -480,7 +666,38 @@
             },
             "description": "Charging rate is 3.5kW"
           }
-        ]
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
       },
       {
         "name": "charge_port_state",
@@ -556,7 +773,28 @@
             },
             "description": "Maximum charging current is 25.0A"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 15,
@@ -803,7 +1041,30 @@
             },
             "description": "The battery temperature is 38.4°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "name": "timers",
@@ -984,7 +1245,38 @@
             },
             "description": "Charging rate is 150.0kW"
           }
-        ]
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
       },
       {
         "id": 25,
@@ -1002,7 +1294,28 @@
             },
             "description": "Battery current is -0.6A"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 26,
@@ -1020,7 +1333,28 @@
             },
             "description": "Charger voltage is 400.0V"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 27,
@@ -1066,7 +1400,73 @@
             },
             "description": "Maximum electric range is 555.0km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 29,
@@ -1437,7 +1837,28 @@
             "name_cased": "springRate",
             "type": "unit.torque",
             "size": 10,
-            "description": "The suspension spring rate"
+            "description": "The suspension spring rate",
+            "unit": {
+              "name": "torque",
+              "id": 24,
+              "unit_types": [
+                {
+                  "name": "newton_meters",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "newton_millimeters",
+                  "id": 1,
+                  "conversion_linear": 0.001
+                },
+                {
+                  "name": "pound_feet",
+                  "id": 2,
+                  "conversion_linear": 0.73756214927727
+                }
+              ]
+            }
           }
         ],
         "id": 5,
@@ -1498,7 +1919,28 @@
             "name_cased": "springRate",
             "type": "unit.torque",
             "size": 10,
-            "description": "The suspension spring rate"
+            "description": "The suspension spring rate",
+            "unit": {
+              "name": "torque",
+              "id": 24,
+              "unit_types": [
+                {
+                  "name": "newton_meters",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "newton_millimeters",
+                  "id": 1,
+                  "conversion_linear": 0.001
+                },
+                {
+                  "name": "pound_feet",
+                  "id": 2,
+                  "conversion_linear": 0.73756214927727
+                }
+              ]
+            }
           }
         ],
         "id": 6,
@@ -1559,7 +2001,28 @@
             "name_cased": "springRate",
             "type": "unit.torque",
             "size": 10,
-            "description": "The suspension spring rate"
+            "description": "The suspension spring rate",
+            "unit": {
+              "name": "torque",
+              "id": 24,
+              "unit_types": [
+                {
+                  "name": "newton_meters",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "newton_millimeters",
+                  "id": 1,
+                  "conversion_linear": 0.001
+                },
+                {
+                  "name": "pound_feet",
+                  "id": 2,
+                  "conversion_linear": 0.73756214927727
+                }
+              ]
+            }
           }
         ],
         "id": 7,
@@ -1606,7 +2069,73 @@
             },
             "description": "Current chassis position is 25.4mm"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 9,
@@ -1624,7 +2153,73 @@
             },
             "description": "Maximum chassis position is 55.5mm"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 10,
@@ -1642,7 +2237,73 @@
             },
             "description": "Minimum chassis position is -28.4mm"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       }
     ]
   },
@@ -1737,7 +2398,30 @@
             },
             "description": "Inside temperature is 19.1°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "id": 2,
@@ -1755,7 +2439,30 @@
             },
             "description": "Outside temperature is 12.2°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "id": 3,
@@ -1773,7 +2480,30 @@
             },
             "description": "Driver temperature setting is 21.5°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "id": 4,
@@ -1791,7 +2521,30 @@
             },
             "description": "Passenger temperature setting is 21.7°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "name": "hvac_state",
@@ -1925,7 +2678,30 @@
             },
             "description": "Defrosting temperature setting is 21.2°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "name": "hvac_weekday_starting_times",
@@ -2116,7 +2892,30 @@
             },
             "description": "Rear temperature setting is 21.6°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       }
     ]
   },
@@ -2236,7 +3035,33 @@
             },
             "description": "The target speed is set to 61.0km/h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       },
       {
         "name": "adaptive_cruise_control",
@@ -2283,7 +3108,33 @@
             },
             "description": "The Adaptive Cruise Control target speed is set to 67.0km/h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       }
     ]
   },
@@ -3134,7 +3985,73 @@
             },
             "description": "Odometer is showing 150'000.0km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 2,
@@ -3152,7 +4069,30 @@
             },
             "description": "Engine oil temperature is 99.5°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "id": 3,
@@ -3170,7 +4110,33 @@
             },
             "description": "Vehicle speed is 60.0km/h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       },
       {
         "id": 4,
@@ -3188,7 +4154,28 @@
             },
             "description": "Engine RPM is 2500.0"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angular_velocity",
+          "id": 3,
+          "unit_types": [
+            {
+              "name": "revolutions_per_minute",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "degrees_per_second",
+              "id": 1,
+              "conversion_linear": 6
+            },
+            {
+              "name": "radians_per_second",
+              "id": 2,
+              "conversion_linear": 9.549296585514
+            }
+          ]
+        }
       },
       {
         "name": "fuel_level",
@@ -3225,7 +4212,73 @@
             },
             "description": "Estimated range is 256.0km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "name": "washer_fluid_level",
@@ -3269,7 +4322,28 @@
             },
             "description": "Battery voltage is 12.1V"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 12,
@@ -3287,7 +4361,83 @@
             },
             "description": "0.55L of AdBlue remaining"
           }
-        ]
+        ],
+        "unit": {
+          "name": "volume",
+          "id": 25,
+          "unit_types": [
+            {
+              "name": "liters",
+              "id": 2,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliliters",
+              "id": 3,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centiliters",
+              "id": 4,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "deciliters",
+              "id": 5,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "cubic_millimeters",
+              "id": 10,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "cubic_centimeters",
+              "id": 9,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "cubic_decimeters",
+              "id": 8,
+              "conversion_linear": 1
+            },
+            {
+              "name": "cubic_meters",
+              "id": 7,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "cubic_inches",
+              "id": 11,
+              "conversion_linear": 0.016387064
+            },
+            {
+              "name": "cubic_feet",
+              "id": 12,
+              "conversion_linear": 28.316846592
+            },
+            {
+              "name": "fluid_ounces",
+              "id": 19,
+              "conversion_linear": 0.0295735296875
+            },
+            {
+              "name": "gallons",
+              "id": 23,
+              "conversion_linear": 3.785411784
+            },
+            {
+              "name": "imperial_fluid_ounces",
+              "id": 26,
+              "conversion_linear": 0.0284130625
+            },
+            {
+              "name": "imperial_gallons",
+              "id": 29,
+              "conversion_linear": 4.54609
+            }
+          ]
+        }
       },
       {
         "id": 13,
@@ -3305,7 +4455,73 @@
             },
             "description": "1'500.1km driven since reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 14,
@@ -3323,7 +4539,73 @@
             },
             "description": "12.4km driven since the engine start"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 15,
@@ -3341,7 +4623,83 @@
             },
             "description": "35.5L of fuel remaining"
           }
-        ]
+        ],
+        "unit": {
+          "name": "volume",
+          "id": 25,
+          "unit_types": [
+            {
+              "name": "liters",
+              "id": 2,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliliters",
+              "id": 3,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centiliters",
+              "id": 4,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "deciliters",
+              "id": 5,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "cubic_millimeters",
+              "id": 10,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "cubic_centimeters",
+              "id": 9,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "cubic_decimeters",
+              "id": 8,
+              "conversion_linear": 1
+            },
+            {
+              "name": "cubic_meters",
+              "id": 7,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "cubic_inches",
+              "id": 11,
+              "conversion_linear": 0.016387064
+            },
+            {
+              "name": "cubic_feet",
+              "id": 12,
+              "conversion_linear": 28.316846592
+            },
+            {
+              "name": "fluid_ounces",
+              "id": 19,
+              "conversion_linear": 0.0295735296875
+            },
+            {
+              "name": "gallons",
+              "id": 23,
+              "conversion_linear": 3.785411784
+            },
+            {
+              "name": "imperial_fluid_ounces",
+              "id": 26,
+              "conversion_linear": 0.0284130625
+            },
+            {
+              "name": "imperial_gallons",
+              "id": 29,
+              "conversion_linear": 4.54609
+            }
+          ]
+        }
       },
       {
         "name": "anti_lock_braking",
@@ -3388,7 +4746,30 @@
             },
             "description": "Engine coolant temperature is 20°C"
           }
-        ]
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
       },
       {
         "id": 18,
@@ -3410,7 +4791,43 @@
             },
             "description": "The engine has operated 1'500.65h in total"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 19,
@@ -3428,7 +4845,83 @@
             },
             "description": "The engine has consumend 27'587.0L of fuel over it's lifespan"
           }
-        ]
+        ],
+        "unit": {
+          "name": "volume",
+          "id": 25,
+          "unit_types": [
+            {
+              "name": "liters",
+              "id": 2,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliliters",
+              "id": 3,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centiliters",
+              "id": 4,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "deciliters",
+              "id": 5,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "cubic_millimeters",
+              "id": 10,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "cubic_centimeters",
+              "id": 9,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "cubic_decimeters",
+              "id": 8,
+              "conversion_linear": 1
+            },
+            {
+              "name": "cubic_meters",
+              "id": 7,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "cubic_inches",
+              "id": 11,
+              "conversion_linear": 0.016387064
+            },
+            {
+              "name": "cubic_feet",
+              "id": 12,
+              "conversion_linear": 28.316846592
+            },
+            {
+              "name": "fluid_ounces",
+              "id": 19,
+              "conversion_linear": 0.0295735296875
+            },
+            {
+              "name": "gallons",
+              "id": 23,
+              "conversion_linear": 3.785411784
+            },
+            {
+              "name": "imperial_fluid_ounces",
+              "id": 26,
+              "conversion_linear": 0.0284130625
+            },
+            {
+              "name": "imperial_gallons",
+              "id": 29,
+              "conversion_linear": 4.54609
+            }
+          ]
+        }
       },
       {
         "name": "brake_fluid_level",
@@ -3510,7 +5003,33 @@
             },
             "description": "Wheel based speed is 65.0km/h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       },
       {
         "name": "battery_level",
@@ -3550,7 +5069,43 @@
             "name_cased": "remainingTime",
             "type": "unit.duration",
             "size": 10,
-            "description": "Remaining time of the message"
+            "description": "Remaining time of the message",
+            "unit": {
+              "name": "duration",
+              "id": 7,
+              "unit_types": [
+                {
+                  "name": "seconds",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "minutes",
+                  "id": 1,
+                  "conversion_linear": 60
+                },
+                {
+                  "name": "hours",
+                  "id": 2,
+                  "conversion_linear": 3600
+                },
+                {
+                  "name": "days",
+                  "id": 3,
+                  "conversion_linear": 86400
+                },
+                {
+                  "name": "weeks",
+                  "id": 4,
+                  "conversion_linear": 604800
+                },
+                {
+                  "name": "months",
+                  "id": 5,
+                  "conversion_linear": 2629800
+                }
+              ]
+            }
           },
           {
             "name": "text",
@@ -3630,7 +5185,48 @@
             "name_cased": "pressure",
             "type": "unit.pressure",
             "size": 10,
-            "description": "Tire pressure"
+            "description": "Tire pressure",
+            "unit": {
+              "name": "pressure",
+              "id": 21,
+              "unit_types": [
+                {
+                  "name": "newtons_per_meters_squared",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "kilopascals",
+                  "id": 3,
+                  "conversion_linear": 1000
+                },
+                {
+                  "name": "inches_of_mercury",
+                  "id": 5,
+                  "conversion_linear": 3386.39
+                },
+                {
+                  "name": "bars",
+                  "id": 6,
+                  "conversion_linear": 100000
+                },
+                {
+                  "name": "millibars",
+                  "id": 7,
+                  "conversion_linear": 100
+                },
+                {
+                  "name": "millimeters_of_mercury",
+                  "id": 8,
+                  "conversion_linear": 133.322
+                },
+                {
+                  "name": "pounds_force_per_square_inch",
+                  "id": 9,
+                  "conversion_linear": 6894.76
+                }
+              ]
+            }
           }
         ],
         "id": 26,
@@ -3726,7 +5322,30 @@
             "name_cased": "temperature",
             "type": "unit.temperature",
             "size": 10,
-            "description": "Tire temperature"
+            "description": "Tire temperature",
+            "unit": {
+              "name": "temperature",
+              "id": 23,
+              "unit_types": [
+                {
+                  "name": "kelvin",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "celsius",
+                  "id": 1,
+                  "conversion_linear": 1,
+                  "conversion_constant": 273.15
+                },
+                {
+                  "name": "fahrenheit",
+                  "id": 2,
+                  "conversion_linear": 0.555556,
+                  "conversion_constant": 255.372222
+                }
+              ]
+            }
           }
         ],
         "id": 27,
@@ -3824,7 +5443,28 @@
             "name_pretty": "RPM",
             "type": "unit.angular_velocity",
             "size": 10,
-            "description": "The RPM measured at this wheel"
+            "description": "The RPM measured at this wheel",
+            "unit": {
+              "name": "angular_velocity",
+              "id": 3,
+              "unit_types": [
+                {
+                  "name": "revolutions_per_minute",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "degrees_per_second",
+                  "id": 1,
+                  "conversion_linear": 6
+                },
+                {
+                  "name": "radians_per_second",
+                  "id": 2,
+                  "conversion_linear": 9.549296585514
+                }
+              ]
+            }
           }
         ],
         "id": 28,
@@ -3986,7 +5626,73 @@
             },
             "description": "Odometer is showing 150'001km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 31,
@@ -4004,7 +5710,73 @@
             },
             "description": "Odometer is showing 6.4Mm – length of the Great Wall."
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 32,
@@ -4022,7 +5794,43 @@
             },
             "description": "The engine has operated 1'500.65h in total"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "name": "tire_pressure_statuses",
@@ -4254,7 +6062,73 @@
             },
             "description": "Diesel exhaust fluid is empty in 2233.0km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "name": "diesel_particulate_filter_soot_level",
@@ -5253,7 +7127,43 @@
             },
             "description": "Heart rate is 64.0bpm"
           }
-        ]
+        ],
+        "unit": {
+          "name": "frequency",
+          "id": 14,
+          "unit_types": [
+            {
+              "name": "hertz",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millihertz",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilohertz",
+              "id": 3,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megahertz",
+              "id": 4,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "gigahertz",
+              "id": 5,
+              "conversion_linear": 1000000000
+            },
+            {
+              "name": "beats_per_minute",
+              "id": 8,
+              "conversion_linear": 60
+            }
+          ]
+        }
       }
     ]
   },
@@ -5575,7 +7485,38 @@
             },
             "description": "Charging power is 11.5kW"
           }
-        ]
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
       },
       {
         "name": "solar_charging",
@@ -5745,7 +7686,28 @@
             },
             "description": "Charger direct current is 0.5V"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 15,
@@ -5763,7 +7725,28 @@
             },
             "description": "Maximum charger current is 1.0V"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "id": 16,
@@ -5781,7 +7764,28 @@
             },
             "description": "Minimum charger current is 0.1V"
           }
-        ]
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
       },
       {
         "name": "coordinates",
@@ -5911,7 +7915,38 @@
             },
             "description": "Charging power is 350.0kW"
           }
-        ]
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
       }
     ]
   },
@@ -6006,7 +8041,43 @@
             },
             "description": "Honk the horn for 3.0s"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 3,
@@ -6069,7 +8140,43 @@
             },
             "description": "Honk the horn for 2.0s"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       }
     ]
   },
@@ -6344,7 +8451,18 @@
             },
             "description": "Outside illuminance is 111'000.0lux"
           }
-        ]
+        ],
+        "unit": {
+          "name": "illuminance",
+          "id": 17,
+          "unit_types": [
+            {
+              "name": "lux",
+              "id": 0,
+              "conversion_linear": 1
+            }
+          ]
+        }
       },
       {
         "id": 2,
@@ -6362,7 +8480,18 @@
             },
             "description": "Inside illuminance is 0.25lux"
           }
-        ]
+        ],
+        "unit": {
+          "name": "illuminance",
+          "id": 17,
+          "unit_types": [
+            {
+              "name": "lux",
+              "id": 0,
+              "conversion_linear": 1
+            }
+          ]
+        }
       }
     ]
   },
@@ -6900,7 +9029,43 @@
             },
             "description": "501.0 days until next service"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 2,
@@ -6922,7 +9087,73 @@
             },
             "description": "3'681km until next service"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 3,
@@ -6960,7 +9191,43 @@
             },
             "description": "5 months until exhaust inspection"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 5,
@@ -7011,7 +9278,73 @@
             },
             "description": "Service distance threshold is 5000.0km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 7,
@@ -7029,7 +9362,43 @@
             },
             "description": "Service time threshold is 4 weeks"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 8,
@@ -7191,7 +9560,43 @@
             },
             "description": "501.0 days until next service"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 14,
@@ -7209,7 +9614,73 @@
             },
             "description": "3'681km until next service"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 15,
@@ -7227,7 +9698,43 @@
             },
             "description": "5 months until exhaust inspection"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 16,
@@ -7591,7 +10098,43 @@
             },
             "description": "Remaining time to destination is 2.6h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 6,
@@ -7609,7 +10152,73 @@
             },
             "description": "Remaining distance to destination is 1337.0km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       }
     ]
   },
@@ -7799,7 +10408,28 @@
             },
             "description": "Route incline is 10°"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angle",
+          "id": 2,
+          "unit_types": [
+            {
+              "name": "degrees",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "radians",
+              "id": 3,
+              "conversion_linear": 57.29578
+            },
+            {
+              "name": "revolutions",
+              "id": 5,
+              "conversion_linear": 360
+            }
+          ]
+        }
       },
       {
         "name": "wheel_suspension",
@@ -8190,7 +10820,23 @@
             "name_pretty": "Acceleration",
             "type": "unit.acceleration",
             "size": 10,
-            "description": "The accelaration"
+            "description": "The accelaration",
+            "unit": {
+              "name": "acceleration",
+              "id": 1,
+              "unit_types": [
+                {
+                  "name": "meters_per_second_squared",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "gravity",
+                  "id": 1,
+                  "conversion_linear": 9.81
+                }
+              ]
+            }
           }
         ],
         "id": 1,
@@ -8313,7 +10959,28 @@
             },
             "description": "Steering angle is 10° to right"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angle",
+          "id": 2,
+          "unit_types": [
+            {
+              "name": "degrees",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "radians",
+              "id": 3,
+              "conversion_linear": 57.29578
+            },
+            {
+              "name": "revolutions",
+              "id": 5,
+              "conversion_linear": 360
+            }
+          ]
+        }
       },
       {
         "id": 6,
@@ -8331,7 +10998,48 @@
             },
             "description": "Brake pressure is 20.0bar"
           }
-        ]
+        ],
+        "unit": {
+          "name": "pressure",
+          "id": 21,
+          "unit_types": [
+            {
+              "name": "newtons_per_meters_squared",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilopascals",
+              "id": 3,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "inches_of_mercury",
+              "id": 5,
+              "conversion_linear": 3386.39
+            },
+            {
+              "name": "bars",
+              "id": 6,
+              "conversion_linear": 100000
+            },
+            {
+              "name": "millibars",
+              "id": 7,
+              "conversion_linear": 100
+            },
+            {
+              "name": "millimeters_of_mercury",
+              "id": 8,
+              "conversion_linear": 133.322
+            },
+            {
+              "name": "pounds_force_per_square_inch",
+              "id": 9,
+              "conversion_linear": 6894.76
+            }
+          ]
+        }
       },
       {
         "id": 7,
@@ -8349,7 +11057,28 @@
             },
             "description": "Yaw rate is 6.66°/s"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angular_velocity",
+          "id": 3,
+          "unit_types": [
+            {
+              "name": "revolutions_per_minute",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "degrees_per_second",
+              "id": 1,
+              "conversion_linear": 6
+            },
+            {
+              "name": "radians_per_second",
+              "id": 2,
+              "conversion_linear": 9.549296585514
+            }
+          ]
+        }
       },
       {
         "id": 8,
@@ -8367,7 +11096,28 @@
             },
             "description": "Rear suspension steering is +3°"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angle",
+          "id": 2,
+          "unit_types": [
+            {
+              "name": "degrees",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "radians",
+              "id": 3,
+              "conversion_linear": 57.29578
+            },
+            {
+              "name": "revolutions",
+              "id": 5,
+              "conversion_linear": 360
+            }
+          ]
+        }
       },
       {
         "name": "electronic_stability_program",
@@ -8812,7 +11562,28 @@
             },
             "description": "Angle is 50.0°"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angle",
+          "id": 2,
+          "unit_types": [
+            {
+              "name": "degrees",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "radians",
+              "id": 3,
+              "conversion_linear": 57.29578
+            },
+            {
+              "name": "revolutions",
+              "id": 5,
+              "conversion_linear": 360
+            }
+          ]
+        }
       },
       {
         "id": 3,
@@ -8830,7 +11601,33 @@
             },
             "description": "Speed is 5.0km/h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       }
     ]
   },
@@ -9614,7 +12411,33 @@
             },
             "description": "Vehicle speed is 80.0km/h"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       }
     ]
   },
@@ -10157,7 +12980,73 @@
             },
             "description": "Average weekly distance is 666.6km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 2,
@@ -10175,7 +13064,73 @@
             },
             "description": "Average weekly distance, over long term, is 777.7km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "name": "acceleration_evaluation",
@@ -10369,7 +13324,28 @@
             "name_cased": "consumption",
             "type": "unit.energy",
             "size": 10,
-            "description": "Energy consumption in the driving mode"
+            "description": "Energy consumption in the driving mode",
+            "unit": {
+              "name": "energy",
+              "id": 12,
+              "unit_types": [
+                {
+                  "name": "joules",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "kilojoules",
+                  "id": 1,
+                  "conversion_linear": 1000
+                },
+                {
+                  "name": "kilowatt_hours",
+                  "id": 4,
+                  "conversion_linear": 3600000
+                }
+              ]
+            }
           }
         ],
         "id": 6,
@@ -10455,7 +13431,28 @@
             },
             "description": "Last trip consumed 101.3kWh of electric energy"
           }
-        ]
+        ],
+        "unit": {
+          "name": "energy",
+          "id": 12,
+          "unit_types": [
+            {
+              "name": "joules",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilojoules",
+              "id": 1,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "kilowatt_hours",
+              "id": 4,
+              "conversion_linear": 3600000
+            }
+          ]
+        }
       },
       {
         "id": 8,
@@ -10473,7 +13470,83 @@
             },
             "description": "Last trip consumed 22.5L of fuel"
           }
-        ]
+        ],
+        "unit": {
+          "name": "volume",
+          "id": 25,
+          "unit_types": [
+            {
+              "name": "liters",
+              "id": 2,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliliters",
+              "id": 3,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centiliters",
+              "id": 4,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "deciliters",
+              "id": 5,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "cubic_millimeters",
+              "id": 10,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "cubic_centimeters",
+              "id": 9,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "cubic_decimeters",
+              "id": 8,
+              "conversion_linear": 1
+            },
+            {
+              "name": "cubic_meters",
+              "id": 7,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "cubic_inches",
+              "id": 11,
+              "conversion_linear": 0.016387064
+            },
+            {
+              "name": "cubic_feet",
+              "id": 12,
+              "conversion_linear": 28.316846592
+            },
+            {
+              "name": "fluid_ounces",
+              "id": 19,
+              "conversion_linear": 0.0295735296875
+            },
+            {
+              "name": "gallons",
+              "id": 23,
+              "conversion_linear": 3.785411784
+            },
+            {
+              "name": "imperial_fluid_ounces",
+              "id": 26,
+              "conversion_linear": 0.0284130625
+            },
+            {
+              "name": "imperial_gallons",
+              "id": 29,
+              "conversion_linear": 4.54609
+            }
+          ]
+        }
       },
       {
         "id": 9,
@@ -10495,7 +13568,73 @@
             },
             "description": "Mileage is 95'632km after last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "name": "last_trip_electric_portion",
@@ -10532,7 +13671,23 @@
             },
             "description": "5.68kWh/100km of electric energy was recuperated during last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "energy_efficiency",
+          "id": 13,
+          "unit_types": [
+            {
+              "name": "kwh_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_kwh",
+              "id": 1,
+              "conversion_inverse": 62.1371192237334
+            }
+          ]
+        }
       },
       {
         "name": "last_trip_battery_remaining",
@@ -10585,7 +13740,28 @@
             },
             "description": "Average fuel consumption is 6.5L per 100km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "fuel_efficiency",
+          "id": 15,
+          "unit_types": [
+            {
+              "name": "liters_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_imperial_gallon",
+              "id": 1,
+              "conversion_inverse": 282.4809363
+            },
+            {
+              "name": "miles_per_gallon",
+              "id": 2,
+              "conversion_inverse": 235.2145833
+            }
+          ]
+        }
       },
       {
         "id": 15,
@@ -10603,7 +13779,28 @@
             },
             "description": "Current fuel consumption is 7.5L per 100km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "fuel_efficiency",
+          "id": 15,
+          "unit_types": [
+            {
+              "name": "liters_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_imperial_gallon",
+              "id": 1,
+              "conversion_inverse": 282.4809363
+            },
+            {
+              "name": "miles_per_gallon",
+              "id": 2,
+              "conversion_inverse": 235.2145833
+            }
+          ]
+        }
       },
       {
         "id": 16,
@@ -10621,7 +13818,73 @@
             },
             "description": "Odometer is 95'632km after last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "name": "safety_driving_score",
@@ -10747,14 +14010,116 @@
             "name_cased": "distance",
             "type": "unit.length",
             "size": 10,
-            "description": "Distance driven"
+            "description": "Distance driven",
+            "unit": {
+              "name": "length",
+              "id": 18,
+              "unit_types": [
+                {
+                  "name": "meters",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "millimeters",
+                  "id": 1,
+                  "conversion_linear": 0.001
+                },
+                {
+                  "name": "centimeters",
+                  "id": 2,
+                  "conversion_linear": 0.01
+                },
+                {
+                  "name": "decimeters",
+                  "id": 3,
+                  "conversion_linear": 0.1
+                },
+                {
+                  "name": "kilometers",
+                  "id": 4,
+                  "conversion_linear": 1000
+                },
+                {
+                  "name": "megameters",
+                  "id": 5,
+                  "conversion_linear": 1000000
+                },
+                {
+                  "name": "inches",
+                  "id": 11,
+                  "conversion_linear": 0.0254
+                },
+                {
+                  "name": "feet",
+                  "id": 12,
+                  "conversion_linear": 0.3048
+                },
+                {
+                  "name": "yards",
+                  "id": 13,
+                  "conversion_linear": 0.9144
+                },
+                {
+                  "name": "miles",
+                  "id": 14,
+                  "conversion_linear": 1609.344
+                },
+                {
+                  "name": "scandinavian_miles",
+                  "id": 15,
+                  "conversion_linear": 10000
+                },
+                {
+                  "name": "nautical_miles",
+                  "id": 17,
+                  "conversion_linear": 1852
+                }
+              ]
+            }
           },
           {
             "name": "time",
             "name_cased": "time",
             "type": "unit.duration",
             "size": 10,
-            "description": "Duration of time for the given distance"
+            "description": "Duration of time for the given distance",
+            "unit": {
+              "name": "duration",
+              "id": 7,
+              "unit_types": [
+                {
+                  "name": "seconds",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "minutes",
+                  "id": 1,
+                  "conversion_linear": 60
+                },
+                {
+                  "name": "hours",
+                  "id": 2,
+                  "conversion_linear": 3600
+                },
+                {
+                  "name": "days",
+                  "id": 3,
+                  "conversion_linear": 86400
+                },
+                {
+                  "name": "weeks",
+                  "id": 4,
+                  "conversion_linear": 604800
+                },
+                {
+                  "name": "months",
+                  "id": 5,
+                  "conversion_linear": 2629800
+                }
+              ]
+            }
           }
         ],
         "id": 21,
@@ -10791,7 +14156,23 @@
             },
             "description": "Consumed 11.22kWh/100km since the start of a trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "energy_efficiency",
+          "id": 13,
+          "unit_types": [
+            {
+              "name": "kwh_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_kwh",
+              "id": 1,
+              "conversion_inverse": 62.1371192237334
+            }
+          ]
+        }
       },
       {
         "id": 23,
@@ -10809,7 +14190,23 @@
             },
             "description": "Consumed 22.33kWh/100km since a reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "energy_efficiency",
+          "id": 13,
+          "unit_types": [
+            {
+              "name": "kwh_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_kwh",
+              "id": 1,
+              "conversion_inverse": 62.1371192237334
+            }
+          ]
+        }
       },
       {
         "id": 24,
@@ -10827,7 +14224,73 @@
             },
             "description": "Vehicle travelled 111000.0m using electricity during the last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 25,
@@ -10845,7 +14308,73 @@
             },
             "description": "Vehicle travelled 222000.0m using electricity since last reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 26,
@@ -10863,7 +14392,43 @@
             },
             "description": "Vehicle travelled 77.0min using electricity during last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 27,
@@ -10881,7 +14446,43 @@
             },
             "description": "Vehicle travelled 88.0min using electricity since last reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 28,
@@ -10899,7 +14500,28 @@
             },
             "description": "Consumed 5.4 L/100km during last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "fuel_efficiency",
+          "id": 15,
+          "unit_types": [
+            {
+              "name": "liters_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_imperial_gallon",
+              "id": 1,
+              "conversion_inverse": 282.4809363
+            },
+            {
+              "name": "miles_per_gallon",
+              "id": 2,
+              "conversion_inverse": 235.2145833
+            }
+          ]
+        }
       },
       {
         "id": 29,
@@ -10917,7 +14539,28 @@
             },
             "description": "Consumed 5.3 L/100km since reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "fuel_efficiency",
+          "id": 15,
+          "unit_types": [
+            {
+              "name": "liters_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_imperial_gallon",
+              "id": 1,
+              "conversion_inverse": 282.4809363
+            },
+            {
+              "name": "miles_per_gallon",
+              "id": 2,
+              "conversion_inverse": 235.2145833
+            }
+          ]
+        }
       },
       {
         "id": 30,
@@ -10935,7 +14578,33 @@
             },
             "description": "Average speed was 44.2km/h during last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       },
       {
         "id": 31,
@@ -10953,7 +14622,33 @@
             },
             "description": "Average speed was 44.2km/h since reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
       },
       {
         "id": 32,
@@ -10971,7 +14666,73 @@
             },
             "description": "Vehicle travelled 111000.0m using fuel during the last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 33,
@@ -10989,7 +14750,73 @@
             },
             "description": "Vehicle travelled 222000.0m using fuel since last reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 34,
@@ -11007,7 +14834,43 @@
             },
             "description": "Vehicle travelled 77.0min during last trip"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 35,
@@ -11025,7 +14888,43 @@
             },
             "description": "Vehicle travelled 88.0min since last reset"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "name": "eco_score_total",
@@ -11100,7 +14999,73 @@
             },
             "description": "Eco-score bonus range is 0.7km"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       }
     ]
   },
@@ -11242,7 +15207,28 @@
             },
             "description": "Heading direction is 13.370123°"
           }
-        ]
+        ],
+        "unit": {
+          "name": "angle",
+          "id": 2,
+          "unit_types": [
+            {
+              "name": "degrees",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "radians",
+              "id": 3,
+              "conversion_linear": 57.29578
+            },
+            {
+              "name": "revolutions",
+              "id": 5,
+              "conversion_linear": 360
+            }
+          ]
+        }
       },
       {
         "id": 6,
@@ -11260,7 +15246,73 @@
             },
             "description": "Vehicle altitude is 133.5m"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       },
       {
         "id": 7,
@@ -11277,7 +15329,73 @@
             },
             "description": "Precision is 500m"
           }
-        ]
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       }
     ]
   },
@@ -11466,7 +15584,43 @@
             },
             "description": "Start from 3.0s"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       },
       {
         "id": 3,
@@ -11509,7 +15663,43 @@
             },
             "description": "Start from 2.5s"
           }
-        ]
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
       }
     ]
   },
