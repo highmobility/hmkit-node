@@ -1,31 +1,3 @@
-/*
- *  The MIT License
- *
- *  Copyright (c) 2014- High-Mobility GmbH (https://high-mobility.com)
- *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- *
- *  The above copyright notice and this permission notice shall be included in
- *  all copies or substantial portions of the Software.
- *
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- *  THE SOFTWARE.
- *
- *  generateConfiguration.js
- *
- *  Created by Mikk Õun on 20/01/2020.
- */
-
 const YAML = require('yamljs');
 const fs = require('fs');
 
@@ -87,8 +59,7 @@ const CAPABILITY_CONFIGURATION_FILES = [
 
 const CUSTOM_TYPES_FILE_PATH = `misc/custom_types.yml`;
 const UNIT_TYPES_FILE_PATH = 'misc/unit_types.yml';
-const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/capabilities.json`;
-const tokenRegex = new RegExp(`types.`);
+const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../scripts/config/capabilities.json`;
 
 function autoApiPath(path) {
   return `${__dirname}/../../auto-api/${path}`;
@@ -142,14 +113,9 @@ function mapStateProps(capability) {
 }
 
 function buildCapabilityProperty(property, customTypes, unitTypes) {
-  const newProperty = { ...property };
-  if (newProperty.unit) {
-    newProperty.unit = { ...unitTypes[property.unit] };
-  }
-
   if (property.type.indexOf('types.') === 0) {
-    const customTypeKey = property.type.replace(tokenRegex, '');
-
+    const typesRegex = new RegExp(`types.`);
+    const customTypeKey = property.type.replace(typesRegex, '');
     const customType = customTypes[customTypeKey];
 
     if (customType.items) {
@@ -159,7 +125,7 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
 
       return {
         ...customType,
-        ...newProperty,
+        ...property,
         customType: customTypeKey,
         type: customType.type,
         items: mappedItems
@@ -168,13 +134,24 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
 
     return {
       ...customType,
-      ...newProperty,
+      ...property,
       customType: customTypeKey,
       type: customType.type
     };
   }
 
-  return newProperty;
+  if (property.type.indexOf('unit.') === 0) {
+    const unitRegex = new RegExp(`unit.`);
+    const unitName = property.type.replace(unitRegex, '');
+    const unit = unitTypes[unitName];
+
+    return {
+      ...property,
+      unit,
+    };
+  }
+
+  return {...property};
 }
 
 function parseCustomTypesFile() {
