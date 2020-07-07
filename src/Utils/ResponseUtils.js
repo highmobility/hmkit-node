@@ -1,18 +1,18 @@
 /*
  *  The MIT License
- * 
+ *
  *  Copyright (c) 2014- High-Mobility GmbH (https://high-mobility.com)
- * 
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- * 
+ *
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
- * 
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,9 +20,9 @@
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
- * 
+ *
  *  ResponseUtils.js
- * 
+ *
  *  Created by Mikk Õun on 16/01/2020.
  */
 
@@ -148,6 +148,29 @@ function parseProperty(propertyData, property) {
 }
 
 export function parsePropertyData(data, property) {
+  /**
+   * The types that start with 'unit.' are all doubles. The first 2 bytes denote the measurement type and unit type.
+   */
+  if (property.type.startsWith('unit.')) {
+    // eslint-disable-next-line no-unused-vars
+    const [measurementType, unitType, ...propertyData] = data;
+
+    const unit =
+      property &&
+      property.unit &&
+      property.unit.unit_types &&
+      property.unit.unit_types.find(x => x.id === unitType);
+
+    if (!unit) {
+      console.error('No unit type found for this property:', property);
+      return {};
+    }
+
+    const double = ieee754DoubleToBase10(propertyData, propertyData.length);
+
+    return { [unit.name]: Number(parseFloat(double).toPrecision(15)) };
+  }
+
   switch (property.type) {
     case PropertyType.STRING: {
       return bytesToString(data);

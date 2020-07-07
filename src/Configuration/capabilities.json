@@ -4148,7 +4148,7 @@
         "description": "Engine RPM (revolutions per minute)",
         "examples": [
           {
-            "data_component": "030240a3880000000000",
+            "data_component": "030040a3880000000000",
             "value": {
               "revolutions_per_minute": 2500
             },
@@ -4785,7 +4785,7 @@
         "description": "The accumulated time of engine operation",
         "examples": [
           {
-            "data_component": "0700409772999999999a",
+            "data_component": "0702409772999999999a",
             "value": {
               "hours": 1500.65
             },
@@ -5788,7 +5788,7 @@
         "description": "The accumulated time of engine operation",
         "examples": [
           {
-            "data_component": "0700409772999999999a",
+            "data_component": "0702409772999999999a",
             "value": {
               "hours": 1500.65
             },
@@ -8134,7 +8134,7 @@
         "description": "Time to honk the horn",
         "examples": [
           {
-            "data_component": "07024000000000000000",
+            "data_component": "07004000000000000000",
             "value": {
               "seconds": 2
             },
@@ -10092,7 +10092,7 @@
         "description": "Remaining time until reaching the destination.",
         "examples": [
           {
-            "data_component": "07004004cccccccccccd",
+            "data_component": "07024004cccccccccccd",
             "value": {
               "hours": 2.6
             },
@@ -11051,7 +11051,7 @@
         "description": "Yaw turning rate",
         "examples": [
           {
-            "data_component": "0300401aa3d70a3d70a4",
+            "data_component": "0301401aa3d70a3d70a4",
             "value": {
               "degrees_per_second": 6.66
             },
@@ -15127,6 +15127,593 @@
           }
         ],
         "customType": "active_state"
+      }
+    ]
+  },
+  "vehicle_information": {
+    "name": "vehicle_information",
+    "name_cased": "vehicleInformation",
+    "name_pretty": "Vehicle Information",
+    "category": "api_structure",
+    "authorization": false,
+    "identifier": {
+      "msb": 0,
+      "lsb": 20
+    },
+    "api": {
+      "intro": 12,
+      "update": 12
+    },
+    "getters": {
+      "name": "get_vehicle_information"
+    },
+    "state": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      21
+    ],
+    "properties": [
+      {
+        "id": 2,
+        "name": "powertrain",
+        "name_cased": "powertrain",
+        "name_pretty": "Powertrain",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "all_electric"
+          },
+          {
+            "id": 2,
+            "name": "combustion_engine"
+          },
+          {
+            "id": 3,
+            "name": "phev",
+            "name_pretty": "Plug-in Hybrid EV"
+          },
+          {
+            "id": 4,
+            "name": "hydrogen"
+          },
+          {
+            "id": 5,
+            "name": "hydrogen_hybrid"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "all_electric",
+            "description": "Powertrain is all electric"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "model_name",
+        "name_cased": "modelName",
+        "name_pretty": "Model name",
+        "type": "string",
+        "description": "The vehicle model name",
+        "examples": [
+          {
+            "data_component": "547970652058",
+            "value": "Type X",
+            "description": "Model name is 'Type X'"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "name",
+        "name_cased": "name",
+        "name_pretty": "Name",
+        "type": "string",
+        "description": "The vehicle name (nickname)",
+        "examples": [
+          {
+            "data_component": "537065656479",
+            "value": "Speedy",
+            "description": "Name of the vehicle is 'Speedy'"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "license_plate",
+        "name_cased": "licensePlate",
+        "name_pretty": "Licence plate",
+        "type": "string",
+        "description": "The license plate number",
+        "examples": [
+          {
+            "data_component": "414243313233",
+            "value": "ABC123",
+            "description": "Licence plate number is 'ABC123'"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "sales_designation",
+        "name_cased": "salesDesignation",
+        "name_pretty": "Sales designation",
+        "type": "string",
+        "description": "The sales designation of the model",
+        "examples": [
+          {
+            "data_component": "5061636b6167652b",
+            "value": "Package+",
+            "description": "Sales designation is 'Package+'"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "model_year",
+        "name_cased": "modelYear",
+        "name_pretty": "Model year",
+        "type": "uinteger",
+        "size": 2,
+        "description": "The vehicle model manufacturing year number",
+        "examples": [
+          {
+            "data_component": "07e3",
+            "value": 2019,
+            "description": "Vehicle manufacturing year is 2019"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "colour_name",
+        "name_cased": "colourName",
+        "name_pretty": "Colour name",
+        "type": "string",
+        "description": "The colour name",
+        "examples": [
+          {
+            "data_component": "4573746f72696c20426c6175",
+            "value": "Estoril Blau",
+            "description": "Colour is named 'Estoril Blau'"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "power_in_kw",
+        "name_cased": "powerInKW",
+        "name_pretty": "Power in kW",
+        "deprecated": {
+          "new_name": "power",
+          "reason": "removed the unit from the name"
+        },
+        "type": "unit.power",
+        "size": 10,
+        "description": "The power of the vehicle",
+        "examples": [
+          {
+            "data_component": "1402406b800000000000",
+            "value": {
+              "kilowatts": 220
+            },
+            "description": "Vehicle has 220.0kW of power"
+          }
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
+      },
+      {
+        "id": 10,
+        "name": "number_of_doors",
+        "name_cased": "numberOfDoors",
+        "name_pretty": "Number of doors",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The number of doors",
+        "examples": [
+          {
+            "data_component": "05",
+            "value": 5,
+            "description": "Vehicle has 5 doors"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "number_of_seats",
+        "name_cased": "numberOfSeats",
+        "name_pretty": "Number of seats",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The number of seats",
+        "examples": [
+          {
+            "data_component": "05",
+            "value": 5,
+            "description": "Vehicle has 5 seats"
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "engine_volume",
+        "name_cased": "engineVolume",
+        "name_pretty": "Engine volume",
+        "type": "unit.volume",
+        "size": 10,
+        "description": "The engine volume displacement",
+        "examples": [
+          {
+            "data_component": "19024004000000000000",
+            "value": {
+              "liters": 2.5
+            },
+            "description": "Engine volume is 2.5L"
+          }
+        ],
+        "unit": {
+          "name": "volume",
+          "id": 25,
+          "unit_types": [
+            {
+              "name": "liters",
+              "id": 2,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliliters",
+              "id": 3,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centiliters",
+              "id": 4,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "deciliters",
+              "id": 5,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "cubic_millimeters",
+              "id": 10,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "cubic_centimeters",
+              "id": 9,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "cubic_decimeters",
+              "id": 8,
+              "conversion_linear": 1
+            },
+            {
+              "name": "cubic_meters",
+              "id": 7,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "cubic_inches",
+              "id": 11,
+              "conversion_linear": 0.016387064
+            },
+            {
+              "name": "cubic_feet",
+              "id": 12,
+              "conversion_linear": 28.316846592
+            },
+            {
+              "name": "fluid_ounces",
+              "id": 19,
+              "conversion_linear": 0.0295735296875
+            },
+            {
+              "name": "gallons",
+              "id": 23,
+              "conversion_linear": 3.785411784
+            },
+            {
+              "name": "imperial_fluid_ounces",
+              "id": 26,
+              "conversion_linear": 0.0284130625
+            },
+            {
+              "name": "imperial_gallons",
+              "id": 29,
+              "conversion_linear": 4.54609
+            }
+          ]
+        }
+      },
+      {
+        "id": 13,
+        "name": "engine_max_torque",
+        "name_cased": "engineMaxTorque",
+        "name_pretty": "Engine max torque",
+        "type": "unit.torque",
+        "size": 10,
+        "description": "The maximum engine torque",
+        "examples": [
+          {
+            "data_component": "1800406ea00000000000",
+            "value": {
+              "newton_meters": 245
+            },
+            "description": "Engine maximum torque is 245.0Nm"
+          }
+        ],
+        "unit": {
+          "name": "torque",
+          "id": 24,
+          "unit_types": [
+            {
+              "name": "newton_meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "newton_millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "pound_feet",
+              "id": 2,
+              "conversion_linear": 0.73756214927727
+            }
+          ]
+        }
+      },
+      {
+        "id": 14,
+        "name": "gearbox",
+        "name_cased": "gearbox",
+        "name_pretty": "Gearbox",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "manual"
+          },
+          {
+            "id": 1,
+            "name": "automatic"
+          },
+          {
+            "id": 2,
+            "name": "semi_automatic"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "automatic",
+            "description": "Vehicle has an automatic gearbox"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "display_unit",
+        "name_cased": "displayUnit",
+        "name_pretty": "Display unit",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "km"
+          },
+          {
+            "id": 1,
+            "name": "miles"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "km",
+            "description": "Vehicle displays values in kilometers"
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "driver_seat_location",
+        "name_cased": "driverSeatLocation",
+        "name_pretty": "Driver seat location",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "left"
+          },
+          {
+            "id": 1,
+            "name": "right"
+          },
+          {
+            "id": 2,
+            "name": "center"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "left",
+            "description": "Driver seat is located on the left"
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "equipments",
+        "name_cased": "equipments",
+        "name_pretty": "Equipments",
+        "type": "string",
+        "multiple": true,
+        "name_singular": "equipment",
+        "description": "Names of equipment the vehicle is equipped with",
+        "examples": [
+          {
+            "data_component": "5061726b696e672073656e736f7273",
+            "value": "Parking sensors",
+            "description": "Parking sensors are equipped (installed)"
+          },
+          {
+            "data_component": "4175746f6d6174696320776970657273",
+            "value": "Automatic wipers",
+            "description": "Automatic wipers are equipped (installed)"
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "power",
+        "name_cased": "power",
+        "name_pretty": "Power",
+        "type": "unit.power",
+        "size": 10,
+        "description": "The power of the vehicle",
+        "examples": [
+          {
+            "data_component": "1402406b800000000000",
+            "value": {
+              "kilowatts": 220
+            },
+            "description": "Vehicle has 220kW of power"
+          }
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
+      },
+      {
+        "id": 20,
+        "name": "language",
+        "name_cased": "language",
+        "name_pretty": "Language",
+        "type": "string",
+        "description": "The language on headunit",
+        "examples": [
+          {
+            "data_component": "00086573746f6e69616e",
+            "value": "estonian",
+            "description": "Headunit is in estonian language"
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "name": "timeformat",
+        "name_cased": "timeformat",
+        "name_pretty": "Timeformat",
+        "type": "enum",
+        "size": 1,
+        "description": "The timeformat on headunit",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "twelve_h"
+          },
+          {
+            "id": 1,
+            "name": "twenty_four_h"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "twenty_four_h",
+            "description": "Headunit is using a 24h timeformat"
+          }
+        ]
       }
     ]
   },

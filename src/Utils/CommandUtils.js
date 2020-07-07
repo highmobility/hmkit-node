@@ -240,6 +240,30 @@ function encodePropertyData(property, value) {
       return value.command;
     }
   }
+
+  /**
+   * The types that start with 'unit.' are all objects that contain a single property, which is a double.
+   */
+  if (type.startsWith('unit.')) {
+    validatePropertyValue(
+      value,
+      property.name_cased,
+      Joi.object()
+        .pattern(
+          /^/,
+          Joi.number()
+            .min(-1022)
+            .max(1023)
+        )
+        .length(1)
+    );
+
+    return encodePropertyValue(
+      sanitizeArgumentValue(property, Object.values(value)[0]),
+      base10ToIeee754Double
+    );
+  }
+
   switch (type) {
     case PropertyType.STRING: {
       validatePropertyValue(value, property.name_cased, Joi.string());
@@ -361,7 +385,7 @@ function encodePropertyData(property, value) {
     }
 
     default: {
-      console.log(`Failed to encode ${type} property`, property, value);
+      console.error(`Failed to encode ${type} property`, property, value);
       return [];
     }
   }

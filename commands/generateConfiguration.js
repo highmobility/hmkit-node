@@ -46,6 +46,7 @@ const CAPABILITY_CONFIGURATION_FILES = [
   'trunk.yml',
   'usage.yml',
   'valet_mode.yml',
+  'vehicle_information.yml',
   'vehicle_location.yml',
   'vehicle_status.yml',
   'vehicle_time.yml',

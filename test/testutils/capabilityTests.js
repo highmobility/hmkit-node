@@ -76,10 +76,10 @@ export function describeTest(capabilityName, capability) {
 
       // Test parsing of property data using the example
       capabilityConfiguration.properties.forEach(property => {
-        it(`Should parse the response for ${property.name} according the the example`, () => {
+        it(`Should parse the response for ${capabilityName}.${property.name} according to the example`, () => {
           property.examples.forEach(example => {
             const parsedResponse = parsePropertyData(
-              hexToUint8Array(example.hex),
+              hexToUint8Array(example.data_component),
               property
             );
 
@@ -212,7 +212,7 @@ function generatePropertyValue(propertyID, capabilityConfiguration) {
   if (property.multiple) {
     return {
       [property.name_cased]: property.examples.map(example =>
-        parsePropertyData(hexToUint8Array(example.hex), property)
+        parsePropertyData(hexToUint8Array(example.data_component), property)
       ),
     };
   }
@@ -333,6 +333,10 @@ function buildPropertyValidator(
 }
 
 function buildTypeValidator(type) {
+  if (type && type.startsWith('unit.')) {
+    return expect.any(Number);
+  }
+
   switch (type) {
     case PropertyType.STRING: {
       return expect.any(String);
@@ -506,7 +510,7 @@ function getPropertyData(property) {
   const hexValues = (property.multiple
     ? property.examples
     : [property.examples[0]]
-  ).map(x => x.hex);
+  ).map(x => x.data_component);
 
   return hexValues.reduce((acc, hex) => {
     const dataComponent = [

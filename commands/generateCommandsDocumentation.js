@@ -236,7 +236,7 @@ function generatePropertyValue(propertyID, capabilityConfiguration) {
   if (property.multiple) {
     return {
       [property.name_cased]: property.examples.map(example =>
-        parsePropertyData(hexToUint8Array(example.hex), property)
+        parsePropertyData(hexToUint8Array(example.data_component), property)
       ),
     };
   }

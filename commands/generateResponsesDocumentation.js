@@ -178,7 +178,7 @@ function generatePropertyValue(property) {
     return {
       [property.name_cased]: property.examples.map(example => {
         return {
-          value: parsePropertyData(hexToUint8Array(example.hex), property),
+          value: parsePropertyData(hexToUint8Array(example.data_component), property),
         };
       }),
     };
