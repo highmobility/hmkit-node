@@ -8,3 +8,4 @@ npm-debug.log
 /.vscode
 /test/memory/*.heapsnapshot
 .idea
+/jest.json
