@@ -59,7 +59,7 @@ const CAPABILITY_CONFIGURATION_FILES = [
 
 const CUSTOM_TYPES_FILE_PATH = `misc/custom_types.yml`;
 const UNIT_TYPES_FILE_PATH = 'misc/unit_types.yml';
-const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../scripts/config/capabilities.json`;
+const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/capabilities.json`;
 
 function autoApiPath(path) {
   return `${__dirname}/../../auto-api/${path}`;
