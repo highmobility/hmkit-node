@@ -43,6 +43,82 @@ import { hexToUint8Array } from '../../src/Utils/EncodingUtils';
 const hmkit = getHmkit();
 
 export function describeTest(capabilityName, capability) {
+  describeEmulatorTests(capabilityName, capability);
+  describeOfflineTests(capabilityName, capability);
+}
+
+/**
+ * These tests run against the documentation, so they don't require an emulator to be set up
+ */
+function describeOfflineTests(capabilityName, capability) {
+  describe(`${capabilityName} offline tests`, () => {
+    const { identifier } = capability;
+    const capabilityConfiguration = getCapabilityConfiguration(identifier);
+
+    /**
+     * Test parsing getters from hex to JSON
+     */
+    capabilityConfiguration.properties.forEach(property => {
+      (property.examples || []).forEach((example, i) => {
+        it.only(`Should parse the response for ${capabilityName}.${property.name} according to the example #${i}`, () => {
+          const parsedResponse = parsePropertyData(
+            hexToUint8Array(example.data_component),
+            property
+          );
+
+          // Loops through values and adds proper casing to match with the SDK
+          if (example.values) {
+            Object.keys(example.values).forEach(key => {
+              const value = example.values[key];
+              delete example.values[key];
+              const propertyMetaData = (property.items || []).find(
+                x => x.name === key
+              );
+              const properlyCasedKey = propertyMetaData
+                ? propertyMetaData.name_cased
+                : key;
+              example.values[properlyCasedKey] = value;
+            });
+          }
+
+          expect(parsedResponse).toEqual(getExampleValue(example));
+        });
+      });
+    });
+
+    /**
+     * Test parsing JSON from examples into an Uint8Array
+     */
+    Object.values(capability)
+      .filter(({ type }) => type === CommandType.Setter)
+      .forEach(setterCommand => {
+        const setterArguments = findSetterArguments(
+          identifier,
+          setterCommand.nameSnake
+        );
+
+        it(`Should convert the ${capabilityName}.${setterCommand.name} command into the a Uint8Array according to the example`, () => {
+          const actualCommandData = setterCommand(setterArguments).command;
+
+          const expectedCommandData = [
+            AUTO_API_LEVEL,
+            capabilityConfiguration.identifier.msb,
+            capabilityConfiguration.identifier.lsb,
+            SET_STATE_TYPE,
+            ...getSetterExampleData(identifier, setterCommand.nameSnake),
+          ];
+
+          expect(actualCommandData).toEqual(expectedCommandData);
+        });
+      });
+  });
+}
+
+/**
+ * These tests run against an emulator, so you need an online emulator to be configured.
+ * Therefore, these tests are disabled by default.
+ */
+function describeEmulatorTests(capabilityName, capability) {
   describe(capabilityName, async () => {
     const { identifier } = capability;
     const capabilityConfiguration = getCapabilityConfiguration(identifier);
@@ -74,35 +150,6 @@ export function describeTest(capabilityName, capability) {
         expect(parsedResponse).toEqual(responseValidator);
       });
 
-      // Test parsing of property data using the example
-      capabilityConfiguration.properties.forEach(property => {
-        it(`Should parse the response for ${capabilityName}.${property.name} according to the example`, () => {
-          property.examples.forEach(example => {
-            const parsedResponse = parsePropertyData(
-              hexToUint8Array(example.data_component),
-              property
-            );
-
-            // Loops through values and adds proper casing to match with the SDK
-            if (example.values) {
-              Object.keys(example.values).forEach(key => {
-                const value = example.values[key];
-                delete example.values[key];
-                const propertyMetaData = (property.items || []).find(
-                  x => x.name === key
-                );
-                const properlyCasedKey = propertyMetaData
-                  ? propertyMetaData.name_cased
-                  : key;
-                example.values[properlyCasedKey] = value;
-              });
-            }
-
-            expect(parsedResponse).toEqual(getExampleValue(example));
-          });
-        });
-      });
-
       // Test getter response properties
       (capabilityConfiguration.state || []).forEach(propertyId => {
         const property = capabilityConfiguration.properties.find(
@@ -130,20 +177,6 @@ export function describeTest(capabilityName, capability) {
         identifier,
         setterCommand.nameSnake
       );
-
-      it(`Should convert the ${capabilityName}.${setterCommand.name} command into the a Uint8Array according to the example`, () => {
-        const actualCommandData = setterCommand(setterArguments).command;
-
-        const expectedCommandData = [
-          AUTO_API_LEVEL,
-          capabilityConfiguration.identifier.msb,
-          capabilityConfiguration.identifier.lsb,
-          SET_STATE_TYPE,
-          ...getSetterExampleData(identifier, setterCommand.nameSnake),
-        ];
-
-        expect(actualCommandData).toEqual(expectedCommandData);
-      });
 
       it(`Should handle setter ${capabilityName}.${setterCommand.name}() command`, async () => {
         const parsedResponse = await sendSetterQueryCommand(
