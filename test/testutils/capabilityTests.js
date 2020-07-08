@@ -39,12 +39,13 @@ import {
 } from '../../src/Utils/CommandUtils';
 import { parsePropertyData } from '../../src/Utils/ResponseUtils';
 import { hexToUint8Array } from '../../src/Utils/EncodingUtils';
+import describeIf from './describeIf';
 
 const hmkit = getHmkit();
 
 export function describeTest(capabilityName, capability) {
-  describeEmulatorTests(capabilityName, capability);
   describeOfflineTests(capabilityName, capability);
+  describeEmulatorTests(capabilityName, capability);
 }
 
 /**
@@ -60,7 +61,7 @@ function describeOfflineTests(capabilityName, capability) {
      */
     capabilityConfiguration.properties.forEach(property => {
       (property.examples || []).forEach((example, i) => {
-        it.only(`Should parse the response for ${capabilityName}.${property.name} according to the example #${i}`, () => {
+        it(`Should parse the response for ${capabilityName}.${property.name} according to the example #${i}`, () => {
           const parsedResponse = parsePropertyData(
             hexToUint8Array(example.data_component),
             property
@@ -119,7 +120,7 @@ function describeOfflineTests(capabilityName, capability) {
  * Therefore, these tests are disabled by default.
  */
 function describeEmulatorTests(capabilityName, capability) {
-  describe(capabilityName, async () => {
+  describeIf(process.env.TEST_ONLINE, capabilityName, async () => {
     const { identifier } = capability;
     const capabilityConfiguration = getCapabilityConfiguration(identifier);
 
