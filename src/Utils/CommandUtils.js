@@ -258,10 +258,16 @@ function encodePropertyData(property, value) {
         .length(1)
     );
 
-    return encodePropertyValue(
-      sanitizeArgumentValue(property, Object.values(value)[0]),
-      base10ToIeee754Double
-    );
+    const [dataUnitType, dataValue] = Object.entries(value)[0];
+
+    return [
+      property.unit.id,
+      property.unit.unit_types.find(x => x.name === dataUnitType).id,
+      ...encodePropertyValue(
+        sanitizeArgumentValue(property, dataValue),
+        base10ToIeee754Double
+      ),
+    ];
   }
 
   switch (type) {
