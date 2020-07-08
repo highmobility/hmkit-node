@@ -25,7 +25,7 @@ describe(`HMKit`, () => {
 
   it(`should use develop live url`, () => {
     const hmkit = new HMKit(liveClientCertificate, clientPrivateKey).develop();
-    expect(hmkit.api.url).toBe('https://api.develop.high-mobility.net/v1');
+    expect(hmkit.api.url).toBe('https://api.develop.high-mobility.net/v1/');
   });
 
   it(`should use staging sandbox url`, () => {
@@ -35,6 +35,6 @@ describe(`HMKit`, () => {
 
   it(`should use staging live url`, () => {
     const hmkit = new HMKit(liveClientCertificate, clientPrivateKey).staging();
-    expect(hmkit.api.url).toBe('https://api.staging.high-mobility.net/v1');
+    expect(hmkit.api.url).toBe('https://api.staging.high-mobility.net/v1/');
   });
 });
