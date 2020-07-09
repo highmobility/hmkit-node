@@ -515,7 +515,7 @@ function getExampleValue(example) {
 }
 
 /**
- * Returns an Uint8Array containing the setter data from the example docs.
+ * Returns an integer array containing the setter data from the example docs.
  */
 function getSetterExampleData(identifier, name) {
   const capabilityConfiguration = getCapabilityConfiguration(identifier);
@@ -526,15 +526,33 @@ function getSetterExampleData(identifier, name) {
 
   const { mandatory = [], optional = [], constants = [] } = setter;
 
-  return [
-    ...mandatory,
-    ...optional,
-    ...constants.map(x => x.property_id),
-  ].reduce((value, propertyID) => {
-    const property = findPropertyByID(propertyID, capabilityConfiguration);
+  const intArray = [...mandatory, ...optional]
+    .reduce((value, propertyID) => {
+      const property = findPropertyByID(propertyID, capabilityConfiguration);
 
-    return [...value, ...getPropertyData(property)];
-  }, []);
+      return [...value, ...getPropertyData(property)];
+    }, [])
+    .concat(
+      ...constants.map(constant => {
+        const property = findPropertyByID(
+          constant.property_id,
+          capabilityConfiguration
+        );
+        const dataComponent = [
+          PROPERTY_DATA_ID,
+          ...hexToUint8Array(
+            constant.value.length.toString(16).padStart(4, '0')
+          ),
+          ...constant.value,
+        ];
+        const propertySize = hexToUint8Array(
+          dataComponent.length.toString(16).padStart(4, '0')
+        );
+        return [property.id, ...propertySize, ...dataComponent];
+      })
+    );
+
+  return intArray;
 }
 
 /**
