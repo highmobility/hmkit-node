@@ -162,10 +162,10 @@ export function intToTwoBytes(int) {
 
 export function dateToBytes(date: Date | String) {
   if (typeof date === 'string') {
-    return decimalToHexArray(new Date(date).getTime());
+    return decimalToHexArray(new Date(date).getTime(), 8);
   }
 
-  return decimalToHexArray(date.getTime());
+  return decimalToHexArray(date.getTime(), 8);
 }
 
 // This also removes null bytes
