@@ -156,14 +156,12 @@ export function parsePropertyData(data, property) {
     const [measurementType, unitType, ...propertyData] = data;
 
     const unit =
-      property &&
       property.unit &&
       property.unit.unit_types &&
       property.unit.unit_types.find(x => x.id === unitType);
 
     if (!unit) {
-      console.error('No unit type found for this property:', property);
-      return {};
+      throw new Error(`No unit type found for the property ${property.name}`);
     }
 
     const double = ieee754DoubleToBase10(propertyData, propertyData.length);
@@ -255,7 +253,7 @@ function decodeCustomProperty(data, property) {
     return decodeCustomLengthProperty(data, property);
   }
 
-  throw new Error('Found some cancer', data, property);
+  throw new Error(`Failed to decode property ${property.name}`);
 }
 
 function decodeFixedLengthProperty(data, property) {
@@ -270,14 +268,10 @@ function decodeFixedLengthProperty(data, property) {
 
   if (property.size === estimatedSize) {
     if (data.length !== estimatedSize) {
-      console.log(
-        'Insufficent data length',
-        data,
-        estimatedSize,
-        property.size,
-        property
+      throw new Error(
+        `Insufficient data length (${data.length}), expected ${estimatedSize}`,
+        data
       );
-      throw new Error('Insufficent data length', data);
     }
 
     let counter = 0;
