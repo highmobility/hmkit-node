@@ -45,6 +45,7 @@ const DISABLED_FOR_CATEGORIES = ['universal'];
 export const PROPERTY_DATA_ID = 0x01;
 export const GET_STATE_TYPE = 0x00;
 export const SET_STATE_TYPE = 0x01;
+export const GET_AVAILABILITY_TYPE = 0x02;
 export const AUTO_API_LEVEL = 11;
 export const CommandType = {
   Getter: 'GET',
@@ -52,6 +53,34 @@ export const CommandType = {
 };
 
 const WEB_CONNECTION_TYPE = 'web';
+
+function buildAvailabilityGetter(capabilityConf) {
+  const { msb, lsb } = capabilityConf.identifier;
+
+  return {
+    getAvailability(propertyNames = []) {
+      return new Command([
+        AUTO_API_LEVEL,
+        msb,
+        lsb,
+        GET_AVAILABILITY_TYPE,
+        ...propertyNames.map(propertyName => {
+          const property = capabilityConf.properties.find(
+            x => x.name_cased === propertyName
+          );
+
+          if (!property) {
+            throw new Error(
+              `Invalid property name ${propertyName} passed to getAvailability`
+            );
+          }
+
+          return property.id;
+        }),
+      ]);
+    },
+  };
+}
 
 function buildCapabilityGetter(capabilityConf) {
   const { getters } = capabilityConf;
@@ -439,6 +468,7 @@ export function buildCommands() {
       const commands = {
         ...buildCapabilityGetter(capabilityConf),
         ...buildCapabilitySetters(capabilityConf),
+        ...buildAvailabilityGetter(capabilityConf),
       };
 
       Object.defineProperty(commands, 'identifier', {
