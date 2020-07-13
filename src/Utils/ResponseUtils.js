@@ -31,11 +31,13 @@ import PropertyType from '../Configuration/PropertyType';
 import { capitalize } from './Helpers';
 import ResponseClass from '../Configuration/ResponseClass';
 import mergeWith from 'lodash/mergeWith';
+import customTypes from '../Configuration/customTypes.json';
 
 import {
   PROPERTY_DATA_ID,
   PROPERTY_TIMESTAMP_ID,
   PROPERTY_FAILURE_ID,
+  PROPERTY_AVAILABILITY_ID,
   bytesSum,
   bytesToString,
   ieee754DoubleToBase10,
@@ -137,14 +139,33 @@ function parseProperties(propertiesData, capabilityConf) {
 }
 
 function parseProperty(propertyData, property) {
-  const { data, time, error } = parsePropertyComponents(propertyData);
+  const { data, time, error, availabilityBytes } = parsePropertyComponents(
+    propertyData
+  );
 
-  const parsedTimestamp = time ? { timestamp: bytesToTimestamp(time) } : {};
+  const output = {};
 
-  return {
-    value: parsePropertyData(data, property),
-    ...parsedTimestamp,
-  };
+  if (time) {
+    output.timestamp = bytesToTimestamp(time);
+  }
+
+  if (data) {
+    output.value = parsePropertyData(data, property);
+  }
+
+  if (availabilityBytes) {
+    output.availability = parseAvailabilityData(availabilityBytes, property);
+  }
+
+  return output;
+}
+
+export function parseAvailabilityData(data) {
+  if (!data) return null;
+
+  const availabilityType = customTypes.availability;
+
+  return parsePropertyData(data, availabilityType);
 }
 
 export function parsePropertyData(data, property) {
@@ -269,7 +290,7 @@ function decodeFixedLengthProperty(data, property) {
   if (property.size === estimatedSize) {
     if (data.length !== estimatedSize) {
       throw new Error(
-        `Insufficient data length (${data.length}), expected ${estimatedSize}`,
+        `Insufficient data length for property ${property.name} (${data.length}), expected ${estimatedSize}`,
         data
       );
     }
@@ -357,6 +378,11 @@ function parsePropertyComponents(propertyComponentsData) {
         componentBytes.error = propertyComponentData;
         break;
       }
+      case PROPERTY_AVAILABILITY_ID: {
+        componentBytes.availabilityBytes = propertyComponentData;
+        break;
+      }
+
       default:
         break;
     }

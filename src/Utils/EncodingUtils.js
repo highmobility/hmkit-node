@@ -33,6 +33,7 @@ import ieee754 from 'ieee754';
 export const PROPERTY_DATA_ID = 0x01;
 export const PROPERTY_TIMESTAMP_ID = 0x02;
 export const PROPERTY_FAILURE_ID = 0x03;
+export const PROPERTY_AVAILABILITY_ID = 0x05;
 
 export function bytesSum(bytes: Array<Number>) {
   const hex = Array.from(bytes)
