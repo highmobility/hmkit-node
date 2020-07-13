@@ -1,0 +1,2603 @@
+{
+  "active_state": {
+    "name": "active_state",
+    "name_cased": "activeState",
+    "name_pretty": "Active state",
+    "type": "enum",
+    "size": 1,
+    "controls": "switch",
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "inactive",
+        "verb": "deactivate"
+      },
+      {
+        "id": 1,
+        "name": "active",
+        "verb": "activate"
+      }
+    ]
+  },
+  "active_selected_state": {
+    "name": "active_selected_state",
+    "name_cased": "activeSelectedState",
+    "name_pretty": "Active selected state",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "inactive_selected"
+      },
+      {
+        "id": 1,
+        "name": "inactive_not_selected"
+      },
+      {
+        "id": 2,
+        "name": "active"
+      }
+    ]
+  },
+  "axle": {
+    "name": "axle",
+    "name_cased": "axle",
+    "name_pretty": "Axle",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "front"
+      },
+      {
+        "id": 1,
+        "name": "rear"
+      }
+    ]
+  },
+  "capability_state": {
+    "name": "capability_state",
+    "name_cased": "capabilityState",
+    "name_pretty": "Capability state",
+    "type": "bytes",
+    "description": "The bytes of a Capability state"
+  },
+  "connection_state": {
+    "name": "connection_state",
+    "name_cased": "connectionState",
+    "name_pretty": "Connection state",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "disconnected"
+      },
+      {
+        "id": 1,
+        "name": "connected"
+      }
+    ]
+  },
+  "coordinates": {
+    "name": "coordinates",
+    "name_cased": "coordinates",
+    "name_pretty": "Coordinates",
+    "type": "custom",
+    "size": 16,
+    "items": [
+      {
+        "name": "latitude",
+        "name_cased": "latitude",
+        "validation": "min:-90|max:90",
+        "type": "double",
+        "size": 8,
+        "description": "Latitude"
+      },
+      {
+        "name": "longitude",
+        "name_cased": "longitude",
+        "validation": "min:-180|max:180",
+        "type": "double",
+        "size": 8,
+        "description": "Longitude"
+      }
+    ]
+  },
+  "detected": {
+    "name": "detected",
+    "name_cased": "detected",
+    "name_pretty": "Detected",
+    "type": "enum",
+    "size": 1,
+    "controls": "switch",
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "not_detected"
+      },
+      {
+        "id": 1,
+        "name": "detected"
+      }
+    ]
+  },
+  "driving_mode": {
+    "name": "driving_mode",
+    "name_cased": "drivingMode",
+    "name_pretty": "Driving mode",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "regular"
+      },
+      {
+        "id": 1,
+        "name": "eco"
+      },
+      {
+        "id": 2,
+        "name": "sport"
+      },
+      {
+        "id": 3,
+        "name": "sport_plus"
+      },
+      {
+        "id": 4,
+        "name": "ecoPlus"
+      },
+      {
+        "id": 5,
+        "name": "comfort"
+      }
+    ]
+  },
+  "enabled_state": {
+    "name": "enabled_state",
+    "name_cased": "enabledState",
+    "name_pretty": "Enabled state",
+    "type": "enum",
+    "size": 1,
+    "controls": "switch",
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "disabled",
+        "verb": "disable"
+      },
+      {
+        "id": 1,
+        "name": "enabled",
+        "verb": "enable"
+      }
+    ]
+  },
+  "fluid_level": {
+    "name": "fluid_level",
+    "name_cased": "fluidLevel",
+    "name_pretty": "Fluid level",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "low"
+      },
+      {
+        "id": 1,
+        "name": "filled"
+      }
+    ]
+  },
+  "grade": {
+    "name": "grade",
+    "name_cased": "grade",
+    "name_pretty": "Grade",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "excellent"
+      },
+      {
+        "id": 1,
+        "name": "normal"
+      },
+      {
+        "id": 2,
+        "name": "warning"
+      }
+    ]
+  },
+  "key_value": {
+    "name": "key_value",
+    "name_cased": "keyValue",
+    "name_pretty": "Key-Value",
+    "type": "custom",
+    "description": "Key-value pairs like in a dictionary or hash",
+    "items": [
+      {
+        "name": "key",
+        "name_cased": "key",
+        "type": "string",
+        "description": "Key for the value"
+      },
+      {
+        "name": "value",
+        "name_cased": "value",
+        "type": "string",
+        "description": "Value for the key"
+      }
+    ]
+  },
+  "location": {
+    "name": "location",
+    "name_cased": "location",
+    "name_pretty": "Location",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "front_left"
+      },
+      {
+        "id": 1,
+        "name": "front_right"
+      },
+      {
+        "id": 2,
+        "name": "rear_right"
+      },
+      {
+        "id": 3,
+        "name": "rear_left"
+      }
+    ]
+  },
+  "location_longitudinal": {
+    "name": "location_longitudinal",
+    "name_cased": "locationLongitudinal",
+    "name_pretty": "Location longitudinal",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "front"
+      },
+      {
+        "id": 1,
+        "name": "rear"
+      }
+    ]
+  },
+  "location_wheel": {
+    "name": "location_wheel",
+    "name_cased": "locationWheel",
+    "name_pretty": "Location wheel",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "front_left"
+      },
+      {
+        "id": 1,
+        "name": "front_right"
+      },
+      {
+        "id": 2,
+        "name": "rear_right"
+      },
+      {
+        "id": 3,
+        "name": "rear_left"
+      },
+      {
+        "id": 4,
+        "name": "rear_right_outer"
+      },
+      {
+        "id": 5,
+        "name": "rear_left_outer"
+      }
+    ]
+  },
+  "lock_state": {
+    "name": "lock_state",
+    "name_cased": "lockState",
+    "name_pretty": "Lock state",
+    "type": "enum",
+    "size": 1,
+    "controls": "switch",
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "unlocked",
+        "verb": "unlock"
+      },
+      {
+        "id": 1,
+        "name": "locked",
+        "verb": "lock"
+      }
+    ]
+  },
+  "network_security": {
+    "name": "network_security",
+    "name_cased": "networkSecurity",
+    "name_pretty": "Network security",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "none"
+      },
+      {
+        "id": 1,
+        "name": "wep",
+        "name_pretty": "WEP"
+      },
+      {
+        "id": 2,
+        "name": "wpa",
+        "name_pretty": "WPA/WPA2 Personal"
+      },
+      {
+        "id": 3,
+        "name": "wpa2_personal",
+        "name_pretty": "WPA2 Personal"
+      }
+    ]
+  },
+  "on_off_state": {
+    "name": "on_off_state",
+    "name_cased": "onOffState",
+    "name_pretty": "On-Off State",
+    "type": "enum",
+    "size": 1,
+    "controls": "switch",
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "off"
+      },
+      {
+        "id": 1,
+        "name": "on"
+      }
+    ]
+  },
+  "percentage": {
+    "name": "percentage",
+    "name_cased": "percentage",
+    "name_pretty": "Percentage",
+    "unit_sign": "%",
+    "validation": "min:0|max:1",
+    "type": "double",
+    "size": 8,
+    "description": "Percentage value between 0.0 - 1.0 (0% - 100%)"
+  },
+  "position": {
+    "name": "position",
+    "name_cased": "position",
+    "name_pretty": "Position",
+    "type": "enum",
+    "size": 1,
+    "controls": "switch",
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "closed",
+        "verb": "close"
+      },
+      {
+        "id": 1,
+        "name": "open"
+      }
+    ]
+  },
+  "seat_location": {
+    "name": "seat_location",
+    "name_cased": "seatLocation",
+    "name_pretty": "Seat location",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "front_left"
+      },
+      {
+        "id": 1,
+        "name": "front_right"
+      },
+      {
+        "id": 2,
+        "name": "rear_right"
+      },
+      {
+        "id": 3,
+        "name": "rear_left"
+      },
+      {
+        "id": 4,
+        "name": "rear_center"
+      }
+    ]
+  },
+  "start_stop": {
+    "name": "start_stop",
+    "name_cased": "startStop",
+    "name_pretty": "Start-Stop",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "start"
+      },
+      {
+        "id": 1,
+        "name": "stop"
+      }
+    ]
+  },
+  "supported_capability": {
+    "name": "supported_capability",
+    "name_cased": "supportedCapability",
+    "name_pretty": "Supported capability",
+    "type": "custom",
+    "items": [
+      {
+        "name": "capability_id",
+        "name_cased": "capabilityID",
+        "name_pretty": "Capability ID",
+        "type": "uinteger",
+        "size": 2,
+        "description": "The identifier of the supported capability"
+      },
+      {
+        "name": "supported_property_ids",
+        "name_cased": "supportedPropertyIDs",
+        "name_pretty": "Supported property IDs",
+        "type": "bytes",
+        "description": "Array of supported property identifiers"
+      }
+    ]
+  },
+  "time": {
+    "name": "time",
+    "name_cased": "time",
+    "name_pretty": "Time",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "hour",
+        "name_cased": "hour",
+        "unit_sign": "h",
+        "validation": "min:0|max:23",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Value between 0 and 23"
+      },
+      {
+        "name": "minute",
+        "name_cased": "minute",
+        "unit_sign": "m",
+        "validation": "min:0|max:59",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Value between 0 and 59"
+      }
+    ]
+  },
+  "weekday": {
+    "name": "weekday",
+    "name_cased": "weekday",
+    "name_pretty": "Weekday",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "monday"
+      },
+      {
+        "id": 1,
+        "name": "tuesday"
+      },
+      {
+        "id": 2,
+        "name": "wednesday"
+      },
+      {
+        "id": 3,
+        "name": "thursday"
+      },
+      {
+        "id": 4,
+        "name": "friday"
+      },
+      {
+        "id": 5,
+        "name": "saturday"
+      },
+      {
+        "id": 6,
+        "name": "sunday"
+      },
+      {
+        "id": 7,
+        "name": "automatic"
+      }
+    ]
+  },
+  "window_location": {
+    "name": "window_location",
+    "name_cased": "windowLocation",
+    "name_pretty": "Window location",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "front_left"
+      },
+      {
+        "id": 1,
+        "name": "front_right"
+      },
+      {
+        "id": 2,
+        "name": "rear_right"
+      },
+      {
+        "id": 3,
+        "name": "rear_left"
+      },
+      {
+        "id": 4,
+        "name": "hatch"
+      }
+    ]
+  },
+  "zone": {
+    "name": "zone",
+    "name_cased": "zone",
+    "name_pretty": "Zone",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "horizontal",
+        "name_cased": "horizontal",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Horizontal component of the matrix"
+      },
+      {
+        "name": "vertical",
+        "name_cased": "vertical",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Vertical component of the matrix"
+      }
+    ]
+  },
+  "acceleration": {
+    "name": "acceleration",
+    "name_cased": "acceleration",
+    "name_pretty": "Acceleration",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "direction",
+        "name_cased": "direction",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "longitudinal"
+          },
+          {
+            "id": 1,
+            "name": "lateral"
+          },
+          {
+            "id": 2,
+            "name": "front_lateral"
+          },
+          {
+            "id": 3,
+            "name": "rear_lateral"
+          }
+        ]
+      },
+      {
+        "name": "acceleration",
+        "name_cased": "acceleration",
+        "name_pretty": "Acceleration",
+        "type": "unit.acceleration",
+        "size": 10,
+        "description": "The accelaration",
+        "unit": {
+          "name": "acceleration",
+          "id": 1,
+          "unit_types": [
+            {
+              "name": "meters_per_second_squared",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "gravity",
+              "id": 1,
+              "conversion_linear": 9.81
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "action_item": {
+    "name": "action_item",
+    "name_cased": "actionItem",
+    "name_pretty": "Action item",
+    "type": "custom",
+    "items": [
+      {
+        "name": "id",
+        "name_cased": "id",
+        "name_pretty": "ID",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Action identifier"
+      },
+      {
+        "name": "name",
+        "name_cased": "name",
+        "type": "string",
+        "description": "Name of the action"
+      }
+    ]
+  },
+  "address_component": {
+    "name": "address_component",
+    "name_cased": "addressComponent",
+    "name_pretty": "Address component",
+    "type": "custom",
+    "description": "A single component of the full address",
+    "items": [
+      {
+        "name": "type",
+        "name_cased": "type",
+        "name_pretty": "Type",
+        "type": "enum",
+        "size": 1,
+        "description": "Component type",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "city"
+          },
+          {
+            "id": 1,
+            "name": "country"
+          },
+          {
+            "id": 2,
+            "name": "country_short"
+          },
+          {
+            "id": 3,
+            "name": "district"
+          },
+          {
+            "id": 4,
+            "name": "postal_code"
+          },
+          {
+            "id": 5,
+            "name": "street"
+          },
+          {
+            "id": 6,
+            "name": "state_province"
+          },
+          {
+            "id": 7,
+            "name": "other"
+          }
+        ]
+      },
+      {
+        "name": "value",
+        "name_cased": "value",
+        "name_pretty": "Value",
+        "type": "string",
+        "description": "Value for the component"
+      }
+    ]
+  },
+  "availability": {
+    "name": "availability",
+    "name_cased": "availability",
+    "name_pretty": "Availability",
+    "type": "custom",
+    "size": 12,
+    "items": [
+      {
+        "name": "update_rate",
+        "name_cased": "updateRate",
+        "name_pretty": "Update rate",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "trip_high",
+            "description": "The property data is updated with high frequency during a trip."
+          },
+          {
+            "id": 1,
+            "name": "trip",
+            "description": "The property data is updated regularly during a trip."
+          },
+          {
+            "id": 2,
+            "name": "trip_start_end",
+            "description": "The property data is updated at the start and end of each trip."
+          },
+          {
+            "id": 3,
+            "name": "trip_end",
+            "description": "The property data is updated by the end of each trip."
+          },
+          {
+            "id": 4,
+            "name": "unknown",
+            "description": "The property data is updated sporadically."
+          },
+          {
+            "id": 5,
+            "name": "not_available",
+            "description": "The property is not available for the vehicle."
+          },
+          {
+            "id": 6,
+            "name": "on_change",
+            "description": "The property data is update as soon as the vehicle updates it internally."
+          }
+        ]
+      },
+      {
+        "name": "rate_limit",
+        "name_cased": "rateLimit",
+        "name_pretty": "Rate limit",
+        "type": "unit.frequency",
+        "size": 10,
+        "description": "Frequency denoting the rate limit",
+        "unit": {
+          "name": "frequency",
+          "id": 14,
+          "unit_types": [
+            {
+              "name": "hertz",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millihertz",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilohertz",
+              "id": 3,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megahertz",
+              "id": 4,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "gigahertz",
+              "id": 5,
+              "conversion_linear": 1000000000
+            },
+            {
+              "name": "beats_per_minute",
+              "id": 8,
+              "conversion_linear": 60
+            }
+          ]
+        }
+      },
+      {
+        "name": "applies_per",
+        "name_cased": "appliesPer",
+        "name_pretty": "Applies per",
+        "type": "enum",
+        "size": 1,
+        "description": "Rate limit applies per",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "app"
+          },
+          {
+            "id": 1,
+            "name": "vehicle"
+          }
+        ]
+      }
+    ]
+  },
+  "brake_torque_vectoring": {
+    "name": "brake_torque_vectoring",
+    "name_cased": "brakeTorqueVectoring",
+    "name_pretty": "Brake torque vectoring",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "axle",
+        "name_cased": "axle",
+        "type": "types.axle"
+      },
+      {
+        "name": "state",
+        "name_cased": "state",
+        "type": "types.active_state"
+      }
+    ]
+  },
+  "check_control_message": {
+    "name": "check_control_message",
+    "name_cased": "checkControlMessage",
+    "name_pretty": "Check control message",
+    "type": "custom",
+    "items": [
+      {
+        "name": "id",
+        "name_cased": "ID",
+        "name_pretty": "ID",
+        "type": "uinteger",
+        "size": 2,
+        "description": "Check Control Message identifier"
+      },
+      {
+        "name": "remaining_time",
+        "name_cased": "remainingTime",
+        "type": "unit.duration",
+        "size": 10,
+        "description": "Remaining time of the message",
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
+      },
+      {
+        "name": "text",
+        "name_cased": "text",
+        "type": "string",
+        "description": "CCM text"
+      },
+      {
+        "name": "status",
+        "name_cased": "status",
+        "type": "string",
+        "description": "CCM status"
+      }
+    ]
+  },
+  "condition_based_service": {
+    "name": "condition_based_service",
+    "name_cased": "conditionBasedService",
+    "name_pretty": "Condition based service",
+    "type": "custom",
+    "items": [
+      {
+        "name": "year",
+        "name_cased": "year",
+        "type": "uinteger",
+        "size": 2,
+        "description": "The year"
+      },
+      {
+        "name": "month",
+        "name_cased": "month",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Value between 1 and 12"
+      },
+      {
+        "name": "id",
+        "name_cased": "id",
+        "name_pretty": "ID",
+        "type": "uinteger",
+        "size": 2,
+        "description": "CBS identifier"
+      },
+      {
+        "name": "due_status",
+        "name_cased": "dueStatus",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "pending"
+          },
+          {
+            "id": 2,
+            "name": "overdue"
+          }
+        ]
+      },
+      {
+        "name": "text",
+        "name_cased": "text",
+        "type": "string",
+        "description": "CBS text"
+      },
+      {
+        "name": "description",
+        "name_cased": "description",
+        "type": "string",
+        "description": "Description"
+      }
+    ]
+  },
+  "dashboard_light": {
+    "name": "dashboard_light",
+    "name_cased": "dashboardLight",
+    "name_pretty": "Dashboard light",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "name",
+        "name_cased": "name",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "high_beam",
+            "name_pretty": "High beam, main beam"
+          },
+          {
+            "id": 1,
+            "name": "low_beam",
+            "name_pretty": "Low beam, dipped beam"
+          },
+          {
+            "id": 2,
+            "name": "hazard_warning",
+            "name_pretty": "Hazard warning"
+          },
+          {
+            "id": 3,
+            "name": "brake_failure",
+            "name_pretty": "Brake failure/brake system malfunction"
+          },
+          {
+            "id": 4,
+            "name": "hatch_open",
+            "name_pretty": "Hatch open"
+          },
+          {
+            "id": 5,
+            "name": "fuel_level",
+            "name_pretty": "Fuel level"
+          },
+          {
+            "id": 6,
+            "name": "engine_coolant_temperature",
+            "name_pretty": "Engine coolant temperature"
+          },
+          {
+            "id": 7,
+            "name": "battery_charging_condition",
+            "name_pretty": "Battery charging condition"
+          },
+          {
+            "id": 8,
+            "name": "engine_oil",
+            "name_pretty": "Engine oil"
+          },
+          {
+            "id": 9,
+            "name": "position_lights",
+            "name_pretty": "Position lights, side lights"
+          },
+          {
+            "id": 10,
+            "name": "front_fog_light",
+            "name_pretty": "Front fog light"
+          },
+          {
+            "id": 11,
+            "name": "rear_fog_light",
+            "name_pretty": "Rear fog light"
+          },
+          {
+            "id": 12,
+            "name": "park_heating",
+            "name_pretty": "Park Heating"
+          },
+          {
+            "id": 13,
+            "name": "engine_indicator",
+            "name_pretty": "Engine indicator"
+          },
+          {
+            "id": 14,
+            "name": "service_call",
+            "name_pretty": "Service, call for maintenance"
+          },
+          {
+            "id": 15,
+            "name": "transmission_fluid_temperature",
+            "name_pretty": "Transmission fluid temperature"
+          },
+          {
+            "id": 16,
+            "name": "transmission_failure",
+            "name_pretty": "Transmission failure/malfunction"
+          },
+          {
+            "id": 17,
+            "name": "anti_lock_brake_failure",
+            "name_pretty": "Anti-lock brake system failure"
+          },
+          {
+            "id": 18,
+            "name": "worn_brake_linings",
+            "name_pretty": "Worn brake linings"
+          },
+          {
+            "id": 19,
+            "name": "windscreen_washer_fluid",
+            "name_pretty": "Windscreen washer fluid/windshield washer fluid"
+          },
+          {
+            "id": 20,
+            "name": "tire_failure",
+            "name_pretty": "Tire failure/malfunction"
+          },
+          {
+            "id": 21,
+            "name": "engine_oil_level",
+            "name_pretty": "Engine oil level"
+          },
+          {
+            "id": 22,
+            "name": "engine_coolant_level",
+            "name_pretty": "Engine coolant level"
+          },
+          {
+            "id": 23,
+            "name": "steering_failure",
+            "name_pretty": "Steering failure"
+          },
+          {
+            "id": 24,
+            "name": "esc_indication",
+            "name_pretty": "Electronic Speed Controller indiction"
+          },
+          {
+            "id": 25,
+            "name": "brake_lights",
+            "name_pretty": "Brake lights"
+          },
+          {
+            "id": 26,
+            "name": "adblue_level",
+            "name_pretty": "AdBlue level"
+          },
+          {
+            "id": 27,
+            "name": "fuel_filter_diff_pressure",
+            "name_pretty": "Fuel filter differential pressure"
+          },
+          {
+            "id": 28,
+            "name": "seat_belt",
+            "name_pretty": "Seat belt"
+          },
+          {
+            "id": 29,
+            "name": "advanced_braking",
+            "name_pretty": "Advanced emergency braking system"
+          },
+          {
+            "id": 30,
+            "name": "acc",
+            "name_pretty": "Autonomous/adaptive Cruise Control"
+          },
+          {
+            "id": 31,
+            "name": "trailer_connected",
+            "name_pretty": "Trailer connected"
+          },
+          {
+            "id": 32,
+            "name": "airbag",
+            "name_pretty": "Airbag"
+          },
+          {
+            "id": 33,
+            "name": "esc_switched_off",
+            "name_pretty": "ESC switched off"
+          },
+          {
+            "id": 34,
+            "name": "lane_departure_warning_off",
+            "name_pretty": "Lane departure warning switched off"
+          },
+          {
+            "id": 35,
+            "name": "air_filter_minder"
+          },
+          {
+            "id": 36,
+            "name": "air_suspension_ride_control_fault"
+          },
+          {
+            "id": 37,
+            "name": "all_wheel_drive_disabled"
+          },
+          {
+            "id": 38,
+            "name": "anti_theft"
+          },
+          {
+            "id": 39,
+            "name": "blind_spot_detection"
+          },
+          {
+            "id": 40,
+            "name": "charge_system_fault"
+          },
+          {
+            "id": 41,
+            "name": "check_fuel_cap"
+          },
+          {
+            "id": 42,
+            "name": "check_fuel_fill_inlet"
+          },
+          {
+            "id": 43,
+            "name": "check_fuel_filter"
+          },
+          {
+            "id": 44,
+            "name": "dc_temp_warning"
+          },
+          {
+            "id": 45,
+            "name": "dc_warning_status"
+          },
+          {
+            "id": 46,
+            "name": "diesel_engine_idle_shutdown"
+          },
+          {
+            "id": 47,
+            "name": "diesel_engine_warning"
+          },
+          {
+            "id": 48,
+            "name": "diesel_exhaust_fluid_system_fault"
+          },
+          {
+            "id": 49,
+            "name": "diesel_exhaust_over_temp"
+          },
+          {
+            "id": 50,
+            "name": "diesel_exhaust_fluid_quality"
+          },
+          {
+            "id": 51,
+            "name": "diesel_filter_regeneration"
+          },
+          {
+            "id": 52,
+            "name": "diesel_particulate_filter"
+          },
+          {
+            "id": 53,
+            "name": "diesel_pre_heat"
+          },
+          {
+            "id": 54,
+            "name": "electric_trailer_brake_connection"
+          },
+          {
+            "id": 55,
+            "name": "ev_battery_cell_max_volt_warning"
+          },
+          {
+            "id": 56,
+            "name": "ev_battery_cell_min_volt_warning"
+          },
+          {
+            "id": 57,
+            "name": "ev_battery_charge_energy_storage_warning"
+          },
+          {
+            "id": 58,
+            "name": "ev_battery_high_level_warning"
+          },
+          {
+            "id": 59,
+            "name": "ev_battery_high_temperature_warning"
+          },
+          {
+            "id": 60,
+            "name": "ev_battery_insulation_resist_warning"
+          },
+          {
+            "id": 61,
+            "name": "ev_battery_jump_level_warning"
+          },
+          {
+            "id": 62,
+            "name": "ev_battery_low_level_warning"
+          },
+          {
+            "id": 63,
+            "name": "ev_battery_max_volt_veh_energy_warning"
+          },
+          {
+            "id": 64,
+            "name": "ev_battery_min_volt_veh_energy_warning"
+          },
+          {
+            "id": 65,
+            "name": "ev_battery_over_charge_warning"
+          },
+          {
+            "id": 66,
+            "name": "ev_battery_poor_cell_warning"
+          },
+          {
+            "id": 67,
+            "name": "ev_battery_temp_diff_warning"
+          },
+          {
+            "id": 68,
+            "name": "forward_collision_warning"
+          },
+          {
+            "id": 69,
+            "name": "fuel_door_open"
+          },
+          {
+            "id": 70,
+            "name": "hill_descent_control_fault"
+          },
+          {
+            "id": 71,
+            "name": "hill_start_assist_warning"
+          },
+          {
+            "id": 72,
+            "name": "hv_interlocking_status_warning"
+          },
+          {
+            "id": 73,
+            "name": "lighting_system_failure"
+          },
+          {
+            "id": 74,
+            "name": "malfunction_indicator"
+          },
+          {
+            "id": 75,
+            "name": "motor_controller_temp_warning"
+          },
+          {
+            "id": 76,
+            "name": "park_aid_malfunction"
+          },
+          {
+            "id": 77,
+            "name": "passive_entry_passive_start"
+          },
+          {
+            "id": 78,
+            "name": "powertrain_malfunction"
+          },
+          {
+            "id": 79,
+            "name": "restraints_indicator_warning"
+          },
+          {
+            "id": 80,
+            "name": "start_stop_engine_warning"
+          },
+          {
+            "id": 81,
+            "name": "traction_control_disabled"
+          },
+          {
+            "id": 82,
+            "name": "traction_control_active"
+          },
+          {
+            "id": 83,
+            "name": "traction_motor_temp_warning"
+          },
+          {
+            "id": 84,
+            "name": "tire_pressure_monitor_system_warning"
+          },
+          {
+            "id": 85,
+            "name": "water_in_fuel"
+          },
+          {
+            "id": 86,
+            "name": "tire_warning_front_right"
+          },
+          {
+            "id": 87,
+            "name": "tire_warning_front_left"
+          },
+          {
+            "id": 88,
+            "name": "tire_warning_rear_right"
+          },
+          {
+            "id": 89,
+            "name": "tire_warning_rear_left"
+          },
+          {
+            "id": 90,
+            "name": "tire_warning_system_error"
+          },
+          {
+            "id": 91,
+            "name": "battery_low_warning"
+          },
+          {
+            "id": 92,
+            "name": "brake_fluid_warning"
+          }
+        ]
+      },
+      {
+        "name": "state",
+        "name_cased": "state",
+        "type": "types.active_state"
+      },
+      {
+        "name": "colour",
+        "name_cased": "colour",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "info"
+          },
+          {
+            "id": 1,
+            "name": "yellow"
+          },
+          {
+            "id": 2,
+            "name": "red"
+          }
+        ]
+      }
+    ]
+  },
+  "departure_time": {
+    "name": "departure_time",
+    "name_cased": "departureTime",
+    "name_pretty": "Departure time",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "state",
+        "name_cased": "state",
+        "type": "types.active_state"
+      },
+      {
+        "name": "time",
+        "name_cased": "time",
+        "type": "types.time"
+      }
+    ]
+  },
+  "distance_over_time": {
+    "name": "distance_over_time",
+    "name_cased": "distanceOverTime",
+    "name_pretty": "distance over time",
+    "type": "custom",
+    "size": 20,
+    "items": [
+      {
+        "name": "distance",
+        "name_cased": "distance",
+        "type": "unit.length",
+        "size": 10,
+        "description": "Distance driven",
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "name": "time",
+        "name_cased": "time",
+        "type": "unit.duration",
+        "size": 10,
+        "description": "Duration of time for the given distance",
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "door_position": {
+    "name": "door_position",
+    "name_cased": "doorPosition",
+    "name_pretty": "Door position",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "front_left"
+          },
+          {
+            "id": 1,
+            "name": "front_right"
+          },
+          {
+            "id": 2,
+            "name": "rear_right"
+          },
+          {
+            "id": 3,
+            "name": "rear_left"
+          },
+          {
+            "id": 5,
+            "name": "all"
+          }
+        ]
+      },
+      {
+        "name": "position",
+        "name_cased": "position",
+        "type": "types.position"
+      }
+    ]
+  },
+  "driver_card_present": {
+    "name": "driver_card_present",
+    "name_cased": "driverCardPresent",
+    "name_pretty": "Driver card present",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "driver_number",
+        "name_cased": "driverNumber",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The driver number"
+      },
+      {
+        "name": "card_present",
+        "name_cased": "cardPresent",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "not_present"
+          },
+          {
+            "id": 1,
+            "name": "present"
+          }
+        ]
+      }
+    ]
+  },
+  "driver_time_state": {
+    "name": "driver_time_state",
+    "name_cased": "driverTimeState",
+    "name_pretty": "Driver time state",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "driver_number",
+        "name_cased": "driverNumber",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The driver number"
+      },
+      {
+        "name": "time_state",
+        "name_cased": "timeState",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "normal"
+          },
+          {
+            "id": 1,
+            "name": "fifteen_min_before_four",
+            "name_cased": "15minBefore4",
+            "name_pretty": "15 minutes before 4½ hours"
+          },
+          {
+            "id": 2,
+            "name": "four_reached",
+            "name_cased": "4Reached",
+            "name_pretty": "4½ hours reached"
+          },
+          {
+            "id": 3,
+            "name": "fifteen_min_before_nine",
+            "name_cased": "15minBefore9",
+            "name_pretty": "15 minutes before 9 hours"
+          },
+          {
+            "id": 4,
+            "name": "nine_reached",
+            "name_cased": "9Reached",
+            "name_pretty": "9 hours reached"
+          },
+          {
+            "id": 5,
+            "name": "fifteen_min_before_sixteen",
+            "name_cased": "15minBefore16",
+            "name_pretty": "15 minutes before 16 hours"
+          },
+          {
+            "id": 6,
+            "name": "sixteen_reached",
+            "name_cased": "16Reached",
+            "name_pretty": "16 hours reached"
+          }
+        ]
+      }
+    ]
+  },
+  "driver_working_state": {
+    "name": "driver_working_state",
+    "name_cased": "driverWorkingState",
+    "name_pretty": "Driving working state",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "driver_number",
+        "name_cased": "driverNumber",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The driver number"
+      },
+      {
+        "name": "working_state",
+        "name_cased": "workingState",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "resting"
+          },
+          {
+            "id": 1,
+            "name": "driver_available"
+          },
+          {
+            "id": 2,
+            "name": "working"
+          },
+          {
+            "id": 3,
+            "name": "driving"
+          }
+        ]
+      }
+    ]
+  },
+  "driving_mode_activation_period": {
+    "name": "driving_mode_activation_period",
+    "name_cased": "drivingModeActivationPeriod",
+    "name_pretty": "Driving mode activation period",
+    "type": "custom",
+    "size": 9,
+    "items": [
+      {
+        "name": "driving_mode",
+        "name_cased": "drivingMode",
+        "type": "types.driving_mode"
+      },
+      {
+        "name": "period",
+        "name_cased": "period",
+        "type": "types.percentage",
+        "description": "Percentage of the period used for a driving mode"
+      }
+    ]
+  },
+  "driving_mode_energy_consumption": {
+    "name": "driving_mode_energy_consumption",
+    "name_cased": "drivingModeEnergyConsumption",
+    "name_pretty": "Driving mode energy consumption",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "driving_mode",
+        "name_cased": "drivingMode",
+        "type": "types.driving_mode"
+      },
+      {
+        "name": "consumption",
+        "name_cased": "consumption",
+        "type": "unit.energy",
+        "size": 10,
+        "description": "Energy consumption in the driving mode",
+        "unit": {
+          "name": "energy",
+          "id": 12,
+          "unit_types": [
+            {
+              "name": "joules",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilojoules",
+              "id": 1,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "kilowatt_hours",
+              "id": 4,
+              "conversion_linear": 3600000
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "failure": {
+    "name": "failure",
+    "name_cased": "failure",
+    "name_pretty": "Failure",
+    "type": "custom",
+    "items": [
+      {
+        "name": "reason",
+        "name_cased": "reason",
+        "name_pretty": "Reason",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "rate_limit"
+          },
+          {
+            "id": 1,
+            "name": "execution_timeout"
+          },
+          {
+            "id": 2,
+            "name": "format_error"
+          },
+          {
+            "id": 3,
+            "name": "unauthorised"
+          },
+          {
+            "id": 4,
+            "name": "unknown"
+          },
+          {
+            "id": 5,
+            "name": "pending"
+          },
+          {
+            "id": 6,
+            "name": "internal_oem_error"
+          }
+        ]
+      },
+      {
+        "name": "description",
+        "name_cased": "description",
+        "name_pretty": "Description",
+        "type": "string",
+        "description": "Failure description"
+      }
+    ]
+  },
+  "hmkit_version": {
+    "name": "hmkit_version",
+    "name_cased": "HMKitVersion",
+    "name_pretty": "HMKit version",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "major",
+        "name_cased": "major",
+        "type": "uinteger",
+        "size": 1,
+        "description": "HMKit version major number"
+      },
+      {
+        "name": "minor",
+        "name_cased": "minor",
+        "type": "uinteger",
+        "size": 1,
+        "description": "HMKit version minor number"
+      },
+      {
+        "name": "patch",
+        "name_cased": "patch",
+        "type": "uinteger",
+        "size": 1,
+        "description": "HMKit version patch number"
+      }
+    ]
+  },
+  "hvac_weekday_starting_time": {
+    "name": "hvac_weekday_starting_time",
+    "name_cased": "HVACWeekdayStartingTime",
+    "name_pretty": "HVAC weekday starting time",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "weekday",
+        "name_cased": "weekday",
+        "type": "types.weekday"
+      },
+      {
+        "name": "time",
+        "name_cased": "time",
+        "type": "types.time"
+      }
+    ]
+  },
+  "light": {
+    "name": "light",
+    "name_cased": "light",
+    "name_pretty": "Light",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location_longitudinal"
+      },
+      {
+        "name": "state",
+        "name_cased": "state",
+        "type": "types.active_state"
+      }
+    ]
+  },
+  "lock": {
+    "name": "lock",
+    "name_cased": "lock",
+    "name_pretty": "Lock",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location",
+        "description": "Door location"
+      },
+      {
+        "name": "lock_state",
+        "name_cased": "lockState",
+        "type": "types.lock_state",
+        "description": "Lock state for the door"
+      }
+    ]
+  },
+  "oem_trouble_code_value": {
+    "name": "oem_trouble_code_value",
+    "name_cased": "oemTroubleCodeValue",
+    "name_pretty": "OEM trouble code value",
+    "type": "custom",
+    "description": "OEM trouble code key-pair with identifier",
+    "items": [
+      {
+        "name": "id",
+        "name_cased": "ID",
+        "name_pretty": "ID",
+        "type": "string",
+        "description": "Identifier for the trouble code"
+      },
+      {
+        "name": "key_value",
+        "name_cased": "keyValue",
+        "type": "types.key_value",
+        "description": "Key-value pair for the trouble codde"
+      }
+    ]
+  },
+  "person_detected": {
+    "name": "person_detected",
+    "name_cased": "personDetected",
+    "name_pretty": "Person detected",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.seat_location"
+      },
+      {
+        "name": "detected",
+        "name_cased": "detected",
+        "type": "types.detected"
+      }
+    ]
+  },
+  "price_tariff": {
+    "name": "price_tariff",
+    "name_cased": "priceTariff",
+    "name_pretty": "Price tariff",
+    "type": "custom",
+    "items": [
+      {
+        "name": "pricing_type",
+        "name_cased": "pricingType",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "starting_fee"
+          },
+          {
+            "id": 1,
+            "name": "per_minute"
+          },
+          {
+            "id": 2,
+            "name": "per_kwh",
+            "name_pretty": "Per kWh"
+          }
+        ]
+      },
+      {
+        "name": "price",
+        "name_cased": "price",
+        "type": "double",
+        "size": 8,
+        "description": "The price"
+      },
+      {
+        "name": "currency",
+        "name_cased": "currency",
+        "type": "string",
+        "description": "The currency alphabetic code per ISO 4217 or crypto currency symbol"
+      }
+    ]
+  },
+  "reading_lamp": {
+    "name": "reading_lamp",
+    "name_cased": "readingLamp",
+    "name_pretty": "Reading lamp",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location"
+      },
+      {
+        "name": "state",
+        "name_cased": "state",
+        "type": "types.active_state"
+      }
+    ]
+  },
+  "reduction_time": {
+    "name": "reduction_time",
+    "name_cased": "reductionTime",
+    "name_pretty": "Reduction time",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "start_stop",
+        "name_cased": "startStop",
+        "type": "types.start_stop"
+      },
+      {
+        "name": "time",
+        "name_cased": "time",
+        "type": "types.time"
+      }
+    ]
+  },
+  "rgb_colour": {
+    "name": "rgb_colour",
+    "name_cased": "RGBColour",
+    "name_pretty": "RGB colour",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "red",
+        "name_cased": "red",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The red component of RGB"
+      },
+      {
+        "name": "green",
+        "name_cased": "green",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The green component of RGB"
+      },
+      {
+        "name": "blue",
+        "name_cased": "blue",
+        "type": "uinteger",
+        "size": 1,
+        "description": "The blue component of RGB"
+      }
+    ]
+  },
+  "seatbelt_state": {
+    "name": "seatbelt_state",
+    "name_cased": "seatbeltState",
+    "name_pretty": "Seatbelt state",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.seat_location"
+      },
+      {
+        "name": "fastened_state",
+        "name_cased": "fastenedState",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "not_fastened"
+          },
+          {
+            "id": 1,
+            "name": "fastened"
+          }
+        ]
+      }
+    ]
+  },
+  "spring_rate": {
+    "name": "spring_rate",
+    "name_cased": "springRate",
+    "name_pretty": "Spring rate",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "axle",
+        "name_cased": "axle",
+        "type": "types.axle"
+      },
+      {
+        "name": "spring_rate",
+        "name_cased": "springRate",
+        "type": "unit.torque",
+        "size": 10,
+        "description": "The suspension spring rate",
+        "unit": {
+          "name": "torque",
+          "id": 24,
+          "unit_types": [
+            {
+              "name": "newton_meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "newton_millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "pound_feet",
+              "id": 2,
+              "conversion_linear": 0.73756214927727
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "timer": {
+    "name": "timer",
+    "name_cased": "timer",
+    "name_pretty": "Timer",
+    "type": "custom",
+    "size": 9,
+    "items": [
+      {
+        "name": "timer_type",
+        "name_cased": "timerType",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "preferred_start_time"
+          },
+          {
+            "id": 1,
+            "name": "preferred_end_time"
+          },
+          {
+            "id": 2,
+            "name": "departure_date"
+          }
+        ]
+      },
+      {
+        "name": "date",
+        "name_cased": "date",
+        "type": "timestamp",
+        "size": 8,
+        "description": "Milliseconds since UNIX Epoch time"
+      }
+    ]
+  },
+  "tire_pressure": {
+    "name": "tire_pressure",
+    "name_cased": "tirePressure",
+    "name_pretty": "Tire pressure",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location_wheel"
+      },
+      {
+        "name": "pressure",
+        "name_cased": "pressure",
+        "type": "unit.pressure",
+        "size": 10,
+        "description": "Tire pressure",
+        "unit": {
+          "name": "pressure",
+          "id": 21,
+          "unit_types": [
+            {
+              "name": "newtons_per_meters_squared",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilopascals",
+              "id": 3,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "inches_of_mercury",
+              "id": 5,
+              "conversion_linear": 3386.39
+            },
+            {
+              "name": "bars",
+              "id": 6,
+              "conversion_linear": 100000
+            },
+            {
+              "name": "millibars",
+              "id": 7,
+              "conversion_linear": 100
+            },
+            {
+              "name": "millimeters_of_mercury",
+              "id": 8,
+              "conversion_linear": 133.322
+            },
+            {
+              "name": "pounds_force_per_square_inch",
+              "id": 9,
+              "conversion_linear": 6894.76
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "tire_pressure_status": {
+    "name": "tire_pressure_status",
+    "name_cased": "tirePressureStatus",
+    "name_pretty": "Tire pressure status",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location_wheel"
+      },
+      {
+        "name": "status",
+        "name_cased": "status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "normal"
+          },
+          {
+            "id": 1,
+            "name": "low"
+          },
+          {
+            "id": 2,
+            "name": "alert"
+          }
+        ]
+      }
+    ]
+  },
+  "tire_temperature": {
+    "name": "tire_temperature",
+    "name_cased": "tireTemperature",
+    "name_pretty": "Tire temperature",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location_wheel"
+      },
+      {
+        "name": "temperature",
+        "name_cased": "temperature",
+        "type": "unit.temperature",
+        "size": 10,
+        "description": "Tire temperature",
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "trouble_code": {
+    "name": "trouble_code",
+    "name_cased": "troubleCode",
+    "name_pretty": "Trouble code",
+    "type": "custom",
+    "items": [
+      {
+        "name": "occurrences",
+        "name_cased": "occurrences",
+        "type": "uinteger",
+        "size": 1,
+        "description": "Number of occurrences"
+      },
+      {
+        "name": "id",
+        "name_cased": "ID",
+        "name_pretty": "ID",
+        "type": "string",
+        "description": "Identifier"
+      },
+      {
+        "name": "ecu_id",
+        "name_cased": "ecuID",
+        "name_pretty": "ECU ID",
+        "type": "string",
+        "description": "Electronic Control Unit identifier"
+      },
+      {
+        "name": "status",
+        "name_cased": "status",
+        "type": "string",
+        "description": "Status"
+      },
+      {
+        "name": "system",
+        "name_cased": "system",
+        "name_pretty": "System",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "body"
+          },
+          {
+            "id": 2,
+            "name": "chassis"
+          },
+          {
+            "id": 3,
+            "name": "powertrain"
+          },
+          {
+            "id": 4,
+            "name": "network"
+          }
+        ]
+      }
+    ]
+  },
+  "webhook": {
+    "name": "webhook",
+    "name_cased": "webhook",
+    "name_pretty": "Webhook",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "available",
+        "name_cased": "available",
+        "type": "enum",
+        "size": 1,
+        "description": "If the specified webhook is available.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unavailable"
+          },
+          {
+            "id": 1,
+            "name": "available"
+          }
+        ]
+      },
+      {
+        "name": "event",
+        "name_cased": "event",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ping",
+            "description": "Sent every time when the webhook is configured or changed."
+          },
+          {
+            "id": 1,
+            "name": "trip_started",
+            "description": "Sent every time a vehicle starts a trip."
+          },
+          {
+            "id": 2,
+            "name": "trip_ended",
+            "description": "Sent when a vehicle ends a trip."
+          },
+          {
+            "id": 3,
+            "name": "vehicle_location_changed",
+            "description": "Sent when the vehicle location changes."
+          },
+          {
+            "id": 4,
+            "name": "authorization_changed",
+            "description": "Sent when the authorization status changes."
+          },
+          {
+            "id": 5,
+            "name": "tire_pressure_changed",
+            "description": "Sent when the tire pressure changed to low or too high."
+          }
+        ]
+      }
+    ]
+  },
+  "wheel_rpm": {
+    "name": "wheel_rpm",
+    "name_cased": "wheelRPM",
+    "name_pretty": "Wheel RPM",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location_wheel",
+        "description": "Wheel location"
+      },
+      {
+        "name": "rpm",
+        "name_cased": "RPM",
+        "name_pretty": "RPM",
+        "type": "unit.angular_velocity",
+        "size": 10,
+        "description": "The RPM measured at this wheel",
+        "unit": {
+          "name": "angular_velocity",
+          "id": 3,
+          "unit_types": [
+            {
+              "name": "revolutions_per_minute",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "degrees_per_second",
+              "id": 1,
+              "conversion_linear": 6
+            },
+            {
+              "name": "radians_per_second",
+              "id": 2,
+              "conversion_linear": 9.549296585514
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "window_open_percentage": {
+    "name": "window_open_percentage",
+    "name_cased": "windowOpenPercentage",
+    "name_pretty": "Window open percentage",
+    "type": "custom",
+    "size": 9,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.window_location"
+      },
+      {
+        "name": "open_percentage",
+        "name_cased": "openPercentage",
+        "type": "types.percentage"
+      }
+    ]
+  },
+  "window_position": {
+    "name": "window_position",
+    "name_cased": "windowPosition",
+    "name_pretty": "Window position",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.window_location"
+      },
+      {
+        "name": "position",
+        "name_cased": "position",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "closed"
+          },
+          {
+            "id": 1,
+            "name": "open"
+          },
+          {
+            "id": 2,
+            "name": "intermediate",
+            "disabled_in_setter": true
+          }
+        ]
+      }
+    ]
+  }
+}

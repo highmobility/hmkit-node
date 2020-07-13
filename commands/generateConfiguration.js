@@ -55,20 +55,21 @@ const CAPABILITY_CONFIGURATION_FILES = [
   'weather_conditions.yml',
   'wi_fi.yml',
   'windows.yml',
-  'windscreen.yml'
+  'windscreen.yml',
 ];
 
 const CUSTOM_TYPES_FILE_PATH = `misc/custom_types.yml`;
 const UNIT_TYPES_FILE_PATH = 'misc/unit_types.yml';
 const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/capabilities.json`;
+const CUSTOM_TYPES_DESTINATION_FILE = `${__dirname}/../src/Configuration/customTypes.json`;
 
 function autoApiPath(path) {
   return `${__dirname}/../../auto-api/${path}`;
 }
 
 function parseConfigurationFiles() {
-  const customTypes = parseCustomTypesFile();
   const unitTypes = parseUnitTypesFile();
+  const customTypes = parseCustomTypesFile(unitTypes);
 
   const parsedCapabilities = CAPABILITY_CONFIGURATION_FILES.reduce(
     (configurationObject, fileName) => {
@@ -77,12 +78,16 @@ function parseConfigurationFiles() {
 
       const mappedCapabilityConf = mapStateProps({
         ...capability,
-        properties: buildCapabilityProperties(capability, customTypes, unitTypes),
+        properties: buildCapabilityProperties(
+          capability,
+          customTypes,
+          unitTypes
+        ),
       });
 
       return {
         ...configurationObject,
-        [mappedCapabilityConf.name]: mappedCapabilityConf
+        [mappedCapabilityConf.name]: mappedCapabilityConf,
       };
     },
     {}
@@ -93,11 +98,16 @@ function parseConfigurationFiles() {
     JSON.stringify(parsedCapabilities, null, 2)
   );
 
+  fs.writeFileSync(
+    CUSTOM_TYPES_DESTINATION_FILE,
+    JSON.stringify(customTypes, null, 2)
+  );
+
   console.log('Successfully updated capabilities configuration.');
 }
 
 function buildCapabilityProperties(capability, customTypes, unitTypes) {
-  return capability.properties.map((property) =>
+  return capability.properties.map(property =>
     buildCapabilityProperty(property, customTypes, unitTypes)
   );
 }
@@ -106,7 +116,7 @@ function mapStateProps(capability) {
   if (capability.state && capability.state === 'all') {
     return {
       ...capability,
-      state: capability.properties.map(({ id }) => id)
+      state: capability.properties.map(({ id }) => id),
     };
   }
 
@@ -120,7 +130,7 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
     const customType = customTypes[customTypeKey];
 
     if (customType.items) {
-      const mappedItems = customType.items.map((propItem) =>
+      const mappedItems = customType.items.map(propItem =>
         buildCapabilityProperty(propItem, customTypes, unitTypes)
       );
 
@@ -129,7 +139,7 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
         ...property,
         customType: customTypeKey,
         type: customType.type,
-        items: mappedItems
+        items: mappedItems,
       };
     }
 
@@ -137,7 +147,7 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
       ...customType,
       ...property,
       customType: customTypeKey,
-      type: customType.type
+      type: customType.type,
     };
   }
 
@@ -152,19 +162,30 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
     };
   }
 
-  return {...property};
+  return { ...property };
 }
 
-function parseCustomTypesFile() {
+function parseCustomTypesFile(unitTypes) {
   const filePath = autoApiPath(CUSTOM_TYPES_FILE_PATH);
 
-  return parseYmlFile(filePath).types.reduce(
-    (allTypes, type) => ({
+  return parseYmlFile(filePath).types.reduce((allTypes, type) => {
+    const typeWithUnit = {
+      ...type,
+      items: type.items
+        ? type.items.map(item => {
+            if (item.type.startsWith('unit.')) {
+              item.unit = unitTypes[item.type.replace('unit.', '')];
+            }
+            return item;
+          })
+        : undefined,
+    };
+
+    return {
       ...allTypes,
-      [type.name]: type
-    }),
-    {}
-  );
+      [type.name]: typeWithUnit,
+    };
+  }, {});
 }
 
 function parseUnitTypesFile() {
@@ -173,17 +194,14 @@ function parseUnitTypesFile() {
   return parseYmlFile(filePath).measurement_types.reduce(
     (allTypes, type) => ({
       ...allTypes,
-      [type.name]: type
+      [type.name]: type,
     }),
     {}
   );
 }
 
 function parseYmlFile(filePath) {
-  const file = fs.readFileSync(
-    filePath,
-    'utf8'
-  );
+  const file = fs.readFileSync(filePath, 'utf8');
 
   return YAML.parse(file);
 }
