@@ -12879,6 +12879,699 @@
       }
     ]
   },
+  "trips": {
+    "name": "trips",
+    "name_cased": "trips",
+    "name_pretty": "Trips",
+    "category": "poi",
+    "authorization": true,
+    "identifier": {
+      "msb": 0,
+      "lsb": 106
+    },
+    "api": {
+      "intro": 12,
+      "update": 12
+    },
+    "state": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "properties": [
+      {
+        "id": 1,
+        "name": "type",
+        "name_cased": "type",
+        "name_pretty": "Type",
+        "type": "enum",
+        "size": 1,
+        "description": "Type of the trip",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "single"
+          },
+          {
+            "id": 1,
+            "name": "multi"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "single",
+            "description": "Trip had a single stop"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "driver_name",
+        "name_cased": "driverName",
+        "name_pretty": "Driver name",
+        "type": "string",
+        "description": "Name of the driver of the trip",
+        "examples": [
+          {
+            "data_component": "486172692053656c646f6e",
+            "value": "Hari Seldon",
+            "description": "Driver name is 'Hari Seldon'"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "description",
+        "name_cased": "description",
+        "name_pretty": "Description",
+        "type": "string",
+        "description": "Description of the trip",
+        "examples": [
+          {
+            "data_component": "546f20736176652068756d616e6b696e64",
+            "value": "To save humankind",
+            "description": "Description of the trip is 'To save humankind'"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "start_time",
+        "name_cased": "startTime",
+        "name_pretty": "Start time",
+        "type": "timestamp",
+        "size": 8,
+        "description": "Start time of the trip",
+        "examples": [
+          {
+            "data_component": "00000172cc7e5190",
+            "value": "2020-06-19T12:12:10.000Z",
+            "description": "Trip started at 19 June 2020 at 12:12:10 GMT"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "end_time",
+        "name_cased": "endTime",
+        "name_pretty": "End time",
+        "type": "timestamp",
+        "size": 8,
+        "description": "End time of the trip",
+        "examples": [
+          {
+            "data_component": "00000172ccb54010",
+            "value": "2020-06-19T13:12:10.000Z",
+            "description": "Trip ended at 19 June 2020 at 13:12:10 GMT"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "start_address",
+        "name_cased": "startAddress",
+        "name_pretty": "Start address",
+        "type": "string",
+        "description": "Start address of the trip",
+        "examples": [
+          {
+            "data_component": "536b616c69747a65722053747261c39f652036382c203130393937204265726c696e2c204765726d616e79",
+            "value": "Skalitzer Straße 68, 10997 Berlin, Germany",
+            "description": "Trip started from Skalitzer Straße 68, 10997 Berlin, Germany"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "end_address",
+        "name_cased": "endAddress",
+        "name_pretty": "End address",
+        "type": "string",
+        "description": "End address of the trip",
+        "examples": [
+          {
+            "data_component": "536b616c69747a65722053747261c39f652036382c203130393937204265726c696e2c204765726d616e79",
+            "value": "Skalitzer Straße 68, 10997 Berlin, Germany",
+            "description": "Trip ended at Skalitzer Straße 68, 10997 Berlin, Germany"
+          }
+        ]
+      },
+      {
+        "name": "start_coordinates",
+        "name_cased": "startCoordinates",
+        "name_pretty": "Start coordinates",
+        "type": "custom",
+        "size": 16,
+        "items": [
+          {
+            "name": "latitude",
+            "name_cased": "latitude",
+            "validation": "min:-90|max:90",
+            "type": "double",
+            "size": 8,
+            "description": "Latitude"
+          },
+          {
+            "name": "longitude",
+            "name_cased": "longitude",
+            "validation": "min:-180|max:180",
+            "type": "double",
+            "size": 8,
+            "description": "Longitude"
+          }
+        ],
+        "id": 8,
+        "description": "Start coordinates of the trip",
+        "examples": [
+          {
+            "data_component": "404a40090b417ca2402ae122d948dc12",
+            "value": {
+              "latitude": 52.500276,
+              "longitude": 13.439719
+            },
+            "description": "Trip started from 52.500276:13.439719"
+          }
+        ],
+        "customType": "coordinates"
+      },
+      {
+        "name": "end_coordinates",
+        "name_cased": "endCoordinates",
+        "name_pretty": "End coordinates",
+        "type": "custom",
+        "size": 16,
+        "items": [
+          {
+            "name": "latitude",
+            "name_cased": "latitude",
+            "validation": "min:-90|max:90",
+            "type": "double",
+            "size": 8,
+            "description": "Latitude"
+          },
+          {
+            "name": "longitude",
+            "name_cased": "longitude",
+            "validation": "min:-180|max:180",
+            "type": "double",
+            "size": 8,
+            "description": "Longitude"
+          }
+        ],
+        "id": 9,
+        "description": "End coordinates of the trip",
+        "examples": [
+          {
+            "data_component": "404a40090b417ca2402ae122d948dc12",
+            "value": {
+              "latitude": 52.500276,
+              "longitude": 13.439719
+            },
+            "description": "Trip ended at 52.500276:13.439719"
+          }
+        ],
+        "customType": "coordinates"
+      },
+      {
+        "id": 10,
+        "name": "start_odometer",
+        "name_cased": "startOdometer",
+        "name_pretty": "Start odometer",
+        "type": "unit.length",
+        "size": 10,
+        "description": "Odometer reading at the start of the trip",
+        "examples": [
+          {
+            "data_component": "120440c4820000000000",
+            "value": {
+              "kilometers": 10500
+            },
+            "description": "At the start of the trip the odometer was showing 10500.0km"
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "id": 11,
+        "name": "end_odometer",
+        "name_cased": "endOdometer",
+        "name_pretty": "End odometer",
+        "type": "unit.length",
+        "size": 10,
+        "description": "Odometer reading at the end of the trip",
+        "examples": [
+          {
+            "data_component": "120440c4978000000000",
+            "value": {
+              "kilometers": 10543
+            },
+            "description": "At the start of the trip the odometer was showing 10543.0km"
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "id": 12,
+        "name": "average_fuel_consumption",
+        "name_cased": "averageFuelConsumption",
+        "name_pretty": "Average fuel consumption",
+        "type": "unit.fuel_efficiency",
+        "size": 10,
+        "description": "Average fuel consumption during the trip",
+        "examples": [
+          {
+            "data_component": "0f00401d5c28f5c28f5c",
+            "value": {
+              "liters_per_100_kilometers": 7.34
+            },
+            "description": "Average fuel consumption during the trip was 7.34 l/100km"
+          }
+        ],
+        "unit": {
+          "name": "fuel_efficiency",
+          "id": 15,
+          "unit_types": [
+            {
+              "name": "liters_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_imperial_gallon",
+              "id": 1,
+              "conversion_inverse": 282.4809363
+            },
+            {
+              "name": "miles_per_gallon",
+              "id": 2,
+              "conversion_inverse": 235.2145833
+            }
+          ]
+        }
+      },
+      {
+        "id": 13,
+        "name": "distance",
+        "name_cased": "distance",
+        "name_pretty": "Distance",
+        "type": "unit.length",
+        "size": 10,
+        "description": "Distance of the trip",
+        "examples": [
+          {
+            "data_component": "12044045800000000000",
+            "value": {
+              "kilometers": 43
+            },
+            "description": "Distance of trip was 43.0km"
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "name": "start_address_components",
+        "name_cased": "startAddressComponents",
+        "name_pretty": "Start address components",
+        "type": "custom",
+        "description": "Start address components",
+        "items": [
+          {
+            "name": "type",
+            "name_cased": "type",
+            "name_pretty": "Type",
+            "type": "enum",
+            "size": 1,
+            "description": "Component type",
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "city"
+              },
+              {
+                "id": 1,
+                "name": "country"
+              },
+              {
+                "id": 2,
+                "name": "country_short"
+              },
+              {
+                "id": 3,
+                "name": "district"
+              },
+              {
+                "id": 4,
+                "name": "postal_code"
+              },
+              {
+                "id": 5,
+                "name": "street"
+              },
+              {
+                "id": 6,
+                "name": "state_province"
+              },
+              {
+                "id": 7,
+                "name": "other"
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "name_cased": "value",
+            "name_pretty": "Value",
+            "type": "string",
+            "description": "Value for the component"
+          }
+        ],
+        "id": 14,
+        "multiple": true,
+        "examples": [
+          {
+            "data_component": "05536b616c69747a65722053747261c39f65203638",
+            "value": {
+              "type": "street",
+              "value": "Skalitzer Straße 68"
+            },
+            "description": "Street component value is 'Skalitzer Straße 68'"
+          },
+          {
+            "data_component": "004265726c696e",
+            "value": {
+              "type": "city",
+              "value": "Berlin"
+            },
+            "description": "City component value is 'Berlin'"
+          },
+          {
+            "data_component": "014765726d616e79",
+            "value": {
+              "type": "country",
+              "value": "Germany"
+            },
+            "description": "Country component value is 'Germany'"
+          }
+        ],
+        "customType": "address_component"
+      },
+      {
+        "name": "end_address_components",
+        "name_cased": "endAddressComponents",
+        "name_pretty": "End address components",
+        "type": "custom",
+        "description": "End address components",
+        "items": [
+          {
+            "name": "type",
+            "name_cased": "type",
+            "name_pretty": "Type",
+            "type": "enum",
+            "size": 1,
+            "description": "Component type",
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "city"
+              },
+              {
+                "id": 1,
+                "name": "country"
+              },
+              {
+                "id": 2,
+                "name": "country_short"
+              },
+              {
+                "id": 3,
+                "name": "district"
+              },
+              {
+                "id": 4,
+                "name": "postal_code"
+              },
+              {
+                "id": 5,
+                "name": "street"
+              },
+              {
+                "id": 6,
+                "name": "state_province"
+              },
+              {
+                "id": 7,
+                "name": "other"
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "name_cased": "value",
+            "name_pretty": "Value",
+            "type": "string",
+            "description": "Value for the component"
+          }
+        ],
+        "id": 15,
+        "multiple": true,
+        "examples": [
+          {
+            "data_component": "05536b616c69747a65722053747261c39f65203638",
+            "value": {
+              "type": "street",
+              "value": "Skalitzer Straße 68"
+            },
+            "description": "Street component value is 'Skalitzer Straße 68'"
+          },
+          {
+            "data_component": "004265726c696e",
+            "value": {
+              "type": "city",
+              "value": "Berlin"
+            },
+            "description": "City component value is 'Berlin'"
+          },
+          {
+            "data_component": "014765726d616e79",
+            "value": {
+              "type": "country",
+              "value": "Germany"
+            },
+            "description": "Country component value is 'Germany'"
+          }
+        ],
+        "customType": "address_component"
+      }
+    ]
+  },
   "trunk": {
     "name": "trunk",
     "name_cased": "trunk",

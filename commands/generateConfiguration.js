@@ -43,6 +43,7 @@ const CAPABILITY_CONFIGURATION_FILES = [
   'tachograph.yml',
   'text_input.yml',
   'theft_alarm.yml',
+  'trips.yml',
   'trunk.yml',
   'usage.yml',
   'valet_mode.yml',
