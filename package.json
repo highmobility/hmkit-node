@@ -52,7 +52,7 @@
     "hmcrypto": "highmobility/hmkit-crypto-node#v0.9.0",
     "ieee754": "^1.1.8",
     "joi": "^14.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lodash-fp": "^0.10.4",
     "node-fetch": "^1.7.2"
   },
