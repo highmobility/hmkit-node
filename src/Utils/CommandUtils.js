@@ -92,13 +92,13 @@ function buildCapabilityGetter(capabilityConf) {
 
     return {
       [stateFuncName]: applyCallbackMetadata(
-        (propertyIDs = []) => {
+        (propertyNames = []) => {
           validate({
             name: 'Property IDs',
-            value: propertyIDs,
+            value: propertyNames,
             condition: Joi.array().items(
-              Joi.number().valid(
-                ...capabilityConf.properties.map(prop => prop.id)
+              Joi.string().valid(
+                ...capabilityConf.properties.map(prop => prop.name_cased)
               )
             ),
           });
@@ -108,7 +108,19 @@ function buildCapabilityGetter(capabilityConf) {
             msb,
             lsb,
             GET_STATE_TYPE,
-            ...propertyIDs,
+            ...propertyNames.map(propertyName => {
+              const property = capabilityConf.properties.find(
+                x => x.name_cased === propertyName
+              );
+
+              if (!property) {
+                throw new Error(
+                  `Invalid property name ${propertyName} passed to getAvailability`
+                );
+              }
+
+              return property.id;
+            }),
           ]);
         },
         stateFuncName,
