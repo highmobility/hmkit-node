@@ -60,16 +60,21 @@ const CAPABILITY_CONFIGURATION_FILES = [
 
 const CUSTOM_TYPES_FILE_PATH = `misc/custom_types.yml`;
 const UNIT_TYPES_FILE_PATH = 'misc/unit_types.yml';
+const UNIVERSAL_PROPERTIES_FILE_PATH = 'misc/universal_properties.yml';
 const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/capabilities.json`;
 const CUSTOM_TYPES_DESTINATION_FILE = `${__dirname}/../src/Configuration/customTypes.json`;
+const UNIVERSAL_PROPERTIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/universalProperties.json`;
 
 function autoApiPath(path) {
-  return `${__dirname}/../../auto-api/${path}`;
+  return `${__dirname}/../../ml-auto-api/${path}`;
 }
 
 function parseConfigurationFiles() {
   const unitTypes = parseUnitTypesFile();
   const customTypes = parseCustomTypesFile(unitTypes);
+  const universalProperties = parseYmlFile(
+    autoApiPath(UNIVERSAL_PROPERTIES_FILE_PATH)
+  ).universal_properties;
 
   const parsedCapabilities = CAPABILITY_CONFIGURATION_FILES.reduce(
     (configurationObject, fileName) => {
@@ -101,6 +106,11 @@ function parseConfigurationFiles() {
   fs.writeFileSync(
     CUSTOM_TYPES_DESTINATION_FILE,
     JSON.stringify(customTypes, null, 2)
+  );
+
+  fs.writeFileSync(
+    UNIVERSAL_PROPERTIES_DESTINATION_FILE,
+    JSON.stringify(universalProperties, null, 2)
   );
 
   console.log('Successfully updated capabilities configuration.');

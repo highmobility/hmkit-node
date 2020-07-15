@@ -32,6 +32,7 @@ import { capitalize } from './Helpers';
 import ResponseClass from '../Configuration/ResponseClass';
 import mergeWith from 'lodash/mergeWith';
 import customTypes from '../Configuration/customTypes.json';
+import universalProperties from '../Configuration/universalProperties.json';
 
 import {
   PROPERTY_DATA_ID,
@@ -113,7 +114,9 @@ function parseProperties(propertiesData, capabilityConf) {
         counter + 3 + propertyComponentsLength
       );
 
-      const property = properties.find(prop => prop.id === identifier);
+      const property =
+        properties.find(prop => prop.id === identifier) ||
+        universalProperties.find(prop => prop.id === identifier);
 
       if (!!property) {
         const parsedProperty = parseProperty(propertyComponentsData, property);
