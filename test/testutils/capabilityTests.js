@@ -67,22 +67,7 @@ function describeOfflineTests(capabilityName, capability) {
             property
           );
 
-          // Loops through values and adds proper casing to match with the SDK
-          if (example.values) {
-            Object.keys(example.values).forEach(key => {
-              const value = example.values[key];
-              delete example.values[key];
-              const propertyMetaData = (property.items || []).find(
-                x => x.name === key
-              );
-              const properlyCasedKey = propertyMetaData
-                ? propertyMetaData.name_cased
-                : key;
-              example.values[properlyCasedKey] = value;
-            });
-          }
-
-          expect(parsedResponse).toEqual(getExampleValue(example));
+          expect(parsedResponse).toEqual(getExampleValue(example, property));
         });
       });
     });
@@ -481,11 +466,25 @@ async function sendSetterQueryCommand(setterCommand, setterArguments) {
   return response.parse();
 }
 
+const snakeCaseMap = Object.values(capabilitiesConfiguration).reduce(
+  (map, cap) => {
+    return {
+      ...map,
+      ...cap.properties.reduce((propertyMap, property) => {
+        return {
+          ...propertyMap,
+          [property.name]: property.name_cased,
+        };
+      }, {}),
+    };
+  },
+  {}
+);
 /**
  * Takes the value from the docs example and parses some data types to match
  * with what the SDK returns (such as ISO strings being converted to strings)
  */
-function getExampleValue(example) {
+function getExampleValue(example, property) {
   // https://stackoverflow.com/a/3143231
   const isValidDate = x => {
     const DATE_REGEX = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/;
@@ -493,6 +492,7 @@ function getExampleValue(example) {
   };
 
   const parseValue = value => {
+    // SDSK returns dates as Date instances
     if (isValidDate(value)) {
       return new Date(value);
     }
@@ -504,11 +504,61 @@ function getExampleValue(example) {
   }
 
   if (example.values != null) {
-    const output = { ...example.values };
-    Object.keys(output).forEach(key => {
-      output[key] = parseValue(output[key]);
-    });
-    return output;
+    /**
+     * The example uses snake_case for property keys, but the SDK uses camelCase, so this converts the examples to camelCase
+     */
+    const normalizeExampleValues = obj => {
+      const output = { ...obj };
+
+      Object.keys(output).forEach(key => {
+        const value = output[key];
+        delete output[key];
+
+        const propertyMetaData = (property.items || []).find(
+          x => x.name === key
+        );
+        const properlyCasedKey = propertyMetaData
+          ? propertyMetaData.name_cased
+          : snakeCaseMap[key] || key;
+
+        if (Array.isArray(value)) {
+          output[properlyCasedKey] = value;
+        } else if (typeof value === 'object') {
+          output[properlyCasedKey] = normalizeExampleValues(value);
+        } else if (!Array.isArray(value)) {
+          output[properlyCasedKey] = parseValue(value);
+        } else {
+          output[properlyCasedKey] = parseValue(value);
+        }
+      });
+
+      return output;
+    };
+
+    let values = example.values;
+    // SDK returns sub-capabilities for capability_state as Response instances, which have the shape `{ value: ... }`
+    if (property.customType === 'capability_state') {
+      values = Object.entries(values).reduce((acc, cur) => {
+        const [capabilityKey, capabilityValue] = cur;
+
+        return {
+          ...acc,
+          [capabilityKey]: Object.entries(capabilityValue).reduce(
+            (properties, propertyEntry) => {
+              const [propertyKey, propertyValue] = propertyEntry;
+              const newProperty = Array.isArray(propertyValue)
+                ? propertyValue.map(value => ({ value }))
+                : { value: propertyValue };
+
+              return { ...properties, [propertyKey]: newProperty };
+            },
+            {}
+          ),
+        };
+      }, {});
+    }
+
+    return { ...normalizeExampleValues(values) };
   }
 
   return null;
