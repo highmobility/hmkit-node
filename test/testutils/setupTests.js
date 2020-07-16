@@ -25,6 +25,6 @@
  *
  *  Created by Mikk Õun on 12/06/2018.
  */
-
-require('dotenv').load();
+require('regenerator-runtime/runtime');
+require('dotenv').config();
 jest.setTimeout(30000);
