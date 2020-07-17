@@ -17,7 +17,7 @@ The library is designed to give Node.js developers simple access to High Mobilit
 
 ## Requirements
 
-HMKit Node.js SDK requires Node v8.0.0 or higher for ES2015 and async function support.
+HMKit Node.js SDK requires Node v10.0.0 or higher.
 
 ## Installation
 
