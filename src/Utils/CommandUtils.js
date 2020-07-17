@@ -289,14 +289,7 @@ function encodePropertyData(property, value) {
     validatePropertyValue(
       value,
       property.name_cased,
-      Joi.object()
-        .pattern(
-          /^/,
-          Joi.number()
-            .min(-1022)
-            .max(1023)
-        )
-        .length(1)
+      Joi.object().pattern(/^/, Joi.number().min(-1022).max(1023)).length(1)
     );
 
     const [dataUnitType, dataValue] = Object.entries(value)[0];
@@ -339,9 +332,7 @@ function encodePropertyData(property, value) {
       validatePropertyValue(
         value,
         property.name_cased,
-        Joi.number()
-          .min(-1022)
-          .max(1023)
+        Joi.number().min(-1022).max(1023)
       );
       return encodePropertyValue(
         sanitizeArgumentValue(property, value),
@@ -353,9 +344,7 @@ function encodePropertyData(property, value) {
       validatePropertyValue(
         value,
         property.name_cased,
-        Joi.number()
-          .min(-126)
-          .max(127)
+        Joi.number().min(-126).max(127)
       );
       return encodePropertyValue(
         sanitizeArgumentValue(property, value),

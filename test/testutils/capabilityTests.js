@@ -618,9 +618,7 @@ function getPropertyData(property) {
     const dataComponent = [
       PROPERTY_DATA_ID,
       ...hexToUint8Array(
-        hexToUint8Array(hex)
-          .length.toString(16)
-          .padStart(4, '0')
+        hexToUint8Array(hex).length.toString(16).padStart(4, '0')
       ),
       ...hexToUint8Array(hex),
     ];
