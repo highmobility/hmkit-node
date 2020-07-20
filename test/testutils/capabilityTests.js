@@ -105,99 +105,103 @@ function describeOfflineTests(capabilityName, capability) {
  * Therefore, these tests are disabled by default.
  */
 function describeEmulatorTests(capabilityName, capability) {
-  describeIf(process.env.TEST_ONLINE, capabilityName, async () => {
-    const { identifier } = capability;
-    const capabilityConfiguration = getCapabilityConfiguration(identifier);
+  describeIf(
+    process.env.TEST_ONLINE,
+    `${capabilityName} emulator tests`,
+    () => {
+      const { identifier } = capability;
+      const capabilityConfiguration = getCapabilityConfiguration(identifier);
 
-    const commands = Object.values(capability);
-    const respClass = ResponseClass[capabilityName];
+      const commands = Object.values(capability);
+      const respClass = ResponseClass[capabilityName];
 
-    const responseValidator = buildResponseValidator(capabilityConfiguration);
+      const responseValidator = buildResponseValidator(capabilityConfiguration);
 
-    const getterCommand = commands.find(
-      ({ type }) => type === CommandType.Getter
-    );
-
-    const setterCommands = commands.filter(
-      ({ type }) => type === CommandType.Setter
-    );
-
-    if (getterCommand) {
-      // Test correct getter response
-      it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
-        const parsedResponse = await sendGetterQueryCommand(getterCommand);
-        expect(respClass).toBeDefined();
-        expect(parsedResponse).toBeInstanceOf(respClass);
-      });
-
-      // Test correct getter response state
-      it(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
-        const parsedResponse = await sendGetterQueryCommand(getterCommand);
-        expect(parsedResponse).toEqual(responseValidator);
-      });
-
-      // Test getter response properties
-      (capabilityConfiguration.state || []).forEach(propertyId => {
-        const property = capabilityConfiguration.properties.find(
-          prop => prop.id === propertyId
-        );
-
-        const { name_cased: nameCased } = property;
-
-        it(`Should include ${capabilityName}.${property.name_cased} property in getter`, async () => {
-          const parsedResponse = await sendGetterQueryCommand(getterCommand);
-          expect(parsedResponse).toHaveProperty(nameCased);
-        });
-
-        it(`Should map ${capabilityName}.${property.name_cased} property structure correctly`, async () => {
-          const parsedResponse = await sendGetterQueryCommand(getterCommand);
-          expect(parsedResponse).toMatchObject({
-            [nameCased]: responseValidator[nameCased],
-          });
-        });
-      });
-    }
-
-    setterCommands.forEach(setterCommand => {
-      const setterArguments = findSetterArguments(
-        identifier,
-        setterCommand.nameSnake
+      const getterCommand = commands.find(
+        ({ type }) => type === CommandType.Getter
       );
 
-      it(`Should handle setter ${capabilityName}.${setterCommand.name}() command`, async () => {
-        const parsedResponse = await sendSetterQueryCommand(
-          setterCommand,
-          setterArguments
-        );
-
-        expect(respClass).toBeDefined();
-        expect(parsedResponse).toBeInstanceOf(respClass);
-      });
+      const setterCommands = commands.filter(
+        ({ type }) => type === CommandType.Setter
+      );
 
       if (getterCommand) {
-        it(`Setter ${capabilityName}.${setterCommand.name}() should keep default values`, async () => {
-          const parsedSetterResponse = await sendSetterQueryCommand(
+        // Test correct getter response
+        it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
+          const parsedResponse = await sendGetterQueryCommand(getterCommand);
+          expect(respClass).toBeDefined();
+          expect(parsedResponse).toBeInstanceOf(respClass);
+        });
+
+        // Test correct getter response state
+        it(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
+          const parsedResponse = await sendGetterQueryCommand(getterCommand);
+          expect(parsedResponse).toEqual(responseValidator);
+        });
+
+        // Test getter response properties
+        (capabilityConfiguration.state || []).forEach(propertyId => {
+          const property = capabilityConfiguration.properties.find(
+            prop => prop.id === propertyId
+          );
+
+          const { name_cased: nameCased } = property;
+
+          it(`Should include ${capabilityName}.${property.name_cased} property in getter`, async () => {
+            const parsedResponse = await sendGetterQueryCommand(getterCommand);
+            expect(parsedResponse).toHaveProperty(nameCased);
+          });
+
+          it(`Should map ${capabilityName}.${property.name_cased} property structure correctly`, async () => {
+            const parsedResponse = await sendGetterQueryCommand(getterCommand);
+            expect(parsedResponse).toMatchObject({
+              [nameCased]: responseValidator[nameCased],
+            });
+          });
+        });
+      }
+
+      setterCommands.forEach(setterCommand => {
+        const setterArguments = findSetterArguments(
+          identifier,
+          setterCommand.nameSnake
+        );
+
+        it(`Should handle setter ${capabilityName}.${setterCommand.name}() command`, async () => {
+          const parsedResponse = await sendSetterQueryCommand(
             setterCommand,
             setterArguments
           );
-          const parsedGetterResponse = await sendGetterQueryCommand(
-            getterCommand
-          );
 
-          expect(parsedSetterResponse).toBeInstanceOf(respClass);
-          expect(parsedGetterResponse).toBeInstanceOf(respClass);
-
-          const responseValidatorWithValues = replaceConstants(
-            replaceTimestampsWithValidators(parsedGetterResponse),
-            setterCommand.nameSnake,
-            capabilityConfiguration
-          );
-
-          expect(parsedSetterResponse).toEqual(responseValidatorWithValues);
+          expect(respClass).toBeDefined();
+          expect(parsedResponse).toBeInstanceOf(respClass);
         });
-      }
-    });
-  });
+
+        if (getterCommand) {
+          it(`Setter ${capabilityName}.${setterCommand.name}() should keep default values`, async () => {
+            const parsedSetterResponse = await sendSetterQueryCommand(
+              setterCommand,
+              setterArguments
+            );
+            const parsedGetterResponse = await sendGetterQueryCommand(
+              getterCommand
+            );
+
+            expect(parsedSetterResponse).toBeInstanceOf(respClass);
+            expect(parsedGetterResponse).toBeInstanceOf(respClass);
+
+            const responseValidatorWithValues = replaceConstants(
+              replaceTimestampsWithValidators(parsedGetterResponse),
+              setterCommand.nameSnake,
+              capabilityConfiguration
+            );
+
+            expect(parsedSetterResponse).toEqual(responseValidatorWithValues);
+          });
+        }
+      });
+    }
+  );
 }
 
 function getCapabilityConfiguration({ msb: msbToFind, lsb: lsbToFind }) {
