@@ -27,9 +27,6 @@ toc-options:
     text: DoorsResponse
     href: '#DoorsResponse_response'
   -
-    text: EngineStartStopResponse
-    href: '#EngineStartStopResponse_response'
-  -
     text: EngineResponse
     href: '#EngineResponse_response'
   -
@@ -108,6 +105,9 @@ toc-options:
     text: TheftAlarmResponse
     href: '#TheftAlarmResponse_response'
   -
+    text: TripsResponse
+    href: '#TripsResponse_response'
+  -
     text: TrunkResponse
     href: '#TrunkResponse_response'
   -
@@ -116,6 +116,9 @@ toc-options:
   -
     text: ValetModeResponse
     href: '#ValetModeResponse_response'
+  -
+    text: VehicleInformationResponse
+    href: '#VehicleInformationResponse_response'
   -
     text: VehicleLocationResponse
     href: '#VehicleLocationResponse_response'
@@ -148,8 +151,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="capabilities"
-  parameters-description="(Array<Object>) (custom) "
+  parameters-name="capabilities,webhooks"
+  parameters-description="(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) "
   %}
 </div>
 
@@ -180,6 +183,20 @@ toc-options:
         ]
       }
     }
+  ],
+  "webhooks": [
+    {
+      "value": {
+        "available": "available",
+        "event": "trip_started"
+      }
+    },
+    {
+      "value": {
+        "available": "available",
+        "event": "trip_ended"
+      }
+    }
   ]
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -195,8 +212,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="estimatedRange,batteryLevel,batteryCurrentAC,batteryCurrentDC,chargerVoltageAC,chargerVoltageDC,chargeLimit,timeToCompleteCharge,chargingRateKW,chargePortState,chargeMode,maxChargingCurrent,plugType,chargingWindowChosen,departureTimes,reductionTimes,batteryTemperature,timers,pluggedIn,status"
-  parameters-description="(Number) (uinteger) Estimated range in km,(Number) (double) Battery level percentage between 0.0-1.0,(Number) (float) Battery active current,(Number) (float) Battery direct current,(Number) (float) Charger voltage,(Number) (float) Charger voltage,(Number) (double) Charge limit percentage between 0.0-1.0,(Number) (uinteger) Time until charging completed in minutes,(Number) (float) Charge rate in kW when charging,(String) (enum) ,(String) (enum) ,(Number) (float) Maximum charging current,(String) (enum) ,(String) (enum) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Number) (float) Battery temperature in Celsius,(Array<Object>) (custom) ,(String) (enum) ,(String) (enum) "
+  parameters-name="estimatedRange,batteryLevel,batteryCurrentAC,batteryCurrentDC,chargerVoltageAC,chargerVoltageDC,chargeLimit,timeToCompleteCharge,chargingRateKW,chargePortState,chargeMode,maxChargingCurrent,plugType,chargingWindowChosen,departureTimes,reductionTimes,batteryTemperature,timers,pluggedIn,status,chargingRate,batteryCurrent,chargerVoltage,currentType,maxRange,starterBatteryState,smartChargingStatus,batteryLevelAtDeparture,preconditioningDepratureStatus,preconditioningImmediateStatus,preconditioningDepratureEnabled,preconditioningError"
+  parameters-description="(Number) (length) Estimated range,(Number) (double) Battery level percentage between 0.0-1.0,(Number) (electric_current) Battery alternating current,(Number) (electric_current) Battery direct current,(Number) (electric_potential_difference) Charger voltage for alternating current,(Number) (electric_potential_difference) Charger voltage for direct current,(Number) (double) Charge limit percentage between 0.0-1.0,(Number) (duration) Time until charging completed,(Number) (power) Charging rate,(String) (enum) ,(String) (enum) ,(Number) (electric_current) Maximum charging current,(String) (enum) ,(String) (enum) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Number) (temperature) Battery temperature,(Array&lt;Object&gt;) ,(String) (enum) ,(String) (enum) ,(Number) (power) Charge rate when charging,(Number) (electric_current) Battery current,(Number) (electric_potential_difference) Charger voltage,(String) (enum) Type of current in use,(Number) (length) Maximum electric range with 100% of battery,(String) (enum) State of the starter battery,(String) (enum) Status of optimized/intelligent charging,(Number) (double) Battery charge level expected at time of departure,(String) (enum) Status of preconditioning at departure time,(String) (enum) Status of immediate preconditioning,(String) (enum) Preconditioning activation status at departure,(String) (enum) Preconditioning error if one is encountered"
   %}
 </div>
 
@@ -205,31 +222,45 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ChargingResponse> {
   "estimatedRange": {
-    "value": 432
+    "value": {
+      "kilometers": 432.1
+    }
   },
   "batteryLevel": {
     "value": 0.5
   },
   "batteryCurrentAC": {
-    "value": -0.6
+    "value": {
+      "amperes": -0.6
+    }
   },
   "batteryCurrentDC": {
-    "value": -0.6
+    "value": {
+      "amperes": -0.6
+    }
   },
   "chargerVoltageAC": {
-    "value": 400
+    "value": {
+      "volts": 400
+    }
   },
   "chargerVoltageDC": {
-    "value": 400
+    "value": {
+      "volts": 400
+    }
   },
   "chargeLimit": {
     "value": 0.9
   },
   "timeToCompleteCharge": {
-    "value": 60
+    "value": {
+      "minutes": 60
+    }
   },
   "chargingRateKW": {
-    "value": 3.5
+    "value": {
+      "kilowatts": 3.5
+    }
   },
   "chargePortState": {
     "value": "open"
@@ -238,7 +269,9 @@ toc-options:
     "value": "timer_based"
   },
   "maxChargingCurrent": {
-    "value": 25
+    "value": {
+      "amperes": 25
+    }
   },
   "plugType": {
     "value": "type_2"
@@ -260,7 +293,7 @@ toc-options:
       "value": {
         "state": "inactive",
         "time": {
-          "hour": 0,
+          "hour": 11,
           "minute": 51
         }
       }
@@ -280,32 +313,34 @@ toc-options:
       "value": {
         "startStop": "stop",
         "time": {
-          "hour": 0,
+          "hour": 12,
           "minute": 52
         }
       }
     }
   ],
   "batteryTemperature": {
-    "value": 38.4
+    "value": {
+      "celsius": 38.4
+    }
   },
   "timers": [
     {
       "value": {
         "timerType": "preferred_start_time",
-        "date": "1972-12-09T13:01:56.744Z"
+        "date": "2017-01-10T16:32:05.000Z"
       }
     },
     {
       "value": {
         "timerType": "preferred_end_time",
-        "date": "1970-03-09T02:18:40.280Z"
+        "date": "2017-01-10T16:36:05.000Z"
       }
     },
     {
       "value": {
         "timerType": "departure_date",
-        "date": "1970-03-09T02:18:40.280Z"
+        "date": "2017-01-10T16:36:05.000Z"
       }
     }
   ],
@@ -314,7 +349,49 @@ toc-options:
   },
   "status": {
     "value": "charging"
-  }
+  },
+  "chargingRate": {
+    "value": {
+      "kilowatts": 150
+    }
+  },
+  "batteryCurrent": {
+    "value": {
+      "amperes": -0.6
+    }
+  },
+  "chargerVoltage": {
+    "value": {
+      "volts": 400
+    }
+  },
+  "currentType": {
+    "value": "alternating_current"
+  },
+  "maxRange": {
+    "value": {
+      "kilometers": 555
+    }
+  },
+  "starterBatteryState": {
+    "value": "green"
+  },
+  "smartChargingStatus": {
+    "value": "scc_is_active"
+  },
+  "batteryLevelAtDeparture": {
+    "value": 0.9
+  },
+  "preconditioningDepratureStatus": {
+    "value": "active"
+  },
+  "preconditioningImmediateStatus": {
+    "value": "active"
+  },
+  "preconditioningDepratureEnabled": {
+    "value": "enabled"
+  },
+  "preconditioningError": {}
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 </div>
@@ -330,7 +407,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="drivingMode,sportChrono,currentSpringRates,maximumSpringRates,minimumSpringRates,currentChassisPosition,maximumChassisPosition,minimumChassisPosition"
-  parameters-description="(String) (enum) ,(String) (enum) ,(Array<Object>) (custom) The current values for the spring rates,(Array<Object>) (custom) The maximum possible values for the spring rates,(Array<Object>) (custom) The minimum possible values for the spring rates,(Number) (integer) The chassis position in mm calculated from the lowest point,(Number) (integer) The maximum possible value for the chassis position,(Number) (integer) The minimum possible value for the chassis position"
+  parameters-description="(String) (enum) ,(String) (enum) ,(Array&lt;Object&gt;) The current values for the spring rates,(Array&lt;Object&gt;) The maximum possible values for the spring rates,(Array&lt;Object&gt;) The minimum possible values for the spring rates,(Number) (length) The chassis position calculated from the lowest point,(Number) (length) The maximum possible value for the chassis position,(Number) (length) The minimum possible value for the chassis position"
   %}
 </div>
 
@@ -348,13 +425,17 @@ toc-options:
     {
       "value": {
         "axle": "front",
-        "springRate": 21
+        "springRate": {
+          "newton_millimeters": 21
+        }
       }
     },
     {
       "value": {
         "axle": "rear",
-        "springRate": 23
+        "springRate": {
+          "newton_millimeters": 23
+        }
       }
     }
   ],
@@ -362,13 +443,17 @@ toc-options:
     {
       "value": {
         "axle": "front",
-        "springRate": 37
+        "springRate": {
+          "newton_millimeters": 37
+        }
       }
     },
     {
       "value": {
         "axle": "rear",
-        "springRate": 39
+        "springRate": {
+          "newton_millimeters": 39
+        }
       }
     }
   ],
@@ -376,24 +461,34 @@ toc-options:
     {
       "value": {
         "axle": "front",
-        "springRate": 16
+        "springRate": {
+          "newton_millimeters": 16
+        }
       }
     },
     {
       "value": {
         "axle": "rear",
-        "springRate": 18
+        "springRate": {
+          "newton_millimeters": 18
+        }
       }
     }
   ],
   "currentChassisPosition": {
-    "value": 25
+    "value": {
+      "millimeters": 25.4
+    }
   },
   "maximumChassisPosition": {
-    "value": 55
+    "value": {
+      "millimeters": 55.5
+    }
   },
   "minimumChassisPosition": {
-    "value": -28
+    "value": {
+      "millimeters": -28.4
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -410,7 +505,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="insideTemperature,outsideTemperature,driverTemperatureSetting,passengerTemperatureSetting,hvacState,defoggingState,defrostingState,ionisingState,defrostingTemperatureSetting,hvacWeekdayStartingTimes,rearTemperatureSetting"
-  parameters-description="(Number) (float) The inside temperature in celsius,(Number) (float) The outside temperature in celsius,(Number) (float) The driver temperature setting in celsius,(Number) (float) The passenger temperature setting in celsius,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (float) The defrosting temperature setting in celsius,(Array<Object>) (custom) ,(Number) (float) The rear temperature in celsius"
+  parameters-description="(Number) (temperature) The inside temperature,(Number) (temperature) The outside temperature,(Number) (temperature) The driver temperature setting,(Number) (temperature) The passenger temperature setting,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (temperature) The defrosting temperature setting,(Array&lt;Object&gt;) ,(Number) (temperature) The rear temperature"
   %}
 </div>
 
@@ -419,16 +514,24 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ClimateResponse> {
   "insideTemperature": {
-    "value": 19
+    "value": {
+      "celsius": 19.1
+    }
   },
   "outsideTemperature": {
-    "value": 12
+    "value": {
+      "celsius": 12.2
+    }
   },
   "driverTemperatureSetting": {
-    "value": 21.5
+    "value": {
+      "celsius": 21.5
+    }
   },
   "passengerTemperatureSetting": {
-    "value": 21.5
+    "value": {
+      "celsius": 21.7
+    }
   },
   "hvacState": {
     "value": "active"
@@ -443,7 +546,9 @@ toc-options:
     "value": "inactive"
   },
   "defrostingTemperatureSetting": {
-    "value": 21.5
+    "value": {
+      "celsius": 21.2
+    }
   },
   "hvacWeekdayStartingTimes": [
     {
@@ -496,7 +601,7 @@ toc-options:
         "weekday": "saturday",
         "time": {
           "hour": 18,
-          "minute": 0
+          "minute": 30
         }
       }
     },
@@ -505,7 +610,7 @@ toc-options:
         "weekday": "sunday",
         "time": {
           "hour": 19,
-          "minute": 0
+          "minute": 31
         }
       }
     },
@@ -520,7 +625,9 @@ toc-options:
     }
   ],
   "rearTemperatureSetting": {
-    "value": 21.5
+    "value": {
+      "celsius": 21.6
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -537,7 +644,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="dashboardLights"
-  parameters-description="(Array<Object>) (custom) "
+  parameters-description="(Array&lt;Object&gt;) "
   %}
 </div>
 
@@ -549,211 +656,246 @@ toc-options:
     {
       "value": {
         "name": "high_beam",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "low_beam",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "hazard_warning",
-        "state": "info"
+        "state": "active",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "brake_failure",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "hatch_open",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "fuel_level",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "engine_coolant_temperature",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "battery_charging_condition",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "engine_oil",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "position_lights",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "front_fog_light",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "rear_fog_light",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "park_heating",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "engine_indicator",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "service_call",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "red"
+        "name": "transmission_fluid_temperature",
+        "state": "active",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "transmission_failure",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "anti_lock_brake_failure",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "worn_brake_linings",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "windscreen_washer_fluid",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "tire_failure",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "engine_oil_level",
-        "state": "yellow"
+        "state": "active",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "engine_coolant_level",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "steering_failure",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "esc_indication",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "brake_lights",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "adblue_level",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "fuel_filter_diff_pressure",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "seat_belt",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "advanced_braking",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "acc",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
-        "name": "high_beam",
-        "state": "inactive"
+        "name": "trailer_connected",
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "airbag",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "esc_switched_off",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     },
     {
       "value": {
         "name": "lane_departure_warning_off",
-        "state": "inactive"
+        "state": "inactive",
+        "colour": "info"
       }
     }
   ]
@@ -771,8 +913,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="mileage,engineOilTemperature,speed,engineRPM,fuelLevel,estimatedRange,washerFluidLevel,batteryVoltage,adBlueLevel,distanceSinceReset,distanceSinceStart,fuelVolume,antiLockBraking,engineCoolantTemperature,engineTotalOperatingHours,engineTotalFuelConsumption,brakeFluidLevel,engineTorque,engineLoad,wheelBasedSpeed,batteryLevel,checkControlMessages,tirePressures,tireTemperatures,wheelRPMs,troubleCodes,mileageMeters"
-  parameters-description="(Number) (uinteger) The car mileage (odometer) in km,(Number) (integer) Engine oil temperature in Celsius&comma; whereas can be negative,(Number) (integer) The vehicle speed in km/h&comma; whereas can be negative,(Number) (uinteger) Engine RPM (revolutions per minute),(Number) (double) Fuel level percentage between 0.0-1.0,(Number) (integer) Estimated range (with combustion engine),(String) (enum) ,(Number) (float) Battery voltage,(Number) (float) AdBlue level in liters,(Number) (uinteger) The distance driven in km since reset,(Number) (uinteger) The distance driven in km since trip start,(Number) (float) The fuel volume measured in liters,(String) (enum) ,(Number) (integer) Engine coolant temperature in Celsius&comma; whereas can be negative,(Number) (float) The accumulated time of engine operation,(Number) (float) The accumulated lifespan fuel consumption in liters,(String) (enum) ,(Number) (double) Current engine torque percentage between 0.0-1.0,(Number) (double) Current engine load percentage between 0.0-1.0,(Number) (integer) The vehicle speed in km/h measured at the wheel base&comma; whereas can be negative,(Number) (double) Battery level in %&comma; value between 0.0 and 1.0,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Number) (uinteger) The car mileage (odometer) in meters"
+  parameters-name="mileage,engineOilTemperature,speed,engineRPM,fuelLevel,estimatedRange,washerFluidLevel,batteryVoltage,adBlueLevel,distanceSinceReset,distanceSinceStart,fuelVolume,antiLockBraking,engineCoolantTemperature,engineTotalOperatingHours,engineTotalFuelConsumption,brakeFluidLevel,engineTorque,engineLoad,wheelBasedSpeed,batteryLevel,checkControlMessages,tirePressures,tireTemperatures,wheelRPMs,troubleCodes,mileageMeters,odometer,engineTotalOperatingTime,tirePressureStatuses,brakeLiningWearPreWarning,engineOilLifeRemaining,oemTroubleCodeValues,dieselExhaustFluidRange,dieselParticulateFilterSootLevel"
+  parameters-description="(Number) (length) The vehicle mileage (odometer),(Number) (temperature) Engine oil temperature,(Number) (speed) The vehicle speed,(Number) (angular_velocity) Engine RPM (revolutions per minute),(Number) (double) Fuel level percentage between 0.0-1.0,(Number) (length) Estimated range (with combustion engine),(String) (enum) ,(Number) (electric_potential_difference) Battery voltage,(Number) (volume) AdBlue level in liters,(Number) (length) The distance driven since reset,(Number) (length) The distance driven since trip start,(Number) (volume) The fuel volume measured in liters,(String) (enum) ,(Number) (temperature) Engine coolant temperature,(Number) (duration) The accumulated time of engine operation,(Number) (volume) The accumulated lifespan fuel consumption,(String) (enum) ,(Number) (double) Current engine torque percentage between 0.0-1.0,(Number) (double) Current engine load percentage between 0.0-1.0,(Number) (speed) The vehicle speed measured at the wheel base,(Number) (double) Battery level in %&comma; value between 0.0 and 1.0,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Number) (length) The vehicle mileage (odometer) in meters,(Number) (length) The vehicle odometer value in a given units.,(Number) (duration) The accumulated time of engine operation,(Array&lt;Object&gt;) ,(String) (enum) Status of brake lining wear pre-warning,(Number) (double) Remaining life of engine oil which decreases over time,(Array&lt;Object&gt;) Additional OEM trouble codes,(Number) (length) Distance remaining until diesel exhaust fluid is empty,(Number) (double) Level of soot in diesel exhaust particulate filter"
   %}
 </div>
 
@@ -781,52 +923,78 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<DiagnosticsResponse> {
   "mileage": {
-    "value": 150000
+    "value": {
+      "kilometers": 150000
+    }
   },
   "engineOilTemperature": {
-    "value": 99
+    "value": {
+      "celsius": 99.5
+    }
   },
   "speed": {
-    "value": 60
+    "value": {
+      "kilometers_per_hour": 60
+    }
   },
   "engineRPM": {
-    "value": 2500
+    "value": {
+      "revolutions_per_minute": 2500
+    }
   },
   "fuelLevel": {
     "value": 0.9
   },
   "estimatedRange": {
-    "value": 265
+    "value": {
+      "kilometers": 265
+    }
   },
   "washerFluidLevel": {
     "value": "filled"
   },
   "batteryVoltage": {
-    "value": 12
+    "value": {
+      "volts": 12.1
+    }
   },
   "adBlueLevel": {
-    "value": 0.5
+    "value": {
+      "liters": 0.55
+    }
   },
   "distanceSinceReset": {
-    "value": 1500
+    "value": {
+      "kilometers": 1500.1
+    }
   },
   "distanceSinceStart": {
-    "value": 10
+    "value": {
+      "kilometers": 12.4
+    }
   },
   "fuelVolume": {
-    "value": 35.5
+    "value": {
+      "liters": 35.5
+    }
   },
   "antiLockBraking": {
     "value": "active"
   },
   "engineCoolantTemperature": {
-    "value": 20
+    "value": {
+      "celsius": 20
+    }
   },
   "engineTotalOperatingHours": {
-    "value": 1500.65
+    "value": {
+      "hours": 1500.65
+    }
   },
   "engineTotalFuelConsumption": {
-    "value": 27587
+    "value": {
+      "liters": 27587
+    }
   },
   "brakeFluidLevel": {
     "value": "low"
@@ -838,7 +1006,9 @@ toc-options:
     "value": 0.1
   },
   "wheelBasedSpeed": {
-    "value": 65
+    "value": {
+      "kilometers_per_hour": 65
+    }
   },
   "batteryLevel": {
     "value": 0.56
@@ -847,9 +1017,11 @@ toc-options:
     {
       "value": {
         "ID": 1,
-        "remainingMinutes": 4216,
-        "text": "",
-        "status": "eck engine\u0005Alert"
+        "remainingTime": {
+          "minutes": 105592
+        },
+        "text": "Check engine",
+        "status": "Alert"
       }
     }
   ],
@@ -857,25 +1029,33 @@ toc-options:
     {
       "value": {
         "location": "front_left",
-        "pressure": 2.31
+        "pressure": {
+          "bars": 2.31
+        }
       }
     },
     {
       "value": {
         "location": "front_right",
-        "pressure": 2.31
+        "pressure": {
+          "bars": 2.31
+        }
       }
     },
     {
       "value": {
         "location": "rear_right",
-        "pressure": 2.24
+        "pressure": {
+          "bars": 2.24
+        }
       }
     },
     {
       "value": {
         "location": "rear_left",
-        "pressure": 2.24
+        "pressure": {
+          "bars": 2.24
+        }
       }
     }
   ],
@@ -883,25 +1063,33 @@ toc-options:
     {
       "value": {
         "location": "front_left",
-        "temperature": 40
+        "temperature": {
+          "celsius": 40.1
+        }
       }
     },
     {
       "value": {
         "location": "front_right",
-        "temperature": 40
+        "temperature": {
+          "celsius": 40.2
+        }
       }
     },
     {
       "value": {
         "location": "rear_right",
-        "temperature": 40
+        "temperature": {
+          "celsius": 40.3
+        }
       }
     },
     {
       "value": {
         "location": "rear_left",
-        "temperature": 40
+        "temperature": {
+          "celsius": 40.4
+        }
       }
     }
   ],
@@ -909,48 +1097,130 @@ toc-options:
     {
       "value": {
         "location": "front_left",
-        "RPM": 32
+        "RPM": {
+          "revolutions_per_minute": 737
+        }
       }
     },
     {
       "value": {
         "location": "front_right",
-        "RPM": 32
+        "RPM": {
+          "revolutions_per_minute": 747
+        }
       }
     },
     {
       "value": {
         "location": "rear_right",
-        "RPM": 32
+        "RPM": {
+          "revolutions_per_minute": 777
+        }
       }
     },
     {
       "value": {
         "location": "rear_left",
-        "RPM": 32
+        "RPM": {
+          "revolutions_per_minute": 787
+        }
       }
     }
   ],
   "troubleCodes": [
     {
       "value": {
-        "occurences": 2,
+        "occurrences": 2,
         "ID": "C1116FA",
         "ecuID": "RDU_212FR",
-        "status": "PENDING"
+        "status": "PENDING",
+        "system": "unknown"
       }
     },
     {
       "value": {
-        "occurences": 2,
+        "occurrences": 2,
         "ID": "C163AFA",
         "ecuID": "DTR212",
-        "status": "PENDING"
+        "status": "PENDING",
+        "system": "body"
       }
     }
   ],
   "mileageMeters": {
-    "value": 150001
+    "value": {
+      "kilometers": 150001
+    }
+  },
+  "odometer": {
+    "value": {
+      "megameters": 6.4
+    }
+  },
+  "engineTotalOperatingTime": {
+    "value": {
+      "hours": 1500.65
+    }
+  },
+  "tirePressureStatuses": [
+    {
+      "value": {
+        "location": "front_left",
+        "status": "normal"
+      }
+    },
+    {
+      "value": {
+        "location": "front_right",
+        "status": "low"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_right",
+        "status": "alert"
+      }
+    },
+    {
+      "value": {
+        "location": "rear_left",
+        "status": "normal"
+      }
+    }
+  ],
+  "brakeLiningWearPreWarning": {
+    "value": "inactive"
+  },
+  "engineOilLifeRemaining": {
+    "value": 0.88
+  },
+  "oemTroubleCodeValues": [
+    {
+      "value": {
+        "ID": "123ID",
+        "keyValue": {
+          "key": "some_error",
+          "value": "some_value"
+        }
+      }
+    },
+    {
+      "value": {
+        "ID": "1B3C",
+        "keyValue": {
+          "key": "important_error",
+          "value": "system fault 32"
+        }
+      }
+    }
+  ],
+  "dieselExhaustFluidRange": {
+    "value": {
+      "kilometers": 2233
+    }
+  },
+  "dieselParticulateFilterSootLevel": {
+    "value": 0.16
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -967,7 +1237,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="insideLocks,locks,positions,insideLocksState,locksState"
-  parameters-description="(Array<Object>) (custom) Inside lock states for the given doors,(Array<Object>) (custom) Lock states for the given doors,(Array<Object>) (custom) Door positions for the given doors,(String) (enum) Inside locks state for the whole car (combines all specific lock states if available),(String) (enum) Locks state for the whole car (combines all specific lock states if available)"
+  parameters-description="(Array&lt;Object&gt;) Inside lock states for the given doors,(Array&lt;Object&gt;) Lock states for the given doors,(Array&lt;Object&gt;) Door positions for the given doors,(String) (enum) Inside locks state for the whole vehicle (combines all specific lock states if available),(String) (enum) Locks state for the whole vehicle (combines all specific lock states if available)"
   %}
 </div>
 
@@ -1072,32 +1342,6 @@ toc-options:
 </div>
 
 
-<h2 id="engine_start_stop_response">EngineStartStopResponse</h2>
-<div class="split-design-wrapper">
-  
-<div class="col-left">
-  <h3>General response</h3>
-  {%
-  include code-node-sdk-response.html
-  parameters-name="status"
-  parameters-description="(String) (enum) "
-  %}
-</div>
-
-  
-<div class="col-right">
-  <h4>Example</h4>
-  {% capture code %}<EngineStartStopResponse> {
-  "status": {
-    "value": "active"
-  }
-}{% endcapture %}
-  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
-</div>
-
-</div>
-
-
 <h2 id="engine_response">EngineResponse</h2>
 <div class="split-design-wrapper">
   
@@ -1105,8 +1349,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="status"
-  parameters-description="(String) (enum) "
+  parameters-name="status,startStopState"
+  parameters-description="(String) (enum) ,(String) (enum) "
   %}
 </div>
 
@@ -1116,6 +1360,9 @@ toc-options:
   {% capture code %}<EngineResponse> {
   "status": {
     "value": "off"
+  },
+  "startStopState": {
+    "value": "active"
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1132,7 +1379,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="failedMessageID,failedMessageType,failureReason,failureDescription,failedPropertyIDs"
-  parameters-description="(Number) (uinteger) Capability identifier of the failed message,(Number) (uinteger) Message type of the failed message,(String) (enum) ,(String) (string) Failure description,(Array<Number>) (bytes) Array of failed property identifiers"
+  parameters-description="(Number) (uinteger) Capability identifier of the failed message,(Number) (uinteger) Message type of the failed message,(String) (enum) ,(String) Failure description,(Array<Number>) (bytes) Array of failed property identifiers"
   %}
 </div>
 
@@ -1173,7 +1420,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="hmKitVersion,hmKitBuildName,applicationVersion"
-  parameters-description="(Object) (custom) HMKit version,(String) (string) HMKit version build name,(String) (string) Application version"
+  parameters-description="(Object) HMKit version,(String) HMKit version build name,(String) Application version"
   %}
 </div>
 
@@ -1238,7 +1485,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="states"
-  parameters-description="(Array<Array<Number>>) (bytes) The bytes of a Capability state"
+  parameters-description="(Array&lt;Array<Number>&gt;) (bytes) The bytes of a Capability state"
   %}
 </div>
 
@@ -1259,19 +1506,41 @@ toc-options:
                 "location": "front_left",
                 "position": "open"
               }
+            },
+            {
+              "value": {
+                "location": "rear_right",
+                "position": "open"
+              }
             }
-          ]
+          ],
+          "timestamp": {
+            "value": "2017-01-10T16:32:05.000Z"
+          }
         }
       }
     },
     {
       "value": {
         "charging": {
-          "chargingRateKW": {
-            "value": 3.5
-          },
           "chargePortState": {
             "value": "open"
+          },
+          "chargeMode": {
+            "value": "immediate"
+          },
+          "chargingRate": {
+            "value": {
+              "kilowatts": 35
+            }
+          },
+          "maxRange": {
+            "value": {
+              "kilometers": 555
+            }
+          },
+          "timestamp": {
+            "value": "2017-01-10T16:32:05.000Z"
           }
         }
       }
@@ -1291,8 +1560,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="chargingStatus,authenticationMechanism,plugType,chargingPowerKW,solarCharging,wifiHotspotEnabled,wifiHotspotSSID,wiFiHotspotSecurity,wiFiHotspotPassword,authenticationState,chargeCurrentDC,maximumChargeCurrent,minimumChargeCurrent,coordinates,priceTariffs"
-  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (float) Charging power in kW,(String) (enum) ,(String) (enum) ,(String) (string) The Wi-Fi Hotspot SSID,(String) (enum) ,(String) (string) The Wi-Fi Hotspot password,(String) (enum) ,(Number) (float) The charge direct current,(Number) (float) The maximum possible charge current,(Number) (float) The minimal possible charge current,(Object) (custom) ,(Array<Object>) (custom) "
+  parameters-name="chargingStatus,authenticationMechanism,plugType,chargingPowerKW,solarCharging,wifiHotspotEnabled,wifiHotspotSSID,wiFiHotspotSecurity,wiFiHotspotPassword,authenticationState,chargeCurrentDC,maximumChargeCurrent,minimumChargeCurrent,coordinates,priceTariffs,chargingPower"
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (power) Charging power,(String) (enum) ,(String) (enum) ,(String) The Wi-Fi Hotspot SSID,(String) (enum) ,(String) The Wi-Fi Hotspot password,(String) (enum) ,(Number) (electric_potential_difference) The charge direct current,(Number) (electric_potential_difference) The maximum possible charge current,(Number) (electric_potential_difference) The minimal possible charge current,(Object) ,(Array&lt;Object&gt;) ,(Number) (power) Charging power output from the charger"
   %}
 </div>
 
@@ -1310,7 +1579,9 @@ toc-options:
     "value": "type_2"
   },
   "chargingPowerKW": {
-    "value": 11.5
+    "value": {
+      "kilowatts": 11.5
+    }
   },
   "solarCharging": {
     "value": "active"
@@ -1331,12 +1602,20 @@ toc-options:
     "value": "authenticated"
   },
   "chargeCurrentDC": {
-    "value": 0.5
+    "value": {
+      "volts": 0.5
+    }
   },
   "maximumChargeCurrent": {
-    "value": 1
+    "value": {
+      "volts": 1
+    }
   },
-  "minimumChargeCurrent": {},
+  "minimumChargeCurrent": {
+    "value": {
+      "volts": 0.1
+    }
+  },
   "coordinates": {
     "value": {
       "latitude": 52.520008,
@@ -1365,7 +1644,12 @@ toc-options:
         "currency": "Ripple"
       }
     }
-  ]
+  ],
+  "chargingPower": {
+    "value": {
+      "kilowatts": 350
+    }
+  }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 </div>
@@ -1432,8 +1716,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="status,accessoriesStatus"
-  parameters-description="(String) (enum) ,(String) (enum) "
+  parameters-name="status,accessoriesStatus,state"
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) "
   %}
 </div>
 
@@ -1446,7 +1730,8 @@ toc-options:
   },
   "accessoriesStatus": {
     "value": "on"
-  }
+  },
+  "state": {}
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 </div>
@@ -1462,7 +1747,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="outsideLight,insideLight"
-  parameters-description="(Number) (float) Measured outside illuminance in lux,(Number) (float) Measured inside illuminance in lux"
+  parameters-description="(Number) (illuminance) Measured outside illuminance,(Number) (illuminance) Measured inside illuminance"
   %}
 </div>
 
@@ -1471,10 +1756,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<LightConditionsResponse> {
   "outsideLight": {
-    "value": 111000
+    "value": {
+      "lux": 111000
+    }
   },
   "insideLight": {
-    "value": 0.25
+    "value": {
+      "lux": 0.25
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1490,8 +1779,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="frontExteriorLight,rearExteriorLight,ambientLightColour,reverseLight,emergencyBrakeLight,fogLights,readingLamps,interiorLights"
-  parameters-description="(String) (enum) ,(String) (enum) ,(Object) (custom) ,(String) (enum) ,(String) (enum) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) "
+  parameters-name="frontExteriorLight,rearExteriorLight,ambientLightColour,reverseLight,emergencyBrakeLight,fogLights,readingLamps,interiorLights,switchPosition"
+  parameters-description="(String) (enum) ,(String) (enum) ,(Object) ,(String) (enum) ,(String) (enum) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(String) (enum) Position of the rotary light switch"
   %}
 </div>
 
@@ -1571,7 +1860,8 @@ toc-options:
         "state": "active"
       }
     }
-  ]
+  ],
+  "switchPosition": {}
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 </div>
@@ -1586,8 +1876,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="daysToNextService,kilometersToNextService,cbsReportsCount,monthsToExhaustInspection,teleserviceAvailability,serviceDistanceThreshold,serviceTimeThreshold,automaticTeleserviceCallDate,teleserviceBatteryCallDate,nextInspectionDate,conditionBasedServices,brakeFluidChangeDate"
-  parameters-description="(Number) (integer) Number of days until next servicing of the car&comma; whereas negative is overdue,(Number) (uinteger) The amount of kilometers until next servicing of the car,(Number) (uinteger) The number of CBS reports,(Number) (uinteger) Number of months until exhaust inspection,(String) (enum) ,(Number) (uinteger) Distance threshold for Service,(Number) (uinteger) Time threshold&comma; in weeks&comma; for Service,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Array<Object>) (custom) ,(Date) (timestamp) Milliseconds since UNIX Epoch time"
+  parameters-name="daysToNextService,kilometersToNextService,cbsReportsCount,monthsToExhaustInspection,teleserviceAvailability,serviceDistanceThreshold,serviceTimeThreshold,automaticTeleserviceCallDate,teleserviceBatteryCallDate,nextInspectionDate,conditionBasedServices,brakeFluidChangeDate,timeToNextService,distanceToNextService,timeToExhaustInspection,lastECall"
+  parameters-description="(Number) (duration) Time until next servicing of the car,(Number) (length) The distance until next servicing of the vehicle,(Number) (uinteger) The number of CBS reports,(Number) (duration) Time until exhaust inspection,(String) (enum) ,(Number) (length) Distance threshold for service,(Number) (duration) Time threshold for service,(Date) (timestamp) Automatic teleservice call date,(Date) (timestamp) Teleservice batter call date,(Date) (timestamp) Next inspection date,(Array&lt;Object&gt;) ,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Number) (duration) Time until next servicing of the vehicle,(Number) (length) The distance until next servicing of the vehicle,(Number) (duration) Time until exhaust inspection,(Date) (timestamp) Date-time of the last eCall"
   %}
 </div>
 
@@ -1596,25 +1886,35 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<MaintenanceResponse> {
   "daysToNextService": {
-    "value": 501
+    "value": {
+      "days": 501
+    }
   },
   "kilometersToNextService": {
-    "value": 3681
+    "value": {
+      "kilometers": 3681
+    }
   },
   "cbsReportsCount": {
     "value": 3
   },
   "monthsToExhaustInspection": {
-    "value": 5
+    "value": {
+      "months": 5
+    }
   },
   "teleserviceAvailability": {
     "value": "successful"
   },
   "serviceDistanceThreshold": {
-    "value": 500
+    "value": {
+      "kilometers": 5000
+    }
   },
   "serviceTimeThreshold": {
-    "value": 4
+    "value": {
+      "weeks": 4
+    }
   },
   "automaticTeleserviceCallDate": {
     "value": "2018-11-23T11:33:50.000Z"
@@ -1628,16 +1928,34 @@ toc-options:
   "conditionBasedServices": [
     {
       "value": {
-        "year": 112,
+        "year": 2019,
         "month": 5,
         "id": 3,
         "dueStatus": "ok",
-        "text": "",
-        "description": "ake fluid,Next change at specified date at the latest."
+        "text": "Brake fluid",
+        "description": "Next change at specified date at the latest."
       }
     }
   ],
   "brakeFluidChangeDate": {
+    "value": "2018-12-05T03:22:56.000Z"
+  },
+  "timeToNextService": {
+    "value": {
+      "days": 501
+    }
+  },
+  "distanceToNextService": {
+    "value": {
+      "kilometers": 3681
+    }
+  },
+  "timeToExhaustInspection": {
+    "value": {
+      "months": 5
+    }
+  },
+  "lastECall": {
     "value": "2018-12-05T03:22:56.000Z"
   }
 }{% endcapture %}
@@ -1655,7 +1973,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="text,handle"
-  parameters-description="(String) (string) The text,(String) (string) The optional handle of message"
+  parameters-description="(String) The text,(String) The optional handle of message"
   %}
 </div>
 
@@ -1710,7 +2028,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="multiStates"
-  parameters-description="(Array<Array<Number>>) (bytes) The incoming states"
+  parameters-description="(Array&lt;Array<Number>&gt;) (bytes) The incoming states"
   %}
 </div>
 
@@ -1731,19 +2049,41 @@ toc-options:
                 "location": "front_left",
                 "position": "open"
               }
+            },
+            {
+              "value": {
+                "location": "rear_right",
+                "position": "open"
+              }
             }
-          ]
+          ],
+          "timestamp": {
+            "value": "2017-01-10T16:32:05.000Z"
+          }
         }
       }
     },
     {
       "value": {
         "charging": {
-          "chargingRateKW": {
-            "value": 3.5
-          },
           "chargePortState": {
             "value": "open"
+          },
+          "chargeMode": {
+            "value": "immediate"
+          },
+          "chargingRate": {
+            "value": {
+              "kilowatts": 35
+            }
+          },
+          "maxRange": {
+            "value": {
+              "kilometers": 555
+            }
+          },
+          "timestamp": {
+            "value": "2017-01-10T16:32:05.000Z"
           }
         }
       }
@@ -1764,7 +2104,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="coordinates,destinationName,dataSlotsFree,dataSlotsMax,arrivalDuration,distanceToDestination"
-  parameters-description="(Object) (custom) ,(String) (string) Destination name,(Number) (uinteger) Remaining number of POI data slots available.,(Number) (uinteger) Maximum number of POI data slots.,(Object) (custom) Remaining time until reaching the destination.,(Number) (uinteger) Remaining distance to reach the destination."
+  parameters-description="(Object) ,(String) Destination name,(Number) (uinteger) Remaining number of POI data slots available.,(Number) (uinteger) Maximum number of POI data slots.,(Number) (duration) Remaining time until reaching the destination.,(Number) (length) Remaining distance to reach the destination."
   %}
 </div>
 
@@ -1789,12 +2129,13 @@ toc-options:
   },
   "arrivalDuration": {
     "value": {
-      "hour": 2,
-      "minute": 32
+      "hours": 2.6
     }
   },
   "distanceToDestination": {
-    "value": 1337
+    "value": {
+      "kilometers": 1337
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -1811,7 +2152,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="text,actionItems,activatedAction,clear"
-  parameters-description="(String) (string) Text for the notification,(Array<Object>) (custom) ,(Number) (uinteger) Identifier of the activated action,(String) (enum) "
+  parameters-description="(String) Text for the notification,(Array&lt;Object&gt;) ,(Number) (uinteger) Identifier of the activated action,(String) (enum) "
   %}
 </div>
 
@@ -1825,13 +2166,13 @@ toc-options:
   "actionItems": [
     {
       "value": {
-        "id": 0,
+        "id": 27,
         "name": "Open"
       }
     },
     {
       "value": {
-        "id": 0,
+        "id": 28,
         "name": "Cancel"
       }
     }
@@ -1857,7 +2198,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="routeIncline,wheelSuspension"
-  parameters-description="(Number) (integer) The route elevation incline in degrees&comma; which is a negative number for decline,(Number) (double) The wheel suspension level percentage&comma; whereas 0.0 is no suspension and 1.0 maximum suspension"
+  parameters-description="(Number) (angle) The route elevation incline,(Number) (double) The wheel suspension level percentage&comma; whereas 0.0 is no suspension and 1.0 maximum suspension"
   %}
 </div>
 
@@ -1866,7 +2207,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<OffroadResponse> {
   "routeIncline": {
-    "value": 10
+    "value": {
+      "degrees": 10.1
+    }
   },
   "wheelSuspension": {
     "value": 0.5
@@ -1912,7 +2255,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="status,operatorName,operatorTicketID,ticketStartTime,ticketEndTime"
-  parameters-description="(String) (enum) ,(String) (string) Operator name,(String) (string) Operator ticket ID,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Date) (timestamp) Milliseconds since UNIX Epoch time"
+  parameters-description="(String) (enum) ,(String) Operator name,(String) Operator ticket ID,(Date) (timestamp) Parking ticket start time,(Date) (timestamp) Parking ticket end time"
   %}
 </div>
 
@@ -1979,7 +2322,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="accelerations,understeering,oversteering,gasPedalPosition,steeringAngle,brakePressure,yawRate,rearSuspensionSteering,electronicStabilityProgram,brakeTorqueVectorings,gearMode,selectedGear,brakePedalPosition,brakePedalSwitch,clutchPedalSwitch,acceleratorPedalIdleSwitch,acceleratorPedalKickdownSwitch,vehicleMoving"
-  parameters-description="(Array<Object>) (custom) ,(Number) (double) The understeering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 0.3 (30%) marginal&comma; over 30% critical,(Number) (double) The oversteering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 30% marginal&comma; over 30% critical,(Number) (double) The gas pedal position between 0.0-1.0&comma; whereas 1.0 (100%) is full throttle,(Number) (integer) The steering angle in degrees&comma; whereas 0° is straight ahead&comma; positive number to the right and negative number to the left,(Number) (float) Brake pressure in bar&comma; whereas 100 bar is max value&comma; full brake,(Number) (float) Yaw rate in degrees per second [°/s],(Number) (integer) Rear suspension steering in degrees,(String) (enum) ,(Array<Object>) (custom) ,(String) (enum) ,(Number) (integer) The selected gear value&comma; if any,(Number) (double) The brake pedal position between 0.0-1.0&comma; wheras 1.0 (100%) is full brakes,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) "
+  parameters-description="(Array&lt;Object&gt;) ,(Number) (double) The understeering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 0.3 (30%) marginal&comma; over 30% critical,(Number) (double) The oversteering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 30% marginal&comma; over 30% critical,(Number) (double) The gas pedal position between 0.0-1.0&comma; whereas 1.0 (100%) is full throttle,(Number) (angle) The steering angle&comma; whereas 0.0 is straight ahead&comma; positive number to the right and negative number to the left,(Number) (pressure) Brake pressure,(Number) (angular_velocity) Yaw turning rate,(Number) (angle) Rear suspension steering,(String) (enum) ,(Array&lt;Object&gt;) ,(String) (enum) ,(Number) (integer) The selected gear value&comma; if any,(Number) (double) The brake pedal position between 0.0-1.0&comma; wheras 1.0 (100%) is full brakes,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) "
   %}
 </div>
 
@@ -1991,25 +2334,33 @@ toc-options:
     {
       "value": {
         "direction": "longitudinal",
-        "gForce": 0.864
+        "acceleration": {
+          "gravity": 0.864
+        }
       }
     },
     {
       "value": {
         "direction": "lateral",
-        "gForce": -0.753
+        "acceleration": {
+          "gravity": -0.753
+        }
       }
     },
     {
       "value": {
         "direction": "front_lateral",
-        "gForce": -0.753
+        "acceleration": {
+          "gravity": 0.753
+        }
       }
     },
     {
       "value": {
         "direction": "rear_lateral",
-        "gForce": -0.753
+        "acceleration": {
+          "gravity": -0.864
+        }
       }
     }
   ],
@@ -2023,16 +2374,24 @@ toc-options:
     "value": 0.98
   },
   "steeringAngle": {
-    "value": 10
+    "value": {
+      "degrees": 10
+    }
   },
   "brakePressure": {
-    "value": 20
+    "value": {
+      "bars": 20
+    }
   },
   "yawRate": {
-    "value": 6.66
+    "value": {
+      "degrees_per_second": 6.66
+    }
   },
   "rearSuspensionSteering": {
-    "value": 3
+    "value": {
+      "degrees": 3.3
+    }
   },
   "electronicStabilityProgram": {
     "value": "active"
@@ -2089,8 +2448,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="dimming,position,convertibleRoofState,sunroofTiltState,sunroofState"
-  parameters-description="(Number) (double) 1.0 (100%) is opaque&comma; 0.0 (0%) is transparent,(Number) (double) 1.0 (100%) is fully open&comma; 0.0 (0%) is closed,(String) (enum) ,(String) (enum) ,(String) (enum) "
+  parameters-name="dimming,position,convertibleRoofState,sunroofTiltState,sunroofState,sunroofRainEvent"
+  parameters-description="(Number) (double) 1.0 (100%) is opaque&comma; 0.0 (0%) is transparent,(Number) (double) 1.0 (100%) is fully open&comma; 0.0 (0%) is closed,(String) (enum) ,(String) (enum) ,(String) (enum) ,(String) (enum) Sunroof event happened in case of rain"
   %}
 </div>
 
@@ -2112,6 +2471,9 @@ toc-options:
   },
   "sunroofState": {
     "value": "open"
+  },
+  "sunroofRainEvent": {
+    "value": "no_event"
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2128,7 +2490,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="personsDetected,seatbeltsState"
-  parameters-description="(Array<Object>) (custom) ,(Array<Object>) (custom) "
+  parameters-description="(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) "
   %}
 </div>
 
@@ -2215,7 +2577,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="driversWorkingStates,driversTimeStates,driversCardsPresent,vehicleMotion,vehicleOverspeed,vehicleDirection,vehicleSpeed"
-  parameters-description="(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (integer) The tachograph vehicle speed in km/h"
+  parameters-description="(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Number) (speed) The tachograph vehicle speed"
   %}
 </div>
 
@@ -2275,7 +2637,9 @@ toc-options:
     "value": "forward"
   },
   "vehicleSpeed": {
-    "value": 80
+    "value": {
+      "kilometers_per_hour": 80
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2291,8 +2655,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="status"
-  parameters-description="(String) (enum) "
+  parameters-name="status,interiorProtectionStatus,towProtectionStatus,lastWarningReason,lastEvent,lastEventLevel,eventType"
+  parameters-description="(String) (enum) ,(String) (enum) Interior protection sensor status,(String) (enum) Tow protection sensor status,(String) (enum) ,(Date) (timestamp) Last event happening date,(String) (enum) Level of impact for the last event,(String) (enum) Position of the last even relative to the vehicle"
   %}
 </div>
 
@@ -2302,7 +2666,141 @@ toc-options:
   {% capture code %}<TheftAlarmResponse> {
   "status": {
     "value": "armed"
+  },
+  "interiorProtectionStatus": {
+    "value": "active"
+  },
+  "towProtectionStatus": {
+    "value": "active"
+  },
+  "lastWarningReason": {
+    "value": "hood"
+  },
+  "lastEvent": {
+    "value": "2020-06-16T11:10:02.000Z"
+  },
+  "lastEventLevel": {
+    "value": "low"
+  },
+  "eventType": {
+    "value": "rear_right"
   }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="trips_response">TripsResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="type,driverName,description,startTime,endTime,startAddress,endAddress,startCoordinates,endCoordinates,startOdometer,endOdometer,averageFuelConsumption,distance,startAddressComponents,endAddressComponents"
+  parameters-description="(String) (enum) Type of the trip,(String) Name of the driver of the trip,(String) Description of the trip,(Date) (timestamp) Start time of the trip,(Date) (timestamp) End time of the trip,(String) Start address of the trip,(String) End address of the trip,(Object) Start coordinates of the trip,(Object) End coordinates of the trip,(Number) (length) Odometer reading at the start of the trip,(Number) (length) Odometer reading at the end of the trip,(Number) (fuel_efficiency) Average fuel consumption during the trip,(Number) (length) Distance of the trip,(Array&lt;Object&gt;) Start address components,(Array&lt;Object&gt;) End address components"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<TripsResponse> {
+  "type": {
+    "value": "single"
+  },
+  "driverName": {
+    "value": "Hari Seldon"
+  },
+  "description": {
+    "value": "To save humankind"
+  },
+  "startTime": {
+    "value": "2020-06-19T12:12:10.000Z"
+  },
+  "endTime": {
+    "value": "2020-06-19T13:12:10.000Z"
+  },
+  "startAddress": {
+    "value": "Skalitzer Straße 68, 10997 Berlin, Germany"
+  },
+  "endAddress": {
+    "value": "Skalitzer Straße 68, 10997 Berlin, Germany"
+  },
+  "startCoordinates": {
+    "value": {
+      "latitude": 52.500276,
+      "longitude": 13.439719
+    }
+  },
+  "endCoordinates": {
+    "value": {
+      "latitude": 52.500276,
+      "longitude": 13.439719
+    }
+  },
+  "startOdometer": {
+    "value": {
+      "kilometers": 10500
+    }
+  },
+  "endOdometer": {
+    "value": {
+      "kilometers": 10543
+    }
+  },
+  "averageFuelConsumption": {
+    "value": {
+      "liters_per_100_kilometers": 7.34
+    }
+  },
+  "distance": {
+    "value": {
+      "kilometers": 43
+    }
+  },
+  "startAddressComponents": [
+    {
+      "value": {
+        "type": "street",
+        "value": "Skalitzer Straße 68"
+      }
+    },
+    {
+      "value": {
+        "type": "city",
+        "value": "Berlin"
+      }
+    },
+    {
+      "value": {
+        "type": "country",
+        "value": "Germany"
+      }
+    }
+  ],
+  "endAddressComponents": [
+    {
+      "value": {
+        "type": "street",
+        "value": "Skalitzer Straße 68"
+      }
+    },
+    {
+      "value": {
+        "type": "city",
+        "value": "Berlin"
+      }
+    },
+    {
+      "value": {
+        "type": "country",
+        "value": "Germany"
+      }
+    }
+  ]
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
 </div>
@@ -2346,8 +2844,8 @@ toc-options:
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="averageWeeklyDistance,averageWeeklyDistanceLongRun,accelerationEvaluation,drivingStyleEvaluation,drivingModesActivationPeriods,drivingModesEnergyConsumptions,lastTripEnergyConsumption,lastTripFuelConsumption,mileageAfterLastTrip,lastTripElectricPortion,lastTripAverageEnergyRecuperation,lastTripBatteryRemaining,lastTripDate,averageFuelConsumption,currentFuelConsumption"
-  parameters-description="(Number) (uinteger) Average weekly distance in km,(Number) (uinteger) Average weekyl distance&comma; over long term&comma; in km,(Number) (double) Acceleration evaluation percentage,(Number) (double) Driving style evaluation percentage,(Array<Object>) (custom) ,(Array<Object>) (custom) ,(Number) (float) Energy consumption in the last trip in kWh,(Number) (float) Fuel consumption in the last trip in L,(Number) (uinteger) Mileage after the last trip in km,(Number) (double) Portion of the last trip used in electric mode,(Number) (float) Energy recuperation rate for last trip&comma; in kWh / 100 km,(Number) (double) Battery % remaining after last trip,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Number) (float) Average fuel consumption for current trip in liters / 100 km,(Number) (float) Current fuel consumption in liters / 100 km"
+  parameters-name="averageWeeklyDistance,averageWeeklyDistanceLongRun,accelerationEvaluation,drivingStyleEvaluation,drivingModesActivationPeriods,drivingModesEnergyConsumptions,lastTripEnergyConsumption,lastTripFuelConsumption,mileageAfterLastTrip,lastTripElectricPortion,lastTripAverageEnergyRecuperation,lastTripBatteryRemaining,lastTripDate,averageFuelConsumption,currentFuelConsumption,odometerAfterLastTrip,safetyDrivingScore,rapidAccelerationGrade,rapidDecelerationGrade,lateNightGrade,distanceOverTime,electricConsumptionRateSinceStart,electricConsumptionRateSinceReset,electricDistanceLastTrip,electricDistanceSinceReset,electricDurationLastTrip,electricDurationSinceReset,fuelConsumptionRateLastTrip,fuelConsumptionRateSinceReset,averageSpeedLastTrip,averageSpeedSinceReset,fuelDistanceLastTrip,fuelDistanceSinceReset,drivingDurationLastTrip,drivingDurationSinceReset,ecoScoreTotal,ecoScoreFreeWheel,ecoScoreConstant,ecoScoreBonusRange"
+  parameters-description="(Number) (length) Average weekly distance,(Number) (length) Average weekyl distance over long term,(Number) (double) Acceleration evaluation percentage,(Number) (double) Driving style evaluation percentage,(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) ,(Number) (energy) Energy consumption in the last trip,(Number) (volume) Fuel consumption in the last trip,(Number) (length) Mileage after the last trip,(Number) (double) Portion of the last trip used in electric mode,(Number) (energy_efficiency) Energy recuperation rate for last trip,(Number) (double) Battery % remaining after last trip,(Date) (timestamp) Milliseconds since UNIX Epoch time,(Number) (fuel_efficiency) Average fuel consumption for current trip,(Number) (fuel_efficiency) Current fuel consumption,(Number) (length) Odometer after the last trip,(Number) (double) Safety driving score as percentage,(String) (enum) Grade given for rapid acceleration over time,(String) (enum) Grade given for rapid deceleration over time,(String) (enum) Grade given for late night driving over time,(Object) Distance driven over a given time period,(Number) (energy_efficiency) Electric energy consumption rate since the start of a trip,(Number) (energy_efficiency) Electric energy consumption rate since a reset,(Number) (length) Distance travelled with electricity in last trip,(Number) (length) Distance travelled with electricity since reset,(Number) (duration) Duration of travelling using electricity during last trip,(Number) (duration) Duration of travelling using electricity since reset,(Number) (fuel_efficiency) Liquid fuel consumption rate during last trip,(Number) (fuel_efficiency) Liquid fuel consumption rate since reset,(Number) (speed) Average speed during last trip,(Number) (speed) Average speed since reset,(Number) (length) Distance travelled with (liquid) fuel during last trip,(Number) (length) Distance travelled with (liquid) fuel since reset,(Number) (duration) Duration of last trip,(Number) (duration) Duration of travelling since reset,(Number) (double) Overall eco-score rating,(Number) (double) Eco-score rating for free-wheeling,(Number) (double) Eco-score rating constant,(Number) (length) Eco-score bonus range"
   %}
 </div>
 
@@ -2356,10 +2854,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<UsageResponse> {
   "averageWeeklyDistance": {
-    "value": 666
+    "value": {
+      "kilometers": 666.6
+    }
   },
   "averageWeeklyDistanceLongRun": {
-    "value": 668
+    "value": {
+      "kilometers": 777.7
+    }
   },
   "accelerationEvaluation": {
     "value": 0.7
@@ -2409,54 +2911,74 @@ toc-options:
     {
       "value": {
         "drivingMode": "regular",
-        "consumption": 20.2
+        "consumption": {
+          "kilowatt_hours": 20.2
+        }
       }
     },
     {
       "value": {
         "drivingMode": "eco",
-        "consumption": 33.2
+        "consumption": {
+          "kilowatt_hours": 33.2
+        }
       }
     },
     {
       "value": {
         "drivingMode": "sport",
-        "consumption": 54
+        "consumption": {
+          "kilowatt_hours": 54.3
+        }
       }
     },
     {
       "value": {
         "drivingMode": "sport_plus",
-        "consumption": 64.8
+        "consumption": {
+          "kilowatt_hours": 64.8
+        }
       }
     },
     {
       "value": {
         "drivingMode": "ecoPlus",
-        "consumption": 18
+        "consumption": {
+          "kilowatt_hours": 18
+        }
       }
     },
     {
       "value": {
         "drivingMode": "comfort",
-        "consumption": 33.6
+        "consumption": {
+          "kilowatt_hours": 33.7
+        }
       }
     }
   ],
   "lastTripEnergyConsumption": {
-    "value": 101.3
+    "value": {
+      "kilowatt_hours": 101.3
+    }
   },
   "lastTripFuelConsumption": {
-    "value": 22.5
+    "value": {
+      "liters": 22.5
+    }
   },
   "mileageAfterLastTrip": {
-    "value": 95632
+    "value": {
+      "kilometers": 95632
+    }
   },
   "lastTripElectricPortion": {
     "value": 0.7
   },
   "lastTripAverageEnergyRecuperation": {
-    "value": 5.68
+    "value": {
+      "kwh_per_100_kilometers": 5.68
+    }
   },
   "lastTripBatteryRemaining": {
     "value": 0.5
@@ -2465,10 +2987,125 @@ toc-options:
     "value": "2018-10-17T12:34:58.000Z"
   },
   "averageFuelConsumption": {
-    "value": 6.5
+    "value": {
+      "liters_per_100_kilometers": 6.5
+    }
   },
   "currentFuelConsumption": {
-    "value": 7.5
+    "value": {
+      "liters_per_100_kilometers": 7.5
+    }
+  },
+  "odometerAfterLastTrip": {
+    "value": {
+      "kilometers": 95632
+    }
+  },
+  "safetyDrivingScore": {
+    "value": 0.7
+  },
+  "rapidAccelerationGrade": {
+    "value": "excellent"
+  },
+  "rapidDecelerationGrade": {
+    "value": "normal"
+  },
+  "lateNightGrade": {
+    "value": "excellent"
+  },
+  "distanceOverTime": {
+    "value": {
+      "distance": {
+        "kilometers": 1500.88
+      },
+      "time": {
+        "weeks": 10
+      }
+    }
+  },
+  "electricConsumptionRateSinceStart": {
+    "value": {
+      "kwh_per_100_kilometers": 11.22
+    }
+  },
+  "electricConsumptionRateSinceReset": {
+    "value": {
+      "kwh_per_100_kilometers": 22.33
+    }
+  },
+  "electricDistanceLastTrip": {
+    "value": {
+      "meters": 111000
+    }
+  },
+  "electricDistanceSinceReset": {
+    "value": {
+      "meters": 222000
+    }
+  },
+  "electricDurationLastTrip": {
+    "value": {
+      "minutes": 77
+    }
+  },
+  "electricDurationSinceReset": {
+    "value": {
+      "minutes": 88
+    }
+  },
+  "fuelConsumptionRateLastTrip": {
+    "value": {
+      "liters_per_100_kilometers": 5.4
+    }
+  },
+  "fuelConsumptionRateSinceReset": {
+    "value": {
+      "liters_per_100_kilometers": 5.3
+    }
+  },
+  "averageSpeedLastTrip": {
+    "value": {
+      "kilometers_per_hour": 44.2
+    }
+  },
+  "averageSpeedSinceReset": {
+    "value": {
+      "kilometers_per_hour": 44.2
+    }
+  },
+  "fuelDistanceLastTrip": {
+    "value": {
+      "meters": 111000
+    }
+  },
+  "fuelDistanceSinceReset": {
+    "value": {
+      "meters": 222000
+    }
+  },
+  "drivingDurationLastTrip": {
+    "value": {
+      "minutes": 77
+    }
+  },
+  "drivingDurationSinceReset": {
+    "value": {
+      "minutes": 88
+    }
+  },
+  "ecoScoreTotal": {
+    "value": 0.7
+  },
+  "ecoScoreFreeWheel": {
+    "value": 0.7
+  },
+  "ecoScoreConstant": {
+    "value": 0.7
+  },
+  "ecoScoreBonusRange": {
+    "value": {
+      "kilometers": 0.7
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2503,60 +3140,22 @@ toc-options:
 </div>
 
 
-<h2 id="vehicle_location_response">VehicleLocationResponse</h2>
+<h2 id="vehicle_information_response">VehicleInformationResponse</h2>
 <div class="split-design-wrapper">
   
 <div class="col-left">
   <h3>General response</h3>
   {%
   include code-node-sdk-response.html
-  parameters-name="coordinates,heading,altitude"
-  parameters-description="(Object) (custom) ,(Number) (double) Heading in degrees,(Number) (double) Altitude in meters above the WGS 84 reference ellipsoid"
+  parameters-name="powertrain,modelName,name,licensePlate,salesDesignation,modelYear,colourName,powerInKW,numberOfDoors,numberOfSeats,engineVolume,engineMaxTorque,gearbox,displayUnit,driverSeatLocation,equipments,power,language,timeformat"
+  parameters-description="(String) (enum) ,(String) The vehicle model name,(String) The vehicle name (nickname),(String) The license plate number,(String) The sales designation of the model,(Number) (uinteger) The vehicle model manufacturing year number,(String) The colour name,(Number) (power) The power of the vehicle,(Number) (uinteger) The number of doors,(Number) (uinteger) The number of seats,(Number) (volume) The engine volume displacement,(Number) (torque) The maximum engine torque,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Array&lt;String&gt;) (string) Names of equipment the vehicle is equipped with,(Number) (power) The power of the vehicle,(String) The language on headunit,(String) (enum) The timeformat on headunit"
   %}
 </div>
 
   
 <div class="col-right">
   <h4>Example</h4>
-  {% capture code %}<VehicleLocationResponse> {
-  "coordinates": {
-    "value": {
-      "latitude": 52.520008,
-      "longitude": 13.404954
-    }
-  },
-  "heading": {
-    "value": 13.370123
-  },
-  "altitude": {
-    "value": 133.5
-  }
-}{% endcapture %}
-  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
-</div>
-
-</div>
-
-
-<h2 id="vehicle_status_response">VehicleStatusResponse</h2>
-<div class="split-design-wrapper">
-  
-<div class="col-left">
-  <h3>General response</h3>
-  {%
-  include code-node-sdk-response.html
-  parameters-name="vin,powertrain,modelName,name,licensePlate,salesDesignation,modelYear,colourName,powerInKW,numberOfDoors,numberOfSeats,engineVolume,engineMaxTorque,gearbox,displayUnit,driverSeatLocation,equipments,brand,states"
-  parameters-description="(String) (string) The unique Vehicle Identification Number,(String) (enum) ,(String) (string) The car model name,(String) (string) The car name (nickname),(String) (string) The license plate number,(String) (string) The sales designation of the model,(Number) (uinteger) The car model manufacturing year number,(String) (string) The colour name,(Number) (uinteger) The power of the car measured in kW,(Number) (uinteger) The number of doors,(Number) (uinteger) The number of seats,(Number) (float) The engine volume displacement in liters,(Number) (uinteger) The maximum engine torque in Nm,(String) (enum) ,(String) (enum) ,(String) (enum) ,(Array<String>) (string) Names of equipment the vehicle is equipped with,(String) (string) The car brand,(Array<Array<Number>>) (bytes) The bytes of a Capability state"
-  %}
-</div>
-
-  
-<div class="col-right">
-  <h4>Example</h4>
-  {% capture code %}<VehicleStatusResponse> {
-  "vin": {
-    "value": "JF2SHBDC7CH451869"
-  },
+  {% capture code %}<VehicleInformationResponse> {
   "powertrain": {
     "value": "all_electric"
   },
@@ -2579,7 +3178,9 @@ toc-options:
     "value": "Estoril Blau"
   },
   "powerInKW": {
-    "value": 220
+    "value": {
+      "kilowatts": 220
+    }
   },
   "numberOfDoors": {
     "value": 5
@@ -2588,10 +3189,14 @@ toc-options:
     "value": 5
   },
   "engineVolume": {
-    "value": 2.5
+    "value": {
+      "liters": 2.5
+    }
   },
   "engineMaxTorque": {
-    "value": 245
+    "value": {
+      "newton_meters": 245
+    }
   },
   "gearbox": {
     "value": "automatic"
@@ -2610,9 +3215,84 @@ toc-options:
       "value": "Automatic wipers"
     }
   ],
-  "brand": {
-    "value": "Tesla"
+  "power": {
+    "value": {
+      "kilowatts": 220
+    }
   },
+  "language": {
+    "value": "estonian"
+  },
+  "timeformat": {
+    "value": "twenty_four_h"
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="vehicle_location_response">VehicleLocationResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="coordinates,heading,altitude,precision"
+  parameters-description="(Object) ,(Number) (angle) Heading angle,(Number) (length) Altitude above the WGS 84 reference ellipsoid,(Number) (length) "
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<VehicleLocationResponse> {
+  "coordinates": {
+    "value": {
+      "latitude": 52.520008,
+      "longitude": 13.404954
+    }
+  },
+  "heading": {
+    "value": {
+      "degrees": 13.370123
+    }
+  },
+  "altitude": {
+    "value": {
+      "meters": 133.5
+    }
+  },
+  "precision": {
+    "value": {
+      "meters": 500
+    }
+  }
+}{% endcapture %}
+  {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+</div>
+
+</div>
+
+
+<h2 id="vehicle_status_response">VehicleStatusResponse</h2>
+<div class="split-design-wrapper">
+  
+<div class="col-left">
+  <h3>General response</h3>
+  {%
+  include code-node-sdk-response.html
+  parameters-name="states"
+  parameters-description="(Array&lt;Array<Number>&gt;) (bytes) The bytes of a Capability state"
+  %}
+</div>
+
+  
+<div class="col-right">
+  <h4>Example</h4>
+  {% capture code %}<VehicleStatusResponse> {
   "states": [
     {
       "value": {
@@ -2626,19 +3306,41 @@ toc-options:
                 "location": "front_left",
                 "position": "open"
               }
+            },
+            {
+              "value": {
+                "location": "rear_right",
+                "position": "open"
+              }
             }
-          ]
+          ],
+          "timestamp": {
+            "value": "2017-01-10T16:32:05.000Z"
+          }
         }
       }
     },
     {
       "value": {
         "charging": {
-          "chargingRateKW": {
-            "value": 3.5
-          },
           "chargePortState": {
             "value": "open"
+          },
+          "chargeMode": {
+            "value": "immediate"
+          },
+          "chargingRate": {
+            "value": {
+              "kilowatts": 35
+            }
+          },
+          "maxRange": {
+            "value": {
+              "kilometers": 555
+            }
+          },
+          "timestamp": {
+            "value": "2017-01-10T16:32:05.000Z"
           }
         }
       }
@@ -2659,7 +3361,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="vehicleTime"
-  parameters-description="(Object) (custom) Vehicle time in a 24h format"
+  parameters-description="(Object) Vehicle time in a 24h format"
   %}
 </div>
 
@@ -2714,7 +3416,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="status,networkConnected,networkSSID,networkSecurity"
-  parameters-description="(String) (enum) ,(String) (enum) ,(String) (string) The network SSID,(String) (enum) "
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) The network SSID,(String) (enum) "
   %}
 </div>
 
@@ -2749,7 +3451,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="openPercentages,positions"
-  parameters-description="(Array<Object>) (custom) ,(Array<Object>) (custom) "
+  parameters-description="(Array&lt;Object&gt;) ,(Array&lt;Object&gt;) "
   %}
 </div>
 
@@ -2836,7 +3538,7 @@ toc-options:
   {%
   include code-node-sdk-response.html
   parameters-name="wipersStatus,wipersIntensity,windscreenDamage,windscreenZoneMatrix,windscreenDamageZone,windscreenNeedsReplacement,windscreenDamageConfidence,windscreenDamageDetectionTime"
-  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) ,(Object) (custom) Representing the size of the matrix&comma; seen from the inside of the vehicle,(Object) (custom) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index),(String) (enum) ,(Number) (double) Confidence of damage detection&comma; 0% if no impact detected,(Date) (timestamp) Milliseconds since UNIX Epoch time"
+  parameters-description="(String) (enum) ,(String) (enum) ,(String) (enum) ,(Object) Representing the size of the matrix&comma; seen from the inside of the vehicle,(Object) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index),(String) (enum) ,(Number) (double) Confidence of damage detection&comma; 0% if no impact detected,(Date) (timestamp) Milliseconds since UNIX Epoch time"
   %}
 </div>
 

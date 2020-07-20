@@ -1,18 +1,18 @@
 /*
  *  The MIT License
- * 
+ *
  *  Copyright (c) 2014- High-Mobility GmbH (https://high-mobility.com)
- * 
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- * 
+ *
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
- * 
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,9 +20,9 @@
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
- * 
+ *
  *  commandParser.js
- * 
+ *
  *  Created by Mikk Õun on 20/01/2020.
  */
 
@@ -82,31 +82,92 @@ function parseCommands() {
     )
     .map(capability => {
       const { getters, setters = [] } = capability;
-      const title = `<h2 id="${capability.name}">${
-        capability.pretty_name
-      }</h2>`;
+      const title = `<h2 id="${capability.name}">${capability.name_pretty}</h2>`;
       const builtGetter = getters
-        ? buildFunctionBlock(
-            getters.name || 'get_state',
-            undefined,
-            undefined,
-            capability
-          )
+        ? buildGetterFunction(getters.name || 'get_state', capability)
         : null;
       const builtSetters = setters.map(({ name, mandatory, optional }) =>
-        buildFunctionBlock(name, mandatory, optional, capability)
+        buildSetterFunction(name, mandatory, optional, capability)
       );
       // .join('\n')
 
       const parsedCommand = [title];
       if (builtGetter) parsedCommand.push(builtGetter);
+      parsedCommand.push(buildAvailabilityFunction(capability));
       if (builtSetters.length > 0) parsedCommand.push(...builtSetters);
       return parsedCommand.join('\n');
     })
     .join('\n');
 }
 
-function buildFunctionBlock(
+function buildAvailabilityFunction(capabilityConf) {
+  const capabilityName = capitalizeSnake(capabilityConf.name);
+  return `
+  <h3 id="${
+    capabilityConf.name
+  }_getAvailability()">getAvailability([, propertyNames])</h3>
+
+  <div class="split-design-wrapper">
+      <div class="col-left">
+          {% capture code %}HMKit.commands.${capabilityName}.getAvailability(){% endcapture %}
+          {%
+            include code-reference-snippet.html
+            reference-id="${capabilityName}_getAvailability()"
+            ${`parameters-name="propertyNames"`}
+            ${`parameters-description="(optional) Array of names of the properties you want returned."`}
+          %}
+      </div>
+      <div class="col-right">
+        <h4>Example</h4>
+        {% capture code %}${prettier.format(
+          `
+          // Get availability for all properties
+          hmkit.telematics.sendCommand(hmkit.commands.${capabilityName}.getAvailability(), accessCertificate);
+          // Get availability for specific properties
+          hmkit.telematics.sendCommand(hmkit.commands.${capabilityName}.getAvailability(['${capabilityConf.properties[0].name_cased}']), accessCertificate);
+          `,
+          PRETTIER_CONF
+        )}{% endcapture %}
+
+        {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
+      </div>
+  </div>
+`;
+}
+
+function buildGetterFunction(name, capabilityConf) {
+  const capabilityName = capitalizeSnake(capabilityConf.name);
+  const functionName = buildFunctionName(name);
+
+  const example = buildExample(
+    capabilityConf,
+    capabilityName,
+    functionName,
+    name
+  );
+
+  return `
+    <h3 id="${
+      capabilityConf.name
+    }_${name}">${functionName}([, propertyNames])</h3>
+
+    <div class="split-design-wrapper">
+        <div class="col-left">
+            {% capture code %}HMKit.commands.${capabilityName}.${functionName}(){% endcapture %}
+            {%
+              include code-reference-snippet.html
+              reference-id="${capabilityName}_${name}"
+              ${`parameters-name="propertyNames"`}
+              ${`parameters-description="(optional) Array of names of the properties you want returned."`}
+            %}
+        </div>
+        ${example}
+    </div>
+
+    `;
+}
+
+function buildSetterFunction(
   name,
   mandatory = [],
   optional = [],
@@ -138,7 +199,7 @@ function buildFunctionBlock(
 
   return `
     <h3 id="${capabilityConf.name}_${name}">${functionName}(${commandArgs})</h3>
-    
+
     <div class="split-design-wrapper">
         <div class="col-left">
             {% capture code %}HMKit.commands.${capabilityName}.${functionName}(${commandArgs}){% endcapture %}
@@ -180,7 +241,7 @@ function buildExample(
       codeExample,
       PRETTIER_CONF
     )}{% endcapture %}
-    
+
     {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}`
         : ''
     }

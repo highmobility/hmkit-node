@@ -1,18 +1,18 @@
 /*
  *  The MIT License
- * 
+ *
  *  Copyright (c) 2014- High-Mobility GmbH (https://high-mobility.com)
- * 
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- * 
+ *
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
- * 
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,9 +20,9 @@
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
- * 
+ *
  *  responseParser.js
- * 
+ *
  *  Created by Mikk Õun on 20/01/2020.
  */
 
@@ -124,9 +124,17 @@ function buildResponsesContent(responses) {
 }
 
 function getPropertyDescription(property) {
-  const baseDescription = `(${property.type}) ${property.description || ''}`
+  const propertyType = property.type.replace(/^unit\./, '');
+  const generalType = getPropertyType(property);
+  let baseDescription = `${property.description || ''}`
     .split(',')
     .join('&comma;');
+
+  // Add the auto-api type in parens if it adds extra info (if it's just the same as the general type,
+  // or "custom" which doesn't really mean anything, then there's no point in adding it)
+  if (generalType.toLowerCase() !== propertyType && propertyType !== 'custom') {
+    baseDescription = `(${propertyType}) ` + baseDescription;
+  }
 
   if (property.enum_types) {
     const possibleEnums = property.enum_types
@@ -136,15 +144,18 @@ function getPropertyDescription(property) {
     return `(String: [${possibleEnums}]) ${baseDescription}`;
   }
 
-  return `(${getPropertyType(property)}) ${baseDescription}`;
+  return `(${generalType}) ${baseDescription}`;
 }
 
 function getPropertyType(property) {
-  const { multiple, type } = property;
-  const generalType = PROPERTY_TYPES[type];
+  const { multiple } = property;
+  const type = property.type.replace(/^unit\./, '');
+  const generalType = property.type.startsWith('unit.')
+    ? 'Number'
+    : PROPERTY_TYPES[type];
 
   if (multiple) {
-    return `Array<${generalType}>`;
+    return `Array&lt;${generalType}&gt;`;
   }
 
   return generalType;
@@ -174,11 +185,16 @@ function generateResponse(stateProperties) {
 }
 
 function generatePropertyValue(property) {
+  if (!property.examples) return { [property.name_cased]: {} };
+
   if (property.multiple) {
     return {
       [property.name_cased]: property.examples.map(example => {
         return {
-          value: parsePropertyData(hexToUint8Array(example.data_component), property),
+          value: parsePropertyData(
+            hexToUint8Array(example.data_component),
+            property
+          ),
         };
       }),
     };
