@@ -185,7 +185,9 @@ export function parsePropertyData(data, property) {
       property.unit.unit_types.find(x => x.id === unitType);
 
     if (!unit) {
-      throw new Error(`No unit type found for the property ${property.name}`);
+      throw new Error(
+        `No unit type ${unitType} found for the property ${property.name}`
+      );
     }
 
     const double = ieee754DoubleToBase10(propertyData, propertyData.length);

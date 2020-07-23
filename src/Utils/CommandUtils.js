@@ -173,11 +173,15 @@ function buildSetter(setter, properties, identifier) {
     allowedPropIDs.includes(prop.id)
   );
 
+  const mandatoryProps = mandatory.map(propertyId =>
+    properties.find(x => x.id === propertyId)
+  );
+
   const setterName = buildFunctionName(name);
 
   return {
     [setterName]: applyCallbackMetadata(
-      buildSetterFunction(allowedProps, identifier, constants),
+      buildSetterFunction(allowedProps, identifier, constants, mandatoryProps),
       setterName,
       setter.name,
       CommandType.Setter
@@ -185,7 +189,12 @@ function buildSetter(setter, properties, identifier) {
   };
 }
 
-function buildSetterFunction(allowedProps, identifier, constants) {
+function buildSetterFunction(
+  allowedProps,
+  identifier,
+  constants,
+  mandatoryProps
+) {
   const { msb, lsb } = identifier;
 
   return (request = {}) => {
@@ -195,6 +204,14 @@ function buildSetterFunction(allowedProps, identifier, constants) {
       condition: Joi.object(),
     });
 
+    mandatoryProps.forEach(mandatoryProp => {
+      if (!request.hasOwnProperty(mandatoryProp.name_cased)) {
+        throw new Error(
+          `Missing mandatory property "${mandatoryProp.name_cased}"`
+        );
+      }
+    });
+
     const requestBytes = Object.entries(request).reduce(
       (mappedBytes, [key, value]) => {
         const propertyToEncode = allowedProps.find(
@@ -202,7 +219,7 @@ function buildSetterFunction(allowedProps, identifier, constants) {
         );
 
         if (!propertyToEncode) {
-          throw new Error(`Invalid property provided.`);
+          throw new Error(`Invalid property "${key}" provided.`);
         }
 
         const encodedPropertyData = encodeProperty(propertyToEncode, value);
