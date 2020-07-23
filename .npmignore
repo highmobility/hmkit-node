@@ -16,3 +16,8 @@ npm-debug.log
 .idea
 .npmignore
 CONTRIBUTING.md
+/jest.json
+/Dockerfile
+/.prettierrc
+/.prettierignore
+/commands
