@@ -100,6 +100,18 @@ function describeOfflineTests(capabilityName, capability) {
   });
 }
 
+async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      resolve();
+    }, ms);
+  })
+}
+
+function handleSkipTest(parsedResponse, functionName) {
+  console.log(`Skipping test for ${functionName}(), it might be disabled for this vehicle`, parsedResponse);
+}
+
 /**
  * These tests run against an emulator, so you need an online emulator to be configured.
  * Therefore, these tests are disabled by default.
@@ -114,6 +126,7 @@ function describeEmulatorTests(capabilityName, capability) {
 
       const commands = Object.values(capability);
       const respClass = ResponseClass[capabilityName];
+      const failureRespClass = ResponseClass['FailureMessage'];
 
       const responseValidator = buildResponseValidator(capabilityConfiguration);
 
@@ -126,38 +139,27 @@ function describeEmulatorTests(capabilityName, capability) {
       );
 
       if (getterCommand) {
-        // Test correct getter response
-        it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
+         // Test correct getter response
+         it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
+          await sleep(1500);
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
-          expect(respClass).toBeDefined();
-          expect(parsedResponse).toBeInstanceOf(respClass);
+          if (parsedResponse instanceof failureRespClass) {
+            handleSkipTest(parsedResponse, `${capabilityName}.${getterCommand.name}`);
+          } else {
+            expect(respClass).toBeDefined();
+            expect(parsedResponse).toBeInstanceOf(respClass);
+          }
         });
 
         // Test correct getter response state
         it(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
+          await sleep(1500);
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
-          expect(parsedResponse).toEqual(responseValidator);
-        });
-
-        // Test getter response properties
-        (capabilityConfiguration.state || []).forEach(propertyId => {
-          const property = capabilityConfiguration.properties.find(
-            prop => prop.id === propertyId
-          );
-
-          const { name_cased: nameCased } = property;
-
-          it(`Should include ${capabilityName}.${property.name_cased} property in getter`, async () => {
-            const parsedResponse = await sendGetterQueryCommand(getterCommand);
-            expect(parsedResponse).toHaveProperty(nameCased);
-          });
-
-          it(`Should map ${capabilityName}.${property.name_cased} property structure correctly`, async () => {
-            const parsedResponse = await sendGetterQueryCommand(getterCommand);
-            expect(parsedResponse).toMatchObject({
-              [nameCased]: responseValidator[nameCased],
-            });
-          });
+          if (parsedResponse instanceof failureRespClass) {
+            handleSkipTest(parsedResponse, `${capabilityName}.${getterCommand.name}`);
+          } else {
+            expect(responseValidator).toMatchObject(parsedResponse);
+          }
         });
       }
 
@@ -168,35 +170,48 @@ function describeEmulatorTests(capabilityName, capability) {
         );
 
         it(`Should handle setter ${capabilityName}.${setterCommand.name}() command`, async () => {
+          await sleep(1500);
           const parsedResponse = await sendSetterQueryCommand(
             setterCommand,
             setterArguments
           );
 
-          expect(respClass).toBeDefined();
-          expect(parsedResponse).toBeInstanceOf(respClass);
+          if (parsedResponse instanceof failureRespClass) {
+            handleSkipTest(parsedResponse, `${capabilityName}.${setterCommand.name}`);
+          } else {
+            expect(respClass).toBeDefined();
+            expect(parsedResponse).toBeInstanceOf(respClass);
+          }
         });
 
         if (getterCommand) {
           it(`Setter ${capabilityName}.${setterCommand.name}() should keep default values`, async () => {
+            await sleep(1500);
             const parsedSetterResponse = await sendSetterQueryCommand(
               setterCommand,
               setterArguments
             );
+            await sleep(1500);
             const parsedGetterResponse = await sendGetterQueryCommand(
               getterCommand
             );
 
-            expect(parsedSetterResponse).toBeInstanceOf(respClass);
-            expect(parsedGetterResponse).toBeInstanceOf(respClass);
+            if (parsedSetterResponse instanceof failureRespClass) {
+              handleSkipTest(parsedSetterResponse, `${capabilityName}.${setterCommand.name}`);
+            } else if (parsedGetterResponse instanceof failureRespClass) {
+              handleSkipTest(parsedGetterResponse, `${capabilityName}.${getterCommand.name}`);
+            } else {
+              expect(parsedSetterResponse).toBeInstanceOf(respClass);
+              expect(parsedGetterResponse).toBeInstanceOf(respClass);
 
-            const responseValidatorWithValues = replaceConstants(
-              replaceTimestampsWithValidators(parsedGetterResponse),
-              setterCommand.nameSnake,
-              capabilityConfiguration
-            );
+              const responseValidatorWithValues = replaceConstants(
+                replaceTimestampsWithValidators(parsedGetterResponse),
+                setterCommand.nameSnake,
+                capabilityConfiguration
+              );
 
-            expect(parsedSetterResponse).toEqual(responseValidatorWithValues);
+              expect(parsedSetterResponse).toEqual(responseValidatorWithValues);
+            }
           });
         }
       });
@@ -338,7 +353,7 @@ function buildPropertyValidator(
     };
   }
 
-  const typeValidator = buildTypeValidator(property.type);
+  const typeValidator = buildTypeValidator(property.type, property.unit && property.unit.unit_types);
 
   if (property.multiple) {
     return {
@@ -355,9 +370,9 @@ function buildPropertyValidator(
   };
 }
 
-function buildTypeValidator(type) {
+function buildTypeValidator(type, unitTypes) {
   if (type && type.startsWith('unit.')) {
-    return expect.any(Number);
+    return expect.unitWithValue(unitTypes);
   }
 
   switch (type) {

@@ -55,21 +55,17 @@ export default class Telematics {
         }
       );
 
-  onTelematicsSendData = async (issuer, ser, dt) =>
-    await this.hmkit.apiClient
-      .post(`${this.hmkit.api.getUrl()}telematics_commands`, {
-        body: JSON.stringify({
-          serial_number: uint8ArrayToHex(new Uint8Array(ser)).toUpperCase(),
-          issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
-          data: byteArrayToBase64(dt),
-        }),
-      })
-      .then(
-        res => res.body.response_data,
-        err => {
-          throw err;
-        }
-      );
+  onTelematicsSendData = async (issuer, ser, dt) => {
+    const res = await this.hmkit.apiClient.post(`${this.hmkit.api.getUrl()}telematics_commands`, {
+      body: JSON.stringify({
+        serial_number: uint8ArrayToHex(new Uint8Array(ser)).toUpperCase(),
+        issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
+        data: byteArrayToBase64(dt),
+      }),
+    });
+
+    return res.body.response_data;
+  }
 
   sendCommand = async (data, accessCertificateData) => {
     const accessCertificate = new AccessCertificate(accessCertificateData);
