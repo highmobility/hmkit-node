@@ -40,6 +40,7 @@ import {
 import { parsePropertyData } from '../../src/Utils/ResponseUtils';
 import { hexToUint8Array } from '../../src/Utils/EncodingUtils';
 import describeIf from './describeIf';
+import customTypes from '../../src/Configuration/customTypes.json';
 
 const hmkit = getHmkit();
 
@@ -98,18 +99,6 @@ function describeOfflineTests(capabilityName, capability) {
         });
       });
   });
-}
-
-async function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(async () => {
-      resolve();
-    }, ms);
-  })
-}
-
-function handleSkipTest(parsedResponse, functionName) {
-  console.log(`Skipping test for ${functionName}(), it might be disabled for this vehicle`, parsedResponse);
 }
 
 /**
@@ -215,8 +204,91 @@ function describeEmulatorTests(capabilityName, capability) {
           });
         }
       });
+
+      it(`Availability getter for all properties should have correct response`, async () => {
+        await sleep(1500);
+        const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
+        const parsedResponse = response.parse();
+
+        const rateLimitUnitTypes = Object.values(customTypes).reduce((result, customType) => {
+          if (result.length > 0) {
+            return result;
+          }
+
+          if (customType.name_cased === 'availability') {
+            const rateLimitProperty = customType.items.find(item => item.name_cased === 'rateLimit');
+            return rateLimitProperty.unit.unit_types;
+          }
+
+          return result;
+        }, []);
+
+        const validateProp = (propValue) => {
+          if (Array.isArray(propValue)) {
+            propValue.forEach(propInArray => {
+              validateProp(propInArray);
+            });
+
+            return;
+          } else if (!propValue instanceof Object) {
+            return;
+          }
+
+          if (propValue.value) {
+            if (propValue.value === 'unsupported_capability' || propValue.value === 'invalid_command') {
+              return;
+            }
+
+            Object.values(propValue.value).forEach(capabilityData => {
+              Object.values(capabilityData).forEach(propertyValue => {
+                validateProp(propertyValue);
+              });
+            });
+
+            return;
+          }
+
+          expect(propValue).toHaveProperty('availability');
+          expect(propValue.availability).toEqual({
+            updateRate: expect.any(String),
+            rateLimit: expect.unitWithValue(rateLimitUnitTypes),
+            appliesPer: expect.any(String),
+          });
+        };
+
+        Object.values(parsedResponse).forEach(propValue => {
+          validateProp(propValue);
+        });
+      });
+
+      it.only(`Availability getter for specific properties should have correct response`, async () => {
+        await sleep(1500);
+
+        const propertiesToRequest = capabilityConfiguration.properties.slice(0, 2).map(property => property.name_cased);
+        const response = await sendCommand(hmkit, capability.getAvailability(propertiesToRequest), accessToken);
+        const parsedResponse = response.parse();
+
+        propertiesToRequest.forEach(requestedPropertyName => {
+          expect(parsedResponse).toHaveProperty(requestedPropertyName);
+        });
+        capabilityConfiguration.properties.slice(2).forEach(notRequestedProperty => {
+          expect(parsedResponse).not.toHaveProperty(notRequestedProperty.name);
+        });
+      });
     }
   );
+}
+
+async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      resolve();
+    }, ms);
+  })
+}
+
+function handleSkipTest(parsedResponse, functionName) {
+  console.log(`Skipping test for ${functionName}(), it might be disabled for this vehicle`, parsedResponse);
 }
 
 function getCapabilityConfiguration({ msb: msbToFind, lsb: lsbToFind }) {

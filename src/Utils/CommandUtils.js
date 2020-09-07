@@ -46,7 +46,7 @@ export const PROPERTY_DATA_ID = 0x01;
 export const GET_STATE_TYPE = 0x00;
 export const SET_STATE_TYPE = 0x01;
 export const GET_AVAILABILITY_TYPE = 0x02;
-export const AUTO_API_LEVEL = 11;
+export const AUTO_API_LEVEL = 12;
 export const CommandType = {
   Getter: 'GET',
   Setter: 'SET',

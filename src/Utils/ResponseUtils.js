@@ -46,7 +46,7 @@ import {
   bytesToTimestamp,
 } from './EncodingUtils';
 
-export function parseData(data: Array<Number>) {
+export function parseData(data) {
   const [
     autoApiLevel,
     capabilityMsb,
