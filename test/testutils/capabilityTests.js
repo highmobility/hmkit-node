@@ -205,7 +205,7 @@ function describeEmulatorTests(capabilityName, capability) {
         }
       });
 
-      it(`Availability getter for all properties should have correct response`, async () => {
+      it.only(`Availability getter for all properties should have correct response`, async () => {
         await sleep(1500);
         const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
         const parsedResponse = response.parse();
@@ -261,7 +261,7 @@ function describeEmulatorTests(capabilityName, capability) {
         });
       });
 
-      it.only(`Availability getter for specific properties should have correct response`, async () => {
+      it(`Availability getter for specific properties should have correct response`, async () => {
         await sleep(1500);
 
         const propertiesToRequest = capabilityConfiguration.properties.slice(0, 2).map(property => property.name_cased);

@@ -142,7 +142,7 @@ function parseProperties(propertiesData, capabilityConf) {
 }
 
 function parseProperty(propertyData, property) {
-  const { data, time, error, availabilityBytes } = parsePropertyComponents(
+  const { data, time, availabilityBytes, failureBytes } = parsePropertyComponents(
     propertyData
   );
 
@@ -157,13 +157,25 @@ function parseProperty(propertyData, property) {
   }
 
   if (availabilityBytes) {
-    output.availability = parseAvailabilityData(availabilityBytes, property);
+    output.availability = parseAvailabilityData(availabilityBytes);
+  }
+
+  if (failureBytes) {
+    output.failure = parseFailureData(failureBytes, property);
   }
 
   return output;
 }
 
-export function parseAvailabilityData(data) {
+function parseFailureData(data) {
+  if (!data) return null;
+
+  const failureType = customTypes.failure;
+
+  return parsePropertyData(data, failureType);
+}
+
+function parseAvailabilityData(data) {
   if (!data) return null;
 
   const availabilityType = customTypes.availability;
@@ -380,7 +392,7 @@ function parsePropertyComponents(propertyComponentsData) {
         break;
       }
       case PROPERTY_FAILURE_ID: {
-        componentBytes.error = propertyComponentData;
+        componentBytes.failureBytes = propertyComponentData;
         break;
       }
       case PROPERTY_AVAILABILITY_ID: {
