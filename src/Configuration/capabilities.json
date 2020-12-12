@@ -1098,7 +1098,7 @@
             "name_cased": "date",
             "type": "timestamp",
             "size": 8,
-            "description": "Milliseconds since UNIX Epoch time"
+            "description": "Timer date"
           }
         ],
         "id": 21,
@@ -1553,7 +1553,7 @@
       },
       {
         "name": "preconditioning_departure_status",
-        "name_cased": "preconditioningDepratureStatus",
+        "name_cased": "preconditioningDepartureStatus",
         "name_pretty": "Preconditioning departure status",
         "type": "enum",
         "size": 1,
@@ -1613,7 +1613,7 @@
       },
       {
         "name": "preconditioning_departure_enabled",
-        "name_cased": "preconditioningDepratureEnabled",
+        "name_cased": "preconditioningDepartureEnabled",
         "name_pretty": "Preconditioning departure enabled",
         "type": "enum",
         "size": 1,
@@ -1671,6 +1671,13 @@
           {
             "id": 4,
             "name": "general_error"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "not_possible_low",
+            "description": "Preconditioning not possible because battery or fuel is low"
           }
         ]
       }
@@ -3164,7 +3171,7 @@
         "name_cased": "dashboardLights",
         "name_pretty": "Dashboard lights",
         "type": "custom",
-        "size": 3,
+        "size": 2,
         "items": [
           {
             "name": "name",
@@ -3584,43 +3591,21 @@
           {
             "name": "state",
             "name_cased": "state",
-            "name_pretty": "Active state",
+            "name_pretty": "On-Off State",
             "type": "enum",
             "size": 1,
             "controls": "switch",
             "enum_values": [
               {
                 "id": 0,
-                "name": "inactive",
-                "verb": "deactivate"
+                "name": "off"
               },
               {
                 "id": 1,
-                "name": "active",
-                "verb": "activate"
+                "name": "on"
               }
             ],
-            "customType": "active_state"
-          },
-          {
-            "name": "colour",
-            "name_cased": "colour",
-            "type": "enum",
-            "size": 1,
-            "enum_values": [
-              {
-                "id": 0,
-                "name": "info"
-              },
-              {
-                "id": 1,
-                "name": "yellow"
-              },
-              {
-                "id": 2,
-                "name": "red"
-              }
-            ]
+            "customType": "on_off_state"
           }
         ],
         "id": 1,
@@ -3628,841 +3613,748 @@
         "name_singular": "dashboard_light",
         "examples": [
           {
-            "data_component": "000000",
+            "data_component": "0000",
             "values": {
               "name": "high_beam",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "High beam is inactive"
+            "description": "High beam is off"
           },
           {
-            "data_component": "010000",
+            "data_component": "0100",
             "values": {
               "name": "low_beam",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Low beam is inactive"
+            "description": "Low beam is off"
           },
           {
-            "data_component": "020100",
+            "data_component": "0201",
             "values": {
               "name": "hazard_warning",
-              "state": "active",
-              "colour": "info"
+              "state": "on"
             },
-            "description": "Info light active for hazard warning"
+            "description": "Hazard warning is on"
           },
           {
-            "data_component": "030000",
+            "data_component": "0300",
             "values": {
               "name": "brake_failure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Brake failure/brake system malfunction is inactive"
+            "description": "Brake failure/brake system malfunction is off"
           },
           {
-            "data_component": "040000",
+            "data_component": "0400",
             "values": {
               "name": "hatch_open",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Hatch open is inactive"
+            "description": "Hatch open is off"
           },
           {
-            "data_component": "050000",
+            "data_component": "0500",
             "values": {
               "name": "fuel_level",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Fuel level is inactive"
+            "description": "Fuel level is off"
           },
           {
-            "data_component": "060000",
+            "data_component": "0600",
             "values": {
               "name": "engine_coolant_temperature",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Engine coolant temperature is inactive"
+            "description": "Engine coolant temperature is off"
           },
           {
-            "data_component": "070000",
+            "data_component": "0700",
             "values": {
               "name": "battery_charging_condition",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Battery charging condition is inactive"
+            "description": "Battery charging condition is off"
           },
           {
-            "data_component": "080000",
+            "data_component": "0800",
             "values": {
               "name": "engine_oil",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Engine oil is inactive"
+            "description": "Engine oil is off"
           },
           {
-            "data_component": "090000",
+            "data_component": "0900",
             "values": {
               "name": "position_lights",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Position lights is inactive"
+            "description": "Position lights is off"
           },
           {
-            "data_component": "0a0000",
+            "data_component": "0a00",
             "values": {
               "name": "front_fog_light",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Front fog light is inactive"
+            "description": "Front fog light is off"
           },
           {
-            "data_component": "0b0000",
+            "data_component": "0b00",
             "values": {
               "name": "rear_fog_light",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Rear fog light is inactive"
+            "description": "Rear fog light is off"
           },
           {
-            "data_component": "0c0000",
+            "data_component": "0c00",
             "values": {
               "name": "park_heating",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Park heating is inactive"
+            "description": "Park heating is off"
           },
           {
-            "data_component": "0d0000",
+            "data_component": "0d00",
             "values": {
               "name": "engine_indicator",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Engine indicator is inactive"
+            "description": "Engine indicator is off"
           },
           {
-            "data_component": "0e0000",
+            "data_component": "0e00",
             "values": {
               "name": "service_call",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Service call for maintenance is inactive"
+            "description": "Service call for maintenance is off"
           },
           {
-            "data_component": "0f0100",
+            "data_component": "0f01",
             "values": {
               "name": "transmission_fluid_temperature",
-              "state": "active",
-              "colour": "info"
+              "state": "on"
             },
-            "description": "Red light active for transmission fluid temperature"
+            "description": "Transmission fluid temperature is on"
           },
           {
-            "data_component": "100000",
+            "data_component": "1000",
             "values": {
               "name": "transmission_failure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Transmission failure/malfunction is inactive"
+            "description": "Transmission failure/malfunction is off"
           },
           {
-            "data_component": "110000",
+            "data_component": "1100",
             "values": {
               "name": "anti_lock_brake_failure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Anti-lock brake system failure is inactive"
+            "description": "Anti-lock brake system failure is off"
           },
           {
-            "data_component": "120000",
+            "data_component": "1200",
             "values": {
               "name": "worn_brake_linings",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Worn brake linings is inactive"
+            "description": "Worn brake linings is off"
           },
           {
-            "data_component": "130000",
+            "data_component": "1300",
             "values": {
               "name": "windscreen_washer_fluid",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Windscreen washer fluid/windshield washer fluid is inactive"
+            "description": "Windscreen washer fluid/windshield washer fluid is off"
           },
           {
-            "data_component": "140000",
+            "data_component": "1400",
             "values": {
               "name": "tire_failure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire failure/malfunction is inactive"
+            "description": "Tire failure/malfunction is off"
           },
           {
-            "data_component": "150100",
+            "data_component": "1501",
             "values": {
               "name": "engine_oil_level",
-              "state": "active",
-              "colour": "info"
+              "state": "on"
             },
-            "description": "Yellow light active for engine oil temperature"
+            "description": "Engine oil temperature is on"
           },
           {
-            "data_component": "160000",
+            "data_component": "1600",
             "values": {
               "name": "engine_coolant_level",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Engine coolant level is inactive"
+            "description": "Engine coolant level is off"
           },
           {
-            "data_component": "170000",
+            "data_component": "1700",
             "values": {
               "name": "steering_failure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Steering failure is inactive"
+            "description": "Steering failure is off"
           },
           {
-            "data_component": "180000",
+            "data_component": "1800",
             "values": {
               "name": "esc_indication",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Electronic Speed Controller is inactive"
+            "description": "Electronic Speed Controller is off"
           },
           {
-            "data_component": "190000",
+            "data_component": "1900",
             "values": {
               "name": "brake_lights",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Brake lights is inactive"
+            "description": "Brake lights is off"
           },
           {
-            "data_component": "1a0000",
+            "data_component": "1a00",
             "values": {
               "name": "adblue_level",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "AdBlue is inactive"
+            "description": "AdBlue is off"
           },
           {
-            "data_component": "1b0000",
+            "data_component": "1b00",
             "values": {
               "name": "fuel_filter_diff_pressure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Fuel filter differential pressure is inactive"
+            "description": "Fuel filter differential pressure is off"
           },
           {
-            "data_component": "1c0000",
+            "data_component": "1c00",
             "values": {
               "name": "seat_belt",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Seat belt is inactive"
+            "description": "Seat belt is off"
           },
           {
-            "data_component": "1d0000",
+            "data_component": "1d00",
             "values": {
               "name": "advanced_braking",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Advanced emergency braking system is inactive"
+            "description": "Advanced emergency braking system is off"
           },
           {
-            "data_component": "1e0000",
+            "data_component": "1e00",
             "values": {
               "name": "acc",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Autonomous Cruise Control is inactive"
+            "description": "Autonomous Cruise Control is off"
           },
           {
-            "data_component": "1f0000",
+            "data_component": "1f00",
             "values": {
               "name": "trailer_connected",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Trailer connected is inactive"
+            "description": "Trailer connected is off"
           },
           {
-            "data_component": "200000",
+            "data_component": "2000",
             "values": {
               "name": "airbag",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Airbag is inactive"
+            "description": "Airbag is off"
           },
           {
-            "data_component": "210000",
+            "data_component": "2100",
             "values": {
               "name": "esc_switched_off",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "ESC switched off is inactive"
+            "description": "ESC switched off is off"
           },
           {
-            "data_component": "220000",
+            "data_component": "2200",
             "values": {
               "name": "lane_departure_warning_off",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Lane departure warning switched off is inactive"
+            "description": "Lane departure warning switched off is off"
           },
           {
-            "data_component": "230000",
+            "data_component": "2300",
             "values": {
               "name": "air_filter_minder",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Air filter minder is inactive"
+            "description": "Air filter minder is off"
           },
           {
-            "data_component": "240000",
+            "data_component": "2400",
             "values": {
               "name": "air_suspension_ride_control_fault",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Air suspension ride control fault is inactive"
+            "description": "Air suspension ride control fault is off"
           },
           {
-            "data_component": "250000",
+            "data_component": "2500",
             "values": {
               "name": "all_wheel_drive_disabled",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "All wheel drive disabled is inactive"
+            "description": "All wheel drive disabled is off"
           },
           {
-            "data_component": "260000",
+            "data_component": "2600",
             "values": {
               "name": "anti_theft",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Anti theft is inactive"
+            "description": "Anti theft is off"
           },
           {
-            "data_component": "270000",
+            "data_component": "2700",
             "values": {
               "name": "blind_spot_detection",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Blind spot detection is inactive"
+            "description": "Blind spot detection is off"
           },
           {
-            "data_component": "280000",
+            "data_component": "2800",
             "values": {
               "name": "charge_system_fault",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Charge system fault is inactive"
+            "description": "Charge system fault is off"
           },
           {
-            "data_component": "290000",
+            "data_component": "2900",
             "values": {
               "name": "check_fuel_cap",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Check fuel cap is inactive"
+            "description": "Check fuel cap is off"
           },
           {
-            "data_component": "2a0000",
+            "data_component": "2a00",
             "values": {
               "name": "check_fuel_fill_inlet",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Check fuel fill inlet is inactive"
+            "description": "Check fuel fill inlet is off"
           },
           {
-            "data_component": "2b0000",
+            "data_component": "2b00",
             "values": {
               "name": "check_fuel_filter",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Check fuel filter is inactive"
+            "description": "Check fuel filter is off"
           },
           {
-            "data_component": "2c0000",
+            "data_component": "2c00",
             "values": {
               "name": "dc_temp_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "DC temperature warning is inactive"
+            "description": "DC temperature warning is off"
           },
           {
-            "data_component": "2d0000",
+            "data_component": "2d00",
             "values": {
               "name": "dc_warning_status",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "DC warning status is inactive"
+            "description": "DC warning status is off"
           },
           {
-            "data_component": "2e0000",
+            "data_component": "2e00",
             "values": {
               "name": "diesel_engine_idle_shutdown",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel engine idle shutdown is inactive"
+            "description": "Diesel engine idle shutdown is off"
           },
           {
-            "data_component": "2f0000",
+            "data_component": "2f00",
             "values": {
               "name": "diesel_engine_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel engine warning is inactive"
+            "description": "Diesel engine warning is off"
           },
           {
-            "data_component": "300000",
+            "data_component": "3000",
             "values": {
               "name": "diesel_exhaust_fluid_system_fault",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel exhaust fluid system fault is inactive"
+            "description": "Diesel exhaust fluid system fault is off"
           },
           {
-            "data_component": "310000",
+            "data_component": "3100",
             "values": {
               "name": "diesel_exhaust_over_temp",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel exhaust over temperature is inactive"
+            "description": "Diesel exhaust over temperature is off"
           },
           {
-            "data_component": "320000",
+            "data_component": "3200",
             "values": {
               "name": "diesel_exhaust_fluid_quality",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel exhaust fluid quality is inactive"
+            "description": "Diesel exhaust fluid quality is off"
           },
           {
-            "data_component": "330000",
+            "data_component": "3300",
             "values": {
               "name": "diesel_filter_regeneration",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel filter regeneration is inactive"
+            "description": "Diesel filter regeneration is off"
           },
           {
-            "data_component": "340000",
+            "data_component": "3400",
             "values": {
               "name": "diesel_particulate_filter",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel particulate filter is inactive"
+            "description": "Diesel particulate filter is off"
           },
           {
-            "data_component": "350000",
+            "data_component": "3500",
             "values": {
               "name": "diesel_pre_heat",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Diesel pre heat is inactive"
+            "description": "Diesel pre heat is off"
           },
           {
-            "data_component": "360000",
+            "data_component": "3600",
             "values": {
               "name": "electric_trailer_brake_connection",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Electric trailer brake connection is inactive"
+            "description": "Electric trailer brake connection is off"
           },
           {
-            "data_component": "370000",
+            "data_component": "3700",
             "values": {
               "name": "ev_battery_cell_max_volt_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery cell max voltage warning is inactive"
+            "description": "EV battery cell max voltage warning is off"
           },
           {
-            "data_component": "380000",
+            "data_component": "3800",
             "values": {
               "name": "ev_battery_cell_min_volt_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery cell min voltage warning is inactive"
+            "description": "EV battery cell min voltage warning is off"
           },
           {
-            "data_component": "390000",
+            "data_component": "3900",
             "values": {
               "name": "ev_battery_charge_energy_storage_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery charge energy storage warning is inactive"
+            "description": "EV battery charge energy storage warning is off"
           },
           {
-            "data_component": "3a0000",
+            "data_component": "3a00",
             "values": {
               "name": "ev_battery_high_level_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery high level warning is inactive"
+            "description": "EV battery high level warning is off"
           },
           {
-            "data_component": "3b0000",
+            "data_component": "3b00",
             "values": {
               "name": "ev_battery_high_temperature_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery high temperature warning is inactive"
+            "description": "EV battery high temperature warning is off"
           },
           {
-            "data_component": "3c0000",
+            "data_component": "3c00",
             "values": {
               "name": "ev_battery_insulation_resist_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery insulation resist warning is inactive"
+            "description": "EV battery insulation resist warning is off"
           },
           {
-            "data_component": "3d0000",
+            "data_component": "3d00",
             "values": {
               "name": "ev_battery_jump_level_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery jump level warning is inactive"
+            "description": "EV battery jump level warning is off"
           },
           {
-            "data_component": "3e0000",
+            "data_component": "3e00",
             "values": {
               "name": "ev_battery_low_level_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery low level warning is inactive"
+            "description": "EV battery low level warning is off"
           },
           {
-            "data_component": "3f0000",
+            "data_component": "3f00",
             "values": {
               "name": "ev_battery_max_volt_veh_energy_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery max volt veh energy warning is inactive"
+            "description": "EV battery max volt veh energy warning is off"
           },
           {
-            "data_component": "400000",
+            "data_component": "4000",
             "values": {
               "name": "ev_battery_min_volt_veh_energy_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery min volt veh energy warning is inactive"
+            "description": "EV battery min volt veh energy warning is off"
           },
           {
-            "data_component": "410000",
+            "data_component": "4100",
             "values": {
               "name": "ev_battery_over_charge_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery over charge warning is inactive"
+            "description": "EV battery over charge warning is off"
           },
           {
-            "data_component": "420000",
+            "data_component": "4200",
             "values": {
               "name": "ev_battery_poor_cell_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery poor cell warning is inactive"
+            "description": "EV battery poor cell warning is off"
           },
           {
-            "data_component": "430000",
+            "data_component": "4300",
             "values": {
               "name": "ev_battery_temp_diff_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "EV battery temperature difference warning is inactive"
+            "description": "EV battery temperature difference warning is off"
           },
           {
-            "data_component": "440000",
+            "data_component": "4400",
             "values": {
               "name": "forward_collision_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Forward collision warning is inactive"
+            "description": "Forward collision warning is off"
           },
           {
-            "data_component": "450000",
+            "data_component": "4500",
             "values": {
               "name": "fuel_door_open",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Fuel doof open is inactive"
+            "description": "Fuel doof open is off"
           },
           {
-            "data_component": "460000",
+            "data_component": "4600",
             "values": {
               "name": "hill_descent_control_fault",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Hill descent control fault is inactive"
+            "description": "Hill descent control fault is off"
           },
           {
-            "data_component": "470000",
+            "data_component": "4700",
             "values": {
               "name": "hill_start_assist_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Hill start assist warning is inactive"
+            "description": "Hill start assist warning is off"
           },
           {
-            "data_component": "480000",
+            "data_component": "4800",
             "values": {
               "name": "hv_interlocking_status_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "HV interlocking status warning is inactive"
+            "description": "HV interlocking status warning is off"
           },
           {
-            "data_component": "490000",
+            "data_component": "4900",
             "values": {
               "name": "lighting_system_failure",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Lighting system failure is inactive"
+            "description": "Lighting system failure is off"
           },
           {
-            "data_component": "4a0000",
+            "data_component": "4a00",
             "values": {
               "name": "malfunction_indicator",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Malfunction indicator is inactive"
+            "description": "Malfunction indicator is off"
           },
           {
-            "data_component": "4b0000",
+            "data_component": "4b00",
             "values": {
               "name": "motor_controller_temp_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Motor controller temperature warning is inactive"
+            "description": "Motor controller temperature warning is off"
           },
           {
-            "data_component": "4c0000",
+            "data_component": "4c00",
             "values": {
               "name": "park_aid_malfunction",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Park aid malfunction is inactive"
+            "description": "Park aid malfunction is off"
           },
           {
-            "data_component": "4d0000",
+            "data_component": "4d00",
             "values": {
               "name": "passive_entry_passive_start",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Passive entry passive start is inactive"
+            "description": "Passive entry passive start is off"
           },
           {
-            "data_component": "4e0000",
+            "data_component": "4e00",
             "values": {
               "name": "powertrain_malfunction",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Powertrain malfunction is inactive"
+            "description": "Powertrain malfunction is off"
           },
           {
-            "data_component": "4f0000",
+            "data_component": "4f00",
             "values": {
               "name": "restraints_indicator_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Restraints indicator warning is inactive"
+            "description": "Restraints indicator warning is off"
           },
           {
-            "data_component": "500000",
+            "data_component": "5000",
             "values": {
               "name": "start_stop_engine_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Start stop engine warning is inactive"
+            "description": "Start stop engine warning is off"
           },
           {
-            "data_component": "510000",
+            "data_component": "5100",
             "values": {
               "name": "traction_control_disabled",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Traction control disabled is inactive"
+            "description": "Traction control disabled is off"
           },
           {
-            "data_component": "520000",
+            "data_component": "5200",
             "values": {
               "name": "traction_control_active",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Traction control active is inactive"
+            "description": "Traction control active is off"
           },
           {
-            "data_component": "530000",
+            "data_component": "5300",
             "values": {
               "name": "traction_motor_temp_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Traction motor temperature warning is inactive"
+            "description": "Traction motor temperature warning is off"
           },
           {
-            "data_component": "540000",
+            "data_component": "5400",
             "values": {
               "name": "tire_pressure_monitor_system_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire pressure monitor system warning is inactive"
+            "description": "Tire pressure monitor system warning is off"
           },
           {
-            "data_component": "550000",
+            "data_component": "5500",
             "values": {
               "name": "water_in_fuel",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Water in fuel is inactive"
+            "description": "Water in fuel is off"
           },
           {
-            "data_component": "560000",
+            "data_component": "5600",
             "values": {
               "name": "tire_warning_front_right",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire warning front right is inactive"
+            "description": "Tire warning front right is off"
           },
           {
-            "data_component": "570000",
+            "data_component": "5700",
             "values": {
               "name": "tire_warning_front_left",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire warning front left is inactive"
+            "description": "Tire warning front left is off"
           },
           {
-            "data_component": "580000",
+            "data_component": "5800",
             "values": {
               "name": "tire_warning_rear_right",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire warning rear right is inactive"
+            "description": "Tire warning rear right is off"
           },
           {
-            "data_component": "590000",
+            "data_component": "5900",
             "values": {
               "name": "tire_warning_rear_left",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire warning rear left is inactive"
+            "description": "Tire warning rear left is off"
           },
           {
-            "data_component": "5a0000",
+            "data_component": "5a00",
             "values": {
               "name": "tire_warning_system_error",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Tire warning system error is inactive"
+            "description": "Tire warning system error is off"
           },
           {
-            "data_component": "5b0000",
+            "data_component": "5b00",
             "values": {
               "name": "battery_low_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Battery low warning is inactive"
+            "description": "Battery low warning is off"
           },
           {
-            "data_component": "5c0000",
+            "data_component": "5c00",
             "values": {
               "name": "brake_fluid_warning",
-              "state": "inactive",
-              "colour": "info"
+              "state": "off"
             },
-            "description": "Brake fluid warning is inactive"
+            "description": "Brake fluid warning is off"
           }
         ],
         "customType": "dashboard_light"
@@ -4519,7 +4411,9 @@
       35,
       36,
       37,
-      38
+      38,
+      39,
+      40
     ],
     "properties": [
       {
@@ -4909,7 +4803,7 @@
         "name_pretty": "AdBlue level",
         "type": "unit.volume",
         "size": 10,
-        "description": "AdBlue level in liters",
+        "description": "AdBlue level",
         "examples": [
           {
             "data_component": "19023fe199999999999a",
@@ -5682,7 +5576,7 @@
         "name_singular": "check_control_message",
         "examples": [
           {
-            "data_component": "0001060140f9c78000000000000c436865636b20656e67696e650005416c657274",
+            "data_component": "0001070140f9c78000000000000c436865636b20656e67696e650005416c657274",
             "values": {
               "id": 1,
               "remaining_time": {
@@ -5748,7 +5642,7 @@
               "id": 21,
               "unit_types": [
                 {
-                  "name": "newtons_per_meters_squared",
+                  "name": "pascals",
                   "id": 0,
                   "conversion_linear": 1
                 },
@@ -6109,7 +6003,7 @@
             "description": "Rear left wheel is doing 787.0RPM"
           },
           {
-            "data_component": "0415004088e80000000000",
+            "data_component": "0403004088e80000000000",
             "values": {
               "location": "rear_right_outer",
               "rpm": {
@@ -6119,7 +6013,7 @@
             "description": "Rear right outer wheel is doing 797.0RPM"
           },
           {
-            "data_component": "0515004089380000000000",
+            "data_component": "0503004089380000000000",
             "values": {
               "location": "rear_left_outer",
               "rpm": {
@@ -6618,7 +6512,7 @@
             "name_cased": "keyValue",
             "name_pretty": "Key-Value",
             "type": "custom",
-            "description": "Key-value pair for the trouble codde",
+            "description": "Key-value pair for the trouble code",
             "items": [
               {
                 "name": "key",
@@ -6640,7 +6534,7 @@
         "multiple": true,
         "examples": [
           {
-            "data_component": "00053132334944000a736f6d655f6572726f72000a736f6d655f76616c7565",
+            "data_component": "000531323349440018000a736f6d655f6572726f72000a736f6d655f76616c7565",
             "values": {
               "id": "123ID",
               "key_value": {
@@ -6651,14 +6545,15 @@
             "description": "Trouble code '123ID' has a value 'some_value' for a key 'some_error'"
           },
           {
-            "data_component": "000431423343000f696d706f7274616e745f6572726f72000f73797374656d206661756c74203332",
+            "data_component": "0004314233430022000f696d706f7274616e745f6572726f72000f73797374656d206661756c74203332",
             "values": {
               "id": "1B3C",
               "key_value": {
                 "key": "important_error",
                 "value": "system fault 32"
               }
-            }
+            },
+            "description": "Trouble code '1B3C' has a value 'system fault 32' for a key 'important_error'"
           }
         ],
         "customType": "oem_trouble_code_value"
@@ -6765,6 +6660,169 @@
           }
         ],
         "customType": "percentage"
+      },
+      {
+        "name": "confirmed_trouble_codes",
+        "name_cased": "confirmedTroubleCodes",
+        "name_pretty": "Confirmed trouble codes",
+        "type": "custom",
+        "items": [
+          {
+            "name": "id",
+            "name_cased": "ID",
+            "name_pretty": "ID",
+            "type": "string",
+            "description": "Identifier"
+          },
+          {
+            "name": "ecu_address",
+            "name_cased": "ecuAddress",
+            "name_pretty": "ECU address",
+            "type": "string",
+            "description": "Electronic Control Unit address"
+          },
+          {
+            "name": "ecu_variant_name",
+            "name_cased": "ecuVariantName",
+            "name_pretty": "ECU variant name",
+            "type": "string",
+            "description": "Electronic Control Unit variant name"
+          },
+          {
+            "name": "status",
+            "name_cased": "status",
+            "type": "string",
+            "description": "Status"
+          }
+        ],
+        "id": 39,
+        "multiple": true,
+        "name_singular": "confirmed_trouble_code",
+        "examples": [
+          {
+            "data_component": "00063830314331300002313600034341530006414354495645",
+            "values": {
+              "id": "801C10",
+              "ecu_address": "16",
+              "ecu_variant_name": "CAS",
+              "status": "ACTIVE"
+            },
+            "description": "Confirmed trouble code '801C10' with ECU address '16' and variante name \"CAS\" is 'ACTIVE'"
+          },
+          {
+            "data_component": "00064435324334340002343800034341530006414354495645",
+            "values": {
+              "id": "D52C44",
+              "ecu_address": "48",
+              "ecu_variant_name": "CAS",
+              "status": "ACTIVE"
+            },
+            "description": "Confirmed trouble code 'D52C44' with ECU address '48' and variante name \"CAS\" is 'ACTIVE'"
+          }
+        ],
+        "customType": "confirmed_trouble_code"
+      },
+      {
+        "name": "diesel_exhaust_filter_status",
+        "name_cased": "dieselExhaustFilterStatus",
+        "name_pretty": "Diesel exhaust filter status",
+        "type": "custom",
+        "size": 3,
+        "items": [
+          {
+            "name": "status",
+            "name_cased": "status",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "unknown"
+              },
+              {
+                "id": 1,
+                "name": "normal_operation"
+              },
+              {
+                "id": 2,
+                "name": "overloaded"
+              },
+              {
+                "id": 3,
+                "name": "at_limit"
+              },
+              {
+                "id": 4,
+                "name": "over_limit"
+              }
+            ]
+          },
+          {
+            "name": "component",
+            "name_cased": "component",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "unknown"
+              },
+              {
+                "id": 1,
+                "name": "exhaust_filter"
+              },
+              {
+                "id": 2,
+                "name": "diesel_particulate_filter"
+              },
+              {
+                "id": 3,
+                "name": "overboost_code_regulator"
+              },
+              {
+                "id": 4,
+                "name": "off_board_regeneration"
+              }
+            ]
+          },
+          {
+            "name": "cleaning",
+            "name_cased": "cleaning",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "unknown"
+              },
+              {
+                "id": 1,
+                "name": "in_progress"
+              },
+              {
+                "id": 2,
+                "name": "complete"
+              },
+              {
+                "id": 3,
+                "name": "interrupted"
+              }
+            ]
+          }
+        ],
+        "id": 40,
+        "examples": [
+          {
+            "data_component": "010100",
+            "values": {
+              "status": "normal_operation",
+              "component": "exhaust_filter",
+              "cleaning": "unknown"
+            },
+            "description": "Diesel 'exhaust filter' is in 'normal operation' and not cleaning"
+          }
+        ],
+        "customType": "diesel_exhaust_filter_status"
       }
     ]
   },
@@ -7423,9 +7481,9 @@
           },
           {
             "id": 8,
-            "name": "internal_oem_error",
-            "name_pretty": "Internal OEM error",
-            "description": "API call to OEM returned an error"
+            "name": "oem_error",
+            "name_pretty": "OEM error",
+            "description": "API call to an OEM returned an error"
           }
         ],
         "examples": [
@@ -7740,9 +7798,9 @@
           {
             "data_component": "0e084050000000000000",
             "value": {
-              "beats_per_minute": 64
+              "times_per_minute": 64
             },
-            "description": "Heart rate is 64.0bpm"
+            "description": "Heart rate is 64.0tpm (bpm)"
           }
         ],
         "unit": {
@@ -7775,9 +7833,19 @@
               "conversion_linear": 1000000000
             },
             {
-              "name": "beats_per_minute",
+              "name": "times_per_minute",
               "id": 8,
               "conversion_linear": 60
+            },
+            {
+              "name": "times_per_hour",
+              "id": 9,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "times_per_day",
+              "id": 10,
+              "conversion_linear": 86400
             }
           ]
         }
@@ -7866,7 +7934,7 @@
             "description": "Doors capability - front left and rear right door is open while locks are unlocked, recorded at 10. January 2017 at 16:32:05 GMT"
           },
           {
-            "data_component": "0b0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
+            "data_component": "0c0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
             "values": {
               "charging": {
                 "charge_port_state": "open",
@@ -8973,6 +9041,13 @@
             "id": 4,
             "name": "start"
           }
+        ],
+        "examples": [
+          {
+            "data_component": "02",
+            "value": "accessory",
+            "description": "Ignition state is in accessory"
+          }
         ]
       }
     ]
@@ -9602,6 +9677,13 @@
             "id": 4,
             "name": "sidelights"
           }
+        ],
+        "examples": [
+          {
+            "data_component": "02",
+            "value": "parking_light_right",
+            "description": "Rotary light switch position parking light right"
+          }
         ]
       }
     ]
@@ -10166,7 +10248,7 @@
         "name_pretty": "Brake fluid change date",
         "type": "timestamp",
         "size": 8,
-        "description": "Milliseconds since UNIX Epoch time",
+        "description": "Brake fluid change date",
         "examples": [
           {
             "data_component": "000001677c63d280",
@@ -10553,7 +10635,7 @@
             "description": "Doors capability - front left and rear right door is open while locks are unlocked, recorded at 10. January 2017 at 16:32:05 GMT"
           },
           {
-            "data_component": "0b0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
+            "data_component": "0c0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
             "values": {
               "charging": {
                 "charge_port_state": "open",
@@ -10583,7 +10665,7 @@
         "name_singular": "multi_command",
         "examples": [
           {
-            "data_component": "0b00200105000401000101",
+            "data_component": "0c00200106000401000101",
             "values": {
               "doors": {
                 "inside_locks_state": "locked"
@@ -10592,7 +10674,7 @@
             "description": "Lock inside door locks"
           },
           {
-            "data_component": "0b00350101000401000100",
+            "data_component": "0c00350101000401000100",
             "values": {
               "ignition": {
                 "status": "off"
@@ -11266,9 +11348,9 @@
         "description": "Operator ticket ID",
         "examples": [
           {
-            "data_component": "3634383934323333",
-            "value": "64894233",
-            "description": "Operator ticket ID is '64894233'"
+            "data_component": "36343839414234323333",
+            "value": "6489AB4233",
+            "description": "Operator ticket ID is '6489AB4233'"
           }
         ]
       },
@@ -11649,7 +11731,7 @@
           "id": 21,
           "unit_types": [
             {
-              "name": "newtons_per_meters_squared",
+              "name": "pascals",
               "id": 0,
               "conversion_linear": 1
             },
@@ -13640,7 +13722,7 @@
         "examples": [
           {
             "data_component": "404a40090b417ca2402ae122d948dc12",
-            "value": {
+            "values": {
               "latitude": 52.500276,
               "longitude": 13.439719
             },
@@ -13678,7 +13760,7 @@
         "examples": [
           {
             "data_component": "404a40090b417ca2402ae122d948dc12",
-            "value": {
+            "values": {
               "latitude": 52.500276,
               "longitude": 13.439719
             },
@@ -14040,7 +14122,7 @@
         "examples": [
           {
             "data_component": "050014536b616c69747a65722053747261c39f65203638",
-            "value": {
+            "values": {
               "type": "street",
               "value": "Skalitzer Straße 68"
             },
@@ -14048,7 +14130,7 @@
           },
           {
             "data_component": "0000064265726c696e",
-            "value": {
+            "values": {
               "type": "city",
               "value": "Berlin"
             },
@@ -14056,7 +14138,7 @@
           },
           {
             "data_component": "0100074765726d616e79",
-            "value": {
+            "values": {
               "type": "country",
               "value": "Germany"
             },
@@ -14127,7 +14209,7 @@
         "examples": [
           {
             "data_component": "050014536b616c69747a65722053747261c39f65203638",
-            "value": {
+            "values": {
               "type": "street",
               "value": "Skalitzer Straße 68"
             },
@@ -14135,7 +14217,7 @@
           },
           {
             "data_component": "0000064265726c696e",
-            "value": {
+            "values": {
               "type": "city",
               "value": "Berlin"
             },
@@ -14143,7 +14225,7 @@
           },
           {
             "data_component": "0100074765726d616e79",
-            "value": {
+            "values": {
               "type": "country",
               "value": "Germany"
             },
@@ -14691,7 +14773,7 @@
         "multiple": true,
         "examples": [
           {
-            "data_component": "000b044034333333333333",
+            "data_component": "000c044034333333333333",
             "values": {
               "driving_mode": "regular",
               "consumption": {
@@ -14701,7 +14783,7 @@
             "description": "Driving mode 'regular' consumed 20.2kWh of electric energy"
           },
           {
-            "data_component": "010b04404099999999999a",
+            "data_component": "010c04404099999999999a",
             "values": {
               "driving_mode": "eco",
               "consumption": {
@@ -14711,7 +14793,7 @@
             "description": "Driving mode 'eco' consumed 33.2kWh of electric energy"
           },
           {
-            "data_component": "020b04404b266666666666",
+            "data_component": "020c04404b266666666666",
             "values": {
               "driving_mode": "sport",
               "consumption": {
@@ -14721,7 +14803,7 @@
             "description": "Driving mode 'sport' consumed 54.3kWh of electric energy"
           },
           {
-            "data_component": "030b044050333333333333",
+            "data_component": "030c044050333333333333",
             "values": {
               "driving_mode": "sport_plus",
               "consumption": {
@@ -14731,7 +14813,7 @@
             "description": "Driving mode 'sport_plus' consumed 64.8kWh of electric energy"
           },
           {
-            "data_component": "040b044032000000000000",
+            "data_component": "040c044032000000000000",
             "values": {
               "driving_mode": "ecoPlus",
               "consumption": {
@@ -14741,7 +14823,7 @@
             "description": "Driving mode 'ecoPlus' consumed 18.0kWh of electric energy"
           },
           {
-            "data_component": "050b044040d9999999999a",
+            "data_component": "050c044040d9999999999a",
             "values": {
               "driving_mode": "comfort",
               "consumption": {
@@ -15053,7 +15135,7 @@
         "name_pretty": "Last trip date",
         "type": "timestamp",
         "size": 8,
-        "description": "Milliseconds since UNIX Epoch time",
+        "description": "The last trip date",
         "examples": [
           {
             "data_component": "0000016682059d50",
@@ -16504,7 +16586,8 @@
       17,
       19,
       20,
-      21
+      21,
+      22
     ],
     "properties": [
       {
@@ -17052,6 +17135,44 @@
             "description": "Headunit is using a 24h timeformat"
           }
         ]
+      },
+      {
+        "id": 22,
+        "name": "drive",
+        "name_cased": "drive",
+        "name_pretty": "Drive",
+        "type": "enum",
+        "size": 1,
+        "description": "Wheels driven by the engine",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "fwd",
+            "description": "Front-wheel drive"
+          },
+          {
+            "id": 1,
+            "name": "rwd",
+            "description": "Rear-wheel drive"
+          },
+          {
+            "id": 2,
+            "name": "four_wd",
+            "description": "Four-wheel drive"
+          },
+          {
+            "id": 3,
+            "name": "awd",
+            "description": "All-wheel drive"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "rwd",
+            "description": "Vehicle has rear-wheel drive"
+          }
+        ]
       }
     ]
   },
@@ -17376,7 +17497,7 @@
             "description": "Doors capability - front left and rear right door is open while locks are unlocked, recorded at 10. January 2017 at 16:32:05 GMT"
           },
           {
-            "data_component": "0b0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
+            "data_component": "0c0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
             "values": {
               "charging": {
                 "charge_port_state": "open",
@@ -18432,7 +18553,7 @@
         "name_pretty": "Windscreen damage detection time",
         "type": "timestamp",
         "size": 8,
-        "description": "Milliseconds since UNIX Epoch time",
+        "description": "Windscreen damage detection date",
         "examples": [
           {
             "data_component": "000001598938e788",

@@ -820,9 +820,19 @@
               "conversion_linear": 1000000000
             },
             {
-              "name": "beats_per_minute",
+              "name": "times_per_minute",
               "id": 8,
               "conversion_linear": 60
+            },
+            {
+              "name": "times_per_hour",
+              "id": 9,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "times_per_day",
+              "id": 10,
+              "conversion_linear": 86400
             }
           ]
         }
@@ -999,12 +1009,47 @@
       }
     ]
   },
+  "confirmed_trouble_code": {
+    "name": "confirmed_trouble_code",
+    "name_cased": "confirmedTroubleCode",
+    "name_pretty": "Confirmed trouble code",
+    "type": "custom",
+    "items": [
+      {
+        "name": "id",
+        "name_cased": "ID",
+        "name_pretty": "ID",
+        "type": "string",
+        "description": "Identifier"
+      },
+      {
+        "name": "ecu_address",
+        "name_cased": "ecuAddress",
+        "name_pretty": "ECU address",
+        "type": "string",
+        "description": "Electronic Control Unit address"
+      },
+      {
+        "name": "ecu_variant_name",
+        "name_cased": "ecuVariantName",
+        "name_pretty": "ECU variant name",
+        "type": "string",
+        "description": "Electronic Control Unit variant name"
+      },
+      {
+        "name": "status",
+        "name_cased": "status",
+        "type": "string",
+        "description": "Status"
+      }
+    ]
+  },
   "dashboard_light": {
     "name": "dashboard_light",
     "name_cased": "dashboardLight",
     "name_pretty": "Dashboard light",
     "type": "custom",
-    "size": 3,
+    "size": 2,
     "items": [
       {
         "name": "name",
@@ -1424,27 +1469,7 @@
       {
         "name": "state",
         "name_cased": "state",
-        "type": "types.active_state"
-      },
-      {
-        "name": "colour",
-        "name_cased": "colour",
-        "type": "enum",
-        "size": 1,
-        "enum_values": [
-          {
-            "id": 0,
-            "name": "info"
-          },
-          {
-            "id": 1,
-            "name": "yellow"
-          },
-          {
-            "id": 2,
-            "name": "red"
-          }
-        ]
+        "type": "types.on_off_state"
       }
     ]
   },
@@ -1464,6 +1489,95 @@
         "name": "time",
         "name_cased": "time",
         "type": "types.time"
+      }
+    ]
+  },
+  "diesel_exhaust_filter_status": {
+    "name": "diesel_exhaust_filter_status",
+    "name_cased": "dieselExhaustFilterStatus",
+    "name_pretty": "Diesel exhaust filter status",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "status",
+        "name_cased": "status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "normal_operation"
+          },
+          {
+            "id": 2,
+            "name": "overloaded"
+          },
+          {
+            "id": 3,
+            "name": "at_limit"
+          },
+          {
+            "id": 4,
+            "name": "over_limit"
+          }
+        ]
+      },
+      {
+        "name": "component",
+        "name_cased": "component",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "exhaust_filter"
+          },
+          {
+            "id": 2,
+            "name": "diesel_particulate_filter"
+          },
+          {
+            "id": 3,
+            "name": "overboost_code_regulator"
+          },
+          {
+            "id": 4,
+            "name": "off_board_regeneration"
+          }
+        ]
+      },
+      {
+        "name": "cleaning",
+        "name_cased": "cleaning",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "in_progress"
+          },
+          {
+            "id": 2,
+            "name": "complete"
+          },
+          {
+            "id": 3,
+            "name": "interrupted"
+          }
+        ]
       }
     ]
   },
@@ -1872,7 +1986,7 @@
           },
           {
             "id": 6,
-            "name": "internal_oem_error"
+            "name": "oem_error"
           }
         ]
       },
@@ -1992,7 +2106,7 @@
         "name": "key_value",
         "name_cased": "keyValue",
         "type": "types.key_value",
-        "description": "Key-value pair for the trouble codde"
+        "description": "Key-value pair for the trouble code"
       }
     ]
   },
@@ -2230,7 +2344,7 @@
         "name_cased": "date",
         "type": "timestamp",
         "size": 8,
-        "description": "Milliseconds since UNIX Epoch time"
+        "description": "Timer date"
       }
     ]
   },
@@ -2257,7 +2371,7 @@
           "id": 21,
           "unit_types": [
             {
-              "name": "newtons_per_meters_squared",
+              "name": "pascals",
               "id": 0,
               "conversion_linear": 1
             },
