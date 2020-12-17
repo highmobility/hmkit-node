@@ -269,6 +269,10 @@ function describeEmulatorTests(capabilityName, capability) {
         const parsedResponse = response.parse();
 
         propertiesToRequest.forEach(requestedPropertyName => {
+          if (parsedResponse?.failureReason?.value === 'unsupported_capability') {
+            console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
+            return;
+          }
           expect(parsedResponse).toHaveProperty(requestedPropertyName);
         });
         capabilityConfiguration.properties.slice(2).forEach(notRequestedProperty => {
