@@ -71,6 +71,10 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
                 value: expect.any(String),
                 timestamp: expect.any(Date),
               },
+              state: {
+                value: expect.any(String),
+                timestamp: expect.any(Date),
+              },
             },
           },
         },
@@ -97,6 +101,10 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
                 value: 'open',
                 timestamp: expect.any(Date),
               },
+              sunroofRainEvent: {
+                value: 'no_event',
+                timestamp: expect.any(Date)
+              }
             },
           },
         },
