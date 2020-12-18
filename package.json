@@ -54,7 +54,7 @@
     "joi": "^14.0.2",
     "lodash": "^4.17.19",
     "lodash-fp": "^0.10.4",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
