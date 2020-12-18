@@ -205,7 +205,7 @@ function describeEmulatorTests(capabilityName, capability) {
         }
       });
 
-      it.only(`Availability getter for all properties should have correct response`, async () => {
+      it(`Availability getter for all properties should have correct response`, async () => {
         await sleep(1500);
         const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
         const parsedResponse = response.parse();
@@ -269,7 +269,7 @@ function describeEmulatorTests(capabilityName, capability) {
         const parsedResponse = response.parse();
 
         propertiesToRequest.forEach(requestedPropertyName => {
-          if (parsedResponse?.failureReason?.value === 'unsupported_capability') {
+          if (parsedResponse && parsedResponse.failureReason && parsedResponse.failureReason.value === 'unsupported_capability') {
             console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
             return;
           }
