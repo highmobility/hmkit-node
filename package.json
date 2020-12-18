@@ -1,6 +1,6 @@
 {
   "name": "hmkit",
-  "version": "12.0.0-beta5",
+  "version": "12.0.0-beta6",
   "description": "High Mobility SDK for Node.js",
   "homepage": "https://github.com/highmobility/hmkit-node",
   "bugs": "https://github.com/highmobility/hmkit-node/issues",
