@@ -67,7 +67,7 @@ const CUSTOM_TYPES_DESTINATION_FILE = `${__dirname}/../src/Configuration/customT
 const UNIVERSAL_PROPERTIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/universalProperties.json`;
 
 function autoApiPath(path) {
-  return `${__dirname}/../../ml-auto-api/${path}`;
+  return `${__dirname}/../../auto-api/${path}`;
 }
 
 function parseConfigurationFiles() {

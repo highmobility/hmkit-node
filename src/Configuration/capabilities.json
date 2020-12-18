@@ -1521,7 +1521,8 @@
           },
           {
             "id": 2,
-            "name": "inactive"
+            "name": "peak_setting_active",
+            "description": "On/Off-peak setting is active (charges when electricity is cheaper)"
           }
         ],
         "examples": [
@@ -4797,98 +4798,23 @@
         }
       },
       {
-        "id": 12,
         "name": "adblue_level",
         "name_cased": "adBlueLevel",
         "name_pretty": "AdBlue level",
-        "type": "unit.volume",
-        "size": 10,
-        "description": "AdBlue level",
+        "unit_sign": "%",
+        "validation": "min:0|max:1",
+        "type": "double",
+        "size": 8,
+        "description": "AdBlue level percentage between 0.0-1.0",
+        "id": 12,
         "examples": [
           {
-            "data_component": "19023fe199999999999a",
-            "value": {
-              "liters": 0.55
-            },
-            "description": "0.55L of AdBlue remaining"
+            "data_component": "3feccccccccccccd",
+            "value": 0.9,
+            "description": "AdBlue level is at 90%"
           }
         ],
-        "unit": {
-          "name": "volume",
-          "id": 25,
-          "unit_types": [
-            {
-              "name": "liters",
-              "id": 2,
-              "conversion_linear": 1
-            },
-            {
-              "name": "milliliters",
-              "id": 3,
-              "conversion_linear": 0.001
-            },
-            {
-              "name": "centiliters",
-              "id": 4,
-              "conversion_linear": 0.01
-            },
-            {
-              "name": "deciliters",
-              "id": 5,
-              "conversion_linear": 0.1
-            },
-            {
-              "name": "cubic_millimeters",
-              "id": 10,
-              "conversion_linear": 0.000001
-            },
-            {
-              "name": "cubic_centimeters",
-              "id": 9,
-              "conversion_linear": 0.001
-            },
-            {
-              "name": "cubic_decimeters",
-              "id": 8,
-              "conversion_linear": 1
-            },
-            {
-              "name": "cubic_meters",
-              "id": 7,
-              "conversion_linear": 1000
-            },
-            {
-              "name": "cubic_inches",
-              "id": 11,
-              "conversion_linear": 0.016387064
-            },
-            {
-              "name": "cubic_feet",
-              "id": 12,
-              "conversion_linear": 28.316846592
-            },
-            {
-              "name": "fluid_ounces",
-              "id": 19,
-              "conversion_linear": 0.0295735296875
-            },
-            {
-              "name": "gallons",
-              "id": 23,
-              "conversion_linear": 3.785411784
-            },
-            {
-              "name": "imperial_fluid_ounces",
-              "id": 26,
-              "conversion_linear": 0.0284130625
-            },
-            {
-              "name": "imperial_gallons",
-              "id": 29,
-              "conversion_linear": 4.54609
-            }
-          ]
-        }
+        "customType": "percentage"
       },
       {
         "id": 13,
@@ -6440,6 +6366,22 @@
               "status": "normal"
             },
             "description": "Rear left tire pressure is normal"
+          },
+          {
+            "data_component": "0400",
+            "values": {
+              "location": "rear_right_outer",
+              "status": "normal"
+            },
+            "description": "Rear right outer tire pressure is normal"
+          },
+          {
+            "data_component": "0500",
+            "values": {
+              "location": "rear_left_outer",
+              "status": "normal"
+            },
+            "description": "Rear left outer tire pressure is normal"
           }
         ],
         "customType": "tire_pressure_status"
@@ -6813,13 +6755,49 @@
         "id": 40,
         "examples": [
           {
+            "data_component": "000100",
+            "values": {
+              "status": "unknown",
+              "component": "exhaust_filter",
+              "cleaning": "unknown"
+            },
+            "description": "Diesel 'exhaust filter' is in 'normal' status and not cleaning"
+          },
+          {
             "data_component": "010100",
             "values": {
               "status": "normal_operation",
               "component": "exhaust_filter",
               "cleaning": "unknown"
             },
-            "description": "Diesel 'exhaust filter' is in 'normal operation' and not cleaning"
+            "description": "Diesel 'exhaust filter' is in 'normal operation' status and not cleaning"
+          },
+          {
+            "data_component": "020100",
+            "values": {
+              "status": "overloaded",
+              "component": "exhaust_filter",
+              "cleaning": "unknown"
+            },
+            "description": "Diesel 'exhaust filter' is in 'overloaded' status and not cleaning"
+          },
+          {
+            "data_component": "030100",
+            "values": {
+              "status": "at_limit",
+              "component": "exhaust_filter",
+              "cleaning": "unknown"
+            },
+            "description": "Diesel 'exhaust filter' is in 'at_limit' status and not cleaning"
+          },
+          {
+            "data_component": "040100",
+            "values": {
+              "status": "over_limit",
+              "component": "exhaust_filter",
+              "cleaning": "unknown"
+            },
+            "description": "Diesel 'exhaust filter' is in 'over_limit' status and not cleaning"
           }
         ],
         "customType": "diesel_exhaust_filter_status"
@@ -14121,14 +14099,6 @@
         "multiple": true,
         "examples": [
           {
-            "data_component": "050014536b616c69747a65722053747261c39f65203638",
-            "values": {
-              "type": "street",
-              "value": "Skalitzer Straße 68"
-            },
-            "description": "Street component value is 'Skalitzer Straße 68'"
-          },
-          {
             "data_component": "0000064265726c696e",
             "values": {
               "type": "city",
@@ -14143,6 +14113,54 @@
               "value": "Germany"
             },
             "description": "Country component value is 'Germany'"
+          },
+          {
+            "data_component": "0200024445",
+            "values": {
+              "type": "country_short",
+              "value": "DE"
+            },
+            "description": "Country short component value is 'DE'"
+          },
+          {
+            "data_component": "0300064265726c696e",
+            "values": {
+              "type": "district",
+              "value": "Berlin"
+            },
+            "description": "District component value is 'Berlin'"
+          },
+          {
+            "data_component": "0400053130313137",
+            "values": {
+              "type": "postal_code",
+              "value": "10117"
+            },
+            "description": "Postal code component value is '10117'"
+          },
+          {
+            "data_component": "050014536b616c69747a65722053747261c39f65203638",
+            "values": {
+              "type": "street",
+              "value": "Skalitzer Straße 68"
+            },
+            "description": "Street component value is 'Skalitzer Straße 68'"
+          },
+          {
+            "data_component": "06000b4272616e64656e62757267",
+            "values": {
+              "type": "state_province",
+              "value": "Brandenburg"
+            },
+            "description": "Country component value is 'Brandenburg'"
+          },
+          {
+            "data_component": "0700074765726d616e79",
+            "values": {
+              "type": "other",
+              "value": "Germany"
+            },
+            "description": "Other component value is 'Germany'"
           }
         ],
         "customType": "address_component"
@@ -14208,14 +14226,6 @@
         "multiple": true,
         "examples": [
           {
-            "data_component": "050014536b616c69747a65722053747261c39f65203638",
-            "values": {
-              "type": "street",
-              "value": "Skalitzer Straße 68"
-            },
-            "description": "Street component value is 'Skalitzer Straße 68'"
-          },
-          {
             "data_component": "0000064265726c696e",
             "values": {
               "type": "city",
@@ -14230,6 +14240,54 @@
               "value": "Germany"
             },
             "description": "Country component value is 'Germany'"
+          },
+          {
+            "data_component": "0200024445",
+            "values": {
+              "type": "country_short",
+              "value": "DE"
+            },
+            "description": "Country short component value is 'DE'"
+          },
+          {
+            "data_component": "0300064265726c696e",
+            "values": {
+              "type": "district",
+              "value": "Berlin"
+            },
+            "description": "District component value is 'Berlin'"
+          },
+          {
+            "data_component": "0400053130313137",
+            "values": {
+              "type": "postal_code",
+              "value": "10117"
+            },
+            "description": "Postal code component value is '10117'"
+          },
+          {
+            "data_component": "050014536b616c69747a65722053747261c39f65203638",
+            "values": {
+              "type": "street",
+              "value": "Skalitzer Straße 68"
+            },
+            "description": "Street component value is 'Skalitzer Straße 68'"
+          },
+          {
+            "data_component": "06000b4272616e64656e62757267",
+            "values": {
+              "type": "state_province",
+              "value": "Brandenburg"
+            },
+            "description": "Country component value is 'Brandenburg'"
+          },
+          {
+            "data_component": "0700074765726d616e79",
+            "values": {
+              "type": "other",
+              "value": "Germany"
+            },
+            "description": "Other component value is 'Germany'"
           }
         ],
         "customType": "address_component"
