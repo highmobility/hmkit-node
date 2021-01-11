@@ -1,6 +1,6 @@
 expect.extend({
   unitWithValue(received, unitTypes) {
-    const [receivedUnitType, value] = Object.entries(received)[0];
+    const { value, unit: receivedUnitType } = received;
     const hasUnit = unitTypes.some(unitType => unitType.name === receivedUnitType);
     const hasNumberValue = Number(value) === value;
 

@@ -141,7 +141,7 @@ function describeEmulatorTests(capabilityName, capability) {
         });
 
         // Test correct getter response state
-        it(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
+        it.only(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
           await sleep(1500);
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           if (parsedResponse instanceof failureRespClass) {
@@ -250,9 +250,9 @@ function describeEmulatorTests(capabilityName, capability) {
 
           expect(propValue).toHaveProperty('availability');
           expect(propValue.availability).toEqual({
-            updateRate: expect.any(String),
+            updateRate: { value: expect.any(String) },
             rateLimit: expect.unitWithValue(rateLimitUnitTypes),
-            appliesPer: expect.any(String),
+            appliesPer: { value: expect.any(String) },
           });
         };
 
@@ -367,15 +367,15 @@ function buildResponseValidator(capabilityConfiguration) {
     );
 }
 
-function buildWrapper(value, capabilityConfiguration) {
+function buildWrapper(data, capabilityConfiguration) {
   if (['api_structure'].includes(capabilityConfiguration.category)) {
     return {
-      value,
+      data,
     };
   }
 
   return {
-    value,
+    data,
     timestamp: buildTypeValidator(PropertyType.TIMESTAMP),
   };
 }
@@ -389,10 +389,10 @@ function buildPropertyValidator(
     const [identifierChild, ...otherChildren] = property.items;
     if (property.multiple && identifierChild.enum_values) {
       return {
-        [property.name_cased]: identifierChild.enum_values.map(identifier =>
-          buildWrapper(
+        [property.name_cased]: identifierChild.enum_values.map(identifier => {
+          return buildWrapper(
             {
-              [identifierChild.name_cased]: identifier.name,
+              [identifierChild.name_cased]: { value: identifier.name },
               ...otherChildren.reduce(
                 (mappedChildren, childToMap) => ({
                   ...mappedChildren,
@@ -406,8 +406,8 @@ function buildPropertyValidator(
               ),
             },
             capabilityConfiguration
-          )
-        ),
+          );
+        }),
       };
     }
 
@@ -439,7 +439,7 @@ function buildPropertyValidator(
   if (property.multiple) {
     return {
       [property.name_cased]: expect.arrayContaining([
-        expect.objectContaining({ value: typeValidator }),
+        expect.objectContaining({ data: typeValidator }),
       ]),
     };
   }
@@ -458,35 +458,42 @@ function buildTypeValidator(type, unitTypes) {
 
   switch (type) {
     case PropertyType.STRING: {
-      return expect.any(String);
+      return expect.objectContaining({ value: expect.any(String) });
+      // return expect.any(String);
     }
 
     case PropertyType.UINTEGER: {
-      return expect.any(Number);
+      // return expect.any(Number);
+      return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.DOUBLE: {
-      return expect.any(Number);
+      // return expect.any(Number);
+      return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.FLOAT: {
-      return expect.any(Number);
+      // return expect.any(Number);
+      return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.ENUM: {
-      return expect.any(String);
+      // return expect.any(String);
+      return expect.objectContaining({ value: expect.any(String) });
     }
 
     case PropertyType.TIMESTAMP: {
-      return expect.any(Date);
+      return expect.timestampValue();
     }
 
     case PropertyType.INTEGER: {
-      return expect.any(Number);
+      // return expect.any(Number);
+      return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.BYTES: {
-      return expect.any(Object);
+      // return expect.any(Object);
+      return expect.objectContaining({ value: expect.any(Object) });
     }
 
     default:
