@@ -330,7 +330,7 @@ function decodeFixedLengthProperty(data, property) {
   throw new Error('Invalid estimated size', estimatedSize, property);
 }
 
-const CustomLengthPropertyTypes = [PropertyType.STRING, PropertyType.BYTES];
+const CustomLengthPropertyTypes = [PropertyType.STRING, PropertyType.BYTES, PropertyType.CUSTOM];
 
 function decodeCustomLengthProperty(data, property) {
   let counter = 0;
