@@ -58,51 +58,70 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ResponseClass.MultiCommand);
 
+    // console.log('response is', JSON.stringify(response.parse(), null, 2));
     expect(response.parse()).toEqual({
       multiStates: [
         {
-          value: {
+          data: {
             ignition: {
               status: {
-                value: 'off',
+                data: {
+                  value: 'off',
+                },
                 timestamp: expect.any(Date),
               },
               accessoriesStatus: {
-                value: expect.any(String),
+                data: {
+                  value: expect.any(String),
+                },
                 timestamp: expect.any(Date),
               },
               state: {
-                value: expect.any(String),
+                data: {
+                  value: expect.any(String),
+                },
                 timestamp: expect.any(Date),
               },
             },
           },
         },
         {
-          value: {
+          data: {
             rooftopControl: {
               dimming: {
-                value: 1,
+                data: {
+                  value: 1,
+                },
                 timestamp: expect.any(Date),
               },
               position: {
-                value: 0.5,
+                data: {
+                  value: 0.5,
+                },
                 timestamp: expect.any(Date),
               },
               convertibleRoofState: {
-                value: 'open',
+                data: {
+                  value: 'open',
+                },
                 timestamp: expect.any(Date),
               },
               sunroofTiltState: {
-                value: 'half_tilted',
+                data: {
+                  value: 'half_tilted',
+                },
                 timestamp: expect.any(Date),
               },
               sunroofState: {
-                value: 'open',
+                data: {
+                  value: 'open',
+                },
                 timestamp: expect.any(Date),
               },
               sunroofRainEvent: {
-                value: 'no_event',
+                data: {
+                  value: 'no_event',
+                },
                 timestamp: expect.any(Date)
               }
             },
