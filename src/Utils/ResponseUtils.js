@@ -153,7 +153,7 @@ function parseProperty(propertyData, property) {
   }
 
   if (data) {
-    output.value = parsePropertyData(data, property);
+    output.data = parsePropertyData(data, property);
   }
 
   if (availabilityBytes) {
@@ -204,12 +204,15 @@ export function parsePropertyData(data, property) {
 
     const double = ieee754DoubleToBase10(propertyData, propertyData.length);
 
-    return { [unit.name]: Number(parseFloat(double).toPrecision(15)) };
+    return {
+      value: Number(parseFloat(double).toPrecision(15)),
+      unit: unit.name,
+    };
   }
 
   switch (property.type) {
     case PropertyType.STRING: {
-      return bytesToString(data);
+      return { value: bytesToString(data) };
     }
 
     case PropertyType.CUSTOM: {
@@ -217,33 +220,33 @@ export function parsePropertyData(data, property) {
     }
 
     case PropertyType.UINTEGER: {
-      return bytesSum(data);
+      return { value: bytesSum(data) };
     }
 
     case PropertyType.LIST_UINTEGER: {
-      return data;
+      return { value: data };
     }
 
     case PropertyType.DOUBLE: {
       const double = ieee754DoubleToBase10(data, property.size);
-      return Number(parseFloat(double).toPrecision(15));
+      return { value: Number(parseFloat(double).toPrecision(15)) };
     }
 
     case PropertyType.FLOAT: {
       const float = ieee754ToBase10(data, property.size);
-      return Number(parseFloat(float).toPrecision(7));
+      return { value: Number(parseFloat(float).toPrecision(7)) };
     }
 
     case PropertyType.ENUM: {
-      return decodeEnumProperty(data, property);
+      return { value: decodeEnumProperty(data, property) };
     }
 
     case PropertyType.TIMESTAMP: {
-      return bytesToTimestamp(data);
+      return { value: bytesToTimestamp(data) };
     }
 
     case PropertyType.INTEGER: {
-      return bytesSum(data);
+      return { value: bytesSum(data) };
     }
 
     case PropertyType.BYTES: {

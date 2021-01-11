@@ -21,7 +21,9 @@ describe('Response utils', () => {
     ]);
     expect(parsedData).toEqual({
       chargingStatus: {
-        value: 'charging',
+        data: {
+          value: 'charging',
+        }
       },
     });
   });
@@ -55,11 +57,16 @@ describe('Response utils', () => {
     expect(parsedData).toEqual({
       chargingStatus: {
         availability: {
-          updateRate: 'trip_high',
-          rateLimit: {
-            megahertz: 64,
+          updateRate: {
+            value: 'trip_high'
           },
-          appliesPer: 'vehicle',
+          rateLimit: {
+            value: 64,
+            unit: 'megahertz',
+          },
+          appliesPer: {
+            value: 'vehicle',
+          },
         },
       },
     });

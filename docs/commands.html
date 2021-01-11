@@ -311,9 +311,18 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.Charging.setChargingTimers({
 		timers: [
-			{ timerType: 'preferred_start_time', date: '2017-01-10T16:32:05.000Z' },
-			{ timerType: 'preferred_end_time', date: '2017-01-10T16:36:05.000Z' },
-			{ timerType: 'departure_date', date: '2017-01-10T16:36:05.000Z' },
+			{
+				timerType: { value: 'preferred_start_time' },
+				date: { value: '2017-01-10T16:32:05.000Z' },
+			},
+			{
+				timerType: { value: 'preferred_end_time' },
+				date: { value: '2017-01-10T16:36:05.000Z' },
+			},
+			{
+				timerType: { value: 'departure_date' },
+				date: { value: '2017-01-10T16:36:05.000Z' },
+			},
 		],
 	}),
 	accessCertificate
@@ -346,8 +355,14 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.Charging.setReductionOfChargingCurrentTimes({
 		reductionTimes: [
-			{ startStop: 'start', time: { hour: 17, minute: 33 } },
-			{ startStop: 'stop', time: { hour: 12, minute: 52 } },
+			{
+				startStop: { value: 'start' },
+				time: { hour: { value: 17 }, minute: { value: 33 } },
+			},
+			{
+				startStop: { value: 'stop' },
+				time: { hour: { value: 12 }, minute: { value: 52 } },
+			},
 		],
 	}),
 	accessCertificate
@@ -493,8 +508,14 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.ChassisSettings.setSpringRates({
 		currentSpringRates: [
-			{ axle: 'front', springRate: { newton_millimeters: 21 } },
-			{ axle: 'rear', springRate: { newton_millimeters: 23 } },
+			{
+				axle: { value: 'front' },
+				springRate: { value: 21, unit: 'newton_millimeters' },
+			},
+			{
+				axle: { value: 'rear' },
+				springRate: { value: 23, unit: 'newton_millimeters' },
+			},
 		],
 	}),
 	accessCertificate
@@ -611,14 +632,38 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.Climate.changeStartingTimes({
 		hvacWeekdayStartingTimes: [
-			{ weekday: 'monday', time: { hour: 16, minute: 0 } },
-			{ weekday: 'tuesday', time: { hour: 16, minute: 0 } },
-			{ weekday: 'wednesday', time: { hour: 16, minute: 0 } },
-			{ weekday: 'thursday', time: { hour: 16, minute: 0 } },
-			{ weekday: 'friday', time: { hour: 16, minute: 0 } },
-			{ weekday: 'saturday', time: { hour: 18, minute: 30 } },
-			{ weekday: 'sunday', time: { hour: 19, minute: 31 } },
-			{ weekday: 'automatic', time: { hour: 16, minute: 0 } },
+			{
+				weekday: { value: 'monday' },
+				time: { hour: { value: 16 }, minute: { value: 0 } },
+			},
+			{
+				weekday: { value: 'tuesday' },
+				time: { hour: { value: 16 }, minute: { value: 0 } },
+			},
+			{
+				weekday: { value: 'wednesday' },
+				time: { hour: { value: 16 }, minute: { value: 0 } },
+			},
+			{
+				weekday: { value: 'thursday' },
+				time: { hour: { value: 16 }, minute: { value: 0 } },
+			},
+			{
+				weekday: { value: 'friday' },
+				time: { hour: { value: 16 }, minute: { value: 0 } },
+			},
+			{
+				weekday: { value: 'saturday' },
+				time: { hour: { value: 18 }, minute: { value: 30 } },
+			},
+			{
+				weekday: { value: 'sunday' },
+				time: { hour: { value: 19 }, minute: { value: 31 } },
+			},
+			{
+				weekday: { value: 'automatic' },
+				time: { hour: { value: 16 }, minute: { value: 0 } },
+			},
 		],
 	}),
 	accessCertificate
@@ -1465,16 +1510,16 @@ hmkit.telematics.sendCommand(
   </div>
 
 
-    <h3 id="home_charger_set_charge_current">setChargeCurrent({ chargeCurrentDC })</h3>
+    <h3 id="home_charger_set_charge_current">setChargeCurrent({ chargeCurrent })</h3>
 
     <div class="split-design-wrapper">
         <div class="col-left">
-            {% capture code %}HMKit.commands.HomeCharger.setChargeCurrent({ chargeCurrentDC }){% endcapture %}
+            {% capture code %}HMKit.commands.HomeCharger.setChargeCurrent({ chargeCurrent }){% endcapture %}
             {%
               include code-reference-snippet.html
               reference-id="HomeCharger_set_charge_current"
-              parameters-name="chargeCurrentDC"
-              parameters-description="The charge direct current"
+              parameters-name="chargeCurrent"
+              parameters-description="The charge current"
             %}
         </div>
         
@@ -1483,7 +1528,7 @@ hmkit.telematics.sendCommand(
 
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.HomeCharger.setChargeCurrent({
-		chargeCurrentDC: { volts: 0.5 },
+		chargeCurrent: { amperes: 0.5 },
 	}),
 	accessCertificate
 );
@@ -1515,9 +1560,21 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.HomeCharger.setPriceTariffs({
 		priceTariffs: [
-			{ pricingType: 'starting_fee', price: 4.5, currency: 'EUR' },
-			{ pricingType: 'per_minute', price: 0.3, currency: 'EUR' },
-			{ pricingType: 'per_kwh', price: 0.3, currency: 'Ripple' },
+			{
+				pricingType: { value: 'starting_fee' },
+				price: { value: 4.5 },
+				currency: { value: 'EUR' },
+			},
+			{
+				pricingType: { value: 'per_minute' },
+				price: { value: 0.3 },
+				currency: { value: 'EUR' },
+			},
+			{
+				pricingType: { value: 'per_kwh' },
+				price: { value: 0.3 },
+				currency: { value: 'Ripple' },
+			},
 		],
 	}),
 	accessCertificate
@@ -2003,18 +2060,18 @@ hmkit.telematics.sendCommand(
 		rearExteriorLight: 'active',
 		ambientLightColour: { red: 255, green: 0, blue: 0 },
 		fogLights: [
-			{ location: 'front', state: 'inactive' },
-			{ location: 'rear', state: 'active' },
+			{ location: { value: 'front' }, state: { value: 'inactive' } },
+			{ location: { value: 'rear' }, state: { value: 'active' } },
 		],
 		readingLamps: [
-			{ location: 'front_left', state: 'active' },
-			{ location: 'front_right', state: 'active' },
-			{ location: 'rear_right', state: 'inactive' },
-			{ location: 'rear_left', state: 'inactive' },
+			{ location: { value: 'front_left' }, state: { value: 'active' } },
+			{ location: { value: 'front_right' }, state: { value: 'active' } },
+			{ location: { value: 'rear_right' }, state: { value: 'inactive' } },
+			{ location: { value: 'rear_left' }, state: { value: 'inactive' } },
 		],
 		interiorLights: [
-			{ location: 'front', state: 'inactive' },
-			{ location: 'rear', state: 'active' },
+			{ location: { value: 'front' }, state: { value: 'inactive' } },
+			{ location: { value: 'rear' }, state: { value: 'active' } },
 		],
 	}),
 	accessCertificate
@@ -2246,8 +2303,8 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.MultiCommand.multiCommand({
 		multiCommands: [
-			{ doors: { insideLocksState: { value: 'locked' } } },
-			{ ignition: { status: { value: 'off' } } },
+			{ doors: { locksState: { data: { value: 'locked' } } } },
+			{ ignition: { status: { data: { value: 'off' } } } },
 		],
 	}),
 	accessCertificate
@@ -2398,8 +2455,8 @@ hmkit.telematics.sendCommand(
 	hmkit.commands.Notifications.notification({
 		text: 'Open Garage',
 		actionItems: [
-			{ id: 27, name: 'Open' },
-			{ id: 28, name: 'Cancel' },
+			{ id: { value: 27 }, name: { value: 'Open' } },
+			{ id: { value: 28 }, name: { value: 'Cancel' } },
 		],
 	}),
 	accessCertificate
@@ -2677,7 +2734,7 @@ hmkit.telematics.sendCommand(
 
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.ParkingTicket.startParking({
-		operatorTicketID: '64894233',
+		operatorTicketID: '6489AB4233',
 		ticketStartTime: '2017-01-10T19:34:22.000Z',
 		operatorName: 'Berlin Parking',
 		ticketEndTime: '2019-10-08T11:21:45.000Z',
@@ -4052,18 +4109,18 @@ hmkit.telematics.sendCommand(
     {% capture code %}hmkit.telematics.sendCommand(
 	hmkit.commands.Windows.controlWindows({
 		openPercentages: [
-			{ location: 'front_left', openPercentage: 0.2 },
-			{ location: 'front_right', openPercentage: 0.5 },
-			{ location: 'rear_right', openPercentage: 0.5 },
-			{ location: 'rear_left', openPercentage: 0.1 },
-			{ location: 'hatch', openPercentage: 0.18 },
+			{ location: { value: 'front_left' }, openPercentage: { value: 0.2 } },
+			{ location: { value: 'front_right' }, openPercentage: { value: 0.5 } },
+			{ location: { value: 'rear_right' }, openPercentage: { value: 0.5 } },
+			{ location: { value: 'rear_left' }, openPercentage: { value: 0.1 } },
+			{ location: { value: 'hatch' }, openPercentage: { value: 0.18 } },
 		],
 		positions: [
-			{ location: 'front_left', position: 'open' },
-			{ location: 'front_right', position: 'open' },
-			{ location: 'rear_right', position: 'closed' },
-			{ location: 'rear_left', position: 'open' },
-			{ location: 'hatch', position: 'open' },
+			{ location: { value: 'front_left' }, position: { value: 'open' } },
+			{ location: { value: 'front_right' }, position: { value: 'open' } },
+			{ location: { value: 'rear_right' }, position: { value: 'closed' } },
+			{ location: { value: 'rear_left' }, position: { value: 'open' } },
+			{ location: { value: 'hatch' }, position: { value: 'open' } },
 		],
 	}),
 	accessCertificate

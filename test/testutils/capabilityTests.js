@@ -325,9 +325,14 @@ function generatePropertyValue(propertyID, capabilityConfiguration) {
 
   if (property.multiple) {
     return {
-      [property.name_cased]: property.examples.map(example =>
-        parsePropertyData(hexToUint8Array(example.data_component), property)
-      ),
+      [property.name_cased]: property.examples.map(example => {
+        const exampleInCamelCase = Object.entries(example.values || example.value).reduce((acc, cur) => {
+          const [propertyName, propertyValue] = cur;
+          return { ...acc, [getProperlyCasedKey(propertyName, property)]: propertyValue };
+        }, {});
+
+        return exampleInCamelCase;
+      })
     };
   }
 
@@ -575,85 +580,139 @@ const snakeCaseMap = Object.values(capabilitiesConfiguration).reduce(
   },
   {}
 );
+
+function getProperlyCasedKey(key, property) {
+  const propertyMetaData = (property.items || []).find(
+    x => x.name === key
+  );
+
+  return propertyMetaData ? propertyMetaData.name_cased : snakeCaseMap[key] || key;
+}
+
+// The example uses snake_case for property keys, but the SDK uses camelCase, so this converts the examples to camelCase
+function normalizeExampleValues(obj, property) {
+  const output = { ...obj };
+
+  Object.keys(output).forEach(key => {
+    const value = output[key];
+    delete output[key];
+
+    const properlyCasedKey = getProperlyCasedKey(key, property);
+
+    if (Array.isArray(value)) {
+      output[properlyCasedKey] = value;
+    } else if (typeof value === 'object') {
+      const objectValues = Object.values(value);
+      if (objectValues.length === 1 && typeof objectValues[0] !== 'object') {
+        // Is "unit: value" object
+        output[properlyCasedKey] = parseValue(value);
+      } else {
+        output[properlyCasedKey] = normalizeExampleValues(value, property);
+      }
+    } else if (!Array.isArray(value)) {
+      output[properlyCasedKey] = parseValue(value);
+    } else {
+      output[properlyCasedKey] = parseValue(value);
+    }
+  });
+
+  return output;
+}
+
+function parseValue(value) {
+  // SDSK returns dates as Date instances
+  if (isValidDate(value)) {
+    return { value: new Date(value) };
+  }
+
+  if (typeof value === 'object') {
+    const [ unit, realValue ] = Object.entries(value)[0];
+    return {
+      value: realValue,
+      unit,
+    };
+  }
+
+  return { value };
+}
+
+// https://stackoverflow.com/a/3143231
+function isValidDate(x) {
+  const DATE_REGEX = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/;
+  return DATE_REGEX.test(x);
+};
+
 /**
  * Takes the value from the docs example and parses some data types to match
  * with what the SDK returns (such as ISO strings being converted to strings)
  */
 function getExampleValue(example, property) {
-  // https://stackoverflow.com/a/3143231
-  const isValidDate = x => {
-    const DATE_REGEX = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/;
-    return DATE_REGEX.test(x);
-  };
+  if (property.type === PropertyType.BYTES) {
+    const exampleValue = example.values || example.value;
 
-  const parseValue = value => {
-    // SDSK returns dates as Date instances
-    if (isValidDate(value)) {
-      return new Date(value);
+    switch (property.customType) {
+      case 'capability_state': {
+       return Object.entries(exampleValue).reduce((acc, cur) => {
+          const [capabilityKey, capabilityValue] = cur;
+
+          return {
+            ...acc,
+            [capabilityKey]: Object.entries(capabilityValue).reduce(
+              (properties, propertyEntry) => {
+                const [propertyKey, propertyValue] = propertyEntry;
+
+                if (Array.isArray(propertyValue)) {
+                  return {
+                    ...properties,
+                    [propertyKey] : propertyValue.map(value => {
+                      return {
+                        data: Object.entries(value).reduce((childProperties, childPropertyEntry) => {
+                          const [childPropertyKey, childPropertyValue] = childPropertyEntry;
+                          return {
+                            ...childProperties,
+                            [childPropertyKey]: {
+                              value: childPropertyValue
+                            }
+                          }
+                        }, {})
+                      }
+                    }),
+                  }
+                }
+
+                const normalizedValues = normalizeExampleValues({ [propertyKey]: propertyValue }, property);
+                const normalizedValuesWithData = Object.entries(normalizedValues).reduce((acc, cur) => {
+                  const [propertyName, propertyValue] = cur;
+                  return {
+                    ...acc,
+                    [propertyName]: {
+                      data: propertyValue,
+                    }
+                  }
+                }, {});
+                return { ...properties, ...normalizedValuesWithData };
+              },
+              {}
+            ),
+          };
+        }, {});
+      }
+
+      default: {
+        return exampleValue;
+      }
     }
-    return value;
-  };
+  }
 
   if (example.value != null) {
     return parseValue(example.value);
   }
 
   if (example.values != null) {
-    /**
-     * The example uses snake_case for property keys, but the SDK uses camelCase, so this converts the examples to camelCase
-     */
-    const normalizeExampleValues = obj => {
-      const output = { ...obj };
-
-      Object.keys(output).forEach(key => {
-        const value = output[key];
-        delete output[key];
-
-        const propertyMetaData = (property.items || []).find(
-          x => x.name === key
-        );
-        const properlyCasedKey = propertyMetaData
-          ? propertyMetaData.name_cased
-          : snakeCaseMap[key] || key;
-
-        if (Array.isArray(value)) {
-          output[properlyCasedKey] = value;
-        } else if (typeof value === 'object') {
-          output[properlyCasedKey] = normalizeExampleValues(value);
-        } else if (!Array.isArray(value)) {
-          output[properlyCasedKey] = parseValue(value);
-        } else {
-          output[properlyCasedKey] = parseValue(value);
-        }
-      });
-
-      return output;
-    };
-
     let values = example.values;
     // SDK returns sub-capabilities for capability_state as Response instances, which have the shape `{ value: ... }`
-    if (property.customType === 'capability_state') {
-      values = Object.entries(values).reduce((acc, cur) => {
-        const [capabilityKey, capabilityValue] = cur;
 
-        return {
-          ...acc,
-          [capabilityKey]: Object.entries(capabilityValue).reduce(
-            (properties, propertyEntry) => {
-              const [propertyKey, propertyValue] = propertyEntry;
-              const newProperty = Array.isArray(propertyValue)
-                ? propertyValue.map(value => ({ value }))
-                : { value: propertyValue };
-
-              return { ...properties, [propertyKey]: newProperty };
-            },
-            {}
-          ),
-        };
-      }, {});
-    }
-
-    return { ...normalizeExampleValues(values) };
+    return { ...normalizeExampleValues(values, property) };
   }
 
   return null;

@@ -1,4 +1,9 @@
-const describeIf = (condition, ...args) =>
-  condition ? describe(...args) : describe.skip(...args);
+const describeIf = (condition, ...args) =>{
+  if (condition) {
+    return describe(...args);
+  }
+
+  return describe.skip(...args);
+}
 
 export default describeIf;
