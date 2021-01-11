@@ -141,7 +141,7 @@ function describeEmulatorTests(capabilityName, capability) {
         });
 
         // Test correct getter response state
-        it.only(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
+        it(`Should map ${capabilityName}.${getterCommand.name}() response correctly`, async () => {
           await sleep(1500);
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           if (parsedResponse instanceof failureRespClass) {
@@ -205,7 +205,7 @@ function describeEmulatorTests(capabilityName, capability) {
         }
       });
 
-      it(`Availability getter for all properties should have correct response`, async () => {
+      it.only(`Availability getter for all properties should have correct response`, async () => {
         await sleep(1500);
         const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
         const parsedResponse = response.parse();
@@ -504,9 +504,9 @@ function buildTypeValidator(type, unitTypes) {
 
 function replaceTimestampsWithValidators(state) {
   if (state instanceof Object) {
-    if (state.value !== undefined && state.timestamp !== undefined) {
+    if (state.data !== undefined && state.timestamp !== undefined) {
       return {
-        value: state.value,
+        data: { ...state.data },
         timestamp: expect.any(Date),
       };
     }
