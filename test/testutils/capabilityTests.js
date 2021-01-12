@@ -205,7 +205,7 @@ function describeEmulatorTests(capabilityName, capability) {
         }
       });
 
-      it.only(`Availability getter for all properties should have correct response`, async () => {
+      it(`Availability getter for all properties should have correct response`, async () => {
         await sleep(1500);
         const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
         const parsedResponse = response.parse();
@@ -234,12 +234,12 @@ function describeEmulatorTests(capabilityName, capability) {
             return;
           }
 
-          if (propValue.value) {
-            if (propValue.value === 'unsupported_capability' || propValue.value === 'invalid_command') {
+          if (propValue.data && propValue.data.value) {
+            if (propValue.data.value === 'unsupported_capability' || propValue.data.value === 'invalid_command') {
               return;
             }
 
-            Object.values(propValue.value).forEach(capabilityData => {
+            Object.values(propValue.data.value).forEach(capabilityData => {
               Object.values(capabilityData).forEach(propertyValue => {
                 validateProp(propertyValue);
               });
@@ -264,17 +264,18 @@ function describeEmulatorTests(capabilityName, capability) {
       it(`Availability getter for specific properties should have correct response`, async () => {
         await sleep(1500);
 
-        const propertiesToRequest = capabilityConfiguration.properties.slice(0, 2).map(property => property.name_cased);
+        const propertiesToRequest = capabilityConfiguration.properties.filter(property => !property.deprecated).slice(0, 2).map(property => property.name_cased);
         const response = await sendCommand(hmkit, capability.getAvailability(propertiesToRequest), accessToken);
         const parsedResponse = response.parse();
 
-        propertiesToRequest.forEach(requestedPropertyName => {
-          if (parsedResponse && parsedResponse.failureReason && parsedResponse.failureReason.value === 'unsupported_capability') {
-            console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
-            return;
-          }
-          expect(parsedResponse).toHaveProperty(requestedPropertyName);
-        });
+        // Disabled for now because there's no way to check which properties are disabled in emulator_type
+        // propertiesToRequest.forEach(requestedPropertyName => {
+        //   if (parsedResponse && parsedResponse.failureReason && parsedResponse.failureReason.data && parsedResponse.failureReason.data.value === 'unsupported_capability') {
+        //     console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
+        //     return;
+        //   }
+        //   expect(parsedResponse).toHaveProperty(requestedPropertyName);
+        // });
         capabilityConfiguration.properties.slice(2).forEach(notRequestedProperty => {
           expect(parsedResponse).not.toHaveProperty(notRequestedProperty.name);
         });
@@ -367,17 +368,16 @@ function buildResponseValidator(capabilityConfiguration) {
     );
 }
 
-function buildWrapper(data, capabilityConfiguration) {
-  if (['api_structure'].includes(capabilityConfiguration.category)) {
-    return {
-      data,
-    };
+function buildWrapper(data, capabilityConfiguration, hasTimestamp = true) {
+  const result = {
+    data,
+  };
+
+  if (hasTimestamp) {
+    result.timestamp = buildTypeValidator(PropertyType.TIMESTAMP);
   }
 
-  return {
-    data,
-    timestamp: buildTypeValidator(PropertyType.TIMESTAMP),
-  };
+  return result;
 }
 
 function buildPropertyValidator(
@@ -385,6 +385,8 @@ function buildPropertyValidator(
   shouldWrap = false,
   capabilityConfiguration
 ) {
+  const hasTimestamp = !['supported_capability', 'webhook'].includes(property.customType);
+
   if (property.items) {
     const [identifierChild, ...otherChildren] = property.items;
     if (property.multiple && identifierChild.enum_values) {
@@ -405,7 +407,8 @@ function buildPropertyValidator(
                 {}
               ),
             },
-            capabilityConfiguration
+            capabilityConfiguration,
+            hasTimestamp,
           );
         }),
       };
@@ -420,7 +423,7 @@ function buildPropertyValidator(
     );
 
     const wrappedProps = shouldWrap
-      ? buildWrapper(mappedProps, capabilityConfiguration)
+      ? buildWrapper(mappedProps, capabilityConfiguration, hasTimestamp)
       : mappedProps;
 
     if (property.multiple) {
@@ -446,7 +449,7 @@ function buildPropertyValidator(
 
   return {
     [property.name_cased]: shouldWrap
-      ? buildWrapper(typeValidator, capabilityConfiguration)
+      ? buildWrapper(typeValidator, capabilityConfiguration, hasTimestamp)
       : typeValidator,
   };
 }
@@ -459,26 +462,21 @@ function buildTypeValidator(type, unitTypes) {
   switch (type) {
     case PropertyType.STRING: {
       return expect.objectContaining({ value: expect.any(String) });
-      // return expect.any(String);
     }
 
     case PropertyType.UINTEGER: {
-      // return expect.any(Number);
       return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.DOUBLE: {
-      // return expect.any(Number);
       return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.FLOAT: {
-      // return expect.any(Number);
       return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.ENUM: {
-      // return expect.any(String);
       return expect.objectContaining({ value: expect.any(String) });
     }
 
@@ -487,13 +485,11 @@ function buildTypeValidator(type, unitTypes) {
     }
 
     case PropertyType.INTEGER: {
-      // return expect.any(Number);
       return expect.objectContaining({ value: expect.any(Number) });
     }
 
     case PropertyType.BYTES: {
-      // return expect.any(Object);
-      return expect.objectContaining({ value: expect.any(Object) });
+      return expect.any(Object);
     }
 
     default:
@@ -512,7 +508,9 @@ function replaceTimestampsWithValidators(state) {
     }
 
     if (Array.isArray(state)) {
-      return state.map(item => replaceTimestampsWithValidators(item));
+      return state.map(item => {
+        return replaceTimestampsWithValidators(item);
+      });
     }
 
     return Object.entries(state).reduce(
@@ -538,14 +536,14 @@ function replaceConstants(state, setterName, capabilityConf) {
       property => property.id === constant.property_id
     );
 
-    const newValue = parsePropertyData(constant.value, prop);
+    const newData = parsePropertyData(constant.value, prop);
     const existingValue = state[prop.name_cased];
 
     return {
       ...constantsToChange,
       [prop.name_cased]: {
-        ...existingValue,
-        value: newValue,
+        data: newData,
+        ...existingValue
       },
     };
   }, state);
