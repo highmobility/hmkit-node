@@ -367,7 +367,7 @@ function decodeEnumProperty(data, property) {
     }
   }
 
-  throw new Error('Failed to decode enum');
+  throw new Error('Failed to decode enum', data.length, property.size, property.enum_values);
 }
 
 function parsePropertyComponents(propertyComponentsData) {

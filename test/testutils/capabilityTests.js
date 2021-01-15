@@ -264,18 +264,19 @@ function describeEmulatorTests(capabilityName, capability) {
       it(`Availability getter for specific properties should have correct response`, async () => {
         await sleep(1500);
 
-        const propertiesToRequest = capabilityConfiguration.properties.filter(property => !property.deprecated).slice(0, 2).map(property => property.name_cased);
+        const propertiesToRequest = capabilityConfiguration.properties.slice(0, 2).map(property => property.name_cased);
         const response = await sendCommand(hmkit, capability.getAvailability(propertiesToRequest), accessToken);
         const parsedResponse = response.parse();
 
         // Disabled for now because there's no way to check which properties are disabled in emulator_type
-        // propertiesToRequest.forEach(requestedPropertyName => {
-        //   if (parsedResponse && parsedResponse.failureReason && parsedResponse.failureReason.data && parsedResponse.failureReason.data.value === 'unsupported_capability') {
-        //     console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
-        //     return;
-        //   }
-        //   expect(parsedResponse).toHaveProperty(requestedPropertyName);
-        // });
+        propertiesToRequest.forEach(requestedPropertyName => {
+          if (parsedResponse && parsedResponse.failureReason && parsedResponse.failureReason.data && parsedResponse.failureReason.data.value === 'unsupported_capability') {
+            console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
+            return;
+          }
+          expect(parsedResponse).toHaveProperty(requestedPropertyName);
+        });
+
         capabilityConfiguration.properties.slice(2).forEach(notRequestedProperty => {
           expect(parsedResponse).not.toHaveProperty(notRequestedProperty.name);
         });

@@ -70,7 +70,7 @@ function buildAvailabilityGetter(capabilityConf) {
           );
 
           if (!property) {
-            throw new Error(
+            throw new InvalidArgumentError(
               `Invalid property name ${propertyName} passed to getAvailability`
             );
           }
@@ -114,7 +114,7 @@ function buildCapabilityGetter(capabilityConf) {
               );
 
               if (!property) {
-                throw new Error(
+                throw new InvalidArgumentError(
                   `Invalid property name ${propertyName} passed to getAvailability`
                 );
               }
