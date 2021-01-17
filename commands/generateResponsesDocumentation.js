@@ -191,7 +191,7 @@ function generatePropertyValue(property) {
     return {
       [property.name_cased]: property.examples.map(example => {
         return {
-          value: parsePropertyData(
+          data: parsePropertyData(
             hexToUint8Array(example.data_component),
             property
           ),
@@ -202,7 +202,10 @@ function generatePropertyValue(property) {
 
   return {
     [property.name_cased]: {
-      value: property.examples[0].value || property.examples[0].values,
+      data: parsePropertyData(
+        hexToUint8Array(property.examples[0].data_component),
+        property
+      )
     },
   };
 }

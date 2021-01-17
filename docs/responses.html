@@ -162,7 +162,7 @@ toc-options:
   {% capture code %}<CapabilitiesResponse> {
   "capabilities": [
     {
-      "value": {
+      "data": {
         "capabilityID": {
           "value": 32
         },
@@ -176,7 +176,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "capabilityID": {
           "value": 35
         },
@@ -190,7 +190,7 @@ toc-options:
   ],
   "webhooks": [
     {
-      "value": {
+      "data": {
         "available": {
           "value": "available"
         },
@@ -200,7 +200,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "available": {
           "value": "available"
         },
@@ -234,66 +234,86 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ChargingResponse> {
   "estimatedRange": {
-    "value": {
-      "kilometers": 432.1
+    "data": {
+      "value": 432.1,
+      "unit": "kilometers"
     }
   },
   "batteryLevel": {
-    "value": 0.5
+    "data": {
+      "value": 0.5
+    }
   },
   "batteryCurrentAC": {
-    "value": {
-      "amperes": -0.6
+    "data": {
+      "value": -0.6,
+      "unit": "amperes"
     }
   },
   "batteryCurrentDC": {
-    "value": {
-      "amperes": -0.6
+    "data": {
+      "value": -0.6,
+      "unit": "amperes"
     }
   },
   "chargerVoltageAC": {
-    "value": {
-      "volts": 400
+    "data": {
+      "value": 400,
+      "unit": "volts"
     }
   },
   "chargerVoltageDC": {
-    "value": {
-      "volts": 400
+    "data": {
+      "value": 400,
+      "unit": "volts"
     }
   },
   "chargeLimit": {
-    "value": 0.9
+    "data": {
+      "value": 0.9
+    }
   },
   "timeToCompleteCharge": {
-    "value": {
-      "minutes": 60
+    "data": {
+      "value": 60,
+      "unit": "minutes"
     }
   },
   "chargingRateKW": {
-    "value": {
-      "kilowatts": 3.5
+    "data": {
+      "value": 3.5,
+      "unit": "kilowatts"
     }
   },
   "chargePortState": {
-    "value": "open"
+    "data": {
+      "value": "open"
+    }
   },
   "chargeMode": {
-    "value": "timer_based"
+    "data": {
+      "value": "timer_based"
+    }
   },
   "maxChargingCurrent": {
-    "value": {
-      "amperes": 25
+    "data": {
+      "value": 25,
+      "unit": "amperes"
     }
   },
   "plugType": {
-    "value": "type_2"
+    "data": {
+      "value": "type_2"
+    }
   },
   "chargingWindowChosen": {
-    "value": "not_chosen"
+    "data": {
+      "value": "not_chosen"
+    }
   },
   "departureTimes": [
     {
-      "value": {
+      "data": {
         "state": {
           "value": "active"
         },
@@ -308,7 +328,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "state": {
           "value": "inactive"
         },
@@ -325,7 +345,7 @@ toc-options:
   ],
   "reductionTimes": [
     {
-      "value": {
+      "data": {
         "startStop": {
           "value": "start"
         },
@@ -340,7 +360,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "startStop": {
           "value": "stop"
         },
@@ -356,13 +376,14 @@ toc-options:
     }
   ],
   "batteryTemperature": {
-    "value": {
-      "celsius": 38.4
+    "data": {
+      "value": 38.4,
+      "unit": "celsius"
     }
   },
   "timers": [
     {
-      "value": {
+      "data": {
         "timerType": {
           "value": "preferred_start_time"
         },
@@ -372,7 +393,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "timerType": {
           "value": "preferred_end_time"
         },
@@ -382,7 +403,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "timerType": {
           "value": "departure_date"
         },
@@ -393,54 +414,78 @@ toc-options:
     }
   ],
   "pluggedIn": {
-    "value": "plugged_in"
+    "data": {
+      "value": "plugged_in"
+    }
   },
   "status": {
-    "value": "charging"
+    "data": {
+      "value": "charging"
+    }
   },
   "chargingRate": {
-    "value": {
-      "kilowatts": 150
+    "data": {
+      "value": 150,
+      "unit": "kilowatts"
     }
   },
   "batteryCurrent": {
-    "value": {
-      "amperes": -0.6
+    "data": {
+      "value": -0.6,
+      "unit": "amperes"
     }
   },
   "chargerVoltage": {
-    "value": {
-      "volts": 400
+    "data": {
+      "value": 400,
+      "unit": "volts"
     }
   },
   "currentType": {
-    "value": "alternating_current"
+    "data": {
+      "value": "alternating_current"
+    }
   },
   "maxRange": {
-    "value": {
-      "kilometers": 555
+    "data": {
+      "value": 555,
+      "unit": "kilometers"
     }
   },
   "starterBatteryState": {
-    "value": "green"
+    "data": {
+      "value": "green"
+    }
   },
   "smartChargingStatus": {
-    "value": "scc_is_active"
+    "data": {
+      "value": "scc_is_active"
+    }
   },
   "batteryLevelAtDeparture": {
-    "value": 0.9
+    "data": {
+      "value": 0.9
+    }
   },
   "preconditioningDepartureStatus": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "preconditioningImmediateStatus": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "preconditioningDepartureEnabled": {
-    "value": "enabled"
+    "data": {
+      "value": "enabled"
+    }
   },
   "preconditioningError": {
-    "value": "not_possible_low"
+    "data": {
+      "value": "not_possible_low"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -466,14 +511,18 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ChassisSettingsResponse> {
   "drivingMode": {
-    "value": "eco"
+    "data": {
+      "value": "eco"
+    }
   },
   "sportChrono": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "currentSpringRates": [
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "front"
         },
@@ -484,7 +533,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "rear"
         },
@@ -497,7 +546,7 @@ toc-options:
   ],
   "maximumSpringRates": [
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "front"
         },
@@ -508,7 +557,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "rear"
         },
@@ -521,7 +570,7 @@ toc-options:
   ],
   "minimumSpringRates": [
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "front"
         },
@@ -532,7 +581,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "rear"
         },
@@ -544,18 +593,21 @@ toc-options:
     }
   ],
   "currentChassisPosition": {
-    "value": {
-      "millimeters": 25.4
+    "data": {
+      "value": 25.4,
+      "unit": "millimeters"
     }
   },
   "maximumChassisPosition": {
-    "value": {
-      "millimeters": 55.5
+    "data": {
+      "value": 55.5,
+      "unit": "millimeters"
     }
   },
   "minimumChassisPosition": {
-    "value": {
-      "millimeters": -28.4
+    "data": {
+      "value": -28.4,
+      "unit": "millimeters"
     }
   }
 }{% endcapture %}
@@ -582,45 +634,58 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ClimateResponse> {
   "insideTemperature": {
-    "value": {
-      "celsius": 19.1
+    "data": {
+      "value": 19.1,
+      "unit": "celsius"
     }
   },
   "outsideTemperature": {
-    "value": {
-      "celsius": 12.2
+    "data": {
+      "value": 12.2,
+      "unit": "celsius"
     }
   },
   "driverTemperatureSetting": {
-    "value": {
-      "celsius": 21.5
+    "data": {
+      "value": 21.5,
+      "unit": "celsius"
     }
   },
   "passengerTemperatureSetting": {
-    "value": {
-      "celsius": 21.7
+    "data": {
+      "value": 21.7,
+      "unit": "celsius"
     }
   },
   "hvacState": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "defoggingState": {
-    "value": "inactive"
+    "data": {
+      "value": "inactive"
+    }
   },
   "defrostingState": {
-    "value": "inactive"
+    "data": {
+      "value": "inactive"
+    }
   },
   "ionisingState": {
-    "value": "inactive"
+    "data": {
+      "value": "inactive"
+    }
   },
   "defrostingTemperatureSetting": {
-    "value": {
-      "celsius": 21.2
+    "data": {
+      "value": 21.2,
+      "unit": "celsius"
     }
   },
   "hvacWeekdayStartingTimes": [
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "monday"
         },
@@ -635,7 +700,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "tuesday"
         },
@@ -650,7 +715,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "wednesday"
         },
@@ -665,7 +730,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "thursday"
         },
@@ -680,7 +745,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "friday"
         },
@@ -695,7 +760,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "saturday"
         },
@@ -710,7 +775,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "sunday"
         },
@@ -725,7 +790,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "weekday": {
           "value": "automatic"
         },
@@ -741,8 +806,9 @@ toc-options:
     }
   ],
   "rearTemperatureSetting": {
-    "value": {
-      "celsius": 21.6
+    "data": {
+      "value": 21.6,
+      "unit": "celsius"
     }
   }
 }{% endcapture %}
@@ -770,7 +836,7 @@ toc-options:
   {% capture code %}<DashboardLightsResponse> {
   "dashboardLights": [
     {
-      "value": {
+      "data": {
         "name": {
           "value": "high_beam"
         },
@@ -780,7 +846,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "low_beam"
         },
@@ -790,7 +856,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "hazard_warning"
         },
@@ -800,7 +866,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "brake_failure"
         },
@@ -810,7 +876,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "hatch_open"
         },
@@ -820,7 +886,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "fuel_level"
         },
@@ -830,7 +896,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "engine_coolant_temperature"
         },
@@ -840,7 +906,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "battery_charging_condition"
         },
@@ -850,7 +916,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "engine_oil"
         },
@@ -860,7 +926,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "position_lights"
         },
@@ -870,7 +936,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "front_fog_light"
         },
@@ -880,7 +946,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "rear_fog_light"
         },
@@ -890,7 +956,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "park_heating"
         },
@@ -900,7 +966,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "engine_indicator"
         },
@@ -910,7 +976,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "service_call"
         },
@@ -920,7 +986,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "transmission_fluid_temperature"
         },
@@ -930,7 +996,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "transmission_failure"
         },
@@ -940,7 +1006,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "anti_lock_brake_failure"
         },
@@ -950,7 +1016,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "worn_brake_linings"
         },
@@ -960,7 +1026,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "windscreen_washer_fluid"
         },
@@ -970,7 +1036,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_failure"
         },
@@ -980,7 +1046,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "engine_oil_level"
         },
@@ -990,7 +1056,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "engine_coolant_level"
         },
@@ -1000,7 +1066,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "steering_failure"
         },
@@ -1010,7 +1076,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "esc_indication"
         },
@@ -1020,7 +1086,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "brake_lights"
         },
@@ -1030,7 +1096,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "adblue_level"
         },
@@ -1040,7 +1106,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "fuel_filter_diff_pressure"
         },
@@ -1050,7 +1116,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "seat_belt"
         },
@@ -1060,7 +1126,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "advanced_braking"
         },
@@ -1070,7 +1136,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "acc"
         },
@@ -1080,7 +1146,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "trailer_connected"
         },
@@ -1090,7 +1156,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "airbag"
         },
@@ -1100,7 +1166,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "esc_switched_off"
         },
@@ -1110,7 +1176,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "lane_departure_warning_off"
         },
@@ -1120,7 +1186,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "air_filter_minder"
         },
@@ -1130,7 +1196,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "air_suspension_ride_control_fault"
         },
@@ -1140,7 +1206,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "all_wheel_drive_disabled"
         },
@@ -1150,7 +1216,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "anti_theft"
         },
@@ -1160,7 +1226,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "blind_spot_detection"
         },
@@ -1170,7 +1236,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "charge_system_fault"
         },
@@ -1180,7 +1246,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "check_fuel_cap"
         },
@@ -1190,7 +1256,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "check_fuel_fill_inlet"
         },
@@ -1200,7 +1266,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "check_fuel_filter"
         },
@@ -1210,7 +1276,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "dc_temp_warning"
         },
@@ -1220,7 +1286,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "dc_warning_status"
         },
@@ -1230,7 +1296,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_engine_idle_shutdown"
         },
@@ -1240,7 +1306,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_engine_warning"
         },
@@ -1250,7 +1316,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_exhaust_fluid_system_fault"
         },
@@ -1260,7 +1326,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_exhaust_over_temp"
         },
@@ -1270,7 +1336,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_exhaust_fluid_quality"
         },
@@ -1280,7 +1346,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_filter_regeneration"
         },
@@ -1290,7 +1356,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_particulate_filter"
         },
@@ -1300,7 +1366,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "diesel_pre_heat"
         },
@@ -1310,7 +1376,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "electric_trailer_brake_connection"
         },
@@ -1320,7 +1386,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_cell_max_volt_warning"
         },
@@ -1330,7 +1396,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_cell_min_volt_warning"
         },
@@ -1340,7 +1406,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_charge_energy_storage_warning"
         },
@@ -1350,7 +1416,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_high_level_warning"
         },
@@ -1360,7 +1426,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_high_temperature_warning"
         },
@@ -1370,7 +1436,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_insulation_resist_warning"
         },
@@ -1380,7 +1446,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_jump_level_warning"
         },
@@ -1390,7 +1456,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_low_level_warning"
         },
@@ -1400,7 +1466,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_max_volt_veh_energy_warning"
         },
@@ -1410,7 +1476,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_min_volt_veh_energy_warning"
         },
@@ -1420,7 +1486,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_over_charge_warning"
         },
@@ -1430,7 +1496,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_poor_cell_warning"
         },
@@ -1440,7 +1506,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "ev_battery_temp_diff_warning"
         },
@@ -1450,7 +1516,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "forward_collision_warning"
         },
@@ -1460,7 +1526,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "fuel_door_open"
         },
@@ -1470,7 +1536,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "hill_descent_control_fault"
         },
@@ -1480,7 +1546,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "hill_start_assist_warning"
         },
@@ -1490,7 +1556,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "hv_interlocking_status_warning"
         },
@@ -1500,7 +1566,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "lighting_system_failure"
         },
@@ -1510,7 +1576,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "malfunction_indicator"
         },
@@ -1520,7 +1586,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "motor_controller_temp_warning"
         },
@@ -1530,7 +1596,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "park_aid_malfunction"
         },
@@ -1540,7 +1606,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "passive_entry_passive_start"
         },
@@ -1550,7 +1616,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "powertrain_malfunction"
         },
@@ -1560,7 +1626,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "restraints_indicator_warning"
         },
@@ -1570,7 +1636,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "start_stop_engine_warning"
         },
@@ -1580,7 +1646,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "traction_control_disabled"
         },
@@ -1590,7 +1656,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "traction_control_active"
         },
@@ -1600,7 +1666,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "traction_motor_temp_warning"
         },
@@ -1610,7 +1676,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_pressure_monitor_system_warning"
         },
@@ -1620,7 +1686,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "water_in_fuel"
         },
@@ -1630,7 +1696,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_warning_front_right"
         },
@@ -1640,7 +1706,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_warning_front_left"
         },
@@ -1650,7 +1716,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_warning_rear_right"
         },
@@ -1660,7 +1726,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_warning_rear_left"
         },
@@ -1670,7 +1736,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "tire_warning_system_error"
         },
@@ -1680,7 +1746,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "battery_low_warning"
         },
@@ -1690,7 +1756,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "name": {
           "value": "brake_fluid_warning"
         },
@@ -1724,97 +1790,126 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<DiagnosticsResponse> {
   "mileage": {
-    "value": {
-      "kilometers": 150000
+    "data": {
+      "value": 150000,
+      "unit": "kilometers"
     }
   },
   "engineOilTemperature": {
-    "value": {
-      "celsius": 99.5
+    "data": {
+      "value": 99.5,
+      "unit": "celsius"
     }
   },
   "speed": {
-    "value": {
-      "kilometers_per_hour": 60
+    "data": {
+      "value": 60,
+      "unit": "kilometers_per_hour"
     }
   },
   "engineRPM": {
-    "value": {
-      "revolutions_per_minute": 2500
+    "data": {
+      "value": 2500,
+      "unit": "revolutions_per_minute"
     }
   },
   "fuelLevel": {
-    "value": 0.9
+    "data": {
+      "value": 0.9
+    }
   },
   "estimatedRange": {
-    "value": {
-      "kilometers": 265
+    "data": {
+      "value": 265,
+      "unit": "kilometers"
     }
   },
   "washerFluidLevel": {
-    "value": "filled"
+    "data": {
+      "value": "filled"
+    }
   },
   "batteryVoltage": {
-    "value": {
-      "volts": 12.1
+    "data": {
+      "value": 12.1,
+      "unit": "volts"
     }
   },
   "adBlueLevel": {
-    "value": 0.9
+    "data": {
+      "value": 0.9
+    }
   },
   "distanceSinceReset": {
-    "value": {
-      "kilometers": 1500.1
+    "data": {
+      "value": 1500.1,
+      "unit": "kilometers"
     }
   },
   "distanceSinceStart": {
-    "value": {
-      "kilometers": 12.4
+    "data": {
+      "value": 12.4,
+      "unit": "kilometers"
     }
   },
   "fuelVolume": {
-    "value": {
-      "liters": 35.5
+    "data": {
+      "value": 35.5,
+      "unit": "liters"
     }
   },
   "antiLockBraking": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "engineCoolantTemperature": {
-    "value": {
-      "celsius": 20
+    "data": {
+      "value": 20,
+      "unit": "celsius"
     }
   },
   "engineTotalOperatingHours": {
-    "value": {
-      "hours": 1500.65
+    "data": {
+      "value": 1500.65,
+      "unit": "hours"
     }
   },
   "engineTotalFuelConsumption": {
-    "value": {
-      "liters": 27587
+    "data": {
+      "value": 27587,
+      "unit": "liters"
     }
   },
   "brakeFluidLevel": {
-    "value": "low"
+    "data": {
+      "value": "low"
+    }
   },
   "engineTorque": {
-    "value": 0.2
+    "data": {
+      "value": 0.2
+    }
   },
   "engineLoad": {
-    "value": 0.1
+    "data": {
+      "value": 0.1
+    }
   },
   "wheelBasedSpeed": {
-    "value": {
-      "kilometers_per_hour": 65
+    "data": {
+      "value": 65,
+      "unit": "kilometers_per_hour"
     }
   },
   "batteryLevel": {
-    "value": 0.56
+    "data": {
+      "value": 0.56
+    }
   },
   "checkControlMessages": [
     {
-      "value": {
+      "data": {
         "ID": {
           "value": 1
         },
@@ -1833,7 +1928,7 @@ toc-options:
   ],
   "tirePressures": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -1844,7 +1939,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -1855,7 +1950,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -1866,7 +1961,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -1877,7 +1972,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right_outer"
         },
@@ -1888,7 +1983,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left_outer"
         },
@@ -1901,7 +1996,7 @@ toc-options:
   ],
   "tireTemperatures": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -1912,7 +2007,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -1923,7 +2018,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -1934,7 +2029,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -1945,7 +2040,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right_outer"
         },
@@ -1956,7 +2051,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left_outer"
         },
@@ -1969,7 +2064,7 @@ toc-options:
   ],
   "wheelRPMs": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -1980,7 +2075,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -1991,7 +2086,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -2002,7 +2097,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -2013,7 +2108,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right_outer"
         },
@@ -2024,7 +2119,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left_outer"
         },
@@ -2037,7 +2132,7 @@ toc-options:
   ],
   "troubleCodes": [
     {
-      "value": {
+      "data": {
         "occurrences": {
           "value": 2
         },
@@ -2056,7 +2151,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "occurrences": {
           "value": 2
         },
@@ -2076,23 +2171,26 @@ toc-options:
     }
   ],
   "mileageMeters": {
-    "value": {
-      "kilometers": 150001
+    "data": {
+      "value": 150001,
+      "unit": "kilometers"
     }
   },
   "odometer": {
-    "value": {
-      "megameters": 6.4
+    "data": {
+      "value": 6.4,
+      "unit": "megameters"
     }
   },
   "engineTotalOperatingTime": {
-    "value": {
-      "hours": 1500.65
+    "data": {
+      "value": 1500.65,
+      "unit": "hours"
     }
   },
   "tirePressureStatuses": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -2102,7 +2200,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -2112,7 +2210,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -2122,7 +2220,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -2132,7 +2230,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right_outer"
         },
@@ -2142,7 +2240,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left_outer"
         },
@@ -2153,14 +2251,18 @@ toc-options:
     }
   ],
   "brakeLiningWearPreWarning": {
-    "value": "inactive"
+    "data": {
+      "value": "inactive"
+    }
   },
   "engineOilLifeRemaining": {
-    "value": 0.88
+    "data": {
+      "value": 0.88
+    }
   },
   "oemTroubleCodeValues": [
     {
-      "value": {
+      "data": {
         "ID": {
           "value": "123ID"
         },
@@ -2175,7 +2277,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "ID": {
           "value": "1B3C"
         },
@@ -2191,16 +2293,19 @@ toc-options:
     }
   ],
   "dieselExhaustFluidRange": {
-    "value": {
-      "kilometers": 2233
+    "data": {
+      "value": 2233,
+      "unit": "kilometers"
     }
   },
   "dieselParticulateFilterSootLevel": {
-    "value": 0.16
+    "data": {
+      "value": 0.16
+    }
   },
   "confirmedTroubleCodes": [
     {
-      "value": {
+      "data": {
         "ID": {
           "value": "801C10"
         },
@@ -2216,7 +2321,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "ID": {
           "value": "D52C44"
         },
@@ -2233,10 +2338,16 @@ toc-options:
     }
   ],
   "dieselExhaustFilterStatus": {
-    "value": {
-      "status": "unknown",
-      "component": "exhaust_filter",
-      "cleaning": "unknown"
+    "data": {
+      "status": {
+        "value": "unknown"
+      },
+      "component": {
+        "value": "exhaust_filter"
+      },
+      "cleaning": {
+        "value": "unknown"
+      }
     }
   }
 }{% endcapture %}
@@ -2264,7 +2375,7 @@ toc-options:
   {% capture code %}<DoorsResponse> {
   "insideLocks": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -2274,7 +2385,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -2284,7 +2395,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -2294,7 +2405,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -2306,7 +2417,7 @@ toc-options:
   ],
   "locks": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -2316,7 +2427,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -2326,7 +2437,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -2336,7 +2447,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -2348,7 +2459,7 @@ toc-options:
   ],
   "positions": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -2358,7 +2469,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -2368,7 +2479,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -2378,7 +2489,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -2388,7 +2499,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "all"
         },
@@ -2399,10 +2510,14 @@ toc-options:
     }
   ],
   "insideLocksState": {
-    "value": "locked"
+    "data": {
+      "value": "locked"
+    }
   },
   "locksState": {
-    "value": "unlocked"
+    "data": {
+      "value": "unlocked"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2428,10 +2543,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<EngineResponse> {
   "status": {
-    "value": "off"
+    "data": {
+      "value": "off"
+    }
   },
   "startStopState": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2457,19 +2576,27 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<FailureMessageResponse> {
   "failedMessageID": {
-    "value": 33
+    "data": {
+      "value": 33
+    }
   },
   "failedMessageType": {
-    "value": 1
+    "data": {
+      "value": 1
+    }
   },
   "failureReason": {
-    "value": "unauthorised"
+    "data": {
+      "value": "unauthorised"
+    }
   },
   "failureDescription": {
-    "value": "Try again"
+    "data": {
+      "value": "Try again"
+    }
   },
   "failedPropertyIDs": {
-    "value": [
+    "data": [
       1,
       2
     ]
@@ -2498,17 +2625,27 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<FirmwareVersionResponse> {
   "hmKitVersion": {
-    "value": {
-      "major": 1,
-      "minor": 15,
-      "patch": 33
+    "data": {
+      "major": {
+        "value": 1
+      },
+      "minor": {
+        "value": 15
+      },
+      "patch": {
+        "value": 33
+      }
     }
   },
   "hmKitBuildName": {
-    "value": "btstack-uart"
+    "data": {
+      "value": "btstack-uart"
+    }
   },
   "applicationVersion": {
-    "value": "v1.5-prod"
+    "data": {
+      "value": "v1.5-prod"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2534,10 +2671,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<FuelingResponse> {
   "gasFlapLock": {
-    "value": "locked"
+    "data": {
+      "value": "locked"
+    }
   },
   "gasFlapPosition": {
-    "value": "closed"
+    "data": {
+      "value": "closed"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2564,7 +2705,7 @@ toc-options:
   {% capture code %}<HistoricalResponse> {
   "states": [
     {
-      "value": {
+      "data": {
         "doors": {
           "locksState": {
             "data": {
@@ -2602,7 +2743,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "charging": {
           "chargePortState": {
             "data": {
@@ -2659,61 +2800,87 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<HomeChargerResponse> {
   "chargingStatus": {
-    "value": "charging"
+    "data": {
+      "value": "charging"
+    }
   },
   "authenticationMechanism": {
-    "value": "app"
+    "data": {
+      "value": "app"
+    }
   },
   "plugType": {
-    "value": "type_2"
+    "data": {
+      "value": "type_2"
+    }
   },
   "chargingPowerKW": {
-    "value": {
-      "kilowatts": 11.5
+    "data": {
+      "value": 11.5,
+      "unit": "kilowatts"
     }
   },
   "solarCharging": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "wifiHotspotEnabled": {
-    "value": "enabled"
+    "data": {
+      "value": "enabled"
+    }
   },
   "wifiHotspotSSID": {
-    "value": "Charger 7612"
+    "data": {
+      "value": "Charger 7612"
+    }
   },
   "wiFiHotspotSecurity": {
-    "value": "wpa2_personal"
+    "data": {
+      "value": "wpa2_personal"
+    }
   },
   "wiFiHotspotPassword": {
-    "value": "ZW3vARNUBe"
+    "data": {
+      "value": "ZW3vARNUBe"
+    }
   },
   "authenticationState": {
-    "value": "authenticated"
+    "data": {
+      "value": "authenticated"
+    }
   },
   "chargeCurrent": {
-    "value": {
-      "amperes": 0.5
+    "data": {
+      "value": 0.5,
+      "unit": "amperes"
     }
   },
   "maximumChargeCurrent": {
-    "value": {
-      "amperes": 1
+    "data": {
+      "value": 1,
+      "unit": "amperes"
     }
   },
   "minimumChargeCurrent": {
-    "value": {
-      "amperes": 0.1
+    "data": {
+      "value": 0.1,
+      "unit": "amperes"
     }
   },
   "coordinates": {
-    "value": {
-      "latitude": 52.520008,
-      "longitude": 13.404954
+    "data": {
+      "latitude": {
+        "value": 52.520008
+      },
+      "longitude": {
+        "value": 13.404954
+      }
     }
   },
   "priceTariffs": [
     {
-      "value": {
+      "data": {
         "pricingType": {
           "value": "starting_fee"
         },
@@ -2726,7 +2893,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "pricingType": {
           "value": "per_minute"
         },
@@ -2739,7 +2906,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "pricingType": {
           "value": "per_kwh"
         },
@@ -2753,8 +2920,9 @@ toc-options:
     }
   ],
   "chargingPower": {
-    "value": {
-      "kilowatts": 350
+    "data": {
+      "value": 350,
+      "unit": "kilowatts"
     }
   }
 }{% endcapture %}
@@ -2781,7 +2949,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<HonkHornFlashLightsResponse> {
   "flashers": {
-    "value": "left_flasher_active"
+    "data": {
+      "value": "left_flasher_active"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2807,7 +2977,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<HoodResponse> {
   "position": {
-    "value": "open"
+    "data": {
+      "value": "open"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2833,13 +3005,19 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<IgnitionResponse> {
   "status": {
-    "value": "off"
+    "data": {
+      "value": "off"
+    }
   },
   "accessoriesStatus": {
-    "value": "on"
+    "data": {
+      "value": "on"
+    }
   },
   "state": {
-    "value": "accessory"
+    "data": {
+      "value": "accessory"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -2865,13 +3043,15 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<LightConditionsResponse> {
   "outsideLight": {
-    "value": {
-      "lux": 111000
+    "data": {
+      "value": 111000,
+      "unit": "lux"
     }
   },
   "insideLight": {
-    "value": {
-      "lux": 0.25
+    "data": {
+      "value": 0.25,
+      "unit": "lux"
     }
   }
 }{% endcapture %}
@@ -2898,27 +3078,41 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<LightsResponse> {
   "frontExteriorLight": {
-    "value": "active_with_full_beam"
+    "data": {
+      "value": "active_with_full_beam"
+    }
   },
   "rearExteriorLight": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "ambientLightColour": {
-    "value": {
-      "red": 255,
-      "green": 0,
-      "blue": 0
+    "data": {
+      "red": {
+        "value": 255
+      },
+      "green": {
+        "value": 0
+      },
+      "blue": {
+        "value": 0
+      }
     }
   },
   "reverseLight": {
-    "value": "inactive"
+    "data": {
+      "value": "inactive"
+    }
   },
   "emergencyBrakeLight": {
-    "value": "inactive"
+    "data": {
+      "value": "inactive"
+    }
   },
   "fogLights": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front"
         },
@@ -2928,7 +3122,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear"
         },
@@ -2940,7 +3134,7 @@ toc-options:
   ],
   "readingLamps": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -2950,7 +3144,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -2960,7 +3154,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -2970,7 +3164,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -2982,7 +3176,7 @@ toc-options:
   ],
   "interiorLights": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front"
         },
@@ -2992,7 +3186,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear"
         },
@@ -3003,7 +3197,9 @@ toc-options:
     }
   ],
   "switchPosition": {
-    "value": "parking_light_right"
+    "data": {
+      "value": "parking_light_right"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3029,48 +3225,63 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<MaintenanceResponse> {
   "daysToNextService": {
-    "value": {
-      "days": 501
+    "data": {
+      "value": 501,
+      "unit": "days"
     }
   },
   "kilometersToNextService": {
-    "value": {
-      "kilometers": 3681
+    "data": {
+      "value": 3681,
+      "unit": "kilometers"
     }
   },
   "cbsReportsCount": {
-    "value": 3
+    "data": {
+      "value": 3
+    }
   },
   "monthsToExhaustInspection": {
-    "value": {
-      "months": 5
+    "data": {
+      "value": 5,
+      "unit": "months"
     }
   },
   "teleserviceAvailability": {
-    "value": "successful"
+    "data": {
+      "value": "successful"
+    }
   },
   "serviceDistanceThreshold": {
-    "value": {
-      "kilometers": 5000
+    "data": {
+      "value": 5000,
+      "unit": "kilometers"
     }
   },
   "serviceTimeThreshold": {
-    "value": {
-      "weeks": 4
+    "data": {
+      "value": 4,
+      "unit": "weeks"
     }
   },
   "automaticTeleserviceCallDate": {
-    "value": "2018-11-23T11:33:50.000Z"
+    "data": {
+      "value": "2018-11-23T11:33:50.000Z"
+    }
   },
   "teleserviceBatteryCallDate": {
-    "value": "2018-11-23T10:36:50.000Z"
+    "data": {
+      "value": "2018-11-23T10:36:50.000Z"
+    }
   },
   "nextInspectionDate": {
-    "value": "2018-10-23T14:38:47.000Z"
+    "data": {
+      "value": "2018-10-23T14:38:47.000Z"
+    }
   },
   "conditionBasedServices": [
     {
-      "value": {
+      "data": {
         "year": {
           "value": 2019
         },
@@ -3093,25 +3304,32 @@ toc-options:
     }
   ],
   "brakeFluidChangeDate": {
-    "value": "2018-12-05T03:22:56.000Z"
+    "data": {
+      "value": "2018-12-05T03:22:56.000Z"
+    }
   },
   "timeToNextService": {
-    "value": {
-      "days": 501
+    "data": {
+      "value": 501,
+      "unit": "days"
     }
   },
   "distanceToNextService": {
-    "value": {
-      "kilometers": 3681
+    "data": {
+      "value": 3681,
+      "unit": "kilometers"
     }
   },
   "timeToExhaustInspection": {
-    "value": {
-      "months": 5
+    "data": {
+      "value": 5,
+      "unit": "months"
     }
   },
   "lastECall": {
-    "value": "2018-12-05T03:22:56.000Z"
+    "data": {
+      "value": "2018-12-05T03:22:56.000Z"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3137,10 +3355,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<MessagingResponse> {
   "text": {
-    "value": "Hey mom!"
+    "data": {
+      "value": "Hey mom!"
+    }
   },
   "handle": {
-    "value": "Epp"
+    "data": {
+      "value": "Epp"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3166,7 +3388,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<MobileResponse> {
   "connection": {
-    "value": "connected"
+    "data": {
+      "value": "connected"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3193,7 +3417,7 @@ toc-options:
   {% capture code %}<MultiCommandResponse> {
   "multiStates": [
     {
-      "value": {
+      "data": {
         "doors": {
           "locksState": {
             "data": {
@@ -3231,7 +3455,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "charging": {
           "chargePortState": {
             "data": {
@@ -3288,28 +3512,40 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<NaviDestinationResponse> {
   "coordinates": {
-    "value": {
-      "latitude": 52.520008,
-      "longitude": 13.404954
+    "data": {
+      "latitude": {
+        "value": 52.520008
+      },
+      "longitude": {
+        "value": 13.404954
+      }
     }
   },
   "destinationName": {
-    "value": "Berlin"
+    "data": {
+      "value": "Berlin"
+    }
   },
   "dataSlotsFree": {
-    "value": 14
+    "data": {
+      "value": 14
+    }
   },
   "dataSlotsMax": {
-    "value": 30
+    "data": {
+      "value": 30
+    }
   },
   "arrivalDuration": {
-    "value": {
-      "hours": 2.6
+    "data": {
+      "value": 2.6,
+      "unit": "hours"
     }
   },
   "distanceToDestination": {
-    "value": {
-      "kilometers": 1337
+    "data": {
+      "value": 1337,
+      "unit": "kilometers"
     }
   }
 }{% endcapture %}
@@ -3336,11 +3572,13 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<NotificationsResponse> {
   "text": {
-    "value": "Open Garage"
+    "data": {
+      "value": "Open Garage"
+    }
   },
   "actionItems": [
     {
-      "value": {
+      "data": {
         "id": {
           "value": 27
         },
@@ -3350,7 +3588,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "id": {
           "value": 28
         },
@@ -3361,10 +3599,14 @@ toc-options:
     }
   ],
   "activatedAction": {
-    "value": 27
+    "data": {
+      "value": 27
+    }
   },
   "clear": {
-    "value": "clear"
+    "data": {
+      "value": "clear"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3390,12 +3632,15 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<OffroadResponse> {
   "routeIncline": {
-    "value": {
-      "degrees": 10.1
+    "data": {
+      "value": 10.1,
+      "unit": "degrees"
     }
   },
   "wheelSuspension": {
-    "value": 0.5
+    "data": {
+      "value": 0.5
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3421,7 +3666,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ParkingBrakeResponse> {
   "status": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3447,19 +3694,29 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ParkingTicketResponse> {
   "status": {
-    "value": "ended"
+    "data": {
+      "value": "ended"
+    }
   },
   "operatorName": {
-    "value": "Berlin Parking"
+    "data": {
+      "value": "Berlin Parking"
+    }
   },
   "operatorTicketID": {
-    "value": "6489AB4233"
+    "data": {
+      "value": "6489AB4233"
+    }
   },
   "ticketStartTime": {
-    "value": "2017-01-10T19:34:22.000Z"
+    "data": {
+      "value": "2017-01-10T19:34:22.000Z"
+    }
   },
   "ticketEndTime": {
-    "value": "2019-10-08T11:21:45.000Z"
+    "data": {
+      "value": "2019-10-08T11:21:45.000Z"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3485,10 +3742,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<PowerTakeoffResponse> {
   "status": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "engaged": {
-    "value": "engaged"
+    "data": {
+      "value": "engaged"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3515,7 +3776,7 @@ toc-options:
   {% capture code %}<RaceResponse> {
   "accelerations": [
     {
-      "value": {
+      "data": {
         "direction": {
           "value": "longitudinal"
         },
@@ -3526,7 +3787,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "direction": {
           "value": "lateral"
         },
@@ -3537,7 +3798,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "direction": {
           "value": "front_lateral"
         },
@@ -3548,7 +3809,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "direction": {
           "value": "rear_lateral"
         },
@@ -3560,40 +3821,52 @@ toc-options:
     }
   ],
   "understeering": {
-    "value": 0.19
+    "data": {
+      "value": 0.19
+    }
   },
   "oversteering": {
-    "value": 0.05
+    "data": {
+      "value": 0.05
+    }
   },
   "gasPedalPosition": {
-    "value": 0.98
+    "data": {
+      "value": 0.98
+    }
   },
   "steeringAngle": {
-    "value": {
-      "degrees": 10
+    "data": {
+      "value": 10,
+      "unit": "degrees"
     }
   },
   "brakePressure": {
-    "value": {
-      "bars": 20
+    "data": {
+      "value": 20,
+      "unit": "bars"
     }
   },
   "yawRate": {
-    "value": {
-      "degrees_per_second": 6.66
+    "data": {
+      "value": 6.66,
+      "unit": "degrees_per_second"
     }
   },
   "rearSuspensionSteering": {
-    "value": {
-      "degrees": 3.3
+    "data": {
+      "value": 3.3,
+      "unit": "degrees"
     }
   },
   "electronicStabilityProgram": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "brakeTorqueVectorings": [
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "front"
         },
@@ -3603,7 +3876,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "axle": {
           "value": "rear"
         },
@@ -3614,28 +3887,44 @@ toc-options:
     }
   ],
   "gearMode": {
-    "value": "drive"
+    "data": {
+      "value": "drive"
+    }
   },
   "selectedGear": {
-    "value": 4
+    "data": {
+      "value": 4
+    }
   },
   "brakePedalPosition": {
-    "value": 0.12
+    "data": {
+      "value": 0.12
+    }
   },
   "brakePedalSwitch": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "clutchPedalSwitch": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "acceleratorPedalIdleSwitch": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "acceleratorPedalKickdownSwitch": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "vehicleMoving": {
-    "value": "moving"
+    "data": {
+      "value": "moving"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3661,22 +3950,34 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<RooftopControlResponse> {
   "dimming": {
-    "value": 1
+    "data": {
+      "value": 1
+    }
   },
   "position": {
-    "value": 0.5
+    "data": {
+      "value": 0.5
+    }
   },
   "convertibleRoofState": {
-    "value": "open"
+    "data": {
+      "value": "open"
+    }
   },
   "sunroofTiltState": {
-    "value": "half_tilted"
+    "data": {
+      "value": "half_tilted"
+    }
   },
   "sunroofState": {
-    "value": "open"
+    "data": {
+      "value": "open"
+    }
   },
   "sunroofRainEvent": {
-    "value": "no_event"
+    "data": {
+      "value": "no_event"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3703,7 +4004,7 @@ toc-options:
   {% capture code %}<SeatsResponse> {
   "personsDetected": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -3713,7 +4014,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -3723,7 +4024,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -3733,7 +4034,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -3743,7 +4044,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_center"
         },
@@ -3755,7 +4056,7 @@ toc-options:
   ],
   "seatbeltsState": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -3765,7 +4066,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -3775,7 +4076,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -3785,7 +4086,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -3795,7 +4096,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_center"
         },
@@ -3830,7 +4131,7 @@ toc-options:
   {% capture code %}<TachographResponse> {
   "driversWorkingStates": [
     {
-      "value": {
+      "data": {
         "driverNumber": {
           "value": 1
         },
@@ -3840,7 +4141,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "driverNumber": {
           "value": 2
         },
@@ -3852,7 +4153,7 @@ toc-options:
   ],
   "driversTimeStates": [
     {
-      "value": {
+      "data": {
         "driverNumber": {
           "value": 3
         },
@@ -3862,7 +4163,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "driverNumber": {
           "value": 4
         },
@@ -3874,7 +4175,7 @@ toc-options:
   ],
   "driversCardsPresent": [
     {
-      "value": {
+      "data": {
         "driverNumber": {
           "value": 6
         },
@@ -3884,7 +4185,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "driverNumber": {
           "value": 7
         },
@@ -3895,17 +4196,24 @@ toc-options:
     }
   ],
   "vehicleMotion": {
-    "value": "detected"
+    "data": {
+      "value": "detected"
+    }
   },
   "vehicleOverspeed": {
-    "value": "no_overspeed"
+    "data": {
+      "value": "no_overspeed"
+    }
   },
   "vehicleDirection": {
-    "value": "forward"
+    "data": {
+      "value": "forward"
+    }
   },
   "vehicleSpeed": {
-    "value": {
-      "kilometers_per_hour": 80
+    "data": {
+      "value": 80,
+      "unit": "kilometers_per_hour"
     }
   }
 }{% endcapture %}
@@ -3932,25 +4240,39 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<TheftAlarmResponse> {
   "status": {
-    "value": "armed"
+    "data": {
+      "value": "armed"
+    }
   },
   "interiorProtectionStatus": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "towProtectionStatus": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   },
   "lastWarningReason": {
-    "value": "hood"
+    "data": {
+      "value": "hood"
+    }
   },
   "lastEvent": {
-    "value": "2020-06-16T11:10:02.000Z"
+    "data": {
+      "value": "2020-06-16T11:10:02.000Z"
+    }
   },
   "lastEventLevel": {
-    "value": "low"
+    "data": {
+      "value": "low"
+    }
   },
   "eventType": {
-    "value": "rear_right"
+    "data": {
+      "value": "rear_right"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -3976,61 +4298,87 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<TripsResponse> {
   "type": {
-    "value": "single"
+    "data": {
+      "value": "single"
+    }
   },
   "driverName": {
-    "value": "Hari Seldon"
+    "data": {
+      "value": "Hari Seldon"
+    }
   },
   "description": {
-    "value": "To save humankind"
+    "data": {
+      "value": "To save humankind"
+    }
   },
   "startTime": {
-    "value": "2020-06-19T12:12:10.000Z"
+    "data": {
+      "value": "2020-06-19T12:12:10.000Z"
+    }
   },
   "endTime": {
-    "value": "2020-06-19T13:12:10.000Z"
+    "data": {
+      "value": "2020-06-19T13:12:10.000Z"
+    }
   },
   "startAddress": {
-    "value": "Skalitzer Straße 68, 10997 Berlin, Germany"
+    "data": {
+      "value": "Skalitzer Straße 68, 10997 Berlin, Germany"
+    }
   },
   "endAddress": {
-    "value": "Skalitzer Straße 68, 10997 Berlin, Germany"
+    "data": {
+      "value": "Skalitzer Straße 68, 10997 Berlin, Germany"
+    }
   },
   "startCoordinates": {
-    "value": {
-      "latitude": 52.500276,
-      "longitude": 13.439719
+    "data": {
+      "latitude": {
+        "value": 52.500276
+      },
+      "longitude": {
+        "value": 13.439719
+      }
     }
   },
   "endCoordinates": {
-    "value": {
-      "latitude": 52.500276,
-      "longitude": 13.439719
+    "data": {
+      "latitude": {
+        "value": 52.500276
+      },
+      "longitude": {
+        "value": 13.439719
+      }
     }
   },
   "startOdometer": {
-    "value": {
-      "kilometers": 10500
+    "data": {
+      "value": 10500,
+      "unit": "kilometers"
     }
   },
   "endOdometer": {
-    "value": {
-      "kilometers": 10543
+    "data": {
+      "value": 10543,
+      "unit": "kilometers"
     }
   },
   "averageFuelConsumption": {
-    "value": {
-      "liters_per_100_kilometers": 7.34
+    "data": {
+      "value": 7.34,
+      "unit": "liters_per_100_kilometers"
     }
   },
   "distance": {
-    "value": {
-      "kilometers": 43
+    "data": {
+      "value": 43,
+      "unit": "kilometers"
     }
   },
   "startAddressComponents": [
     {
-      "value": {
+      "data": {
         "type": {
           "value": "city"
         },
@@ -4040,7 +4388,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "country"
         },
@@ -4050,7 +4398,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "country_short"
         },
@@ -4060,7 +4408,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "district"
         },
@@ -4070,7 +4418,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "postal_code"
         },
@@ -4080,7 +4428,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "street"
         },
@@ -4090,7 +4438,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "state_province"
         },
@@ -4100,7 +4448,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "other"
         },
@@ -4112,7 +4460,7 @@ toc-options:
   ],
   "endAddressComponents": [
     {
-      "value": {
+      "data": {
         "type": {
           "value": "city"
         },
@@ -4122,7 +4470,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "country"
         },
@@ -4132,7 +4480,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "country_short"
         },
@@ -4142,7 +4490,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "district"
         },
@@ -4152,7 +4500,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "postal_code"
         },
@@ -4162,7 +4510,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "street"
         },
@@ -4172,7 +4520,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "state_province"
         },
@@ -4182,7 +4530,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "type": {
           "value": "other"
         },
@@ -4216,10 +4564,14 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<TrunkResponse> {
   "lock": {
-    "value": "unlocked"
+    "data": {
+      "value": "unlocked"
+    }
   },
   "position": {
-    "value": "open"
+    "data": {
+      "value": "open"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -4245,24 +4597,30 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<UsageResponse> {
   "averageWeeklyDistance": {
-    "value": {
-      "kilometers": 666.6
+    "data": {
+      "value": 666.6,
+      "unit": "kilometers"
     }
   },
   "averageWeeklyDistanceLongRun": {
-    "value": {
-      "kilometers": 777.7
+    "data": {
+      "value": 777.7,
+      "unit": "kilometers"
     }
   },
   "accelerationEvaluation": {
-    "value": 0.7
+    "data": {
+      "value": 0.7
+    }
   },
   "drivingStyleEvaluation": {
-    "value": 0.88
+    "data": {
+      "value": 0.88
+    }
   },
   "drivingModesActivationPeriods": [
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "regular"
         },
@@ -4272,7 +4630,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "eco"
         },
@@ -4282,7 +4640,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "sport"
         },
@@ -4292,7 +4650,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "sport_plus"
         },
@@ -4302,7 +4660,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "ecoPlus"
         },
@@ -4312,7 +4670,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "comfort"
         },
@@ -4324,7 +4682,7 @@ toc-options:
   ],
   "drivingModesEnergyConsumptions": [
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "regular"
         },
@@ -4335,7 +4693,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "eco"
         },
@@ -4346,7 +4704,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "sport"
         },
@@ -4357,7 +4715,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "sport_plus"
         },
@@ -4368,7 +4726,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "ecoPlus"
         },
@@ -4379,7 +4737,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "drivingMode": {
           "value": "comfort"
         },
@@ -4391,153 +4749,197 @@ toc-options:
     }
   ],
   "lastTripEnergyConsumption": {
-    "value": {
-      "kilowatt_hours": 101.3
+    "data": {
+      "value": 101.3,
+      "unit": "kilowatt_hours"
     }
   },
   "lastTripFuelConsumption": {
-    "value": {
-      "liters": 22.5
+    "data": {
+      "value": 22.5,
+      "unit": "liters"
     }
   },
   "mileageAfterLastTrip": {
-    "value": {
-      "kilometers": 95632
+    "data": {
+      "value": 95632,
+      "unit": "kilometers"
     }
   },
   "lastTripElectricPortion": {
-    "value": 0.7
+    "data": {
+      "value": 0.7
+    }
   },
   "lastTripAverageEnergyRecuperation": {
-    "value": {
-      "kwh_per_100_kilometers": 5.68
+    "data": {
+      "value": 5.68,
+      "unit": "kwh_per_100_kilometers"
     }
   },
   "lastTripBatteryRemaining": {
-    "value": 0.5
+    "data": {
+      "value": 0.5
+    }
   },
   "lastTripDate": {
-    "value": "2018-10-17T12:34:58.000Z"
+    "data": {
+      "value": "2018-10-17T12:34:58.000Z"
+    }
   },
   "averageFuelConsumption": {
-    "value": {
-      "liters_per_100_kilometers": 6.5
+    "data": {
+      "value": 6.5,
+      "unit": "liters_per_100_kilometers"
     }
   },
   "currentFuelConsumption": {
-    "value": {
-      "liters_per_100_kilometers": 7.5
+    "data": {
+      "value": 7.5,
+      "unit": "liters_per_100_kilometers"
     }
   },
   "odometerAfterLastTrip": {
-    "value": {
-      "kilometers": 95632
+    "data": {
+      "value": 95632,
+      "unit": "kilometers"
     }
   },
   "safetyDrivingScore": {
-    "value": 0.7
+    "data": {
+      "value": 0.7
+    }
   },
   "rapidAccelerationGrade": {
-    "value": "excellent"
+    "data": {
+      "value": "excellent"
+    }
   },
   "rapidDecelerationGrade": {
-    "value": "normal"
+    "data": {
+      "value": "normal"
+    }
   },
   "lateNightGrade": {
-    "value": "excellent"
+    "data": {
+      "value": "excellent"
+    }
   },
   "distanceOverTime": {
-    "value": {
+    "data": {
       "distance": {
-        "kilometers": 1500.88
+        "value": 1500.88,
+        "unit": "kilometers"
       },
       "time": {
-        "weeks": 10
+        "value": 10,
+        "unit": "weeks"
       }
     }
   },
   "electricConsumptionRateSinceStart": {
-    "value": {
-      "kwh_per_100_kilometers": 11.22
+    "data": {
+      "value": 11.22,
+      "unit": "kwh_per_100_kilometers"
     }
   },
   "electricConsumptionRateSinceReset": {
-    "value": {
-      "kwh_per_100_kilometers": 22.33
+    "data": {
+      "value": 22.33,
+      "unit": "kwh_per_100_kilometers"
     }
   },
   "electricDistanceLastTrip": {
-    "value": {
-      "meters": 111000
+    "data": {
+      "value": 111000,
+      "unit": "meters"
     }
   },
   "electricDistanceSinceReset": {
-    "value": {
-      "meters": 222000
+    "data": {
+      "value": 222000,
+      "unit": "meters"
     }
   },
   "electricDurationLastTrip": {
-    "value": {
-      "minutes": 77
+    "data": {
+      "value": 77,
+      "unit": "minutes"
     }
   },
   "electricDurationSinceReset": {
-    "value": {
-      "minutes": 88
+    "data": {
+      "value": 88,
+      "unit": "minutes"
     }
   },
   "fuelConsumptionRateLastTrip": {
-    "value": {
-      "liters_per_100_kilometers": 5.4
+    "data": {
+      "value": 5.4,
+      "unit": "liters_per_100_kilometers"
     }
   },
   "fuelConsumptionRateSinceReset": {
-    "value": {
-      "liters_per_100_kilometers": 5.3
+    "data": {
+      "value": 5.3,
+      "unit": "liters_per_100_kilometers"
     }
   },
   "averageSpeedLastTrip": {
-    "value": {
-      "kilometers_per_hour": 44.2
+    "data": {
+      "value": 44.2,
+      "unit": "kilometers_per_hour"
     }
   },
   "averageSpeedSinceReset": {
-    "value": {
-      "kilometers_per_hour": 44.2
+    "data": {
+      "value": 44.2,
+      "unit": "kilometers_per_hour"
     }
   },
   "fuelDistanceLastTrip": {
-    "value": {
-      "meters": 111000
+    "data": {
+      "value": 111000,
+      "unit": "meters"
     }
   },
   "fuelDistanceSinceReset": {
-    "value": {
-      "meters": 222000
+    "data": {
+      "value": 222000,
+      "unit": "meters"
     }
   },
   "drivingDurationLastTrip": {
-    "value": {
-      "minutes": 77
+    "data": {
+      "value": 77,
+      "unit": "minutes"
     }
   },
   "drivingDurationSinceReset": {
-    "value": {
-      "minutes": 88
+    "data": {
+      "value": 88,
+      "unit": "minutes"
     }
   },
   "ecoScoreTotal": {
-    "value": 0.7
+    "data": {
+      "value": 0.7
+    }
   },
   "ecoScoreFreeWheel": {
-    "value": 0.7
+    "data": {
+      "value": 0.7
+    }
   },
   "ecoScoreConstant": {
-    "value": 0.7
+    "data": {
+      "value": 0.7
+    }
   },
   "ecoScoreBonusRange": {
-    "value": {
-      "kilometers": 0.7
+    "data": {
+      "value": 0.7,
+      "unit": "kilometers"
     }
   }
 }{% endcapture %}
@@ -4564,7 +4966,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<ValetModeResponse> {
   "status": {
-    "value": "active"
+    "data": {
+      "value": "active"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -4590,81 +4994,115 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<VehicleInformationResponse> {
   "powertrain": {
-    "value": "all_electric"
+    "data": {
+      "value": "all_electric"
+    }
   },
   "modelName": {
-    "value": "Type X"
+    "data": {
+      "value": "Type X"
+    }
   },
   "name": {
-    "value": "Speedy"
+    "data": {
+      "value": "Speedy"
+    }
   },
   "licensePlate": {
-    "value": "ABC123"
+    "data": {
+      "value": "ABC123"
+    }
   },
   "salesDesignation": {
-    "value": "Package+"
+    "data": {
+      "value": "Package+"
+    }
   },
   "modelYear": {
-    "value": 2019
+    "data": {
+      "value": 2019
+    }
   },
   "colourName": {
-    "value": "Estoril Blau"
+    "data": {
+      "value": "Estoril Blau"
+    }
   },
   "powerInKW": {
-    "value": {
-      "kilowatts": 220
+    "data": {
+      "value": 220,
+      "unit": "kilowatts"
     }
   },
   "numberOfDoors": {
-    "value": 5
+    "data": {
+      "value": 5
+    }
   },
   "numberOfSeats": {
-    "value": 5
+    "data": {
+      "value": 5
+    }
   },
   "engineVolume": {
-    "value": {
-      "liters": 2.5
+    "data": {
+      "value": 2.5,
+      "unit": "liters"
     }
   },
   "engineMaxTorque": {
-    "value": {
-      "newton_meters": 245
+    "data": {
+      "value": 245,
+      "unit": "newton_meters"
     }
   },
   "gearbox": {
-    "value": "automatic"
+    "data": {
+      "value": "automatic"
+    }
   },
   "displayUnit": {
-    "value": "km"
+    "data": {
+      "value": "km"
+    }
   },
   "driverSeatLocation": {
-    "value": "left"
+    "data": {
+      "value": "left"
+    }
   },
   "equipments": [
     {
-      "value": {
+      "data": {
         "value": "Parking sensors"
       }
     },
     {
-      "value": {
+      "data": {
         "value": "Automatic wipers"
       }
     }
   ],
   "power": {
-    "value": {
-      "kilowatts": 220
+    "data": {
+      "value": 220,
+      "unit": "kilowatts"
     }
   },
   "language": {
-    "value": "estonian"
+    "data": {
+      "value": "estonian"
+    }
   },
   "timeformat": {
-    "value": "twenty_four_h"
+    "data": {
+      "value": "twenty_four_h"
+    }
   },
   "drive": {
-    "value": "rwd"
+    "data": {
+      "value": "rwd"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -4690,24 +5128,31 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<VehicleLocationResponse> {
   "coordinates": {
-    "value": {
-      "latitude": 52.520008,
-      "longitude": 13.404954
+    "data": {
+      "latitude": {
+        "value": 52.520008
+      },
+      "longitude": {
+        "value": 13.404954
+      }
     }
   },
   "heading": {
-    "value": {
-      "degrees": 13.370123
+    "data": {
+      "value": 13.370123,
+      "unit": "degrees"
     }
   },
   "altitude": {
-    "value": {
-      "meters": 133.5
+    "data": {
+      "value": 133.5,
+      "unit": "meters"
     }
   },
   "precision": {
-    "value": {
-      "meters": 500
+    "data": {
+      "value": 500,
+      "unit": "meters"
     }
   }
 }{% endcapture %}
@@ -4735,7 +5180,7 @@ toc-options:
   {% capture code %}<VehicleStatusResponse> {
   "states": [
     {
-      "value": {
+      "data": {
         "doors": {
           "locksState": {
             "data": {
@@ -4773,7 +5218,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "charging": {
           "chargePortState": {
             "data": {
@@ -4830,9 +5275,13 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<VehicleTimeResponse> {
   "vehicleTime": {
-    "value": {
-      "hour": 19,
-      "minute": 55
+    "data": {
+      "hour": {
+        "value": 19
+      },
+      "minute": {
+        "value": 55
+      }
     }
   }
 }{% endcapture %}
@@ -4859,7 +5308,9 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<WeatherConditionsResponse> {
   "rainIntensity": {
-    "value": 1
+    "data": {
+      "value": 1
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -4885,16 +5336,24 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<WiFiResponse> {
   "status": {
-    "value": "enabled"
+    "data": {
+      "value": "enabled"
+    }
   },
   "networkConnected": {
-    "value": "connected"
+    "data": {
+      "value": "connected"
+    }
   },
   "networkSSID": {
-    "value": "HOME"
+    "data": {
+      "value": "HOME"
+    }
   },
   "networkSecurity": {
-    "value": "wpa2_personal"
+    "data": {
+      "value": "wpa2_personal"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
@@ -4921,7 +5380,7 @@ toc-options:
   {% capture code %}<WindowsResponse> {
   "openPercentages": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -4931,7 +5390,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -4941,7 +5400,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -4951,7 +5410,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -4961,7 +5420,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "hatch"
         },
@@ -4973,7 +5432,7 @@ toc-options:
   ],
   "positions": [
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_left"
         },
@@ -4983,7 +5442,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "front_right"
         },
@@ -4993,7 +5452,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_right"
         },
@@ -5003,7 +5462,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "rear_left"
         },
@@ -5013,7 +5472,7 @@ toc-options:
       }
     },
     {
-      "value": {
+      "data": {
         "location": {
           "value": "hatch"
         },
@@ -5047,34 +5506,54 @@ toc-options:
   <h4>Example</h4>
   {% capture code %}<WindscreenResponse> {
   "wipersStatus": {
-    "value": "automatic"
+    "data": {
+      "value": "automatic"
+    }
   },
   "wipersIntensity": {
-    "value": "level_3"
+    "data": {
+      "value": "level_3"
+    }
   },
   "windscreenDamage": {
-    "value": "impact_but_no_damage_detected"
+    "data": {
+      "value": "impact_but_no_damage_detected"
+    }
   },
   "windscreenZoneMatrix": {
-    "value": {
-      "horizontal": 4,
-      "vertical": 3
+    "data": {
+      "horizontal": {
+        "value": 4
+      },
+      "vertical": {
+        "value": 3
+      }
     }
   },
   "windscreenDamageZone": {
-    "value": {
-      "horizontal": 1,
-      "vertical": 2
+    "data": {
+      "horizontal": {
+        "value": 1
+      },
+      "vertical": {
+        "value": 2
+      }
     }
   },
   "windscreenNeedsReplacement": {
-    "value": "no_replacement_needed"
+    "data": {
+      "value": "no_replacement_needed"
+    }
   },
   "windscreenDamageConfidence": {
-    "value": 0.95
+    "data": {
+      "value": 0.95
+    }
   },
   "windscreenDamageDetectionTime": {
-    "value": "2017-01-10T16:32:05.000Z"
+    "data": {
+      "value": "2017-01-10T16:32:05.000Z"
+    }
   }
 }{% endcapture %}
   {% include code-snippet.html code-language="javascript" snippet-code-id="snippet-code" %}
