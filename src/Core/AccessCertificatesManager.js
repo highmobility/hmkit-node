@@ -33,7 +33,7 @@ import {
   byteArrayToBase64,
   hexToUint8Array,
 } from '../Utils/EncodingUtils';
-import hmcrypto from 'hmcrypto/src/HmCrypto';
+import hmcrypto from 'hmkit-crypto/src/HmKitCrypto';
 
 export default class AccessCertificatesManager {
   constructor(hmkit) {

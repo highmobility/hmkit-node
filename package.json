@@ -50,7 +50,7 @@
   "dependencies": {
     "atob": "^2.1.2",
     "btoa": "^1.1.2",
-    "hmcrypto": "highmobility/hmkit-crypto-node#v0.9.0",
+    "hmkit-crypto": "0.10.0",
     "ieee754": "^1.1.8",
     "joi": "^14.0.2",
     "lodash": "^4.17.19",
