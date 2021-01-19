@@ -25,7 +25,7 @@
     "build": "npm run build:commonjs && npm run build:es",
     "prepare-beta": "npm run clean && npm run lint && npm test && npm run build",
     "format": "prettier --write \"{src,test}/**/*.js\" ",
-    "generate:docs": "node commands/generateCommandsDocumentation.js && node commands/generateResponsesDocumentation.js",
+    "generate:docs": "node commands/generateDocumentation.js",
     "generate:config": "node ./commands/generateConfiguration.js"
   },
   "entry": "./build/bundle.js",
@@ -85,6 +85,7 @@
     "json-loader": "^0.5.7",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
+    "strip-indent": "^3.0.0",
     "yamljs": "^0.3.0"
   }
 }
