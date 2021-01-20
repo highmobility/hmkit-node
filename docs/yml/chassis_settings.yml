@@ -1,0 +1,85 @@
+title: 'Chassis Settings'
+content:
+    -
+        title: 'getChassisSettings([, propertyNames])'
+        id: getChassisSettings
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.ChassisSettings.getChassisSettings()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: ChassisSettingsResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.getChassisSettings(),\n  accessCertificate\n);\n```"
+            -
+                id: ChassisSettingsResponse
+                title: ChassisSettingsResponse
+                parameters:
+                    drivingMode:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    sportChrono:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    currentSpringRates:
+                        data.value: '(Array<Object>) The current values for the spring rates'
+                        timestamp: (Date)
+                    maximumSpringRates:
+                        data.value: '(Array<Object>) The maximum possible values for the spring rates'
+                        timestamp: (Date)
+                    minimumSpringRates:
+                        data.value: '(Array<Object>) The minimum possible values for the spring rates'
+                        timestamp: (Date)
+                    currentChassisPosition:
+                        data.value: '(Number) (length) The chassis position calculated from the lowest point'
+                        timestamp: (Date)
+                    maximumChassisPosition:
+                        data.value: '(Number) (length) The maximum possible value for the chassis position'
+                        timestamp: (Date)
+                    minimumChassisPosition:
+                        data.value: '(Number) (length) The minimum possible value for the chassis position'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"drivingMode\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"eco\"\n    }\n  },\n  \"sportChrono\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"currentSpringRates\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"front\",\n          \"springRate\": {\n            \"newton_millimeters\": 21\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"rear\",\n          \"springRate\": {\n            \"newton_millimeters\": 23\n          }\n        }\n      }\n    }\n  ],\n  \"maximumSpringRates\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"front\",\n          \"springRate\": {\n            \"newton_millimeters\": 37\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"rear\",\n          \"springRate\": {\n            \"newton_millimeters\": 39\n          }\n        }\n      }\n    }\n  ],\n  \"minimumSpringRates\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"front\",\n          \"springRate\": {\n            \"newton_millimeters\": 16\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"rear\",\n          \"springRate\": {\n            \"newton_millimeters\": 18\n          }\n        }\n      }\n    }\n  ],\n  \"currentChassisPosition\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"millimeters\": 25.4\n      }\n    }\n  },\n  \"maximumChassisPosition\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"millimeters\": 55.5\n      }\n    }\n  },\n  \"minimumChassisPosition\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"millimeters\": -28.4\n      }\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.ChassisSettings.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.getAvailability(['driving_mode']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"driving_mode\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: setDrivingMode
+        title: 'setDrivingMode({ drivingMode })'
+        parameters:
+            drivingMode: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setDrivingMode({\n    \"drivingMode\": \"eco\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: startStopSportsChrono
+        title: 'startStopSportsChrono({ sportChrono })'
+        parameters:
+            sportChrono: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.startStopSportsChrono({\n    \"sportChrono\": \"active\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setSpringRates
+        title: 'setSpringRates({ currentSpringRates })'
+        parameters:
+            currentSpringRates: '(Array<Object>) The current values for the spring rates'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setSpringRates({\n    \"currentSpringRates\": [\n      {\n        \"axle\": \"front\",\n        \"springRate\": {\n          \"newton_millimeters\": 21\n        }\n      },\n      {\n        \"axle\": \"rear\",\n        \"springRate\": {\n          \"newton_millimeters\": 23\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setChassisPosition
+        title: 'setChassisPosition({ currentChassisPosition })'
+        parameters:
+            currentChassisPosition: '(Number) (length) The chassis position calculated from the lowest point'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setChassisPosition({\n    \"currentChassisPosition\": {\n      \"millimeters\": 25.4\n    }\n  }),\n  accessCertificate\n);\n```"

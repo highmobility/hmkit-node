@@ -1,0 +1,46 @@
+title: 'Firmware Version'
+content:
+    -
+        title: 'getFirmwareVersion([, propertyNames])'
+        id: getFirmwareVersion
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.FirmwareVersion.getFirmwareVersion()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: FirmwareVersionResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.FirmwareVersion.getFirmwareVersion(),\n  accessCertificate\n);\n```"
+            -
+                id: FirmwareVersionResponse
+                title: FirmwareVersionResponse
+                parameters:
+                    hmKitVersion:
+                        data.value: '(Object) HMKit version'
+                        timestamp: (Date)
+                    hmKitBuildName:
+                        data.value: '(String) HMKit version build name'
+                        timestamp: (Date)
+                    applicationVersion:
+                        data.value: '(String) Application version'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"hmKitVersion\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"major\": 1,\n        \"minor\": 15,\n        \"patch\": 33\n      }\n    }\n  },\n  \"hmKitBuildName\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"btstack-uart\"\n    }\n  },\n  \"applicationVersion\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"v1.5-prod\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.FirmwareVersion.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.FirmwareVersion.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.FirmwareVersion.getAvailability(['hmkit_version']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"hmkit_version\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

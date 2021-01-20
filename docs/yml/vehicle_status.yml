@@ -1,0 +1,40 @@
+title: 'Vehicle Status'
+content:
+    -
+        title: 'getVehicleStatus([, propertyNames])'
+        id: getVehicleStatus
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.VehicleStatus.getVehicleStatus()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: VehicleStatusResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleStatus.getVehicleStatus(),\n  accessCertificate\n);\n```"
+            -
+                id: VehicleStatusResponse
+                title: VehicleStatusResponse
+                parameters:
+                    states:
+                        data.value: '(Array<Array<Number>>) (bytes) The bytes of a Capability state'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"states\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"doors\": {\n            \"locksState\": {\n              \"value\": \"unlocked\"\n            },\n            \"positions\": [\n              {\n                \"value\": {\n                  \"location\": \"front_left\",\n                  \"position\": \"open\"\n                }\n              },\n              {\n                \"value\": {\n                  \"location\": \"rear_right\",\n                  \"position\": \"open\"\n                }\n              }\n            ],\n            \"timestamp\": {\n              \"value\": \"2017-01-10T16:32:05.000Z\"\n            }\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"charging\": {\n            \"chargePortState\": {\n              \"value\": \"open\"\n            },\n            \"chargeMode\": {\n              \"value\": \"immediate\"\n            },\n            \"chargingRate\": {\n              \"value\": {\n                \"kilowatts\": 35\n              }\n            },\n            \"maxRange\": {\n              \"value\": {\n                \"kilometers\": 555\n              }\n            },\n            \"timestamp\": {\n              \"value\": \"2017-01-10T16:32:05.000Z\"\n            }\n          }\n        }\n      }\n    }\n  ]\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.VehicleStatus.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleStatus.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleStatus.getAvailability(['states']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"states\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

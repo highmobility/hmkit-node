@@ -1,0 +1,81 @@
+title: Windscreen
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Windscreen.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: WindscreenResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: WindscreenResponse
+                title: WindscreenResponse
+                parameters:
+                    wipersStatus:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    wipersIntensity:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    windscreenDamage:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    windscreenZoneMatrix:
+                        data.value: '(Object) Representing the size of the matrix&comma; seen from the inside of the vehicle'
+                        timestamp: (Date)
+                    windscreenDamageZone:
+                        data.value: '(Object) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index)'
+                        timestamp: (Date)
+                    windscreenNeedsReplacement:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    windscreenDamageConfidence:
+                        data.value: '(Number) (double) Confidence of damage detection&comma; 0% if no impact detected'
+                        timestamp: (Date)
+                    windscreenDamageDetectionTime:
+                        data.value: '(Date) (timestamp) Windscreen damage detection date'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"wipersStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"automatic\"\n    }\n  },\n  \"wipersIntensity\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"level_3\"\n    }\n  },\n  \"windscreenDamage\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"impact_but_no_damage_detected\"\n    }\n  },\n  \"windscreenZoneMatrix\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"horizontal\": 4,\n        \"vertical\": 3\n      }\n    }\n  },\n  \"windscreenDamageZone\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"horizontal\": 1,\n        \"vertical\": 2\n      }\n    }\n  },\n  \"windscreenNeedsReplacement\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"no_replacement_needed\"\n    }\n  },\n  \"windscreenDamageConfidence\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.95\n    }\n  },\n  \"windscreenDamageDetectionTime\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"2017-01-10T16:32:05.000Z\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Windscreen.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.getAvailability(['wipers_status']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"wipers_status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: setWindscreenDamage
+        title: 'setWindscreenDamage({ windscreenDamage, windscreenDamageZone })'
+        parameters:
+            windscreenDamage: '(String) (enum) '
+            windscreenDamageZone: '(Object) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index)'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.setWindscreenDamage({\n    \"windscreenDamage\": \"impact_but_no_damage_detected\",\n    \"windscreenDamageZone\": {\n      \"horizontal\": 1,\n      \"vertical\": 2\n    }\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setWindscreenReplacementNeeded
+        title: 'setWindscreenReplacementNeeded({ windscreenNeedsReplacement })'
+        parameters:
+            windscreenNeedsReplacement: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.setWindscreenReplacementNeeded({\n    \"windscreenNeedsReplacement\": \"no_replacement_needed\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: controlWipers
+        title: 'controlWipers({ wipersStatus, wipersIntensity })'
+        parameters:
+            wipersStatus: '(String) (enum) '
+            wipersIntensity: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.controlWipers({\n    \"wipersStatus\": \"automatic\",\n    \"wipersIntensity\": \"level_3\"\n  }),\n  accessCertificate\n);\n```"

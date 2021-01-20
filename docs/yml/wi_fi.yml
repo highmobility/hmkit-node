@@ -1,0 +1,69 @@
+title: Wi-Fi
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.WiFi.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: WiFiResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: WiFiResponse
+                title: WiFiResponse
+                parameters:
+                    status:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    networkConnected:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    networkSSID:
+                        data.value: '(String) The network SSID'
+                        timestamp: (Date)
+                    networkSecurity:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"networkConnected\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"connected\"\n    }\n  },\n  \"networkSSID\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"HOME\"\n    }\n  },\n  \"networkSecurity\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"wpa2_personal\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.WiFi.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.getAvailability(['status']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: connectToNetwork
+        title: 'connectToNetwork({ networkSSID, networkSecurity, password })'
+        parameters:
+            networkSSID: '(String) The network SSID'
+            networkSecurity: '(String) (enum) '
+            password: '(String) The network password'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.connectToNetwork({\n    \"networkSSID\": \"HOME\",\n    \"networkSecurity\": \"wpa2_personal\",\n    \"password\": \"great_secret12\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: forgetNetwork
+        title: 'forgetNetwork({ networkSSID })'
+        parameters:
+            networkSSID: '(String) The network SSID'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.forgetNetwork({\n    \"networkSSID\": \"HOME\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: enableDisableWiFi
+        title: 'enableDisableWiFi({ status })'
+        parameters:
+            status: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.enableDisableWiFi({\n    \"status\": \"enabled\"\n  }),\n  accessCertificate\n);\n```"

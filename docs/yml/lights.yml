@@ -1,0 +1,75 @@
+title: Lights
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Lights.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: LightsResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Lights.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: LightsResponse
+                title: LightsResponse
+                parameters:
+                    frontExteriorLight:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    rearExteriorLight:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    ambientLightColour:
+                        data.value: '(Object) '
+                        timestamp: (Date)
+                    reverseLight:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    emergencyBrakeLight:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    fogLights:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    readingLamps:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    interiorLights:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    switchPosition:
+                        data.value: '(String) (enum) Position of the rotary light switch'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"frontExteriorLight\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active_with_full_beam\"\n    }\n  },\n  \"rearExteriorLight\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"ambientLightColour\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"red\": 255,\n        \"green\": 0,\n        \"blue\": 0\n      }\n    }\n  },\n  \"reverseLight\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"emergencyBrakeLight\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"fogLights\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front\",\n          \"state\": \"inactive\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear\",\n          \"state\": \"active\"\n        }\n      }\n    }\n  ],\n  \"readingLamps\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"state\": \"active\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"state\": \"active\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"state\": \"inactive\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"state\": \"inactive\"\n        }\n      }\n    }\n  ],\n  \"interiorLights\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front\",\n          \"state\": \"inactive\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear\",\n          \"state\": \"active\"\n        }\n      }\n    }\n  ],\n  \"switchPosition\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"parking_light_right\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Lights.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Lights.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Lights.getAvailability(['front_exterior_light']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"front_exterior_light\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: controlLights
+        title: 'controlLights({ frontExteriorLight, rearExteriorLight, ambientLightColour, fogLights, readingLamps, interiorLights })'
+        parameters:
+            frontExteriorLight: '(String) (enum) '
+            rearExteriorLight: '(String) (enum) '
+            ambientLightColour: '(Object) '
+            fogLights: '(Array<Object>) '
+            readingLamps: '(Array<Object>) '
+            interiorLights: '(Array<Object>) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Lights.controlLights({\n    \"frontExteriorLight\": \"active_with_full_beam\",\n    \"rearExteriorLight\": \"active\",\n    \"ambientLightColour\": {\n      \"red\": 255,\n      \"green\": 0,\n      \"blue\": 0\n    },\n    \"fogLights\": [\n      {\n        \"location\": \"front\",\n        \"state\": \"inactive\"\n      },\n      {\n        \"location\": \"rear\",\n        \"state\": \"active\"\n      }\n    ],\n    \"readingLamps\": [\n      {\n        \"location\": \"front_left\",\n        \"state\": \"active\"\n      },\n      {\n        \"location\": \"front_right\",\n        \"state\": \"active\"\n      },\n      {\n        \"location\": \"rear_right\",\n        \"state\": \"inactive\"\n      },\n      {\n        \"location\": \"rear_left\",\n        \"state\": \"inactive\"\n      }\n    ],\n    \"interiorLights\": [\n      {\n        \"location\": \"front\",\n        \"state\": \"inactive\"\n      },\n      {\n        \"location\": \"rear\",\n        \"state\": \"active\"\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"

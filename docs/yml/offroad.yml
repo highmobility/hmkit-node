@@ -1,0 +1,43 @@
+title: Offroad
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Offroad.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: OffroadResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Offroad.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: OffroadResponse
+                title: OffroadResponse
+                parameters:
+                    routeIncline:
+                        data.value: '(Number) (angle) The route elevation incline'
+                        timestamp: (Date)
+                    wheelSuspension:
+                        data.value: '(Number) (double) The wheel suspension level percentage&comma; whereas 0.0 is no suspension and 1.0 maximum suspension'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"routeIncline\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"degrees\": 10.1\n      }\n    }\n  },\n  \"wheelSuspension\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.5\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Offroad.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Offroad.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Offroad.getAvailability(['route_incline']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"route_incline\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

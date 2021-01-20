@@ -1,0 +1,169 @@
+title: Charging
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Charging.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: ChargingResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: ChargingResponse
+                title: ChargingResponse
+                parameters:
+                    estimatedRange:
+                        data.value: '(Number) (length) Estimated range'
+                        timestamp: (Date)
+                    batteryLevel:
+                        data.value: '(Number) (double) Battery level percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    batteryCurrentAC:
+                        data.value: '(Number) (electric_current) Battery alternating current'
+                        timestamp: (Date)
+                    batteryCurrentDC:
+                        data.value: '(Number) (electric_current) Battery direct current'
+                        timestamp: (Date)
+                    chargerVoltageAC:
+                        data.value: '(Number) (electric_potential_difference) Charger voltage for alternating current'
+                        timestamp: (Date)
+                    chargerVoltageDC:
+                        data.value: '(Number) (electric_potential_difference) Charger voltage for direct current'
+                        timestamp: (Date)
+                    chargeLimit:
+                        data.value: '(Number) (double) Charge limit percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    timeToCompleteCharge:
+                        data.value: '(Number) (duration) Time until charging completed'
+                        timestamp: (Date)
+                    chargingRateKW:
+                        data.value: '(Number) (power) Charging rate'
+                        timestamp: (Date)
+                    chargePortState:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    chargeMode:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    maxChargingCurrent:
+                        data.value: '(Number) (electric_current) Maximum charging current'
+                        timestamp: (Date)
+                    plugType:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    chargingWindowChosen:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    departureTimes:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    reductionTimes:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    batteryTemperature:
+                        data.value: '(Number) (temperature) Battery temperature'
+                        timestamp: (Date)
+                    timers:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    pluggedIn:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    status:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    chargingRate:
+                        data.value: '(Number) (power) Charge rate when charging'
+                        timestamp: (Date)
+                    batteryCurrent:
+                        data.value: '(Number) (electric_current) Battery current'
+                        timestamp: (Date)
+                    chargerVoltage:
+                        data.value: '(Number) (electric_potential_difference) Charger voltage'
+                        timestamp: (Date)
+                    currentType:
+                        data.value: '(String) (enum) Type of current in use'
+                        timestamp: (Date)
+                    maxRange:
+                        data.value: '(Number) (length) Maximum electric range with 100% of battery'
+                        timestamp: (Date)
+                    starterBatteryState:
+                        data.value: '(String) (enum) State of the starter battery'
+                        timestamp: (Date)
+                    smartChargingStatus:
+                        data.value: '(String) (enum) Status of optimized/intelligent charging'
+                        timestamp: (Date)
+                    batteryLevelAtDeparture:
+                        data.value: '(Number) (double) Battery charge level expected at time of departure'
+                        timestamp: (Date)
+                    preconditioningDepartureStatus:
+                        data.value: '(String) (enum) Status of preconditioning at departure time'
+                        timestamp: (Date)
+                    preconditioningImmediateStatus:
+                        data.value: '(String) (enum) Status of immediate preconditioning'
+                        timestamp: (Date)
+                    preconditioningDepartureEnabled:
+                        data.value: '(String) (enum) Preconditioning activation status at departure'
+                        timestamp: (Date)
+                    preconditioningError:
+                        data.value: '(String) (enum) Preconditioning error if one is encountered'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"estimatedRange\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 432.1\n      }\n    }\n  },\n  \"batteryLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.5\n    }\n  },\n  \"batteryCurrentAC\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"amperes\": -0.6\n      }\n    }\n  },\n  \"batteryCurrentDC\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"amperes\": -0.6\n      }\n    }\n  },\n  \"chargerVoltageAC\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"volts\": 400\n      }\n    }\n  },\n  \"chargerVoltageDC\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"volts\": 400\n      }\n    }\n  },\n  \"chargeLimit\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.9\n    }\n  },\n  \"timeToCompleteCharge\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"minutes\": 60\n      }\n    }\n  },\n  \"chargingRateKW\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilowatts\": 3.5\n      }\n    }\n  },\n  \"chargePortState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"chargeMode\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"timer_based\"\n    }\n  },\n  \"maxChargingCurrent\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"amperes\": 25\n      }\n    }\n  },\n  \"plugType\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"type_2\"\n    }\n  },\n  \"chargingWindowChosen\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"not_chosen\"\n    }\n  },\n  \"departureTimes\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"state\": \"active\",\n          \"time\": {\n            \"hour\": 16,\n            \"minute\": 32\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"state\": \"inactive\",\n          \"time\": {\n            \"hour\": 11,\n            \"minute\": 51\n          }\n        }\n      }\n    }\n  ],\n  \"reductionTimes\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"startStop\": \"start\",\n          \"time\": {\n            \"hour\": 17,\n            \"minute\": 33\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"startStop\": \"stop\",\n          \"time\": {\n            \"hour\": 12,\n            \"minute\": 52\n          }\n        }\n      }\n    }\n  ],\n  \"batteryTemperature\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"celsius\": 38.4\n      }\n    }\n  },\n  \"timers\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"timerType\": \"preferred_start_time\",\n          \"date\": \"2017-01-10T16:32:05.000Z\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"timerType\": \"preferred_end_time\",\n          \"date\": \"2017-01-10T16:36:05.000Z\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"timerType\": \"departure_date\",\n          \"date\": \"2017-01-10T16:36:05.000Z\"\n        }\n      }\n    }\n  ],\n  \"pluggedIn\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"plugged_in\"\n    }\n  },\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"charging\"\n    }\n  },\n  \"chargingRate\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilowatts\": 150\n      }\n    }\n  },\n  \"batteryCurrent\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"amperes\": -0.6\n      }\n    }\n  },\n  \"chargerVoltage\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"volts\": 400\n      }\n    }\n  },\n  \"currentType\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"alternating_current\"\n    }\n  },\n  \"maxRange\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 555\n      }\n    }\n  },\n  \"starterBatteryState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"green\"\n    }\n  },\n  \"smartChargingStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"scc_is_active\"\n    }\n  },\n  \"batteryLevelAtDeparture\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.9\n    }\n  },\n  \"preconditioningDepartureStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"preconditioningImmediateStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"preconditioningDepartureEnabled\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"preconditioningError\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"not_possible_low\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Charging.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.getAvailability(['estimated_range']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"estimated_range\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: startStopCharging
+        title: 'startStopCharging({ status })'
+        parameters:
+            status: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.startStopCharging({\n    \"status\": \"charging\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setChargeLimit
+        title: 'setChargeLimit({ chargeLimit })'
+        parameters:
+            chargeLimit: '(Number) (double) Charge limit percentage between 0.0-1.0'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.setChargeLimit({\n    \"chargeLimit\": 0.9\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: openCloseChargingPort
+        title: 'openCloseChargingPort({ chargePortState })'
+        parameters:
+            chargePortState: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.openCloseChargingPort({\n    \"chargePortState\": \"open\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setChargeMode
+        title: 'setChargeMode({ chargeMode })'
+        parameters:
+            chargeMode: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.setChargeMode({\n    \"chargeMode\": \"timer_based\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setChargingTimers
+        title: 'setChargingTimers({ timers })'
+        parameters:
+            timers: '(Array<Object>) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.setChargingTimers({\n    \"timers\": [\n      {\n        \"timerType\": \"preferred_start_time\",\n        \"date\": \"2017-01-10T16:32:05.000Z\"\n      },\n      {\n        \"timerType\": \"preferred_end_time\",\n        \"date\": \"2017-01-10T16:36:05.000Z\"\n      },\n      {\n        \"timerType\": \"departure_date\",\n        \"date\": \"2017-01-10T16:36:05.000Z\"\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: setReductionOfChargingCurrentTimes
+        title: 'setReductionOfChargingCurrentTimes({ reductionTimes })'
+        parameters:
+            reductionTimes: '(Array<Object>) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.setReductionOfChargingCurrentTimes({\n    \"reductionTimes\": [\n      {\n        \"startStop\": \"start\",\n        \"time\": {\n          \"hour\": 17,\n          \"minute\": 33\n        }\n      },\n      {\n        \"startStop\": \"stop\",\n        \"time\": {\n          \"hour\": 12,\n          \"minute\": 52\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"

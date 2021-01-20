@@ -1,0 +1,148 @@
+title: Diagnostics
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Diagnostics.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: DiagnosticsResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Diagnostics.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: DiagnosticsResponse
+                title: DiagnosticsResponse
+                parameters:
+                    mileage:
+                        data.value: '(Number) (length) The vehicle mileage (odometer)'
+                        timestamp: (Date)
+                    engineOilTemperature:
+                        data.value: '(Number) (temperature) Engine oil temperature'
+                        timestamp: (Date)
+                    speed:
+                        data.value: '(Number) (speed) The vehicle speed'
+                        timestamp: (Date)
+                    engineRPM:
+                        data.value: '(Number) (angular_velocity) Engine RPM (revolutions per minute)'
+                        timestamp: (Date)
+                    fuelLevel:
+                        data.value: '(Number) (double) Fuel level percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    estimatedRange:
+                        data.value: '(Number) (length) Estimated range (with combustion engine)'
+                        timestamp: (Date)
+                    washerFluidLevel:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    batteryVoltage:
+                        data.value: '(Number) (electric_potential_difference) Battery voltage'
+                        timestamp: (Date)
+                    adBlueLevel:
+                        data.value: '(Number) (double) AdBlue level percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    distanceSinceReset:
+                        data.value: '(Number) (length) The distance driven since reset'
+                        timestamp: (Date)
+                    distanceSinceStart:
+                        data.value: '(Number) (length) The distance driven since trip start'
+                        timestamp: (Date)
+                    fuelVolume:
+                        data.value: '(Number) (volume) The fuel volume measured in liters'
+                        timestamp: (Date)
+                    antiLockBraking:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    engineCoolantTemperature:
+                        data.value: '(Number) (temperature) Engine coolant temperature'
+                        timestamp: (Date)
+                    engineTotalOperatingHours:
+                        data.value: '(Number) (duration) The accumulated time of engine operation'
+                        timestamp: (Date)
+                    engineTotalFuelConsumption:
+                        data.value: '(Number) (volume) The accumulated lifespan fuel consumption'
+                        timestamp: (Date)
+                    brakeFluidLevel:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    engineTorque:
+                        data.value: '(Number) (double) Current engine torque percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    engineLoad:
+                        data.value: '(Number) (double) Current engine load percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    wheelBasedSpeed:
+                        data.value: '(Number) (speed) The vehicle speed measured at the wheel base'
+                        timestamp: (Date)
+                    batteryLevel:
+                        data.value: '(Number) (double) Battery level in %&comma; value between 0.0 and 1.0'
+                        timestamp: (Date)
+                    checkControlMessages:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    tirePressures:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    tireTemperatures:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    wheelRPMs:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    troubleCodes:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    mileageMeters:
+                        data.value: '(Number) (length) The vehicle mileage (odometer) in meters'
+                        timestamp: (Date)
+                    odometer:
+                        data.value: '(Number) (length) The vehicle odometer value in a given units.'
+                        timestamp: (Date)
+                    engineTotalOperatingTime:
+                        data.value: '(Number) (duration) The accumulated time of engine operation'
+                        timestamp: (Date)
+                    tirePressureStatuses:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    brakeLiningWearPreWarning:
+                        data.value: '(String) (enum) Status of brake lining wear pre-warning'
+                        timestamp: (Date)
+                    engineOilLifeRemaining:
+                        data.value: '(Number) (double) Remaining life of engine oil which decreases over time'
+                        timestamp: (Date)
+                    oemTroubleCodeValues:
+                        data.value: '(Array<Object>) Additional OEM trouble codes'
+                        timestamp: (Date)
+                    dieselExhaustFluidRange:
+                        data.value: '(Number) (length) Distance remaining until diesel exhaust fluid is empty'
+                        timestamp: (Date)
+                    dieselParticulateFilterSootLevel:
+                        data.value: '(Number) (double) Level of soot in diesel exhaust particulate filter'
+                        timestamp: (Date)
+                    confirmedTroubleCodes:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    dieselExhaustFilterStatus:
+                        data.value: '(Object) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"mileage\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 150000\n      }\n    }\n  },\n  \"engineOilTemperature\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"celsius\": 99.5\n      }\n    }\n  },\n  \"speed\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers_per_hour\": 60\n      }\n    }\n  },\n  \"engineRPM\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"revolutions_per_minute\": 2500\n      }\n    }\n  },\n  \"fuelLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.9\n    }\n  },\n  \"estimatedRange\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 265\n      }\n    }\n  },\n  \"washerFluidLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"filled\"\n    }\n  },\n  \"batteryVoltage\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"volts\": 12.1\n      }\n    }\n  },\n  \"adBlueLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.9\n    }\n  },\n  \"distanceSinceReset\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 1500.1\n      }\n    }\n  },\n  \"distanceSinceStart\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 12.4\n      }\n    }\n  },\n  \"fuelVolume\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"liters\": 35.5\n      }\n    }\n  },\n  \"antiLockBraking\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"engineCoolantTemperature\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"celsius\": 20\n      }\n    }\n  },\n  \"engineTotalOperatingHours\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"hours\": 1500.65\n      }\n    }\n  },\n  \"engineTotalFuelConsumption\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"liters\": 27587\n      }\n    }\n  },\n  \"brakeFluidLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"low\"\n    }\n  },\n  \"engineTorque\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.2\n    }\n  },\n  \"engineLoad\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.1\n    }\n  },\n  \"wheelBasedSpeed\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers_per_hour\": 65\n      }\n    }\n  },\n  \"batteryLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.56\n    }\n  },\n  \"checkControlMessages\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"ID\": 1,\n          \"remainingTime\": {\n            \"minutes\": 105592\n          },\n          \"text\": \"Check engine\",\n          \"status\": \"Alert\"\n        }\n      }\n    }\n  ],\n  \"tirePressures\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"pressure\": {\n            \"bars\": 2.31\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"pressure\": {\n            \"bars\": 2.31\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"pressure\": {\n            \"bars\": 2.24\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"pressure\": {\n            \"bars\": 2.24\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right_outer\",\n          \"pressure\": {\n            \"bars\": 2.25\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left_outer\",\n          \"pressure\": {\n            \"bars\": 2.25\n          }\n        }\n      }\n    }\n  ],\n  \"tireTemperatures\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"temperature\": {\n            \"celsius\": 40.1\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"temperature\": {\n            \"celsius\": 40.2\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"temperature\": {\n            \"celsius\": 40.3\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"temperature\": {\n            \"celsius\": 40.4\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right_outer\",\n          \"temperature\": {\n            \"celsius\": 40.5\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left_outer\",\n          \"temperature\": {\n            \"celsius\": 40.6\n          }\n        }\n      }\n    }\n  ],\n  \"wheelRPMs\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"RPM\": {\n            \"revolutions_per_minute\": 737\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"RPM\": {\n            \"revolutions_per_minute\": 747\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"RPM\": {\n            \"revolutions_per_minute\": 777\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"RPM\": {\n            \"revolutions_per_minute\": 787\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right_outer\",\n          \"RPM\": {\n            \"revolutions_per_minute\": 797\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left_outer\",\n          \"RPM\": {\n            \"revolutions_per_minute\": 807\n          }\n        }\n      }\n    }\n  ],\n  \"troubleCodes\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"occurrences\": 2,\n          \"ID\": \"C1116FA\",\n          \"ecuID\": \"RDU_212FR\",\n          \"status\": \"PENDING\",\n          \"system\": \"unknown\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"occurrences\": 2,\n          \"ID\": \"C163AFA\",\n          \"ecuID\": \"DTR212\",\n          \"status\": \"PENDING\",\n          \"system\": \"body\"\n        }\n      }\n    }\n  ],\n  \"mileageMeters\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 150001\n      }\n    }\n  },\n  \"odometer\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"megameters\": 6.4\n      }\n    }\n  },\n  \"engineTotalOperatingTime\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"hours\": 1500.65\n      }\n    }\n  },\n  \"tirePressureStatuses\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"status\": \"normal\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"status\": \"low\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"status\": \"alert\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"status\": \"normal\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right_outer\",\n          \"status\": \"normal\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left_outer\",\n          \"status\": \"normal\"\n        }\n      }\n    }\n  ],\n  \"brakeLiningWearPreWarning\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"engineOilLifeRemaining\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.88\n    }\n  },\n  \"oemTroubleCodeValues\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"ID\": \"123ID\",\n          \"keyValue\": {\n            \"key\": \"\\nsome_error\\nsome_value\",\n            \"value\": \"\"\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"ID\": \"1B3C\",\n          \"keyValue\": {\n            \"key\": \"\\u000fimportant_error\\u000fsystem fault 32\",\n            \"value\": \"\"\n          }\n        }\n      }\n    }\n  ],\n  \"dieselExhaustFluidRange\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilometers\": 2233\n      }\n    }\n  },\n  \"dieselParticulateFilterSootLevel\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.16\n    }\n  },\n  \"confirmedTroubleCodes\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"ID\": \"801C10\",\n          \"ecuAddress\": \"16\",\n          \"ecuVariantName\": \"CAS\",\n          \"status\": \"ACTIVE\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"ID\": \"D52C44\",\n          \"ecuAddress\": \"48\",\n          \"ecuVariantName\": \"CAS\",\n          \"status\": \"ACTIVE\"\n        }\n      }\n    }\n  ],\n  \"dieselExhaustFilterStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"status\": \"unknown\",\n        \"component\": \"exhaust_filter\",\n        \"cleaning\": \"unknown\"\n      }\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Diagnostics.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Diagnostics.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Diagnostics.getAvailability(['mileage']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"mileage\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

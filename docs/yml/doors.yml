@@ -1,0 +1,58 @@
+title: Doors
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Doors.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: DoorsResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Doors.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: DoorsResponse
+                title: DoorsResponse
+                parameters:
+                    insideLocks:
+                        data.value: '(Array<Object>) Inside lock states for the given doors'
+                        timestamp: (Date)
+                    locks:
+                        data.value: '(Array<Object>) Lock states for the given doors'
+                        timestamp: (Date)
+                    positions:
+                        data.value: '(Array<Object>) Door positions for the given doors'
+                        timestamp: (Date)
+                    insideLocksState:
+                        data.value: '(String) (enum) Inside locks state for the whole vehicle (combines all specific lock states if available)'
+                        timestamp: (Date)
+                    locksState:
+                        data.value: '(String) (enum) Locks state for the whole vehicle (combines all specific lock states if available)'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"insideLocks\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"lockState\": \"locked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"lockState\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"lockState\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"lockState\": \"unlocked\"\n        }\n      }\n    }\n  ],\n  \"locks\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"lockState\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"lockState\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"lockState\": \"locked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"lockState\": \"locked\"\n        }\n      }\n    }\n  ],\n  \"positions\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"position\": \"open\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"position\": \"closed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"position\": \"closed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"position\": \"closed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"all\",\n          \"position\": \"closed\"\n        }\n      }\n    }\n  ],\n  \"insideLocksState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"locked\"\n    }\n  },\n  \"locksState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"unlocked\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Doors.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Doors.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Doors.getAvailability(['inside_locks']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"inside_locks\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: lockUnlockDoors
+        title: 'lockUnlockDoors({ locksState })'
+        parameters:
+            locksState: '(String) (enum) Locks state for the whole vehicle (combines all specific lock states if available)'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Doors.lockUnlockDoors({\n    \"locksState\": \"unlocked\"\n  }),\n  accessCertificate\n);\n```"

@@ -1,0 +1,91 @@
+title: Race
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Race.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: RaceResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Race.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: RaceResponse
+                title: RaceResponse
+                parameters:
+                    accelerations:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    understeering:
+                        data.value: '(Number) (double) The understeering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 0.3 (30%) marginal&comma; over 30% critical'
+                        timestamp: (Date)
+                    oversteering:
+                        data.value: '(Number) (double) The oversteering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 30% marginal&comma; over 30% critical'
+                        timestamp: (Date)
+                    gasPedalPosition:
+                        data.value: '(Number) (double) The gas pedal position between 0.0-1.0&comma; whereas 1.0 (100%) is full throttle'
+                        timestamp: (Date)
+                    steeringAngle:
+                        data.value: '(Number) (angle) The steering angle&comma; whereas 0.0 is straight ahead&comma; positive number to the right and negative number to the left'
+                        timestamp: (Date)
+                    brakePressure:
+                        data.value: '(Number) (pressure) Brake pressure'
+                        timestamp: (Date)
+                    yawRate:
+                        data.value: '(Number) (angular_velocity) Yaw turning rate'
+                        timestamp: (Date)
+                    rearSuspensionSteering:
+                        data.value: '(Number) (angle) Rear suspension steering'
+                        timestamp: (Date)
+                    electronicStabilityProgram:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    brakeTorqueVectorings:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    gearMode:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    selectedGear:
+                        data.value: '(Number) (integer) The selected gear value&comma; if any'
+                        timestamp: (Date)
+                    brakePedalPosition:
+                        data.value: '(Number) (double) The brake pedal position between 0.0-1.0&comma; wheras 1.0 (100%) is full brakes'
+                        timestamp: (Date)
+                    brakePedalSwitch:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    clutchPedalSwitch:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    acceleratorPedalIdleSwitch:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    acceleratorPedalKickdownSwitch:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    vehicleMoving:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"accelerations\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"direction\": \"longitudinal\",\n          \"acceleration\": {\n            \"gravity\": 0.864\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"direction\": \"lateral\",\n          \"acceleration\": {\n            \"gravity\": -0.753\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"direction\": \"front_lateral\",\n          \"acceleration\": {\n            \"gravity\": 0.753\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"direction\": \"rear_lateral\",\n          \"acceleration\": {\n            \"gravity\": -0.864\n          }\n        }\n      }\n    }\n  ],\n  \"understeering\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.19\n    }\n  },\n  \"oversteering\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.05\n    }\n  },\n  \"gasPedalPosition\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.98\n    }\n  },\n  \"steeringAngle\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"degrees\": 10\n      }\n    }\n  },\n  \"brakePressure\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"bars\": 20\n      }\n    }\n  },\n  \"yawRate\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"degrees_per_second\": 6.66\n      }\n    }\n  },\n  \"rearSuspensionSteering\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"degrees\": 3.3\n      }\n    }\n  },\n  \"electronicStabilityProgram\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"brakeTorqueVectorings\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"front\",\n          \"state\": \"active\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"axle\": \"rear\",\n          \"state\": \"inactive\"\n        }\n      }\n    }\n  ],\n  \"gearMode\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"drive\"\n    }\n  },\n  \"selectedGear\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 4\n    }\n  },\n  \"brakePedalPosition\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.12\n    }\n  },\n  \"brakePedalSwitch\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"clutchPedalSwitch\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"acceleratorPedalIdleSwitch\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"acceleratorPedalKickdownSwitch\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"vehicleMoving\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"moving\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Race.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Race.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Race.getAvailability(['accelerations']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"accelerations\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

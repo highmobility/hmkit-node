@@ -1,0 +1,43 @@
+title: Seats
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Seats.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: SeatsResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Seats.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: SeatsResponse
+                title: SeatsResponse
+                parameters:
+                    personsDetected:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    seatbeltsState:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"personsDetected\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"detected\": \"detected\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"detected\": \"not_detected\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"detected\": \"not_detected\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"detected\": \"not_detected\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_center\",\n          \"detected\": \"not_detected\"\n        }\n      }\n    }\n  ],\n  \"seatbeltsState\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_left\",\n          \"fastenedState\": \"fastened\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"front_right\",\n          \"fastenedState\": \"not_fastened\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_right\",\n          \"fastenedState\": \"not_fastened\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_left\",\n          \"fastenedState\": \"not_fastened\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": \"rear_center\",\n          \"fastenedState\": \"not_fastened\"\n        }\n      }\n    }\n  ]\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Seats.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Seats.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Seats.getAvailability(['persons_detected']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"persons_detected\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

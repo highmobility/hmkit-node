@@ -1,0 +1,49 @@
+title: 'Vehicle Location'
+content:
+    -
+        title: 'getVehicleLocation([, propertyNames])'
+        id: getVehicleLocation
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.VehicleLocation.getVehicleLocation()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: VehicleLocationResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleLocation.getVehicleLocation(),\n  accessCertificate\n);\n```"
+            -
+                id: VehicleLocationResponse
+                title: VehicleLocationResponse
+                parameters:
+                    coordinates:
+                        data.value: '(Object) '
+                        timestamp: (Date)
+                    heading:
+                        data.value: '(Number) (angle) Heading angle'
+                        timestamp: (Date)
+                    altitude:
+                        data.value: '(Number) (length) Altitude above the WGS 84 reference ellipsoid'
+                        timestamp: (Date)
+                    precision:
+                        data.value: '(Number) (length) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"coordinates\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"latitude\": 52.520008,\n        \"longitude\": 13.404954\n      }\n    }\n  },\n  \"heading\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"degrees\": 13.370123\n      }\n    }\n  },\n  \"altitude\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"meters\": 133.5\n      }\n    }\n  },\n  \"precision\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"meters\": 500\n      }\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.VehicleLocation.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleLocation.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleLocation.getAvailability(['coordinates']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"coordinates\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

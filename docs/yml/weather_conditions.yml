@@ -1,0 +1,40 @@
+title: 'Weather Conditions'
+content:
+    -
+        title: 'getWeatherConditions([, propertyNames])'
+        id: getWeatherConditions
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.WeatherConditions.getWeatherConditions()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: WeatherConditionsResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WeatherConditions.getWeatherConditions(),\n  accessCertificate\n);\n```"
+            -
+                id: WeatherConditionsResponse
+                title: WeatherConditionsResponse
+                parameters:
+                    rainIntensity:
+                        data.value: '(Number) (double) Measured raining intensity percentage&comma; whereas 0% is no rain and 100% is maximum rain'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"rainIntensity\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 1\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.WeatherConditions.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.WeatherConditions.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.WeatherConditions.getAvailability(['rain_intensity']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"rain_intensity\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

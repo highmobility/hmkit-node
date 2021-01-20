@@ -1,0 +1,52 @@
+title: Ignition
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Ignition.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: IgnitionResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Ignition.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: IgnitionResponse
+                title: IgnitionResponse
+                parameters:
+                    status:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    accessoriesStatus:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    state:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"off\"\n    }\n  },\n  \"accessoriesStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"on\"\n    }\n  },\n  \"state\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"accessory\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Ignition.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Ignition.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Ignition.getAvailability(['status']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: turnIgnitionOnOff
+        title: 'turnIgnitionOnOff({ status })'
+        parameters:
+            status: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Ignition.turnIgnitionOnOff({\n    \"status\": \"off\"\n  }),\n  accessCertificate\n);\n```"

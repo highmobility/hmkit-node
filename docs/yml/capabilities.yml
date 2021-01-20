@@ -1,0 +1,150 @@
+-
+    name_pretty: Browser
+    src: /docs/yml/browser.yml
+-
+    name_pretty: Capabilities
+    src: /docs/yml/capabilities.yml
+-
+    name_pretty: Charging
+    src: /docs/yml/charging.yml
+-
+    name_pretty: 'Chassis Settings'
+    src: /docs/yml/chassis_settings.yml
+-
+    name_pretty: Climate
+    src: /docs/yml/climate.yml
+-
+    name_pretty: 'Dashboard Lights'
+    src: /docs/yml/dashboard_lights.yml
+-
+    name_pretty: Diagnostics
+    src: /docs/yml/diagnostics.yml
+-
+    name_pretty: Doors
+    src: /docs/yml/doors.yml
+-
+    name_pretty: Engine
+    src: /docs/yml/engine.yml
+-
+    name_pretty: 'Failure Message'
+    src: /docs/yml/failure_message.yml
+-
+    name_pretty: 'Firmware Version'
+    src: /docs/yml/firmware_version.yml
+-
+    name_pretty: Fueling
+    src: /docs/yml/fueling.yml
+-
+    name_pretty: Graphics
+    src: /docs/yml/graphics.yml
+-
+    name_pretty: Historical
+    src: /docs/yml/historical.yml
+-
+    name_pretty: 'Home Charger'
+    src: /docs/yml/home_charger.yml
+-
+    name_pretty: 'Honk Horn & Flash Lights'
+    src: /docs/yml/honk_horn_flash_lights.yml
+-
+    name_pretty: Hood
+    src: /docs/yml/hood.yml
+-
+    name_pretty: Ignition
+    src: /docs/yml/ignition.yml
+-
+    name_pretty: 'Light Conditions'
+    src: /docs/yml/light_conditions.yml
+-
+    name_pretty: Lights
+    src: /docs/yml/lights.yml
+-
+    name_pretty: Maintenance
+    src: /docs/yml/maintenance.yml
+-
+    name_pretty: Messaging
+    src: /docs/yml/messaging.yml
+-
+    name_pretty: Mobile
+    src: /docs/yml/mobile.yml
+-
+    name_pretty: 'Multi Command'
+    src: /docs/yml/multi_command.yml
+-
+    name_pretty: 'Navi Destination'
+    src: /docs/yml/navi_destination.yml
+-
+    name_pretty: Notifications
+    src: /docs/yml/notifications.yml
+-
+    name_pretty: Offroad
+    src: /docs/yml/offroad.yml
+-
+    name_pretty: 'Parking Brake'
+    src: /docs/yml/parking_brake.yml
+-
+    name_pretty: 'Parking Ticket'
+    src: /docs/yml/parking_ticket.yml
+-
+    name_pretty: 'Power Take-Off'
+    src: /docs/yml/power_takeoff.yml
+-
+    name_pretty: Race
+    src: /docs/yml/race.yml
+-
+    name_pretty: 'Rooftop Control'
+    src: /docs/yml/rooftop_control.yml
+-
+    name_pretty: Seats
+    src: /docs/yml/seats.yml
+-
+    name_pretty: Tachograph
+    src: /docs/yml/tachograph.yml
+-
+    name_pretty: 'Text Input'
+    src: /docs/yml/text_input.yml
+-
+    name_pretty: 'Theft Alarm'
+    src: /docs/yml/theft_alarm.yml
+-
+    name_pretty: Trips
+    src: /docs/yml/trips.yml
+-
+    name_pretty: Trunk
+    src: /docs/yml/trunk.yml
+-
+    name_pretty: Usage
+    src: /docs/yml/usage.yml
+-
+    name_pretty: 'Valet Mode'
+    src: /docs/yml/valet_mode.yml
+-
+    name_pretty: 'Vehicle Information'
+    src: /docs/yml/vehicle_information.yml
+-
+    name_pretty: 'Vehicle Location'
+    src: /docs/yml/vehicle_location.yml
+-
+    name_pretty: 'Vehicle Status'
+    src: /docs/yml/vehicle_status.yml
+-
+    name_pretty: 'Vehicle Time'
+    src: /docs/yml/vehicle_time.yml
+-
+    name_pretty: 'Video Handover'
+    src: /docs/yml/video_handover.yml
+-
+    name_pretty: 'Wake Up'
+    src: /docs/yml/wake_up.yml
+-
+    name_pretty: 'Weather Conditions'
+    src: /docs/yml/weather_conditions.yml
+-
+    name_pretty: Wi-Fi
+    src: /docs/yml/wi_fi.yml
+-
+    name_pretty: Windows
+    src: /docs/yml/windows.yml
+-
+    name_pretty: Windscreen
+    src: /docs/yml/windscreen.yml

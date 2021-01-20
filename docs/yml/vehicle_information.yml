@@ -1,0 +1,97 @@
+title: 'Vehicle Information'
+content:
+    -
+        title: 'getVehicleInformation([, propertyNames])'
+        id: getVehicleInformation
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.VehicleInformation.getVehicleInformation()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: VehicleInformationResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleInformation.getVehicleInformation(),\n  accessCertificate\n);\n```"
+            -
+                id: VehicleInformationResponse
+                title: VehicleInformationResponse
+                parameters:
+                    powertrain:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    modelName:
+                        data.value: '(String) The vehicle model name'
+                        timestamp: (Date)
+                    name:
+                        data.value: '(String) The vehicle name (nickname)'
+                        timestamp: (Date)
+                    licensePlate:
+                        data.value: '(String) The license plate number'
+                        timestamp: (Date)
+                    salesDesignation:
+                        data.value: '(String) The sales designation of the model'
+                        timestamp: (Date)
+                    modelYear:
+                        data.value: '(Number) (uinteger) The vehicle model manufacturing year number'
+                        timestamp: (Date)
+                    colourName:
+                        data.value: '(String) The colour name'
+                        timestamp: (Date)
+                    powerInKW:
+                        data.value: '(Number) (power) The power of the vehicle'
+                        timestamp: (Date)
+                    numberOfDoors:
+                        data.value: '(Number) (uinteger) The number of doors'
+                        timestamp: (Date)
+                    numberOfSeats:
+                        data.value: '(Number) (uinteger) The number of seats'
+                        timestamp: (Date)
+                    engineVolume:
+                        data.value: '(Number) (volume) The engine volume displacement'
+                        timestamp: (Date)
+                    engineMaxTorque:
+                        data.value: '(Number) (torque) The maximum engine torque'
+                        timestamp: (Date)
+                    gearbox:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    displayUnit:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    driverSeatLocation:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    equipments:
+                        data.value: '(Array<String>) (string) Names of equipment the vehicle is equipped with'
+                        timestamp: (Date)
+                    power:
+                        data.value: '(Number) (power) The power of the vehicle'
+                        timestamp: (Date)
+                    language:
+                        data.value: '(String) The language on headunit'
+                        timestamp: (Date)
+                    timeformat:
+                        data.value: '(String) (enum) The timeformat on headunit'
+                        timestamp: (Date)
+                    drive:
+                        data.value: '(String) (enum) Wheels driven by the engine'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"powertrain\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"all_electric\"\n    }\n  },\n  \"modelName\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"Type X\"\n    }\n  },\n  \"name\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"Speedy\"\n    }\n  },\n  \"licensePlate\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"ABC123\"\n    }\n  },\n  \"salesDesignation\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"Package+\"\n    }\n  },\n  \"modelYear\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 2019\n    }\n  },\n  \"colourName\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"Estoril Blau\"\n    }\n  },\n  \"powerInKW\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilowatts\": 220\n      }\n    }\n  },\n  \"numberOfDoors\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 5\n    }\n  },\n  \"numberOfSeats\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 5\n    }\n  },\n  \"engineVolume\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"liters\": 2.5\n      }\n    }\n  },\n  \"engineMaxTorque\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"newton_meters\": 245\n      }\n    }\n  },\n  \"gearbox\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"automatic\"\n    }\n  },\n  \"displayUnit\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"km\"\n    }\n  },\n  \"driverSeatLocation\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"left\"\n    }\n  },\n  \"equipments\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": \"Parking sensors\"\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": \"Automatic wipers\"\n      }\n    }\n  ],\n  \"power\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"kilowatts\": 220\n      }\n    }\n  },\n  \"language\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"estonian\"\n    }\n  },\n  \"timeformat\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"twenty_four_h\"\n    }\n  },\n  \"drive\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"rwd\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.VehicleInformation.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleInformation.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.VehicleInformation.getAvailability(['powertrain']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"powertrain\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
