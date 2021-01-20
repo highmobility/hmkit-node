@@ -68,6 +68,8 @@ async function buildDocumentation() {
   await writeFile(
     path.resolve(DOCUMENTATION_DIRECTORY, 'capabilities.yml'),
     YAML.stringify(supportedCapabilities.map(capability => ({
+      name: capability.name,
+      name_cased: capability.name_cased,
       name_pretty: capability.name_pretty,
       src: `/docs/yml/${capability.name}.yml`
     })), 10)
