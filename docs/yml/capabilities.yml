@@ -1,250 +1,43 @@
--
-    name: browser
-    name_cased: browser
-    name_pretty: Browser
-    src: /docs/yml/browser.yml
--
-    name: capabilities
-    name_cased: capabilities
-    name_pretty: Capabilities
-    src: /docs/yml/capabilities.yml
--
-    name: charging
-    name_cased: charging
-    name_pretty: Charging
-    src: /docs/yml/charging.yml
--
-    name: chassis_settings
-    name_cased: chassisSettings
-    name_pretty: 'Chassis Settings'
-    src: /docs/yml/chassis_settings.yml
--
-    name: climate
-    name_cased: climate
-    name_pretty: Climate
-    src: /docs/yml/climate.yml
--
-    name: dashboard_lights
-    name_cased: dashboardLights
-    name_pretty: 'Dashboard Lights'
-    src: /docs/yml/dashboard_lights.yml
--
-    name: diagnostics
-    name_cased: diagnostics
-    name_pretty: Diagnostics
-    src: /docs/yml/diagnostics.yml
--
-    name: doors
-    name_cased: doors
-    name_pretty: Doors
-    src: /docs/yml/doors.yml
--
-    name: engine
-    name_cased: engine
-    name_pretty: Engine
-    src: /docs/yml/engine.yml
--
-    name: failure_message
-    name_cased: failureMessage
-    name_pretty: 'Failure Message'
-    src: /docs/yml/failure_message.yml
--
-    name: firmware_version
-    name_cased: firmwareVersion
-    name_pretty: 'Firmware Version'
-    src: /docs/yml/firmware_version.yml
--
-    name: fueling
-    name_cased: fueling
-    name_pretty: Fueling
-    src: /docs/yml/fueling.yml
--
-    name: graphics
-    name_cased: graphics
-    name_pretty: Graphics
-    src: /docs/yml/graphics.yml
--
-    name: historical
-    name_cased: historical
-    name_pretty: Historical
-    src: /docs/yml/historical.yml
--
-    name: home_charger
-    name_cased: homeCharger
-    name_pretty: 'Home Charger'
-    src: /docs/yml/home_charger.yml
--
-    name: honk_horn_flash_lights
-    name_cased: honkHornFlashLights
-    name_pretty: 'Honk Horn & Flash Lights'
-    src: /docs/yml/honk_horn_flash_lights.yml
--
-    name: hood
-    name_cased: hood
-    name_pretty: Hood
-    src: /docs/yml/hood.yml
--
-    name: ignition
-    name_cased: ignition
-    name_pretty: Ignition
-    src: /docs/yml/ignition.yml
--
-    name: light_conditions
-    name_cased: lightConditions
-    name_pretty: 'Light Conditions'
-    src: /docs/yml/light_conditions.yml
--
-    name: lights
-    name_cased: lights
-    name_pretty: Lights
-    src: /docs/yml/lights.yml
--
-    name: maintenance
-    name_cased: maintenance
-    name_pretty: Maintenance
-    src: /docs/yml/maintenance.yml
--
-    name: messaging
-    name_cased: messaging
-    name_pretty: Messaging
-    src: /docs/yml/messaging.yml
--
-    name: mobile
-    name_cased: mobile
-    name_pretty: Mobile
-    src: /docs/yml/mobile.yml
--
-    name: multi_command
-    name_cased: multiCommand
-    name_pretty: 'Multi Command'
-    src: /docs/yml/multi_command.yml
--
-    name: navi_destination
-    name_cased: naviDestination
-    name_pretty: 'Navi Destination'
-    src: /docs/yml/navi_destination.yml
--
-    name: notifications
-    name_cased: notifications
-    name_pretty: Notifications
-    src: /docs/yml/notifications.yml
--
-    name: offroad
-    name_cased: offroad
-    name_pretty: Offroad
-    src: /docs/yml/offroad.yml
--
-    name: parking_brake
-    name_cased: parkingBrake
-    name_pretty: 'Parking Brake'
-    src: /docs/yml/parking_brake.yml
--
-    name: parking_ticket
-    name_cased: parkingTicket
-    name_pretty: 'Parking Ticket'
-    src: /docs/yml/parking_ticket.yml
--
-    name: power_takeoff
-    name_cased: powerTakeoff
-    name_pretty: 'Power Take-Off'
-    src: /docs/yml/power_takeoff.yml
--
-    name: race
-    name_cased: race
-    name_pretty: Race
-    src: /docs/yml/race.yml
--
-    name: rooftop_control
-    name_cased: rooftopControl
-    name_pretty: 'Rooftop Control'
-    src: /docs/yml/rooftop_control.yml
--
-    name: seats
-    name_cased: seats
-    name_pretty: Seats
-    src: /docs/yml/seats.yml
--
-    name: tachograph
-    name_cased: tachograph
-    name_pretty: Tachograph
-    src: /docs/yml/tachograph.yml
--
-    name: text_input
-    name_cased: textInput
-    name_pretty: 'Text Input'
-    src: /docs/yml/text_input.yml
--
-    name: theft_alarm
-    name_cased: theftAlarm
-    name_pretty: 'Theft Alarm'
-    src: /docs/yml/theft_alarm.yml
--
-    name: trips
-    name_cased: trips
-    name_pretty: Trips
-    src: /docs/yml/trips.yml
--
-    name: trunk
-    name_cased: trunk
-    name_pretty: Trunk
-    src: /docs/yml/trunk.yml
--
-    name: usage
-    name_cased: usage
-    name_pretty: Usage
-    src: /docs/yml/usage.yml
--
-    name: valet_mode
-    name_cased: valetMode
-    name_pretty: 'Valet Mode'
-    src: /docs/yml/valet_mode.yml
--
-    name: vehicle_information
-    name_cased: vehicleInformation
-    name_pretty: 'Vehicle Information'
-    src: /docs/yml/vehicle_information.yml
--
-    name: vehicle_location
-    name_cased: vehicleLocation
-    name_pretty: 'Vehicle Location'
-    src: /docs/yml/vehicle_location.yml
--
-    name: vehicle_status
-    name_cased: vehicleStatus
-    name_pretty: 'Vehicle Status'
-    src: /docs/yml/vehicle_status.yml
--
-    name: vehicle_time
-    name_cased: vehicleTime
-    name_pretty: 'Vehicle Time'
-    src: /docs/yml/vehicle_time.yml
--
-    name: video_handover
-    name_cased: videoHandover
-    name_pretty: 'Video Handover'
-    src: /docs/yml/video_handover.yml
--
-    name: wake_up
-    name_cased: wakeUp
-    name_pretty: 'Wake Up'
-    src: /docs/yml/wake_up.yml
--
-    name: weather_conditions
-    name_cased: weatherConditions
-    name_pretty: 'Weather Conditions'
-    src: /docs/yml/weather_conditions.yml
--
-    name: wi_fi
-    name_cased: wiFi
-    name_pretty: Wi-Fi
-    src: /docs/yml/wi_fi.yml
--
-    name: windows
-    name_cased: windows
-    name_pretty: Windows
-    src: /docs/yml/windows.yml
--
-    name: windscreen
-    name_cased: windscreen
-    name_pretty: Windscreen
-    src: /docs/yml/windscreen.yml
+title: Capabilities
+content:
+    -
+        title: 'getCapabilities([, propertyNames])'
+        id: getCapabilities
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Capabilities.getCapabilities()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: CapabilitiesResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Capabilities.getCapabilities(),\n  accessCertificate\n);\n```"
+            -
+                id: CapabilitiesResponse
+                title: CapabilitiesResponse
+                parameters:
+                    capabilities:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    webhooks:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                example: "```json\n{\n  \"capabilities\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"capabilityID\": 32,\n          \"supportedPropertyIDs\": [\n            2,\n            3,\n            4,\n            5,\n            6\n          ]\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"capabilityID\": 35,\n          \"supportedPropertyIDs\": [\n            2,\n            8,\n            17\n          ]\n        }\n      }\n    }\n  ],\n  \"webhooks\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"available\": \"available\",\n          \"event\": \"trip_started\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"available\": \"available\",\n          \"event\": \"trip_ended\"\n        }\n      }\n    }\n  ]\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Capabilities.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Capabilities.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Capabilities.getAvailability(['capabilities']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"capabilities\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

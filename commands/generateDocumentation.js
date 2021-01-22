@@ -66,7 +66,7 @@ async function buildDocumentation() {
   );
 
   await writeFile(
-    path.resolve(DOCUMENTATION_DIRECTORY, 'capabilities.yml'),
+    path.resolve(DOCUMENTATION_DIRECTORY, 'capabilityManifest.yml'),
     YAML.stringify(supportedCapabilities.map(capability => ({
       name: capability.name,
       name_cased: capability.name_cased,
