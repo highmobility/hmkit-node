@@ -146,6 +146,26 @@ function describeEmulatorTests(capabilityName, capability) {
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           if (parsedResponse instanceof failureRespClass) {
             handleSkipTest(parsedResponse, `${capabilityName}.${getterCommand.name}`);
+          } else if (capabilityConfiguration.name === 'capabilities') {
+            const capabilitiesResponseValidator = {
+              capabilities: expect.arrayContaining([
+                expect.objectContaining({
+                  data: expect.objectContaining({
+                    capability: expect.any(String),
+                    supportedProperties: expect.arrayContaining([expect.any(String)])
+                  }),
+                })
+              ]),
+              webhooks: expect.arrayContaining([
+                expect.objectContaining({
+                  data: expect.objectContaining({
+                    available: { value: expect.any(String) },
+                    event: { value: expect.any(String) }
+                  })
+                })
+              ]),
+            };
+            expect(capabilitiesResponseValidator).toMatchObject(parsedResponse);
           } else {
             expect(responseValidator).toMatchObject(parsedResponse);
           }

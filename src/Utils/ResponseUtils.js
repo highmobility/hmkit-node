@@ -32,6 +32,7 @@ import { capitalize } from './Helpers';
 import ResponseClass from '../Configuration/ResponseClass';
 import mergeWith from 'lodash/mergeWith';
 import customTypes from '../Configuration/customTypes.json';
+import capabilities from '../Configuration/capabilities.json';
 import universalProperties from '../Configuration/universalProperties.json';
 
 import {
@@ -61,10 +62,11 @@ export function parseData(data) {
   );
 
   if (capabilityConf) {
-    const parsedData = parseProperties(propertiesData, capabilityConf);
+    let parsedData = parseProperties(propertiesData, capabilityConf);
     const responseClassName = capitalize(capabilityConf.name_cased);
     const responseClass = new ResponseClass[responseClassName]();
 
+    parsedData = mapCustomResponses(parsedData, capabilityConf);
     mergeWith(responseClass, parsedData, mergeCustomiser);
 
     applyResponseMetaData(responseClass, {
@@ -77,6 +79,36 @@ export function parseData(data) {
   }
 
   throw new Error('No configuration found for capability');
+}
+
+function mapCustomResponses(parsedData, capabilityConf) {
+  if (capabilityConf.name === 'capabilities') {
+    return Object.entries(parsedData).reduce((newData, [propertyName, propertyValue]) => {
+      if (propertyName === 'capabilities') {
+        return {
+          ...newData,
+          capabilities: propertyValue.map(({ data }) => {
+            const capability = Object.values(capabilities).find(c => c.identifier.lsb === data.capabilityID.value);
+            return {
+              data: {
+                capability: capability.name,
+                supportedProperties: [
+                  ...data.supportedPropertyIDs.map(id => capability.properties.find(prop => prop.id === id).name),
+                ]
+              }
+            }
+          }),
+        }
+      }
+
+      return {
+        ...newData,
+        [propertyName]: propertyValue
+      };
+    }, {});
+  }
+
+  return parsedData;
 }
 
 function applyResponseMetaData(responseClass, metaData) {
