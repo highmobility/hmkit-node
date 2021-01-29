@@ -317,7 +317,8 @@
       },
       {
         "id": 41,
-        "name": "volvo"
+        "name": "volvo_cars",
+        "name_pretty": "Volvo Cars"
       },
       {
         "id": 42,
