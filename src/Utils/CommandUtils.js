@@ -35,7 +35,7 @@ import {
   dateToBytes,
   stringToBytes,
 } from './EncodingUtils';
-import { isArray, capitalizeSnake, buildFunctionName } from './Helpers';
+import { isArray, capitalizeSnake, buildFunctionName, capitalize } from './Helpers';
 import capabilitiesConfiguration from '../Configuration/capabilities.json';
 import InvalidArgumentError from '../Errors/InvalidArgumentError';
 import { validate, Joi } from './ValidationUtils';
@@ -53,6 +53,7 @@ export const CommandType = {
 };
 
 const WEB_CONNECTION_TYPE = 'web';
+const commands = buildCommands();
 
 function buildAvailabilityGetter(capabilityConf) {
   const { msb, lsb } = capabilityConf.identifier;
@@ -157,7 +158,22 @@ function buildCapabilitySetters(capabilityConf) {
 }
 
 function buildSetter(setter, properties, identifier) {
-  const { name, mandatory = [], optional = [], constants = [] } = setter;
+  const setterName = buildFunctionName(setter.name);
+  const setterFunction = buildSetterFunction(setter, properties, identifier);
+
+  return {
+    [setterName]: applyCallbackMetadata(
+      setterFunction,
+      setterName,
+      setter.name,
+      CommandType.Setter
+    ),
+  };
+}
+
+function buildSetterFunction(setter, properties, identifier) {
+  const { msb, lsb } = identifier;
+  const { mandatory = [], optional = [], constants = [] } = setter;
 
   const allowedPropIDs = mandatory
     .concat(optional)
@@ -176,26 +192,6 @@ function buildSetter(setter, properties, identifier) {
   const mandatoryProps = mandatory.map(propertyId =>
     properties.find(x => x.id === propertyId)
   );
-
-  const setterName = buildFunctionName(name);
-
-  return {
-    [setterName]: applyCallbackMetadata(
-      buildSetterFunction(allowedProps, identifier, constants, mandatoryProps),
-      setterName,
-      setter.name,
-      CommandType.Setter
-    ),
-  };
-}
-
-function buildSetterFunction(
-  allowedProps,
-  identifier,
-  constants,
-  mandatoryProps
-) {
-  const { msb, lsb } = identifier;
 
   return (request = {}) => {
     validate({
@@ -222,7 +218,8 @@ function buildSetterFunction(
           throw new Error(`Invalid property "${key}" provided.`);
         }
 
-        const encodedPropertyData = encodeProperty(propertyToEncode, value);
+        const valueToEncode = propertyToEncode.name === 'multi_commands' ? encodeMultiCommands(value) : value;
+        const encodedPropertyData = encodeProperty(propertyToEncode, valueToEncode);
 
         return mappedBytes.concat(encodedPropertyData);
       },
@@ -246,6 +243,28 @@ function buildSetterFunction(
       ...constantsBytes,
     ]);
   };
+}
+
+function encodeMultiCommands(value) {
+  return Object.entries(value).reduce((encodedProperties, [capabilityName, capabilitySetters]) => {
+    const encodedCapabilityProperties = Object.entries(capabilitySetters).reduce((result, [setterFunctionName, setterArgument]) => {
+      const setterFunction = commands?.[capitalize(capabilityName)]?.[setterFunctionName];
+
+      if (!setterFunction) {
+        throw new Error(`Could not find setter function '${setterFunctionName}'. Correct usage: { capabilityName: { setterFunctionName: [setterFunctionArguments] } }`);
+      }
+
+      return [
+        ...result,
+        setterFunction(setterArgument),
+      ];
+    }, []);
+
+    return [
+      ...encodedProperties,
+      ...encodedCapabilityProperties,
+    ];
+  }, []);
 }
 
 function sanitizeArgumentValue(property, value) {
