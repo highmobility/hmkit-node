@@ -23,7 +23,7 @@ content:
                     state:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"off\"\n    }\n  },\n  \"accessoriesStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"on\"\n    }\n  },\n  \"state\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"accessory\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"off\"\n      }\n    }\n  },\n  \"accessoriesStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"on\"\n      }\n    }\n  },\n  \"state\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"accessory\"\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

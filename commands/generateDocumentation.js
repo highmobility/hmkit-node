@@ -262,6 +262,12 @@ function getExampleSetterArgument(setter, capability) {
 
   return [...mandatory, ...optional].reduce((args, propertyID) => {
     const property = capability.properties.find(prop => prop.id === propertyID);
+    if (property.name === 'multi_commands') {
+      return {
+        ...args,
+        [property.name_cased]: buildMultiCommandsArgument()
+      }
+    }
 
     return {
       ...args,
@@ -270,6 +276,28 @@ function getExampleSetterArgument(setter, capability) {
             parsePropertyData(hexToUint8Array(example.data_component), property)
           )
         : property.examples[0].value || property.examples[0].values,
+    };
+  }, {});
+}
+
+/**
+ * Builds example command for multiCommand from first 2 found capabilities with setters.
+ */
+function buildMultiCommandsArgument() {
+  const exampleCapabilities = Object.values(Capabilities).filter(capability => capability.setters).slice(0, 2);
+  return exampleCapabilities.reduce((result, exampleCapability) => {
+    const setterArguments = exampleCapability.setters.slice(0, 2).reduce((result, setter) => {
+      const setterArgument = getExampleSetterArgument(setter, exampleCapability);
+      const setterName = snakeCaseToCamelCase(setter.name);
+      return {
+        ...result,
+        [setterName]: setterArgument
+      }
+    }, {});
+
+    return {
+      ...result,
+      [exampleCapability.name_cased]: setterArguments
     };
   }, {});
 }

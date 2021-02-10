@@ -26,7 +26,7 @@ content:
                     networkSecurity:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"networkConnected\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"connected\"\n    }\n  },\n  \"networkSSID\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"HOME\"\n    }\n  },\n  \"networkSecurity\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"wpa2_personal\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"enabled\"\n      }\n    }\n  },\n  \"networkConnected\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"connected\"\n      }\n    }\n  },\n  \"networkSSID\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"HOME\"\n      }\n    }\n  },\n  \"networkSecurity\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"wpa2_personal\"\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

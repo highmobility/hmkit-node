@@ -17,7 +17,7 @@ content:
                     vehicleTime:
                         data.value: '(Object) Vehicle time in a 24h format'
                         timestamp: (Date)
-                example: "```json\n{\n  \"vehicleTime\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"hour\": 19,\n        \"minute\": 55\n      }\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"vehicleTime\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"hour\": {\n          \"value\": 19\n        },\n        \"minute\": {\n          \"value\": 55\n        }\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

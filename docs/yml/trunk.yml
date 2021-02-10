@@ -20,7 +20,7 @@ content:
                     position:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"lock\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"unlocked\"\n    }\n  },\n  \"position\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"lock\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"unlocked\"\n      }\n    }\n  },\n  \"position\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"open\"\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

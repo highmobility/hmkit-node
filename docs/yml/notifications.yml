@@ -26,7 +26,7 @@ content:
         parameters:
             text: '(String) Text for the notification'
             actionItems: '(Array<Object>) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"text\": \"Open Garage\",\n    \"actionItems\": [\n      {\n        \"id\": 27,\n        \"name\": \"Open\"\n      },\n      {\n        \"id\": 28,\n        \"name\": \"Cancel\"\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"text\": \"Open Garage\",\n    \"actionItems\": [\n      {\n        \"id\": {\n          \"value\": 27\n        },\n        \"name\": {\n          \"value\": \"Open\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": 28\n        },\n        \"name\": {\n          \"value\": \"Cancel\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
     -
         id: action
         title: 'action({ activatedAction })'

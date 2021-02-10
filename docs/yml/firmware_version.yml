@@ -23,7 +23,7 @@ content:
                     applicationVersion:
                         data.value: '(String) Application version'
                         timestamp: (Date)
-                example: "```json\n{\n  \"hmKitVersion\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"major\": 1,\n        \"minor\": 15,\n        \"patch\": 33\n      }\n    }\n  },\n  \"hmKitBuildName\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"btstack-uart\"\n    }\n  },\n  \"applicationVersion\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"v1.5-prod\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"hmKitVersion\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"major\": {\n          \"value\": 1\n        },\n        \"minor\": {\n          \"value\": 15\n        },\n        \"patch\": {\n          \"value\": 33\n        }\n      }\n    }\n  },\n  \"hmKitBuildName\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"btstack-uart\"\n      }\n    }\n  },\n  \"applicationVersion\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"v1.5-prod\"\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

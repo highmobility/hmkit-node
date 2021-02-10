@@ -25,4 +25,4 @@ content:
         title: 'multiCommand({ multiCommands })'
         parameters:
             multiCommands: '(Array<Array<Number>>) (bytes) The outgoing commands'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.MultiCommand.multiCommand({\n    \"multiCommands\": [\n      {\n        \"doors\": {\n          \"locksState\": {\n            \"value\": \"locked\"\n          }\n        }\n      },\n      {\n        \"ignition\": {\n          \"status\": {\n            \"value\": \"off\"\n          }\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.MultiCommand.multiCommand({\n    \"multiCommands\": {\n      \"browser\": {\n        \"loadUrl\": {\n          \"url\": \"https://about.high-mobility.com\"\n        }\n      },\n      \"charging\": {\n        \"startStopCharging\": {\n          \"status\": \"charging\"\n        },\n        \"setChargeLimit\": {\n          \"chargeLimit\": 0.9\n        }\n      }\n    }\n  }),\n  accessCertificate\n);\n```"
