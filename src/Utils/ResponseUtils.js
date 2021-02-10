@@ -91,9 +91,9 @@ function mapCustomResponses(parsedData, capabilityConf) {
             const capability = Object.values(capabilities).find(c => c.identifier.lsb === data.capabilityID.value);
             return {
               data: {
-                capability: capability.name,
+                capability: capability.name_cased,
                 supportedProperties: [
-                  ...data.supportedPropertyIDs.map(id => capability.properties.find(prop => prop.id === id).name),
+                  ...data.supportedPropertyIDs.map(id => capability.properties.find(prop => prop.id === id).name_cased),
                 ]
               }
             }
