@@ -247,16 +247,24 @@ function buildSetterFunction(setter, properties, identifier) {
 
 function encodeMultiCommands(value) {
   return Object.entries(value).reduce((encodedProperties, [capabilityName, capabilitySetters]) => {
-    const encodedCapabilityProperties = Object.entries(capabilitySetters).reduce((result, [setterFunctionName, setterArgument]) => {
-      const setterFunction = commands?.[capitalize(capabilityName)]?.[setterFunctionName];
+    const encodedCapabilityProperties = Object.entries(capabilitySetters).reduce((result, [commandName, commandArguments]) => {
+      const command = commands?.[capitalize(capabilityName)]?.[commandName];
 
-      if (!setterFunction) {
-        throw new Error(`Could not find setter function '${setterFunctionName}'. Correct usage: { capabilityName: { setterFunctionName: [setterFunctionArguments] } }`);
+      if (!command) {
+        throw new Error(`Could not find command '${commandName}'. Correct usage:
+          {
+            multiCommand: {
+              capabilityName: {
+                commandName: commandArguments
+              }
+            }
+          }
+        `);
       }
 
       return [
         ...result,
-        setterFunction(setterArgument),
+        command(commandArguments),
       ];
     }, []);
 
