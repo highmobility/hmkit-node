@@ -308,7 +308,7 @@ function buildMultiCommandsArgument() {
 function getExampleResponse(capability) {
   const stateProperties = getStateProperties(capability);
   return stateProperties.reduce((mappedResp, property) => {
-    if (property.name === 'capabilities' && capability.name === 'capabilities') {
+    if (property.customType === 'supported_capability') {
       return {
         [property.name_cased]: property.examples.map(example => {
           const { capability_id, supported_property_ids } = example.values;
