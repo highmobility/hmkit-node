@@ -121,7 +121,7 @@ function buildStateGetter(capability) {
         parameters: responseProperties,
         example: code(
           JSON.stringify(
-            getExampleResponse(getStateProperties(capability)),
+            getExampleResponse(capability),
             null,
             '  '
           ),
@@ -305,8 +305,26 @@ function buildMultiCommandsArgument() {
 /**
  * Generates a sample response JSON from the properties' examples
  */
-function getExampleResponse(stateProperties) {
+function getExampleResponse(capability) {
+  const stateProperties = getStateProperties(capability);
   return stateProperties.reduce((mappedResp, property) => {
+    if (property.name === 'capabilities' && capability.name === 'capabilities') {
+      return {
+        [property.name_cased]: property.examples.map(example => {
+          const { capability_id, supported_property_ids } = example.values;
+          const exampleCapability = Object.values(Capabilities).find(capability => capability.identifier.lsb === capability_id);
+          const supportedProperties = exampleCapability.properties.filter(prop => supported_property_ids.includes(prop.id)).map(prop => prop.name_cased);
+
+          return {
+            data: {
+              capability: exampleCapability.name_cased,
+              supportedProperties
+            },
+          };
+        })
+      };
+    }
+
     return {
       ...mappedResp,
       [property.name_cased]: property.multiple
