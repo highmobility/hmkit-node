@@ -399,7 +399,10 @@ function decodeEnumProperty(data, property) {
     }
   }
 
-  throw new Error('Failed to decode enum', data.length, property.size, property.enum_values);
+  throw new Error(`Failed to decode enum ${JSON.stringify({
+    data,
+    property,
+  }, null, 2)}`);
 }
 
 function parsePropertyComponents(propertyComponentsData) {
