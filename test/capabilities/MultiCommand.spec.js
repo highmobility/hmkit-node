@@ -40,94 +40,98 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
 
     const response = await hmkit.telematics.sendCommand(
       hmkit.commands.MultiCommand.multiCommand({
-        multiCommands: [
-          hmkit.commands.RooftopControl.controlRooftop({
-            dimming: 1,
-            position: 0.5,
-            convertibleRoofState: 'open',
-            sunroofTiltState: 'half_tilted',
-            sunroofState: 'open',
-          }),
-          hmkit.commands.Ignition.turnIgnitionOnOff({
-            status: 'off',
-          }),
-        ],
+        multiCommands: {
+          ignition: {
+            turnIgnitionOnOff: { status: 'on' }
+          },
+          doors: {
+            lockUnlockDoors: { locksState: 'unlocked' }
+          }
+        }
       }),
       accessCertificate
     );
 
     expect(response.parse()).toBeInstanceOf(ResponseClass.MultiCommand);
 
-    // console.log('response is', JSON.stringify(response.parse(), null, 2));
     expect(response.parse()).toEqual({
-      multiStates: [
+      "multiStates": [
         {
-          data: {
-            ignition: {
-              status: {
-                data: {
-                  value: 'off',
+          "data": {
+            "doors": {
+              "insideLocks": expect.any(Array),
+              "locks": [
+                {
+                  "timestamp": expect.any(Date),
+                  "data": {
+                    "location": {
+                      "value": "front_left"
+                    },
+                    "lockState": {
+                      "value": "unlocked"
+                    }
+                  }
                 },
-                timestamp: expect.any(Date),
-              },
-              accessoriesStatus: {
-                data: {
-                  value: expect.any(String),
+                {
+                  "timestamp": expect.any(Date),
+                  "data": {
+                    "location": {
+                      "value": "front_right"
+                    },
+                    "lockState": {
+                      "value": "unlocked"
+                    }
+                  }
                 },
-                timestamp: expect.any(Date),
-              },
-              state: {
-                data: {
-                  value: expect.any(String),
+                {
+                  "timestamp": expect.any(Date),
+                  "data": {
+                    "location": {
+                      "value": "rear_right"
+                    },
+                    "lockState": {
+                      "value": "unlocked"
+                    }
+                  }
                 },
-                timestamp: expect.any(Date),
-              },
-            },
-          },
-        },
-        {
-          data: {
-            rooftopControl: {
-              dimming: {
-                data: {
-                  value: 1,
-                },
-                timestamp: expect.any(Date),
-              },
-              position: {
-                data: {
-                  value: 0.5,
-                },
-                timestamp: expect.any(Date),
-              },
-              convertibleRoofState: {
-                data: {
-                  value: 'open',
-                },
-                timestamp: expect.any(Date),
-              },
-              sunroofTiltState: {
-                data: {
-                  value: 'half_tilted',
-                },
-                timestamp: expect.any(Date),
-              },
-              sunroofState: {
-                data: {
-                  value: 'open',
-                },
-                timestamp: expect.any(Date),
-              },
-              sunroofRainEvent: {
-                data: {
-                  value: 'no_event',
-                },
-                timestamp: expect.any(Date)
+                {
+                  "timestamp": expect.any(Date),
+                  "data": {
+                    "location": {
+                      "value": "rear_left"
+                    },
+                    "lockState": {
+                      "value": "unlocked"
+                    }
+                  }
+                }
+              ],
+              "positions": expect.any(Array),
+              "insideLocksState": expect.any(Object),
+              "locksState": {
+                "timestamp": expect.any(Date),
+                "data": {
+                  "value": "unlocked"
+                }
               }
-            },
-          },
+            }
+          }
         },
-      ],
+        {
+          "data": {
+            "ignition": {
+              "status": {
+                "timestamp": expect.any(Date),
+                "data": {
+                  "value": "on"
+                }
+              },
+              "accessoriesStatus": expect.any(Object),
+              "state": expect.any(Object),
+            }
+          }
+        }
+      ]
     });
   });
 });

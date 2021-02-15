@@ -64,7 +64,7 @@ export default class ApiClient {
         })
         .then(resolve)
         .catch(async err => {
-          const contentType = err.headers.get('content-type');
+          const contentType = err.headers && err.headers.get('content-type');
 
           if (contentType && contentType.indexOf('application/json') !== -1) {
             reject({ response: err, json: await err.json() });
