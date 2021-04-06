@@ -1,4 +1,9 @@
 -
+    name: adas
+    name_cased: adas
+    name_pretty: ADAS
+    src: /docs/yml/adas.yml
+-
     name: browser
     name_cased: browser
     name_pretty: Browser
@@ -14,6 +19,11 @@
     name_pretty: Charging
     src: /docs/yml/charging.yml
 -
+    name: charging_session
+    name_cased: chargingSession
+    name_pretty: 'Charging session'
+    src: /docs/yml/charging_session.yml
+-
     name: chassis_settings
     name_cased: chassisSettings
     name_pretty: 'Chassis Settings'
@@ -23,6 +33,11 @@
     name_cased: climate
     name_pretty: Climate
     src: /docs/yml/climate.yml
+-
+    name: crash
+    name_cased: crash
+    name_pretty: Crash
+    src: /docs/yml/crash.yml
 -
     name: dashboard_lights
     name_cased: dashboardLights
@@ -43,11 +58,6 @@
     name_cased: engine
     name_pretty: Engine
     src: /docs/yml/engine.yml
--
-    name: failure_message
-    name_cased: failureMessage
-    name_pretty: 'Failure Message'
-    src: /docs/yml/failure_message.yml
 -
     name: firmware_version
     name_cased: firmwareVersion

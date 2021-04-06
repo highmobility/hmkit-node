@@ -26,7 +26,6 @@
  *  Created by Mikk Õun on 16/01/2020.
  */
 
-import capabilitiesConfiguration from '../Configuration/capabilities.json';
 import PropertyType from '../Configuration/PropertyType';
 import { capitalize } from './Helpers';
 import ResponseClass from '../Configuration/ResponseClass';
@@ -52,11 +51,11 @@ export function parseData(data) {
     autoApiLevel,
     capabilityMsb,
     capabilityLsb,
-    messageType,
+    ,
     ...propertiesData
   ] = data;
 
-  const capabilityConf = Object.values(capabilitiesConfiguration).find(
+  const capabilityConf = Object.values(capabilities).find(
     ({ identifier: { msb, lsb } = {} }) =>
       capabilityMsb === msb && capabilityLsb === lsb
   );
@@ -314,7 +313,7 @@ export function parsePropertyData(data, property) {
 }
 
 function findCapabilityNameByIdentifier(msb, lsb) {
-  return Object.values(capabilitiesConfiguration).find(
+  return Object.values(capabilities).find(
     ({ identifier = {} }) => identifier.msb === msb && identifier.lsb === lsb
   );
 }

@@ -35,3 +35,10 @@ content:
             startDate: '(Date) (timestamp) Start date for historical data query'
             endDate: '(Date) (timestamp) End date for historical data query'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.getTrips({\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: getChargingSessions
+        title: 'getChargingSessions({ startDate, endDate })'
+        parameters:
+            startDate: '(Date) (timestamp) Start date for historical data query'
+            endDate: '(Date) (timestamp) End date for historical data query'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.getChargingSessions({\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"

@@ -45,7 +45,7 @@ async function buildDocumentation() {
   const supportedCapabilities = Object.values(Capabilities).filter(
     capabilityConf =>
       !(capabilityConf.disabled_in || []).includes('web') &&
-      !['universal'].includes(capabilityConf.category)
+      !['failure_message'].includes(capabilityConf.name)
   );
 
   await Promise.all(
@@ -273,8 +273,8 @@ function getExampleSetterArgument(setter, capability) {
       ...args,
       [property.name_cased]: property.multiple
         ? property.examples.map(example =>
-            parsePropertyData(hexToUint8Array(example.data_component), property)
-          )
+          parsePropertyData(hexToUint8Array(example.data_component), property)
+        )
         : property.examples[0].value || property.examples[0].values,
     };
   }, {});
@@ -311,7 +311,9 @@ function getExampleResponse(capability) {
     if (property.customType === 'supported_capability') {
       return {
         [property.name_cased]: property.examples.map(example => {
+          // eslint-disable-next-line camelcase
           const { capability_id, supported_property_ids } = example.values;
+          // eslint-disable-next-line no-shadow
           const exampleCapability = Object.values(Capabilities).find(capability => capability.identifier.lsb === capability_id);
           const supportedProperties = exampleCapability.properties.filter(prop => supported_property_ids.includes(prop.id)).map(prop => prop.name_cased);
 
@@ -328,26 +330,24 @@ function getExampleResponse(capability) {
     return {
       ...mappedResp,
       [property.name_cased]: property.multiple
-        ? property.examples.map(example => {
-            return {
-              timestamp: new Date('2020-12-21T15:48:04.887Z'),
-              data: {
-                value: parsePropertyData(
-                  hexToUint8Array(example.data_component),
-                  property
-                ),
-              },
-            };
-          })
-        : {
+        ? property.examples.map(example => ({
             timestamp: new Date('2020-12-21T15:48:04.887Z'),
             data: {
               value: parsePropertyData(
-                hexToUint8Array(property.examples[0].data_component),
+                hexToUint8Array(example.data_component),
                 property
               ),
             },
+          }))
+        : {
+          timestamp: new Date('2020-12-21T15:48:04.887Z'),
+          data: {
+            value: parsePropertyData(
+              hexToUint8Array(property.examples[0].data_component),
+              property
+            ),
           },
+        },
     };
   }, {});
 }
@@ -362,7 +362,7 @@ function getStateProperties(capabilityConfiguration) {
     .map(propertyID =>
       capabilityConfiguration.properties.find(prop => prop.id === propertyID)
     )
-    .filter(prop => prop != null);
+    .filter(prop => prop != null && !prop.deprecated);
 }
 
 /**
@@ -401,17 +401,17 @@ function getPropertyType(property) {
   const generalType = property.type.startsWith('unit.')
     ? 'Number'
     : {
-        string: 'String',
-        custom: 'Object',
-        uinteger: 'Number',
-        list_uinteger: 'Number',
-        double: 'Number',
-        float: 'Number',
-        enum: 'String',
-        timestamp: 'Date',
-        integer: 'Number',
-        bytes: 'Array<Number>',
-      }[type];
+      string: 'String',
+      custom: 'Object',
+      uinteger: 'Number',
+      list_uinteger: 'Number',
+      double: 'Number',
+      float: 'Number',
+      enum: 'String',
+      timestamp: 'Date',
+      integer: 'Number',
+      bytes: 'Array<Number>',
+    }[type];
 
   if (multiple) {
     return `Array<${generalType}>`;

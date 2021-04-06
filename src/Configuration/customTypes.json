@@ -177,6 +177,70 @@
       }
     ]
   },
+  "engine_type": {
+    "name": "engine_type",
+    "name_cased": "engineType",
+    "name_pretty": "Engine type",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "unknown"
+      },
+      {
+        "id": 1,
+        "name": "all_electric"
+      },
+      {
+        "id": 2,
+        "name": "combustion_engine"
+      },
+      {
+        "id": 3,
+        "name": "phev",
+        "name_pretty": "Plug-in Hybrid EV"
+      },
+      {
+        "id": 4,
+        "name": "hydrogen"
+      },
+      {
+        "id": 5,
+        "name": "hydrogen_hybrid"
+      },
+      {
+        "id": 6,
+        "name": "petrol"
+      },
+      {
+        "id": 7,
+        "name": "electric"
+      },
+      {
+        "id": 8,
+        "name": "gas"
+      },
+      {
+        "id": 9,
+        "name": "diesel"
+      },
+      {
+        "id": 10,
+        "name": "gasoline"
+      },
+      {
+        "id": 11,
+        "name": "cng",
+        "name_pretty": "Compressed natural gas"
+      },
+      {
+        "id": 12,
+        "name": "lpg",
+        "name_pretty": "Liquefied petroleum gas"
+      }
+    ]
+  },
   "fluid_level": {
     "name": "fluid_level",
     "name_cased": "fluidLevel",
@@ -191,6 +255,22 @@
       {
         "id": 1,
         "name": "filled"
+      },
+      {
+        "id": 2,
+        "name": "very_low"
+      },
+      {
+        "id": 3,
+        "name": "normal"
+      },
+      {
+        "id": 4,
+        "name": "high"
+      },
+      {
+        "id": 5,
+        "name": "very_high"
       }
     ]
   },
@@ -212,6 +292,35 @@
       {
         "id": 2,
         "name": "warning"
+      }
+    ]
+  },
+  "ignition_state": {
+    "name": "ignition_state",
+    "name_cased": "ignitionState",
+    "name_pretty": "Ignition state",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "lock"
+      },
+      {
+        "id": 1,
+        "name": "off"
+      },
+      {
+        "id": 2,
+        "name": "accessory"
+      },
+      {
+        "id": 3,
+        "name": "on"
+      },
+      {
+        "id": 4,
+        "name": "start"
       }
     ]
   },
@@ -308,6 +417,10 @@
       {
         "id": 5,
         "name": "rear_left_outer"
+      },
+      {
+        "id": 6,
+        "name": "spare"
       }
     ]
   },
@@ -328,6 +441,41 @@
         "id": 1,
         "name": "locked",
         "verb": "lock"
+      }
+    ]
+  },
+  "lock_safety": {
+    "name": "lock_safety",
+    "name_cased": "lockSafety",
+    "name_pretty": "Lock safety",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "safe",
+        "description": "The lock is double-locked (also from inside the vehicle)"
+      },
+      {
+        "id": 1,
+        "name": "unsafe"
+      }
+    ]
+  },
+  "muted": {
+    "name": "muted",
+    "name_cased": "muted",
+    "name_pretty": "Muted",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "not_muted"
+      },
+      {
+        "id": 1,
+        "name": "muted"
       }
     ]
   },
@@ -876,6 +1024,101 @@
       }
     ]
   },
+  "charging_cost": {
+    "name": "charging_cost",
+    "name_cased": "chargingCost",
+    "name_pretty": "Charging cost",
+    "type": "custom",
+    "description": "Charging cost information",
+    "items": [
+      {
+        "name": "currency",
+        "name_cased": "currency",
+        "type": "string",
+        "description": "Currency ISO code"
+      },
+      {
+        "name": "calculated_charging_cost",
+        "name_cased": "calculatedChargingCost",
+        "type": "double",
+        "size": 8,
+        "description": "Calculated charging cost"
+      },
+      {
+        "name": "calculated_savings",
+        "name_cased": "calculatedSavings",
+        "type": "double",
+        "size": 8,
+        "description": "Calculated savings from charging"
+      },
+      {
+        "name": "simulated_immediate_charging_cost",
+        "name_cased": "simulatedImmediateChargingCost",
+        "type": "double",
+        "size": 8,
+        "description": "Simulated charging costs"
+      }
+    ]
+  },
+  "charging_location": {
+    "name": "charging_location",
+    "name_cased": "chargingLocation",
+    "name_pretty": "Charging location",
+    "type": "custom",
+    "description": "Charging location address",
+    "items": [
+      {
+        "name": "municipality",
+        "name_cased": "municipality",
+        "type": "string",
+        "description": "Municipality component of the address"
+      },
+      {
+        "name": "formatted_address",
+        "name_cased": "formattedAddress",
+        "type": "string",
+        "description": "Full formatted address"
+      },
+      {
+        "name": "street_address",
+        "name_cased": "streetAddress",
+        "type": "string",
+        "description": "Streed address component"
+      }
+    ]
+  },
+  "charging_point": {
+    "name": "charging_point",
+    "name_cased": "chargingPoint",
+    "name_pretty": "Charging point",
+    "type": "custom",
+    "items": [
+      {
+        "name": "city",
+        "name_cased": "city",
+        "type": "string",
+        "description": "City the charging point is in."
+      },
+      {
+        "name": "postal_code",
+        "name_cased": "postalCode",
+        "type": "string",
+        "description": "Postal code the charging point is at."
+      },
+      {
+        "name": "street",
+        "name_cased": "street",
+        "type": "string",
+        "description": "Street address the chargin point is at."
+      },
+      {
+        "name": "provider",
+        "name_cased": "provider",
+        "type": "string",
+        "description": "The provider name of the charging point."
+      }
+    ]
+  },
   "check_control_message": {
     "name": "check_control_message",
     "name_cased": "checkControlMessage",
@@ -1041,6 +1284,80 @@
         "name_cased": "status",
         "type": "string",
         "description": "Status"
+      }
+    ]
+  },
+  "crash_incident": {
+    "name": "crash_incident",
+    "name_cased": "crashIncident",
+    "name_pretty": "Crash incident",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "front"
+          },
+          {
+            "id": 1,
+            "name": "lateral"
+          },
+          {
+            "id": 2,
+            "name": "rear"
+          }
+        ]
+      },
+      {
+        "name": "severity",
+        "name_cased": "severity",
+        "name_pretty": "Severity",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "very_high"
+          },
+          {
+            "id": 1,
+            "name": "high"
+          },
+          {
+            "id": 2,
+            "name": "medium"
+          },
+          {
+            "id": 3,
+            "name": "low"
+          }
+        ]
+      },
+      {
+        "name": "repairs",
+        "name_cased": "repairs",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "needed"
+          },
+          {
+            "id": 2,
+            "name": "not_needed"
+          }
+        ]
       }
     ]
   },
@@ -1463,6 +1780,418 @@
           {
             "id": 92,
             "name": "brake_fluid_warning"
+          },
+          {
+            "id": 93,
+            "name": "active_hood_fault"
+          },
+          {
+            "id": 94,
+            "name": "active_spoiler_fault"
+          },
+          {
+            "id": 95,
+            "name": "adjust_tire_pressure"
+          },
+          {
+            "id": 96,
+            "name": "steering_lock_alert"
+          },
+          {
+            "id": 97,
+            "name": "anti_pollution_failure_engine_start_impossible"
+          },
+          {
+            "id": 98,
+            "name": "anti_pollution_system_failure"
+          },
+          {
+            "id": 99,
+            "name": "anti_reverse_system_failing"
+          },
+          {
+            "id": 100,
+            "name": "auto_parking_brake"
+          },
+          {
+            "id": 101,
+            "name": "automatic_braking_deactive"
+          },
+          {
+            "id": 102,
+            "name": "automatic_braking_system_fault"
+          },
+          {
+            "id": 103,
+            "name": "automatic_lights_settings_failure"
+          },
+          {
+            "id": 104,
+            "name": "keyfob_battery_alarm"
+          },
+          {
+            "id": 105,
+            "name": "trunk_open"
+          },
+          {
+            "id": 106,
+            "name": "check_reversing_lamp"
+          },
+          {
+            "id": 107,
+            "name": "crossing_line_system_alert_failure"
+          },
+          {
+            "id": 108,
+            "name": "dipped_beam_headlamps_front_left_failure"
+          },
+          {
+            "id": 109,
+            "name": "dipped_beam_headlamps_front_right_failure"
+          },
+          {
+            "id": 110,
+            "name": "directional_headlamps_failure"
+          },
+          {
+            "id": 111,
+            "name": "directional_light_failure"
+          },
+          {
+            "id": 112,
+            "name": "dsg_failing"
+          },
+          {
+            "id": 113,
+            "name": "electric_mode_not_available"
+          },
+          {
+            "id": 114,
+            "name": "electronic_lock_failure"
+          },
+          {
+            "id": 115,
+            "name": "engine_control_system_failure"
+          },
+          {
+            "id": 116,
+            "name": "engine_oil_pressure_alert"
+          },
+          {
+            "id": 117,
+            "name": "esp_failure"
+          },
+          {
+            "id": 118,
+            "name": "excessive_oil_temperature"
+          },
+          {
+            "id": 119,
+            "name": "tire_front_left_flat"
+          },
+          {
+            "id": 120,
+            "name": "tire_front_right_flat"
+          },
+          {
+            "id": 121,
+            "name": "tire_rear_left_flat"
+          },
+          {
+            "id": 122,
+            "name": "tire_rear_right_flat"
+          },
+          {
+            "id": 123,
+            "name": "fog_light_front_left_failure"
+          },
+          {
+            "id": 124,
+            "name": "fog_light_front_right_failure"
+          },
+          {
+            "id": 125,
+            "name": "fog_light_rear_left_failure"
+          },
+          {
+            "id": 126,
+            "name": "fog_light_rear_right_failure"
+          },
+          {
+            "id": 127,
+            "name": "fog_light_front_fault"
+          },
+          {
+            "id": 128,
+            "name": "door_front_left_open"
+          },
+          {
+            "id": 129,
+            "name": "door_front_left_open_high_speed"
+          },
+          {
+            "id": 130,
+            "name": "tire_front_left_not_monitored"
+          },
+          {
+            "id": 131,
+            "name": "door_front_right_open"
+          },
+          {
+            "id": 132,
+            "name": "door_front_right_open_high_speed"
+          },
+          {
+            "id": 133,
+            "name": "tire_front_right_not_monitored"
+          },
+          {
+            "id": 134,
+            "name": "headlights_left_failure"
+          },
+          {
+            "id": 135,
+            "name": "headlights_right_failure"
+          },
+          {
+            "id": 136,
+            "name": "hybrid_system_fault"
+          },
+          {
+            "id": 137,
+            "name": "hybrid_system_fault_repaired_vehicle"
+          },
+          {
+            "id": 138,
+            "name": "hydraulic_pressure_or_brake_fuild_insufficient"
+          },
+          {
+            "id": 139,
+            "name": "lane_departure_fault"
+          },
+          {
+            "id": 140,
+            "name": "limited_visibility_aids_camera"
+          },
+          {
+            "id": 141,
+            "name": "tire_pressure_low"
+          },
+          {
+            "id": 142,
+            "name": "maintenance_date_exceeded"
+          },
+          {
+            "id": 143,
+            "name": "maintenance_odometer_exceeded"
+          },
+          {
+            "id": 144,
+            "name": "other_failing_system"
+          },
+          {
+            "id": 145,
+            "name": "parking_brake_control_failing"
+          },
+          {
+            "id": 146,
+            "name": "parking_space_measuring_system_failure"
+          },
+          {
+            "id": 147,
+            "name": "place_gear_to_parking"
+          },
+          {
+            "id": 148,
+            "name": "power_steering_assitance_failure"
+          },
+          {
+            "id": 149,
+            "name": "power_steering_failure"
+          },
+          {
+            "id": 150,
+            "name": "preheating_deactivated_battery_too_low"
+          },
+          {
+            "id": 151,
+            "name": "preheating_deactivated_fuel_level_too_low"
+          },
+          {
+            "id": 152,
+            "name": "preheating_deactivated_battery_set_the_clock"
+          },
+          {
+            "id": 153,
+            "name": "fog_light_rear_fault"
+          },
+          {
+            "id": 154,
+            "name": "door_rear_left_open"
+          },
+          {
+            "id": 155,
+            "name": "door_rear_left_open_high_speed"
+          },
+          {
+            "id": 156,
+            "name": "tire_rear_left_not_monitored"
+          },
+          {
+            "id": 157,
+            "name": "door_rear_right_open"
+          },
+          {
+            "id": 158,
+            "name": "door_rear_right_open_high_speed"
+          },
+          {
+            "id": 159,
+            "name": "tire_rear_right_not_monitored"
+          },
+          {
+            "id": 160,
+            "name": "screen_rear_open"
+          },
+          {
+            "id": 161,
+            "name": "retractable_roof_mechanism_fault"
+          },
+          {
+            "id": 162,
+            "name": "reverse_light_left_failure"
+          },
+          {
+            "id": 163,
+            "name": "reverse_light_right_failure"
+          },
+          {
+            "id": 164,
+            "name": "risk_of_ice"
+          },
+          {
+            "id": 165,
+            "name": "roof_operation_impossible_apply_parking_break"
+          },
+          {
+            "id": 166,
+            "name": "roof_operation_impossible_apply_start_engine"
+          },
+          {
+            "id": 167,
+            "name": "roof_operation_impossible_temperature_too_high"
+          },
+          {
+            "id": 168,
+            "name": "seatbelt_passenger_front_right_unbuckled"
+          },
+          {
+            "id": 169,
+            "name": "seatbelt_passenger_rear_left_unbuckled"
+          },
+          {
+            "id": 170,
+            "name": "seatbelt_passenger_rear_center_unbuckled"
+          },
+          {
+            "id": 171,
+            "name": "seatbelt_passenger_rear_right_unbuckled"
+          },
+          {
+            "id": 172,
+            "name": "battery_secondary_low"
+          },
+          {
+            "id": 173,
+            "name": "shock_sensor_failing"
+          },
+          {
+            "id": 174,
+            "name": "side_lights_front_left_failure"
+          },
+          {
+            "id": 175,
+            "name": "side_lights_front_right_failure"
+          },
+          {
+            "id": 176,
+            "name": "side_lights_rear_left_failure"
+          },
+          {
+            "id": 177,
+            "name": "side_lights_rear_right_failure"
+          },
+          {
+            "id": 178,
+            "name": "spare_wheel_fitter_driving_aids_deactivated"
+          },
+          {
+            "id": 179,
+            "name": "speed_control_failure"
+          },
+          {
+            "id": 180,
+            "name": "stop_light_left_failure"
+          },
+          {
+            "id": 181,
+            "name": "stop_light_right_failure"
+          },
+          {
+            "id": 182,
+            "name": "suspension_failure"
+          },
+          {
+            "id": 183,
+            "name": "suspension_failure_reduce_speed"
+          },
+          {
+            "id": 184,
+            "name": "suspension_fault_limited_to_90kmh"
+          },
+          {
+            "id": 185,
+            "name": "tire_pressure_sensor_failure"
+          },
+          {
+            "id": 186,
+            "name": "trunk_open_high_speed"
+          },
+          {
+            "id": 187,
+            "name": "trunk_window_open"
+          },
+          {
+            "id": 188,
+            "name": "turn_signal_front_left_failure"
+          },
+          {
+            "id": 189,
+            "name": "turn_signal_front_right_failure"
+          },
+          {
+            "id": 190,
+            "name": "turn_signal_rear_left_failure"
+          },
+          {
+            "id": 191,
+            "name": "turn_signal_rear_right_failure"
+          },
+          {
+            "id": 192,
+            "name": "tire_under_inflation"
+          },
+          {
+            "id": 193,
+            "name": "wheel_pressure_fault"
+          },
+          {
+            "id": 194,
+            "name": "oil_change_warning"
+          },
+          {
+            "id": 195,
+            "name": "inspection_warning"
           }
         ]
       },
@@ -1938,12 +2667,48 @@
               "conversion_linear": 1000
             },
             {
+              "name": "watt_hours",
+              "id": 3,
+              "conversion_linear": 3600
+            },
+            {
               "name": "kilowatt_hours",
               "id": 4,
               "conversion_linear": 3600000
             }
           ]
         }
+      }
+    ]
+  },
+  "eco_driving_threshold": {
+    "name": "eco_driving_threshold",
+    "name_cased": "ecoDrivingThreshold",
+    "name_pretty": "Eco driving threshold",
+    "type": "custom",
+    "size": 9,
+    "items": [
+      {
+        "name": "type",
+        "name_cased": "type",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "zero"
+          },
+          {
+            "id": 1,
+            "name": "one"
+          }
+        ]
+      },
+      {
+        "name": "value",
+        "name_cased": "value",
+        "type": "double",
+        "size": 8
       }
     ]
   },
@@ -1987,6 +2752,10 @@
           {
             "id": 6,
             "name": "oem_error"
+          },
+          {
+            "id": 7,
+            "name": "privacy_mode_active"
           }
         ]
       },
@@ -2045,6 +2814,36 @@
         "name": "time",
         "name_cased": "time",
         "type": "types.time"
+      }
+    ]
+  },
+  "lane_keep_assist_state": {
+    "name": "lane_keep_assist_state",
+    "name_cased": "laneKeepAssistState",
+    "name_pretty": "Lane keep assist state",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "left"
+          },
+          {
+            "id": 1,
+            "name": "right"
+          }
+        ]
+      },
+      {
+        "name": "state",
+        "name_cased": "state",
+        "type": "types.active_state"
       }
     ]
   },
@@ -2107,6 +2906,30 @@
         "name_cased": "keyValue",
         "type": "types.key_value",
         "description": "Key-value pair for the trouble code"
+      }
+    ]
+  },
+  "park_assist": {
+    "name": "park_assist",
+    "name_cased": "parkAssist",
+    "name_pretty": "Park assist",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "location",
+        "name_cased": "location",
+        "type": "types.location_longitudinal"
+      },
+      {
+        "name": "alarm",
+        "name_cased": "alarm",
+        "type": "types.active_state"
+      },
+      {
+        "name": "muted",
+        "name_cased": "muted",
+        "type": "types.muted"
       }
     ]
   },
@@ -2488,6 +3311,95 @@
       }
     ]
   },
+  "trip_meter": {
+    "name": "trip_meter",
+    "name_cased": "tripMeter",
+    "name_pretty": "Trip meter",
+    "type": "custom",
+    "size": 11,
+    "description": "Independent meter that can be reset at any time by the driver",
+    "items": [
+      {
+        "name": "id",
+        "name_cased": "id",
+        "name_pretty": "ID",
+        "type": "uinteger",
+        "size": 1
+      },
+      {
+        "name": "distance",
+        "name_cased": "distance",
+        "type": "unit.length",
+        "size": 10,
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      }
+    ]
+  },
   "trouble_code": {
     "name": "trouble_code",
     "name_cased": "troubleCode",
@@ -2579,40 +3491,7 @@
       {
         "name": "event",
         "name_cased": "event",
-        "type": "enum",
-        "size": 1,
-        "enum_values": [
-          {
-            "id": 0,
-            "name": "ping",
-            "description": "Sent every time when the webhook is configured or changed."
-          },
-          {
-            "id": 1,
-            "name": "trip_started",
-            "description": "Sent every time a vehicle starts a trip."
-          },
-          {
-            "id": 2,
-            "name": "trip_ended",
-            "description": "Sent when a vehicle ends a trip."
-          },
-          {
-            "id": 3,
-            "name": "vehicle_location_changed",
-            "description": "Sent when the vehicle location changes."
-          },
-          {
-            "id": 4,
-            "name": "authorization_changed",
-            "description": "Sent when the authorization status changes."
-          },
-          {
-            "id": 5,
-            "name": "tire_pressure_changed",
-            "description": "Sent when the tire pressure changed to low or too high."
-          }
-        ]
+        "type": "events.event"
       }
     ]
   },

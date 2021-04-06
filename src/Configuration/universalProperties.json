@@ -185,7 +185,8 @@
       },
       {
         "id": 9,
-        "name": "citroën"
+        "name": "citroen",
+        "name_pretty": "Citroën"
       },
       {
         "id": 10,
@@ -297,7 +298,8 @@
       },
       {
         "id": 36,
-        "name": "škoda"
+        "name": "skoda",
+        "name_pretty": "Škoda"
       },
       {
         "id": 37,

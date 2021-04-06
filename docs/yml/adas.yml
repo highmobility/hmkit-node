@@ -1,0 +1,70 @@
+title: ADAS
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Adas.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: AdasResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Adas.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: AdasResponse
+                title: AdasResponse
+                parameters:
+                    status:
+                        data.value: '(String) (enum) Indicates whether the driver assistance system is active or not.'
+                        timestamp: (Date)
+                    alertnessSystemStatus:
+                        data.value: '(String) (enum) Indicates if the driver alertness warning is active or inactive.'
+                        timestamp: (Date)
+                    forwardCollisionWarningSystem:
+                        data.value: '(String) (enum) Indicates whether the forward collision warning system is active or inactive.'
+                        timestamp: (Date)
+                    blindSpotWarningState:
+                        data.value: '(String) (enum) Indicates whether the blind spot warning system is active or not.'
+                        timestamp: (Date)
+                    blindSpotWarningSystemCoverage:
+                        data.value: '(String) (enum) Blind spot warning system coverage.'
+                        timestamp: (Date)
+                    rearCrossWarningSystem:
+                        data.value: '(String) (enum) Indicates whether the rear cross warning system is active or not.'
+                        timestamp: (Date)
+                    automatedParkingBrake:
+                        data.value: '(String) (enum) Automatic brake state'
+                        timestamp: (Date)
+                    laneKeepAssistSystem:
+                        data.value: '(String) (enum) Indicates if the lane keep assist system is turned on or not.'
+                        timestamp: (Date)
+                    laneKeepAssistsStates:
+                        data.value: '(Array<Object>) Lane keeping assist state indicating the vehicle is actively controlling the wheels.'
+                        timestamp: (Date)
+                    parkAssists:
+                        data.value: '(Array<Object>) If the alarm is active and the driver has muted or not park assists.'
+                        timestamp: (Date)
+                    blindSpotWarningSystem:
+                        data.value: '(String) (enum) Indicates whether the blind spot warning system is turned on or not.'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"on\"\n      }\n    }\n  },\n  \"alertnessSystemStatus\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  },\n  \"forwardCollisionWarningSystem\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  },\n  \"blindSpotWarningState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  },\n  \"blindSpotWarningSystemCoverage\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"regular\"\n      }\n    }\n  },\n  \"rearCrossWarningSystem\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  },\n  \"automatedParkingBrake\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  },\n  \"laneKeepAssistSystem\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"on\"\n      }\n    }\n  },\n  \"laneKeepAssistsStates\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": {\n            \"value\": \"left\"\n          },\n          \"state\": {\n            \"value\": \"inactive\"\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": {\n            \"value\": \"right\"\n          },\n          \"state\": {\n            \"value\": \"active\"\n          }\n        }\n      }\n    }\n  ],\n  \"parkAssists\": [\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": {\n            \"value\": \"front\"\n          },\n          \"alarm\": {\n            \"value\": \"inactive\"\n          },\n          \"muted\": {\n            \"value\": \"not_muted\"\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n      \"data\": {\n        \"value\": {\n          \"location\": {\n            \"value\": \"rear\"\n          },\n          \"alarm\": {\n            \"value\": \"active\"\n          },\n          \"muted\": {\n            \"value\": \"not_muted\"\n          }\n        }\n      }\n    }\n  ],\n  \"blindSpotWarningSystem\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"on\"\n      }\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.Adas.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Adas.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Adas.getAvailability(['status']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"

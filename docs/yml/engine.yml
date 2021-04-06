@@ -18,9 +18,12 @@ content:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                     startStopState:
-                        data.value: '(String) (enum) '
+                        data.value: '(String) (enum) Indicates wheter the start-stop system is currently active or not'
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"off\"\n      }\n    }\n  },\n  \"startStopState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  }\n}\n```"
+                    startStopEnabled:
+                        data.value: '(String) (enum) Indicates if the automatic start-stop system is enabled or not'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"off\"\n      }\n    }\n  },\n  \"startStopState\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"active\"\n      }\n    }\n  },\n  \"startStopEnabled\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"enabled\"\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability
@@ -48,8 +51,8 @@ content:
             status: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Engine.turnEngineOnOff({\n    \"status\": \"off\"\n  }),\n  accessCertificate\n);\n```"
     -
-        id: activateDeactivateStartStop
-        title: 'activateDeactivateStartStop({ startStopState })'
+        id: enableDisableStartStop
+        title: 'enableDisableStartStop({ startStopEnabled })'
         parameters:
-            startStopState: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Engine.activateDeactivateStartStop({\n    \"startStopState\": \"active\"\n  }),\n  accessCertificate\n);\n```"
+            startStopEnabled: '(String) (enum) Indicates if the automatic start-stop system is enabled or not'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Engine.enableDisableStartStop({\n    \"startStopEnabled\": \"enabled\"\n  }),\n  accessCertificate\n);\n```"

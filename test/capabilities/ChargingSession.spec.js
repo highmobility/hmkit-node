@@ -21,44 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  *
- *  ValidationUtils.js
+ *  ChargingSession.spec.js
  *
- *  Created by Mikk Õun on 14/01/2020.
+ *  Created by Mati Kärner on 6/04/2020.
  */
 
-import Joi from 'joi';
-import InvalidArgumentError from '../Errors/InvalidArgumentError';
+import getHmkit from '../testutils/getHmkit';
+import { describeTest } from '../testutils/capabilityTests';
 
-/**
- * Validates an array of values. If schema doesn't match, error will be thrown.
- * Schema validation is done with Joi, documentation here: https://github.com/hapijs/joi
- *
- * rules - array of values to validate:
- *    value - value that we are validating
- *    condition - Joi condition
- *    name - Name of the value that will be used in the error message if validation fails
- *
- * Examples:
- * validate(arguments, { username: Joi.string.required() });
- * validate(arguments, Joi.array());
- */
-export const validate = (validationRule: {
-  name: string,
-  value: any,
-  condition: Object,
-}) => {
-  const { name, value, condition } = validationRule;
-
-  const result = Joi.object({ [name]: condition }).validate({ [name]: value });
-
-  if (result.error) {
-    throw new InvalidArgumentError(
-      `Invalid argument passed to command: \n${result.error.details
-        .map(x => x.message)
-        .join(', ')}`
-    );
-  }
-};
-
-// Re-exporting for convenience so we don't have to import from two different places in other files
-export { Joi };
+const hmkit = getHmkit();
+describeTest('ChargingSession', hmkit.commands.ChargingSession);

@@ -40,13 +40,13 @@ import capabilitiesConfiguration from '../Configuration/capabilities.json';
 import InvalidArgumentError from '../Errors/InvalidArgumentError';
 import { validate, Joi } from './ValidationUtils';
 
-const DISABLED_FOR_CATEGORIES = ['universal'];
+const CAPABILITIES_WITH_NO_COMMANDS = ['failure_message'];
 
 export const PROPERTY_DATA_ID = 0x01;
 export const GET_STATE_TYPE = 0x00;
 export const SET_STATE_TYPE = 0x01;
 export const GET_AVAILABILITY_TYPE = 0x02;
-export const AUTO_API_LEVEL = 12;
+export const AUTO_API_LEVEL = 13;
 export const CommandType = {
   Getter: 'GET',
   Setter: 'SET',
@@ -75,6 +75,8 @@ function buildAvailabilityGetter(capabilityConf) {
               `Invalid property name ${propertyName} passed to getAvailability`
             );
           }
+
+          assertPropertyIsNotDeprecated(property);
 
           return property.id;
         }),
@@ -119,6 +121,8 @@ function buildCapabilityGetter(capabilityConf) {
                   `Invalid property name ${propertyName} passed to getAvailability`
                 );
               }
+
+              assertPropertyIsNotDeprecated(property);
 
               return property.id;
             }),
@@ -217,6 +221,8 @@ function buildSetterFunction(setter, properties, identifier) {
         if (!propertyToEncode) {
           throw new Error(`Invalid property "${key}" provided.`);
         }
+
+        assertPropertyIsNotDeprecated(propertyToEncode);
 
         const valueToEncode = propertyToEncode.name === 'multi_commands' ? encodeMultiCommands(value) : value;
         const encodedPropertyData = encodeProperty(propertyToEncode, valueToEncode);
@@ -479,6 +485,14 @@ function decimalToHexArrayEncoder(size) {
 
 // UTIL FUNCTIONS
 
+function assertPropertyIsNotDeprecated(property) {
+  if (property.deprecated) {
+    throw new InvalidArgumentError(
+      `Property ${property.name_cased} is deprecated in favour of ${property.deprecated.new_name}`
+    );
+  }
+}
+
 function buildProperty(identifier, encodedValue) {
   const dataComponent = [
     PROPERTY_DATA_ID,
@@ -506,14 +520,18 @@ export function buildCommands() {
   return Object.values(capabilitiesConfiguration)
     .filter(
       capabilityConf =>
-        !(capabilityConf.disabled_in || []).includes(WEB_CONNECTION_TYPE) &&
-        !DISABLED_FOR_CATEGORIES.includes(capabilityConf.category)
+        !(capabilityConf.disabled_in || []).includes(WEB_CONNECTION_TYPE)
     )
     .reduce((allConf, capabilityConf) => {
+      const buildGettersAndSetters = !CAPABILITIES_WITH_NO_COMMANDS.includes(capabilityConf.name);
+
+      // eslint-disable-next-line no-shadow
       const commands = {
-        ...buildCapabilityGetter(capabilityConf),
-        ...buildCapabilitySetters(capabilityConf),
-        ...buildAvailabilityGetter(capabilityConf),
+        ...buildGettersAndSetters && {
+          ...buildCapabilityGetter(capabilityConf),
+          ...buildCapabilitySetters(capabilityConf),
+          ...buildAvailabilityGetter(capabilityConf),
+        }
       };
 
       Object.defineProperty(commands, 'identifier', {

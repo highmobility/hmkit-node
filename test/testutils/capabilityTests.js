@@ -41,6 +41,7 @@ import { parsePropertyData } from '../../src/Utils/ResponseUtils';
 import { hexToUint8Array } from '../../src/Utils/EncodingUtils';
 import describeIf from './describeIf';
 import customTypes from '../../src/Configuration/customTypes.json';
+import universalProperties from '../../src/Configuration/universalProperties.json';
 
 const hmkit = getHmkit();
 
@@ -115,9 +116,29 @@ function describeEmulatorTests(capabilityName, capability) {
 
       const commands = Object.values(capability);
       const respClass = ResponseClass[capabilityName];
-      const failureRespClass = ResponseClass['FailureMessage'];
+      const failureRespClass = ResponseClass.FailureMessage;
 
-      const responseValidator = buildResponseValidator(capabilityConfiguration);
+      const responseValidator = {
+        ...buildResponseValidator(capabilityConfiguration),
+        ...capabilityConfiguration.name === 'capabilities' && {
+          capabilities: expect.arrayContaining([
+            expect.objectContaining({
+              data: expect.objectContaining({
+                capability: expect.any(String),
+                supportedProperties: expect.arrayContaining([expect.any(String)])
+              }),
+            })
+          ]),
+          webhooks: expect.arrayContaining([
+            expect.objectContaining({
+              data: expect.objectContaining({
+                available: { value: expect.any(String) },
+                event: { value: expect.any(String) }
+              })
+            })
+          ]),
+        }
+      };
 
       const getterCommand = commands.find(
         ({ type }) => type === CommandType.Getter
@@ -127,13 +148,15 @@ function describeEmulatorTests(capabilityName, capability) {
         ({ type }) => type === CommandType.Setter
       );
 
+      const hasAvailabilityCommand = !!capability.getAvailability;
+
       if (getterCommand) {
-         // Test correct getter response
-         it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
+        // Test correct getter response
+        it(`Should handle getter ${capabilityName}.${getterCommand.name}() command`, async () => {
           await sleep(1500);
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           if (parsedResponse instanceof failureRespClass) {
-            handleSkipTest(parsedResponse, `${capabilityName}.${getterCommand.name}`);
+            handleSkipTestForDisabledFunction(parsedResponse, `${capabilityName}.${getterCommand.name}`);
           } else {
             expect(respClass).toBeDefined();
             expect(parsedResponse).toBeInstanceOf(respClass);
@@ -145,27 +168,7 @@ function describeEmulatorTests(capabilityName, capability) {
           await sleep(1500);
           const parsedResponse = await sendGetterQueryCommand(getterCommand);
           if (parsedResponse instanceof failureRespClass) {
-            handleSkipTest(parsedResponse, `${capabilityName}.${getterCommand.name}`);
-          } else if (capabilityConfiguration.name === 'capabilities') {
-            const capabilitiesResponseValidator = {
-              capabilities: expect.arrayContaining([
-                expect.objectContaining({
-                  data: expect.objectContaining({
-                    capability: expect.any(String),
-                    supportedProperties: expect.arrayContaining([expect.any(String)])
-                  }),
-                })
-              ]),
-              webhooks: expect.arrayContaining([
-                expect.objectContaining({
-                  data: expect.objectContaining({
-                    available: { value: expect.any(String) },
-                    event: { value: expect.any(String) }
-                  })
-                })
-              ]),
-            };
-            expect(capabilitiesResponseValidator).toMatchObject(parsedResponse);
+            handleSkipTestForDisabledFunction(parsedResponse, `${capabilityName}.${getterCommand.name}`);
           } else {
             expect(responseValidator).toMatchObject(parsedResponse);
           }
@@ -186,7 +189,7 @@ function describeEmulatorTests(capabilityName, capability) {
           );
 
           if (parsedResponse instanceof failureRespClass) {
-            handleSkipTest(parsedResponse, `${capabilityName}.${setterCommand.name}`);
+            handleSkipTestForDisabledFunction(parsedResponse, `${capabilityName}.${setterCommand.name}`);
           } else {
             expect(respClass).toBeDefined();
             expect(parsedResponse).toBeInstanceOf(respClass);
@@ -206,9 +209,9 @@ function describeEmulatorTests(capabilityName, capability) {
             );
 
             if (parsedSetterResponse instanceof failureRespClass) {
-              handleSkipTest(parsedSetterResponse, `${capabilityName}.${setterCommand.name}`);
+              handleSkipTestForDisabledFunction(parsedSetterResponse, `${capabilityName}.${setterCommand.name}`);
             } else if (parsedGetterResponse instanceof failureRespClass) {
-              handleSkipTest(parsedGetterResponse, `${capabilityName}.${getterCommand.name}`);
+              handleSkipTestForDisabledFunction(parsedGetterResponse, `${capabilityName}.${getterCommand.name}`);
             } else {
               expect(parsedSetterResponse).toBeInstanceOf(respClass);
               expect(parsedGetterResponse).toBeInstanceOf(respClass);
@@ -225,82 +228,91 @@ function describeEmulatorTests(capabilityName, capability) {
         }
       });
 
-      it(`Availability getter for all properties should have correct response`, async () => {
-        await sleep(1500);
-        const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
-        const parsedResponse = response.parse();
+      if (hasAvailabilityCommand) {
+        it(`Availability getter for all properties should have correct response`, async () => {
+          await sleep(1500);
+          const response = await sendCommand(hmkit, capability.getAvailability(), accessToken);
+          const parsedResponse = response.parse();
 
-        const rateLimitUnitTypes = Object.values(customTypes).reduce((result, customType) => {
-          if (result.length > 0) {
+          const rateLimitUnitTypes = Object.values(customTypes).reduce((result, customType) => {
+            if (result.length > 0) {
+              return result;
+            }
+
+            if (customType.name_cased === 'availability') {
+              const rateLimitProperty = customType.items.find(item => item.name_cased === 'rateLimit');
+              return rateLimitProperty.unit.unit_types;
+            }
+
             return result;
-          }
+          }, []);
 
-          if (customType.name_cased === 'availability') {
-            const rateLimitProperty = customType.items.find(item => item.name_cased === 'rateLimit');
-            return rateLimitProperty.unit.unit_types;
-          }
-
-          return result;
-        }, []);
-
-        const validateProp = (propValue) => {
-          if (Array.isArray(propValue)) {
-            propValue.forEach(propInArray => {
-              validateProp(propInArray);
-            });
-
-            return;
-          } else if (!propValue instanceof Object) {
-            return;
-          }
-
-          if (propValue.data && propValue.data.value) {
-            if (propValue.data.value === 'unsupported_capability' || propValue.data.value === 'invalid_command') {
+          const validateProp = (propValue) => {
+            if (Array.isArray(propValue)) {
+              propValue.forEach(validateProp);
+              return;
+            } else if (!propValue instanceof Object) {
               return;
             }
 
-            Object.values(propValue.data.value).forEach(capabilityData => {
-              Object.values(capabilityData).forEach(propertyValue => {
-                validateProp(propertyValue);
+            if (propValue.data && propValue.data.value) {
+              if (propValue.data.value === 'unsupported_capability' || propValue.data.value === 'invalid_command') {
+                return;
+              }
+
+              Object.values(propValue.data.value).forEach(capabilityData => {
+                Object.values(capabilityData).forEach(validateProp);
               });
+
+              return;
+            }
+
+            expect(propValue).toHaveProperty('availability');
+            expect(propValue.availability).toEqual({
+              updateRate: { value: expect.any(String) },
+              rateLimit: expect.unitWithValue(rateLimitUnitTypes),
+              appliesPer: { value: expect.any(String) },
             });
+          };
 
-            return;
-          }
+          Object.values(parsedResponse).forEach(validateProp);
+        });
 
-          expect(propValue).toHaveProperty('availability');
-          expect(propValue.availability).toEqual({
-            updateRate: { value: expect.any(String) },
-            rateLimit: expect.unitWithValue(rateLimitUnitTypes),
-            appliesPer: { value: expect.any(String) },
+        it(`Availability getter for specific properties should have correct response`, async () => {
+          await sleep(1500);
+
+          const statePropIds = capabilityConfiguration.state || [];
+          const properties = filterDeprecatedProperties(capabilityConfiguration.properties)
+            .filter(({ id }) => statePropIds.includes(id))
+            .map(property => property.name_cased);
+
+
+          const propertiesToRequest = properties.slice(0, 2);
+          const propertiesNotToRequest = properties.slice(2);
+
+          const response = await sendCommand(hmkit, capability.getAvailability(propertiesToRequest), accessToken);
+          const parsedResponse = response.parse();
+
+          // Disabled for now because there's no way to check which properties are disabled in emulator_type
+          propertiesToRequest.forEach(requestedPropertyName => {
+            if (parsedResponse &&
+              parsedResponse.failureReason &&
+              parsedResponse.failureReason.data &&
+              parsedResponse.failureReason.data.value === 'unsupported_capability') {
+              handleSkipTestForGetAvailabilityWithProperty(capabilityName, requestedPropertyName);
+              return;
+            }
+            expect(parsedResponse).toHaveProperty(requestedPropertyName);
           });
-        };
 
-        Object.values(parsedResponse).forEach(propValue => {
-          validateProp(propValue);
+          propertiesNotToRequest.forEach(notRequestedProperty => {
+            expect(parsedResponse).not.toHaveProperty(notRequestedProperty);
+          });
         });
-      });
-
-      it(`Availability getter for specific properties should have correct response`, async () => {
-        await sleep(1500);
-
-        const propertiesToRequest = capabilityConfiguration.properties.slice(0, 2).map(property => property.name_cased);
-        const response = await sendCommand(hmkit, capability.getAvailability(propertiesToRequest), accessToken);
-        const parsedResponse = response.parse();
-
-        // Disabled for now because there's no way to check which properties are disabled in emulator_type
-        propertiesToRequest.forEach(requestedPropertyName => {
-          if (parsedResponse && parsedResponse.failureReason && parsedResponse.failureReason.data && parsedResponse.failureReason.data.value === 'unsupported_capability') {
-            console.warn(`Skipping test for ${capabilityName}.${requestedPropertyName} because the capability is unsupported`);
-            return;
-          }
-          expect(parsedResponse).toHaveProperty(requestedPropertyName);
-        });
-
-        capabilityConfiguration.properties.slice(2).forEach(notRequestedProperty => {
-          expect(parsedResponse).not.toHaveProperty(notRequestedProperty.name);
-        });
-      });
+      } else {
+        handleSkipTestForGetAvailability(capabilityName);
+        return;
+      }
     }
   );
 }
@@ -313,15 +325,21 @@ async function sleep(ms) {
   })
 }
 
-function handleSkipTest(parsedResponse, functionName) {
+function handleSkipTestForDisabledFunction(parsedResponse, functionName) {
   console.log(`Skipping test for ${functionName}(), it might be disabled for this vehicle`, parsedResponse);
 }
 
-function getCapabilityConfiguration({ msb: msbToFind, lsb: lsbToFind }) {
-  return Object.values(capabilitiesConfiguration).find(capabilityConf => {
-    const { msb, lsb } = capabilityConf.identifier || {};
-    return msb === msbToFind && lsb === lsbToFind;
-  });
+function handleSkipTestForGetAvailabilityWithProperty(capabilityName, requestedPropertyName) {
+  console.warn(`Skipping test for ${capabilityName}.getAvailability(['${requestedPropertyName}']), because the property and / or method is unsupported by this vehicle`);
+}
+
+function handleSkipTestForGetAvailability(capabilityName) {
+  console.log(`Skipping test for ${capabilityName}.getAvailability(), because it is not implemented`);
+}
+
+export function getCapabilityConfiguration({ msb: msbToFind, lsb: lsbToFind }) {
+  return Object.values(capabilitiesConfiguration)
+    .find(({ identifier: { msb, lsb } = {} }) => msb === msbToFind && lsb === lsbToFind);
 }
 
 function findSetterArguments(identifier, name) {
@@ -344,11 +362,12 @@ function findSetterArguments(identifier, name) {
 
 function generatePropertyValue(propertyID, capabilityConfiguration) {
   const property = findPropertyByID(propertyID, capabilityConfiguration);
+  const { examples, multiple, name_cased: name } = property;
 
-  if (property.multiple) {
+  if (multiple) {
     return {
-      [property.name_cased]: property.examples.map(example => {
-        const exampleInCamelCase = Object.entries(example.values || example.value).reduce((acc, cur) => {
+      [name]: examples.map(({ value, values }) => {
+        const exampleInCamelCase = Object.entries(values || value).reduce((acc, cur) => {
           const [propertyName, propertyValue] = cur;
           return { ...acc, [getProperlyCasedKey(propertyName, property)]: propertyValue };
         }, {});
@@ -358,9 +377,10 @@ function generatePropertyValue(propertyID, capabilityConfiguration) {
     };
   }
 
+  const [{ value, values }] = examples;
+
   return {
-    [property.name_cased]:
-      property.examples[0].value || property.examples[0].values,
+    [name]: value || values,
   };
 }
 
@@ -378,18 +398,22 @@ function buildResponseValidator(capabilityConfiguration) {
     return new EmptyResponse();
   }
 
-  return capabilityConfiguration.properties
-    .filter(prop => capabilityConfiguration.state.includes(prop.id))
+  const universalPropNames = ['brand', 'vin'];
+  const universalProps = getUniversalProperties(universalPropNames);
+  const statePropsWithUniversalProps = [...capabilityConfiguration.properties, ...universalProps]
+    .filter(({ id, name }) => capabilityConfiguration.state.includes(id) || universalPropNames.includes(name));
+
+  return statePropsWithUniversalProps
     .reduce(
       (responseValidator, property) => ({
         ...responseValidator,
-        ...buildPropertyValidator(property, true, capabilityConfiguration),
+        ...buildPropertyValidator(property, true, capabilityConfiguration, universalPropNames),
       }),
       {}
     );
 }
 
-function buildWrapper(data, capabilityConfiguration, hasTimestamp = true) {
+function buildWrapper(data, hasTimestamp = true) {
   const result = {
     data,
   };
@@ -404,47 +428,47 @@ function buildWrapper(data, capabilityConfiguration, hasTimestamp = true) {
 function buildPropertyValidator(
   property,
   shouldWrap = false,
-  capabilityConfiguration
+  capabilityConfiguration,
+  universalPropNames,
 ) {
-  const hasTimestamp = !['supported_capability', 'webhook'].includes(property.customType);
+  const hasTimestamp = !(['supported_capability', 'webhook'].includes(property.customType) ||
+    universalPropNames.includes(property.name));
 
   if (property.items) {
     const [identifierChild, ...otherChildren] = property.items;
     if (property.multiple && identifierChild.enum_values) {
       return {
-        [property.name_cased]: identifierChild.enum_values.map(identifier => {
-          return buildWrapper(
-            {
-              [identifierChild.name_cased]: { value: identifier.name },
-              ...otherChildren.reduce(
-                (mappedChildren, childToMap) => ({
-                  ...mappedChildren,
-                  ...buildPropertyValidator(
-                    childToMap,
-                    false,
-                    capabilityConfiguration
-                  ),
-                }),
-                {}
-              ),
-            },
-            capabilityConfiguration,
-            hasTimestamp,
-          );
-        }),
+        [property.name_cased]: identifierChild.enum_values.map(identifier => buildWrapper(
+          {
+            [identifierChild.name_cased]: { value: identifier.name },
+            ...otherChildren.reduce(
+              (mappedChildren, childToMap) => ({
+                ...mappedChildren,
+                ...buildPropertyValidator(
+                  childToMap,
+                  false,
+                  capabilityConfiguration,
+                  universalPropNames,
+                ),
+              }),
+              {}
+            ),
+          },
+          hasTimestamp,
+        )),
       };
     }
 
     const mappedProps = property.items.reduce(
       (mappedItems, child) => ({
         ...mappedItems,
-        ...buildPropertyValidator(child, false, capabilityConfiguration),
+        ...buildPropertyValidator(child, false, capabilityConfiguration, universalPropNames),
       }),
       {}
     );
 
     const wrappedProps = shouldWrap
-      ? buildWrapper(mappedProps, capabilityConfiguration, hasTimestamp)
+      ? buildWrapper(mappedProps, hasTimestamp)
       : mappedProps;
 
     if (property.multiple) {
@@ -470,7 +494,7 @@ function buildPropertyValidator(
 
   return {
     [property.name_cased]: shouldWrap
-      ? buildWrapper(typeValidator, capabilityConfiguration, hasTimestamp)
+      ? buildWrapper(typeValidator, hasTimestamp)
       : typeValidator,
   };
 }
@@ -529,9 +553,7 @@ function replaceTimestampsWithValidators(state) {
     }
 
     if (Array.isArray(state)) {
-      return state.map(item => {
-        return replaceTimestampsWithValidators(item);
-      });
+      return state.map(item => replaceTimestampsWithValidators(item));
     }
 
     return Object.entries(state).reduce(
@@ -593,17 +615,13 @@ async function sendSetterQueryCommand(setterCommand, setterArguments) {
 }
 
 const snakeCaseMap = Object.values(capabilitiesConfiguration).reduce(
-  (map, cap) => {
-    return {
-      ...map,
-      ...cap.properties.reduce((propertyMap, property) => {
-        return {
-          ...propertyMap,
-          [property.name]: property.name_cased,
-        };
-      }, {}),
-    };
-  },
+  (map, cap) => ({
+    ...map,
+    ...cap.properties.reduce((propertyMap, property) => ({
+      ...propertyMap,
+      [property.name]: property.name_cased,
+    }), {}),
+  }),
   {}
 );
 
@@ -652,7 +670,7 @@ function parseValue(value) {
   }
 
   if (typeof value === 'object') {
-    const [ unit, realValue ] = Object.entries(value)[0];
+    const [unit, realValue] = Object.entries(value)[0];
     return {
       value: realValue,
       unit,
@@ -678,7 +696,7 @@ function getExampleValue(example, property) {
 
     switch (property.customType) {
       case 'capability_state': {
-       return Object.entries(exampleValue).reduce((acc, cur) => {
+        return Object.entries(exampleValue).reduce((acc, cur) => {
           const [capabilityKey, capabilityValue] = cur;
 
           return {
@@ -690,29 +708,27 @@ function getExampleValue(example, property) {
                 if (Array.isArray(propertyValue)) {
                   return {
                     ...properties,
-                    [propertyKey] : propertyValue.map(value => {
-                      return {
-                        data: Object.entries(value).reduce((childProperties, childPropertyEntry) => {
-                          const [childPropertyKey, childPropertyValue] = childPropertyEntry;
-                          return {
-                            ...childProperties,
-                            [childPropertyKey]: {
-                              value: childPropertyValue
-                            }
+                    [propertyKey]: propertyValue.map(value => ({
+                      data: Object.entries(value).reduce((childProperties, childPropertyEntry) => {
+                        const [childPropertyKey, childPropertyValue] = childPropertyEntry;
+                        return {
+                          ...childProperties,
+                          [childPropertyKey]: {
+                            value: childPropertyValue
                           }
-                        }, {})
-                      }
-                    }),
+                        }
+                      }, {})
+                    })),
                   }
                 }
 
                 const normalizedValues = normalizeExampleValues({ [propertyKey]: propertyValue }, property);
-                const normalizedValuesWithData = Object.entries(normalizedValues).reduce((acc, cur) => {
-                  const [propertyName, propertyValue] = cur;
+                const normalizedValuesWithData = Object.entries(normalizedValues).reduce((allValues, currentValue) => {
+                  const [propertyName, propertyValueWithData] = currentValue;
                   return {
-                    ...acc,
+                    ...allValues,
                     [propertyName]: {
-                      data: propertyValue,
+                      data: propertyValueWithData,
                     }
                   }
                 }, {});
@@ -735,10 +751,8 @@ function getExampleValue(example, property) {
   }
 
   if (example.values != null) {
-    let values = example.values;
     // SDK returns sub-capabilities for capability_state as Response instances, which have the shape `{ value: ... }`
-
-    return { ...normalizeExampleValues(values, property) };
+    return { ...normalizeExampleValues(example.values, property) };
   }
 
   return null;
@@ -783,6 +797,18 @@ function getSetterExampleData(identifier, name) {
     );
 
   return intArray;
+}
+
+export function filterDeprecatedProperties(properties) {
+  return properties.filter(property => !property.deprecated);
+}
+
+export function getDeprecatedProperties(properties) {
+  return properties.filter(property => property.deprecated);
+}
+
+export function getUniversalProperties(properties) {
+  return universalProperties.filter(({ name }) => properties.includes(name));
 }
 
 /**

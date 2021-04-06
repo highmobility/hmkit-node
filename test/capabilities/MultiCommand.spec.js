@@ -42,7 +42,7 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
       hmkit.commands.MultiCommand.multiCommand({
         multiCommands: {
           ignition: {
-            turnIgnitionOnOff: { status: 'on' }
+            turnIgnitionOnOff: { state: 'on' }
           },
           doors: {
             lockUnlockDoors: { locksState: 'unlocked' }
@@ -54,11 +54,21 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
 
     expect(response.parse()).toBeInstanceOf(ResponseClass.MultiCommand);
 
-    expect(response.parse()).toEqual({
+    expect(response.parse()).toMatchObject({
       "multiStates": [
         {
           "data": {
             "doors": {
+              "brand": {
+                "data": {
+                  "value": "emulator",
+                }
+              },
+              "vin": {
+                "data": {
+                  "value": expect.any(String),
+                },
+              },
               "insideLocks": expect.any(Array),
               "locks": [
                 {
@@ -120,13 +130,16 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
         {
           "data": {
             "ignition": {
-              "status": {
-                "timestamp": expect.any(Date),
+              "brand": {
                 "data": {
-                  "value": "on"
+                  "value": "emulator",
                 }
               },
-              "accessoriesStatus": expect.any(Object),
+              "vin": {
+                "data": {
+                  "value": expect.any(String),
+                },
+              },
               "state": expect.any(Object),
             }
           }

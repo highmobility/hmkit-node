@@ -26,7 +26,13 @@ content:
                     precision:
                         data.value: '(Number) (length) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"coordinates\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"latitude\": {\n          \"value\": 52.520008\n        },\n        \"longitude\": {\n          \"value\": 13.404954\n        }\n      }\n    }\n  },\n  \"heading\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 13.370123,\n        \"unit\": \"degrees\"\n      }\n    }\n  },\n  \"altitude\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 133.5,\n        \"unit\": \"meters\"\n      }\n    }\n  },\n  \"precision\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 500,\n        \"unit\": \"meters\"\n      }\n    }\n  }\n}\n```"
+                    gpsSource:
+                        data.value: '(String) (enum) Type of GPS source'
+                        timestamp: (Date)
+                    gpsSignalStrength:
+                        data.value: '(Number) (double) GPS signal strength percentage between 0.0-1.0'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"coordinates\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"latitude\": {\n          \"value\": 52.520008\n        },\n        \"longitude\": {\n          \"value\": 13.404954\n        }\n      }\n    }\n  },\n  \"heading\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 13.370123,\n        \"unit\": \"degrees\"\n      }\n    }\n  },\n  \"altitude\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 133.5,\n        \"unit\": \"meters\"\n      }\n    }\n  },\n  \"precision\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 500,\n        \"unit\": \"meters\"\n      }\n    }\n  },\n  \"gpsSource\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": \"real\"\n      }\n    }\n  },\n  \"gpsSignalStrength\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 0.8\n      }\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

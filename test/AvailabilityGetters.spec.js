@@ -27,11 +27,12 @@
  */
 
 import getHmkit from './testutils/getHmkit';
+import { filterDeprecatedProperties, getCapabilityConfiguration, getDeprecatedProperties } from './testutils/capabilityTests';
 import {
   AUTO_API_LEVEL,
   GET_AVAILABILITY_TYPE,
 } from '../src/Utils/CommandUtils';
-import capabilitiesConfiguration from '../src/Configuration/capabilities.json';
+import InvalidArgumentError from '../src/Errors/InvalidArgumentError';
 
 const hmkit = getHmkit();
 
@@ -52,7 +53,7 @@ describe('Availability getters', () => {
 
   it(`Should convert an availability getter command with a single property into a corresponding Uint8Array`, () => {
     // Test with single properties
-    capabilityConfiguration.properties.forEach(property => {
+    filterDeprecatedProperties(capabilityConfiguration.properties).forEach(property => {
       expect(
         capability.getAvailability([property.name_cased]).command
       ).toEqual([
@@ -66,23 +67,21 @@ describe('Availability getters', () => {
   });
 
   it('Should convert an availability getter command with all properties into a corresponding Uint8Array', () => {
+    const properties = filterDeprecatedProperties(capabilityConfiguration.properties);
     expect(
-      capability.getAvailability(
-        capabilityConfiguration.properties.map(x => x.name_cased)
-      ).command
+      capability.getAvailability(properties.map(x => x.name_cased)).command
     ).toEqual([
       AUTO_API_LEVEL,
       capabilityConfiguration.identifier.msb,
       capabilityConfiguration.identifier.lsb,
       GET_AVAILABILITY_TYPE,
-      ...capabilityConfiguration.properties.map(x => x.id),
+      ...properties.map(x => x.id),
     ]);
   });
-});
 
-function getCapabilityConfiguration({ msb: msbToFind, lsb: lsbToFind }) {
-  return Object.values(capabilitiesConfiguration).find(capabilityConf => {
-    const { msb, lsb } = capabilityConf.identifier || {};
-    return msb === msbToFind && lsb === lsbToFind;
+  it('Should should throw exception on deprecated property', () => {
+    getDeprecatedProperties(capabilityConfiguration.properties).forEach(({ name_cased: propertyName }) => {
+      expect(() => capability.getAvailability([propertyName])).toThrow(InvalidArgumentError)
+    });
   });
-}
+});

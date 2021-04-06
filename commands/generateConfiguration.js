@@ -2,11 +2,14 @@ const YAML = require('yamljs');
 const fs = require('fs');
 
 const CAPABILITY_CONFIGURATION_FILES = [
+  'adas.yml',
   'browser.yml',
   'capabilities.yml',
   'charging.yml',
+  'charging_session.yml',
   'chassis_settings.yml',
   'climate.yml',
+  'crash.yml',
   'cruise_control.yml',
   'dashboard_lights.yml',
   'diagnostics.yml',
@@ -60,6 +63,7 @@ const CAPABILITY_CONFIGURATION_FILES = [
 ];
 
 const CUSTOM_TYPES_FILE_PATH = `misc/custom_types.yml`;
+const EVENTS_FILE_PATH = `misc/events.yml`;
 const UNIT_TYPES_FILE_PATH = 'misc/unit_types.yml';
 const UNIVERSAL_PROPERTIES_FILE_PATH = 'misc/universal_properties.yml';
 const CAPABILITIES_DESTINATION_FILE = `${__dirname}/../src/Configuration/capabilities.json`;
@@ -71,6 +75,7 @@ function autoApiPath(path) {
 }
 
 function parseConfigurationFiles() {
+  const events = parseEventsFile();
   const unitTypes = parseUnitTypesFile();
   const customTypes = parseCustomTypesFile(unitTypes);
   const universalProperties = parseYmlFile(
@@ -87,6 +92,7 @@ function parseConfigurationFiles() {
         properties: buildCapabilityProperties(
           capability,
           customTypes,
+          events,
           unitTypes
         ),
       });
@@ -117,9 +123,9 @@ function parseConfigurationFiles() {
   console.log('Successfully updated capabilities configuration.');
 }
 
-function buildCapabilityProperties(capability, customTypes, unitTypes) {
+function buildCapabilityProperties(capability, customTypes, events, unitTypes) {
   return capability.properties.map(property =>
-    buildCapabilityProperty(property, customTypes, unitTypes)
+    buildCapabilityProperty(property, customTypes, events, unitTypes)
   );
 }
 
@@ -134,7 +140,18 @@ function mapStateProps(capability) {
   return capability;
 }
 
-function buildCapabilityProperty(property, customTypes, unitTypes) {
+function buildCapabilityProperty(property, customTypes, events, unitTypes) {
+  if (property.type.indexOf('events.') === 0) {
+    const eventsRegex = new RegExp(`events.`);
+    const eventName = property.type.replace(eventsRegex, '');
+    const event = events[eventName];
+
+    return {
+      ...property,
+      ...event,
+    };
+  }
+
   if (property.type.indexOf('types.') === 0) {
     const typesRegex = new RegExp(`types.`);
     const customTypeKey = property.type.replace(typesRegex, '');
@@ -142,7 +159,7 @@ function buildCapabilityProperty(property, customTypes, unitTypes) {
 
     if (customType.items) {
       const mappedItems = customType.items.map(propItem =>
-        buildCapabilityProperty(propItem, customTypes, unitTypes)
+        buildCapabilityProperty(propItem, customTypes, events, unitTypes)
       );
 
       return {
@@ -184,11 +201,11 @@ function parseCustomTypesFile(unitTypes) {
       ...type,
       items: type.items
         ? type.items.map(item => {
-            if (item.type.startsWith('unit.')) {
-              item.unit = unitTypes[item.type.replace('unit.', '')];
-            }
-            return item;
-          })
+          if (item.type.startsWith('unit.')) {
+            item.unit = unitTypes[item.type.replace('unit.', '')];
+          }
+          return item;
+        })
         : undefined,
     };
 
@@ -197,6 +214,18 @@ function parseCustomTypesFile(unitTypes) {
       [type.name]: typeWithUnit,
     };
   }, {});
+}
+
+function parseEventsFile() {
+  const filePath = autoApiPath(EVENTS_FILE_PATH);
+
+  return parseYmlFile(filePath).events.reduce(
+    (allEvents, event) => ({
+      ...allEvents,
+      [event.name]: event,
+    }),
+    {}
+  );
 }
 
 function parseUnitTypesFile() {
