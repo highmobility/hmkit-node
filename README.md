@@ -2,18 +2,22 @@
 
 [![NPM version](https://img.shields.io/npm/v/hmkit.svg)](https://www.npmjs.com/package/hmkit) | ![Build Status](https://github.com/highmobility/hmkit-node/workflows/Node%20CI/badge.svg)
 
+![Auto API](https://github.com/highmobility/auto-api/blob/master/assets/autoapi-header.png?raw=true)
+
 The HMKit Node.js SDK makes it easy to work with car data using HIGH MOBILITY's Auto API. The SDK implements a strong security layer between your Node.js app and the platform, and offers a straightforward native interface to read from – and write to – connected cars.
 
 The library is designed to give Node.js developers simple access to High Mobility's systems, by handling the communication protocols, authentication flows and other security related components in their entirety.
 
 # Table of contents
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-  - [Examples](#examples)
-- [Contributing](#contributing)
-- [Licence](#licence)
+- [HMKit Node.js SDK](#hmkit-nodejs-sdk)
+- [Table of contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Getting started](#getting-started)
+    - [Examples](#examples)
+  - [Contributing](#contributing)
+  - [Licence](#licence)
 
 ## Requirements
 
@@ -29,8 +33,8 @@ $ npm install hmkit
 
 ## Getting started
 
-Get started by reading High Mobility's [Node.js SDK guide](https://high-mobility.com/learn/tutorials/sdk/node-js/).  
-Check out the [code references](https://high-mobility.com/learn/documentation/cloud-sdks/node-js/commands/) for additional information.
+Get started by reading High Mobility's [Node.js SDK guide](https://docs.high-mobility.com/guides/getting-started/node-js/).  
+Check out the [code references](https://docs.high-mobility.com/api-references/code-references/node-js/telematics/) for additional information.
 
 ### Examples
 
