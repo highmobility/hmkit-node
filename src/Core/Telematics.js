@@ -26,15 +26,17 @@
  *  Created by Mikk Õun on 16/01/2020.
  */
 
-import Response from '../Responses/Response';
+import ApiClientError from '../Errors/ApiClientError';
 import {
   base64ToUint8,
   byteArrayToBase64,
   uint8ArrayToHex,
   hexToUint8Array,
 } from '../Utils/EncodingUtils';
-import Container from './Container';
+import Response from '../Responses/Response';
+
 import AccessCertificate from './AccessCertificate';
+import Container from './Container';
 
 export default class Telematics {
   constructor(hmkit) {
@@ -49,23 +51,26 @@ export default class Telematics {
         }),
       })
       .then(
-        result => result.body.nonce,
-        () => {
-          throw new Error('Failed to fetch nonce.');
+        ({ body }) => body.nonce,
+        ({ response }) => {
+          throw new ApiClientError('Failed to fetch nonce.', response);
         }
       );
 
   onTelematicsSendData = async (issuer, ser, dt) => {
-    const res = await this.hmkit.apiClient.post(`${this.hmkit.api.getUrl()}telematics_commands`, {
-      body: JSON.stringify({
-        serial_number: uint8ArrayToHex(new Uint8Array(ser)).toUpperCase(),
-        issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
-        data: byteArrayToBase64(dt),
-      }),
-    });
+    const res = await this.hmkit.apiClient.post(
+      `${this.hmkit.api.getUrl()}telematics_commands`,
+      {
+        body: JSON.stringify({
+          serial_number: uint8ArrayToHex(new Uint8Array(ser)).toUpperCase(),
+          issuer: uint8ArrayToHex(new Uint8Array(issuer)).toUpperCase(),
+          data: byteArrayToBase64(dt),
+        }),
+      }
+    );
 
     return res.body.response_data;
-  }
+  };
 
   sendCommand = async (data, accessCertificateData) => {
     const accessCertificate = new AccessCertificate(accessCertificateData);

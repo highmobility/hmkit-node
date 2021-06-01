@@ -85,7 +85,7 @@
     "json-loader": "^0.5.7",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
-    "strip-indent": "^4.0.0",
+    "strip-indent": "^3.0.0",
     "yamljs": "^0.3.0"
   }
 }

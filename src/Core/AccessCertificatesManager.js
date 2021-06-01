@@ -27,6 +27,7 @@
  */
 
 import AccessCertificate from './AccessCertificate';
+import ApiClientError from '../Errors/ApiClientError';
 import CertCache from './CertCache';
 import {
   base64ToUint8,
@@ -116,9 +117,12 @@ export default class AccessCertificatesManager {
         }),
       })
       .then(
-        result => result.body.device_access_certificate,
-        () => {
-          throw new Error('Failed to fetch access certificate.');
+        ({ body }) => body.device_access_certificate,
+        ({ response }) => {
+          throw new ApiClientError(
+            'Failed to fetch access certificate.',
+            response
+          );
         }
       );
 
