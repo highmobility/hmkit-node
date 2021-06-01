@@ -30,7 +30,9 @@ import { vehicleSerial } from './testutils/config';
 import getHmkit, { accessToken } from './testutils/getHmkit';
 import AccessCertificate from '../src/Core/AccessCertificate';
 const hmkit = getHmkit();
-const tempCache = JSON.parse(JSON.stringify(hmkit.certificates.certCache.getAccessCertificates()));
+const tempCache = JSON.parse(
+  JSON.stringify(hmkit.certificates.certCache.getAccessCertificates())
+);
 
 describe(`AccessCertificatesManager`, () => {
   afterAll(() => {

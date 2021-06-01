@@ -35,7 +35,12 @@ import {
   dateToBytes,
   stringToBytes,
 } from './EncodingUtils';
-import { isArray, capitalizeSnake, buildFunctionName, capitalize } from './Helpers';
+import {
+  isArray,
+  capitalizeSnake,
+  buildFunctionName,
+  capitalize,
+} from './Helpers';
 import capabilitiesConfiguration from '../Configuration/capabilities.json';
 import InvalidArgumentError from '../Errors/InvalidArgumentError';
 import { validate, Joi } from './ValidationUtils';
@@ -224,8 +229,14 @@ function buildSetterFunction(setter, properties, identifier) {
 
         assertPropertyIsNotDeprecated(propertyToEncode);
 
-        const valueToEncode = propertyToEncode.name === 'multi_commands' ? encodeMultiCommands(value) : value;
-        const encodedPropertyData = encodeProperty(propertyToEncode, valueToEncode);
+        const valueToEncode =
+          propertyToEncode.name === 'multi_commands'
+            ? encodeMultiCommands(value)
+            : value;
+        const encodedPropertyData = encodeProperty(
+          propertyToEncode,
+          valueToEncode
+        );
 
         return mappedBytes.concat(encodedPropertyData);
       },
@@ -252,12 +263,15 @@ function buildSetterFunction(setter, properties, identifier) {
 }
 
 function encodeMultiCommands(value) {
-  return Object.entries(value).reduce((encodedProperties, [capabilityName, capabilitySetters]) => {
-    const encodedCapabilityProperties = Object.entries(capabilitySetters).reduce((result, [commandName, commandArguments]) => {
-      const command = commands?.[capitalize(capabilityName)]?.[commandName];
+  return Object.entries(value).reduce(
+    (encodedProperties, [capabilityName, capabilitySetters]) => {
+      const encodedCapabilityProperties = Object.entries(
+        capabilitySetters
+      ).reduce((result, [commandName, commandArguments]) => {
+        const command = commands?.[capitalize(capabilityName)]?.[commandName];
 
-      if (!command) {
-        throw new Error(`Could not find command '${commandName}'. Correct usage:
+        if (!command) {
+          throw new Error(`Could not find command '${commandName}'. Correct usage:
           {
             multiCommand: {
               capabilityName: {
@@ -266,19 +280,15 @@ function encodeMultiCommands(value) {
             }
           }
         `);
-      }
+        }
 
-      return [
-        ...result,
-        command(commandArguments),
-      ];
-    }, []);
+        return [...result, command(commandArguments)];
+      }, []);
 
-    return [
-      ...encodedProperties,
-      ...encodedCapabilityProperties,
-    ];
-  }, []);
+      return [...encodedProperties, ...encodedCapabilityProperties];
+    },
+    []
+  );
 }
 
 function sanitizeArgumentValue(property, value) {
@@ -523,15 +533,17 @@ export function buildCommands() {
         !(capabilityConf.disabled_in || []).includes(WEB_CONNECTION_TYPE)
     )
     .reduce((allConf, capabilityConf) => {
-      const buildGettersAndSetters = !CAPABILITIES_WITH_NO_COMMANDS.includes(capabilityConf.name);
+      const buildGettersAndSetters = !CAPABILITIES_WITH_NO_COMMANDS.includes(
+        capabilityConf.name
+      );
 
       // eslint-disable-next-line no-shadow
       const commands = {
-        ...buildGettersAndSetters && {
+        ...(buildGettersAndSetters && {
           ...buildCapabilityGetter(capabilityConf),
           ...buildCapabilitySetters(capabilityConf),
           ...buildAvailabilityGetter(capabilityConf),
-        }
+        }),
       };
 
       Object.defineProperty(commands, 'identifier', {

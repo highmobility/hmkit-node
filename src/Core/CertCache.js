@@ -99,7 +99,9 @@ class CertCache {
   tryCacheGC() {
     if (this.GCCounter >= this.GCTicks) {
       const currentTimestamp = Date.now();
-      this.accessCertificates = this.accessCertificates.filter(({ t }) => t + this.cacheTTL > currentTimestamp);
+      this.accessCertificates = this.accessCertificates.filter(
+        ({ t }) => t + this.cacheTTL > currentTimestamp
+      );
       this.GCCounter = 0;
     }
   }

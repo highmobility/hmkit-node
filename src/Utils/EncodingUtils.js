@@ -171,9 +171,7 @@ export function dateToBytes(date: Date | String) {
 
 // This also removes null bytes
 export function bytesToString(bytes) {
-  return Buffer.from(bytes)
-    .toString('utf8')
-    .replace(/\0/g, '');
+  return Buffer.from(bytes).toString('utf8').replace(/\0/g, '');
 }
 
 export function bytesToTimestamp(bytes: Array<Number>) {

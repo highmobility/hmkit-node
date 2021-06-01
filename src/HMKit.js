@@ -48,7 +48,7 @@ const API_URLS = {
   staging: {
     xvhm: 'https://api.staging.high-mobility.net/v1/',
     test: 'https://sandbox.api.staging.high-mobility.net/v1/',
-  }
+  },
 };
 
 export default class HMKit {
@@ -73,12 +73,12 @@ export default class HMKit {
   }
 
   develop() {
-    this.api = new Api(this.getApiUrl('develop'))
+    this.api = new Api(this.getApiUrl('develop'));
     return this;
   }
 
   staging() {
-    this.api = new Api(this.getApiUrl('staging'))
+    this.api = new Api(this.getApiUrl('staging'));
     return this;
   }
 

@@ -63,7 +63,9 @@ describe(`AccessCertificate`, () => {
   });
 
   it(`should initialize with object`, () => {
-    const accessCertificateData = (new AccessCertificate(accessCertificateBytes)).get();
+    const accessCertificateData = new AccessCertificate(
+      accessCertificateBytes
+    ).get();
 
     const accessCertificate = new AccessCertificate(accessCertificateData);
     expect(accessCertificate).toBeInstanceOf(AccessCertificate);

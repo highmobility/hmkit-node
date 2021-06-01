@@ -30,7 +30,9 @@ import getHmkit from './testutils/getHmkit';
 import AccessCertificate from '../src/Core/AccessCertificate';
 const hmkit = getHmkit();
 
-const tempCache = JSON.parse(JSON.stringify(hmkit.certificates.certCache.getAccessCertificates()));
+const tempCache = JSON.parse(
+  JSON.stringify(hmkit.certificates.certCache.getAccessCertificates())
+);
 
 describe(`CertCache`, () => {
   afterAll(() => {
@@ -51,29 +53,24 @@ describe(`CertCache`, () => {
   });
   it(`should clear cert cache correctly`, () => {
     hmkit.certificates.certCache.destroy();
-    hmkit.certificates.certCache
-      .setGcTicks(2)
-      .setCacheTTL(0)
-      .resetGcCounter();
+    hmkit.certificates.certCache.setGcTicks(2).setCacheTTL(0).resetGcCounter();
 
-    hmkit.certificates.certCache.setAccessCertificates(
-      [
-        {
-          ai: 'appId1',
-          vs: 'vehicleSerial1',
-          at: 'accessToken1',
-          c: 'cert1',
-          t: Date.now() + 5000,
-        },
-        {
-          ai: 'appId2',
-          vs: 'vehicleSerial2',
-          at: 'accessToken2',
-          c: 'cert2',
-          t: Date.now() - 5000,
-        },
-      ]
-    );
+    hmkit.certificates.certCache.setAccessCertificates([
+      {
+        ai: 'appId1',
+        vs: 'vehicleSerial1',
+        at: 'accessToken1',
+        c: 'cert1',
+        t: Date.now() + 5000,
+      },
+      {
+        ai: 'appId2',
+        vs: 'vehicleSerial2',
+        at: 'accessToken2',
+        c: 'cert2',
+        t: Date.now() - 5000,
+      },
+    ]);
 
     expect(
       hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')
@@ -89,31 +86,26 @@ describe(`CertCache`, () => {
       hmkit.certificates.certCache.getByAccessToken('appId2', 'accessToken2')
     ).toBeNull();
 
-    hmkit.certificates.certCache
-      .setGcTicks(2)
-      .setCacheTTL(0)
-      .resetGcCounter();
+    hmkit.certificates.certCache.setGcTicks(2).setCacheTTL(0).resetGcCounter();
 
     const time = Date.now() + 5000;
 
-    hmkit.certificates.certCache.setAccessCertificates(
-      [
-        {
-          ai: 'appId1',
-          vs: 'vehicleSerial1',
-          at: 'accessToken1',
-          c: 'cert1',
-          t: time,
-        },
-        {
-          ai: 'appId2',
-          vs: 'vehicleSerial2',
-          at: 'accessToken2',
-          c: 'cert2',
-          t: time,
-        },
-      ]
-    );
+    hmkit.certificates.certCache.setAccessCertificates([
+      {
+        ai: 'appId1',
+        vs: 'vehicleSerial1',
+        at: 'accessToken1',
+        c: 'cert1',
+        t: time,
+      },
+      {
+        ai: 'appId2',
+        vs: 'vehicleSerial2',
+        at: 'accessToken2',
+        c: 'cert2',
+        t: time,
+      },
+    ]);
 
     expect(
       hmkit.certificates.certCache.getByAccessToken('appId1', 'accessToken1')

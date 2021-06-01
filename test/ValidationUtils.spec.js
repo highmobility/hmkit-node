@@ -36,9 +36,7 @@ describe(`validate`, () => {
       validate({
         value: 15,
         name: 'Speed',
-        condition: Joi.number()
-          .min(10)
-          .required(),
+        condition: Joi.number().min(10).required(),
       })
     ).toBeUndefined();
   });
@@ -48,9 +46,7 @@ describe(`validate`, () => {
       validate({
         value: 15,
         name: 'Speed',
-        condition: Joi.number()
-          .min(20)
-          .required(),
+        condition: Joi.number().min(20).required(),
       });
     }).toThrow();
   });
@@ -60,21 +56,15 @@ describe(`validate`, () => {
       validate(
         {
           value: 15,
-          condition: Joi.number()
-            .min(20)
-            .required(),
+          condition: Joi.number().min(20).required(),
         },
         {
           value: 20,
-          condition: Joi.number()
-            .min(25)
-            .required(),
+          condition: Joi.number().min(25).required(),
         },
         {
           value: 20,
-          condition: Joi.number()
-            .max(30)
-            .required(),
+          condition: Joi.number().max(30).required(),
         }
       );
     }).toThrow(InvalidArgumentError);

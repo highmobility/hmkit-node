@@ -1,7 +1,9 @@
 expect.extend({
   unitWithValue(received, unitTypes) {
     const { value, unit: receivedUnitType } = received;
-    const hasUnit = unitTypes.some(unitType => unitType.name === receivedUnitType);
+    const hasUnit = unitTypes.some(
+      unitType => unitType.name === receivedUnitType
+    );
     const hasNumberValue = Number(value) === value;
 
     if (hasUnit && hasNumberValue) {
@@ -12,8 +14,9 @@ expect.extend({
     }
 
     return {
-      message: () => `expected ${JSON.stringify(received)} to have unit and value`,
+      message: () =>
+        `expected ${JSON.stringify(received)} to have unit and value`,
       pass: false,
     };
-  }
+  },
 });

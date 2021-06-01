@@ -23,7 +23,7 @@ describe('Response utils', () => {
       chargingStatus: {
         data: {
           value: 'charging',
-        }
+        },
       },
     });
   });
@@ -58,7 +58,7 @@ describe('Response utils', () => {
       chargingStatus: {
         availability: {
           updateRate: {
-            value: 'trip_high'
+            value: 'trip_high',
           },
           rateLimit: {
             value: 64,

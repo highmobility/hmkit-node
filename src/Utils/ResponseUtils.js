@@ -82,29 +82,38 @@ export function parseData(data) {
 
 function mapCustomResponses(parsedData, capabilityConf) {
   if (capabilityConf.name === 'capabilities') {
-    return Object.entries(parsedData).reduce((newData, [propertyName, propertyValue]) => {
-      if (propertyName === 'capabilities') {
+    return Object.entries(parsedData).reduce(
+      (newData, [propertyName, propertyValue]) => {
+        if (propertyName === 'capabilities') {
+          return {
+            ...newData,
+            capabilities: propertyValue.map(({ data }) => {
+              const capability = Object.values(capabilities).find(
+                c => c.identifier.lsb === data.capabilityID.value
+              );
+              return {
+                data: {
+                  capability: capability.name_cased,
+                  supportedProperties: [
+                    ...data.supportedPropertyIDs.map(
+                      id =>
+                        capability.properties.find(prop => prop.id === id)
+                          .name_cased
+                    ),
+                  ],
+                },
+              };
+            }),
+          };
+        }
+
         return {
           ...newData,
-          capabilities: propertyValue.map(({ data }) => {
-            const capability = Object.values(capabilities).find(c => c.identifier.lsb === data.capabilityID.value);
-            return {
-              data: {
-                capability: capability.name_cased,
-                supportedProperties: [
-                  ...data.supportedPropertyIDs.map(id => capability.properties.find(prop => prop.id === id).name_cased),
-                ]
-              }
-            }
-          }),
-        }
-      }
-
-      return {
-        ...newData,
-        [propertyName]: propertyValue
-      };
-    }, {});
+          [propertyName]: propertyValue,
+        };
+      },
+      {}
+    );
   }
 
   return parsedData;
@@ -173,9 +182,12 @@ function parseProperties(propertiesData, capabilityConf) {
 }
 
 function parseProperty(propertyData, property) {
-  const { data, time, availabilityBytes, failureBytes } = parsePropertyComponents(
-    propertyData
-  );
+  const {
+    data,
+    time,
+    availabilityBytes,
+    failureBytes,
+  } = parsePropertyComponents(propertyData);
 
   const output = {};
 
@@ -361,7 +373,11 @@ function decodeFixedLengthProperty(data, property) {
   throw new Error('Invalid estimated size', estimatedSize, property);
 }
 
-const CustomLengthPropertyTypes = [PropertyType.STRING, PropertyType.BYTES, PropertyType.CUSTOM];
+const CustomLengthPropertyTypes = [
+  PropertyType.STRING,
+  PropertyType.BYTES,
+  PropertyType.CUSTOM,
+];
 
 function decodeCustomLengthProperty(data, property) {
   let counter = 0;
@@ -398,10 +414,16 @@ function decodeEnumProperty(data, property) {
     }
   }
 
-  throw new Error(`Failed to decode enum ${JSON.stringify({
-    data,
-    property,
-  }, null, 2)}`);
+  throw new Error(
+    `Failed to decode enum ${JSON.stringify(
+      {
+        data,
+        property,
+      },
+      null,
+      2
+    )}`
+  );
 }
 
 function parsePropertyComponents(propertyComponentsData) {

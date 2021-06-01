@@ -42,12 +42,12 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
       hmkit.commands.MultiCommand.multiCommand({
         multiCommands: {
           ignition: {
-            turnIgnitionOnOff: { state: 'on' }
+            turnIgnitionOnOff: { state: 'on' },
           },
           doors: {
-            lockUnlockDoors: { locksState: 'unlocked' }
-          }
-        }
+            lockUnlockDoors: { locksState: 'unlocked' },
+          },
+        },
       }),
       accessCertificate
     );
@@ -55,96 +55,96 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
     expect(response.parse()).toBeInstanceOf(ResponseClass.MultiCommand);
 
     expect(response.parse()).toMatchObject({
-      "multiStates": [
+      multiStates: [
         {
-          "data": {
-            "doors": {
-              "brand": {
-                "data": {
-                  "value": "emulator",
-                }
-              },
-              "vin": {
-                "data": {
-                  "value": expect.any(String),
+          data: {
+            doors: {
+              brand: {
+                data: {
+                  value: 'emulator',
                 },
               },
-              "insideLocks": expect.any(Array),
-              "locks": [
+              vin: {
+                data: {
+                  value: expect.any(String),
+                },
+              },
+              insideLocks: expect.any(Array),
+              locks: [
                 {
-                  "timestamp": expect.any(Date),
-                  "data": {
-                    "location": {
-                      "value": "front_left"
+                  timestamp: expect.any(Date),
+                  data: {
+                    location: {
+                      value: 'front_left',
                     },
-                    "lockState": {
-                      "value": "unlocked"
-                    }
-                  }
+                    lockState: {
+                      value: 'unlocked',
+                    },
+                  },
                 },
                 {
-                  "timestamp": expect.any(Date),
-                  "data": {
-                    "location": {
-                      "value": "front_right"
+                  timestamp: expect.any(Date),
+                  data: {
+                    location: {
+                      value: 'front_right',
                     },
-                    "lockState": {
-                      "value": "unlocked"
-                    }
-                  }
+                    lockState: {
+                      value: 'unlocked',
+                    },
+                  },
                 },
                 {
-                  "timestamp": expect.any(Date),
-                  "data": {
-                    "location": {
-                      "value": "rear_right"
+                  timestamp: expect.any(Date),
+                  data: {
+                    location: {
+                      value: 'rear_right',
                     },
-                    "lockState": {
-                      "value": "unlocked"
-                    }
-                  }
+                    lockState: {
+                      value: 'unlocked',
+                    },
+                  },
                 },
                 {
-                  "timestamp": expect.any(Date),
-                  "data": {
-                    "location": {
-                      "value": "rear_left"
+                  timestamp: expect.any(Date),
+                  data: {
+                    location: {
+                      value: 'rear_left',
                     },
-                    "lockState": {
-                      "value": "unlocked"
-                    }
-                  }
-                }
+                    lockState: {
+                      value: 'unlocked',
+                    },
+                  },
+                },
               ],
-              "positions": expect.any(Array),
-              "insideLocksState": expect.any(Object),
-              "locksState": {
-                "timestamp": expect.any(Date),
-                "data": {
-                  "value": "unlocked"
-                }
-              }
-            }
-          }
+              positions: expect.any(Array),
+              insideLocksState: expect.any(Object),
+              locksState: {
+                timestamp: expect.any(Date),
+                data: {
+                  value: 'unlocked',
+                },
+              },
+            },
+          },
         },
         {
-          "data": {
-            "ignition": {
-              "brand": {
-                "data": {
-                  "value": "emulator",
-                }
-              },
-              "vin": {
-                "data": {
-                  "value": expect.any(String),
+          data: {
+            ignition: {
+              brand: {
+                data: {
+                  value: 'emulator',
                 },
               },
-              "state": expect.any(Object),
-            }
-          }
-        }
-      ]
+              vin: {
+                data: {
+                  value: expect.any(String),
+                },
+              },
+              state: expect.any(Object),
+            },
+          },
+        },
+      ],
     });
   });
 });
