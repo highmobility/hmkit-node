@@ -669,7 +669,7 @@
               {
                 "id": 11,
                 "name": "maintenance_changed",
-                "description": "Triggered when the property \"condition_based_services\" in Diagnostics capability changes."
+                "description": "Triggered when the property \"condition_based_services\" in Maintenance capability changes."
               },
               {
                 "id": 12,
