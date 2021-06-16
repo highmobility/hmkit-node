@@ -331,22 +331,18 @@ function getExampleResponse(capability) {
       ...mappedResp,
       [property.name_cased]: property.multiple
         ? property.examples.map(example => ({
-            timestamp: new Date('2020-12-21T15:48:04.887Z'),
-            data: {
-              value: parsePropertyData(
-                hexToUint8Array(example.data_component),
-                property
-              ),
-            },
-          }))
+          timestamp: new Date('2021-06-01T15:48:04.887Z'),
+          data: parsePropertyData(
+            hexToUint8Array(example.data_component),
+            property
+          ),
+        }))
         : {
-          timestamp: new Date('2020-12-21T15:48:04.887Z'),
-          data: {
-            value: parsePropertyData(
-              hexToUint8Array(property.examples[0].data_component),
-              property
-            ),
-          },
+          timestamp: new Date('2021-06-01T15:48:04.887Z'),
+          data: parsePropertyData(
+            hexToUint8Array(property.examples[0].data_component),
+            property
+          ),
         },
     };
   }, {});

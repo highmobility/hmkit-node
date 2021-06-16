@@ -17,7 +17,7 @@ content:
                     rainIntensity:
                         data.value: '(Number) (double) Measured raining intensity percentage&comma; whereas 0% is no rain and 100% is maximum rain'
                         timestamp: (Date)
-                example: "```json\n{\n  \"rainIntensity\": {\n    \"timestamp\": \"2020-12-21T15:48:04.887Z\",\n    \"data\": {\n      \"value\": {\n        \"value\": 1\n      }\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"rainIntensity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 1\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability
