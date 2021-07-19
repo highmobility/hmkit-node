@@ -43,9 +43,7 @@ const DOCUMENTATION_DIRECTORY = path.resolve(__dirname, '../docs/yml');
  */
 async function buildDocumentation() {
   const supportedCapabilities = Object.values(Capabilities).filter(
-    capabilityConf =>
-      !(capabilityConf.disabled_in || []).includes('web') &&
-      !['failure_message'].includes(capabilityConf.name)
+    capabilityConf => !['failure_message'].includes(capabilityConf.name)
   );
 
   await Promise.all(

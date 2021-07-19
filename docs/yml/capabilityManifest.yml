@@ -39,6 +39,11 @@
     name_pretty: Crash
     src: /docs/yml/crash.yml
 -
+    name: cruise_control
+    name_cased: cruiseControl
+    name_pretty: 'Cruise Control'
+    src: /docs/yml/cruise_control.yml
+-
     name: dashboard_lights
     name_cased: dashboardLights
     name_pretty: 'Dashboard Lights'
@@ -53,6 +58,11 @@
     name_cased: doors
     name_pretty: Doors
     src: /docs/yml/doors.yml
+-
+    name: driver_fatigue
+    name_cased: driverFatigue
+    name_pretty: 'Driver Fatigue'
+    src: /docs/yml/driver_fatigue.yml
 -
     name: engine
     name_cased: engine
@@ -73,6 +83,11 @@
     name_cased: graphics
     name_pretty: Graphics
     src: /docs/yml/graphics.yml
+-
+    name: heart_rate
+    name_cased: heartRate
+    name_pretty: 'Heart Rate'
+    src: /docs/yml/heart_rate.yml
 -
     name: historical
     name_cased: historical
@@ -98,6 +113,11 @@
     name_cased: ignition
     name_pretty: Ignition
     src: /docs/yml/ignition.yml
+-
+    name: keyfob_position
+    name_cased: keyfobPosition
+    name_pretty: 'Keyfob Position'
+    src: /docs/yml/keyfob_position.yml
 -
     name: light_conditions
     name_cased: lightConditions
@@ -163,6 +183,11 @@
     name_cased: race
     name_pretty: Race
     src: /docs/yml/race.yml
+-
+    name: remote_control
+    name_cased: remoteControl
+    name_pretty: 'Remote Control'
+    src: /docs/yml/remote_control.yml
 -
     name: rooftop_control
     name_cased: rooftopControl

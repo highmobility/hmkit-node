@@ -1,0 +1,59 @@
+title: 'Cruise Control'
+content:
+    -
+        title: 'getState([, propertyNames])'
+        id: getState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.CruiseControl.getState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: CruiseControlResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.CruiseControl.getState(),\n  accessCertificate\n);\n```"
+            -
+                id: CruiseControlResponse
+                title: CruiseControlResponse
+                parameters:
+                    cruiseControl:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    limiter:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    targetSpeed:
+                        data.value: '(Number) (speed) The target speed'
+                        timestamp: (Date)
+                    adaptiveCruiseControl:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    accTargetSpeed:
+                        data.value: '(Number) (speed) The target speed of the Adaptive Cruise Control'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"cruiseControl\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"limiter\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"higher_speed_requested\"\n    }\n  },\n  \"targetSpeed\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 61,\n      \"unit\": \"kilometers_per_hour\"\n    }\n  },\n  \"adaptiveCruiseControl\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"accTargetSpeed\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 67,\n      \"unit\": \"kilometers_per_hour\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.CruiseControl.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.CruiseControl.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.CruiseControl.getAvailability(['cruise_control']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"cruise_control\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: activateDeactivateCruiseControl
+        title: 'activateDeactivateCruiseControl({ cruiseControl, targetSpeed })'
+        parameters:
+            cruiseControl: '(String) (enum) '
+            targetSpeed: '(Number) (speed) The target speed'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.CruiseControl.activateDeactivateCruiseControl({\n    \"cruiseControl\": \"active\",\n    \"targetSpeed\": {\n      \"kilometers_per_hour\": 61\n    }\n  }),\n  accessCertificate\n);\n```"

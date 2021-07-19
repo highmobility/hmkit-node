@@ -21,47 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  *
- *  ResponseClass.js
+ *  KeyfobPosition.spec.js
  *
- *  Created by Mikk Õun on 16/01/2020.
+ *  Created by Mati Kärner on 19/07/2021.
  */
 
-import capabilitiesConfiguration from '../Configuration/capabilities.json';
-import { capitalize } from '../Utils/Helpers';
-import EmptyResponse from '../Responses/EmptyResponse';
+import getHmkit from '../testutils/getHmkit';
+import { describeTest } from '../testutils/capabilityTests';
 
-const ResponseClasses = Object.values(capabilitiesConfiguration)
-  .reduce((responseClasses, capabilityConf) => {
-    const capitalizedName = capitalize(capabilityConf.name_cased);
-    const { identifier } = capabilityConf;
-
-    if (capabilityConf.state === undefined) {
-      return {
-        ...responseClasses,
-        [capitalizedName]: EmptyResponse,
-      };
-    }
-
-    const customClass = class {};
-
-    Object.defineProperty(customClass, 'name', {
-      value: `${capitalizedName}Response`,
-    });
-
-    if (identifier) {
-      Object.defineProperty(customClass, 'msb', {
-        value: identifier.msb,
-      });
-
-      Object.defineProperty(customClass, 'lsb', {
-        value: identifier.lsb,
-      });
-    }
-
-    return {
-      ...responseClasses,
-      [capitalizedName]: customClass,
-    };
-  }, {});
-
-export default ResponseClasses;
+const hmkit = getHmkit();
+describeTest('KeyfobPosition', hmkit.commands.KeyfobPosition);

@@ -57,7 +57,6 @@ export const CommandType = {
   Setter: 'SET',
 };
 
-const WEB_CONNECTION_TYPE = 'web';
 const commands = buildCommands();
 
 function buildAvailabilityGetter(capabilityConf) {
@@ -528,10 +527,6 @@ function encodePropertyValue(value, encodingFunc) {
 
 export function buildCommands() {
   return Object.values(capabilitiesConfiguration)
-    .filter(
-      capabilityConf =>
-        !(capabilityConf.disabled_in || []).includes(WEB_CONNECTION_TYPE)
-    )
     .reduce((allConf, capabilityConf) => {
       const buildGettersAndSetters = !CAPABILITIES_WITH_NO_COMMANDS.includes(
         capabilityConf.name

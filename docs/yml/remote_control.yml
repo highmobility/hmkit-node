@@ -1,0 +1,60 @@
+title: 'Remote Control'
+content:
+    -
+        title: 'getControlState([, propertyNames])'
+        id: getControlState
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.RemoteControl.getControlState()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                returns: RemoteControlResponse
+                example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.RemoteControl.getControlState(),\n  accessCertificate\n);\n```"
+            -
+                id: RemoteControlResponse
+                title: RemoteControlResponse
+                parameters:
+                    controlMode:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    angle:
+                        data.value: '(Number) (angle) Wheel base angle'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"controlMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"started\"\n    }\n  },\n  \"angle\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 50,\n      \"unit\": \"degrees\"\n    }\n  }\n}\n```"
+    -
+        title: 'getAvailability([, propertyNames])'
+        id: get-availability
+        children:
+            -
+                declaration: "```javascript\nhmkit.commands.RemoteControl.getAvailability()\n```"
+                parameters:
+                    propertyNames: '(optional) Array of names of the properties you want returned.'
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.RemoteControl.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.RemoteControl.getAvailability(['control_mode']),\n  accessCertificate\n);\n```"
+            -
+                id: availability-response
+                title: Response
+                parameters:
+                    availability:
+                        updateRate.value: '(String) enum'
+                        rateLimit.value: (Number)
+                        rateLimit.unit: (String)
+                        appliesPer.value: (String)
+                discussion: 'The response contains an availability object for each property, as shown in the example'
+                example: "```json\n{\n  \"control_mode\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+    -
+        id: controlCommand
+        title: 'controlCommand({ angle, speed })'
+        parameters:
+            angle: '(Number) (angle) Wheel base angle'
+            speed: '(Number) (speed) Target speed'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.RemoteControl.controlCommand({\n    \"angle\": {\n      \"degrees\": 50\n    },\n    \"speed\": {\n      \"kilometers_per_hour\": 5\n    }\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: startControl
+        title: startControl()
+        parameters: {}
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.RemoteControl.startControl({}),\n  accessCertificate\n);\n```"
+    -
+        id: stopControl
+        title: stopControl()
+        parameters: {}
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.RemoteControl.stopControl({}),\n  accessCertificate\n);\n```"
