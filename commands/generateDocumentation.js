@@ -156,7 +156,7 @@ function buildAvailabilityGetter(capability) {
           // Get availability for specific properties
           hmkit.telematics.sendCommand(
             hmkit.commands.${capabilityName}.getAvailability(['${
-          (stateProperties && stateProperties[0]?.name) || 'status'
+            snakeCaseToCamelCase((stateProperties && stateProperties[0]?.name) || 'status')
         }']),
             accessCertificate
           );
@@ -178,7 +178,7 @@ function buildAvailabilityGetter(capability) {
         example: code(
           JSON.stringify(
             {
-              [(stateProperties && stateProperties[0]?.name) || 'status']: {
+              [snakeCaseToCamelCase((stateProperties && stateProperties[0]?.name) || 'status')]: {
                 availability: {
                   updateRate: {
                     value: 'trip_high',
