@@ -29,7 +29,7 @@ content:
                 declaration: "```javascript\nhmkit.commands.Fueling.getAvailability()\n```"
                 parameters:
                     propertyNames: '(optional) Array of names of the properties you want returned.'
-                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Fueling.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Fueling.getAvailability(['gas_flap_lock']),\n  accessCertificate\n);\n```"
+                example: "```javascript\n// Get availability for all properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Fueling.getAvailability(),\n  accessCertificate\n);\n// Get availability for specific properties\nhmkit.telematics.sendCommand(\n  hmkit.commands.Fueling.getAvailability(['gasFlapLock']),\n  accessCertificate\n);\n```"
             -
                 id: availability-response
                 title: Response
@@ -40,7 +40,7 @@ content:
                         rateLimit.unit: (String)
                         appliesPer.value: (String)
                 discussion: 'The response contains an availability object for each property, as shown in the example'
-                example: "```json\n{\n  \"gas_flap_lock\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"gasFlapLock\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
         id: controlGasFlap
         title: 'controlGasFlap({ gasFlapLock, gasFlapPosition })'
