@@ -149,7 +149,7 @@
       },
       {
         "id": 4,
-        "name": "ecoPlus"
+        "name": "eco_plus"
       },
       {
         "id": 5,
@@ -238,6 +238,10 @@
         "id": 12,
         "name": "lpg",
         "name_pretty": "Liquefied petroleum gas"
+      },
+      {
+        "id": 13,
+        "name": "hybrid"
       }
     ]
   },
@@ -583,6 +587,27 @@
       }
     ]
   },
+  "service_status": {
+    "name": "service_status",
+    "name_cased": "serviceStatus",
+    "name_pretty": "Service-Status",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "ok"
+      },
+      {
+        "id": 1,
+        "name": "warning"
+      },
+      {
+        "id": 2,
+        "name": "critical"
+      }
+    ]
+  },
   "start_stop": {
     "name": "start_stop",
     "name_cased": "startStop",
@@ -647,6 +672,23 @@
         "type": "uinteger",
         "size": 1,
         "description": "Value between 0 and 59"
+      }
+    ]
+  },
+  "triggered": {
+    "name": "triggered",
+    "name_cased": "triggered",
+    "name_pretty": "Triggered",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "not_triggered"
+      },
+      {
+        "id": 1,
+        "name": "triggered"
       }
     ]
   },
@@ -1005,6 +1047,132 @@
       }
     ]
   },
+  "brake_service_due_date": {
+    "name": "brake_service_due_date",
+    "name_cased": "brakeServiceDueDate",
+    "name_pretty": "Brake service due date",
+    "type": "custom",
+    "size": 9,
+    "items": [
+      {
+        "name": "axle",
+        "name_cased": "axle",
+        "type": "types.axle"
+      },
+      {
+        "name": "due_date",
+        "name_cased": "dueDate",
+        "type": "timestamp",
+        "size": 8
+      }
+    ]
+  },
+  "brake_service_remaining_distance": {
+    "name": "brake_service_remaining_distance",
+    "name_cased": "brakeServiceRemainingDistance",
+    "name_pretty": "Brake service remaining distance",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "axle",
+        "name_cased": "axle",
+        "size": 1,
+        "type": "types.axle"
+      },
+      {
+        "name": "distance",
+        "name_cased": "distance",
+        "size": 10,
+        "type": "unit.length",
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "brake_service_status": {
+    "name": "brake_service_status",
+    "name_cased": "brakeServiceStatus",
+    "name_pretty": "Brake service status",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "axle",
+        "name_cased": "axle",
+        "type": "types.axle"
+      },
+      {
+        "name": "status",
+        "name_cased": "status",
+        "type": "types.service_status"
+      }
+    ]
+  },
   "brake_torque_vectoring": {
     "name": "brake_torque_vectoring",
     "name_cased": "brakeTorqueVectoring",
@@ -1083,7 +1251,7 @@
         "name": "street_address",
         "name_cased": "streetAddress",
         "type": "string",
-        "description": "Streed address component"
+        "description": "Street address component"
       }
     ]
   },
@@ -1116,6 +1284,41 @@
         "name_cased": "provider",
         "type": "string",
         "description": "The provider name of the charging point."
+      }
+    ]
+  },
+  "charging_restriction": {
+    "name": "charging_restriction",
+    "name_cased": "chargingRestriction",
+    "name_pretty": "Charging restriction",
+    "type": "custom",
+    "size": 2,
+    "items": [
+      {
+        "name": "active",
+        "name_cased": "active",
+        "type": "types.active_state",
+        "description": "Indicates whether the charging current used to charge the vehicle is limited."
+      },
+      {
+        "name": "limit",
+        "name_cased": "limit",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "max"
+          },
+          {
+            "id": 1,
+            "name": "reduced"
+          },
+          {
+            "id": 2,
+            "name": "min"
+          }
+        ]
       }
     ]
   },
@@ -1336,6 +1539,10 @@
           {
             "id": 3,
             "name": "low"
+          },
+          {
+            "id": 4,
+            "name": "unknown"
           }
         ]
       },
@@ -2675,6 +2882,11 @@
               "name": "kilowatt_hours",
               "id": 4,
               "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
             }
           ]
         }
@@ -2795,25 +3007,6 @@
         "type": "uinteger",
         "size": 1,
         "description": "HMKit version patch number"
-      }
-    ]
-  },
-  "hvac_weekday_starting_time": {
-    "name": "hvac_weekday_starting_time",
-    "name_cased": "HVACWeekdayStartingTime",
-    "name_pretty": "HVAC weekday starting time",
-    "type": "custom",
-    "size": 3,
-    "items": [
-      {
-        "name": "weekday",
-        "name_cased": "weekday",
-        "type": "types.weekday"
-      },
-      {
-        "name": "time",
-        "name_cased": "time",
-        "type": "types.time"
       }
     ]
   },
@@ -3135,6 +3328,60 @@
       }
     ]
   },
+  "temperature_extreme": {
+    "name": "temperature_extreme",
+    "name_cased": "temperatureExtreme",
+    "name_pretty": "Temperature extreme",
+    "type": "custom",
+    "size": 11,
+    "items": [
+      {
+        "name": "extreme",
+        "name_cased": "extreme",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "highest"
+          },
+          {
+            "id": 1,
+            "name": "lowest"
+          }
+        ]
+      },
+      {
+        "name": "temperature",
+        "name_cased": "temperature",
+        "type": "unit.temperature",
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        },
+        "size": 10
+      }
+    ]
+  },
   "timer": {
     "name": "timer",
     "name_cased": "timer",
@@ -3262,6 +3509,14 @@
           {
             "id": 2,
             "name": "alert"
+          },
+          {
+            "id": 3,
+            "name": "soft"
+          },
+          {
+            "id": 4,
+            "name": "deflation"
           }
         ]
       }
@@ -3492,6 +3747,25 @@
         "name": "event",
         "name_cased": "event",
         "type": "events.event"
+      }
+    ]
+  },
+  "weekday_time": {
+    "name": "weekday_time",
+    "name_cased": "weekdayTime",
+    "name_pretty": "Weekday time",
+    "type": "custom",
+    "size": 3,
+    "items": [
+      {
+        "name": "weekday",
+        "name_cased": "weekday",
+        "type": "types.weekday"
+      },
+      {
+        "name": "time",
+        "name_cased": "time",
+        "type": "types.time"
       }
     ]
   },

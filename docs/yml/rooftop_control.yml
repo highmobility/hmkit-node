@@ -32,7 +32,10 @@ content:
                     sunroofRainEvent:
                         data.value: '(String) (enum) Sunroof event happened in case of rain'
                         timestamp: (Date)
-                example: "```json\n{\n  \"dimming\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 1\n    }\n  },\n  \"position\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.5\n    }\n  },\n  \"convertibleRoofState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"sunroofTiltState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"half_tilted\"\n    }\n  },\n  \"sunroofState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"sunroofRainEvent\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"no_event\"\n    }\n  }\n}\n```"
+                    tiltPosition:
+                        data.value: '(Number) (double) 1.0 (100%) is fully tilted&comma; 0.0 (0%) is not'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"dimming\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 1\n    }\n  },\n  \"position\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.5\n    }\n  },\n  \"convertibleRoofState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"sunroofTiltState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"half_tilted\"\n    }\n  },\n  \"sunroofState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"sunroofRainEvent\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"no_event\"\n    }\n  },\n  \"tiltPosition\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.5\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

@@ -25,7 +25,8 @@
       8,
       9,
       10,
-      11
+      11,
+      12
     ],
     "properties": [
       {
@@ -458,6 +459,37 @@
           }
         ],
         "customType": "on_off_state"
+      },
+      {
+        "name": "launch_control",
+        "name_cased": "launchControl",
+        "name_pretty": "Launch control",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 12,
+        "added": 13,
+        "description": "State of launch control activation.",
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "active",
+            "description": "Launch control is active."
+          }
+        ],
+        "customType": "active_state"
       }
     ]
   },
@@ -642,26 +674,6 @@
                 "description": "Sent when the tire pressure changed to low or too high."
               },
               {
-                "id": 6,
-                "name": "harsh_acceleration_triggered",
-                "description": "Sent when the vehicle’s acceleration rate exceeds the configurable limit for hard acceleration for a duration exceeding the configurable time duration limit."
-              },
-              {
-                "id": 7,
-                "name": "harsh_acceleration_pedal_position_triggered",
-                "description": "Sent when the vehicle’s acceleration pedal position exceeds the configurable limit for hard acceleration for a duration exceeding the configurable time duration limit."
-              },
-              {
-                "id": 8,
-                "name": "harsh_braking_triggered",
-                "description": "Indicates if the vehicle’s deceleration rate exceeds the configurable limit for harsh braking for a duration exceeding the configurable time limit."
-              },
-              {
-                "id": 9,
-                "name": "harsh_cornering_triggered",
-                "description": "Indicates if the vehicle’s lateral acceleration rate exceeds the configurable limit for harsh cornering for a duration exceeding the configurable time duration limit."
-              },
-              {
                 "id": 10,
                 "name": "seat_belt_triggered",
                 "description": "Indicates a seat belt is buckled while the vehicle is moving."
@@ -831,7 +843,37 @@
       33,
       34,
       35,
-      36
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66
     ],
     "properties": [
       {
@@ -1283,6 +1325,16 @@
             "id": 2,
             "name": "inductive",
             "disabled_in_setter": true
+          },
+          {
+            "id": 3,
+            "name": "conductive",
+            "disabled_in_setter": true
+          },
+          {
+            "id": 4,
+            "name": "push_button",
+            "disabled_in_setter": true
           }
         ],
         "examples": [
@@ -1342,11 +1394,13 @@
         "enum_values": [
           {
             "id": 0,
-            "name": "type_1"
+            "name": "type_1",
+            "name_pretty": "Connector type SAE J1772"
           },
           {
             "id": 1,
-            "name": "type_2"
+            "name": "type_2",
+            "name_pretty": "IEC 62196 Type 2 connector"
           },
           {
             "id": 2,
@@ -1683,6 +1737,10 @@
           {
             "id": 1,
             "name": "plugged_in"
+          },
+          {
+            "id": 2,
+            "name": "plugged_in_both_sides"
           }
         ],
         "examples": [
@@ -1755,6 +1813,11 @@
             "id": 10,
             "name": "foreign_object_detected",
             "disabled_in_setter": true
+          },
+          {
+            "id": 11,
+            "name": "conditioning",
+            "disabled_in_setter": true
           }
         ],
         "examples": [
@@ -1823,7 +1886,7 @@
         "added": 12,
         "type": "unit.electric_current",
         "size": 10,
-        "description": "Battery current",
+        "description": "Battery current - charging if posititive and discharning when negative.",
         "examples": [
           {
             "data_component": "0900bfe3333333333333",
@@ -2022,17 +2085,27 @@
           {
             "id": 0,
             "name": "red",
-            "description": "Battery charge is greater than 0%"
+            "description": "Vehicle engine will not start anymore, battery must be charged using an external system (battery charge is greater than 0%)."
           },
           {
             "id": 1,
             "name": "yellow",
-            "description": "Battery charge is greater than 40%"
+            "description": "Battery partly discharged, battery should be charged by driving the vehicle to avoid loosing functionality (battery charge is greater than 40%)."
           },
           {
             "id": 2,
             "name": "green",
-            "description": "Battery charge is greater than 70%"
+            "description": "Ok, (battery charge is greater than 70%)."
+          },
+          {
+            "id": 3,
+            "name": "orange",
+            "description": "Battery is now in saving mode, remote commands are not possible anymore, battery should be charged by driving the vehicle."
+          },
+          {
+            "id": 4,
+            "name": "green_yellow",
+            "description": "Battery partly discharged but ok."
           }
         ],
         "examples": [
@@ -2245,7 +2318,7 @@
             "value": {
               "kilowatt_hours": 70
             },
-            "description": "Battery capacity is 70.0Kwh"
+            "description": "Battery capacity is 70.0kWh"
           }
         ],
         "unit": {
@@ -2271,9 +2344,1449 @@
               "name": "kilowatt_hours",
               "id": 4,
               "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
             }
           ]
         }
+      },
+      {
+        "id": 37,
+        "name": "auxiliary_power",
+        "name_cased": "auxiliaryPower",
+        "name_pretty": "Auxiliary power",
+        "added": 13,
+        "type": "unit.power",
+        "size": 10,
+        "description": "Auxiliary power used for predictions.",
+        "examples": [
+          {
+            "data_component": "1402405e000000000000",
+            "value": {
+              "kilowatts": 120
+            },
+            "description": "Auxiliary power is 120.0kW."
+          }
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
+      },
+      {
+        "name": "charging_complete_lock",
+        "name_cased": "chargingCompleteLock",
+        "name_pretty": "Charging complete lock",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 38,
+        "added": 13,
+        "description": "Locking status of the charging plug after charging complete.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "inactive",
+            "description": "Charging complete lock status is 'inactive'."
+          }
+        ],
+        "customType": "active_state"
+      },
+      {
+        "id": 39,
+        "name": "battery_max_available",
+        "name_cased": "batteryMaxAvailable",
+        "name_pretty": "Battery max available",
+        "added": 13,
+        "type": "unit.energy",
+        "size": 10,
+        "description": "Maximum available energy content of the high-voltage battery.",
+        "examples": [
+          {
+            "data_component": "0c044058c00000000000",
+            "value": {
+              "kilowatt_hours": 99
+            },
+            "description": "Maximum available battery capacity is 99.0kWh"
+          }
+        ],
+        "unit": {
+          "name": "energy",
+          "id": 12,
+          "unit_types": [
+            {
+              "name": "joules",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilojoules",
+              "id": 1,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "watt_hours",
+              "id": 3,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "kilowatt_hours",
+              "id": 4,
+              "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
+            }
+          ]
+        }
+      },
+      {
+        "id": 40,
+        "name": "charging_end_reason",
+        "name_cased": "chargingEndReason",
+        "name_pretty": "Charging end reason",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Reason for ending a charging process.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unknown"
+          },
+          {
+            "id": 1,
+            "name": "goal_reached"
+          },
+          {
+            "id": 2,
+            "name": "requested_by_driver"
+          },
+          {
+            "id": 3,
+            "name": "connector_removed"
+          },
+          {
+            "id": 4,
+            "name": "powergrid_failed"
+          },
+          {
+            "id": 5,
+            "name": "hv_system_failure",
+            "name_pretty": "High-Voltage system failure"
+          },
+          {
+            "id": 6,
+            "name": "charging_station_failure"
+          },
+          {
+            "id": 7,
+            "name": "parking_lock_failed"
+          },
+          {
+            "id": 8,
+            "name": "no_parking_lock"
+          },
+          {
+            "id": 9,
+            "name": "signal_invalid"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "goal_reached",
+            "description": "Charging ended because 'goal_reached'."
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "name": "charging_phases",
+        "name_cased": "chargingPhases",
+        "name_pretty": "Charging phases",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Charging process count of the high-voltage battery (phases).",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_charging"
+          },
+          {
+            "id": 1,
+            "name": "one"
+          },
+          {
+            "id": 2,
+            "name": "two"
+          },
+          {
+            "id": 3,
+            "name": "three"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "one",
+            "description": "Charging has 'one' phase."
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "name": "battery_energy",
+        "name_cased": "batteryEnergy",
+        "name_pretty": "Battery energy",
+        "added": 13,
+        "type": "unit.energy",
+        "size": 10,
+        "description": "Energy content of the high-voltage battery.",
+        "examples": [
+          {
+            "data_component": "0c04405de00000000000",
+            "value": {
+              "kilowatt_hours": 119.5
+            },
+            "description": "Current energy content of the high-voltage battery is 119.5kWh."
+          }
+        ],
+        "unit": {
+          "name": "energy",
+          "id": 12,
+          "unit_types": [
+            {
+              "name": "joules",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilojoules",
+              "id": 1,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "watt_hours",
+              "id": 3,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "kilowatt_hours",
+              "id": 4,
+              "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
+            }
+          ]
+        }
+      },
+      {
+        "id": 43,
+        "name": "battery_energy_chargable",
+        "name_cased": "batteryEnergyChargable",
+        "name_pretty": "Battery energy chargable",
+        "added": 13,
+        "type": "unit.energy",
+        "size": 10,
+        "description": "Energy required until high-voltage battery is fully charged.",
+        "examples": [
+          {
+            "data_component": "0c04403ec00000000000",
+            "value": {
+              "kilowatt_hours": 30.75
+            },
+            "description": "Energy required to fully charge the battery is 30.75kWh."
+          }
+        ],
+        "unit": {
+          "name": "energy",
+          "id": 12,
+          "unit_types": [
+            {
+              "name": "joules",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilojoules",
+              "id": 1,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "watt_hours",
+              "id": 3,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "kilowatt_hours",
+              "id": 4,
+              "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
+            }
+          ]
+        }
+      },
+      {
+        "name": "charging_single_immediate",
+        "name_cased": "chargingSingleImmediate",
+        "name_pretty": "Charging single immediate",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 44,
+        "added": 13,
+        "description": "Single instant charging function status.",
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "active",
+            "description": "Single instant charging function is 'active'."
+          }
+        ],
+        "customType": "active_state"
+      },
+      {
+        "id": 45,
+        "name": "charging_time_display",
+        "name_cased": "chargingTimeDisplay",
+        "name_pretty": "Charging time display",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Charging time displayed in the vehicle.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_display"
+          },
+          {
+            "id": 1,
+            "name": "display_duration"
+          },
+          {
+            "id": 2,
+            "name": "no_display_duration"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "display_duration",
+            "description": "Charging duration is displayed in the vehicle."
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "name": "departure_time_display",
+        "name_cased": "departureTimeDisplay",
+        "name_pretty": "Departure time display",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Departure time displayed in the vehicle.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_display"
+          },
+          {
+            "id": 1,
+            "name": "reachable"
+          },
+          {
+            "id": 2,
+            "name": "not_reachable"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "reachable",
+            "description": "Departure time display is showing 'reachable'."
+          }
+        ]
+      },
+      {
+        "name": "restriction",
+        "name_cased": "restriction",
+        "name_pretty": "Restriction",
+        "type": "custom",
+        "size": 2,
+        "items": [
+          {
+            "name": "active",
+            "name_cased": "active",
+            "name_pretty": "Active state",
+            "type": "enum",
+            "size": 1,
+            "controls": "switch",
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "inactive",
+                "verb": "deactivate"
+              },
+              {
+                "id": 1,
+                "name": "active",
+                "verb": "activate"
+              }
+            ],
+            "description": "Indicates whether the charging current used to charge the vehicle is limited.",
+            "customType": "active_state"
+          },
+          {
+            "name": "limit",
+            "name_cased": "limit",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "max"
+              },
+              {
+                "id": 1,
+                "name": "reduced"
+              },
+              {
+                "id": 2,
+                "name": "min"
+              }
+            ]
+          }
+        ],
+        "id": 47,
+        "added": 13,
+        "description": "Charging limit and state",
+        "examples": [
+          {
+            "data_component": "0100",
+            "values": {
+              "active": "active",
+              "limit": "max"
+            },
+            "description": "Charging restriction is 'active' and set to 'max'."
+          }
+        ],
+        "customType": "charging_restriction"
+      },
+      {
+        "name": "limit_status",
+        "name_cased": "limitStatus",
+        "name_pretty": "Limit status",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 48,
+        "added": 13,
+        "description": "Indicates whether charging limit is active.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "inactive",
+            "description": "Charging limit is 'inactive'."
+          }
+        ],
+        "customType": "active_state"
+      },
+      {
+        "id": 49,
+        "name": "current_limit",
+        "name_cased": "currentLimit",
+        "name_pretty": "Current limit",
+        "added": 13,
+        "type": "unit.electric_current",
+        "size": 10,
+        "description": "Limit for the charging current.",
+        "examples": [
+          {
+            "data_component": "09004059000000000000",
+            "value": {
+              "amperes": 100
+            },
+            "description": "Charging current limit is 100.0A."
+          }
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
+      },
+      {
+        "id": 50,
+        "name": "smart_charging_option",
+        "name_cased": "smartChargingOption",
+        "name_pretty": "Smart charging option",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Smart charging option being used to charge with.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "price_optimized"
+          },
+          {
+            "id": 1,
+            "name": "renewable_energy"
+          },
+          {
+            "id": 2,
+            "name": "co2_optimized",
+            "name_pretty": "CO2 optimized"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "renewable_energy",
+            "description": "Smart charging option is set to 'renewable_energy'."
+          }
+        ]
+      },
+      {
+        "name": "plug_lock_status",
+        "name_cased": "plugLockStatus",
+        "name_pretty": "Plug lock status",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unlocked",
+            "verb": "unlock"
+          },
+          {
+            "id": 1,
+            "name": "locked",
+            "verb": "lock"
+          }
+        ],
+        "id": 51,
+        "added": 13,
+        "description": "Locking status of charging plug.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "unlocked",
+            "description": "Charging plug is 'unlocked'."
+          }
+        ],
+        "customType": "lock_state"
+      },
+      {
+        "name": "flap_lock_status",
+        "name_cased": "flapLockStatus",
+        "name_pretty": "Flap lock status",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "unlocked",
+            "verb": "unlock"
+          },
+          {
+            "id": 1,
+            "name": "locked",
+            "verb": "lock"
+          }
+        ],
+        "id": 52,
+        "added": 13,
+        "description": "Locking status of charging flap.",
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "locked",
+            "description": "Charging flap is 'locked'."
+          }
+        ],
+        "customType": "lock_state"
+      },
+      {
+        "id": 53,
+        "name": "acoustic_limit",
+        "name_cased": "acousticLimit",
+        "name_pretty": "Acoustic limit",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Acoustic limitation of charging process.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_action"
+          },
+          {
+            "id": 1,
+            "name": "automatic"
+          },
+          {
+            "id": 2,
+            "name": "unlimited"
+          },
+          {
+            "id": 3,
+            "name": "limited"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "automatic",
+            "description": "Charging process acoustic limitation is 'automatic'."
+          }
+        ]
+      },
+      {
+        "id": 54,
+        "name": "min_charging_current",
+        "name_cased": "minChargingCurrent",
+        "name_pretty": "Minimum charging current",
+        "type": "unit.electric_current",
+        "size": 10,
+        "description": "Minimum charging current.",
+        "examples": [
+          {
+            "data_component": "09004014000000000000",
+            "value": {
+              "amperes": 5
+            },
+            "description": "Minimum charging current is 5.0A."
+          }
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
+      },
+      {
+        "id": 55,
+        "name": "estimated_range_target",
+        "name_cased": "estimatedRangeTarget",
+        "name_pretty": "Estimated range target",
+        "added": 13,
+        "type": "unit.length",
+        "size": 10,
+        "description": "Remaining electric range depending on target charging status.",
+        "examples": [
+          {
+            "data_component": "12044072c00000000000",
+            "value": {
+              "kilometers": 300
+            },
+            "description": "Remaining electric range target is 300.0km."
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "name": "fully_charged_end_times",
+        "name_cased": "fullyChargedEndTimes",
+        "name_pretty": "Fully charged end times",
+        "type": "custom",
+        "size": 3,
+        "items": [
+          {
+            "name": "weekday",
+            "name_cased": "weekday",
+            "name_pretty": "Weekday",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "monday"
+              },
+              {
+                "id": 1,
+                "name": "tuesday"
+              },
+              {
+                "id": 2,
+                "name": "wednesday"
+              },
+              {
+                "id": 3,
+                "name": "thursday"
+              },
+              {
+                "id": 4,
+                "name": "friday"
+              },
+              {
+                "id": 5,
+                "name": "saturday"
+              },
+              {
+                "id": 6,
+                "name": "sunday"
+              },
+              {
+                "id": 7,
+                "name": "automatic"
+              }
+            ],
+            "customType": "weekday"
+          },
+          {
+            "name": "time",
+            "name_cased": "time",
+            "name_pretty": "Time",
+            "type": "custom",
+            "size": 2,
+            "items": [
+              {
+                "name": "hour",
+                "name_cased": "hour",
+                "unit_sign": "h",
+                "validation": "min:0|max:23",
+                "type": "uinteger",
+                "size": 1,
+                "description": "Value between 0 and 23"
+              },
+              {
+                "name": "minute",
+                "name_cased": "minute",
+                "unit_sign": "m",
+                "validation": "min:0|max:59",
+                "type": "uinteger",
+                "size": 1,
+                "description": "Value between 0 and 59"
+              }
+            ],
+            "customType": "time"
+          }
+        ],
+        "id": 56,
+        "added": 13,
+        "description": "Time and weekday when the vehicle will be fully charged.",
+        "examples": [
+          {
+            "data_component": "00051e",
+            "values": {
+              "weekday": "monday",
+              "time": {
+                "hour": 5,
+                "minute": 30
+              }
+            },
+            "description": "Vehicle will be fully charged on monday at 05:30."
+          }
+        ],
+        "customType": "weekday_time"
+      },
+      {
+        "name": "preconditioning_scheduled_time",
+        "name_cased": "preconditioningScheduledTime",
+        "name_pretty": "Preconditioning scheduled time",
+        "type": "custom",
+        "size": 2,
+        "items": [
+          {
+            "name": "hour",
+            "name_cased": "hour",
+            "unit_sign": "h",
+            "validation": "min:0|max:23",
+            "type": "uinteger",
+            "size": 1,
+            "description": "Value between 0 and 23"
+          },
+          {
+            "name": "minute",
+            "name_cased": "minute",
+            "unit_sign": "m",
+            "validation": "min:0|max:59",
+            "type": "uinteger",
+            "size": 1,
+            "description": "Value between 0 and 59"
+          }
+        ],
+        "id": 57,
+        "added": 13,
+        "description": "Preconditioning scheduled departure time.",
+        "examples": [
+          {
+            "data_component": "051e",
+            "values": {
+              "hour": 5,
+              "minute": 30
+            },
+            "description": "Preconditioning scheduled departure time is at 05:30."
+          }
+        ],
+        "customType": "time"
+      },
+      {
+        "id": 58,
+        "name": "preconditioning_remaining_time",
+        "name_cased": "preconditioningRemainingTime",
+        "name_pretty": "Preconditioning remaining time",
+        "added": 13,
+        "type": "unit.duration",
+        "size": 10,
+        "description": "Time until preconditioning is complete.",
+        "examples": [
+          {
+            "data_component": "0701405b800000000000",
+            "value": {
+              "minutes": 110
+            },
+            "description": "Preconditioning is completed in 110.0min."
+          }
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
+      },
+      {
+        "id": 59,
+        "name": "battery_voltage",
+        "name_cased": "batteryVoltage",
+        "name_pretty": "Battery voltage",
+        "added": 13,
+        "type": "unit.electric_potential_difference",
+        "size": 10,
+        "description": "High-voltage battery electric potential difference (aka voltage).",
+        "examples": [
+          {
+            "data_component": "0a00405e000000000000",
+            "value": {
+              "volts": 120
+            },
+            "description": "HV battery voltage is 120.0V."
+          }
+        ],
+        "unit": {
+          "name": "electric_potential_difference",
+          "id": 10,
+          "unit_types": [
+            {
+              "name": "volts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millivolts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilovolts",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
+      },
+      {
+        "name": "battery_tempretature_extremes",
+        "name_cased": "batteryTempretatureExtremes",
+        "name_pretty": "Battery tempretature extremes",
+        "type": "custom",
+        "size": 11,
+        "items": [
+          {
+            "name": "extreme",
+            "name_cased": "extreme",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "highest"
+              },
+              {
+                "id": 1,
+                "name": "lowest"
+              }
+            ]
+          },
+          {
+            "name": "temperature",
+            "name_cased": "temperature",
+            "type": "unit.temperature",
+            "unit": {
+              "name": "temperature",
+              "id": 23,
+              "unit_types": [
+                {
+                  "name": "kelvin",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "celsius",
+                  "id": 1,
+                  "conversion_linear": 1,
+                  "conversion_constant": 273.15
+                },
+                {
+                  "name": "fahrenheit",
+                  "id": 2,
+                  "conversion_linear": 0.555556,
+                  "conversion_constant": 255.372222
+                }
+              ]
+            },
+            "size": 10
+          }
+        ],
+        "id": 60,
+        "deprecated": {
+          "new_name": "battery_temperature_extremes",
+          "reason": "fixed the name typo"
+        },
+        "added": 13,
+        "description": "Current highest-lowest temperature inside the battery.",
+        "examples": [
+          {
+            "data_component": "0017014055400000000000",
+            "values": {
+              "extreme": "highest",
+              "temperature": {
+                "celsius": 85
+              }
+            },
+            "description": "Battery highest temperature is 85.0C."
+          }
+        ],
+        "customType": "temperature_extreme"
+      },
+      {
+        "id": 61,
+        "name": "battery_temperature_control_demand",
+        "name_cased": "batteryTemperatureControlDemand",
+        "name_pretty": "Battery temperature control demand",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Current demand of HV battery temperature control system.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "high_cooling"
+          },
+          {
+            "id": 1,
+            "name": "medium_cooling"
+          },
+          {
+            "id": 2,
+            "name": "low_cooling"
+          },
+          {
+            "id": 3,
+            "name": "no_temperature_requirement"
+          },
+          {
+            "id": 4,
+            "name": "low_heating"
+          },
+          {
+            "id": 5,
+            "name": "medium_heating"
+          },
+          {
+            "id": 6,
+            "name": "high_heating"
+          },
+          {
+            "id": 7,
+            "name": "circulation_requirement"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "high_cooling",
+            "description": "Battery temperature control system demands high cooling."
+          }
+        ]
+      },
+      {
+        "id": 62,
+        "name": "charging_current",
+        "name_cased": "chargingCurrent",
+        "name_pretty": "Charging current",
+        "added": 13,
+        "type": "unit.electric_current",
+        "size": 10,
+        "description": "Charging electric current.",
+        "examples": [
+          {
+            "data_component": "090040091eb851eb851f",
+            "value": {
+              "amperes": 3.14
+            },
+            "description": "Charging current is 3.14A."
+          }
+        ],
+        "unit": {
+          "name": "electric_current",
+          "id": 9,
+          "unit_types": [
+            {
+              "name": "amperes",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliamperes",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kiloamperes",
+              "id": 2,
+              "conversion_linear": 1000
+            }
+          ]
+        }
+      },
+      {
+        "id": 63,
+        "name": "battery_status",
+        "name_cased": "batteryStatus",
+        "name_pretty": "Battery status",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Battery state.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive"
+          },
+          {
+            "id": 1,
+            "name": "active"
+          },
+          {
+            "id": 2,
+            "name": "balancing"
+          },
+          {
+            "id": 3,
+            "name": "external_load"
+          },
+          {
+            "id": 4,
+            "name": "load"
+          },
+          {
+            "id": 5,
+            "name": "error"
+          },
+          {
+            "id": 6,
+            "name": "initialising"
+          },
+          {
+            "id": 7,
+            "name": "conditioning"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "active",
+            "description": "Battery is in an active state."
+          }
+        ]
+      },
+      {
+        "id": 64,
+        "name": "battery_led",
+        "name_cased": "batteryLed",
+        "name_pretty": "Battery led",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "State of LED for the battery.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_colour"
+          },
+          {
+            "id": 1,
+            "name": "white"
+          },
+          {
+            "id": 2,
+            "name": "yellow"
+          },
+          {
+            "id": 3,
+            "name": "green"
+          },
+          {
+            "id": 4,
+            "name": "red"
+          },
+          {
+            "id": 5,
+            "name": "yellow_pulsing"
+          },
+          {
+            "id": 6,
+            "name": "green_pulsing"
+          },
+          {
+            "id": 7,
+            "name": "red_pulsing"
+          },
+          {
+            "id": 8,
+            "name": "green_red_pulsing"
+          },
+          {
+            "id": 9,
+            "name": "green_flashing"
+          },
+          {
+            "id": 10,
+            "name": "initialising"
+          },
+          {
+            "id": 11,
+            "name": "error"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "no_colour",
+            "description": "State of battery LED is no colour."
+          }
+        ]
+      },
+      {
+        "id": 65,
+        "name": "battery_cooling_temperature",
+        "name_cased": "batteryCoolingTemperature",
+        "name_pretty": "Battery cooling temperature",
+        "added": 13,
+        "type": "unit.temperature",
+        "size": 10,
+        "description": "Battery cooling temperature.",
+        "examples": [
+          {
+            "data_component": "1701404fb33333333333",
+            "value": {
+              "celsius": 63.4
+            },
+            "description": "Battery cooling temperature is 63.4C."
+          }
+        ],
+        "unit": {
+          "name": "temperature",
+          "id": 23,
+          "unit_types": [
+            {
+              "name": "kelvin",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "celsius",
+              "id": 1,
+              "conversion_linear": 1,
+              "conversion_constant": 273.15
+            },
+            {
+              "name": "fahrenheit",
+              "id": 2,
+              "conversion_linear": 0.555556,
+              "conversion_constant": 255.372222
+            }
+          ]
+        }
+      },
+      {
+        "name": "battery_temperature_extremes",
+        "name_cased": "batteryTemperatureExtremes",
+        "name_pretty": "Battery temperature extremes",
+        "type": "custom",
+        "size": 11,
+        "items": [
+          {
+            "name": "extreme",
+            "name_cased": "extreme",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "highest"
+              },
+              {
+                "id": 1,
+                "name": "lowest"
+              }
+            ]
+          },
+          {
+            "name": "temperature",
+            "name_cased": "temperature",
+            "type": "unit.temperature",
+            "unit": {
+              "name": "temperature",
+              "id": 23,
+              "unit_types": [
+                {
+                  "name": "kelvin",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "celsius",
+                  "id": 1,
+                  "conversion_linear": 1,
+                  "conversion_constant": 273.15
+                },
+                {
+                  "name": "fahrenheit",
+                  "id": 2,
+                  "conversion_linear": 0.555556,
+                  "conversion_constant": 255.372222
+                }
+              ]
+            },
+            "size": 10
+          }
+        ],
+        "id": 66,
+        "added": 12,
+        "description": "Current highest-lowest temperature inside the battery.",
+        "examples": [
+          {
+            "data_component": "0017014055400000000000",
+            "values": {
+              "extreme": "highest",
+              "temperature": {
+                "celsius": 85
+              }
+            },
+            "description": "Battery highest temperature is 85.0C."
+          }
+        ],
+        "customType": "temperature_extreme"
       }
     ]
   },
@@ -2575,6 +4088,11 @@
               "name": "kilowatt_hours",
               "id": 4,
               "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
             }
           ]
         }
@@ -2620,6 +4138,11 @@
               "name": "kilowatt_hours",
               "id": 4,
               "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
             }
           ]
         }
@@ -2814,7 +4337,7 @@
             "name": "street_address",
             "name_cased": "streetAddress",
             "type": "string",
-            "description": "Streed address component"
+            "description": "Street address component"
           }
         ],
         "id": 14,
@@ -2917,7 +4440,7 @@
           },
           {
             "id": 4,
-            "name": "ecoPlus"
+            "name": "eco_plus"
           },
           {
             "id": 5,
@@ -3537,7 +5060,9 @@
       8,
       9,
       11,
-      12
+      12,
+      13,
+      14
     ],
     "properties": [
       {
@@ -4032,7 +5557,7 @@
             "description": "HVAC is automatic"
           }
         ],
-        "customType": "hvac_weekday_starting_time"
+        "customType": "weekday_time"
       },
       {
         "id": 12,
@@ -4074,6 +5599,76 @@
             }
           ]
         }
+      },
+      {
+        "name": "humidity",
+        "name_cased": "humidity",
+        "name_pretty": "Humidity",
+        "unit_sign": "%",
+        "validation": "min:0|max:1",
+        "type": "double",
+        "size": 8,
+        "description": "Measured relative humidity between 0.0 - 1.0.",
+        "id": 13,
+        "added": 13,
+        "examples": [
+          {
+            "data_component": "3fe22d0e56041893",
+            "value": 0.568,
+            "description": "Measured relative humidity is 0.568%."
+          }
+        ],
+        "customType": "percentage"
+      },
+      {
+        "id": 14,
+        "name": "air_conditioner_compressor_power",
+        "name_cased": "airConditionerCompressorPower",
+        "name_pretty": "Air conditioner compressor power",
+        "added": 13,
+        "type": "unit.power",
+        "size": 10,
+        "description": "Electric air conditioner compressor power.",
+        "examples": [
+          {
+            "data_component": "14023fe999999999999a",
+            "value": {
+              "kilowatts": 0.8
+            },
+            "description": "Air conditioner compressor is using/producing 0.8kW of power."
+          }
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
       }
     ]
   },
@@ -4098,7 +5693,8 @@
       3,
       4,
       5,
-      6
+      6,
+      7
     ],
     "properties": [
       {
@@ -4150,6 +5746,10 @@
               {
                 "id": 3,
                 "name": "low"
+              },
+              {
+                "id": 4,
+                "name": "unknown"
               }
             ]
           },
@@ -4231,7 +5831,7 @@
           {
             "data_component": "01",
             "value": "non_pedestrian",
-            "description": "Crash type is non-pedestrian (i.e. a another vehicle)"
+            "description": "Crash type is non-pedestrian (i.e. another vehicle)"
           }
         ]
       },
@@ -4317,11 +5917,12 @@
         "added": 13,
         "type": "enum",
         "size": 1,
+        "multiple": true,
         "description": "Impact zone of the crash",
         "enum_values": [
           {
             "id": 0,
-            "name": "predestrian_protection"
+            "name": "pedestrian_protection"
           },
           {
             "id": 1,
@@ -4337,7 +5938,7 @@
           },
           {
             "id": 4,
-            "name": "side_passeger_side"
+            "name": "side_passenger_side"
           },
           {
             "id": 5,
@@ -4354,9 +5955,50 @@
         ],
         "examples": [
           {
+            "data_component": "03",
+            "value": "rear_driver_side",
+            "description": "Impact zone is rear driver side"
+          },
+          {
+            "data_component": "05",
+            "value": "side_driver_side",
+            "description": "Impact zone is side driver side"
+          },
+          {
             "data_component": "07",
             "value": "front_driver_side",
             "description": "Impact zone is front driver side"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "status",
+        "name_cased": "status",
+        "name_pretty": "Status",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "The system effect an inpact had on the vehicle.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "normal"
+          },
+          {
+            "id": 1,
+            "name": "restraints_engaged"
+          },
+          {
+            "id": 2,
+            "name": "airbag_triggered"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "normal",
+            "description": "Impact effect on the vehicle was 'normal'."
           }
         ]
       }
@@ -7214,7 +8856,8 @@
       51,
       52,
       53,
-      54
+      54,
+      55
     ],
     "properties": [
       {
@@ -9207,6 +10850,14 @@
               {
                 "id": 2,
                 "name": "alert"
+              },
+              {
+                "id": 3,
+                "name": "soft"
+              },
+              {
+                "id": 4,
+                "name": "deflation"
               }
             ]
           }
@@ -10611,6 +12262,38 @@
             "description": "Low voltage battery charge level is ok"
           }
         ]
+      },
+      {
+        "name": "engine_oil_service_status",
+        "name_cased": "engineOilServiceStatus",
+        "name_pretty": "Engine oil service-status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "warning"
+          },
+          {
+            "id": 2,
+            "name": "critical"
+          }
+        ],
+        "id": 55,
+        "added": 13,
+        "description": "Engine oil service status",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "ok",
+            "description": "Engine oil service status is 'ok'"
+          }
+        ],
+        "customType": "service_status"
       }
     ]
   },
@@ -11097,7 +12780,13 @@
     "state": [
       1,
       2,
-      3
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
     ],
     "properties": [
       {
@@ -11187,6 +12876,240 @@
           }
         ],
         "customType": "enabled_state"
+      },
+      {
+        "name": "preconditioning_enabled",
+        "name_cased": "preconditioningEnabled",
+        "name_pretty": "Pre-conditioning enabled",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "disabled",
+            "verb": "disable"
+          },
+          {
+            "id": 1,
+            "name": "enabled",
+            "verb": "enable"
+          }
+        ],
+        "id": 4,
+        "added": 13,
+        "description": "Use of the engine pre-conditioning is enabled.",
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "enabled",
+            "description": "Use of engine pre-conditioning is 'enabled'."
+          }
+        ],
+        "customType": "enabled_state"
+      },
+      {
+        "name": "preconditioning_active",
+        "name_cased": "preconditioningActive",
+        "name_pretty": "Pre-conditioning active",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 5,
+        "added": 13,
+        "description": "Pre-conditioning is running.",
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "active",
+            "description": "Pre-conditioning is 'active'."
+          }
+        ],
+        "customType": "active_state"
+      },
+      {
+        "id": 6,
+        "name": "preconditioning_remaining_time",
+        "name_cased": "preconditioningRemainingTime",
+        "name_pretty": "Pre-conditioning remaining time",
+        "added": 13,
+        "type": "unit.duration",
+        "size": 10,
+        "description": "Remaining time of pre-conditioning.",
+        "examples": [
+          {
+            "data_component": "0701402f000000000000",
+            "value": {
+              "minutes": 15.5
+            },
+            "description": "Pre-conditioning remaining time is 15.5min."
+          }
+        ],
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            }
+          ]
+        }
+      },
+      {
+        "id": 7,
+        "name": "preconditioning_error",
+        "name_cased": "preconditioningError",
+        "name_pretty": "Pre-conditioning error",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Reason for not carrying out pre-conditioning.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "low_fuel"
+          },
+          {
+            "id": 1,
+            "name": "low_battery"
+          },
+          {
+            "id": 2,
+            "name": "quota_exceeded"
+          },
+          {
+            "id": 3,
+            "name": "heater_failure"
+          },
+          {
+            "id": 4,
+            "name": "component_failure"
+          },
+          {
+            "id": 5,
+            "name": "open_or_unlocked"
+          },
+          {
+            "id": 6,
+            "name": "ok"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "low_fuel",
+            "description": "Pre-conditioning error is 'low_fuel'."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "preconditioning_status",
+        "name_cased": "preconditioningStatus",
+        "name_pretty": "Pre-conditioning status",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Status of the pre-conditioning system.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "standby"
+          },
+          {
+            "id": 1,
+            "name": "heating"
+          },
+          {
+            "id": 2,
+            "name": "cooling"
+          },
+          {
+            "id": 3,
+            "name": "ventilation"
+          },
+          {
+            "id": 4,
+            "name": "inactive"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "standby",
+            "description": "Pre-conditioning status is 'standby'."
+          }
+        ]
+      },
+      {
+        "name": "limp_mode",
+        "name_cased": "limpMode",
+        "name_pretty": "Limp mode",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 9,
+        "added": 13,
+        "description": "Indicates wheter the engine is in fail-safe mode.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "inactive",
+            "description": "Engine fail-safe mode is inactive."
+          }
+        ],
+        "customType": "active_state"
       }
     ]
   },
@@ -11758,7 +13681,7 @@
         "name_singular": "state",
         "examples": [
           {
-            "data_component": "0c0020010600040100010004000501000200010400050100020201a2000b010008000001598938e788",
+            "data_component": "0d0020010600040100010004000501000200010400050100020201a2000b010008000001598938e788",
             "values": {
               "doors": {
                 "locks_state": "unlocked",
@@ -11778,7 +13701,7 @@
             "description": "Doors capability - front left and rear right door is open while locks are unlocked, recorded at 10. January 2017 at 16:32:05 GMT"
           },
           {
-            "data_component": "0c0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
+            "data_component": "0d0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
             "values": {
               "charging": {
                 "charge_port_state": "open",
@@ -13047,6 +14970,10 @@
           {
             "id": 5,
             "name": "inside_car"
+          },
+          {
+            "id": 6,
+            "name": "not_inside"
           }
         ],
         "examples": [
@@ -13698,7 +15625,24 @@
       15,
       16,
       17,
-      18
+      18,
+      19,
+      20,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36
     ],
     "properties": [
       {
@@ -14585,6 +16529,848 @@
             }
           ]
         }
+      },
+      {
+        "id": 19,
+        "name": "brake_fluid_remaining_distance",
+        "name_cased": "brakeFluidRemainingDistance",
+        "name_pretty": "Brake fluid remaining distance",
+        "added": 13,
+        "type": "unit.length",
+        "size": 10,
+        "description": "Indicates the remaining distance for brake fluid.",
+        "examples": [
+          {
+            "data_component": "12044097710000000000",
+            "value": {
+              "kilometers": 1500.25
+            },
+            "description": "Brake fluid remaining distance is 1500.25km"
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "name": "brake_fluid_status",
+        "name_cased": "brakeFluidStatus",
+        "name_pretty": "Brake fluid status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "warning"
+          },
+          {
+            "id": 2,
+            "name": "critical"
+          }
+        ],
+        "id": 20,
+        "added": 13,
+        "description": "Brake fluid's service status.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "ok",
+            "description": "Brake fluid status is 'ok'"
+          }
+        ],
+        "customType": "service_status"
+      },
+      {
+        "name": "brakes_service_due_dates",
+        "name_cased": "brakesServiceDueDates",
+        "name_pretty": "Brakes service due dates",
+        "type": "custom",
+        "size": 9,
+        "items": [
+          {
+            "name": "axle",
+            "name_cased": "axle",
+            "name_pretty": "Axle",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "front"
+              },
+              {
+                "id": 1,
+                "name": "rear"
+              }
+            ],
+            "customType": "axle"
+          },
+          {
+            "name": "due_date",
+            "name_cased": "dueDate",
+            "type": "timestamp",
+            "size": 8
+          }
+        ],
+        "id": 22,
+        "name_singular": "brake_service_due_date",
+        "added": 13,
+        "multiple": true,
+        "description": "Brakes servicing due dates.",
+        "examples": [
+          {
+            "data_component": "000000017fda4373c0",
+            "values": {
+              "axle": "front",
+              "due_date": "2022-03-30T09:58:48.000Z"
+            },
+            "description": "Front brake has a service date at 30 March 2022 at 09:58:48 GMT"
+          },
+          {
+            "data_component": "010000017fda4373c0",
+            "values": {
+              "axle": "rear",
+              "due_date": "2022-03-30T09:58:48.000Z"
+            },
+            "description": "Rear brake has a service date at 30 March 2022 at 09:58:48 GMT"
+          }
+        ],
+        "customType": "brake_service_due_date"
+      },
+      {
+        "name": "brakes_service_remaining_distances",
+        "name_cased": "brakesServiceRemainingDistances",
+        "name_pretty": "Brakes service remaining distances",
+        "type": "custom",
+        "size": 11,
+        "items": [
+          {
+            "name": "axle",
+            "name_cased": "axle",
+            "name_pretty": "Axle",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "front"
+              },
+              {
+                "id": 1,
+                "name": "rear"
+              }
+            ],
+            "customType": "axle"
+          },
+          {
+            "name": "distance",
+            "name_cased": "distance",
+            "size": 10,
+            "type": "unit.length",
+            "unit": {
+              "name": "length",
+              "id": 18,
+              "unit_types": [
+                {
+                  "name": "meters",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "millimeters",
+                  "id": 1,
+                  "conversion_linear": 0.001
+                },
+                {
+                  "name": "centimeters",
+                  "id": 2,
+                  "conversion_linear": 0.01
+                },
+                {
+                  "name": "decimeters",
+                  "id": 3,
+                  "conversion_linear": 0.1
+                },
+                {
+                  "name": "kilometers",
+                  "id": 4,
+                  "conversion_linear": 1000
+                },
+                {
+                  "name": "megameters",
+                  "id": 5,
+                  "conversion_linear": 1000000
+                },
+                {
+                  "name": "inches",
+                  "id": 11,
+                  "conversion_linear": 0.0254
+                },
+                {
+                  "name": "feet",
+                  "id": 12,
+                  "conversion_linear": 0.3048
+                },
+                {
+                  "name": "yards",
+                  "id": 13,
+                  "conversion_linear": 0.9144
+                },
+                {
+                  "name": "miles",
+                  "id": 14,
+                  "conversion_linear": 1609.344
+                },
+                {
+                  "name": "scandinavian_miles",
+                  "id": 15,
+                  "conversion_linear": 10000
+                },
+                {
+                  "name": "nautical_miles",
+                  "id": 17,
+                  "conversion_linear": 1852
+                }
+              ]
+            }
+          }
+        ],
+        "id": 23,
+        "name_singular": "brake_service_remaining_distance",
+        "added": 13,
+        "multiple": true,
+        "description": "Brakes servicing remaining distances.",
+        "examples": [
+          {
+            "data_component": "0012044097710000000000",
+            "values": {
+              "axle": "front",
+              "distance": {
+                "kilometers": 1500.25
+              }
+            },
+            "description": "Front brake's remaining distance to service is 1500.25km"
+          },
+          {
+            "data_component": "0112044097710000000000",
+            "values": {
+              "axle": "rear",
+              "distance": {
+                "kilometers": 1500.25
+              }
+            },
+            "description": "Rear brake's remaining distance to service is 1500.25km"
+          }
+        ],
+        "customType": "brake_service_remaining_distance"
+      },
+      {
+        "name": "brakes_service_statuses",
+        "name_cased": "brakesServiceStatuses",
+        "name_pretty": "Brakes service statuses",
+        "type": "custom",
+        "size": 2,
+        "items": [
+          {
+            "name": "axle",
+            "name_cased": "axle",
+            "name_pretty": "Axle",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "front"
+              },
+              {
+                "id": 1,
+                "name": "rear"
+              }
+            ],
+            "customType": "axle"
+          },
+          {
+            "name": "status",
+            "name_cased": "status",
+            "name_pretty": "Service-Status",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "ok"
+              },
+              {
+                "id": 1,
+                "name": "warning"
+              },
+              {
+                "id": 2,
+                "name": "critical"
+              }
+            ],
+            "customType": "service_status"
+          }
+        ],
+        "id": 24,
+        "name_singular": "brake_service_status",
+        "added": 13,
+        "multiple": true,
+        "description": "Brakes servicing statuses.",
+        "examples": [
+          {
+            "data_component": "0000",
+            "values": {
+              "axle": "front",
+              "status": "ok"
+            },
+            "description": "Front brake's service status is 'ok'"
+          },
+          {
+            "data_component": "0100",
+            "values": {
+              "axle": "rear",
+              "status": "ok"
+            },
+            "description": "Rear brake's service status is 'ok'"
+          }
+        ],
+        "customType": "brake_service_status"
+      },
+      {
+        "id": 25,
+        "name": "drive_in_inspection_date",
+        "name_cased": "driveInInspectionDate",
+        "name_pretty": "Drive-in inspection date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "Next drive-in inspection date.",
+        "examples": [
+          {
+            "data_component": "0000017ff961a380",
+            "value": "2022-04-05T11:00:00.000Z",
+            "description": "Next drive-in inspection date is at 5 April 2022 at 11:00:00 GMT"
+          }
+        ]
+      },
+      {
+        "name": "drive_in_inspection_status",
+        "name_cased": "driveInInspectionStatus",
+        "name_pretty": "Drive-in inspection status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "warning"
+          },
+          {
+            "id": 2,
+            "name": "critical"
+          }
+        ],
+        "id": 26,
+        "added": 13,
+        "description": "Drive-in inspection service status.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "ok",
+            "description": "Drive-in inspection service status is 'ok'"
+          }
+        ],
+        "customType": "service_status"
+      },
+      {
+        "id": 27,
+        "name": "next_oil_service_date",
+        "name_cased": "nextOilServiceDate",
+        "name_pretty": "Next oil service date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "Next oil service date.",
+        "examples": [
+          {
+            "data_component": "0000017fdabd2800",
+            "value": "2022-03-30T12:11:44.000Z",
+            "description": "Next oil service is at 30 March 2022 at 12:11:44 GMT"
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "name": "next_inspection_distance_to",
+        "name_cased": "nextInspectionDistanceTo",
+        "name_pretty": "Next inspection distance to",
+        "added": 13,
+        "type": "unit.length",
+        "size": 10,
+        "description": "Distance until the next inspection.",
+        "examples": [
+          {
+            "data_component": "12044097710000000000",
+            "value": {
+              "kilometers": 1500.25
+            },
+            "description": "Distance until the next inspection is 1500.25km"
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "id": 29,
+        "name": "legal_inspection_date",
+        "name_cased": "legalInspectionDate",
+        "name_pretty": "Legal inspection date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "Next legally required inspection date",
+        "examples": [
+          {
+            "data_component": "0000017fdabd2800",
+            "value": "2022-03-30T12:11:44.000Z",
+            "description": "Next legally required inspection date is at 30 March 2022 at 12:11:44 GMT"
+          }
+        ]
+      },
+      {
+        "name": "service_status",
+        "name_cased": "serviceStatus",
+        "name_pretty": "Service-status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "warning"
+          },
+          {
+            "id": 2,
+            "name": "critical"
+          }
+        ],
+        "id": 30,
+        "added": 13,
+        "description": "Consolidated status regarding service requirements. OK: no current service requirement, WARNING: at least one service has reported requirement, CRITICAL: at least one service is overdue.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "ok",
+            "description": "No current service requirements."
+          }
+        ],
+        "customType": "service_status"
+      },
+      {
+        "id": 31,
+        "name": "service_date",
+        "name_cased": "serviceDate",
+        "name_pretty": "Service date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "Date of the earliest service. If this service is overdue, the date is in the past.",
+        "examples": [
+          {
+            "data_component": "0000017fdabd2800",
+            "value": "2022-03-30T12:11:44.000Z",
+            "description": "Date of the earliest service is at 30 March 2022 at 12:11:44 GMT"
+          }
+        ]
+      },
+      {
+        "name": "inspection_status",
+        "name_cased": "inspectionStatus",
+        "name_pretty": "Inspection status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "warning"
+          },
+          {
+            "id": 2,
+            "name": "critical"
+          }
+        ],
+        "id": 32,
+        "added": 13,
+        "description": "Vehicle inspection service status.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "ok",
+            "description": "Vehicle inspection service status is 'ok'."
+          }
+        ],
+        "customType": "service_status"
+      },
+      {
+        "id": 33,
+        "name": "drive_in_inspection_distance_to",
+        "name_cased": "driveInInspectionDistanceTo",
+        "name_pretty": "Drive-in inspection distance to",
+        "added": 13,
+        "type": "unit.length",
+        "size": 10,
+        "description": "The distance until next drive-in inspection of the vehicle",
+        "examples": [
+          {
+            "data_component": "120440acc20000000000",
+            "value": {
+              "kilometers": 3681
+            },
+            "description": "3'681km until next drive-in inspection"
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
+      },
+      {
+        "id": 34,
+        "name": "vehicle_check_date",
+        "name_cased": "vehicleCheckDate",
+        "name_pretty": "Vehicle check date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "Vehicle check date (usually after a predetermined distance).",
+        "examples": [
+          {
+            "data_component": "0000017fe45286dd",
+            "value": "2022-04-01T08:51:28.093Z",
+            "description": "Vehicle check is on 1. April 2022 at 11:51:28 EEST."
+          }
+        ]
+      },
+      {
+        "name": "vehicle_check_status",
+        "name_cased": "vehicleCheckStatus",
+        "name_pretty": "Vehicle check status",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "ok"
+          },
+          {
+            "id": 1,
+            "name": "warning"
+          },
+          {
+            "id": 2,
+            "name": "critical"
+          }
+        ],
+        "id": 35,
+        "added": 13,
+        "description": "Vehicle check service status.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "ok",
+            "description": "Vehicle check service status is 'ok'."
+          }
+        ],
+        "customType": "service_status"
+      },
+      {
+        "id": 36,
+        "name": "vehicle_check_distance_to",
+        "name_cased": "vehicleCheckDistanceTo",
+        "name_pretty": "Vehicle check distance to",
+        "added": 13,
+        "type": "unit.length",
+        "size": 10,
+        "description": "The distance until next vehicle check.",
+        "examples": [
+          {
+            "data_component": "1204409519999999999a",
+            "value": {
+              "kilometers": 1350.4
+            },
+            "description": "The distance to next vehicle check is 1350.4km."
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       }
     ]
   },
@@ -14736,7 +17522,7 @@
         "name_singular": "multi_state",
         "examples": [
           {
-            "data_component": "0c0020010600040100010004000501000200010400050100020201a2000b010008000001598938e788",
+            "data_component": "0d0020010600040100010004000501000200010400050100020201a2000b010008000001598938e788",
             "values": {
               "doors": {
                 "locks_state": "unlocked",
@@ -14756,7 +17542,7 @@
             "description": "Doors capability - front left and rear right door is open while locks are unlocked, recorded at 10. January 2017 at 16:32:05 GMT"
           },
           {
-            "data_component": "0c0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
+            "data_component": "0d0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
             "values": {
               "charging": {
                 "charge_port_state": "open",
@@ -14786,7 +17572,7 @@
         "name_singular": "multi_command",
         "examples": [
           {
-            "data_component": "0c00200106000401000101",
+            "data_component": "0d00200106000401000101",
             "values": {
               "doors": {
                 "locks_state": "locked"
@@ -14795,7 +17581,7 @@
             "description": "Lock inside door locks"
           },
           {
-            "data_component": "0c00350101000401000100",
+            "data_component": "0d00350103000401000101",
             "values": {
               "ignition": {
                 "status": "off"
@@ -15628,7 +18414,8 @@
       15,
       16,
       17,
-      18
+      18,
+      19
     ],
     "properties": [
       {
@@ -16287,6 +19074,61 @@
             "description": "Vehicle is moving"
           }
         ]
+      },
+      {
+        "id": 19,
+        "name": "drivetrain_state",
+        "name_cased": "drivetrainState",
+        "name_pretty": "Drivetrain state",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "State of the drivetrain for starts.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive"
+          },
+          {
+            "id": 1,
+            "name": "race_start_preparation"
+          },
+          {
+            "id": 2,
+            "name": "race_start"
+          },
+          {
+            "id": 3,
+            "name": "start"
+          },
+          {
+            "id": 4,
+            "name": "comfort_start"
+          },
+          {
+            "id": 5,
+            "name": "start_idle_run_control"
+          },
+          {
+            "id": 6,
+            "name": "ready_for_overpressing"
+          },
+          {
+            "id": 7,
+            "name": "low_speed_mode"
+          },
+          {
+            "id": 8,
+            "name": "e_launch"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "02",
+            "value": "race_start",
+            "description": "Drivetrain is in `race_start` state."
+          }
+        ]
       }
     ]
   },
@@ -16515,7 +19357,8 @@
       3,
       4,
       5,
-      6
+      6,
+      7
     ],
     "properties": [
       {
@@ -16698,6 +19541,10 @@
           {
             "id": 2,
             "name": "automatically_in_stroke_position"
+          },
+          {
+            "id": 3,
+            "name": "timer"
           }
         ],
         "examples": [
@@ -16707,6 +19554,25 @@
             "description": "Sunroof had no rain event"
           }
         ]
+      },
+      {
+        "name": "tilt_position",
+        "name_cased": "tiltPosition",
+        "name_pretty": "Tilt position",
+        "unit_sign": "%",
+        "validation": "min:0|max:1",
+        "type": "double",
+        "size": 8,
+        "description": "1.0 (100%) is fully tilted, 0.0 (0%) is not",
+        "id": 7,
+        "examples": [
+          {
+            "data_component": "3fe0000000000000",
+            "value": 0.5,
+            "description": "Rooftop is half-tilted (50%)"
+          }
+        ],
+        "customType": "percentage"
       }
     ]
   },
@@ -17362,7 +20228,9 @@
       4,
       5,
       6,
-      7
+      7,
+      8,
+      9
     ],
     "properties": [
       {
@@ -17476,7 +20344,7 @@
           },
           {
             "id": 1,
-            "name": "basis_alarm"
+            "name": "basic_alarm"
           },
           {
             "id": 2,
@@ -17553,6 +20421,10 @@
           {
             "id": 20,
             "name": "unknown"
+          },
+          {
+            "id": 21,
+            "name": "siren"
           }
         ],
         "examples": [
@@ -17668,6 +20540,62 @@
             "description": "Last event happened to rear right position"
           }
         ]
+      },
+      {
+        "name": "interior_protection_triggered",
+        "name_cased": "interiorProtectionTriggered",
+        "name_pretty": "Interior protection triggered",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "not_triggered"
+          },
+          {
+            "id": 1,
+            "name": "triggered"
+          }
+        ],
+        "id": 8,
+        "added": 13,
+        "description": "Indicates whether the interior protection sensors are triggered.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "not_triggered",
+            "description": "Interior protection sensors are not triggered."
+          }
+        ],
+        "customType": "triggered"
+      },
+      {
+        "name": "tow_protection_triggered",
+        "name_cased": "towProtectionTriggered",
+        "name_pretty": "Tow protection triggered",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "not_triggered"
+          },
+          {
+            "id": 1,
+            "name": "triggered"
+          }
+        ],
+        "id": 9,
+        "added": 13,
+        "description": "Indicates whether the tow protection sensors are triggered.",
+        "examples": [
+          {
+            "data_component": "00",
+            "value": "not_triggered",
+            "description": "Tow protection sensors are not triggered."
+          }
+        ],
+        "customType": "triggered"
       }
     ]
   },
@@ -17706,7 +20634,8 @@
       18,
       19,
       20,
-      21
+      21,
+      22
     ],
     "properties": [
       {
@@ -18827,6 +21756,57 @@
             }
           ]
         }
+      },
+      {
+        "id": 22,
+        "name": "road_type",
+        "name_cased": "roadType",
+        "name_pretty": "Road type",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Type of road travelled on.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "private_or_gravel"
+          },
+          {
+            "id": 1,
+            "name": "local"
+          },
+          {
+            "id": 2,
+            "name": "county"
+          },
+          {
+            "id": 3,
+            "name": "rural"
+          },
+          {
+            "id": 4,
+            "name": "federal_highway"
+          },
+          {
+            "id": 5,
+            "name": "highway"
+          },
+          {
+            "id": 6,
+            "name": "country"
+          },
+          {
+            "id": 7,
+            "name": "national"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "local",
+            "description": "Road was of local type."
+          }
+        ]
       }
     ]
   },
@@ -19006,7 +21986,11 @@
       37,
       38,
       39,
-      40
+      40,
+      41,
+      42,
+      43,
+      44
     ],
     "properties": [
       {
@@ -19247,7 +22231,7 @@
               },
               {
                 "id": 4,
-                "name": "ecoPlus"
+                "name": "eco_plus"
               },
               {
                 "id": 5,
@@ -19307,10 +22291,10 @@
           {
             "data_component": "043fd3333333333333",
             "values": {
-              "driving_mode": "ecoPlus",
+              "driving_mode": "eco_plus",
               "period": 0.3
             },
-            "description": "Driving mode 'eco' is engaged 30% of the time"
+            "description": "Driving mode 'eco_plus' is engaged 30% of the time"
           },
           {
             "data_component": "050000000000000000",
@@ -19355,7 +22339,7 @@
               },
               {
                 "id": 4,
-                "name": "ecoPlus"
+                "name": "eco_plus"
               },
               {
                 "id": 5,
@@ -19393,6 +22377,11 @@
                   "name": "kilowatt_hours",
                   "id": 4,
                   "conversion_linear": 3600000
+                },
+                {
+                  "name": "ampere_hours",
+                  "id": 5,
+                  "conversion_linear": 3600
                 }
               ]
             }
@@ -19445,12 +22434,12 @@
           {
             "data_component": "040c044032000000000000",
             "values": {
-              "driving_mode": "ecoPlus",
+              "driving_mode": "eco_plus",
               "consumption": {
                 "kilowatt_hours": 18
               }
             },
-            "description": "Driving mode 'ecoPlus' consumed 18.0kWh of electric energy"
+            "description": "Driving mode 'eco_plus' consumed 18.0kWh of electric energy"
           },
           {
             "data_component": "050c044040d9999999999a",
@@ -19505,6 +22494,11 @@
               "name": "kilowatt_hours",
               "id": 4,
               "conversion_linear": 3600000
+            },
+            {
+              "name": "ampere_hours",
+              "id": 5,
+              "conversion_linear": 3600
             }
           ]
         }
@@ -21261,6 +24255,155 @@
           }
         ],
         "customType": "trip_meter"
+      },
+      {
+        "id": 41,
+        "name": "electric_consumption_average",
+        "name_cased": "electricConsumptionAverage",
+        "name_pretty": "Electric consumption average",
+        "added": 13,
+        "type": "unit.energy_efficiency",
+        "size": 10,
+        "description": "Average electric energy consumption calculated based on the last 20km",
+        "examples": [
+          {
+            "data_component": "0d00402670a3d70a3d71",
+            "value": {
+              "kwh_per_100_kilometers": 11.22
+            },
+            "description": "Average consumption is 11.22kWh/100km"
+          }
+        ],
+        "unit": {
+          "name": "energy_efficiency",
+          "id": 13,
+          "unit_types": [
+            {
+              "name": "kwh_per_100_kilometers",
+              "id": 0,
+              "conversion_inverse": 1
+            },
+            {
+              "name": "miles_per_kwh",
+              "id": 1,
+              "conversion_inverse": 62.1371192237334
+            }
+          ]
+        }
+      },
+      {
+        "name": "braking_evaluation",
+        "name_cased": "brakingEvaluation",
+        "name_pretty": "Braking evaluation",
+        "unit_sign": "%",
+        "validation": "min:0|max:1",
+        "type": "double",
+        "size": 8,
+        "description": "Braking evaluation percentage",
+        "id": 42,
+        "examples": [
+          {
+            "data_component": "3fe6666666666666",
+            "value": 0.7,
+            "description": "Braking is evaluated at 70%"
+          }
+        ],
+        "customType": "percentage"
+      },
+      {
+        "id": 43,
+        "name": "average_speed",
+        "name_cased": "averageSpeed",
+        "name_pretty": "Average speed",
+        "added": 13,
+        "type": "unit.speed",
+        "size": 10,
+        "description": "Average speed at data collection.",
+        "examples": [
+          {
+            "data_component": "16014053600000000000",
+            "value": {
+              "kilometers_per_hour": 77.5
+            },
+            "description": "Average speed is 77.5km/h."
+          }
+        ],
+        "unit": {
+          "name": "speed",
+          "id": 22,
+          "unit_types": [
+            {
+              "name": "meters_per_second",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "kilometers_per_hour",
+              "id": 1,
+              "conversion_linear": 0.27777777777778
+            },
+            {
+              "name": "miles_per_hour",
+              "id": 2,
+              "conversion_linear": 0.44704
+            },
+            {
+              "name": "knots",
+              "id": 3,
+              "conversion_linear": 0.51444444444
+            }
+          ]
+        }
+      },
+      {
+        "id": 44,
+        "name": "recuperation_power",
+        "name_cased": "recuperationPower",
+        "name_pretty": "Recuperation power",
+        "added": 13,
+        "type": "unit.power",
+        "size": 10,
+        "description": "Recuperation energy of the drivetrain.",
+        "examples": [
+          {
+            "data_component": "140040a1f80000000000",
+            "value": {
+              "watts": 2300
+            },
+            "description": "Recuperation energy is 2300.0W."
+          }
+        ],
+        "unit": {
+          "name": "power",
+          "id": 20,
+          "unit_types": [
+            {
+              "name": "watts",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliwatts",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "kilowatts",
+              "id": 2,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megawatts",
+              "id": 3,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "horsepower",
+              "id": 10,
+              "conversion_linear": 745.7
+            }
+          ]
+        }
       }
     ]
   },
@@ -21363,7 +24506,17 @@
       20,
       21,
       22,
-      23
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
     ],
     "properties": [
       {
@@ -21427,6 +24580,10 @@
             "id": 12,
             "name": "lpg",
             "name_pretty": "Liquefied petroleum gas"
+          },
+          {
+            "id": 13,
+            "name": "hybrid"
           }
         ],
         "id": 2,
@@ -22063,6 +25220,10 @@
             "id": 12,
             "name": "lpg",
             "name_pretty": "Liquefied petroleum gas"
+          },
+          {
+            "id": 13,
+            "name": "hybrid"
           }
         ],
         "id": 23,
@@ -22075,6 +25236,385 @@
           }
         ],
         "customType": "engine_type"
+      },
+      {
+        "id": 24,
+        "name": "fuel_tank_capacity",
+        "name_cased": "fuelTankCapacity",
+        "name_pretty": "Fuel tank capacity",
+        "added": 13,
+        "type": "unit.volume",
+        "size": 10,
+        "description": "The fuel tank capacity measured in liters",
+        "examples": [
+          {
+            "data_component": "19024054000000000000",
+            "value": {
+              "liters": 80
+            },
+            "description": "80.0 L of fuel remaining"
+          }
+        ],
+        "unit": {
+          "name": "volume",
+          "id": 25,
+          "unit_types": [
+            {
+              "name": "liters",
+              "id": 2,
+              "conversion_linear": 1
+            },
+            {
+              "name": "milliliters",
+              "id": 3,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centiliters",
+              "id": 4,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "deciliters",
+              "id": 5,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "cubic_millimeters",
+              "id": 10,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "cubic_centimeters",
+              "id": 9,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "cubic_decimeters",
+              "id": 8,
+              "conversion_linear": 1
+            },
+            {
+              "name": "cubic_meters",
+              "id": 7,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "cubic_inches",
+              "id": 11,
+              "conversion_linear": 0.016387064
+            },
+            {
+              "name": "cubic_feet",
+              "id": 12,
+              "conversion_linear": 28.316846592
+            },
+            {
+              "name": "fluid_ounces",
+              "id": 19,
+              "conversion_linear": 0.0295735296875
+            },
+            {
+              "name": "gallons",
+              "id": 23,
+              "conversion_linear": 3.785411784
+            },
+            {
+              "name": "imperial_fluid_ounces",
+              "id": 26,
+              "conversion_linear": 0.0284130625
+            },
+            {
+              "name": "imperial_gallons",
+              "id": 29,
+              "conversion_linear": 4.54609
+            }
+          ]
+        }
+      },
+      {
+        "id": 25,
+        "name": "build_date",
+        "name_cased": "buildDate",
+        "name_pretty": "Build date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "Build (construction) date of the vehicle.",
+        "examples": [
+          {
+            "data_component": "0000017fdfd0f9e8",
+            "value": "2022-03-31T11:51:29.000Z",
+            "description": "The vehicle was built at 31 March 2022 at 11:51:29 GMT"
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "name": "country_code",
+        "name_cased": "countryCode",
+        "name_pretty": "Country code",
+        "added": 13,
+        "type": "string",
+        "description": "The country code of the vehicle.",
+        "examples": [
+          {
+            "data_component": "4445",
+            "value": "DE",
+            "description": "Vehicle country code is 'DE'"
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "name": "model_key",
+        "name_cased": "modelKey",
+        "name_pretty": "Model key",
+        "added": 13,
+        "type": "string",
+        "description": "The model key of the vehicle.",
+        "examples": [
+          {
+            "data_component": "433332",
+            "value": "C32",
+            "description": "Vehicle model key is 'C32'"
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "name": "data_quality",
+        "name_cased": "dataQuality",
+        "name_pretty": "Data quality",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Evaluation of the timeliness of the available vehicle data.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_data",
+            "description": "No data available"
+          },
+          {
+            "id": 1,
+            "name": "up_to_date",
+            "description": "Data transmitted within the last 48h"
+          },
+          {
+            "id": 2,
+            "name": "almost_up_to_date",
+            "description": "Data transmitted within the last 7 days, but not within the last 48h"
+          },
+          {
+            "id": 3,
+            "name": "out_of_date",
+            "description": "No data transferred within the last 7 days"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "up_to_date",
+            "description": "Data quality is up-to-date."
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "name": "extra_equipment_codes",
+        "name_cased": "extraEquipmentCodes",
+        "name_pretty": "Extra equipment codes",
+        "added": 13,
+        "type": "string",
+        "multiple": true,
+        "name_singular": "extra_equipment_code",
+        "description": "Codes of the extra equipment the vehicle has",
+        "examples": [
+          {
+            "data_component": "434f4445313233",
+            "value": "CODE123",
+            "description": "Vehicle has extra equipment with a code 'CODE123'"
+          },
+          {
+            "data_component": "455150363636",
+            "value": "EQP666",
+            "description": "Vehicle has extra equipment with a code 'EQP666'"
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "name": "series",
+        "name_cased": "series",
+        "name_pretty": "Series",
+        "added": 13,
+        "type": "string",
+        "description": "The vehicle model's series",
+        "examples": [
+          {
+            "data_component": "4134",
+            "value": "A4",
+            "description": "Vehicle model's series is 'A4'"
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "name": "last_data_transfer_date",
+        "name_cased": "lastDataTransferDate",
+        "name_pretty": "Last data transfer date",
+        "added": 13,
+        "type": "timestamp",
+        "size": 8,
+        "description": "The last trip date",
+        "examples": [
+          {
+            "data_component": "0000016682059d50",
+            "value": "2018-10-17T12:34:58.000Z",
+            "description": "Last trip happened at 17 October 2018 at 12:34:58 UTC"
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "name": "time_zone",
+        "name_cased": "timeZone",
+        "name_pretty": "Time zone",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Time zone setting in the vehicle.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "wintertime"
+          },
+          {
+            "id": 1,
+            "name": "summertime"
+          },
+          {
+            "id": 2,
+            "name": "utc"
+          },
+          {
+            "id": 3,
+            "name": "manual"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "summertime",
+            "description": "Time zone is set to 'summertime'."
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "name": "vehicle_mass",
+        "name_cased": "vehicleMass",
+        "name_pretty": "Vehicle mass",
+        "added": 13,
+        "type": "unit.mass",
+        "size": 10,
+        "description": "Vehicle mass.",
+        "examples": [
+          {
+            "data_component": "130040998c0000000000",
+            "value": {
+              "kilograms": 1635
+            },
+            "description": "Vehicle mass is 1635.0kg"
+          }
+        ],
+        "unit": {
+          "name": "mass",
+          "id": 19,
+          "unit_types": [
+            {
+              "name": "kilograms",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "grams",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "decigrams",
+              "id": 2,
+              "conversion_linear": 0.0001
+            },
+            {
+              "name": "centigrams",
+              "id": 3,
+              "conversion_linear": 0.00001
+            },
+            {
+              "name": "milligrams",
+              "id": 4,
+              "conversion_linear": 0.000001
+            },
+            {
+              "name": "micrograms",
+              "id": 5,
+              "conversion_linear": 1e-9
+            },
+            {
+              "name": "nanograms",
+              "id": 6,
+              "conversion_linear": 1e-12
+            },
+            {
+              "name": "picograms",
+              "id": 7,
+              "conversion_linear": 1e-15
+            },
+            {
+              "name": "ounces",
+              "id": 8,
+              "conversion_linear": 0.0283495
+            },
+            {
+              "name": "pounds",
+              "id": 9,
+              "conversion_linear": 0.453592
+            },
+            {
+              "name": "stones",
+              "id": 10,
+              "conversion_linear": 0.157473
+            },
+            {
+              "name": "metric_tons",
+              "id": 11,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "short_tons",
+              "id": 12,
+              "conversion_linear": 907.185
+            },
+            {
+              "name": "carats",
+              "id": 13,
+              "conversion_linear": 0.0002
+            },
+            {
+              "name": "ounces_troy",
+              "id": 14,
+              "conversion_linear": 0.03110348
+            },
+            {
+              "name": "slugs",
+              "id": 15,
+              "conversion_linear": 14.5939
+            }
+          ]
+        }
       }
     ]
   },
@@ -22101,7 +25641,8 @@
       6,
       7,
       8,
-      9
+      9,
+      10
     ],
     "properties": [
       {
@@ -22398,6 +25939,45 @@
           }
         ],
         "customType": "percentage"
+      },
+      {
+        "name": "fuzzy_coordinates",
+        "name_cased": "fuzzyCoordinates",
+        "name_pretty": "Fuzzy coordinates",
+        "type": "custom",
+        "size": 16,
+        "items": [
+          {
+            "name": "latitude",
+            "name_cased": "latitude",
+            "validation": "min:-90|max:90",
+            "type": "double",
+            "size": 8,
+            "description": "Latitude"
+          },
+          {
+            "name": "longitude",
+            "name_cased": "longitude",
+            "validation": "min:-180|max:180",
+            "type": "double",
+            "size": 8,
+            "description": "Longitude"
+          }
+        ],
+        "id": 10,
+        "added": 13,
+        "description": "Fuzzy coordinates for the vehicle location.",
+        "examples": [
+          {
+            "data_component": "404a428f5c28f5c3402acf4f0d844d01",
+            "values": {
+              "latitude": 52.52,
+              "longitude": 13.4049
+            },
+            "description": "Vehicle fuzzy coordinates are 52.5200:13.4049"
+          }
+        ],
+        "customType": "coordinates"
       }
     ]
   },
@@ -22433,7 +26013,7 @@
         "multiple": true,
         "examples": [
           {
-            "data_component": "0c0020010600040100010004000501000200010400050100020201a2000b010008000001598938e788",
+            "data_component": "0d0020010600040100010004000501000200010400050100020201a2000b010008000001598938e788",
             "values": {
               "doors": {
                 "locks_state": "unlocked",
@@ -22453,7 +26033,7 @@
             "description": "Doors capability - front left and rear right door is open while locks are unlocked, recorded at 10. January 2017 at 16:32:05 GMT"
           },
           {
-            "data_component": "0c0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
+            "data_component": "0d0023010b0004010001010c00040100010018000d01000a140240418000000000001c000d01000a12044081580000000000a2000b010008000001598938e788",
             "values": {
               "charging": {
                 "charge_port_state": "open",

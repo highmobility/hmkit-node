@@ -23,7 +23,25 @@ content:
                     startStopEnabled:
                         data.value: '(String) (enum) Indicates if the automatic start-stop system is enabled or not'
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"off\"\n    }\n  },\n  \"startStopState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"startStopEnabled\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  }\n}\n```"
+                    preconditioningEnabled:
+                        data.value: '(String) (enum) Use of the engine pre-conditioning is enabled.'
+                        timestamp: (Date)
+                    preconditioningActive:
+                        data.value: '(String) (enum) Pre-conditioning is running.'
+                        timestamp: (Date)
+                    preconditioningRemainingTime:
+                        data.value: '(Number) (duration) Remaining time of pre-conditioning.'
+                        timestamp: (Date)
+                    preconditioningError:
+                        data.value: '(String) (enum) Reason for not carrying out pre-conditioning.'
+                        timestamp: (Date)
+                    preconditioningStatus:
+                        data.value: '(String) (enum) Status of the pre-conditioning system.'
+                        timestamp: (Date)
+                    limpMode:
+                        data.value: '(String) (enum) Indicates wheter the engine is in fail-safe mode.'
+                        timestamp: (Date)
+                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"off\"\n    }\n  },\n  \"startStopState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"startStopEnabled\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"preconditioningEnabled\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"preconditioningActive\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"preconditioningRemainingTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 15.5,\n      \"unit\": \"minutes\"\n    }\n  },\n  \"preconditioningError\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"low_fuel\"\n    }\n  },\n  \"preconditioningStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"standby\"\n    }\n  },\n  \"limpMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

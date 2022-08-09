@@ -197,13 +197,35 @@ function parseCustomTypesFile(unitTypes) {
   const filePath = autoApiPath(CUSTOM_TYPES_FILE_PATH);
 
   return parseYmlFile(filePath).types.reduce((allTypes, type) => {
-    const typeWithUnit = {
+    const typeConfig = {
       ...type,
       items: type.items
         ? type.items.map(item => {
           if (item.type.startsWith('unit.')) {
             item.unit = unitTypes[item.type.replace('unit.', '')];
+            item.size = item.size || 10;
           }
+
+          if (item.type === 'double') {
+            item.size = item.size || 8;
+          }
+
+          if (item.type === 'enum') {
+            item.size = item.size || 1;
+          }
+
+          if (item.type === 'float') {
+            item.size = item.size || 4;
+          }
+
+          if (item.type === 'integer' || item.type === 'uinteger') {
+            item.size = item.size || 1;
+          }
+
+          if (item.type === 'timestamp') {
+            item.size = item.size || 8;
+          }
+
           return item;
         })
         : undefined,
@@ -211,7 +233,7 @@ function parseCustomTypesFile(unitTypes) {
 
     return {
       ...allTypes,
-      [type.name]: typeWithUnit,
+      [type.name]: typeConfig,
     };
   }, {});
 }
