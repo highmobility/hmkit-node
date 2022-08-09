@@ -29,6 +29,10 @@
     "generate:config": "node ./commands/generateConfiguration.js"
   },
   "entry": "./build/bundle.js",
+  "files": [
+    "es",
+    "lib"
+  ],
   "jest": {
     "coverageDirectory": "coverage",
     "moduleFileExtensions": [
