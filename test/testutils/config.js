@@ -29,6 +29,6 @@
 module.exports = {
   clientCertificate: `dGVzdECqqsPGRn8Dk//VKPwuZZFAgHajQI1SoJqQcPf5YcM4jcX3JPHo6Th8V4pKy2iemWO1r8RsgzjPEKuhtUyB9bNABP1Mh+y/gGzU3wN3dpan2k87JwCooZfX+NWz8wt4/0O+O2OFBV+OACRYAw8+CnanNx83PgQtoxy7LOpy9UuvzEPCPFlyEg8JcZXD6uz6bujiSCcr`,
   clientPrivateKey: `aL4l2cOjGIygxdMhEr7PRd7xVV707KKlsR546KaMNtM=`,
-  vehicleSerial: 'A591328838870F6FF3',
-  accessToken: `073c2f50-6afa-4aac-bf38-b9c43dd4ad76`,
+  vehicleSerial: '3B7BAAAC34F7FCD618',
+  accessToken: `ded6d830-f460-40b8-b344-1635298bd1dc`,
 };

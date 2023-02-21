@@ -324,7 +324,7 @@
       },
       {
         "id": 42,
-        "name": "emulator"
+        "name": "sandbox"
       }
     ],
     "examples": [

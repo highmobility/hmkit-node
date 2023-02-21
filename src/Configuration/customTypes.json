@@ -157,6 +157,39 @@
       }
     ]
   },
+  "driving_mode_phev": {
+    "name": "driving_mode_phev",
+    "name_cased": "drivingModePHEV",
+    "name_pretty": "Driving mode PHEV",
+    "type": "enum",
+    "size": 1,
+    "enum_values": [
+      {
+        "id": 0,
+        "name": "not_in_traction"
+      },
+      {
+        "id": 1,
+        "name": "in_charge"
+      },
+      {
+        "id": 2,
+        "name": "full_electric"
+      },
+      {
+        "id": 3,
+        "name": "hybrid_serial"
+      },
+      {
+        "id": 4,
+        "name": "thermic"
+      },
+      {
+        "id": 5,
+        "name": "hybrid_parallel"
+      }
+    ]
+  },
   "enabled_state": {
     "name": "enabled_state",
     "name_cased": "enabledState",
@@ -584,6 +617,14 @@
       {
         "id": 4,
         "name": "rear_center"
+      },
+      {
+        "id": 5,
+        "name": "driver"
+      },
+      {
+        "id": 6,
+        "name": "passenger"
       }
     ]
   },
@@ -836,6 +877,166 @@
               "name": "gravity",
               "id": 1,
               "conversion_linear": 9.81
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "acceleration_duration": {
+    "name": "acceleration_duration",
+    "name_cased": "accelerationDuration",
+    "name_pretty": "Acceleration duration",
+    "type": "custom",
+    "size": 12,
+    "items": [
+      {
+        "name": "direction",
+        "name_cased": "direction",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "longitudinal"
+          },
+          {
+            "id": 1,
+            "name": "lateral"
+          }
+        ]
+      },
+      {
+        "name": "type",
+        "name_cased": "type",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "regular"
+          },
+          {
+            "id": 1,
+            "name": "positive_outlier"
+          },
+          {
+            "id": 2,
+            "name": "negative_outlier"
+          }
+        ]
+      },
+      {
+        "name": "duration",
+        "name_cased": "duration",
+        "name_pretty": "Duration",
+        "type": "unit.duration",
+        "size": 10,
+        "description": "The duration of the acceleration",
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "accelerator_duration": {
+    "name": "accelerator_duration",
+    "name_cased": "acceleratorDuration",
+    "name_pretty": "Accelerator duration",
+    "type": "custom",
+    "size": 18,
+    "items": [
+      {
+        "name": "pedal_position_threshold",
+        "name_cased": "pedalPositionThreshold",
+        "name_pretty": "Pedal position threshold",
+        "type": "types.percentage",
+        "size": 8,
+        "description": "The accelerator pedal position threshold percentage"
+      },
+      {
+        "name": "duration",
+        "name_cased": "duration",
+        "name_pretty": "Duration",
+        "type": "unit.duration",
+        "size": 10,
+        "description": "The duration of the accelerator pedal position",
+        "unit": {
+          "name": "duration",
+          "id": 7,
+          "unit_types": [
+            {
+              "name": "seconds",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "minutes",
+              "id": 1,
+              "conversion_linear": 60
+            },
+            {
+              "name": "hours",
+              "id": 2,
+              "conversion_linear": 3600
+            },
+            {
+              "name": "days",
+              "id": 3,
+              "conversion_linear": 86400
+            },
+            {
+              "name": "weeks",
+              "id": 4,
+              "conversion_linear": 604800
+            },
+            {
+              "name": "months",
+              "id": 5,
+              "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -1375,6 +1576,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -2399,6 +2605,15 @@
           {
             "id": 195,
             "name": "inspection_warning"
+          },
+          {
+            "id": 196,
+            "name": "diesel_oil_filter_water_presence",
+            "name_pretty": "Diesel oil filter has water in it"
+          },
+          {
+            "id": 197,
+            "name": "engine_drag_torque_control_failure"
           }
         ]
       },
@@ -2636,6 +2851,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }

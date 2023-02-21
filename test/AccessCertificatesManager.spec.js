@@ -26,15 +26,29 @@
  *  Created by Mikk Õun on 16/01/2020.
  */
 
-import { vehicleSerial } from './testutils/config';
-import getHmkit, { accessToken } from './testutils/getHmkit';
 import AccessCertificate from '../src/Core/AccessCertificate';
+
+import getHmkit, { accessToken } from './testutils/getHmkit';
+import { vehicleSerial } from './testutils/config';
+
+const accessCertificateBase64 =
+  'AXh2c2KauTVDDuqgOfc7e6qsNPf81hjgrEObbnDmjE2/4qktAm4n7lL+npIP+ZAQnAUU/rPpCYL0ZFtwhwk4I1ETJPE2h1nZ9lazoUc9+LCqSB0pTeN0FwIVEgwXAhUSDAEAtUI8s45OiaCZJkFLiHUj3t4VicGL48XzfhuNwDp+McA1DrUh+q99d4xDjOk3ksb9qhKdJj3uMIVPJKnBst8dVQ==';
 const hmkit = getHmkit();
 const tempCache = JSON.parse(
   JSON.stringify(hmkit.certificates.certCache.getAccessCertificates())
 );
 
 describe(`AccessCertificatesManager`, () => {
+  let apiClientPostSpy;
+
+  beforeEach(() => {
+    apiClientPostSpy = jest.spyOn(hmkit.apiClient, 'post');
+  });
+
+  afterEach(() => {
+    apiClientPostSpy.mockRestore();
+  });
+
   afterAll(() => {
     hmkit.certificates.certCache.setAccessCertificates(tempCache);
   });
@@ -46,12 +60,20 @@ describe(`AccessCertificatesManager`, () => {
   });
 
   it(`should throw error on failed access certification download`, async () => {
+    apiClientPostSpy.mockRejectedValueOnce(new Error('Something went wrong!'));
+
     expect(
-      hmkit.downloadAccessCertificate('pleasefailInstantly')
+      hmkit.downloadAccessCertificate('pleaseFailInstantly')
     ).rejects.toEqual(new Error('Failed to fetch access certificate.'));
   });
 
   it(`should download cert if cert is not cached already`, async () => {
+    apiClientPostSpy.mockResolvedValue({
+      body: {
+        device_access_certificate: accessCertificateBase64,
+      },
+    });
+
     hmkit.certificates.certCache.destroy();
 
     const accessCertificate = await hmkit.downloadAccessCertificate(
@@ -68,6 +90,12 @@ describe(`AccessCertificatesManager`, () => {
   });
 
   it(`should take cert from cache if it does not have one attached to it`, async () => {
+    apiClientPostSpy.mockResolvedValue({
+      body: {
+        device_access_certificate: accessCertificateBase64,
+      },
+    });
+
     hmkit.certificates.certCache.destroy();
     hmkit.certificates.accessCertificates = [];
 
@@ -89,6 +117,12 @@ describe(`AccessCertificatesManager`, () => {
   });
 
   it(`should download access certificate`, async () => {
+    apiClientPostSpy.mockResolvedValue({
+      body: {
+        device_access_certificate: accessCertificateBase64,
+      },
+    });
+
     const accessCertificate = await hmkit.downloadAccessCertificate(
       accessToken
     );
