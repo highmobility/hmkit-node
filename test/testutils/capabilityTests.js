@@ -246,6 +246,7 @@ function describeEmulatorTests(capabilityName, capability) {
       });
 
       if (hasAvailabilityCommand) {
+        // eslint-disable-next-line consistent-return
         it(`Availability getter for all properties should have correct response`, async () => {
           await sleep(1500);
           const response = await sendCommand(
@@ -314,6 +315,7 @@ function describeEmulatorTests(capabilityName, capability) {
           Object.values(parsedResponse).forEach(validateProp);
         });
 
+        // eslint-disable-next-line consistent-return
         it(`Availability getter for specific properties should have correct response`, async () => {
           await sleep(1500);
 
