@@ -873,7 +873,10 @@
       63,
       64,
       65,
-      66
+      66,
+      67,
+      68,
+      69
     ],
     "properties": [
       {
@@ -1220,6 +1223,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -1817,6 +1825,11 @@
           {
             "id": 11,
             "name": "conditioning",
+            "disabled_in_setter": true
+          },
+          {
+            "id": 12,
+            "name": "flap_open",
             "disabled_in_setter": true
           }
         ],
@@ -3349,6 +3362,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -3787,6 +3805,189 @@
           }
         ],
         "customType": "temperature_extreme"
+      },
+      {
+        "name": "driving_mode_phev",
+        "name_cased": "drivingModePHEV",
+        "name_pretty": "Driving mode PHEV",
+        "type": "enum",
+        "size": 1,
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "not_in_traction"
+          },
+          {
+            "id": 1,
+            "name": "in_charge"
+          },
+          {
+            "id": 2,
+            "name": "full_electric"
+          },
+          {
+            "id": 3,
+            "name": "hybrid_serial"
+          },
+          {
+            "id": 4,
+            "name": "thermic"
+          },
+          {
+            "id": 5,
+            "name": "hybrid_parallel"
+          }
+        ],
+        "id": 67,
+        "added": 13,
+        "description": "Indicates the current driving mode for Plug-In Hybrid Vehicle.",
+        "examples": [
+          {
+            "data_component": "05",
+            "value": "hybrid_parallel",
+            "description": "Driving mode for PHEV is hybrid parallel."
+          }
+        ],
+        "customType": "driving_mode_phev"
+      },
+      {
+        "id": 68,
+        "name": "battery_charge_type",
+        "name_cased": "batteryChargeType",
+        "name_pretty": "Battery charge type",
+        "added": 13,
+        "type": "enum",
+        "size": 1,
+        "description": "Battery charge type.",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "no_charge"
+          },
+          {
+            "id": 1,
+            "name": "normal"
+          },
+          {
+            "id": 2,
+            "name": "accelerated"
+          },
+          {
+            "id": 3,
+            "name": "fast"
+          },
+          {
+            "id": 4,
+            "name": "quick"
+          },
+          {
+            "id": 5,
+            "name": "ultra_fast"
+          },
+          {
+            "id": 6,
+            "name": "not_used"
+          },
+          {
+            "id": 7,
+            "name": "vehicle_to_home"
+          },
+          {
+            "id": 8,
+            "name": "vehicle_to_grid"
+          }
+        ],
+        "examples": [
+          {
+            "data_component": "04",
+            "value": "quick",
+            "description": "Battery charge type is quick."
+          }
+        ]
+      },
+      {
+        "id": 69,
+        "name": "distance_to_complete_charge",
+        "name_cased": "distanceToCompleteCharge",
+        "name_pretty": "Distance to complete charge",
+        "type": "unit.length",
+        "size": 10,
+        "description": "Distance until charging completed",
+        "examples": [
+          {
+            "data_component": "1204405e200000000000",
+            "value": {
+              "kilometers": 120.5
+            },
+            "description": "Distance to complete charge is 120.5 kilometers."
+          }
+        ],
+        "unit": {
+          "name": "length",
+          "id": 18,
+          "unit_types": [
+            {
+              "name": "meters",
+              "id": 0,
+              "conversion_linear": 1
+            },
+            {
+              "name": "millimeters",
+              "id": 1,
+              "conversion_linear": 0.001
+            },
+            {
+              "name": "centimeters",
+              "id": 2,
+              "conversion_linear": 0.01
+            },
+            {
+              "name": "decimeters",
+              "id": 3,
+              "conversion_linear": 0.1
+            },
+            {
+              "name": "kilometers",
+              "id": 4,
+              "conversion_linear": 1000
+            },
+            {
+              "name": "megameters",
+              "id": 5,
+              "conversion_linear": 1000000
+            },
+            {
+              "name": "inches",
+              "id": 11,
+              "conversion_linear": 0.0254
+            },
+            {
+              "name": "feet",
+              "id": 12,
+              "conversion_linear": 0.3048
+            },
+            {
+              "name": "yards",
+              "id": 13,
+              "conversion_linear": 0.9144
+            },
+            {
+              "name": "miles",
+              "id": 14,
+              "conversion_linear": 1609.344
+            },
+            {
+              "name": "scandinavian_miles",
+              "id": 15,
+              "conversion_linear": 10000
+            },
+            {
+              "name": "nautical_miles",
+              "id": 17,
+              "conversion_linear": 1852
+            }
+          ]
+        }
       }
     ]
   },
@@ -4043,6 +4244,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -7076,6 +7282,15 @@
               {
                 "id": 195,
                 "name": "inspection_warning"
+              },
+              {
+                "id": 196,
+                "name": "diesel_oil_filter_water_presence",
+                "name_pretty": "Diesel oil filter has water in it"
+              },
+              {
+                "id": 197,
+                "name": "engine_drag_torque_control_failure"
               }
             ]
           },
@@ -8857,7 +9072,8 @@
       52,
       53,
       54,
-      55
+      55,
+      56
     ],
     "properties": [
       {
@@ -9661,6 +9877,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -9955,6 +10176,11 @@
                   "name": "months",
                   "id": 5,
                   "conversion_linear": 2629800
+                },
+                {
+                  "name": "milliseconds",
+                  "id": 6,
+                  "conversion_linear": 0.001
                 }
               ]
             }
@@ -10784,6 +11010,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -11402,6 +11633,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -12030,6 +12266,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -12220,6 +12461,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -12294,6 +12540,37 @@
           }
         ],
         "customType": "service_status"
+      },
+      {
+        "name": "passenger_airbag_status",
+        "name_cased": "passengerAirbagStatus",
+        "name_pretty": "Passenger airbag status",
+        "type": "enum",
+        "size": 1,
+        "controls": "switch",
+        "enum_values": [
+          {
+            "id": 0,
+            "name": "inactive",
+            "verb": "deactivate"
+          },
+          {
+            "id": 1,
+            "name": "active",
+            "verb": "activate"
+          }
+        ],
+        "id": 56,
+        "added": 13,
+        "description": "Passenger airbag is activated or not",
+        "examples": [
+          {
+            "data_component": "01",
+            "value": "active",
+            "description": "Passenger airbag is `active`"
+          }
+        ],
+        "customType": "active_state"
       }
     ]
   },
@@ -12990,6 +13267,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -14542,6 +14824,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -14642,6 +14929,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -15699,6 +15991,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -15861,6 +16158,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -16032,6 +16334,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -16230,6 +16537,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -16369,6 +16681,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -16526,6 +16843,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -17766,6 +18088,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -18415,7 +18742,8 @@
       16,
       17,
       18,
-      19
+      19,
+      20
     ],
     "properties": [
       {
@@ -19129,6 +19457,93 @@
             "description": "Drivetrain is in `race_start` state."
           }
         ]
+      },
+      {
+        "name": "accelerator_durations",
+        "name_cased": "acceleratorDurations",
+        "name_pretty": "Accelerator durations",
+        "type": "custom",
+        "size": 18,
+        "items": [
+          {
+            "name": "pedal_position_threshold",
+            "name_cased": "pedalPositionThreshold",
+            "name_pretty": "Pedal position threshold",
+            "unit_sign": "%",
+            "validation": "min:0|max:1",
+            "type": "double",
+            "size": 8,
+            "description": "The accelerator pedal position threshold percentage",
+            "customType": "percentage"
+          },
+          {
+            "name": "duration",
+            "name_cased": "duration",
+            "name_pretty": "Duration",
+            "type": "unit.duration",
+            "size": 10,
+            "description": "The duration of the accelerator pedal position",
+            "unit": {
+              "name": "duration",
+              "id": 7,
+              "unit_types": [
+                {
+                  "name": "seconds",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "minutes",
+                  "id": 1,
+                  "conversion_linear": 60
+                },
+                {
+                  "name": "hours",
+                  "id": 2,
+                  "conversion_linear": 3600
+                },
+                {
+                  "name": "days",
+                  "id": 3,
+                  "conversion_linear": 86400
+                },
+                {
+                  "name": "weeks",
+                  "id": 4,
+                  "conversion_linear": 604800
+                },
+                {
+                  "name": "months",
+                  "id": 5,
+                  "conversion_linear": 2629800
+                },
+                {
+                  "name": "milliseconds",
+                  "id": 6,
+                  "conversion_linear": 0.001
+                }
+              ]
+            }
+          }
+        ],
+        "id": 20,
+        "name_singluar": "accelerator_duration",
+        "added": 13,
+        "multiple": true,
+        "description": "Duration during which the accelerator pedal has been pressed more than the given percentage.",
+        "examples": [
+          {
+            "data_component": "3fe000000000000007004093480000000000",
+            "values": {
+              "pedal_position_threshold": 0.5,
+              "duration": {
+                "seconds": 1234
+              }
+            },
+            "description": "Accelerator pedal has been pressed more than 50% for 1234 seconds."
+          }
+        ],
+        "customType": "accelerator_duration"
       }
     ]
   },
@@ -19629,6 +20044,14 @@
               {
                 "id": 4,
                 "name": "rear_center"
+              },
+              {
+                "id": 5,
+                "name": "driver"
+              },
+              {
+                "id": 6,
+                "name": "passenger"
               }
             ],
             "customType": "seat_location"
@@ -19733,6 +20156,14 @@
               {
                 "id": 4,
                 "name": "rear_center"
+              },
+              {
+                "id": 5,
+                "name": "driver"
+              },
+              {
+                "id": 6,
+                "name": "passenger"
               }
             ],
             "customType": "seat_location"
@@ -20635,7 +21066,8 @@
       19,
       20,
       21,
-      22
+      22,
+      23
     ],
     "properties": [
       {
@@ -21431,6 +21863,10 @@
           {
             "id": 5,
             "name": "idling_engine_on"
+          },
+          {
+            "id": 6,
+            "name": "emergency_braking"
           }
         ],
         "examples": [
@@ -21807,6 +22243,23 @@
             "description": "Road was of local type."
           }
         ]
+      },
+      {
+        "id": 23,
+        "name": "braking_count",
+        "name_cased": "brakingCount",
+        "name_pretty": "Braking count",
+        "added": 13,
+        "type": "uinteger",
+        "size": 2,
+        "description": "Number of times the brakes were applied during the trip.",
+        "examples": [
+          {
+            "data_component": "00a1",
+            "value": 161,
+            "description": "Brakes were applied 161 times during the trip."
+          }
+        ]
       }
     ]
   },
@@ -21990,7 +22443,8 @@
       41,
       42,
       43,
-      44
+      44,
+      45
     ],
     "properties": [
       {
@@ -23171,6 +23625,11 @@
                   "name": "months",
                   "id": 5,
                   "conversion_linear": 2629800
+                },
+                {
+                  "name": "milliseconds",
+                  "id": 6,
+                  "conversion_linear": 0.001
                 }
               ]
             }
@@ -23486,6 +23945,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -23541,6 +24005,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -23936,6 +24405,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -23991,6 +24465,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -24404,6 +24883,130 @@
             }
           ]
         }
+      },
+      {
+        "name": "acceleration_durations",
+        "name_cased": "accelerationDurations",
+        "name_pretty": "Acceleration durations",
+        "type": "custom",
+        "size": 12,
+        "items": [
+          {
+            "name": "direction",
+            "name_cased": "direction",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "longitudinal"
+              },
+              {
+                "id": 1,
+                "name": "lateral"
+              }
+            ]
+          },
+          {
+            "name": "type",
+            "name_cased": "type",
+            "type": "enum",
+            "size": 1,
+            "enum_values": [
+              {
+                "id": 0,
+                "name": "regular"
+              },
+              {
+                "id": 1,
+                "name": "positive_outlier"
+              },
+              {
+                "id": 2,
+                "name": "negative_outlier"
+              }
+            ]
+          },
+          {
+            "name": "duration",
+            "name_cased": "duration",
+            "name_pretty": "Duration",
+            "type": "unit.duration",
+            "size": 10,
+            "description": "The duration of the acceleration",
+            "unit": {
+              "name": "duration",
+              "id": 7,
+              "unit_types": [
+                {
+                  "name": "seconds",
+                  "id": 0,
+                  "conversion_linear": 1
+                },
+                {
+                  "name": "minutes",
+                  "id": 1,
+                  "conversion_linear": 60
+                },
+                {
+                  "name": "hours",
+                  "id": 2,
+                  "conversion_linear": 3600
+                },
+                {
+                  "name": "days",
+                  "id": 3,
+                  "conversion_linear": 86400
+                },
+                {
+                  "name": "weeks",
+                  "id": 4,
+                  "conversion_linear": 604800
+                },
+                {
+                  "name": "months",
+                  "id": 5,
+                  "conversion_linear": 2629800
+                },
+                {
+                  "name": "milliseconds",
+                  "id": 6,
+                  "conversion_linear": 0.001
+                }
+              ]
+            }
+          }
+        ],
+        "id": 45,
+        "name_single": "acceleration_duration",
+        "added": 13,
+        "multiple": true,
+        "description": "Durations of normal or other accelerations.",
+        "examples": [
+          {
+            "data_component": "000007064093480000000000",
+            "values": {
+              "direction": "longitudinal",
+              "type": "regular",
+              "duration": {
+                "milliseconds": 1234
+              }
+            },
+            "description": "Normal longitudinal acceleration lasted 1234.0ms."
+          },
+          {
+            "data_component": "010107064093480000000000",
+            "values": {
+              "direction": "lateral",
+              "type": "positive_outlier",
+              "duration": {
+                "milliseconds": 1234
+              }
+            },
+            "description": "Positive outlier lateral acceleration lasted 1234.0ms."
+          }
+        ],
+        "customType": "acceleration_duration"
       }
     ]
   },
@@ -26214,6 +26817,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }
@@ -26294,6 +26902,11 @@
               "name": "months",
               "id": 5,
               "conversion_linear": 2629800
+            },
+            {
+              "name": "milliseconds",
+              "id": 6,
+              "conversion_linear": 0.001
             }
           ]
         }

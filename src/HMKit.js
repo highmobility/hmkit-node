@@ -39,15 +39,15 @@ import AccessCertificate from './Core/AccessCertificate';
 const API_URLS = {
   prod: {
     xvhm: 'https://api.high-mobility.com/v1/',
-    test: 'https://sandbox.api.high-mobility.com/v1/',
+    sbox: 'https://sandbox.api.high-mobility.com/v1/',
   },
   develop: {
     xvhm: 'https://api.develop.high-mobility.net/v1/',
-    test: 'https://sandbox.api.develop.high-mobility.net/v1/',
+    sbox: 'https://sandbox.api.develop.high-mobility.net/v1/',
   },
   staging: {
     xvhm: 'https://api.staging.high-mobility.net/v1/',
-    test: 'https://sandbox.api.staging.high-mobility.net/v1/',
+    sbox: 'https://sandbox.api.staging.high-mobility.net/v1/',
   },
 };
 
@@ -84,10 +84,10 @@ export default class HMKit {
 
   getApiUrl(env) {
     if (this.clientCertificate && this.clientCertificate.issuer) {
-      return API_URLS[env][this.clientCertificate.issuer] || API_URLS[env].test;
+      return API_URLS[env][this.clientCertificate.issuer] || API_URLS[env].sbox;
     }
 
-    return API_URLS[env].test;
+    return API_URLS[env].sbox;
   }
 
   downloadAccessCertificate(...args) {

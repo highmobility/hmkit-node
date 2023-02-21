@@ -61,7 +61,7 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
             doors: {
               brand: {
                 data: {
-                  value: 'emulator',
+                  value: 'sandbox',
                 },
               },
               vin: {
@@ -132,7 +132,7 @@ describeIf(process.env.TEST_ONLINE, `MultiCommand`, () => {
             ignition: {
               brand: {
                 data: {
-                  value: 'emulator',
+                  value: 'sandbox',
                 },
               },
               vin: {

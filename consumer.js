@@ -22,7 +22,7 @@ async function app() {
     console.log(uint8ArrayToHex(response.bytes())); // [0, 53, 1, 1]
     console.log(JSON.stringify(response.parse())); // EngineResponse { engine: 'on' }
   } catch (e) {
-    console.log('CATCHED', e);
+    console.log('CAUGHT', e);
   }
 }
 

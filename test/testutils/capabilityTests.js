@@ -246,6 +246,7 @@ function describeEmulatorTests(capabilityName, capability) {
       });
 
       if (hasAvailabilityCommand) {
+        // eslint-disable-next-line consistent-return
         it(`Availability getter for all properties should have correct response`, async () => {
           await sleep(1500);
           const response = await sendCommand(
@@ -304,9 +305,17 @@ function describeEmulatorTests(capabilityName, capability) {
             });
           };
 
+          if (parsedResponse instanceof failureRespClass) {
+            return handleSkipTestForDisabledFunction(
+              parsedResponse,
+              `${capabilityName}.getAvailability`
+            );
+          }
+
           Object.values(parsedResponse).forEach(validateProp);
         });
 
+        // eslint-disable-next-line consistent-return
         it(`Availability getter for specific properties should have correct response`, async () => {
           await sleep(1500);
 
@@ -327,7 +336,15 @@ function describeEmulatorTests(capabilityName, capability) {
           );
           const parsedResponse = response.parse();
 
-          // Disabled for now because there's no way to check which properties are disabled in emulator_type
+          if (parsedResponse instanceof failureRespClass) {
+            return handleSkipTestForGetAvailabilityWithProperties(
+              parsedResponse,
+              capabilityName,
+              propertiesToRequest
+            );
+          }
+
+          // Disabled for now because there's no way to check which properties are disabled in scene
           propertiesToRequest.forEach(requestedPropertyName => {
             if (
               parsedResponse &&
@@ -376,8 +393,21 @@ function handleSkipTestForGetAvailabilityWithProperty(
   capabilityName,
   requestedPropertyName
 ) {
-  console.warn(
+  console.log(
     `Skipping test for ${capabilityName}.getAvailability(['${requestedPropertyName}']), because the property and / or method is unsupported by this vehicle`
+  );
+}
+
+function handleSkipTestForGetAvailabilityWithProperties(
+  parsedResponse,
+  capabilityName,
+  requestedProperties
+) {
+  console.log(
+    `Skipping test for ${capabilityName}.getAvailability(${JSON.stringify(
+      requestedProperties
+    )}), it might be disabled for this vehicle`,
+    parsedResponse
   );
 }
 
