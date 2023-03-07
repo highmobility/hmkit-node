@@ -81,6 +81,24 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"chargingStatus\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
+        id: activateDeactivateSolarCharging
+        title: 'activateDeactivateSolarCharging({ solarCharging })'
+        parameters:
+            solarCharging: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.activateDeactivateSolarCharging({\n    \"solarCharging\": \"active\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: authenticateExpire
+        title: 'authenticateExpire({ authenticationState })'
+        parameters:
+            authenticationState: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.authenticateExpire({\n    \"authenticationState\": \"authenticated\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: enableDisableWiFiHotspot
+        title: 'enableDisableWiFiHotspot({ wifiHotspotEnabled })'
+        parameters:
+            wifiHotspotEnabled: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.enableDisableWiFiHotspot({\n    \"wifiHotspotEnabled\": \"enabled\"\n  }),\n  accessCertificate\n);\n```"
+    -
         id: setChargeCurrent
         title: 'setChargeCurrent({ chargeCurrent })'
         parameters:
@@ -92,21 +110,3 @@ content:
         parameters:
             priceTariffs: '(Array<Object>) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.setPriceTariffs({\n    \"priceTariffs\": [\n      {\n        \"pricingType\": {\n          \"value\": \"starting_fee\"\n        },\n        \"price\": {\n          \"value\": 4.5\n        },\n        \"currency\": {\n          \"value\": \"EUR\"\n        }\n      },\n      {\n        \"pricingType\": {\n          \"value\": \"per_minute\"\n        },\n        \"price\": {\n          \"value\": 0.3\n        },\n        \"currency\": {\n          \"value\": \"EUR\"\n        }\n      },\n      {\n        \"pricingType\": {\n          \"value\": \"per_kwh\"\n        },\n        \"price\": {\n          \"value\": 0.3\n        },\n        \"currency\": {\n          \"value\": \"Ripple\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: activateDeactivateSolarCharging
-        title: 'activateDeactivateSolarCharging({ solarCharging })'
-        parameters:
-            solarCharging: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.activateDeactivateSolarCharging({\n    \"solarCharging\": \"active\"\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: enableDisableWiFiHotspot
-        title: 'enableDisableWiFiHotspot({ wifiHotspotEnabled })'
-        parameters:
-            wifiHotspotEnabled: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.enableDisableWiFiHotspot({\n    \"wifiHotspotEnabled\": \"enabled\"\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: authenticateExpire
-        title: 'authenticateExpire({ authenticationState })'
-        parameters:
-            authenticationState: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HomeCharger.authenticateExpire({\n    \"authenticationState\": \"authenticated\"\n  }),\n  accessCertificate\n);\n```"

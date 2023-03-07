@@ -51,6 +51,11 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
+        id: endParking
+        title: endParking()
+        parameters: {}
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ParkingTicket.endParking({}),\n  accessCertificate\n);\n```"
+    -
         id: startParking
         title: 'startParking({ operatorName, operatorTicketID, ticketEndTime, ticketStartTime })'
         parameters:
@@ -59,8 +64,3 @@ content:
             ticketEndTime: '(Date) (timestamp) Parking ticket end time'
             ticketStartTime: '(Date) (timestamp) Parking ticket start time'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ParkingTicket.startParking({\n    \"operatorTicketID\": \"6489AB4233\",\n    \"ticketStartTime\": \"2017-01-10T19:34:22.000Z\",\n    \"operatorName\": \"Berlin Parking\",\n    \"ticketEndTime\": \"2019-10-08T11:21:45.000Z\"\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: endParking
-        title: endParking()
-        parameters: {}
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ParkingTicket.endParking({}),\n  accessCertificate\n);\n```"

@@ -21,13 +21,6 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"text\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
-        id: notification
-        title: 'notification({ actionItems, text })'
-        parameters:
-            actionItems: '(Array<Object>) '
-            text: '(String) Text for the notification'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"text\": \"Open Garage\",\n    \"actionItems\": [\n      {\n        \"id\": {\n          \"value\": 27\n        },\n        \"name\": {\n          \"value\": \"Open\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": 28\n        },\n        \"name\": {\n          \"value\": \"Cancel\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
-    -
         id: action
         title: 'action({ activatedAction })'
         parameters:
@@ -38,3 +31,10 @@ content:
         title: clearNotification()
         parameters: {}
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.clearNotification({}),\n  accessCertificate\n);\n```"
+    -
+        id: notification
+        title: 'notification({ actionItems, text })'
+        parameters:
+            actionItems: '(Array<Object>) '
+            text: '(String) Text for the notification'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"text\": \"Open Garage\",\n    \"actionItems\": [\n      {\n        \"id\": {\n          \"value\": 27\n        },\n        \"name\": {\n          \"value\": \"Open\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": 28\n        },\n        \"name\": {\n          \"value\": \"Cancel\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"

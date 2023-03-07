@@ -216,23 +216,17 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"estimatedRange\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
-        id: startStopCharging
-        title: 'startStopCharging({ status })'
+        id: openCloseChargingPort
+        title: 'openCloseChargingPort({ chargePortState })'
         parameters:
-            status: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.startStopCharging({\n    \"status\": \"charging\"\n  }),\n  accessCertificate\n);\n```"
+            chargePortState: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.openCloseChargingPort({\n    \"chargePortState\": \"open\"\n  }),\n  accessCertificate\n);\n```"
     -
         id: setChargeLimit
         title: 'setChargeLimit({ chargeLimit })'
         parameters:
             chargeLimit: '(Number) (double) Charge limit percentage between 0.0-1.0'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.setChargeLimit({\n    \"chargeLimit\": 0.9\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: openCloseChargingPort
-        title: 'openCloseChargingPort({ chargePortState })'
-        parameters:
-            chargePortState: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.openCloseChargingPort({\n    \"chargePortState\": \"open\"\n  }),\n  accessCertificate\n);\n```"
     -
         id: setChargeMode
         title: 'setChargeMode({ chargeMode })'
@@ -251,3 +245,9 @@ content:
         parameters:
             reductionTimes: '(Array<Object>) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.setReductionOfChargingCurrentTimes({\n    \"reductionTimes\": [\n      {\n        \"startStop\": {\n          \"value\": \"start\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 17\n          },\n          \"minute\": {\n            \"value\": 33\n          }\n        }\n      },\n      {\n        \"startStop\": {\n          \"value\": \"stop\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 12\n          },\n          \"minute\": {\n            \"value\": 52\n          }\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: startStopCharging
+        title: 'startStopCharging({ status })'
+        parameters:
+            status: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Charging.startStopCharging({\n    \"status\": \"charging\"\n  }),\n  accessCertificate\n);\n```"

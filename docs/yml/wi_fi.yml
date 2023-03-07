@@ -56,14 +56,14 @@ content:
             password: '(String) The network password'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.connectToNetwork({\n    \"networkSSID\": \"HOME\",\n    \"networkSecurity\": \"wpa2_personal\",\n    \"password\": \"great_secret12\"\n  }),\n  accessCertificate\n);\n```"
     -
-        id: forgetNetwork
-        title: 'forgetNetwork({ networkSSID })'
-        parameters:
-            networkSSID: '(String) The network SSID'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.forgetNetwork({\n    \"networkSSID\": \"HOME\"\n  }),\n  accessCertificate\n);\n```"
-    -
         id: enableDisableWiFi
         title: 'enableDisableWiFi({ status })'
         parameters:
             status: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.enableDisableWiFi({\n    \"status\": \"enabled\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: forgetNetwork
+        title: 'forgetNetwork({ networkSSID })'
+        parameters:
+            networkSSID: '(String) The network SSID'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.forgetNetwork({\n    \"networkSSID\": \"HOME\"\n  }),\n  accessCertificate\n);\n```"

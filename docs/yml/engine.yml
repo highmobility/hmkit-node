@@ -63,14 +63,14 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
-        id: turnEngineOnOff
-        title: 'turnEngineOnOff({ status })'
-        parameters:
-            status: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Engine.turnEngineOnOff({\n    \"status\": \"off\"\n  }),\n  accessCertificate\n);\n```"
-    -
         id: enableDisableStartStop
         title: 'enableDisableStartStop({ startStopEnabled })'
         parameters:
             startStopEnabled: '(String) (enum) Indicates if the automatic start-stop system is enabled or not'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Engine.enableDisableStartStop({\n    \"startStopEnabled\": \"enabled\"\n  }),\n  accessCertificate\n);\n```"
+    -
+        id: turnEngineOnOff
+        title: 'turnEngineOnOff({ status })'
+        parameters:
+            status: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Engine.turnEngineOnOff({\n    \"status\": \"off\"\n  }),\n  accessCertificate\n);\n```"

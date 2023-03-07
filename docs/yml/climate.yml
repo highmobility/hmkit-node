@@ -81,11 +81,13 @@ content:
             hvacWeekdayStartingTimes: '(Array<Object>) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.changeStartingTimes({\n    \"hvacWeekdayStartingTimes\": [\n      {\n        \"weekday\": {\n          \"value\": \"monday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"tuesday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"wednesday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"thursday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"friday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"saturday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 18\n          },\n          \"minute\": {\n            \"value\": 30\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"sunday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 19\n          },\n          \"minute\": {\n            \"value\": 31\n          }\n        }\n      },\n      {\n        \"weekday\": {\n          \"value\": \"automatic\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
     -
-        id: startStopHvac
-        title: 'startStopHvac({ hvacState })'
+        id: setTemperatureSettings
+        title: 'setTemperatureSettings({ driverTemperatureSetting, passengerTemperatureSetting, rearTemperatureSetting })'
         parameters:
-            hvacState: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.startStopHvac({\n    \"hvacState\": \"active\"\n  }),\n  accessCertificate\n);\n```"
+            driverTemperatureSetting: '(Number) (temperature) The driver temperature setting'
+            passengerTemperatureSetting: '(Number) (temperature) The passenger temperature setting'
+            rearTemperatureSetting: '(Number) (temperature) The rear temperature'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.setTemperatureSettings({\n    \"driverTemperatureSetting\": {\n      \"celsius\": 21.5\n    },\n    \"passengerTemperatureSetting\": {\n      \"celsius\": 21.7\n    },\n    \"rearTemperatureSetting\": {\n      \"celsius\": 21.6\n    }\n  }),\n  accessCertificate\n);\n```"
     -
         id: startStopDefogging
         title: 'startStopDefogging({ defoggingState })'
@@ -99,16 +101,14 @@ content:
             defrostingState: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.startStopDefrosting({\n    \"defrostingState\": \"inactive\"\n  }),\n  accessCertificate\n);\n```"
     -
+        id: startStopHvac
+        title: 'startStopHvac({ hvacState })'
+        parameters:
+            hvacState: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.startStopHvac({\n    \"hvacState\": \"active\"\n  }),\n  accessCertificate\n);\n```"
+    -
         id: startStopIonising
         title: 'startStopIonising({ ionisingState })'
         parameters:
             ionisingState: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.startStopIonising({\n    \"ionisingState\": \"inactive\"\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: setTemperatureSettings
-        title: 'setTemperatureSettings({ driverTemperatureSetting, passengerTemperatureSetting, rearTemperatureSetting })'
-        parameters:
-            driverTemperatureSetting: '(Number) (temperature) The driver temperature setting'
-            passengerTemperatureSetting: '(Number) (temperature) The passenger temperature setting'
-            rearTemperatureSetting: '(Number) (temperature) The rear temperature'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Climate.setTemperatureSettings({\n    \"driverTemperatureSetting\": {\n      \"celsius\": 21.5\n    },\n    \"passengerTemperatureSetting\": {\n      \"celsius\": 21.7\n    },\n    \"rearTemperatureSetting\": {\n      \"celsius\": 21.6\n    }\n  }),\n  accessCertificate\n);\n```"

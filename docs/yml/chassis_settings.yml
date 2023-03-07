@@ -60,17 +60,17 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"drivingMode\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
+        id: setChassisPosition
+        title: 'setChassisPosition({ currentChassisPosition })'
+        parameters:
+            currentChassisPosition: '(Number) (length) The chassis position calculated from the lowest point'
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setChassisPosition({\n    \"currentChassisPosition\": {\n      \"millimeters\": 25.4\n    }\n  }),\n  accessCertificate\n);\n```"
+    -
         id: setDrivingMode
         title: 'setDrivingMode({ drivingMode })'
         parameters:
             drivingMode: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setDrivingMode({\n    \"drivingMode\": \"eco\"\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: startStopSportsChrono
-        title: 'startStopSportsChrono({ sportChrono })'
-        parameters:
-            sportChrono: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.startStopSportsChrono({\n    \"sportChrono\": \"active\"\n  }),\n  accessCertificate\n);\n```"
     -
         id: setSpringRates
         title: 'setSpringRates({ currentSpringRates })'
@@ -78,8 +78,8 @@ content:
             currentSpringRates: '(Array<Object>) The current values for the spring rates'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setSpringRates({\n    \"currentSpringRates\": [\n      {\n        \"axle\": {\n          \"value\": \"front\"\n        },\n        \"springRate\": {\n          \"value\": 21,\n          \"unit\": \"newton_millimeters\"\n        }\n      },\n      {\n        \"axle\": {\n          \"value\": \"rear\"\n        },\n        \"springRate\": {\n          \"value\": 23,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
     -
-        id: setChassisPosition
-        title: 'setChassisPosition({ currentChassisPosition })'
+        id: startStopSportsChrono
+        title: 'startStopSportsChrono({ sportChrono })'
         parameters:
-            currentChassisPosition: '(Number) (length) The chassis position calculated from the lowest point'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.setChassisPosition({\n    \"currentChassisPosition\": {\n      \"millimeters\": 25.4\n    }\n  }),\n  accessCertificate\n);\n```"
+            sportChrono: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ChassisSettings.startStopSportsChrono({\n    \"sportChrono\": \"active\"\n  }),\n  accessCertificate\n);\n```"

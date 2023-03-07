@@ -21,13 +21,12 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"states\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
-        id: requestStates
-        title: 'requestStates({ capabilityID, endDate, startDate })'
+        id: getChargingSessions
+        title: 'getChargingSessions({ endDate, startDate })'
         parameters:
-            capabilityID: '(Number) (uinteger) The identifier of the Capability'
             endDate: '(Date) (timestamp) End date for historical data query'
             startDate: '(Date) (timestamp) Start date for historical data query'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.requestStates({\n    \"capabilityID\": 96,\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.getChargingSessions({\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"
     -
         id: getTrips
         title: 'getTrips({ endDate, startDate })'
@@ -36,9 +35,10 @@ content:
             startDate: '(Date) (timestamp) Start date for historical data query'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.getTrips({\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"
     -
-        id: getChargingSessions
-        title: 'getChargingSessions({ endDate, startDate })'
+        id: requestStates
+        title: 'requestStates({ capabilityID, endDate, startDate })'
         parameters:
+            capabilityID: '(Number) (uinteger) The identifier of the Capability'
             endDate: '(Date) (timestamp) End date for historical data query'
             startDate: '(Date) (timestamp) Start date for historical data query'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.getChargingSessions({\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Historical.requestStates({\n    \"capabilityID\": 96,\n    \"startDate\": \"2019-10-07T13:04:32.000Z\",\n    \"endDate\": \"2019-09-27T08:42:30.000Z\"\n  }),\n  accessCertificate\n);\n```"

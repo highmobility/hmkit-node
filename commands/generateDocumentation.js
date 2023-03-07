@@ -215,6 +215,7 @@ function buildSetters(capability) {
   if (!setters) return [];
 
   return setters
+    .sort((a, b) => a.name.localeCompare(b.name))
     .map(setter => {
       const functionName = snakeCaseToCamelCase(setter.name);
 

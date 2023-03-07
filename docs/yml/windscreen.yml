@@ -60,6 +60,13 @@ content:
                 discussion: 'The response contains an availability object for each property, as shown in the example'
                 example: "```json\n{\n  \"wipersStatus\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
+        id: controlWipers
+        title: 'controlWipers({ wipersIntensity, wipersStatus })'
+        parameters:
+            wipersIntensity: '(String) (enum) '
+            wipersStatus: '(String) (enum) '
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.controlWipers({\n    \"wipersStatus\": \"automatic\",\n    \"wipersIntensity\": \"level_3\"\n  }),\n  accessCertificate\n);\n```"
+    -
         id: setWindscreenDamage
         title: 'setWindscreenDamage({ windscreenDamage, windscreenDamageZone })'
         parameters:
@@ -72,10 +79,3 @@ content:
         parameters:
             windscreenNeedsReplacement: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.setWindscreenReplacementNeeded({\n    \"windscreenNeedsReplacement\": \"no_replacement_needed\"\n  }),\n  accessCertificate\n);\n```"
-    -
-        id: controlWipers
-        title: 'controlWipers({ wipersIntensity, wipersStatus })'
-        parameters:
-            wipersIntensity: '(String) (enum) '
-            wipersStatus: '(String) (enum) '
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.controlWipers({\n    \"wipersStatus\": \"automatic\",\n    \"wipersIntensity\": \"level_3\"\n  }),\n  accessCertificate\n);\n```"
