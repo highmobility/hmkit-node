@@ -14,29 +14,29 @@ content:
                 id: ChassisSettingsResponse
                 title: ChassisSettingsResponse
                 parameters:
-                    drivingMode:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    sportChrono:
-                        data.value: '(String) (enum) '
+                    currentChassisPosition:
+                        data.value: '(Number) (length) The chassis position calculated from the lowest point'
                         timestamp: (Date)
                     currentSpringRates:
                         data.value: '(Array<Object>) The current values for the spring rates'
                         timestamp: (Date)
-                    maximumSpringRates:
-                        data.value: '(Array<Object>) The maximum possible values for the spring rates'
-                        timestamp: (Date)
-                    minimumSpringRates:
-                        data.value: '(Array<Object>) The minimum possible values for the spring rates'
-                        timestamp: (Date)
-                    currentChassisPosition:
-                        data.value: '(Number) (length) The chassis position calculated from the lowest point'
+                    drivingMode:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                     maximumChassisPosition:
                         data.value: '(Number) (length) The maximum possible value for the chassis position'
                         timestamp: (Date)
+                    maximumSpringRates:
+                        data.value: '(Array<Object>) The maximum possible values for the spring rates'
+                        timestamp: (Date)
                     minimumChassisPosition:
                         data.value: '(Number) (length) The minimum possible value for the chassis position'
+                        timestamp: (Date)
+                    minimumSpringRates:
+                        data.value: '(Array<Object>) The minimum possible values for the spring rates'
+                        timestamp: (Date)
+                    sportChrono:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"drivingMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"eco\"\n    }\n  },\n  \"sportChrono\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"currentSpringRates\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"front\"\n        },\n        \"springRate\": {\n          \"value\": 21,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"rear\"\n        },\n        \"springRate\": {\n          \"value\": 23,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    }\n  ],\n  \"maximumSpringRates\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"front\"\n        },\n        \"springRate\": {\n          \"value\": 37,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"rear\"\n        },\n        \"springRate\": {\n          \"value\": 39,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    }\n  ],\n  \"minimumSpringRates\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"front\"\n        },\n        \"springRate\": {\n          \"value\": 16,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"rear\"\n        },\n        \"springRate\": {\n          \"value\": 18,\n          \"unit\": \"newton_millimeters\"\n        }\n      }\n    }\n  ],\n  \"currentChassisPosition\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 25.4,\n      \"unit\": \"millimeters\"\n    }\n  },\n  \"maximumChassisPosition\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 55.5,\n      \"unit\": \"millimeters\"\n    }\n  },\n  \"minimumChassisPosition\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": -28.4,\n      \"unit\": \"millimeters\"\n    }\n  }\n}\n```"
     -

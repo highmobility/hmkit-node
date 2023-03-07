@@ -17,17 +17,17 @@ content:
                     insideLocks:
                         data.value: '(Array<Object>) Inside lock states for the given doors'
                         timestamp: (Date)
-                    locks:
-                        data.value: '(Array<Object>) Lock states for the given doors'
-                        timestamp: (Date)
-                    positions:
-                        data.value: '(Array<Object>) Door positions for the given doors'
-                        timestamp: (Date)
                     insideLocksState:
                         data.value: '(String) (enum) Inside locks state for the whole vehicle (combines all specific lock states if available)'
                         timestamp: (Date)
+                    locks:
+                        data.value: '(Array<Object>) Lock states for the given doors'
+                        timestamp: (Date)
                     locksState:
                         data.value: '(String) (enum) Locks state for the whole vehicle (combines all specific lock states if available)'
+                        timestamp: (Date)
+                    positions:
+                        data.value: '(Array<Object>) Door positions for the given doors'
                         timestamp: (Date)
                 example: "```json\n{\n  \"insideLocks\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front_left\"\n        },\n        \"lockState\": {\n          \"value\": \"locked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front_right\"\n        },\n        \"lockState\": {\n          \"value\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear_right\"\n        },\n        \"lockState\": {\n          \"value\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear_left\"\n        },\n        \"lockState\": {\n          \"value\": \"unlocked\"\n        }\n      }\n    }\n  ],\n  \"locks\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front_left\"\n        },\n        \"lockState\": {\n          \"value\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front_right\"\n        },\n        \"lockState\": {\n          \"value\": \"unlocked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear_right\"\n        },\n        \"lockState\": {\n          \"value\": \"locked\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear_left\"\n        },\n        \"lockState\": {\n          \"value\": \"locked\"\n        }\n      }\n    }\n  ],\n  \"positions\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front_left\"\n        },\n        \"position\": {\n          \"value\": \"open\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front_right\"\n        },\n        \"position\": {\n          \"value\": \"closed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear_right\"\n        },\n        \"position\": {\n          \"value\": \"closed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear_left\"\n        },\n        \"position\": {\n          \"value\": \"closed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"all\"\n        },\n        \"position\": {\n          \"value\": \"closed\"\n        }\n      }\n    }\n  ],\n  \"insideLocksState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"locked\"\n    }\n  },\n  \"locksState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"unlocked\"\n    }\n  }\n}\n```"
     -

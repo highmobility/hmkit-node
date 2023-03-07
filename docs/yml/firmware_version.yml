@@ -14,14 +14,14 @@ content:
                 id: FirmwareVersionResponse
                 title: FirmwareVersionResponse
                 parameters:
-                    hmKitVersion:
-                        data.value: '(Object) HMKit version'
+                    applicationVersion:
+                        data.value: '(String) Application version'
                         timestamp: (Date)
                     hmKitBuildName:
                         data.value: '(String) HMKit version build name'
                         timestamp: (Date)
-                    applicationVersion:
-                        data.value: '(String) Application version'
+                    hmKitVersion:
+                        data.value: '(Object) HMKit version'
                         timestamp: (Date)
                 example: "```json\n{\n  \"hmKitVersion\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"major\": {\n        \"value\": 1\n      },\n      \"minor\": {\n        \"value\": 15\n      },\n      \"patch\": {\n        \"value\": 33\n      }\n    }\n  },\n  \"hmKitBuildName\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"btstack-uart\"\n    }\n  },\n  \"applicationVersion\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"v1.5-prod\"\n    }\n  }\n}\n```"
     -

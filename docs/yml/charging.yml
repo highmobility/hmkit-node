@@ -14,104 +14,23 @@ content:
                 id: ChargingResponse
                 title: ChargingResponse
                 parameters:
-                    estimatedRange:
-                        data.value: '(Number) (length) Estimated range'
-                        timestamp: (Date)
-                    batteryLevel:
-                        data.value: '(Number) (double) Battery level percentage between 0.0-1.0'
-                        timestamp: (Date)
-                    chargeLimit:
-                        data.value: '(Number) (double) Charge limit percentage between 0.0-1.0'
-                        timestamp: (Date)
-                    timeToCompleteCharge:
-                        data.value: '(Number) (duration) Time until charging completed'
-                        timestamp: (Date)
-                    chargePortState:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    chargeMode:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    maxChargingCurrent:
-                        data.value: '(Number) (electric_current) Maximum charging current'
-                        timestamp: (Date)
-                    plugType:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    chargingWindowChosen:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    departureTimes:
-                        data.value: '(Array<Object>) '
-                        timestamp: (Date)
-                    reductionTimes:
-                        data.value: '(Array<Object>) '
-                        timestamp: (Date)
-                    batteryTemperature:
-                        data.value: '(Number) (temperature) Battery temperature'
-                        timestamp: (Date)
-                    timers:
-                        data.value: '(Array<Object>) '
-                        timestamp: (Date)
-                    pluggedIn:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    status:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    chargingRate:
-                        data.value: '(Number) (power) Charge rate when charging'
-                        timestamp: (Date)
-                    batteryCurrent:
-                        data.value: '(Number) (electric_current) Battery current - charging if posititive and discharning when negative.'
-                        timestamp: (Date)
-                    chargerVoltage:
-                        data.value: '(Number) (electric_potential_difference) Charger voltage'
-                        timestamp: (Date)
-                    currentType:
-                        data.value: '(String) (enum) Type of current in use'
-                        timestamp: (Date)
-                    maxRange:
-                        data.value: '(Number) (length) Maximum electric range with 100% of battery'
-                        timestamp: (Date)
-                    starterBatteryState:
-                        data.value: '(String) (enum) State of the starter battery'
-                        timestamp: (Date)
-                    smartChargingStatus:
-                        data.value: '(String) (enum) Status of optimized/intelligent charging'
-                        timestamp: (Date)
-                    batteryLevelAtDeparture:
-                        data.value: '(Number) (double) Battery charge level expected at time of departure'
-                        timestamp: (Date)
-                    preconditioningDepartureStatus:
-                        data.value: '(String) (enum) Status of preconditioning at departure time'
-                        timestamp: (Date)
-                    preconditioningImmediateStatus:
-                        data.value: '(String) (enum) Status of immediate preconditioning'
-                        timestamp: (Date)
-                    preconditioningDepartureEnabled:
-                        data.value: '(String) (enum) Preconditioning activation status at departure'
-                        timestamp: (Date)
-                    preconditioningError:
-                        data.value: '(String) (enum) Preconditioning error if one is encountered'
-                        timestamp: (Date)
-                    batteryCapacity:
-                        data.value: '(Number) (energy) Indicates the battery capacity'
+                    acousticLimit:
+                        data.value: '(String) (enum) Acoustic limitation of charging process.'
                         timestamp: (Date)
                     auxiliaryPower:
                         data.value: '(Number) (power) Auxiliary power used for predictions.'
                         timestamp: (Date)
-                    chargingCompleteLock:
-                        data.value: '(String) (enum) Locking status of the charging plug after charging complete.'
+                    batteryCapacity:
+                        data.value: '(Number) (energy) Indicates the battery capacity'
                         timestamp: (Date)
-                    batteryMaxAvailable:
-                        data.value: '(Number) (energy) Maximum available energy content of the high-voltage battery.'
+                    batteryChargeType:
+                        data.value: '(String) (enum) Battery charge type.'
                         timestamp: (Date)
-                    chargingEndReason:
-                        data.value: '(String) (enum) Reason for ending a charging process.'
+                    batteryCoolingTemperature:
+                        data.value: '(Number) (temperature) Battery cooling temperature.'
                         timestamp: (Date)
-                    chargingPhases:
-                        data.value: '(String) (enum) Charging process count of the high-voltage battery (phases).'
+                    batteryCurrent:
+                        data.value: '(Number) (electric_current) Battery current - charging if posititive and discharning when negative.'
                         timestamp: (Date)
                     batteryEnergy:
                         data.value: '(Number) (energy) Energy content of the high-voltage battery.'
@@ -119,80 +38,161 @@ content:
                     batteryEnergyChargable:
                         data.value: '(Number) (energy) Energy required until high-voltage battery is fully charged.'
                         timestamp: (Date)
+                    batteryLed:
+                        data.value: '(String) (enum) State of LED for the battery.'
+                        timestamp: (Date)
+                    batteryLevel:
+                        data.value: '(Number) (double) Battery level percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    batteryLevelAtDeparture:
+                        data.value: '(Number) (double) Battery charge level expected at time of departure'
+                        timestamp: (Date)
+                    batteryMaxAvailable:
+                        data.value: '(Number) (energy) Maximum available energy content of the high-voltage battery.'
+                        timestamp: (Date)
+                    batteryStatus:
+                        data.value: '(String) (enum) Battery state.'
+                        timestamp: (Date)
+                    batteryTemperature:
+                        data.value: '(Number) (temperature) Battery temperature'
+                        timestamp: (Date)
+                    batteryTemperatureControlDemand:
+                        data.value: '(String) (enum) Current demand of HV battery temperature control system.'
+                        timestamp: (Date)
+                    batteryTemperatureExtremes:
+                        data.value: '(Object) Current highest-lowest temperature inside the battery.'
+                        timestamp: (Date)
+                    batteryVoltage:
+                        data.value: '(Number) (electric_potential_difference) High-voltage battery electric potential difference (aka voltage).'
+                        timestamp: (Date)
+                    chargeLimit:
+                        data.value: '(Number) (double) Charge limit percentage between 0.0-1.0'
+                        timestamp: (Date)
+                    chargeMode:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    chargePortState:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    chargerVoltage:
+                        data.value: '(Number) (electric_potential_difference) Charger voltage'
+                        timestamp: (Date)
+                    chargingCompleteLock:
+                        data.value: '(String) (enum) Locking status of the charging plug after charging complete.'
+                        timestamp: (Date)
+                    chargingCurrent:
+                        data.value: '(Number) (electric_current) Charging electric current.'
+                        timestamp: (Date)
+                    chargingEndReason:
+                        data.value: '(String) (enum) Reason for ending a charging process.'
+                        timestamp: (Date)
+                    chargingPhases:
+                        data.value: '(String) (enum) Charging process count of the high-voltage battery (phases).'
+                        timestamp: (Date)
+                    chargingRate:
+                        data.value: '(Number) (power) Charge rate when charging'
+                        timestamp: (Date)
                     chargingSingleImmediate:
                         data.value: '(String) (enum) Single instant charging function status.'
                         timestamp: (Date)
                     chargingTimeDisplay:
                         data.value: '(String) (enum) Charging time displayed in the vehicle.'
                         timestamp: (Date)
-                    departureTimeDisplay:
-                        data.value: '(String) (enum) Departure time displayed in the vehicle.'
-                        timestamp: (Date)
-                    restriction:
-                        data.value: '(Object) Charging limit and state'
-                        timestamp: (Date)
-                    limitStatus:
-                        data.value: '(String) (enum) Indicates whether charging limit is active.'
+                    chargingWindowChosen:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                     currentLimit:
                         data.value: '(Number) (electric_current) Limit for the charging current.'
                         timestamp: (Date)
-                    smartChargingOption:
-                        data.value: '(String) (enum) Smart charging option being used to charge with.'
+                    currentType:
+                        data.value: '(String) (enum) Type of current in use'
                         timestamp: (Date)
-                    plugLockStatus:
-                        data.value: '(String) (enum) Locking status of charging plug.'
+                    departureTimeDisplay:
+                        data.value: '(String) (enum) Departure time displayed in the vehicle.'
                         timestamp: (Date)
-                    flapLockStatus:
-                        data.value: '(String) (enum) Locking status of charging flap.'
+                    departureTimes:
+                        data.value: '(Array<Object>) '
                         timestamp: (Date)
-                    acousticLimit:
-                        data.value: '(String) (enum) Acoustic limitation of charging process.'
-                        timestamp: (Date)
-                    minChargingCurrent:
-                        data.value: '(Number) (electric_current) Minimum charging current.'
-                        timestamp: (Date)
-                    estimatedRangeTarget:
-                        data.value: '(Number) (length) Remaining electric range depending on target charging status.'
-                        timestamp: (Date)
-                    fullyChargedEndTimes:
-                        data.value: '(Object) Time and weekday when the vehicle will be fully charged.'
-                        timestamp: (Date)
-                    preconditioningScheduledTime:
-                        data.value: '(Object) Preconditioning scheduled departure time.'
-                        timestamp: (Date)
-                    preconditioningRemainingTime:
-                        data.value: '(Number) (duration) Time until preconditioning is complete.'
-                        timestamp: (Date)
-                    batteryVoltage:
-                        data.value: '(Number) (electric_potential_difference) High-voltage battery electric potential difference (aka voltage).'
-                        timestamp: (Date)
-                    batteryTemperatureControlDemand:
-                        data.value: '(String) (enum) Current demand of HV battery temperature control system.'
-                        timestamp: (Date)
-                    chargingCurrent:
-                        data.value: '(Number) (electric_current) Charging electric current.'
-                        timestamp: (Date)
-                    batteryStatus:
-                        data.value: '(String) (enum) Battery state.'
-                        timestamp: (Date)
-                    batteryLed:
-                        data.value: '(String) (enum) State of LED for the battery.'
-                        timestamp: (Date)
-                    batteryCoolingTemperature:
-                        data.value: '(Number) (temperature) Battery cooling temperature.'
-                        timestamp: (Date)
-                    batteryTemperatureExtremes:
-                        data.value: '(Object) Current highest-lowest temperature inside the battery.'
+                    distanceToCompleteCharge:
+                        data.value: '(Number) (length) Distance until charging completed'
                         timestamp: (Date)
                     drivingModePHEV:
                         data.value: '(String) (enum) Indicates the current driving mode for Plug-In Hybrid Vehicle.'
                         timestamp: (Date)
-                    batteryChargeType:
-                        data.value: '(String) (enum) Battery charge type.'
+                    estimatedRange:
+                        data.value: '(Number) (length) Estimated range'
                         timestamp: (Date)
-                    distanceToCompleteCharge:
-                        data.value: '(Number) (length) Distance until charging completed'
+                    estimatedRangeTarget:
+                        data.value: '(Number) (length) Remaining electric range depending on target charging status.'
+                        timestamp: (Date)
+                    flapLockStatus:
+                        data.value: '(String) (enum) Locking status of charging flap.'
+                        timestamp: (Date)
+                    fullyChargedEndTimes:
+                        data.value: '(Object) Time and weekday when the vehicle will be fully charged.'
+                        timestamp: (Date)
+                    limitStatus:
+                        data.value: '(String) (enum) Indicates whether charging limit is active.'
+                        timestamp: (Date)
+                    maxChargingCurrent:
+                        data.value: '(Number) (electric_current) Maximum charging current'
+                        timestamp: (Date)
+                    maxRange:
+                        data.value: '(Number) (length) Maximum electric range with 100% of battery'
+                        timestamp: (Date)
+                    minChargingCurrent:
+                        data.value: '(Number) (electric_current) Minimum charging current.'
+                        timestamp: (Date)
+                    pluggedIn:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    plugLockStatus:
+                        data.value: '(String) (enum) Locking status of charging plug.'
+                        timestamp: (Date)
+                    plugType:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    preconditioningDepartureEnabled:
+                        data.value: '(String) (enum) Preconditioning activation status at departure'
+                        timestamp: (Date)
+                    preconditioningDepartureStatus:
+                        data.value: '(String) (enum) Status of preconditioning at departure time'
+                        timestamp: (Date)
+                    preconditioningError:
+                        data.value: '(String) (enum) Preconditioning error if one is encountered'
+                        timestamp: (Date)
+                    preconditioningImmediateStatus:
+                        data.value: '(String) (enum) Status of immediate preconditioning'
+                        timestamp: (Date)
+                    preconditioningRemainingTime:
+                        data.value: '(Number) (duration) Time until preconditioning is complete.'
+                        timestamp: (Date)
+                    preconditioningScheduledTime:
+                        data.value: '(Object) Preconditioning scheduled departure time.'
+                        timestamp: (Date)
+                    reductionTimes:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    restriction:
+                        data.value: '(Object) Charging limit and state'
+                        timestamp: (Date)
+                    smartChargingOption:
+                        data.value: '(String) (enum) Smart charging option being used to charge with.'
+                        timestamp: (Date)
+                    smartChargingStatus:
+                        data.value: '(String) (enum) Status of optimized/intelligent charging'
+                        timestamp: (Date)
+                    starterBatteryState:
+                        data.value: '(String) (enum) State of the starter battery'
+                        timestamp: (Date)
+                    status:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    timers:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    timeToCompleteCharge:
+                        data.value: '(Number) (duration) Time until charging completed'
                         timestamp: (Date)
                 example: "```json\n{\n  \"estimatedRange\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 432.1,\n      \"unit\": \"kilometers\"\n    }\n  },\n  \"batteryLevel\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.5\n    }\n  },\n  \"chargeLimit\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.9\n    }\n  },\n  \"timeToCompleteCharge\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 60,\n      \"unit\": \"minutes\"\n    }\n  },\n  \"chargePortState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"chargeMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"timer_based\"\n    }\n  },\n  \"maxChargingCurrent\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 25,\n      \"unit\": \"amperes\"\n    }\n  },\n  \"plugType\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"type_2\"\n    }\n  },\n  \"chargingWindowChosen\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"not_chosen\"\n    }\n  },\n  \"departureTimes\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"state\": {\n          \"value\": \"active\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 32\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"state\": {\n          \"value\": \"inactive\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 11\n          },\n          \"minute\": {\n            \"value\": 51\n          }\n        }\n      }\n    }\n  ],\n  \"reductionTimes\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"startStop\": {\n          \"value\": \"start\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 17\n          },\n          \"minute\": {\n            \"value\": 33\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"startStop\": {\n          \"value\": \"stop\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 12\n          },\n          \"minute\": {\n            \"value\": 52\n          }\n        }\n      }\n    }\n  ],\n  \"batteryTemperature\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 38.4,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"timers\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"timerType\": {\n          \"value\": \"preferred_start_time\"\n        },\n        \"date\": {\n          \"value\": \"2017-01-10T16:32:05.000Z\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"timerType\": {\n          \"value\": \"preferred_end_time\"\n        },\n        \"date\": {\n          \"value\": \"2017-01-10T16:36:05.000Z\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"timerType\": {\n          \"value\": \"departure_date\"\n        },\n        \"date\": {\n          \"value\": \"2017-01-10T16:36:05.000Z\"\n        }\n      }\n    }\n  ],\n  \"pluggedIn\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"plugged_in\"\n    }\n  },\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"charging\"\n    }\n  },\n  \"chargingRate\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 150,\n      \"unit\": \"kilowatts\"\n    }\n  },\n  \"batteryCurrent\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": -0.6,\n      \"unit\": \"amperes\"\n    }\n  },\n  \"chargerVoltage\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 400,\n      \"unit\": \"volts\"\n    }\n  },\n  \"currentType\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"alternating_current\"\n    }\n  },\n  \"maxRange\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 555,\n      \"unit\": \"kilometers\"\n    }\n  },\n  \"starterBatteryState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"green\"\n    }\n  },\n  \"smartChargingStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"scc_is_active\"\n    }\n  },\n  \"batteryLevelAtDeparture\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.9\n    }\n  },\n  \"preconditioningDepartureStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"preconditioningImmediateStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"preconditioningDepartureEnabled\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"preconditioningError\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"not_possible_low\"\n    }\n  },\n  \"batteryCapacity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 70,\n      \"unit\": \"kilowatt_hours\"\n    }\n  },\n  \"auxiliaryPower\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 120,\n      \"unit\": \"kilowatts\"\n    }\n  },\n  \"chargingCompleteLock\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"batteryMaxAvailable\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 99,\n      \"unit\": \"kilowatt_hours\"\n    }\n  },\n  \"chargingEndReason\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"goal_reached\"\n    }\n  },\n  \"chargingPhases\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"one\"\n    }\n  },\n  \"batteryEnergy\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 119.5,\n      \"unit\": \"kilowatt_hours\"\n    }\n  },\n  \"batteryEnergyChargable\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 30.75,\n      \"unit\": \"kilowatt_hours\"\n    }\n  },\n  \"chargingSingleImmediate\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"chargingTimeDisplay\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"display_duration\"\n    }\n  },\n  \"departureTimeDisplay\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"reachable\"\n    }\n  },\n  \"restriction\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"active\": {\n        \"value\": \"active\"\n      },\n      \"limit\": {\n        \"value\": \"max\"\n      }\n    }\n  },\n  \"limitStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"currentLimit\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 100,\n      \"unit\": \"amperes\"\n    }\n  },\n  \"smartChargingOption\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"renewable_energy\"\n    }\n  },\n  \"plugLockStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"unlocked\"\n    }\n  },\n  \"flapLockStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"locked\"\n    }\n  },\n  \"acousticLimit\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"automatic\"\n    }\n  },\n  \"minChargingCurrent\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 5,\n      \"unit\": \"amperes\"\n    }\n  },\n  \"estimatedRangeTarget\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 300,\n      \"unit\": \"kilometers\"\n    }\n  },\n  \"fullyChargedEndTimes\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"weekday\": {\n        \"value\": \"monday\"\n      },\n      \"time\": {\n        \"hour\": {\n          \"value\": 5\n        },\n        \"minute\": {\n          \"value\": 30\n        }\n      }\n    }\n  },\n  \"preconditioningScheduledTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"hour\": {\n        \"value\": 5\n      },\n      \"minute\": {\n        \"value\": 30\n      }\n    }\n  },\n  \"preconditioningRemainingTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 110,\n      \"unit\": \"minutes\"\n    }\n  },\n  \"batteryVoltage\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 120,\n      \"unit\": \"volts\"\n    }\n  },\n  \"batteryTemperatureControlDemand\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"high_cooling\"\n    }\n  },\n  \"chargingCurrent\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 3.14,\n      \"unit\": \"amperes\"\n    }\n  },\n  \"batteryStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"batteryLed\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"no_colour\"\n    }\n  },\n  \"batteryCoolingTemperature\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 63.4,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"batteryTemperatureExtremes\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"extreme\": {\n        \"value\": \"highest\"\n      },\n      \"temperature\": {\n        \"value\": 85,\n        \"unit\": \"celsius\"\n      }\n    }\n  },\n  \"drivingModePHEV\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"hybrid_parallel\"\n    }\n  },\n  \"batteryChargeType\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"quick\"\n    }\n  },\n  \"distanceToCompleteCharge\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 120.5,\n      \"unit\": \"kilometers\"\n    }\n  }\n}\n```"
     -

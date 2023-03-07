@@ -14,26 +14,26 @@ content:
                 id: CrashResponse
                 title: CrashResponse
                 parameters:
-                    incidents:
-                        data.value: '(Array<Object>) '
-                        timestamp: (Date)
-                    type:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    tippedState:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
                     automaticECall:
                         data.value: '(String) (enum) Automatic emergency call enabled state'
-                        timestamp: (Date)
-                    severity:
-                        data.value: '(Number) (uinteger) Severity of the crash (from 0 to 7 - very high severity)'
                         timestamp: (Date)
                     impactZone:
                         data.value: '(Array<String>) (enum) Impact zone of the crash'
                         timestamp: (Date)
+                    incidents:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    severity:
+                        data.value: '(Number) (uinteger) Severity of the crash (from 0 to 7 - very high severity)'
+                        timestamp: (Date)
                     status:
                         data.value: '(String) (enum) The system effect an inpact had on the vehicle.'
+                        timestamp: (Date)
+                    tippedState:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    type:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"incidents\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"front\"\n        },\n        \"severity\": {\n          \"value\": \"high\"\n        },\n        \"repairs\": {\n          \"value\": \"needed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"lateral\"\n        },\n        \"severity\": {\n          \"value\": \"medium\"\n        },\n        \"repairs\": {\n          \"value\": \"needed\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"location\": {\n          \"value\": \"rear\"\n        },\n        \"severity\": {\n          \"value\": \"low\"\n        },\n        \"repairs\": {\n          \"value\": \"not_needed\"\n        }\n      }\n    }\n  ],\n  \"type\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"non_pedestrian\"\n    }\n  },\n  \"tippedState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"not_tipped\"\n    }\n  },\n  \"automaticECall\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"severity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 2\n    }\n  },\n  \"impactZone\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"value\": \"rear_driver_side\"\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"value\": \"side_driver_side\"\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"value\": \"front_driver_side\"\n      }\n    }\n  ],\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"normal\"\n    }\n  }\n}\n```"
     -

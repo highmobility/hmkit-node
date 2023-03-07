@@ -14,14 +14,14 @@ content:
                 id: HoodResponse
                 title: HoodResponse
                 parameters:
-                    position:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
                     lock:
                         data.value: '(String) (enum) Includes the lock state of the hood.'
                         timestamp: (Date)
                     lockSafety:
                         data.value: '(String) (enum) Indicates the safe-state of the hood.'
+                        timestamp: (Date)
+                    position:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"position\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"lock\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"locked\"\n    }\n  },\n  \"lockSafety\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"safe\"\n    }\n  }\n}\n```"
     -

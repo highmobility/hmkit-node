@@ -14,11 +14,11 @@ content:
                 id: NaviDestinationResponse
                 title: NaviDestinationResponse
                 parameters:
+                    arrivalDuration:
+                        data.value: '(Number) (duration) Remaining time until reaching the destination.'
+                        timestamp: (Date)
                     coordinates:
                         data.value: '(Object) '
-                        timestamp: (Date)
-                    destinationName:
-                        data.value: '(String) Destination name'
                         timestamp: (Date)
                     dataSlotsFree:
                         data.value: '(Number) (uinteger) Remaining number of POI data slots available.'
@@ -26,8 +26,8 @@ content:
                     dataSlotsMax:
                         data.value: '(Number) (uinteger) Maximum number of POI data slots.'
                         timestamp: (Date)
-                    arrivalDuration:
-                        data.value: '(Number) (duration) Remaining time until reaching the destination.'
+                    destinationName:
+                        data.value: '(String) Destination name'
                         timestamp: (Date)
                     distanceToDestination:
                         data.value: '(Number) (length) Remaining distance to reach the destination.'

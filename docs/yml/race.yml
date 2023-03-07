@@ -17,47 +17,8 @@ content:
                     accelerations:
                         data.value: '(Array<Object>) '
                         timestamp: (Date)
-                    understeering:
-                        data.value: '(Number) (double) The understeering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 0.3 (30%) marginal&comma; over 30% critical'
-                        timestamp: (Date)
-                    oversteering:
-                        data.value: '(Number) (double) The oversteering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 30% marginal&comma; over 30% critical'
-                        timestamp: (Date)
-                    gasPedalPosition:
-                        data.value: '(Number) (double) The gas pedal position between 0.0-1.0&comma; whereas 1.0 (100%) is full throttle'
-                        timestamp: (Date)
-                    steeringAngle:
-                        data.value: '(Number) (angle) The steering angle&comma; whereas 0.0 is straight ahead&comma; positive number to the right and negative number to the left'
-                        timestamp: (Date)
-                    brakePressure:
-                        data.value: '(Number) (pressure) Brake pressure'
-                        timestamp: (Date)
-                    yawRate:
-                        data.value: '(Number) (angular_velocity) Yaw turning rate'
-                        timestamp: (Date)
-                    rearSuspensionSteering:
-                        data.value: '(Number) (angle) Rear suspension steering'
-                        timestamp: (Date)
-                    electronicStabilityProgram:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    brakeTorqueVectorings:
-                        data.value: '(Array<Object>) '
-                        timestamp: (Date)
-                    gearMode:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    selectedGear:
-                        data.value: '(Number) (integer) The selected gear value&comma; if any'
-                        timestamp: (Date)
-                    brakePedalPosition:
-                        data.value: '(Number) (double) The brake pedal position between 0.0-1.0&comma; wheras 1.0 (100%) is full brakes'
-                        timestamp: (Date)
-                    brakePedalSwitch:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    clutchPedalSwitch:
-                        data.value: '(String) (enum) '
+                    acceleratorDurations:
+                        data.value: '(Array<Object>) Duration during which the accelerator pedal has been pressed more than the given percentage.'
                         timestamp: (Date)
                     acceleratorPedalIdleSwitch:
                         data.value: '(String) (enum) '
@@ -65,14 +26,53 @@ content:
                     acceleratorPedalKickdownSwitch:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                    vehicleMoving:
+                    brakePedalPosition:
+                        data.value: '(Number) (double) The brake pedal position between 0.0-1.0&comma; wheras 1.0 (100%) is full brakes'
+                        timestamp: (Date)
+                    brakePedalSwitch:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    brakePressure:
+                        data.value: '(Number) (pressure) Brake pressure'
+                        timestamp: (Date)
+                    brakeTorqueVectorings:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    clutchPedalSwitch:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                     drivetrainState:
                         data.value: '(String) (enum) State of the drivetrain for starts.'
                         timestamp: (Date)
-                    acceleratorDurations:
-                        data.value: '(Array<Object>) Duration during which the accelerator pedal has been pressed more than the given percentage.'
+                    electronicStabilityProgram:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    gasPedalPosition:
+                        data.value: '(Number) (double) The gas pedal position between 0.0-1.0&comma; whereas 1.0 (100%) is full throttle'
+                        timestamp: (Date)
+                    gearMode:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    oversteering:
+                        data.value: '(Number) (double) The oversteering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 30% marginal&comma; over 30% critical'
+                        timestamp: (Date)
+                    rearSuspensionSteering:
+                        data.value: '(Number) (angle) Rear suspension steering'
+                        timestamp: (Date)
+                    selectedGear:
+                        data.value: '(Number) (integer) The selected gear value&comma; if any'
+                        timestamp: (Date)
+                    steeringAngle:
+                        data.value: '(Number) (angle) The steering angle&comma; whereas 0.0 is straight ahead&comma; positive number to the right and negative number to the left'
+                        timestamp: (Date)
+                    understeering:
+                        data.value: '(Number) (double) The understeering percentage between 0.0-1.0 whereas up to 0.2 (20%) is considered OK&comma; up to 0.3 (30%) marginal&comma; over 30% critical'
+                        timestamp: (Date)
+                    vehicleMoving:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    yawRate:
+                        data.value: '(Number) (angular_velocity) Yaw turning rate'
                         timestamp: (Date)
                 example: "```json\n{\n  \"accelerations\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"direction\": {\n          \"value\": \"longitudinal\"\n        },\n        \"acceleration\": {\n          \"value\": 0.864,\n          \"unit\": \"gravity\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"direction\": {\n          \"value\": \"lateral\"\n        },\n        \"acceleration\": {\n          \"value\": -0.753,\n          \"unit\": \"gravity\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"direction\": {\n          \"value\": \"front_lateral\"\n        },\n        \"acceleration\": {\n          \"value\": 0.753,\n          \"unit\": \"gravity\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"direction\": {\n          \"value\": \"rear_lateral\"\n        },\n        \"acceleration\": {\n          \"value\": -0.864,\n          \"unit\": \"gravity\"\n        }\n      }\n    }\n  ],\n  \"understeering\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.19\n    }\n  },\n  \"oversteering\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.05\n    }\n  },\n  \"gasPedalPosition\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.98\n    }\n  },\n  \"steeringAngle\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 10,\n      \"unit\": \"degrees\"\n    }\n  },\n  \"brakePressure\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 20,\n      \"unit\": \"bars\"\n    }\n  },\n  \"yawRate\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 6.66,\n      \"unit\": \"degrees_per_second\"\n    }\n  },\n  \"rearSuspensionSteering\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 3.3,\n      \"unit\": \"degrees\"\n    }\n  },\n  \"electronicStabilityProgram\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"brakeTorqueVectorings\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"front\"\n        },\n        \"state\": {\n          \"value\": \"active\"\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"axle\": {\n          \"value\": \"rear\"\n        },\n        \"state\": {\n          \"value\": \"inactive\"\n        }\n      }\n    }\n  ],\n  \"gearMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"drive\"\n    }\n  },\n  \"selectedGear\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 4\n    }\n  },\n  \"brakePedalPosition\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.12\n    }\n  },\n  \"brakePedalSwitch\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"clutchPedalSwitch\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"acceleratorPedalIdleSwitch\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"acceleratorPedalKickdownSwitch\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"vehicleMoving\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"moving\"\n    }\n  },\n  \"drivetrainState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"race_start\"\n    }\n  },\n  \"acceleratorDurations\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"pedalPositionThreshold\": {\n          \"value\": 0.5\n        },\n        \"duration\": {\n          \"value\": 1234,\n          \"unit\": \"seconds\"\n        }\n      }\n    }\n  ]\n}\n```"
     -

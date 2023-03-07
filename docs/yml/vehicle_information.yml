@@ -14,26 +14,65 @@ content:
                 id: VehicleInformationResponse
                 title: VehicleInformationResponse
                 parameters:
-                    powertrain:
-                        data.value: '(String) (enum) Type of the (primary) powertrain'
+                    buildDate:
+                        data.value: '(Date) (timestamp) Build (construction) date of the vehicle.'
                         timestamp: (Date)
-                    modelName:
-                        data.value: '(String) The vehicle model name'
+                    colourName:
+                        data.value: '(String) The colour name'
                         timestamp: (Date)
-                    name:
-                        data.value: '(String) The vehicle name (nickname)'
+                    countryCode:
+                        data.value: '(String) The country code of the vehicle.'
+                        timestamp: (Date)
+                    dataQuality:
+                        data.value: '(String) (enum) Evaluation of the timeliness of the available vehicle data.'
+                        timestamp: (Date)
+                    displayUnit:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    drive:
+                        data.value: '(String) (enum) Wheels driven by the engine'
+                        timestamp: (Date)
+                    driverSeatLocation:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    engineMaxTorque:
+                        data.value: '(Number) (torque) The maximum engine torque'
+                        timestamp: (Date)
+                    engineVolume:
+                        data.value: '(Number) (volume) The engine volume displacement'
+                        timestamp: (Date)
+                    equipments:
+                        data.value: '(Array<String>) (string) Names of equipment the vehicle is equipped with'
+                        timestamp: (Date)
+                    extraEquipmentCodes:
+                        data.value: '(Array<String>) (string) Codes of the extra equipment the vehicle has'
+                        timestamp: (Date)
+                    fuelTankCapacity:
+                        data.value: '(Number) (volume) The fuel tank capacity measured in liters'
+                        timestamp: (Date)
+                    gearbox:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    language:
+                        data.value: '(String) The language on headunit'
+                        timestamp: (Date)
+                    lastDataTransferDate:
+                        data.value: '(Date) (timestamp) The last trip date'
                         timestamp: (Date)
                     licensePlate:
                         data.value: '(String) The license plate number'
                         timestamp: (Date)
-                    salesDesignation:
-                        data.value: '(String) The sales designation of the model'
+                    modelKey:
+                        data.value: '(String) The model key of the vehicle.'
+                        timestamp: (Date)
+                    modelName:
+                        data.value: '(String) The vehicle model name'
                         timestamp: (Date)
                     modelYear:
                         data.value: '(Number) (uinteger) The vehicle model manufacturing year number'
                         timestamp: (Date)
-                    colourName:
-                        data.value: '(String) The colour name'
+                    name:
+                        data.value: '(String) The vehicle name (nickname)'
                         timestamp: (Date)
                     numberOfDoors:
                         data.value: '(Number) (uinteger) The number of doors'
@@ -41,62 +80,23 @@ content:
                     numberOfSeats:
                         data.value: '(Number) (uinteger) The number of seats'
                         timestamp: (Date)
-                    engineVolume:
-                        data.value: '(Number) (volume) The engine volume displacement'
-                        timestamp: (Date)
-                    engineMaxTorque:
-                        data.value: '(Number) (torque) The maximum engine torque'
-                        timestamp: (Date)
-                    gearbox:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    displayUnit:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    driverSeatLocation:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    equipments:
-                        data.value: '(Array<String>) (string) Names of equipment the vehicle is equipped with'
-                        timestamp: (Date)
                     power:
                         data.value: '(Number) (power) The power of the vehicle'
                         timestamp: (Date)
-                    language:
-                        data.value: '(String) The language on headunit'
-                        timestamp: (Date)
-                    timeformat:
-                        data.value: '(String) (enum) The timeformat on headunit'
-                        timestamp: (Date)
-                    drive:
-                        data.value: '(String) (enum) Wheels driven by the engine'
+                    powertrain:
+                        data.value: '(String) (enum) Type of the (primary) powertrain'
                         timestamp: (Date)
                     powertrainSecondary:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                    fuelTankCapacity:
-                        data.value: '(Number) (volume) The fuel tank capacity measured in liters'
-                        timestamp: (Date)
-                    buildDate:
-                        data.value: '(Date) (timestamp) Build (construction) date of the vehicle.'
-                        timestamp: (Date)
-                    countryCode:
-                        data.value: '(String) The country code of the vehicle.'
-                        timestamp: (Date)
-                    modelKey:
-                        data.value: '(String) The model key of the vehicle.'
-                        timestamp: (Date)
-                    dataQuality:
-                        data.value: '(String) (enum) Evaluation of the timeliness of the available vehicle data.'
-                        timestamp: (Date)
-                    extraEquipmentCodes:
-                        data.value: '(Array<String>) (string) Codes of the extra equipment the vehicle has'
+                    salesDesignation:
+                        data.value: '(String) The sales designation of the model'
                         timestamp: (Date)
                     series:
                         data.value: '(String) The vehicle model''s series'
                         timestamp: (Date)
-                    lastDataTransferDate:
-                        data.value: '(Date) (timestamp) The last trip date'
+                    timeformat:
+                        data.value: '(String) (enum) The timeformat on headunit'
                         timestamp: (Date)
                     timeZone:
                         data.value: '(String) (enum) Time zone setting in the vehicle.'

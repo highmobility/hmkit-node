@@ -22,10 +22,10 @@ content:
                 example: "```json\n{\n  \"text\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
         id: notification
-        title: 'notification({ text, actionItems })'
+        title: 'notification({ actionItems, text })'
         parameters:
-            text: '(String) Text for the notification'
             actionItems: '(Array<Object>) '
+            text: '(String) Text for the notification'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"text\": \"Open Garage\",\n    \"actionItems\": [\n      {\n        \"id\": {\n          \"value\": 27\n        },\n        \"name\": {\n          \"value\": \"Open\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": 28\n        },\n        \"name\": {\n          \"value\": \"Cancel\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
     -
         id: action

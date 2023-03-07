@@ -40,10 +40,10 @@ content:
                 example: "```json\n{\n  \"flashers\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
         id: honkFlash
-        title: 'honkFlash({ honkTime, flashTimes })'
+        title: 'honkFlash({ flashTimes, honkTime })'
         parameters:
-            honkTime: '(Number) (duration) Time to honk the horn'
             flashTimes: '(Number) (uinteger) Number of times to flash the lights'
+            honkTime: '(Number) (duration) Time to honk the horn'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.HonkHornFlashLights.honkFlash({\n    \"honkTime\": {\n      \"seconds\": 2\n    },\n    \"flashTimes\": 5\n  }),\n  accessCertificate\n);\n```"
     -
         id: activateDeactivateEmergencyFlasher

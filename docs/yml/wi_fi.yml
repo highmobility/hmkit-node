@@ -14,16 +14,16 @@ content:
                 id: WiFiResponse
                 title: WiFiResponse
                 parameters:
-                    status:
+                    networkConnected:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                    networkConnected:
+                    networkSecurity:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                     networkSSID:
                         data.value: '(String) The network SSID'
                         timestamp: (Date)
-                    networkSecurity:
+                    status:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"networkConnected\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"connected\"\n    }\n  },\n  \"networkSSID\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"HOME\"\n    }\n  },\n  \"networkSecurity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"wpa2_personal\"\n    }\n  }\n}\n```"
@@ -49,10 +49,10 @@ content:
                 example: "```json\n{\n  \"status\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
         id: connectToNetwork
-        title: 'connectToNetwork({ networkSSID, networkSecurity, password })'
+        title: 'connectToNetwork({ networkSecurity, networkSSID, password })'
         parameters:
-            networkSSID: '(String) The network SSID'
             networkSecurity: '(String) (enum) '
+            networkSSID: '(String) The network SSID'
             password: '(String) The network password'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.connectToNetwork({\n    \"networkSSID\": \"HOME\",\n    \"networkSecurity\": \"wpa2_personal\",\n    \"password\": \"great_secret12\"\n  }),\n  accessCertificate\n);\n```"
     -

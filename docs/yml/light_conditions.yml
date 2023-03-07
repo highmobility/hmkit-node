@@ -14,11 +14,11 @@ content:
                 id: LightConditionsResponse
                 title: LightConditionsResponse
                 parameters:
-                    outsideLight:
-                        data.value: '(Number) (illuminance) Measured outside illuminance'
-                        timestamp: (Date)
                     insideLight:
                         data.value: '(Number) (illuminance) Measured inside illuminance'
+                        timestamp: (Date)
+                    outsideLight:
+                        data.value: '(Number) (illuminance) Measured outside illuminance'
                         timestamp: (Date)
                 example: "```json\n{\n  \"outsideLight\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 111000,\n      \"unit\": \"lux\"\n    }\n  },\n  \"insideLight\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.25,\n      \"unit\": \"lux\"\n    }\n  }\n}\n```"
     -

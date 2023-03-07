@@ -14,22 +14,7 @@ content:
                 id: WindscreenResponse
                 title: WindscreenResponse
                 parameters:
-                    wipersStatus:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    wipersIntensity:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
                     windscreenDamage:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    windscreenZoneMatrix:
-                        data.value: '(Object) Representing the size of the matrix&comma; seen from the inside of the vehicle'
-                        timestamp: (Date)
-                    windscreenDamageZone:
-                        data.value: '(Object) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index)'
-                        timestamp: (Date)
-                    windscreenNeedsReplacement:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                     windscreenDamageConfidence:
@@ -37,6 +22,21 @@ content:
                         timestamp: (Date)
                     windscreenDamageDetectionTime:
                         data.value: '(Date) (timestamp) Windscreen damage detection date'
+                        timestamp: (Date)
+                    windscreenDamageZone:
+                        data.value: '(Object) Representing the position in the zone&comma; seen from the inside of the vehicle (1-based index)'
+                        timestamp: (Date)
+                    windscreenNeedsReplacement:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    windscreenZoneMatrix:
+                        data.value: '(Object) Representing the size of the matrix&comma; seen from the inside of the vehicle'
+                        timestamp: (Date)
+                    wipersIntensity:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    wipersStatus:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"wipersStatus\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"automatic\"\n    }\n  },\n  \"wipersIntensity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"level_3\"\n    }\n  },\n  \"windscreenDamage\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"impact_but_no_damage_detected\"\n    }\n  },\n  \"windscreenZoneMatrix\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"horizontal\": {\n        \"value\": 4\n      },\n      \"vertical\": {\n        \"value\": 3\n      }\n    }\n  },\n  \"windscreenDamageZone\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"horizontal\": {\n        \"value\": 1\n      },\n      \"vertical\": {\n        \"value\": 2\n      }\n    }\n  },\n  \"windscreenNeedsReplacement\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"no_replacement_needed\"\n    }\n  },\n  \"windscreenDamageConfidence\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.95\n    }\n  },\n  \"windscreenDamageDetectionTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"2017-01-10T16:32:05.000Z\"\n    }\n  }\n}\n```"
     -
@@ -74,8 +74,8 @@ content:
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.setWindscreenReplacementNeeded({\n    \"windscreenNeedsReplacement\": \"no_replacement_needed\"\n  }),\n  accessCertificate\n);\n```"
     -
         id: controlWipers
-        title: 'controlWipers({ wipersStatus, wipersIntensity })'
+        title: 'controlWipers({ wipersIntensity, wipersStatus })'
         parameters:
-            wipersStatus: '(String) (enum) '
             wipersIntensity: '(String) (enum) '
+            wipersStatus: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Windscreen.controlWipers({\n    \"wipersStatus\": \"automatic\",\n    \"wipersIntensity\": \"level_3\"\n  }),\n  accessCertificate\n);\n```"

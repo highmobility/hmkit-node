@@ -14,26 +14,26 @@ content:
                 id: VehicleLocationResponse
                 title: VehicleLocationResponse
                 parameters:
-                    coordinates:
-                        data.value: '(Object) '
-                        timestamp: (Date)
-                    heading:
-                        data.value: '(Number) (angle) Heading angle'
-                        timestamp: (Date)
                     altitude:
                         data.value: '(Number) (length) Altitude above the WGS 84 reference ellipsoid'
                         timestamp: (Date)
-                    precision:
-                        data.value: '(Number) (length) '
+                    coordinates:
+                        data.value: '(Object) '
                         timestamp: (Date)
-                    gpsSource:
-                        data.value: '(String) (enum) Type of GPS source'
+                    fuzzyCoordinates:
+                        data.value: '(Object) Fuzzy coordinates for the vehicle location.'
                         timestamp: (Date)
                     gpsSignalStrength:
                         data.value: '(Number) (double) GPS signal strength percentage between 0.0-1.0'
                         timestamp: (Date)
-                    fuzzyCoordinates:
-                        data.value: '(Object) Fuzzy coordinates for the vehicle location.'
+                    gpsSource:
+                        data.value: '(String) (enum) Type of GPS source'
+                        timestamp: (Date)
+                    heading:
+                        data.value: '(Number) (angle) Heading angle'
+                        timestamp: (Date)
+                    precision:
+                        data.value: '(Number) (length) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"coordinates\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"latitude\": {\n        \"value\": 52.520008\n      },\n      \"longitude\": {\n        \"value\": 13.404954\n      }\n    }\n  },\n  \"heading\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 13.370123,\n      \"unit\": \"degrees\"\n    }\n  },\n  \"altitude\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 133.5,\n      \"unit\": \"meters\"\n    }\n  },\n  \"precision\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 500,\n      \"unit\": \"meters\"\n    }\n  },\n  \"gpsSource\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"real\"\n    }\n  },\n  \"gpsSignalStrength\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.8\n    }\n  },\n  \"fuzzyCoordinates\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"latitude\": {\n        \"value\": 52.52\n      },\n      \"longitude\": {\n        \"value\": 13.4049\n      }\n    }\n  }\n}\n```"
     -

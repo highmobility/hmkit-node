@@ -65,13 +65,16 @@ async function buildDocumentation() {
 
   await writeFile(
     path.resolve(DOCUMENTATION_DIRECTORY, 'capabilityManifest.yml'),
-    YAML.stringify(supportedCapabilities.map(capability => ({
-      name: capability.name,
-      name_cased: capability.name_cased,
-      name_pretty: capability.name_pretty,
-      src: `/docs/yml/${capability.name}.yml`
-    })), 10)
-  )
+    YAML.stringify(
+      supportedCapabilities.map(capability => ({
+        name: capability.name,
+        name_cased: capability.name_cased,
+        name_pretty: capability.name_pretty,
+        src: `/docs/yml/${capability.name}.yml`,
+      })),
+      10
+    )
+  );
 }
 
 /**
@@ -88,12 +91,14 @@ function buildStateGetter(capability) {
 
   const responseProperties = {};
 
-  getStateProperties(capability).forEach(prop => {
-    responseProperties[prop.name_cased] = {
-      'data.value': getPropertyDescription(prop),
-      timestamp: '(Date)',
-    };
-  });
+  getStateProperties(capability)
+    .sort((a, b) => a.name_cased.localeCompare(b.name_cased))
+    .forEach(prop => {
+      responseProperties[prop.name_cased] = {
+        'data.value': getPropertyDescription(prop),
+        timestamp: '(Date)',
+      };
+    });
 
   return {
     title: `${functionName}([, propertyNames])`,
@@ -118,11 +123,7 @@ function buildStateGetter(capability) {
         title: responseClassName,
         parameters: responseProperties,
         example: code(
-          JSON.stringify(
-            getExampleResponse(capability),
-            null,
-            '  '
-          ),
+          JSON.stringify(getExampleResponse(capability), null, '  '),
           'json'
         ),
       },
@@ -155,9 +156,9 @@ function buildAvailabilityGetter(capability) {
           );
           // Get availability for specific properties
           hmkit.telematics.sendCommand(
-            hmkit.commands.${capabilityName}.getAvailability(['${
-            snakeCaseToCamelCase((stateProperties && stateProperties[0]?.name) || 'status')
-        }']),
+            hmkit.commands.${capabilityName}.getAvailability(['${snakeCaseToCamelCase(
+          (stateProperties && stateProperties[0]?.name) || 'status'
+        )}']),
             accessCertificate
           );
         `),
@@ -178,7 +179,9 @@ function buildAvailabilityGetter(capability) {
         example: code(
           JSON.stringify(
             {
-              [snakeCaseToCamelCase((stateProperties && stateProperties[0]?.name) || 'status')]: {
+              [snakeCaseToCamelCase(
+                (stateProperties && stateProperties[0]?.name) || 'status'
+              )]: {
                 availability: {
                   updateRate: {
                     value: 'trip_high',
@@ -218,7 +221,9 @@ function buildSetters(capability) {
       const properties = [
         ...(setter.mandatory || []),
         ...(setter.optional || []),
-      ].map(propId => capability.properties.find(prop => prop.id === propId));
+      ]
+        .map(propId => capability.properties.find(prop => prop.id === propId))
+        .sort((a, b) => a.name_cased.localeCompare(b.name_cased));
 
       const responseProperties = {};
 
@@ -246,7 +251,7 @@ function buildSetters(capability) {
             }),
             accessCertificate
           );
-        `)
+        `),
       };
     })
     .filter(Boolean);
@@ -263,16 +268,16 @@ function getExampleSetterArgument(setter, capability) {
     if (property.name === 'multi_commands') {
       return {
         ...args,
-        [property.name_cased]: buildMultiCommandsArgument()
-      }
+        [property.name_cased]: buildMultiCommandsArgument(),
+      };
     }
 
     return {
       ...args,
       [property.name_cased]: property.multiple
         ? property.examples.map(example =>
-          parsePropertyData(hexToUint8Array(example.data_component), property)
-        )
+            parsePropertyData(hexToUint8Array(example.data_component), property)
+          )
         : property.examples[0].value || property.examples[0].values,
     };
   }, {});
@@ -282,20 +287,27 @@ function getExampleSetterArgument(setter, capability) {
  * Builds example command for multiCommand from first 2 found capabilities with setters.
  */
 function buildMultiCommandsArgument() {
-  const exampleCapabilities = Object.values(Capabilities).filter(capability => capability.setters).slice(0, 2);
+  const exampleCapabilities = Object.values(Capabilities)
+    .filter(capability => capability.setters)
+    .slice(0, 2);
   return exampleCapabilities.reduce((result, exampleCapability) => {
-    const setterArguments = exampleCapability.setters.slice(0, 2).reduce((result, setter) => {
-      const setterArgument = getExampleSetterArgument(setter, exampleCapability);
-      const setterName = snakeCaseToCamelCase(setter.name);
-      return {
-        ...result,
-        [setterName]: setterArgument
-      }
-    }, {});
+    const setterArguments = exampleCapability.setters
+      .slice(0, 2)
+      .reduce((result, setter) => {
+        const setterArgument = getExampleSetterArgument(
+          setter,
+          exampleCapability
+        );
+        const setterName = snakeCaseToCamelCase(setter.name);
+        return {
+          ...result,
+          [setterName]: setterArgument,
+        };
+      }, {});
 
     return {
       ...result,
-      [exampleCapability.name_cased]: setterArguments
+      [exampleCapability.name_cased]: setterArguments,
     };
   }, {});
 }
@@ -312,16 +324,20 @@ function getExampleResponse(capability) {
           // eslint-disable-next-line camelcase
           const { capability_id, supported_property_ids } = example.values;
           // eslint-disable-next-line no-shadow
-          const exampleCapability = Object.values(Capabilities).find(capability => capability.identifier.lsb === capability_id);
-          const supportedProperties = exampleCapability.properties.filter(prop => supported_property_ids.includes(prop.id)).map(prop => prop.name_cased);
+          const exampleCapability = Object.values(Capabilities).find(
+            capability => capability.identifier.lsb === capability_id
+          );
+          const supportedProperties = exampleCapability.properties
+            .filter(prop => supported_property_ids.includes(prop.id))
+            .map(prop => prop.name_cased);
 
           return {
             data: {
               capability: exampleCapability.name_cased,
-              supportedProperties
+              supportedProperties,
             },
           };
-        })
+        }),
       };
     }
 
@@ -329,19 +345,19 @@ function getExampleResponse(capability) {
       ...mappedResp,
       [property.name_cased]: property.multiple
         ? property.examples.map(example => ({
-          timestamp: new Date('2021-06-01T15:48:04.887Z'),
-          data: parsePropertyData(
-            hexToUint8Array(example.data_component),
-            property
-          ),
-        }))
+            timestamp: new Date('2021-06-01T15:48:04.887Z'),
+            data: parsePropertyData(
+              hexToUint8Array(example.data_component),
+              property
+            ),
+          }))
         : {
-          timestamp: new Date('2021-06-01T15:48:04.887Z'),
-          data: parsePropertyData(
-            hexToUint8Array(property.examples[0].data_component),
-            property
-          ),
-        },
+            timestamp: new Date('2021-06-01T15:48:04.887Z'),
+            data: parsePropertyData(
+              hexToUint8Array(property.examples[0].data_component),
+              property
+            ),
+          },
     };
   }, {});
 }
@@ -395,17 +411,17 @@ function getPropertyType(property) {
   const generalType = property.type.startsWith('unit.')
     ? 'Number'
     : {
-      string: 'String',
-      custom: 'Object',
-      uinteger: 'Number',
-      list_uinteger: 'Number',
-      double: 'Number',
-      float: 'Number',
-      enum: 'String',
-      timestamp: 'Date',
-      integer: 'Number',
-      bytes: 'Array<Number>',
-    }[type];
+        string: 'String',
+        custom: 'Object',
+        uinteger: 'Number',
+        list_uinteger: 'Number',
+        double: 'Number',
+        float: 'Number',
+        enum: 'String',
+        timestamp: 'Date',
+        integer: 'Number',
+        bytes: 'Array<Number>',
+      }[type];
 
   if (multiple) {
     return `Array<${generalType}>`;

@@ -14,6 +14,12 @@ content:
                 id: CruiseControlResponse
                 title: CruiseControlResponse
                 parameters:
+                    accTargetSpeed:
+                        data.value: '(Number) (speed) The target speed of the Adaptive Cruise Control'
+                        timestamp: (Date)
+                    adaptiveCruiseControl:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
                     cruiseControl:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
@@ -22,12 +28,6 @@ content:
                         timestamp: (Date)
                     targetSpeed:
                         data.value: '(Number) (speed) The target speed'
-                        timestamp: (Date)
-                    adaptiveCruiseControl:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    accTargetSpeed:
-                        data.value: '(Number) (speed) The target speed of the Adaptive Cruise Control'
                         timestamp: (Date)
                 example: "```json\n{\n  \"cruiseControl\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"limiter\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"higher_speed_requested\"\n    }\n  },\n  \"targetSpeed\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 61,\n      \"unit\": \"kilometers_per_hour\"\n    }\n  },\n  \"adaptiveCruiseControl\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"accTargetSpeed\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 67,\n      \"unit\": \"kilometers_per_hour\"\n    }\n  }\n}\n```"
     -

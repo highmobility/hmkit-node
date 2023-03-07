@@ -14,17 +14,14 @@ content:
                 id: TheftAlarmResponse
                 title: TheftAlarmResponse
                 parameters:
-                    status:
-                        data.value: '(String) (enum) '
+                    eventType:
+                        data.value: '(String) (enum) Position of the last even relative to the vehicle'
                         timestamp: (Date)
                     interiorProtectionStatus:
                         data.value: '(String) (enum) Interior protection sensor status'
                         timestamp: (Date)
-                    towProtectionStatus:
-                        data.value: '(String) (enum) Tow protection sensor status'
-                        timestamp: (Date)
-                    lastWarningReason:
-                        data.value: '(String) (enum) '
+                    interiorProtectionTriggered:
+                        data.value: '(String) (enum) Indicates whether the interior protection sensors are triggered.'
                         timestamp: (Date)
                     lastEvent:
                         data.value: '(Date) (timestamp) Last event happening date'
@@ -32,11 +29,14 @@ content:
                     lastEventLevel:
                         data.value: '(String) (enum) Level of impact for the last event'
                         timestamp: (Date)
-                    eventType:
-                        data.value: '(String) (enum) Position of the last even relative to the vehicle'
+                    lastWarningReason:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
-                    interiorProtectionTriggered:
-                        data.value: '(String) (enum) Indicates whether the interior protection sensors are triggered.'
+                    status:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    towProtectionStatus:
+                        data.value: '(String) (enum) Tow protection sensor status'
                         timestamp: (Date)
                     towProtectionTriggered:
                         data.value: '(String) (enum) Indicates whether the tow protection sensors are triggered.'

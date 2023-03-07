@@ -17,11 +17,11 @@ content:
                     lock:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                    position:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
                     lockSafety:
                         data.value: '(String) (enum) Indicates the safe-state of the trunk.'
+                        timestamp: (Date)
+                    position:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                 example: "```json\n{\n  \"lock\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"unlocked\"\n    }\n  },\n  \"position\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"open\"\n    }\n  },\n  \"lockSafety\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"safe\"\n    }\n  }\n}\n```"
     -

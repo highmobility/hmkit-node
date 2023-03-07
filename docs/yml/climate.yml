@@ -14,20 +14,8 @@ content:
                 id: ClimateResponse
                 title: ClimateResponse
                 parameters:
-                    insideTemperature:
-                        data.value: '(Number) (temperature) The inside temperature'
-                        timestamp: (Date)
-                    outsideTemperature:
-                        data.value: '(Number) (temperature) The outside temperature'
-                        timestamp: (Date)
-                    driverTemperatureSetting:
-                        data.value: '(Number) (temperature) The driver temperature setting'
-                        timestamp: (Date)
-                    passengerTemperatureSetting:
-                        data.value: '(Number) (temperature) The passenger temperature setting'
-                        timestamp: (Date)
-                    hvacState:
-                        data.value: '(String) (enum) '
+                    airConditionerCompressorPower:
+                        data.value: '(Number) (power) Electric air conditioner compressor power.'
                         timestamp: (Date)
                     defoggingState:
                         data.value: '(String) (enum) '
@@ -35,23 +23,35 @@ content:
                     defrostingState:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                    ionisingState:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
                     defrostingTemperatureSetting:
                         data.value: '(Number) (temperature) The defrosting temperature setting'
                         timestamp: (Date)
-                    hvacWeekdayStartingTimes:
-                        data.value: '(Array<Object>) '
-                        timestamp: (Date)
-                    rearTemperatureSetting:
-                        data.value: '(Number) (temperature) The rear temperature'
+                    driverTemperatureSetting:
+                        data.value: '(Number) (temperature) The driver temperature setting'
                         timestamp: (Date)
                     humidity:
                         data.value: '(Number) (double) Measured relative humidity between 0.0 - 1.0.'
                         timestamp: (Date)
-                    airConditionerCompressorPower:
-                        data.value: '(Number) (power) Electric air conditioner compressor power.'
+                    hvacState:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    hvacWeekdayStartingTimes:
+                        data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    insideTemperature:
+                        data.value: '(Number) (temperature) The inside temperature'
+                        timestamp: (Date)
+                    ionisingState:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
+                    outsideTemperature:
+                        data.value: '(Number) (temperature) The outside temperature'
+                        timestamp: (Date)
+                    passengerTemperatureSetting:
+                        data.value: '(Number) (temperature) The passenger temperature setting'
+                        timestamp: (Date)
+                    rearTemperatureSetting:
+                        data.value: '(Number) (temperature) The rear temperature'
                         timestamp: (Date)
                 example: "```json\n{\n  \"insideTemperature\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 19.1,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"outsideTemperature\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 12.2,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"driverTemperatureSetting\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 21.5,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"passengerTemperatureSetting\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 21.7,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"hvacState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"defoggingState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"defrostingState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"ionisingState\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"inactive\"\n    }\n  },\n  \"defrostingTemperatureSetting\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 21.2,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"hvacWeekdayStartingTimes\": [\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"monday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"tuesday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"wednesday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"thursday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"friday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"saturday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 18\n          },\n          \"minute\": {\n            \"value\": 30\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"sunday\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 19\n          },\n          \"minute\": {\n            \"value\": 31\n          }\n        }\n      }\n    },\n    {\n      \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n      \"data\": {\n        \"weekday\": {\n          \"value\": \"automatic\"\n        },\n        \"time\": {\n          \"hour\": {\n            \"value\": 16\n          },\n          \"minute\": {\n            \"value\": 0\n          }\n        }\n      }\n    }\n  ],\n  \"rearTemperatureSetting\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 21.6,\n      \"unit\": \"celsius\"\n    }\n  },\n  \"humidity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.568\n    }\n  },\n  \"airConditionerCompressorPower\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 0.8,\n      \"unit\": \"kilowatts\"\n    }\n  }\n}\n```"
     -

@@ -22,8 +22,8 @@ content:
                 example: "```json\n{\n  \"text\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
         id: messageReceived
-        title: 'messageReceived({ text, handle })'
+        title: 'messageReceived({ handle, text })'
         parameters:
-            text: '(String) The text'
             handle: '(String) The optional handle of message'
+            text: '(String) The text'
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Messaging.messageReceived({\n    \"text\": \"Hey mom!\",\n    \"handle\": \"Epp\"\n  }),\n  accessCertificate\n);\n```"

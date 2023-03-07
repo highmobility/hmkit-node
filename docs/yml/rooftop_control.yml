@@ -14,23 +14,23 @@ content:
                 id: RooftopControlResponse
                 title: RooftopControlResponse
                 parameters:
+                    convertibleRoofState:
+                        data.value: '(String) (enum) '
+                        timestamp: (Date)
                     dimming:
                         data.value: '(Number) (double) 1.0 (100%) is opaque&comma; 0.0 (0%) is transparent'
                         timestamp: (Date)
                     position:
                         data.value: '(Number) (double) 1.0 (100%) is fully open&comma; 0.0 (0%) is closed'
                         timestamp: (Date)
-                    convertibleRoofState:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    sunroofTiltState:
-                        data.value: '(String) (enum) '
+                    sunroofRainEvent:
+                        data.value: '(String) (enum) Sunroof event happened in case of rain'
                         timestamp: (Date)
                     sunroofState:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                    sunroofRainEvent:
-                        data.value: '(String) (enum) Sunroof event happened in case of rain'
+                    sunroofTiltState:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                     tiltPosition:
                         data.value: '(Number) (double) 1.0 (100%) is fully tilted&comma; 0.0 (0%) is not'
@@ -58,11 +58,11 @@ content:
                 example: "```json\n{\n  \"dimming\": {\n    \"availability\": {\n      \"updateRate\": {\n        \"value\": \"trip_high\"\n      },\n      \"rateLimit\": {\n        \"value\": 64,\n        \"unit\": \"hertz\"\n      },\n      \"appliesPer\": {\n        \"value\": \"vehicle\"\n      }\n    }\n  }\n}\n```"
     -
         id: controlRooftop
-        title: 'controlRooftop({ dimming, position, convertibleRoofState, sunroofTiltState, sunroofState })'
+        title: 'controlRooftop({ convertibleRoofState, dimming, position, sunroofState, sunroofTiltState })'
         parameters:
+            convertibleRoofState: '(String) (enum) '
             dimming: '(Number) (double) 1.0 (100%) is opaque&comma; 0.0 (0%) is transparent'
             position: '(Number) (double) 1.0 (100%) is fully open&comma; 0.0 (0%) is closed'
-            convertibleRoofState: '(String) (enum) '
-            sunroofTiltState: '(String) (enum) '
             sunroofState: '(String) (enum) '
+            sunroofTiltState: '(String) (enum) '
         example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.RooftopControl.controlRooftop({\n    \"dimming\": 1,\n    \"position\": 0.5,\n    \"convertibleRoofState\": \"open\",\n    \"sunroofTiltState\": \"half_tilted\",\n    \"sunroofState\": \"open\"\n  }),\n  accessCertificate\n);\n```"

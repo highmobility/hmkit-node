@@ -14,22 +14,22 @@ content:
                 id: TachographResponse
                 title: TachographResponse
                 parameters:
-                    driversWorkingStates:
+                    driversCardsPresent:
                         data.value: '(Array<Object>) '
                         timestamp: (Date)
                     driversTimeStates:
                         data.value: '(Array<Object>) '
                         timestamp: (Date)
-                    driversCardsPresent:
+                    driversWorkingStates:
                         data.value: '(Array<Object>) '
+                        timestamp: (Date)
+                    vehicleDirection:
+                        data.value: '(String) (enum) '
                         timestamp: (Date)
                     vehicleMotion:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                     vehicleOverspeed:
-                        data.value: '(String) (enum) '
-                        timestamp: (Date)
-                    vehicleDirection:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
                     vehicleSpeed:
