@@ -37,4 +37,4 @@ content:
         parameters:
             actionItems: '(Array<Object>) '
             text: '(String) Text for the notification'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"text\": \"Open Garage\",\n    \"actionItems\": [\n      {\n        \"id\": {\n          \"value\": 27\n        },\n        \"name\": {\n          \"value\": \"Open\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": 28\n        },\n        \"name\": {\n          \"value\": \"Cancel\"\n        }\n      }\n    ]\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Notifications.notification({\n    \"actionItems\": [\n      {\n        \"id\": {\n          \"value\": 27\n        },\n        \"name\": {\n          \"value\": \"Open\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": 28\n        },\n        \"name\": {\n          \"value\": \"Cancel\"\n        }\n      }\n    ],\n    \"text\": \"Open Garage\"\n  }),\n  accessCertificate\n);\n```"

@@ -27,4 +27,4 @@ content:
             screen: '(String) (enum) '
             startingTime: '(Number) (duration) Start the video from the given time'
             url: '(String) URL string'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.VideoHandover.videoHandover({\n    \"url\": \"https://bit.ly/2obY7G5\",\n    \"startingTime\": {\n      \"seconds\": 2.5\n    },\n    \"screen\": \"rear\"\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.VideoHandover.videoHandover({\n    \"screen\": \"rear\",\n    \"startingTime\": {\n      \"seconds\": 2.5\n    },\n    \"url\": \"https://bit.ly/2obY7G5\"\n  }),\n  accessCertificate\n);\n```"

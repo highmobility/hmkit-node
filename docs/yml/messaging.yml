@@ -26,4 +26,4 @@ content:
         parameters:
             handle: '(String) The optional handle of message'
             text: '(String) The text'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Messaging.messageReceived({\n    \"text\": \"Hey mom!\",\n    \"handle\": \"Epp\"\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.Messaging.messageReceived({\n    \"handle\": \"Epp\",\n    \"text\": \"Hey mom!\"\n  }),\n  accessCertificate\n);\n```"

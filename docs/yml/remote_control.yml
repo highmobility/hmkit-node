@@ -20,7 +20,7 @@ content:
                     controlMode:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"controlMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"started\"\n    }\n  },\n  \"angle\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 50,\n      \"unit\": \"degrees\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"angle\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": 50,\n      \"unit\": \"degrees\"\n    }\n  },\n  \"controlMode\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"started\"\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

@@ -20,7 +20,7 @@ content:
                     status:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  },\n  \"engaged\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"engaged\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"engaged\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"engaged\"\n    }\n  },\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"active\"\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability

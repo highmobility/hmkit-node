@@ -264,24 +264,31 @@ function buildSetters(capability) {
 function getExampleSetterArgument(setter, capability) {
   const { mandatory = [], optional = [] } = setter;
 
-  return [...mandatory, ...optional].reduce((args, propertyID) => {
-    const property = capability.properties.find(prop => prop.id === propertyID);
-    if (property.name === 'multi_commands') {
+  return [...mandatory, ...optional]
+    .map(propertyID =>
+      capability.properties.find(prop => prop.id === propertyID)
+    )
+    .sort((a, b) => a.name_cased.localeCompare(b.name_cased))
+    .reduce((args, property) => {
+      if (property.name === 'multi_commands') {
+        return {
+          ...args,
+          [property.name_cased]: buildMultiCommandsArgument(),
+        };
+      }
+
       return {
         ...args,
-        [property.name_cased]: buildMultiCommandsArgument(),
+        [property.name_cased]: property.multiple
+          ? property.examples.map(example =>
+              parsePropertyData(
+                hexToUint8Array(example.data_component),
+                property
+              )
+            )
+          : property.examples[0].value || property.examples[0].values,
       };
-    }
-
-    return {
-      ...args,
-      [property.name_cased]: property.multiple
-        ? property.examples.map(example =>
-            parsePropertyData(hexToUint8Array(example.data_component), property)
-          )
-        : property.examples[0].value || property.examples[0].values,
-    };
-  }, {});
+    }, {});
 }
 
 /**
@@ -318,49 +325,52 @@ function buildMultiCommandsArgument() {
  */
 function getExampleResponse(capability) {
   const stateProperties = getStateProperties(capability);
-  return stateProperties.reduce((mappedResp, property) => {
-    if (property.customType === 'supported_capability') {
+  return stateProperties
+    .sort((a, b) => a.name_cased.localeCompare(b.name_cased))
+    .reduce((mappedResp, property) => {
+      if (property.customType === 'supported_capability') {
+        return {
+          [property.name_cased]: property.examples.map(example => {
+            // eslint-disable-next-line camelcase
+            const { capability_id, supported_property_ids } = example.values;
+            // eslint-disable-next-line no-shadow
+            const exampleCapability = Object.values(Capabilities).find(
+              capability => capability.identifier.lsb === capability_id
+            );
+            const supportedProperties = exampleCapability.properties
+              .filter(prop => supported_property_ids.includes(prop.id))
+              .map(prop => prop.name_cased)
+              .sort((a, b) => a.localeCompare(b));
+
+            return {
+              data: {
+                capability: exampleCapability.name_cased,
+                supportedProperties,
+              },
+            };
+          }),
+        };
+      }
+
       return {
-        [property.name_cased]: property.examples.map(example => {
-          // eslint-disable-next-line camelcase
-          const { capability_id, supported_property_ids } = example.values;
-          // eslint-disable-next-line no-shadow
-          const exampleCapability = Object.values(Capabilities).find(
-            capability => capability.identifier.lsb === capability_id
-          );
-          const supportedProperties = exampleCapability.properties
-            .filter(prop => supported_property_ids.includes(prop.id))
-            .map(prop => prop.name_cased);
-
-          return {
-            data: {
-              capability: exampleCapability.name_cased,
-              supportedProperties,
+        ...mappedResp,
+        [property.name_cased]: property.multiple
+          ? property.examples.map(example => ({
+              timestamp: new Date('2021-06-01T15:48:04.887Z'),
+              data: parsePropertyData(
+                hexToUint8Array(example.data_component),
+                property
+              ),
+            }))
+          : {
+              timestamp: new Date('2021-06-01T15:48:04.887Z'),
+              data: parsePropertyData(
+                hexToUint8Array(property.examples[0].data_component),
+                property
+              ),
             },
-          };
-        }),
       };
-    }
-
-    return {
-      ...mappedResp,
-      [property.name_cased]: property.multiple
-        ? property.examples.map(example => ({
-            timestamp: new Date('2021-06-01T15:48:04.887Z'),
-            data: parsePropertyData(
-              hexToUint8Array(example.data_component),
-              property
-            ),
-          }))
-        : {
-            timestamp: new Date('2021-06-01T15:48:04.887Z'),
-            data: parsePropertyData(
-              hexToUint8Array(property.examples[0].data_component),
-              property
-            ),
-          },
-    };
-  }, {});
+    }, {});
 }
 
 /**

@@ -26,7 +26,7 @@ content:
                     status:
                         data.value: '(String) (enum) '
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  },\n  \"networkConnected\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"connected\"\n    }\n  },\n  \"networkSSID\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"HOME\"\n    }\n  },\n  \"networkSecurity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"wpa2_personal\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"networkConnected\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"connected\"\n    }\n  },\n  \"networkSecurity\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"wpa2_personal\"\n    }\n  },\n  \"networkSSID\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"HOME\"\n    }\n  },\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"enabled\"\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability
@@ -54,7 +54,7 @@ content:
             networkSecurity: '(String) (enum) '
             networkSSID: '(String) The network SSID'
             password: '(String) The network password'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.connectToNetwork({\n    \"networkSSID\": \"HOME\",\n    \"networkSecurity\": \"wpa2_personal\",\n    \"password\": \"great_secret12\"\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.WiFi.connectToNetwork({\n    \"networkSecurity\": \"wpa2_personal\",\n    \"networkSSID\": \"HOME\",\n    \"password\": \"great_secret12\"\n  }),\n  accessCertificate\n);\n```"
     -
         id: enableDisableWiFi
         title: 'enableDisableWiFi({ status })'

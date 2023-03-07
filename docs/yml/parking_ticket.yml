@@ -29,7 +29,7 @@ content:
                     ticketStartTime:
                         data.value: '(Date) (timestamp) Parking ticket start time'
                         timestamp: (Date)
-                example: "```json\n{\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"ended\"\n    }\n  },\n  \"operatorName\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"Berlin Parking\"\n    }\n  },\n  \"operatorTicketID\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"6489AB4233\"\n    }\n  },\n  \"ticketStartTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"2017-01-10T19:34:22.000Z\"\n    }\n  },\n  \"ticketEndTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"2019-10-08T11:21:45.000Z\"\n    }\n  }\n}\n```"
+                example: "```json\n{\n  \"operatorName\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"Berlin Parking\"\n    }\n  },\n  \"operatorTicketID\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"6489AB4233\"\n    }\n  },\n  \"status\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"ended\"\n    }\n  },\n  \"ticketEndTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"2019-10-08T11:21:45.000Z\"\n    }\n  },\n  \"ticketStartTime\": {\n    \"timestamp\": \"2021-06-01T15:48:04.887Z\",\n    \"data\": {\n      \"value\": \"2017-01-10T19:34:22.000Z\"\n    }\n  }\n}\n```"
     -
         title: 'getAvailability([, propertyNames])'
         id: get-availability
@@ -63,4 +63,4 @@ content:
             operatorTicketID: '(String) Operator ticket ID'
             ticketEndTime: '(Date) (timestamp) Parking ticket end time'
             ticketStartTime: '(Date) (timestamp) Parking ticket start time'
-        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ParkingTicket.startParking({\n    \"operatorTicketID\": \"6489AB4233\",\n    \"ticketStartTime\": \"2017-01-10T19:34:22.000Z\",\n    \"operatorName\": \"Berlin Parking\",\n    \"ticketEndTime\": \"2019-10-08T11:21:45.000Z\"\n  }),\n  accessCertificate\n);\n```"
+        example: "```javascript\nhmkit.telematics.sendCommand(\n  hmkit.commands.ParkingTicket.startParking({\n    \"operatorName\": \"Berlin Parking\",\n    \"operatorTicketID\": \"6489AB4233\",\n    \"ticketEndTime\": \"2019-10-08T11:21:45.000Z\",\n    \"ticketStartTime\": \"2017-01-10T19:34:22.000Z\"\n  }),\n  accessCertificate\n);\n```"
