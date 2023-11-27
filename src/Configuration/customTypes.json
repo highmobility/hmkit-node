@@ -863,7 +863,7 @@
         "name_pretty": "Acceleration",
         "type": "unit.acceleration",
         "size": 10,
-        "description": "The accelaration",
+        "description": "The acceleration",
         "unit": {
           "name": "acceleration",
           "id": 1,
@@ -2376,7 +2376,7 @@
           },
           {
             "id": 138,
-            "name": "hydraulic_pressure_or_brake_fuild_insufficient"
+            "name": "hydraulic_pressure_or_brake_fluid_insufficient"
           },
           {
             "id": 139,
@@ -2416,7 +2416,7 @@
           },
           {
             "id": 148,
-            "name": "power_steering_assitance_failure"
+            "name": "power_steering_assistance_failure"
           },
           {
             "id": 149,
