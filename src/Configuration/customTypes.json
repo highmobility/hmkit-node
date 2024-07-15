@@ -3113,6 +3113,35 @@
       }
     ]
   },
+  "dynamic_warning": {
+    "name": "dynamic_warning",
+    "name_cased": "dynamicWarning",
+    "name_pretty": "Dynamic warning",
+    "type": "custom",
+    "items": [
+      {
+        "name": "category",
+        "name_cased": "category",
+        "name_pretty": "Category",
+        "type": "string",
+        "description": "Category of the warning"
+      },
+      {
+        "name": "id",
+        "name_cased": "id",
+        "name_pretty": "ID",
+        "type": "string",
+        "description": "Identifier of the warning"
+      },
+      {
+        "name": "description",
+        "name_cased": "description",
+        "name_pretty": "Description",
+        "type": "string",
+        "description": "Description of the warning"
+      }
+    ]
+  },
   "eco_driving_threshold": {
     "name": "eco_driving_threshold",
     "name_cased": "ecoDrivingThreshold",
