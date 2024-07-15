@@ -30,8 +30,8 @@ import capabilitiesConfiguration from '../Configuration/capabilities.json';
 import { capitalize } from '../Utils/Helpers';
 import EmptyResponse from '../Responses/EmptyResponse';
 
-const ResponseClasses = Object.values(capabilitiesConfiguration)
-  .reduce((responseClasses, capabilityConf) => {
+const ResponseClasses = Object.values(capabilitiesConfiguration).reduce(
+  (responseClasses, capabilityConf) => {
     const capitalizedName = capitalize(capabilityConf.name_cased);
     const { identifier } = capabilityConf;
 
@@ -62,6 +62,8 @@ const ResponseClasses = Object.values(capabilitiesConfiguration)
       ...responseClasses,
       [capitalizedName]: customClass,
     };
-  }, {});
+  },
+  {}
+);
 
 export default ResponseClasses;

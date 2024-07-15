@@ -526,8 +526,8 @@ function encodePropertyValue(value, encodingFunc) {
 }
 
 export function buildCommands() {
-  return Object.values(capabilitiesConfiguration)
-    .reduce((allConf, capabilityConf) => {
+  return Object.values(capabilitiesConfiguration).reduce(
+    (allConf, capabilityConf) => {
       const buildGettersAndSetters = !CAPABILITIES_WITH_NO_COMMANDS.includes(
         capabilityConf.name
       );
@@ -553,5 +553,7 @@ export function buildCommands() {
         ...allConf,
         [capitalizeSnake(capabilityConf.name)]: commands,
       };
-    }, {});
+    },
+    {}
+  );
 }
